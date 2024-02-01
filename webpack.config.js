@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 module.exports = {
   name: 'example',
   mode: 'development',
@@ -15,6 +16,12 @@ module.exports = {
             '@babel/preset-typescript',
           ],
         },
+      },
+      {
+        test: /\.(css|scss)$/i,
+        use: ['style-loader', 'css-loader'],
+        include: [path.resolve(__dirname, 'src/styles')],
+        exclude: /node_modules/,
       },
     ],
   },
