@@ -4,7 +4,8 @@ import Header from './layout/Header';
 import SearchBar from './layout/SearchBar';
 import Footer from './layout/Footer';
 import LandingPage from './pages/LandingPage/LandingPage';
-import LoginPage from './pages/LoginPage/LoginPage';
+import PostList from './pages/PostListPage/PostListPage';
+import CreatePostPage from './pages/CreatePostPage/CreatePostPage';
 
 const Layout = () => {
   return (
@@ -24,7 +25,8 @@ const App: React.FC = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<LandingPage />} />
-        <Route path="login" element={<LoginPage />} />
+        <Route path="posts" element={<PostList />} />
+        <Route path="post/create" element={<CreatePostPage />} />
       </Route>
     </Routes>
   );
