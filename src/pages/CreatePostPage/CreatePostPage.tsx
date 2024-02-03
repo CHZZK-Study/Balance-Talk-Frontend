@@ -1,6 +1,9 @@
 import React from 'react';
 import { css } from '@emotion/css';
 import CreatePostForm from './sections/CreatePostForm';
+import ArrowDown from '../../assets/images/arrow-down.png';
+import Calendar from '../../assets/images/calendar.png';
+import Add from '../../assets/images/add.png';
 
 const inputStyles = {
   borderRadius: '5px',
@@ -94,7 +97,7 @@ const CreatePostPage = () => {
                       bottom: '0',
                       width: '24px',
                       height: '24px',
-                      backgroundImage: 'url("/arrow-down.png")',
+                      backgroundImage: `url(${ArrowDown})`,
                     },
                   })}
                 >
@@ -129,7 +132,7 @@ const CreatePostPage = () => {
                       bottom: '0',
                       width: '24px',
                       height: '24px',
-                      backgroundImage: 'url("/calendar.png")',
+                      backgroundImage: `url(${Calendar})`,
                     },
                   })}
                 >
@@ -199,7 +202,7 @@ const CreatePostPage = () => {
                   bottom: '0',
                   width: '24px',
                   height: '24px',
-                  backgroundImage: 'url("/add.png")',
+                  backgroundImage: `url(${Add})`,
                 },
               })}
             >

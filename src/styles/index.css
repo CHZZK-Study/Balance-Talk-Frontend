@@ -2,24 +2,24 @@
 
 @font-face {
   font-family: 'SpoqaHanSansNeo-Thin';
-  src: url('../fonts/SpoqaHanSansNeo-Thin.ttf');
+  src: url('../assets/fonts/SpoqaHanSansNeo-Thin.ttf');
 }
 @font-face {
   font-family: 'SpoqaHanSansNeo-Light';
-  src: url('../fonts/SpoqaHanSansNeo-Light.ttf');
+  src: url('../assets/fonts/SpoqaHanSansNeo-Light.ttf');
 }
 
 @font-face {
   font-family: 'SpoqaHanSansNeo-Medium';
-  src: url('../fonts/SpoqaHanSansNeo-Medium.ttf');
+  src: url('../assets/fonts/SpoqaHanSansNeo-Medium.ttf');
 }
 
 @font-face {
   font-family: 'SpoqaHanSansNeo-Bold';
-  src: url('../fonts/SpoqaHanSansNeo-Bold.ttf');
+  src: url('../assets/fonts/SpoqaHanSansNeo-Bold.ttf');
 }
 
 @font-face {
   font-family: 'SpoqaHanSansNeo-Regular';
-  src: url('../fonts/SpoqaHanSansNeo-Regular.ttf');
+  src: url('../assets/fonts/SpoqaHanSansNeo-Regular.ttf');
 }
