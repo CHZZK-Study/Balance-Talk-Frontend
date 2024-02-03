@@ -23,6 +23,17 @@ module.exports = {
         include: [path.resolve(__dirname, 'src/styles')],
         exclude: /node_modules/,
       },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+            },
+          },
+        ],
+      },
     ],
   },
   resolve: {
@@ -35,6 +46,7 @@ module.exports = {
   ],
   output: {
     filename: 'bundle.js',
+    publicPath: '/',
   },
   devServer: {
     host: 'localhost',
