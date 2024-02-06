@@ -1,3 +1,11 @@
+* {
+  max-width: 100vw;
+  max-height: 100vh;
+  box-sizing: border-box;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 html,
 body,
 div,
@@ -86,6 +94,7 @@ video {
   font: inherit;
   vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article,
 aside,
@@ -100,17 +109,21 @@ nav,
 section {
   display: block;
 }
+
 body {
   line-height: 1;
 }
+
 ol,
 ul {
   list-style: none;
 }
+
 blockquote,
 q {
   quotes: none;
 }
+
 blockquote:before,
 blockquote:after,
 q:before,
@@ -118,14 +131,33 @@ q:after {
   content: '';
   content: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
 input:focus {
   outline: none;
 }
+
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.no-scroll-bar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+button,
+input,
+select,
+textarea {
+  background-color: inherit;
+  font: inherit;
+  margin: 0;
+  border: none;
+  outline: none;
 }
