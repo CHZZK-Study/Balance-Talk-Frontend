@@ -24,7 +24,11 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
     <div>
       <div className={css({ display: 'flex', alignItems: 'center' })}>
         <div>
-          <div onClick={onLeftArrowClickHandler} role="presentation">
+          <div
+            onClick={onLeftArrowClickHandler}
+            role="presentation"
+            className={css({ cursor: 'pointer' })}
+          >
             <LeftArrowButton />
           </div>
         </div>
@@ -48,7 +52,11 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
           </div>
         </div>
         <div>
-          <div onClick={onRightArrowClickHandler} role="presentation">
+          <div
+            onClick={onRightArrowClickHandler}
+            role="presentation"
+            className={css({ cursor: 'pointer' })}
+          >
             <RightArrowButton />
           </div>
         </div>
