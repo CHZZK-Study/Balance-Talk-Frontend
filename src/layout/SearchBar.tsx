@@ -34,7 +34,7 @@ const SearchBar = () => {
             width: '100%',
           })}
         />
-        <SearchIcon width="20" height="20" />
+        <SearchIcon width={20} height={20} />
       </div>
       <div className={css({ display: 'flex' })}>
         <TagButton tag="태그" />

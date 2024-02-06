@@ -1,11 +1,11 @@
 import React from 'react';
 
 interface SearchIconProps {
-  width?: string;
-  height?: string;
+  width?: number;
+  height?: number;
 }
 
-const SearchIcon = ({ width = '24', height = '24' }: SearchIconProps) => {
+const SearchIcon = ({ width = 24, height = 24 }: SearchIconProps) => {
   return (
     <svg
       width={width}
