@@ -1,5 +1,4 @@
-import React from 'react';
-import { ComponentPropsWithoutRef } from 'react';
+import React, { ComponentPropsWithoutRef } from 'react';
 import { Size } from '../../types/temp';
 import { getSizeStyling } from './Heading.style';
 

@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import type { ComponentPropsWithRef, ForwardedRef, ReactElement } from 'react';
-import { forwardRef } from 'react';
 import type { Size } from '../../types/temp';
 import Label from '../Label/Label';
 import {
@@ -32,13 +31,9 @@ const Input = (
   ref: ForwardedRef<HTMLInputElement>,
 ) => (
   <div css={inputContainerStyling}>
-    {label && (
-      <Label id={attributes.id} required={attributes.required}>
-        {label}
-      </Label>
-    )}
+    {label && <Label id={attributes.id}>{label}</Label>}
     <div>
-      <div css={[getSizeStyling(size), inputWrapperStyling(isError)]}>
+      <div css={[getSizeStyling(size), inputWrapperStyling]}>
         {icon}
         <input
           ref={ref}

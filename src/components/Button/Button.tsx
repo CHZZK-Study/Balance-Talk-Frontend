@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import type { ComponentPropsWithRef, ForwardedRef } from 'react';
-import { forwardRef } from 'react';
 import type { Size } from '../../types/temp';
 import {
   buttonStyling,
