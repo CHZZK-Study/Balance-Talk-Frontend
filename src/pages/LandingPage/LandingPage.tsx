@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import MainPost from '../../components/MainPost';
 import PostImage from '../../components/PostImage';
 import Carousel from '../../components/Carousel';
@@ -49,7 +49,7 @@ const LandingPage = () => {
   });
   return (
     <div
-      className={css({
+      css={css({
         width: '100vw',
         display: 'flex',
         flexDirection: 'column',

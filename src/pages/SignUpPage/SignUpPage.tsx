@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import Button from '../../components/Button/Button';
 import Heading from '../../components/Heading/Heading';
 import Input from '../../components/Input/Input';
@@ -13,12 +13,12 @@ import {
 const SignUpPage = () => {
   const isError: boolean = true;
   return (
-    <div className={container}>
-      <div className={loginContainer}>
+    <div css={container}>
+      <div css={loginContainer}>
         <Heading size="large">SIGN UP</Heading>
 
-        <div className={inputContainer}>
-          <div className={inputButtonContainer}>
+        <div css={inputContainer}>
+          <div css={inputButtonContainer}>
             <Input
               placeholder="이메일을 입력해주세요."
               size="medium"
@@ -28,7 +28,7 @@ const SignUpPage = () => {
             />
             <Button css={css({ width: '100%' })}>인증</Button>
           </div>
-          <div className={inputButtonContainer}>
+          <div css={inputButtonContainer}>
             <Input
               placeholder="인증번호 입력"
               size="medium"
@@ -39,7 +39,7 @@ const SignUpPage = () => {
             />
             <Button css={css({ width: '100%' })}>확인</Button>
           </div>
-          <div className={inputButtonContainer}>
+          <div css={inputButtonContainer}>
             <Input
               placeholder="닉네임을 입력해주세요 (양식)"
               size="medium"

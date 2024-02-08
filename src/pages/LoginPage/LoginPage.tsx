@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import Heading from '../../components/Heading/Heading';
 import Input from '../../components/Input/Input';
 import { container, inputContainer, loginContainer } from './LoginPage.style';
@@ -10,14 +10,14 @@ import Button from '../../components/Button/Button';
 const LoginPage = () => {
   const isError: boolean = true;
   return (
-    <div className={container}>
-      <div className={loginContainer}>
+    <div css={container}>
+      <div css={loginContainer}>
         {/* TODO: 컴포넌트에 지정한 기본 css에 추가로 css 적용을 어떻게 할 것인지 논의 필요 */}
         <Heading css={css({ fontWeight: '600' })} size="large">
           LOGIN
         </Heading>
 
-        <div className={inputContainer}>
+        <div css={inputContainer}>
           <Input placeholder="이메일" size="medium" icon={<Email />} />
           <Input
             placeholder="비밀번호"

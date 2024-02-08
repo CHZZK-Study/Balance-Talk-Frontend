@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import { ImageInfo, PostInfo } from '../../../types/temp';
 import PostItemImage from './PostItemImage';
 import TagButton from '../../../components/TagButton';
@@ -25,7 +25,7 @@ const PostItem = ({ post }: PostItemProps) => {
 
   return (
     <div
-      className={css({
+      css={css({
         backgroundColor: 'orange',
         display: 'flex',
         flexDirection: 'column',
@@ -43,7 +43,7 @@ const PostItem = ({ post }: PostItemProps) => {
         <PostItemImage images={imagesInfo} />
       </div>
       <div
-        className={css({
+        css={css({
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'baseline',
@@ -52,7 +52,7 @@ const PostItem = ({ post }: PostItemProps) => {
         })}
       >
         <div
-          className={css({
+          css={css({
             fontFamily: 'SpoqaHanSansNeo-Bold',
             fontSize: '24px',
           })}
@@ -60,7 +60,7 @@ const PostItem = ({ post }: PostItemProps) => {
           {post.title}
         </div>
         <div
-          className={css({
+          css={css({
             fontFamily: 'SpoqaHanSansNeo-Light',
             fontSize: '16px',
           })}
@@ -69,14 +69,14 @@ const PostItem = ({ post }: PostItemProps) => {
         </div>
       </div>
       <div
-        className={css({
+        css={css({
           display: 'flex',
           justifyContent: 'flex-start',
           alignItems: 'baseline',
           width: '400px',
         })}
       >
-        <div className={css({ marginTop: '10px', marginRight: '10px' })}>
+        <div css={css({ marginTop: '10px', marginRight: '10px' })}>
           {post &&
             post.tags.map((tag) => {
               return <TagButton key={tag} tag={tag} />;
@@ -85,17 +85,17 @@ const PostItem = ({ post }: PostItemProps) => {
       </div>
 
       <div
-        className={css({
+        css={css({
           display: 'flex',
           justifyContent: 'space-between',
           width: '400px',
           marginTop: '40px',
         })}
       >
-        <div className={css({})}>
+        <div css={css({})}>
           <Eye />
           <span
-            className={css({
+            css={css({
               marginLeft: '5px',
               marginRight: '15px',
               position: 'relative',
@@ -106,7 +106,7 @@ const PostItem = ({ post }: PostItemProps) => {
           </span>
           <Comment />
           <span
-            className={css({
+            css={css({
               marginLeft: '5px',
               marginRight: '15px',
               position: 'relative',
@@ -119,7 +119,7 @@ const PostItem = ({ post }: PostItemProps) => {
         <div>
           <Heart />
           <span
-            className={css({
+            css={css({
               marginLeft: '5px',
               position: 'relative',
               bottom: '7px',

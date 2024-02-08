@@ -13,7 +13,7 @@ const ErrorMessage = ({
   children,
   ...attributes
 }: ErrorMessageProps) => (
-  <span className={getTextStyling(isError)} {...attributes}>
+  <span css={getTextStyling(isError)} {...attributes}>
     {children}
   </span>
 );

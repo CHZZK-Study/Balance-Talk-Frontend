@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 
 const ToggleButton = () => {
   const [isToggled, setIsToggled] = useState(false);
@@ -10,13 +10,13 @@ const ToggleButton = () => {
   const toggleButtonColor = isToggled ? '#9BBBD4' : '#D4D4DE';
   return (
     <div
-      className={css({
+      css={css({
         display: 'flex',
         alignItems: 'center',
       })}
     >
       <div
-        className={css({ cursor: 'pointer', paddingTop: '5px' })}
+        css={css({ cursor: 'pointer', paddingTop: '5px' })}
         onClick={onToggleButtonClickHandler}
         onKeyDown={onToggleButtonClickHandler}
         role="presentation"
@@ -38,7 +38,7 @@ const ToggleButton = () => {
               shapeRendering="crispEdges"
             />
             <circle
-              className={css({ transition: 'cx 0.3s ease-in-out' })}
+              css={css({ transition: 'cx 0.3s ease-in-out' })}
               id="Ellipse 74"
               cx={circleXPosition}
               cy="12"
@@ -86,7 +86,7 @@ const ToggleButton = () => {
         </svg>
       </div>
       <div
-        className={css({
+        css={css({
           fontFamily: 'SpoqaHanSansNeo-Regular',
           marginLeft: '5px',
           fontSize: '16px',

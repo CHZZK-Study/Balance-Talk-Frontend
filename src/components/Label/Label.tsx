@@ -12,10 +12,10 @@ const Label = ({
   children,
   ...attributes
 }: LabelProps) => (
-  <label className={labelStyling} htmlFor={id} {...attributes}>
+  <label css={labelStyling} htmlFor={id} {...attributes}>
     {children}{' '}
     {required && (
-      <span className={requiredStyling} aria-hidden>
+      <span css={requiredStyling} aria-hidden>
         *
       </span>
     )}

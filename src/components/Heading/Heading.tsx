@@ -20,7 +20,7 @@ const Heading = ({
 }: HeadingProps) => {
   const HeadingTag = TAG_SIZE[size];
   return (
-    <HeadingTag className={getSizeStyling(size)} {...attributes}>
+    <HeadingTag css={getSizeStyling(size)} {...attributes}>
       {children}
     </HeadingTag>
   );

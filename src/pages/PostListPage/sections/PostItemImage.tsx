@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import { ImageInfo } from '../../../types/temp';
 
 type PostImageProps = {
@@ -9,14 +9,14 @@ type PostImageProps = {
 const PostItemImage = ({ images }: PostImageProps) => {
   return (
     <div
-      className={css({
+      css={css({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
       })}
     >
       <img
-        className={css({
+        css={css({
           width: '200px',
           height: '200px',
           marginRight: '10px',
@@ -27,7 +27,7 @@ const PostItemImage = ({ images }: PostImageProps) => {
         alt={images[0].optionTitle}
       />
       <span
-        className={css({
+        css={css({
           fontFamily: 'SpoqaHanSansNeo-Bold',
           fontSize: '48px',
           position: 'absolute',
@@ -39,7 +39,7 @@ const PostItemImage = ({ images }: PostImageProps) => {
         vs
       </span>
       <img
-        className={css({
+        css={css({
           width: '200px',
           height: '200px',
           marginLeft: '10px',

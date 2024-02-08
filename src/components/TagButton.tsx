@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 
 type TagButtonProps = {
   tag: string;
@@ -7,7 +7,7 @@ type TagButtonProps = {
 const TagButton = ({ tag }: TagButtonProps) => {
   return (
     <button
-      className={css({
+      css={css({
         backgroundColor: '#EEEEEE',
         border: 0,
         borderRadius: '15px',

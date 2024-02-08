@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import Button from '../../components/Button/Button';
 import Heading from '../../components/Heading/Heading';
 import Input from '../../components/Input/Input';
@@ -13,12 +13,12 @@ import {
 const FindPasswordPage = () => {
   const isError: boolean = true;
   return (
-    <div className={container}>
-      <div className={loginContainer}>
+    <div css={container}>
+      <div css={loginContainer}>
         <Heading size="small">비밀번호를 찾을 이메일을 입력해주세요.</Heading>
 
-        <div className={inputContainer}>
-          <div className={inputButtonContainer}>
+        <div css={inputContainer}>
+          <div css={inputButtonContainer}>
             <Input
               placeholder="이메일을 입력해주세요."
               size="medium"
@@ -27,7 +27,7 @@ const FindPasswordPage = () => {
             />
             <Button css={css({ width: '100%' })}>인증</Button>
           </div>
-          <div className={inputButtonContainer}>
+          <div css={inputButtonContainer}>
             <Input
               placeholder="인증번호 입력"
               size="medium"

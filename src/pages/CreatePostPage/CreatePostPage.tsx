@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import CreatePostForm from './sections/CreatePostForm';
 import ArrowDown from '../../assets/images/arrow-down.png';
 import Calendar from '../../assets/images/calendar.png';
@@ -17,26 +17,26 @@ const inputStyles = {
 const CreatePostPage = () => {
   return (
     <div
-      className={css({
+      css={css({
         width: '100vw',
       })}
     >
       <div
-        className={css({
+        css={css({
           display: 'flex',
           justifyContent: 'center',
           marginBottom: '20px',
         })}
       >
         <div
-          className={css({
+          css={css({
             display: 'flex',
             justifyContent: 'flex-start',
             width: '1080px',
           })}
         >
           <h2
-            className={css({
+            css={css({
               fontSize: '24px',
               fontFamily: 'SpoqaHanSansNeo-Medium',
             })}
@@ -47,14 +47,14 @@ const CreatePostPage = () => {
       </div>
       <form>
         <div
-          className={css({
+          css={css({
             display: 'flex',
             justifyContent: 'center',
             marginBottom: '20px',
           })}
         >
           <input
-            className={css({
+            css={css({
               width: '1080px',
               height: '40px',
               ...inputStyles,
@@ -66,28 +66,28 @@ const CreatePostPage = () => {
           />
         </div>
         <div
-          className={css({
+          css={css({
             display: 'flex',
             justifyContent: 'center',
             marginBottom: '20px',
           })}
         >
           <div
-            className={css({
+            css={css({
               display: 'flex',
               justifyContent: 'space-between',
               width: '1080px',
             })}
           >
             <div
-              className={css({
+              css={css({
                 display: 'flex',
               })}
             >
-              <div className={css({ marginRight: '20px' })}>
+              <div css={css({ marginRight: '20px' })}>
                 <label
                   htmlFor="casual"
-                  className={css({
+                  css={css({
                     position: 'relative',
                     ':before': {
                       content: "''",
@@ -103,7 +103,7 @@ const CreatePostPage = () => {
                 >
                   <input
                     id="casual"
-                    className={css({
+                    css={css({
                       width: '170px',
                       height: '40px',
                       ...inputStyles,
@@ -122,7 +122,7 @@ const CreatePostPage = () => {
               <div>
                 <label
                   htmlFor="casual"
-                  className={css({
+                  css={css({
                     position: 'relative',
                     ':before': {
                       content: "''",
@@ -138,7 +138,7 @@ const CreatePostPage = () => {
                 >
                   <input
                     id="casual"
-                    className={css({
+                    css={css({
                       width: '250px',
                       height: '40px',
                       ...inputStyles,
@@ -157,7 +157,7 @@ const CreatePostPage = () => {
             </div>
             <button
               type="button"
-              className={css({
+              css={css({
                 position: 'relative',
                 marginBottom: '10px',
                 backgroundColor: '#FFD369',
@@ -178,13 +178,13 @@ const CreatePostPage = () => {
           </div>
         </div>
         <div
-          className={css({
+          css={css({
             display: 'flex',
             justifyContent: 'center',
           })}
         >
           <div
-            className={css({
+            css={css({
               display: 'flex',
               justifyContent: 'flex-start',
               width: '1080px',
@@ -192,7 +192,7 @@ const CreatePostPage = () => {
           >
             <label
               htmlFor="casual"
-              className={css({
+              css={css({
                 position: 'relative',
                 ':before': {
                   content: "''",
@@ -208,7 +208,7 @@ const CreatePostPage = () => {
             >
               <input
                 id="casual"
-                className={css({
+                css={css({
                   width: '170px',
                   height: '40px',
                   ...inputStyles,
@@ -226,7 +226,7 @@ const CreatePostPage = () => {
           </div>
         </div>
         <div
-          className={css({
+          css={css({
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -234,7 +234,7 @@ const CreatePostPage = () => {
         >
           <CreatePostForm />
           <span
-            className={css({
+            css={css({
               fontFamily: 'SpoqaHanSansNeo-Bold',
               fontSize: '50px',
               position: 'absolute',
