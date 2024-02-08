@@ -30,7 +30,7 @@ const Pagination = ({ count, index }: PaginationProps) => {
     <div className={css({ display: 'flex' })}>
       {count &&
         Array.from({ length: count - 2 }, (_, i) => (
-          <PaginationItem isActive={i === index} />
+          <PaginationItem key={i} isActive={i === index} />
         ))}
     </div>
   );

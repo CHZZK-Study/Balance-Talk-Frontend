@@ -47,7 +47,11 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
             })}
           >
             {items.map((item) => {
-              return <div className={css({ margin: '10px' })}>{item}</div>;
+              return (
+                <div key={item.key} className={css({ margin: '10px' })}>
+                  {item}
+                </div>
+              );
             })}
           </div>
         </div>
