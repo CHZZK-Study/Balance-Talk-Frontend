@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { css } from '@emotion/react';
 
 import type { InputProps } from './Input';

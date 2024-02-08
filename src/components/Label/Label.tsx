@@ -1,24 +1,12 @@
 import React from 'react';
 import type { ComponentPropsWithoutRef } from 'react';
-import { labelStyling, requiredStyling } from './Label.style';
+import { labelStyling } from './Label.style';
 
-export interface LabelProps extends ComponentPropsWithoutRef<'label'> {
-  required?: boolean;
-}
+export interface LabelProps extends ComponentPropsWithoutRef<'label'> {}
 
-const Label = ({
-  id,
-  required = false,
-  children,
-  ...attributes
-}: LabelProps) => (
+const Label = ({ id, children, ...attributes }: LabelProps) => (
   <label css={labelStyling} htmlFor={id} {...attributes}>
-    {children}{' '}
-    {required && (
-      <span css={requiredStyling} aria-hidden>
-        *
-      </span>
-    )}
+    {children}
   </label>
 );
 

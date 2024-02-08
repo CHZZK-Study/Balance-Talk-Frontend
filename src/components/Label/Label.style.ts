@@ -7,7 +7,3 @@ export const labelStyling = css({
   lineHeight: Theme.text.small.lineHeight,
   fontWeight: 600,
 });
-
-export const requiredStyling = css({
-  color: Theme.color.red,
-});

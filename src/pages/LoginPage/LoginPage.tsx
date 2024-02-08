@@ -12,7 +12,6 @@ const LoginPage = () => {
   return (
     <div css={container}>
       <div css={loginContainer}>
-        {/* TODO: 컴포넌트에 지정한 기본 css에 추가로 css 적용을 어떻게 할 것인지 논의 필요 */}
         <Heading css={css({ fontWeight: '600' })} size="large">
           LOGIN
         </Heading>

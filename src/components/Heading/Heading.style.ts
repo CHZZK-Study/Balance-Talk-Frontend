@@ -1,11 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { css } from '@emotion/react';
 
 import type { HeadingProps } from './Heading';
 
 import { Theme } from '../../styles/Theme';
 
-// eslint-disable-next-line import/prefer-default-export
 export const getSizeStyling = (size: Required<HeadingProps>['size']) => {
   const style = {
     xxLarge: css({
