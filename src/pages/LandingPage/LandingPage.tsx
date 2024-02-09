@@ -7,36 +7,42 @@ import Carousel from '../../components/Carousel';
 const LandingPage = () => {
   const postInfos = [
     {
+      id: 1,
       balanceOptions: [
         { optionImg: 'coffee.jpg', optionTitle: '커피' },
         { optionImg: 'juice.jpg', optionTitle: '쥬스' },
       ],
     },
     {
+      id: 2,
       balanceOptions: [
         { optionImg: 'coffee.jpg', optionTitle: '커피' },
         { optionImg: 'juice.jpg', optionTitle: '쥬스' },
       ],
     },
     {
+      id: 3,
       balanceOptions: [
         { optionImg: 'coffee.jpg', optionTitle: '커피' },
         { optionImg: 'juice.jpg', optionTitle: '쥬스' },
       ],
     },
     {
+      id: 4,
       balanceOptions: [
         { optionImg: 'coffee.jpg', optionTitle: '커피' },
         { optionImg: 'juice.jpg', optionTitle: '쥬스' },
       ],
     },
     {
+      id: 5,
       balanceOptions: [
         { optionImg: 'coffee.jpg', optionTitle: '커피' },
         { optionImg: 'juice.jpg', optionTitle: '쥬스' },
       ],
     },
     {
+      id: 6,
       balanceOptions: [
         { optionImg: 'coffee.jpg', optionTitle: '커피' },
         { optionImg: 'juice.jpg', optionTitle: '쥬스' },
@@ -45,7 +51,13 @@ const LandingPage = () => {
   ];
 
   const CarouselItems = postInfos.map((postInfo) => {
-    return <PostImage images={postInfo.balanceOptions} size="medium" />;
+    return (
+      <PostImage
+        key={postInfo.id}
+        images={postInfo.balanceOptions}
+        size="medium"
+      />
+    );
   });
 
   return (
