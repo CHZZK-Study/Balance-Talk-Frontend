@@ -20,3 +20,11 @@ export type PostInfo = {
   createdBy: string;
   profilePhoto: string;
 };
+
+export type Size =
+  | 'xSmall'
+  | 'small'
+  | 'medium'
+  | 'large'
+  | 'xLarge'
+  | 'xxLarge';

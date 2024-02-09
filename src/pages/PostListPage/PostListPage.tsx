@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import PostItem from './sections/PostItem';
 import SortButton from '../../components/SortButton';
 import ToggleButton from '../../components/ToggleButton';
@@ -35,13 +35,13 @@ const PostList = () => {
 
   return (
     <div
-      className={css({
+      css={css({
         width: '100vw',
       })}
     >
       <button
         type="button"
-        className={css({
+        css={css({
           position: 'relative',
           marginBottom: '10px',
           left: '75vw',
@@ -61,14 +61,14 @@ const PostList = () => {
         글쓰기
       </button>
       <div
-        className={css({
+        css={css({
           display: 'flex',
           justifyContent: 'space-around',
           alignItems: 'center',
         })}
       >
         <h2
-          className={css({
+          css={css({
             fontSize: '24px',
             fontFamily: 'SpoqaHanSansNeo-Medium',
           })}
@@ -76,7 +76,7 @@ const PostList = () => {
           게시글 목록
         </h2>
         <div
-          className={css({
+          css={css({
             display: 'flex',
             alignItems: 'center',
           })}
@@ -86,7 +86,7 @@ const PostList = () => {
         </div>
       </div>
       <div
-        className={css({
+        css={css({
           display: 'flex',
           justifyContent: 'space-evenly',
           flexWrap: 'wrap',

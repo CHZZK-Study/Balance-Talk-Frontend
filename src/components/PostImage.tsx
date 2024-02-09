@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import { ImageInfo } from '../types/temp';
 
 type PostImageProps = {
@@ -37,7 +37,7 @@ const sizeStyles: { [key in SizeType]: SizeStyle } = {
 const PostImage = ({ images, size }: PostImageProps) => {
   return (
     <div
-      className={css({
+      css={css({
         display: 'flex',
         width: sizeStyles[size].width,
         height: sizeStyles[size].height,
@@ -49,7 +49,7 @@ const PostImage = ({ images, size }: PostImageProps) => {
       })}
     >
       <img
-        className={css({
+        css={css({
           width: sizeStyles[size].imageWidth,
           height: sizeStyles[size].imageHeight,
           marginRight: '10px',
@@ -60,7 +60,7 @@ const PostImage = ({ images, size }: PostImageProps) => {
         alt={images[0].optionTitle}
       />
       <span
-        className={css({
+        css={css({
           fontFamily: 'SpoqaHanSansNeo-Bold',
           fontSize: sizeStyles[size].fontSize,
           position: 'absolute',
@@ -72,7 +72,7 @@ const PostImage = ({ images, size }: PostImageProps) => {
         vs
       </span>
       <img
-        className={css({
+        css={css({
           width: sizeStyles[size].imageWidth,
           height: sizeStyles[size].imageHeight,
           marginLeft: '10px',

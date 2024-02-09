@@ -6,6 +6,9 @@ import SearchBar from './layout/SearchBar';
 import LandingPage from './pages/LandingPage/LandingPage';
 import PostList from './pages/PostListPage/PostListPage';
 import CreatePostPage from './pages/CreatePostPage/CreatePostPage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import FindPasswordPage from './pages/FindPasswordPage/FindPasswordPage';
+import SignUpPage from './pages/SignUpPage/SignUpPage';
 import PostPage from './pages/PostPage/PostPage';
 
 const Layout = () => {
@@ -28,6 +31,9 @@ const App: React.FC = () => {
         <Route index element={<LandingPage />} />
         <Route path="posts" element={<PostList />} />
         <Route path="post/create" element={<CreatePostPage />} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="findPassword" element={<FindPasswordPage />} />
+        <Route path="signup" element={<SignUpPage />} />
         <Route path="posts/:id" element={<PostPage />} />
       </Route>
     </Routes>
