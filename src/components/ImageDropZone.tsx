@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useCallback } from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import { useDropzone } from 'react-dropzone';
 
 const ImageDropZone: React.FC = () => {
@@ -19,7 +19,7 @@ const ImageDropZone: React.FC = () => {
   return (
     <div
       {...getRootProps()}
-      className={css({
+      css={css({
         width: '450px',
         height: '350px',
         display: 'flex',
@@ -32,7 +32,7 @@ const ImageDropZone: React.FC = () => {
     >
       <input {...getInputProps()} />
       <p
-        className={css({
+        css={css({
           fontFamily: 'SpoqaHanSansNeo-Regular',
           fontSize: '24px',
         })}

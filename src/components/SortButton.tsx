@@ -1,10 +1,10 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 
 const SortButton = () => {
   return (
     <div
-      className={css({
+      css={css({
         fontFamily: 'SpoqaHanSansNeo-Thin',
         fontSize: '14px',
         display: 'flex',
@@ -12,7 +12,7 @@ const SortButton = () => {
       })}
     >
       <div
-        className={css({
+        css={css({
           fontFamily: 'SpoqaHanSansNeo-Regular',
           fontSize: '14px',
           borderRight: '1px solid #C4C4C4',
@@ -23,7 +23,7 @@ const SortButton = () => {
         최신순
       </div>
       <div
-        className={css({
+        css={css({
           borderRight: '1px solid #C4C4C4',
           paddingLeft: '5px',
           paddingRight: '5px',
@@ -33,7 +33,7 @@ const SortButton = () => {
         조회순
       </div>
       <div
-        className={css({
+        css={css({
           paddingLeft: '5px',
           cursor: 'pointer',
         })}

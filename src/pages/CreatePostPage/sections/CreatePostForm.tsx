@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import ImageDropZone from '../../../components/ImageDropZone';
 
 const inputStyles = {
@@ -13,10 +13,10 @@ const inputStyles = {
 
 const CreatePostForm = () => {
   return (
-    <div className={css({ margin: '80px' })}>
+    <div css={css({ margin: '80px' })}>
       <ImageDropZone />
       <input
-        className={css({
+        css={css({
           width: '450px',
           height: '40px',
           ...inputStyles,
@@ -30,7 +30,7 @@ const CreatePostForm = () => {
       />
       <div>
         <textarea
-          className={css({
+          css={css({
             width: '450px',
             height: '100px',
             ...inputStyles,

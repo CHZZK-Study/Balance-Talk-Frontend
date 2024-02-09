@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import PostImage from './PostImage';
 import TagButton from './TagButton';
 import Eye from '../assets/svg/Eye';
@@ -38,19 +38,19 @@ const MainPost = () => {
   ];
 
   return (
-    <div className={css({ display: 'flex' })}>
+    <div css={css({ display: 'flex' })}>
       <PostImage images={images} size="large" />
       <div
-        className={css({
+        css={css({
           marginLeft: '50px',
           display: 'flex',
           flexDirection: 'column',
         })}
       >
-        <div className={css({ flex: 1 })} />
-        <div className={css({ display: 'flex', marginBottom: '10px' })}>
+        <div css={css({ flex: 1 })} />
+        <div css={css({ display: 'flex', marginBottom: '10px' })}>
           <div
-            className={css({
+            css={css({
               fontFamily: 'SpoqaHanSansNeo-Bold',
               fontSize: '48px',
               textShadow: '0px 4px 4px gray',
@@ -58,7 +58,7 @@ const MainPost = () => {
           >
             {postInfo.title}
           </div>
-          <div className={css({ marginTop: '10px', marginLeft: '10px' })}>
+          <div css={css({ marginTop: '10px', marginLeft: '10px' })}>
             {postInfo &&
               postInfo.tags.map((tag) => {
                 return <TagButton key={tag} tag={tag} />;
@@ -66,7 +66,7 @@ const MainPost = () => {
           </div>
         </div>
         <div
-          className={css({
+          css={css({
             fontFamily: 'SpoqaHanSansNeo-Regular',
             fontSize: '24px',
             marginBottom: '20px',
@@ -75,7 +75,7 @@ const MainPost = () => {
           현재 투표수 : {postInfo.voteCount}
         </div>
         <div
-          className={css({
+          css={css({
             display: 'flex',
             justifyContent: 'center',
             flex: 1,
@@ -83,7 +83,7 @@ const MainPost = () => {
         >
           <button
             type="button"
-            className={css({
+            css={css({
               backgroundColor: '#FFD369',
               border: 0,
               borderRadius: '10px',
@@ -100,13 +100,11 @@ const MainPost = () => {
             투표하기
           </button>
         </div>
-        <div
-          className={css({ display: 'flex', justifyContent: 'space-between' })}
-        >
-          <div className={css({})}>
+        <div css={css({ display: 'flex', justifyContent: 'space-between' })}>
+          <div css={css({})}>
             <Eye />
             <span
-              className={css({
+              css={css({
                 marginLeft: '5px',
                 marginRight: '5px',
                 position: 'relative',
@@ -117,7 +115,7 @@ const MainPost = () => {
             </span>
             <Comment />
             <span
-              className={css({
+              css={css({
                 marginLeft: '5px',
                 marginRight: '5px',
                 position: 'relative',
@@ -130,7 +128,7 @@ const MainPost = () => {
           <div>
             <Heart />
             <span
-              className={css({
+              css={css({
                 marginLeft: '5px',
                 marginRight: '5px',
                 position: 'relative',
