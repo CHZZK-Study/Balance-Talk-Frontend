@@ -32,6 +32,11 @@ export const inputWrapperStyling = css({
   },
 });
 
+export const inputBtnContainerStyling = css({
+  display: 'flex',
+  alignItems: 'center',
+});
+
 export const getSizeStyling = (size: Required<InputProps>['size']) => {
   const style = {
     large: css({
