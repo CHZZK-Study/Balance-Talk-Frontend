@@ -9,6 +9,8 @@ import {
   inputContainer,
   loginContainer,
 } from './SignUpPage.style';
+import InputEmail from '../../components/InputsUserInfo/InputEmail/InputEmail';
+import InputCode from '../../components/InputsUserInfo/InputCode/InputCode';
 
 const SignUpPage = () => {
   const isError: boolean = true;
@@ -18,27 +20,8 @@ const SignUpPage = () => {
         <Heading size="large">SIGN UP</Heading>
 
         <div css={inputContainer}>
-          <div css={inputButtonContainer}>
-            <Input
-              placeholder="이메일을 입력해주세요."
-              size="medium"
-              label="이메일"
-              isError={isError}
-              errorMessage={isError ? '이미 존재하는 이메일입니다.' : undefined}
-            />
-            <Button css={css({ width: '100%' })}>인증</Button>
-          </div>
-          <div css={inputButtonContainer}>
-            <Input
-              placeholder="인증번호 입력"
-              size="medium"
-              isError={isError}
-              errorMessage={
-                isError ? '인증번호가 일치하지 않습니다.' : undefined
-              }
-            />
-            <Button css={css({ width: '100%' })}>확인</Button>
-          </div>
+          <InputEmail />
+          <InputCode />
           <div css={inputButtonContainer}>
             <Input
               placeholder="닉네임을 입력해주세요 (양식)"
