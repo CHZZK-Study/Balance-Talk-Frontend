@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import LikeIcon from '../assets/svg/LikeIcon';
 import MoreIcon from '../assets/svg/MoreIcon';
 import ReportIcon from '../assets/svg/ReportIcon';
@@ -11,7 +11,7 @@ interface UserCommentProps {
 const UserComment = ({ isMyComment }: UserCommentProps) => {
   return (
     <div
-      className={css({
+      css={css({
         display: 'flex',
         alignItems: 'center',
         gap: '2rem',
@@ -22,7 +22,7 @@ const UserComment = ({ isMyComment }: UserCommentProps) => {
       <div>
         {/* 이미지 들어갈 자리 */}
         <div
-          className={css({
+          css={css({
             width: '50px',
             height: '50px',
             backgroundColor: '#D9D9D9',
@@ -31,21 +31,21 @@ const UserComment = ({ isMyComment }: UserCommentProps) => {
         />
       </div>
       <div
-        className={css({
+        css={css({
           display: 'flex',
           flexDirection: 'column',
           gap: '1rem',
         })}
       >
         <div
-          className={css({
+          css={css({
             display: 'flex',
             alignItems: 'center',
             gap: '1rem',
           })}
         >
           <div
-            className={css({
+            css={css({
               fontStyle: 'italic',
               fontFamily: 'SpoqaHanSansNeo-medium',
               fontWeight: '500',
@@ -55,7 +55,7 @@ const UserComment = ({ isMyComment }: UserCommentProps) => {
             Username1
           </div>
           <div
-            className={css({
+            css={css({
               fontFamily: 'SpoqaHanSansNeo-thin',
               fontWeight: '300',
               fontSize: '0.8rem',
@@ -66,7 +66,7 @@ const UserComment = ({ isMyComment }: UserCommentProps) => {
         </div>
 
         <div
-          className={css({
+          css={css({
             fontFamily: 'SpoqaHanSansNeo-regular',
             fontSize: '1rem',
           })}
@@ -75,13 +75,13 @@ const UserComment = ({ isMyComment }: UserCommentProps) => {
         </div>
       </div>
       <div
-        className={css({
+        css={css({
           display: 'flex',
           gap: '0.5rem',
         })}
       >
         <div
-          className={css({
+          css={css({
             display: 'flex',
             flexDirection: 'column',
             gap: '0.3rem',

@@ -1,4 +1,4 @@
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import React from 'react';
 import TagButton from '../../components/TagButton';
 import Eye from '../../assets/svg/Eye';
@@ -11,9 +11,9 @@ import CommentSection from '../../components/CommentSection';
 
 const PostPage = () => {
   return (
-    <div className={css({ margin: '0.5rem 15%' })}>
+    <div css={css({ margin: '0.5rem 15%' })}>
       <div
-        className={css({
+        css={css({
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
@@ -21,14 +21,14 @@ const PostPage = () => {
         })}
       >
         <div
-          className={css({
+          css={css({
             display: 'flex',
             padding: '0.5rem',
             gap: '2rem',
           })}
         >
           <div
-            className={css({
+            css={css({
               fontFamily: 'SpoqaHanSansNeo-medium',
               fontSize: '3rem',
             })}
@@ -36,7 +36,7 @@ const PostPage = () => {
             카페 주문
           </div>
           <div
-            className={css({
+            css={css({
               display: 'flex',
               alignItems: 'center',
               gap: '0.5rem',
@@ -47,7 +47,7 @@ const PostPage = () => {
           </div>
         </div>
         <div
-          className={css({
+          css={css({
             display: 'flex',
             alignItems: 'center',
             gap: '1rem',
@@ -56,7 +56,7 @@ const PostPage = () => {
           })}
         >
           <div
-            className={css({
+            css={css({
               display: 'flex',
               alignItems: 'center',
               gap: '0.5rem',
@@ -66,7 +66,7 @@ const PostPage = () => {
             <span>100</span>
           </div>
           <div
-            className={css({
+            css={css({
               display: 'flex',
               alignItems: 'center',
               gap: '0.5rem',
@@ -79,7 +79,7 @@ const PostPage = () => {
       </div>
 
       <div
-        className={css({
+        css={css({
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -89,7 +89,7 @@ const PostPage = () => {
       >
         <PostOptionCard />
         <div
-          className={css({
+          css={css({
             fontFamily: 'SpoqaHanSansNeo-medium',
             fontSize: '3rem',
           })}
@@ -99,7 +99,7 @@ const PostPage = () => {
         <PostOptionCard />
       </div>
       <div
-        className={css({
+        css={css({
           display: 'flex',
           justifyContent: 'space-between',
         })}
@@ -109,13 +109,13 @@ const PostPage = () => {
       </div>
 
       <div
-        className={css({
+        css={css({
           display: 'flex',
           flexDirection: 'column',
         })}
       >
         <div
-          className={css({
+          css={css({
             marginTop: '1rem',
             marginBottom: '3rem',
             fontFamily: 'SpoqaHanSansNeo-regular',
@@ -125,7 +125,7 @@ const PostPage = () => {
           댓글 40개
         </div>
         <div
-          className={css({
+          css={css({
             display: 'flex',
             justifyContent: 'space-between',
           })}

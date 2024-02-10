@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import LikeIcon from '../assets/svg/LikeIcon';
 import StarIcon from '../assets/svg/StarIcon';
 import ReportIcon from '../assets/svg/ReportIcon';
@@ -8,7 +8,7 @@ import ShareIcon from '../assets/svg/ShareIcon';
 const IconList = () => {
   return (
     <div
-      className={css({
+      css={css({
         display: 'flex',
         alignItems: 'center',
         gap: '1rem',

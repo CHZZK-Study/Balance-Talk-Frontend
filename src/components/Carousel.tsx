@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import LeftArrowButton from '../assets/svg/LeftArrowButton';
 import RightArrowButton from '../assets/svg/RightArrowButton';
 import Pagination from './Pagination';
@@ -22,25 +22,25 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
 
   return (
     <div>
-      <div className={css({ display: 'flex', alignItems: 'center' })}>
+      <div css={css({ display: 'flex', alignItems: 'center' })}>
         <div>
           <div
             onClick={onLeftArrowClickHandler}
             role="presentation"
-            className={css({ cursor: 'pointer' })}
+            css={css({ cursor: 'pointer' })}
           >
             <LeftArrowButton />
           </div>
         </div>
         <div
-          className={css({
+          css={css({
             width: '1260px',
             overflow: 'hidden',
             position: 'relative',
           })}
         >
           <div
-            className={css({
+            css={css({
               display: 'flex',
               transform: `translateX(-${index * 420}px)`,
               transition: '0.3s ease-in-out',
@@ -48,7 +48,7 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
           >
             {items.map((item) => {
               return (
-                <div key={item.key} className={css({ margin: '10px' })}>
+                <div key={item.key} css={css({ margin: '10px' })}>
                   {item}
                 </div>
               );
@@ -59,14 +59,14 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
           <div
             onClick={onRightArrowClickHandler}
             role="presentation"
-            className={css({ cursor: 'pointer' })}
+            css={css({ cursor: 'pointer' })}
           >
             <RightArrowButton />
           </div>
         </div>
       </div>
       <div
-        className={css({
+        css={css({
           display: 'flex',
           justifyContent: 'center',
         })}

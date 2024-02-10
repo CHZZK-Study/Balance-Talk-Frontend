@@ -57,7 +57,6 @@ export const getSizeStyling = (size: Required<InputProps>['size']) => {
 };
 
 export const getInputStyling = css({
-  width: '400px',
   paddingLeft: 0,
   paddingRight: 0,
   border: 'none',
