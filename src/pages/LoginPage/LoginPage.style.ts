@@ -18,7 +18,7 @@ export const inputContainer = css({
 
 export const btnLogin = css({
   marginTop: '10px',
-  borderRadius: '20px',
+  borderRadius: '50px',
 });
 
 export const linkContainer = css({

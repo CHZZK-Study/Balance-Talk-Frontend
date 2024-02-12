@@ -1,7 +1,7 @@
 import React from 'react';
 import Heading from '../../components/Heading/Heading';
-import InputCode from '../../components/InputsUserInfo/InputCode/InputCode';
-import InputEmail from '../../components/InputsUserInfo/InputEmail/InputEmail';
+import InputCode from '../../components/InputsUserInfo/InputCode';
+import InputEmail from '../../components/InputsUserInfo/InputEmail';
 import { inputContainer, pwContainer } from './FindPasswordPage.style';
 
 const FindPasswordPage = () => {

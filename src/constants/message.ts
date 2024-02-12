@@ -4,7 +4,7 @@ export const ERROR = {
     EXIST: '이미 존재하는 이메일입니다.',
     FORM: '이메일 형식이 올바르지 않습니다.',
   },
-  PASSWORD: {
+  PW: {
     NOT_MATCH: '비밀번호가 일치하지 않습니다.',
     FORM: '영문+숫자 10자 이상 20자 이하로 입력해주세요.',
   },
