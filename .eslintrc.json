@@ -31,6 +31,11 @@
   },
   "rules": {
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "react/no-unknown-property": ["error", { "ignore": ["css"] }],
+    "react/prop-types": "off",
+    "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": "off",
+    "import/prefer-default-export": "off",
     "react/function-component-definition": [
       2,
       { "namedComponents": ["arrow-function", "function-declaration"] }

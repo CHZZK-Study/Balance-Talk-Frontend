@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 
 type PaginationProps = {
   count: number;
@@ -13,7 +13,7 @@ type PaginationItemProps = {
 const PaginationItem = ({ isActive }: PaginationItemProps) => {
   return (
     <div
-      className={css({
+      css={css({
         margin: '3px',
         marginTop: '10px',
         backgroundColor: isActive ? '#444444' : '#EEEEEE',
@@ -27,7 +27,7 @@ const PaginationItem = ({ isActive }: PaginationItemProps) => {
 
 const Pagination = ({ count, index }: PaginationProps) => {
   return (
-    <div className={css({ display: 'flex' })}>
+    <div css={css({ display: 'flex' })}>
       {count &&
         Array.from({ length: count - 2 }, (_, i) => (
           <PaginationItem key={i} isActive={i === index} />
