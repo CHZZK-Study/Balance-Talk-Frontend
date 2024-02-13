@@ -1,19 +1,15 @@
 import { css } from '@emotion/react';
 import { Theme } from '../../styles/Theme';
 
-export const container = css({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-});
-
-export const loginContainer = css({
+export const signupContainer = css({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   width: '800px',
-  padding: '100px',
+  height: '100%',
+  padding: '70px 0px',
   background: Theme.color.gray100,
+  overflow: 'auto',
 });
 
 export const inputContainer = css({
@@ -23,6 +19,14 @@ export const inputContainer = css({
   padding: '20px',
 });
 
-export const inputButtonContainer = css({
+export const btnContainer = css({
   display: 'flex',
+  justifyContent: 'space-between',
+  width: '60%',
+  gap: '50px',
+});
+
+export const btnSignup = css({
+  width: '100%',
+  borderRadius: '50px',
 });

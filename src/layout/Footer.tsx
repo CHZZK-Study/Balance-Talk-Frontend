@@ -1,10 +1,10 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 
 const Footer = () => {
   return (
     <div
-      className={css({
+      css={css({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -14,7 +14,7 @@ const Footer = () => {
       })}
     >
       <span
-        className={css({
+        css={css({
           width: '60%',
         })}
       >

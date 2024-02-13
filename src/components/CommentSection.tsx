@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import UserComment from './UserComment';
 
 interface CommentSectionProps {
@@ -10,7 +10,7 @@ interface CommentSectionProps {
 const CommentSection = ({ title, color }: CommentSectionProps) => {
   return (
     <div
-      className={css({
+      css={css({
         display: 'flex',
         flexDirection: 'column',
         width: '450px',
@@ -20,7 +20,7 @@ const CommentSection = ({ title, color }: CommentSectionProps) => {
       })}
     >
       <div
-        className={css({
+        css={css({
           textAlign: 'center',
           fontFamily: 'SpoqaHanSansNeo-regular',
           fontSize: '1.5rem',
@@ -29,7 +29,7 @@ const CommentSection = ({ title, color }: CommentSectionProps) => {
         {title}
       </div>
       <div
-        className={css({
+        css={css({
           fontFamily: 'SpoqaHanSansNeo-regular',
           fontSize: '1rem',
         })}
@@ -37,7 +37,7 @@ const CommentSection = ({ title, color }: CommentSectionProps) => {
         댓글 20개
       </div>
       <div
-        className={css({
+        css={css({
           border: '1px solid #EEEEEE',
           borderRadius: '0.5rem',
           fontFamily: 'SpoqaHanSansNeo-regular',
@@ -48,7 +48,7 @@ const CommentSection = ({ title, color }: CommentSectionProps) => {
         <input type="text" placeholder="댓글을 입력해주세요" />
       </div>
       <div
-        className={css({
+        css={css({
           display: 'flex',
           flexDirection: 'column',
           gap: '1rem',

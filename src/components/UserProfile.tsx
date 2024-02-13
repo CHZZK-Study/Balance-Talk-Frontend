@@ -1,10 +1,10 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 
 const UserProfile = () => {
   return (
     <div
-      className={css({
+      css={css({
         display: 'flex',
         alignItems: 'center',
         gap: '1.3rem',
@@ -14,7 +14,7 @@ const UserProfile = () => {
       <div>
         {/* 이미지 들어갈 자리 */}
         <div
-          className={css({
+          css={css({
             width: '50px',
             height: '50px',
             backgroundColor: '#D9D9D9',
@@ -23,14 +23,14 @@ const UserProfile = () => {
         />
       </div>
       <div
-        className={css({
+        css={css({
           display: 'flex',
           flexDirection: 'column',
           gap: '0.5rem',
         })}
       >
         <div
-          className={css({
+          css={css({
             fontStyle: 'italic',
             fontFamily: 'SpoqaHanSansNeo-medium',
             fontWeight: '500',
@@ -40,7 +40,7 @@ const UserProfile = () => {
           Username1
         </div>
         <div
-          className={css({
+          css={css({
             fontFamily: 'SpoqaHanSansNeo-thin',
             fontSize: '1rem',
           })}

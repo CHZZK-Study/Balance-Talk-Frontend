@@ -22,6 +22,7 @@ const Button = (
   ref: ForwardedRef<HTMLButtonElement>,
 ) => (
   <button
+    type="button"
     ref={ref}
     css={[buttonStyling, getVariantStyling(variant), getSizeStyling(size)]}
     {...attributes}

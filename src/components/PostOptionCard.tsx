@@ -1,10 +1,10 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 
 const PostOptionCard = () => {
   return (
     <div
-      className={css({
+      css={css({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -13,7 +13,7 @@ const PostOptionCard = () => {
       })}
     >
       <div
-        className={css({
+        css={css({
           fontFamily: 'SpoqaHanSansNeo-Medium',
           fontSize: '2rem',
         })}
@@ -22,7 +22,7 @@ const PostOptionCard = () => {
       </div>
       <div>
         <img
-          className={css({
+          css={css({
             backgroundColor: '#ADADAD',
             fontFamily: 'SpoqaHanSansNeo-Medium',
             textAlign: 'center',
@@ -35,7 +35,7 @@ const PostOptionCard = () => {
         />
       </div>
       <div
-        className={css({
+        css={css({
           backgroundColor: '#D9D9D9',
           fontFamily: 'SpoqaHanSansNeo-Bold',
           fontSize: '1.5rem',

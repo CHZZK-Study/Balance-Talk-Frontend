@@ -1,12 +1,12 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import SearchIcon from '../assets/svg/SearchIcon';
 import TagButton from '../components/TagButton';
 
 const SearchBar = () => {
   return (
     <div
-      className={css({
+      css={css({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -17,7 +17,7 @@ const SearchBar = () => {
       })}
     >
       <div
-        className={css({
+        css={css({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -30,13 +30,13 @@ const SearchBar = () => {
       >
         <input
           type="text"
-          className={css({
+          css={css({
             width: '100%',
           })}
         />
         <SearchIcon width={20} height={20} />
       </div>
-      <div className={css({ display: 'flex' })}>
+      <div css={css({ display: 'flex' })}>
         <TagButton tag="태그" />
         <TagButton tag="태그" />
         <TagButton tag="태그" />

@@ -1,11 +1,11 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import Heart from '../assets/svg/Heart';
 
 const Header = () => {
   return (
     <div
-      className={css({
+      css={css({
         display: 'grid',
         gridTemplateColumns: `repeat(3, 1fr)`,
         justifyContent: 'space-between',
@@ -18,7 +18,7 @@ const Header = () => {
       })}
     >
       <div
-        className={css({
+        css={css({
           display: 'flex',
         })}
       >
@@ -26,7 +26,7 @@ const Header = () => {
         <Heart />
       </div>
       <div
-        className={css({
+        css={css({
           fontSize: '1.5rem',
           fontFamily: 'SpoqaHanSansNeo-medium',
           textAlign: 'center',
@@ -36,7 +36,7 @@ const Header = () => {
         BlanceTalk
       </div>
       <div
-        className={css({
+        css={css({
           display: 'flex',
           justifyContent: 'flex-end',
           gap: '1rem',
@@ -45,7 +45,7 @@ const Header = () => {
         })}
       >
         <button
-          className={css({
+          css={css({
             fontFamily: 'SpoqaHanSansNeo-medium',
             color: 'white',
           })}
@@ -54,7 +54,7 @@ const Header = () => {
           로그인
         </button>
         <button
-          className={css({
+          css={css({
             fontFamily: 'SpoqaHanSansNeo-medium',
             color: 'white',
           })}

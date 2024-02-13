@@ -70,7 +70,7 @@ const LandingPage = () => {
       })}
     >
       <div
-        className={css({
+        css={css({
           display: 'flex',
           justifyContent: 'flex-start',
           width: '1080px',
@@ -78,7 +78,7 @@ const LandingPage = () => {
         })}
       >
         <h2
-          className={css({
+          css={css({
             fontSize: '24px',
             fontFamily: 'SpoqaHanSansNeo-Medium',
           })}
@@ -88,7 +88,7 @@ const LandingPage = () => {
       </div>
       <MainPost />
       <div
-        className={css({
+        css={css({
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'baseline',
@@ -98,7 +98,7 @@ const LandingPage = () => {
         })}
       >
         <h2
-          className={css({
+          css={css({
             fontSize: '24px',
             fontFamily: 'SpoqaHanSansNeo-Medium',
           })}
@@ -106,7 +106,7 @@ const LandingPage = () => {
           더 많은 게시글
         </h2>
         <span
-          className={css({
+          css={css({
             fontFamily: 'SpoqaHanSansNeo-Regular',
             fontSize: '14px',
             cursor: 'pointer',
