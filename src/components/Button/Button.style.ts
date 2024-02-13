@@ -59,6 +59,7 @@ export const buttonStyling = css({
   justifyContent: 'center',
   alignItems: 'center',
   border: 'none',
+  borderRadius: '5px',
   fontWeight: 'bold',
   transition: 'all .2s ease-in',
   cursor: 'pointer',
