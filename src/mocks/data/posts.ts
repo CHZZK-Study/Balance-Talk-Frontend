@@ -146,27 +146,6 @@ export const postList = [
       },
     ],
   },
-  {
-    id: 8,
-    title: '카페',
-    views: 126,
-    commentCount: 12,
-    likeCount: 6,
-    myBookmark: true,
-    myLike: true,
-    deadline: '2022-02-22',
-    tags: ['음식', '음료'],
-    balanceOptions: [
-      {
-        optionImg: 'coffee.jpg',
-        optionTitle: '커피',
-      },
-      {
-        optionImg: 'juice.jpg',
-        optionTitle: '쥬스',
-      },
-    ],
-  },
 ];
 
 export const voteInfo = [

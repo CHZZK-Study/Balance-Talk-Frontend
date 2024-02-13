@@ -35,10 +35,7 @@ const MainPost = ({ post }: MainPostProps) => {
 
   const postInfo = post;
 
-  const images = [
-    { optionImg: 'coffee.jpg', optionTitle: '커피' },
-    { optionImg: 'juice.jpg', optionTitle: '쥬스' },
-  ];
+  const images = post?.balanceOptions;
 
   return (
     <div css={css({ display: 'flex' })}>

@@ -1,3 +1,8 @@
+export type ImageInfo = {
+  optionImg: string;
+  optionTitle: string;
+};
+
 export type Post = {
   id: number;
   title: string;
@@ -8,10 +13,7 @@ export type Post = {
   myLike: boolean;
   deadline: string;
   tags: string[];
-  balanceOptions: {
-    optionImg: string;
-    optionTitle: string;
-  }[];
+  balanceOptions: ImageInfo[];
 };
 
 export type VoteInfo = {

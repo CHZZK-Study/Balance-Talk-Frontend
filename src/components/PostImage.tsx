@@ -1,9 +1,9 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import { ImageInfo } from '../types/temp';
+import { ImageInfo } from '../types/post';
 
 type PostImageProps = {
-  images: ImageInfo[];
+  images?: ImageInfo[];
   size: SizeType;
 };
 
@@ -56,8 +56,8 @@ const PostImage = ({ images, size }: PostImageProps) => {
           boxShadow: '0px 4px 4px gray',
           borderRadius: '5px',
         })}
-        src={images[0].optionImg}
-        alt={images[0].optionTitle}
+        src={images?.[0].optionImg}
+        alt={images?.[0].optionTitle}
       />
       <span
         css={css({
@@ -79,8 +79,8 @@ const PostImage = ({ images, size }: PostImageProps) => {
           boxShadow: '0px 4px 4px gray',
           borderRadius: '5px',
         })}
-        src={images[1].optionImg}
-        alt={images[1].optionTitle}
+        src={images?.[1].optionImg}
+        alt={images?.[1].optionTitle}
       />
     </div>
   );
