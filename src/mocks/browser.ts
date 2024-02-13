@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { setupWorker } from 'msw';
-import handlers from './handlers';
+import handlers from './handlers/handlers';
 
 const worker = setupWorker(...handlers);
 
