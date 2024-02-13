@@ -1,36 +1,39 @@
 import React from 'react';
 import { css } from '@emotion/react';
+import { useQuery } from '@tanstack/react-query';
 import PostImage from './PostImage';
 import TagButton from './TagButton';
 import Eye from '../assets/svg/Eye';
 import Comment from '../assets/svg/Comment';
 import Heart from '../assets/svg/Heart';
+import { Post, VoteInfo } from '../types/post';
 
-const MainPost = () => {
-  const postInfo = {
-    title: '카페 주문',
-    views: 126,
-    likeCount: 6,
-    commentCount: 5,
-    voteCount: 5548,
-    deadline: '2022-02-22',
-    tags: ['음식', '카페'],
-    balanceOptions: [
-      {
-        optionTitle: '선택지 제목',
-        optionImg: '../img1.jpg',
-        optionDescription: '선택지 설명...',
-      },
-      {
-        optionImg: '../img2.jpg',
-        optionTitle: '선택지 제목',
-        optionDescription: '선택지 설명...',
-      },
-    ],
-    createdAt: '2022-02-12',
-    createdBy: '작성자 닉네임',
-    profilePhoto: '프로필 사진(선택)',
-  };
+type MainPostProps = {
+  post?: Post;
+};
+
+const fetchVoteCount = async (postId: number): Promise<VoteInfo[]> => {
+  const response = await fetch(`post/${postId}/vote`);
+  const result = (await response.json()) as VoteInfo[];
+  return result;
+};
+
+const calculateTotalVoteCount = (data: VoteInfo[]) => {
+  return data.reduce((prev, current) => {
+    return prev + current.voteCount;
+  }, 0);
+};
+
+const MainPost = ({ post }: MainPostProps) => {
+  const postId = post?.id;
+
+  const { data } = useQuery({
+    queryKey: ['posts', 'vote', postId],
+    queryFn: () => fetchVoteCount(postId!),
+    enabled: !!postId,
+  });
+
+  const postInfo = post;
 
   const images = [
     { optionImg: 'coffee.jpg', optionTitle: '커피' },
@@ -56,7 +59,7 @@ const MainPost = () => {
               textShadow: '0px 4px 4px gray',
             })}
           >
-            {postInfo.title}
+            {postInfo?.title}
           </div>
           <div css={css({ marginTop: '10px', marginLeft: '10px' })}>
             {postInfo &&
@@ -72,7 +75,7 @@ const MainPost = () => {
             marginBottom: '20px',
           })}
         >
-          현재 투표수 : {postInfo.voteCount}
+          현재 투표수 : {data && calculateTotalVoteCount(data)}
         </div>
         <div
           css={css({
@@ -111,7 +114,7 @@ const MainPost = () => {
                 bottom: '7px',
               })}
             >
-              {postInfo.views}
+              {postInfo?.views}
             </span>
             <Comment />
             <span
@@ -122,7 +125,7 @@ const MainPost = () => {
                 bottom: '7px',
               })}
             >
-              {postInfo.commentCount}
+              {postInfo?.commentCount}
             </span>
           </div>
           <div>
@@ -135,7 +138,7 @@ const MainPost = () => {
                 bottom: '7px',
               })}
             >
-              {postInfo.likeCount}
+              {postInfo?.likeCount}
             </span>
           </div>
         </div>

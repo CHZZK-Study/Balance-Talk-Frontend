@@ -1,5 +1,7 @@
 import React from 'react';
 import { Routes, Route, Outlet } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Header from './layout/Header';
 import SearchBar from './layout/SearchBar';
 // import Footer from './layout/Footer';
@@ -11,16 +13,19 @@ import FindPasswordPage from './pages/FindPasswordPage/FindPasswordPage';
 import SignUpPage from './pages/SignUpPage/SignUpPage';
 import PostPage from './pages/PostPage/PostPage';
 
+const queryClient = new QueryClient();
+
 const Layout = () => {
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
       <Header />
       <SearchBar />
       <main>
         <Outlet />
       </main>
       {/* <Footer /> */}
-    </>
+    </QueryClientProvider>
   );
 };
 
