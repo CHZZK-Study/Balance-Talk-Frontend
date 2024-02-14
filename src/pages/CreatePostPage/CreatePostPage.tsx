@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { css } from '@emotion/react';
 import CreatePostForm from './sections/CreatePostForm';
-import ArrowDown from '../../assets/images/arrow-down.png';
 import Calendar from '../../assets/images/calendar.png';
 import Add from '../../assets/images/add.png';
+import useInputs from '../../hooks/useInputs';
+import { CreatePost } from '../../types/post';
 
 const inputStyles = {
   borderRadius: '5px',
@@ -15,6 +16,42 @@ const inputStyles = {
 };
 
 const CreatePostPage = () => {
+  const initialState = {
+    title: '',
+    postCategory: 'CASUAL',
+    deadline: 'xxxx-xx-xx',
+    tags: [],
+    balanceOptions: [
+      {
+        title: '',
+        description: '',
+        file: {
+          uploadName: '사진1',
+          path: '',
+          type: '',
+          size: '',
+        },
+      },
+      {
+        title: '',
+        description: '',
+        file: {
+          uploadName: '사진2',
+          path: '',
+          type: '',
+          size: '',
+        },
+      },
+    ],
+  };
+  const { form, onChange, setArray } = useInputs<CreatePost>(initialState);
+
+  const { title, postCategory } = form;
+
+  useEffect(() => {
+    console.log(form);
+  }, [form]);
+
   return (
     <div
       css={css({
@@ -54,6 +91,9 @@ const CreatePostPage = () => {
           })}
         >
           <input
+            name="title"
+            value={title}
+            onChange={onChange}
             css={css({
               width: '1080px',
               height: '40px',
@@ -62,7 +102,7 @@ const CreatePostPage = () => {
                 backgroundColor: '#BEBEBE',
               },
             })}
-            placeholder="게시글 제목을 입력해 주세요."
+            placeholder=" 게시글 제목을 입력해 주세요."
           />
         </div>
         <div
@@ -85,39 +125,23 @@ const CreatePostPage = () => {
               })}
             >
               <div css={css({ marginRight: '20px' })}>
-                <label
-                  htmlFor="casual"
+                <select
+                  name="postCategory"
+                  value={postCategory}
+                  onChange={onChange}
                   css={css({
-                    position: 'relative',
-                    ':before': {
-                      content: "''",
-                      position: 'absolute',
-                      right: '15px',
-                      top: '0',
-                      bottom: '0',
-                      width: '24px',
-                      height: '24px',
-                      backgroundImage: `url(${ArrowDown})`,
+                    width: '100px',
+                    height: '40px',
+                    textAlignLast: 'center',
+                    ...inputStyles,
+                    ':hover': {
+                      backgroundColor: '#BEBEBE',
                     },
                   })}
                 >
-                  <input
-                    id="casual"
-                    css={css({
-                      width: '170px',
-                      height: '40px',
-                      ...inputStyles,
-                      ':hover': {
-                        backgroundColor: '#BEBEBE',
-                      },
-                      '::placeholder': {
-                        textAlign: 'center',
-                        paddingRight: '15px',
-                      },
-                    })}
-                    placeholder="캐쥬얼 / 토론"
-                  />
-                </label>
+                  <option value="CASUAL">캐쥬얼</option>
+                  <option value="DISCUSSION">토론</option>
+                </select>
               </div>
               <div>
                 <label
@@ -232,7 +256,7 @@ const CreatePostPage = () => {
             alignItems: 'center',
           })}
         >
-          <CreatePostForm />
+          <CreatePostForm setBalanceOptions={setArray} index={0} />
           <span
             css={css({
               fontFamily: 'SpoqaHanSansNeo-Bold',
@@ -245,7 +269,7 @@ const CreatePostPage = () => {
           >
             vs
           </span>
-          <CreatePostForm />
+          <CreatePostForm setBalanceOptions={setArray} index={1} />
         </div>
       </form>
     </div>
