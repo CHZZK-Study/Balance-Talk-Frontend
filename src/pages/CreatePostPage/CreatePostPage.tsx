@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { FormEvent } from 'react';
 import { css } from '@emotion/react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 import CreatePostForm from './sections/CreatePostForm';
 import Calendar from '../../assets/images/calendar.png';
 import Add from '../../assets/images/add.png';
@@ -15,7 +17,21 @@ const inputStyles = {
   boxShadow: '0px 4px 4px gray',
 };
 
+const URL = 'http://localhost:3000';
+
+const fetchPost = async (postForm: CreatePost) => {
+  const response = await fetch(`${URL}/posts`, {
+    method: 'POST',
+    credentials: 'include',
+    body: JSON.stringify(postForm),
+  });
+
+  return response.status;
+};
+
 const CreatePostPage = () => {
+  const navigate = useNavigate();
+
   const initialState = {
     title: '',
     postCategory: 'CASUAL',
@@ -44,13 +60,23 @@ const CreatePostPage = () => {
       },
     ],
   };
+
+  const queryClient = useQueryClient();
+
   const { form, onChange, setArray } = useInputs<CreatePost>(initialState);
 
   const { title, postCategory } = form;
 
-  useEffect(() => {
-    console.log(form);
-  }, [form]);
+  const { mutate } = useMutation({
+    mutationFn: fetchPost,
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['posts'] }),
+  });
+
+  const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    mutate(form);
+    navigate('/');
+  };
 
   return (
     <div
@@ -82,7 +108,7 @@ const CreatePostPage = () => {
           </h2>
         </div>
       </div>
-      <form>
+      <form onSubmit={onSubmitHandler}>
         <div
           css={css({
             display: 'flex',
@@ -180,7 +206,7 @@ const CreatePostPage = () => {
               </div>
             </div>
             <button
-              type="button"
+              type="submit"
               css={css({
                 position: 'relative',
                 marginBottom: '10px',

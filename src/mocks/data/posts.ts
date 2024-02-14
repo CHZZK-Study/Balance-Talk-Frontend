@@ -181,3 +181,34 @@ export const post = {
   createdBy: '작성자 닉네임',
   profilePhoto: '프로필 사진(선택)',
 };
+
+export const createdPost = [
+  {
+    title: 'A vs B',
+    postCategory: 'CASUAL',
+    deadline: '2024-12-15T10:00:00',
+    tags: ['태그1', '태그2', '태그3'],
+    balanceOptions: [
+      {
+        title: 'option1',
+        description: 'description1',
+        file: {
+          uploadName: '사진1',
+          path: '/...',
+          type: 'JPEG',
+          size: '236',
+        },
+      },
+      {
+        title: 'option2',
+        description: 'description2',
+        file: {
+          uploadName: '사진1',
+          path: '/...',
+          type: 'JPEG',
+          size: '236',
+        },
+      },
+    ],
+  },
+];
