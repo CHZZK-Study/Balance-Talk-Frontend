@@ -1,29 +1,15 @@
 import React from 'react';
-import { Routes, Route, Outlet } from 'react-router-dom';
-import Header from './layout/Header';
-import SearchBar from './layout/SearchBar';
-// import Footer from './layout/Footer';
-import LandingPage from './pages/LandingPage/LandingPage';
-import PostList from './pages/PostListPage/PostListPage';
+import { Route, Routes } from 'react-router-dom';
+import { PATH } from './constants/path';
+import { Layout, LayoutNoSearch } from './layout/layout';
 import CreatePostPage from './pages/CreatePostPage/CreatePostPage';
-import LoginPage from './pages/LoginPage/LoginPage';
 import FindPasswordPage from './pages/FindPasswordPage/FindPasswordPage';
-import SignUpPage from './pages/SignUpPage/SignUpPage';
+import LandingPage from './pages/LandingPage/LandingPage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import PostList from './pages/PostListPage/PostListPage';
 import PostPage from './pages/PostPage/PostPage';
-import ReactQueryProvider from './providers/reactQueryProvider';
-
-const Layout = () => {
-  return (
-    <>
-      <Header />
-      <SearchBar />
-      <main>
-        <Outlet />
-      </main>
-      {/* <Footer /> */}
-    </>
-  );
-};
+import SignUpPage from './pages/SignUpPage/SignUpPage';
+import ReactQueryProvider from './providers/ReactQueryProvider';
 
 const App: React.FC = () => {
   return (
@@ -33,10 +19,13 @@ const App: React.FC = () => {
           <Route index element={<LandingPage />} />
           <Route path="posts" element={<PostList />} />
           <Route path="post/create" element={<CreatePostPage />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="findPassword" element={<FindPasswordPage />} />
-          <Route path="signup" element={<SignUpPage />} />
           <Route path="posts/:id" element={<PostPage />} />
+        </Route>
+
+        <Route element={<LayoutNoSearch />}>
+          <Route path={PATH.LOGIN} element={<LoginPage />} />
+          <Route path={PATH.PW} element={<FindPasswordPage />} />
+          <Route path={PATH.SIGN_UP} element={<SignUpPage />} />
         </Route>
       </Routes>
     </ReactQueryProvider>
