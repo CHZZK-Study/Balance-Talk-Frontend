@@ -1,37 +1,24 @@
 import React from 'react';
 import { css } from '@emotion/react';
+import { useQuery } from '@tanstack/react-query';
 import PostItem from './sections/PostItem';
 import SortButton from '../../components/SortButton';
 import ToggleButton from '../../components/ToggleButton';
+import { Post } from '../../types/post';
+
+const URL = 'http://localhost:3000';
+
+const fetchPostsData = async (): Promise<Post[]> => {
+  const response = await fetch(`${URL}/posts`);
+  const result = (await response.json()) as Post[];
+  return result;
+};
 
 const PostList = () => {
-  const postInfos = [
-    {
-      id: 1,
-      title: '카페 주문',
-      views: 126,
-      likeCount: 6,
-      commentCount: 5,
-      voteCount: 5548,
-      deadline: '2022-02-22',
-      tags: ['음식', '카페'],
-      balanceOptions: [
-        {
-          optionImg: 'coffee.jpg',
-          optionTitle: '커피',
-          optionDescription: '선택지 설명...',
-        },
-        {
-          optionImg: 'juice.jpg',
-          optionTitle: '쥬스',
-          optionDescription: '선택지 설명...',
-        },
-      ],
-      createdAt: '2022-02-12',
-      createdBy: '작성자 닉네임',
-      profilePhoto: '프로필 사진(선택)',
-    },
-  ];
+  const { data: posts } = useQuery({
+    queryKey: ['posts'],
+    queryFn: fetchPostsData,
+  });
 
   return (
     <div
@@ -88,14 +75,16 @@ const PostList = () => {
       <div
         css={css({
           display: 'flex',
-          justifyContent: 'space-evenly',
+          width: '60%',
+          justifyContent: 'space-between',
           flexWrap: 'wrap',
-          margin: '20px',
+          margin: '0 auto',
         })}
       >
-        {postInfos.map((postInfo) => {
-          return <PostItem key={postInfo.id} post={postInfo} />;
-        })}
+        {posts &&
+          posts.map((post) => {
+            return <PostItem key={post.id} post={post} />;
+          })}
       </div>
     </div>
   );
