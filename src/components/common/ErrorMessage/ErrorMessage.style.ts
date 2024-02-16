@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 
 import type { ErrorMessageProps } from './ErrorMessage';
 
-import { Theme } from '../../styles/Theme';
+import { Theme } from '../../../styles/Theme';
 
 export const getTextStyling = (
   isError: Required<ErrorMessageProps>['isError'],
