@@ -1,6 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { css } from '@emotion/react';
 import ImageDropZone from '../../../components/ImageDropZone';
+import useInputs from '../../../hooks/useInputs';
+import { CreatePost, CreatePostImage } from '../../../types/post';
+
+type CreatePostFormProps = {
+  setBalanceOptions: <P, K extends keyof CreatePost>(
+    name: K,
+    value: P,
+    index: number,
+  ) => void;
+  index: number;
+};
 
 const inputStyles = {
   borderRadius: '5px',
@@ -11,11 +22,33 @@ const inputStyles = {
   boxShadow: '0px 4px 4px gray',
 };
 
-const CreatePostForm = () => {
+const initialState = {
+  title: '',
+  description: '',
+  file: {
+    uploadName: '사진1',
+    path: '',
+    type: '',
+    size: '',
+  },
+};
+
+const CreatePostForm = ({ setBalanceOptions, index }: CreatePostFormProps) => {
+  const { form, onChange, setEach } = useInputs<CreatePostImage>(initialState);
+
+  const { title, description, file } = form;
+
+  useEffect(() => {
+    setBalanceOptions('balanceOptions', { title, description, file }, index);
+  }, [title, description, file, index, setBalanceOptions]);
+
   return (
     <div css={css({ margin: '80px' })}>
-      <ImageDropZone />
+      <ImageDropZone setFile={setEach} />
       <input
+        name="title"
+        value={title}
+        onChange={onChange}
         css={css({
           width: '450px',
           height: '40px',
@@ -26,10 +59,13 @@ const CreatePostForm = () => {
           marginTop: '20px',
           marginBottom: '20px',
         })}
-        placeholder="선택지 제목을 입력해 주세요."
+        placeholder=" 선택지 제목을 입력해 주세요."
       />
       <div>
         <textarea
+          name="description"
+          value={description}
+          onChange={onChange}
           css={css({
             width: '450px',
             height: '100px',
@@ -38,7 +74,7 @@ const CreatePostForm = () => {
               backgroundColor: '#BEBEBE',
             },
           })}
-          placeholder="선택지 설명을 입력해 주세요."
+          placeholder=" 선택지 설명을 입력해 주세요."
         />
       </div>
     </div>

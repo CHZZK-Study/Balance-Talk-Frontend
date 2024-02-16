@@ -6,7 +6,6 @@ import Heart from '../../assets/svg/Heart';
 import PostOptionCard from '../../components/PostOptionCard';
 import UserProfile from '../../components/UserProfile';
 import IconList from '../../components/IconList';
-import UserComment from '../../components/UserComment';
 import CommentSection from '../../components/CommentSection';
 
 const PostPage = () => {

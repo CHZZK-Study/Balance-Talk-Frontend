@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import { ImageInfo } from '../../../types/temp';
+import { ImageInfo } from '../../../types/post';
 
 type PostImageProps = {
   images: ImageInfo[];

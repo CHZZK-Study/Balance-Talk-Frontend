@@ -1,14 +1,14 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import { ImageInfo, PostInfo } from '../../../types/temp';
 import PostItemImage from './PostItemImage';
 import TagButton from '../../../components/TagButton';
 import Eye from '../../../assets/svg/Eye';
 import Heart from '../../../assets/svg/Heart';
 import Comment from '../../../assets/svg/Comment';
+import { ImageInfo, Post } from '../../../types/post';
 
 type PostItemProps = {
-  post: PostInfo;
+  post: Post;
 };
 
 const PostItem = ({ post }: PostItemProps) => {

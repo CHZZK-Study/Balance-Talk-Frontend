@@ -2,14 +2,27 @@
 import React, { useCallback } from 'react';
 import { css } from '@emotion/react';
 import { useDropzone } from 'react-dropzone';
+import { CreatePostImageFile } from '../types/post';
 
-const ImageDropZone: React.FC = () => {
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    // 여기서 파일 처리
-    console.log(acceptedFiles);
-  }, []);
+type ImageDropZoneProps = {
+  setFile: <U>(name: string, value: U) => void;
+};
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+const ImageDropZone: React.FC<ImageDropZoneProps> = ({ setFile }) => {
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      const { name, size, type } = acceptedFiles[0];
+      setFile<CreatePostImageFile>('file', {
+        uploadName: name,
+        path: name,
+        type,
+        size: size.toString(),
+      });
+    },
+    [setFile],
+  );
+
+  const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: {
       'image/*': ['.jpeg', '.jpg', '.png'],
