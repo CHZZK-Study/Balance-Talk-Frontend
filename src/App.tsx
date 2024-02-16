@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { PATH } from './constants/path';
-import { Layout, LayoutNoSearch } from './layout/layout';
+import { Layout, LayoutMypage, LayoutNoSearch } from './layout/layout';
 import CreatePostPage from './pages/CreatePostPage/CreatePostPage';
 import FindPasswordPage from './pages/FindPasswordPage/FindPasswordPage';
 import LandingPage from './pages/LandingPage/LandingPage';
@@ -26,6 +26,15 @@ const App: React.FC = () => {
           <Route path={PATH.LOGIN} element={<LoginPage />} />
           <Route path={PATH.PW} element={<FindPasswordPage />} />
           <Route path={PATH.SIGN_UP} element={<SignUpPage />} />
+        </Route>
+
+        <Route path={PATH.MYPAGE} element={<LayoutMypage />}>
+          <Route path={PATH.HISTORY.POSTS} />
+          <Route path={PATH.HISTORY.COMMENTS} />
+          <Route path={PATH.HISTORY.VOTED_POSTS} />
+          <Route path={PATH.HISTORY.BOOKMARKS} />
+          <Route path={PATH.UPDATE} />
+          <Route path={PATH.DELETE} />
         </Route>
       </Routes>
     </ReactQueryProvider>

@@ -7,6 +7,11 @@ export const profileImageContainer = css({
   overflow: 'hidden',
 });
 
+export const profileImageInner = css({
+  width: '100%',
+  height: '100%',
+});
+
 export const getSizeStyling = (size: Required<ProfileImageProps>['size']) => {
   const style = {
     xlarge: css({
