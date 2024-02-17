@@ -1,13 +1,20 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import UserComment from './UserComment';
+import UserComment, {
+  UserCommentProps,
+} from '../../../../components/UserComment';
 
-interface CommentSectionProps {
-  title: string;
-  color?: string;
-}
+export type CommentsByOptionProps = {
+  optionTitle: string;
+  userComments: UserCommentProps[];
+  color: string;
+};
 
-const CommentSection = ({ title, color }: CommentSectionProps) => {
+const CommentsByOption = ({
+  optionTitle,
+  userComments,
+  color,
+}: CommentsByOptionProps) => {
   return (
     <div
       css={css({
@@ -26,7 +33,7 @@ const CommentSection = ({ title, color }: CommentSectionProps) => {
           fontSize: '1.5rem',
         })}
       >
-        {title}
+        {optionTitle}
       </div>
       <div
         css={css({
@@ -34,7 +41,7 @@ const CommentSection = ({ title, color }: CommentSectionProps) => {
           fontSize: '1rem',
         })}
       >
-        댓글 20개
+        댓글 {userComments.length}개
       </div>
       <div
         css={css({
@@ -54,13 +61,12 @@ const CommentSection = ({ title, color }: CommentSectionProps) => {
           gap: '1rem',
         })}
       >
-        <UserComment isMyComment />
-        <UserComment />
-        <UserComment />
-        <UserComment isMyComment />
-        <UserComment isMyComment />
+        {userComments.map((userComment: UserCommentProps) => (
+          <UserComment {...userComment} />
+        ))}
       </div>
     </div>
   );
 };
-export default CommentSection;
+
+export default CommentsByOption;
