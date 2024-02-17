@@ -1,101 +1,137 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import LikeIcon from '../assets/svg/LikeIcon';
-import MoreIcon from '../assets/svg/MoreIcon';
-import ReportIcon from '../assets/svg/ReportIcon';
+import { Profile, More, Report, Like, Plus } from '../assets';
 
-interface UserCommentProps {
-  isMyComment?: boolean;
+export interface UserCommentProps {
+  isMyComment: boolean;
+  imgUrl?: string;
+  name: string;
+  content: string;
+  createdAt: string;
+  likeCount: number;
+  replyList?: UserCommentProps[];
 }
 
-const UserComment = ({ isMyComment }: UserCommentProps) => {
+const UserComment = ({
+  isMyComment,
+  name,
+  content,
+  createdAt,
+  likeCount,
+  replyList,
+}: UserCommentProps) => {
   return (
     <div
       css={css({
         display: 'flex',
-        alignItems: 'center',
-        gap: '2rem',
-        padding: '1rem 2rem',
+        flexDirection: 'column',
+        gap: '20px',
         backgroundColor: `${isMyComment ? '#FFD369' : '#FFFFFF'}`,
+        borderRadius: '8px',
+        padding: '1rem',
       })}
     >
-      <div>
-        {/* 이미지 들어갈 자리 */}
-        <div
-          css={css({
-            width: '50px',
-            height: '50px',
-            backgroundColor: '#D9D9D9',
-            borderRadius: '50%',
-          })}
-        />
-      </div>
       <div
         css={css({
           display: 'flex',
-          flexDirection: 'column',
-          gap: '1rem',
+          alignItems: 'center',
+          justifyContent: 'space-between',
         })}
       >
         <div
           css={css({
             display: 'flex',
             alignItems: 'center',
-            gap: '1rem',
+            gap: '2rem',
           })}
         >
+          <Profile />
           <div
             css={css({
-              fontStyle: 'italic',
-              fontFamily: 'SpoqaHanSansNeo-medium',
-              fontWeight: '500',
-              fontSize: '1rem',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1rem',
             })}
           >
-            Username1
-          </div>
-          <div
-            css={css({
-              fontFamily: 'SpoqaHanSansNeo-thin',
-              fontWeight: '300',
-              fontSize: '0.8rem',
-            })}
-          >
-            3일 전
+            <div
+              css={css({
+                display: 'flex',
+                alignItems: 'center',
+                gap: '1rem',
+              })}
+            >
+              <div
+                css={css({
+                  fontStyle: 'italic',
+                  fontFamily: 'SpoqaHanSansNeo-medium',
+                  fontWeight: '500',
+                  fontSize: '1rem',
+                })}
+              >
+                {name}
+              </div>
+              <div
+                css={css({
+                  fontFamily: 'SpoqaHanSansNeo-thin',
+                  fontWeight: '300',
+                  fontSize: '0.8rem',
+                })}
+              >
+                {createdAt}
+              </div>
+            </div>
+
+            <div
+              css={css({
+                fontFamily: 'SpoqaHanSansNeo-regular',
+                fontSize: '1rem',
+              })}
+            >
+              {content}
+            </div>
           </div>
         </div>
 
         <div
           css={css({
-            fontFamily: 'SpoqaHanSansNeo-regular',
-            fontSize: '1rem',
+            display: 'flex',
+            gap: '0.5rem',
           })}
         >
-          밸런스톡 메인페이지 작업
+          <div
+            css={css({
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.3rem',
+            })}
+          >
+            <Like />
+            <span>{likeCount}</span>
+          </div>
+          <div>
+            <More />
+          </div>
+          <div>
+            <Report />
+          </div>
         </div>
       </div>
       <div
         css={css({
           display: 'flex',
-          gap: '0.5rem',
+          alignItems: 'flex-end',
+          gap: '8px',
+          fontSize: '14px',
         })}
       >
-        <div
-          css={css({
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '0.3rem',
-          })}
-        >
-          <LikeIcon />
-          <span>100</span>
-        </div>
         <div>
-          <MoreIcon />
+          <Plus />
         </div>
-        <div>
-          <ReportIcon />
-        </div>
+        <span>
+          {replyList?.length !== 0
+            ? `${replyList?.length}개의 답글`
+            : '답글달기'}
+        </span>
       </div>
     </div>
   );
