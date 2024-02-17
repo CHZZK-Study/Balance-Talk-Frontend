@@ -1,7 +1,16 @@
 import React from 'react';
 import { css } from '@emotion/react';
+import { Profile } from '../assets';
 
-const UserProfile = () => {
+export interface UserProfileProps {
+  name: string;
+  img?: string;
+  joinAt?: string;
+  totalLikeCount?: number;
+  level?: string;
+}
+
+const UserProfile = ({ name, joinAt }: UserProfileProps) => {
   return (
     <div
       css={css({
@@ -12,15 +21,7 @@ const UserProfile = () => {
       })}
     >
       <div>
-        {/* 이미지 들어갈 자리 */}
-        <div
-          css={css({
-            width: '50px',
-            height: '50px',
-            backgroundColor: '#D9D9D9',
-            borderRadius: '50%',
-          })}
-        />
+        <Profile />
       </div>
       <div
         css={css({
@@ -37,7 +38,7 @@ const UserProfile = () => {
             fontSize: '1rem',
           })}
         >
-          Username1
+          {name}
         </div>
         <div
           css={css({
@@ -45,7 +46,7 @@ const UserProfile = () => {
             fontSize: '1rem',
           })}
         >
-          2024.02.06
+          {joinAt}
         </div>
       </div>
     </div>
