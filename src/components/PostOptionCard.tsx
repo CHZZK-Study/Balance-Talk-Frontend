@@ -28,7 +28,7 @@ const PostOptionCard = () => {
             textAlign: 'center',
             fontSize: '2rem',
           })}
-          src=""
+          src="coffee.jpg"
           width="400px"
           height="350px"
           alt=""
