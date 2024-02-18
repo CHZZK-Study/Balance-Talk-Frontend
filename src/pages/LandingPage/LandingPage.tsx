@@ -1,54 +1,35 @@
 import React from 'react';
 import { css } from '@emotion/react';
+import { useQuery } from '@tanstack/react-query';
 import MainPost from '../../components/MainPost';
 import PostImage from '../../components/PostImage';
 import Carousel from '../../components/Carousel';
+import { Post } from '../../types/post';
+
+const URL = 'http://localhost:3000';
+
+const fetchPostsData = async (): Promise<Post[]> => {
+  const response = await fetch(`${URL}/posts`);
+  const result = (await response.json()) as Post[];
+  return result;
+};
 
 const LandingPage = () => {
-  const postInfos = [
-    {
-      id: 1,
-      balanceOptions: [
-        { optionImg: 'coffee.jpg', optionTitle: '커피' },
-        { optionImg: 'juice.jpg', optionTitle: '쥬스' },
-      ],
-    },
-    {
-      id: 2,
-      balanceOptions: [
-        { optionImg: 'coffee.jpg', optionTitle: '커피' },
-        { optionImg: 'juice.jpg', optionTitle: '쥬스' },
-      ],
-    },
-    {
-      id: 3,
-      balanceOptions: [
-        { optionImg: 'coffee.jpg', optionTitle: '커피' },
-        { optionImg: 'juice.jpg', optionTitle: '쥬스' },
-      ],
-    },
-    {
-      id: 4,
-      balanceOptions: [
-        { optionImg: 'coffee.jpg', optionTitle: '커피' },
-        { optionImg: 'juice.jpg', optionTitle: '쥬스' },
-      ],
-    },
-    {
-      id: 5,
-      balanceOptions: [
-        { optionImg: 'coffee.jpg', optionTitle: '커피' },
-        { optionImg: 'juice.jpg', optionTitle: '쥬스' },
-      ],
-    },
-    {
-      id: 6,
-      balanceOptions: [
-        { optionImg: 'coffee.jpg', optionTitle: '커피' },
-        { optionImg: 'juice.jpg', optionTitle: '쥬스' },
-      ],
-    },
-  ];
+  const { data } = useQuery({
+    queryKey: ['posts'],
+    queryFn: fetchPostsData,
+  });
+
+  const extractBalanceOptions = (datas: Post[]) => {
+    return datas.map((post) => {
+      return {
+        id: post.id,
+        balanceOptions: post.balanceOptions,
+      };
+    });
+  };
+
+  const postInfos = data ? extractBalanceOptions(data) : [];
 
   const CarouselItems = postInfos.map((postInfo) => {
     return (
@@ -86,7 +67,7 @@ const LandingPage = () => {
           추천 게시글
         </h2>
       </div>
-      <MainPost />
+      <MainPost post={data?.[0]} />
       <div
         css={css({
           display: 'flex',
