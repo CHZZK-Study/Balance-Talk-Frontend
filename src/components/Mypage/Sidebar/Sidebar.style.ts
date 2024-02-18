@@ -3,7 +3,6 @@ import { Theme } from '../../../styles/Theme';
 
 export const sidebarContainer = css({
   display: 'flex',
-  height: '100%',
 });
 
 export const sidebarInnerContainer = css({

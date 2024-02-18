@@ -23,6 +23,7 @@ const ProfileInfo = ({ title, children }: ProfileInfoProps) => {
           marginTop: '10px',
           color: Theme.color.gray400,
           fontSize: Theme.text.xSmall.fontSize,
+          whiteSpace: 'nowrap',
         })}
       >
         {title}

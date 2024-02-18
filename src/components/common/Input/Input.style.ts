@@ -10,27 +10,35 @@ export const inputContainerStyling = css({
   gap: '30px',
 });
 
-export const inputWrapperStyling = css({
-  display: 'flex',
-  gap: '12px',
-  alignItems: 'center',
-  paddingTop: 0,
-  paddingBottom: 0,
-  margin: '10px 0px',
-  backgroundColor: Theme.color.gray200,
-  borderRadius: '5px',
-  transition: 'all .2s ease-in',
+export const inputWrapperStyling = (
+  isDisabled: Required<InputProps>['isDisabled'],
+) =>
+  css({
+    display: 'flex',
+    gap: '12px',
+    alignItems: 'center',
+    paddingTop: 0,
+    paddingBottom: 0,
+    margin: '10px 0px',
+    backgroundColor: isDisabled ? Theme.color.gray400 : Theme.color.gray200,
+    borderRadius: '5px',
+    transition: 'all .2s ease-in',
+    opacity: isDisabled ? 0.6 : 1,
 
-  '&:focus-within': {
-    backgroundColor: Theme.color.white,
-    boxShadow: `0 0 0 1px ${Theme.color.gray200}`,
-  },
+    '&:focus-within': {
+      ...(isDisabled
+        ? {}
+        : {
+            backgroundColor: Theme.color.white,
+            boxShadow: `0 0 0 1px ${Theme.color.gray200}`,
+          }),
+    },
 
-  '& svg': {
-    width: '30px',
-    height: '30px',
-  },
-});
+    '& svg': {
+      width: '30px',
+      height: '30px',
+    },
+  });
 
 export const inputBtnContainerStyling = css({
   display: 'flex',

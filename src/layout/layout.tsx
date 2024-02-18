@@ -41,11 +41,20 @@ export const LayoutMypage = () => {
   return (
     <>
       <Header />
-      <main>
+      <div css={css({ display: 'flex', height: '100%' })}>
         <Sidebar />
-        <Outlet />
-        {/* <Footer/> */}
-      </main>
+        <main
+          css={css({
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100%',
+          })}
+        >
+          <Outlet />
+          {/* <Footer/> */}
+        </main>
+      </div>
     </>
   );
 };

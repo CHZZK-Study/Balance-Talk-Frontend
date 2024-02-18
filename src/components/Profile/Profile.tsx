@@ -1,13 +1,14 @@
 import React from 'react';
 import Rank from '../../assets/svg/Rank';
 import ProfileImage from './ProfileImage/ProfileImage';
-import ProfileInfo from './ProfileInfo';
+
 import {
   profileContainer,
   profileInfoContainer,
   profileText,
 } from './Profile.style';
 import defaultProfile from '../../assets/images/defaultProfile.png';
+import ProfileInfo from './ProfileInfo';
 
 const Profile = () => {
   return (
