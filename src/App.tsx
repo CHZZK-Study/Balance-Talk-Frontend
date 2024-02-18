@@ -11,6 +11,7 @@ import PostPage from './pages/PostPage/PostPage';
 import SignUpPage from './pages/SignUpPage/SignUpPage';
 import ReactQueryProvider from './providers/ReactQueryProvider';
 import UpdatePage from './pages/MyPage/UpdatePage/UpdatePage';
+import DeletePage from './pages/MyPage/DeletePage/DeletePage';
 
 const App: React.FC = () => {
   return (
@@ -35,7 +36,7 @@ const App: React.FC = () => {
           <Route path={PATH.HISTORY.VOTED_POSTS} />
           <Route path={PATH.HISTORY.BOOKMARKS} />
           <Route path={PATH.UPDATE} element={<UpdatePage />} />
-          <Route path={PATH.DELETE} />
+          <Route path={PATH.DELETE} element={<DeletePage />} />
         </Route>
       </Routes>
     </ReactQueryProvider>
