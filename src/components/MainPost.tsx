@@ -7,15 +7,10 @@ import Eye from '../assets/svg/Eye';
 import Comment from '../assets/svg/Comment';
 import Heart from '../assets/svg/Heart';
 import { Post, VoteInfo } from '../types/post';
+import { fetchVoteCount } from '../api/posts/posts';
 
 type MainPostProps = {
   post?: Post;
-};
-
-const fetchVoteCount = async (postId: number): Promise<VoteInfo[]> => {
-  const response = await fetch(`post/${postId}/vote`);
-  const result = (await response.json()) as VoteInfo[];
-  return result;
 };
 
 const calculateTotalVoteCount = (data: VoteInfo[]) => {
