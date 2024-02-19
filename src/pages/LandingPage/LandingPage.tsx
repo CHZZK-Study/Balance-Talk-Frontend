@@ -6,8 +6,10 @@ import PostImage from '../../components/PostImage';
 import Carousel from '../../components/Carousel';
 import { Post } from '../../types/post';
 
+const URL = process.env.API_URL;
+
 const fetchPostsData = async (): Promise<Post[]> => {
-  const response = await fetch(`${process.env.API_URL}/posts`);
+  const response = await fetch(`${URL}/posts`);
   const result = (await response.json()) as Post[];
   return result;
 };
