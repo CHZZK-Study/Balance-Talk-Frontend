@@ -8,6 +8,8 @@ import Add from '../../assets/images/add.png';
 import useInputs from '../../hooks/useInputs';
 import { CreatePost } from '../../types/post';
 
+const URL = process.env.API_URL;
+
 const inputStyles = {
   borderRadius: '5px',
   fontSize: '20px',
@@ -16,8 +18,6 @@ const inputStyles = {
   backgroundColor: '#EEEEEE',
   boxShadow: '0px 4px 4px gray',
 };
-
-const URL = 'http://localhost:3000';
 
 const fetchPost = async (postForm: CreatePost) => {
   const response = await fetch(`${URL}/posts`, {

@@ -6,7 +6,7 @@ import SortButton from '../../components/SortButton';
 import ToggleButton from '../../components/ToggleButton';
 import { Post } from '../../types/post';
 
-const URL = 'http://localhost:3000';
+const URL = process.env.API_URL;
 
 const fetchPostsData = async (): Promise<Post[]> => {
   const response = await fetch(`${URL}/posts`);

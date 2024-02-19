@@ -3,7 +3,7 @@ import { rest } from 'msw';
 import { postList, voteInfo, createdPost } from '../data/posts';
 import { CreatePost } from '../../types/post';
 
-const URL = 'http://localhost:3000';
+const URL = process.env.API_URL;
 
 const postHandlers = [
   rest.get(`${URL}/posts`, (req, res, ctx) => {
