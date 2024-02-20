@@ -4,15 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import PostItem from './sections/PostItem';
 import SortButton from '../../components/SortButton';
 import ToggleButton from '../../components/ToggleButton';
-import { Post } from '../../types/post';
-
-const URL = 'http://localhost:3000';
-
-const fetchPostsData = async (): Promise<Post[]> => {
-  const response = await fetch(`${URL}/posts`);
-  const result = (await response.json()) as Post[];
-  return result;
-};
+import { fetchPostsData } from '../../api/posts/posts';
 
 const PostList = () => {
   const { data: posts } = useQuery({

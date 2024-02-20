@@ -7,6 +7,7 @@ import Calendar from '../../assets/images/calendar.png';
 import Add from '../../assets/images/add.png';
 import useInputs from '../../hooks/useInputs';
 import { CreatePost } from '../../types/post';
+import { fetchPost } from '../../api/posts/posts';
 
 const inputStyles = {
   borderRadius: '5px',
@@ -15,18 +16,6 @@ const inputStyles = {
   border: 0,
   backgroundColor: '#EEEEEE',
   boxShadow: '0px 4px 4px gray',
-};
-
-const URL = 'http://localhost:3000';
-
-const fetchPost = async (postForm: CreatePost) => {
-  const response = await fetch(`${URL}/posts`, {
-    method: 'POST',
-    credentials: 'include',
-    body: JSON.stringify(postForm),
-  });
-
-  return response.status;
 };
 
 const CreatePostPage = () => {
