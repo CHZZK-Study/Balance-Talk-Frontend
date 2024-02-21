@@ -1,6 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { useQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 import MainPost from '../../components/MainPost';
 import PostImage from '../../components/PostImage';
 import Carousel from '../../components/Carousel';
@@ -8,6 +9,8 @@ import { Post } from '../../types/post';
 import { fetchPostsData } from '../../api/posts/posts';
 
 const LandingPage = () => {
+  const navigate = useNavigate();
+
   const { data } = useQuery({
     queryKey: ['posts'],
     queryFn: fetchPostsData,
@@ -85,6 +88,8 @@ const LandingPage = () => {
             fontSize: '14px',
             cursor: 'pointer',
           })}
+          onClick={() => navigate('/posts')}
+          role="presentation"
         >
           더보기
         </span>

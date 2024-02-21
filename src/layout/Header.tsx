@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import Heart from '../assets/svg/Heart';
+import { Hearts } from '../assets';
 
 const Header = () => {
   return (
@@ -23,7 +23,7 @@ const Header = () => {
         })}
       >
         {/* 로고가 들어갈 부분 */}
-        <Heart />
+        <Hearts />
       </div>
       <div
         css={css({

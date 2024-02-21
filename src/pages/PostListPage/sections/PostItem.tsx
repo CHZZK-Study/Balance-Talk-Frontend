@@ -3,9 +3,9 @@ import { css } from '@emotion/react';
 import PostItemImage from './PostItemImage';
 import TagButton from '../../../components/TagButton';
 import Eye from '../../../assets/svg/Eye';
-import Heart from '../../../assets/svg/Heart';
 import Comment from '../../../assets/svg/Comment';
 import { ImageInfo, Post } from '../../../types/post';
+import HeartButton from '../../../components/HeartButton';
 
 type PostItemProps = {
   post: Post;
@@ -23,6 +23,7 @@ const PostItem = ({ post }: PostItemProps) => {
     },
   ];
 
+  const isLiked = post.myLike;
   return (
     <div
       css={css({
@@ -83,16 +84,21 @@ const PostItem = ({ post }: PostItemProps) => {
             })}
         </div>
       </div>
-
       <div
         css={css({
           display: 'flex',
           justifyContent: 'space-between',
           width: '400px',
           marginTop: '40px',
+          height: '38px',
+          alignItems: 'center',
         })}
       >
-        <div css={css({})}>
+        <div
+          css={css({
+            height: '24px',
+          })}
+        >
           <Eye />
           <span
             css={css({
@@ -116,17 +122,16 @@ const PostItem = ({ post }: PostItemProps) => {
             {post.commentCount}
           </span>
         </div>
-        <div>
-          <Heart />
-          <span
+        <div css={css({ display: 'flex', height: '100%' })}>
+          <HeartButton isLiked={isLiked} />
+          <div
             css={css({
-              marginLeft: '5px',
-              position: 'relative',
-              bottom: '7px',
+              margin: 'auto',
+              marginTop: '9px',
             })}
           >
-            {post.likeCount}
-          </span>
+            {post?.likeCount}
+          </div>
         </div>
       </div>
     </div>

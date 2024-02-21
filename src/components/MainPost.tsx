@@ -5,9 +5,9 @@ import PostImage from './PostImage';
 import TagButton from './TagButton';
 import Eye from '../assets/svg/Eye';
 import Comment from '../assets/svg/Comment';
-import Heart from '../assets/svg/Heart';
 import { Post, VoteInfo } from '../types/post';
 import { fetchVoteCount } from '../api/posts/posts';
+import HeartButton from './HeartButton';
 
 type MainPostProps = {
   post?: Post;
@@ -27,6 +27,8 @@ const MainPost = ({ post }: MainPostProps) => {
     queryFn: () => fetchVoteCount(postId!),
     enabled: !!postId,
   });
+
+  const isLiked = post?.myLike;
 
   const postInfo = post;
 
@@ -95,8 +97,19 @@ const MainPost = ({ post }: MainPostProps) => {
             투표하기
           </button>
         </div>
-        <div css={css({ display: 'flex', justifyContent: 'space-between' })}>
-          <div css={css({})}>
+        <div
+          css={css({
+            display: 'flex',
+            justifyContent: 'space-between',
+            height: '38px',
+            alignItems: 'center',
+          })}
+        >
+          <div
+            css={css({
+              height: '24px',
+            })}
+          >
             <Eye />
             <span
               css={css({
@@ -120,14 +133,12 @@ const MainPost = ({ post }: MainPostProps) => {
               {postInfo?.commentCount}
             </span>
           </div>
-          <div>
-            <Heart />
+          <div css={css({ display: 'flex', height: '100%' })}>
+            <HeartButton isLiked={isLiked} />
             <span
               css={css({
-                marginLeft: '5px',
-                marginRight: '5px',
-                position: 'relative',
-                bottom: '7px',
+                margin: 'auto',
+                marginTop: '9px',
               })}
             >
               {postInfo?.likeCount}

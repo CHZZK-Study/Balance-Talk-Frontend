@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import React from 'react';
 import TagButton from '../../../components/TagButton';
 import Eye from '../../../assets/svg/Eye';
-import Heart from '../../../assets/svg/Heart';
+import { Hearts } from '../../../assets';
 import PostOptionCard from '../../../components/PostOptionCard';
 
 const PostCardsSection = () => {
@@ -68,7 +68,7 @@ const PostCardsSection = () => {
               gap: '0.5rem',
             })}
           >
-            <Heart />
+            <Hearts />
             100
           </div>
         </div>

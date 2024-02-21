@@ -1,12 +1,16 @@
 import React from 'react';
 
-const Heart = () => {
+type HeartProps = {
+  isLiked: boolean | undefined;
+};
+
+const Heart = ({ isLiked }: HeartProps) => {
   return (
     <svg
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      fill="none"
+      fill={isLiked ? 'red' : 'none'}
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
