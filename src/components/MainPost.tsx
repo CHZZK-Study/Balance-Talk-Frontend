@@ -134,7 +134,7 @@ const MainPost = ({ post }: MainPostProps) => {
             </span>
           </div>
           <div css={css({ display: 'flex', height: '100%' })}>
-            <HeartButton isLiked={isLiked} />
+            <HeartButton isLiked={isLiked} postId={postId} />
             <span
               css={css({
                 margin: 'auto',

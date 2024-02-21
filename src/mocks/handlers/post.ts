@@ -19,6 +19,14 @@ const postHandlers = [
     createdPost.push(request);
     return res(ctx.status(201));
   }),
+
+  rest.post(`${URL}/posts/:postId/likes`, (req, res, ctx) => {
+    return res(ctx.status(200));
+  }),
+
+  rest.delete(`${URL}/posts/:postId/likes`, (req, res, ctx) => {
+    return res(ctx.status(204));
+  }),
 ];
 
 export default postHandlers;
