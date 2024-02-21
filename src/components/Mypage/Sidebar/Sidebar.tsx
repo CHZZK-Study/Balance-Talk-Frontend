@@ -18,7 +18,10 @@ const Sidebar = () => {
       <div css={sidebarInnerContainer}>
         <Profile />
         <nav css={sidebarNavContainer}>
-          <SidebarNav url={PATH.HISTORY.POSTS} icon={<Home />}>
+          <SidebarNav
+            url={`${PATH.HISTORY.MAIN}/${PATH.HISTORY.POSTS}`}
+            icon={<Home />}
+          >
             활동내역
           </SidebarNav>
           <SidebarNav url={PATH.UPDATE} icon={<Person />}>
