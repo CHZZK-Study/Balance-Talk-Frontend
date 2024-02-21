@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Home from '../../../assets/svg/Home';
 import Lock from '../../../assets/svg/Lock';
 import Person from '../../../assets/svg/Person';
@@ -10,26 +11,52 @@ import {
   sidebarInnerContainer,
   sidebarNavContainer,
 } from './Sidebar.style';
-import SidebarNav from './SidebarNav';
+import SidebarNav from './SidebarNav/SidebarNav';
 
 const Sidebar = () => {
+  const sidebarNavs = [
+    {
+      id: 1,
+      url: `${PATH.HISTORY.MAIN}/${PATH.HISTORY.POSTS}`,
+      icon: <Home />,
+      text: '활동내역',
+    },
+    {
+      id: 2,
+      url: PATH.UPDATE,
+      icon: <Person />,
+      text: '회원정보 수정',
+    },
+    {
+      id: 3,
+      url: PATH.DELETE,
+      icon: <Lock />,
+      text: '회원탈퇴',
+    },
+  ];
+  const [selectedId, setSelectedId] = useState(1);
+  const navigate = useNavigate();
+  const onTabChange = (id: number) => {
+    setSelectedId(id);
+    navigate(sidebarNavs[id - 1].url);
+  };
   return (
     <section css={sidebarContainer}>
       <div css={sidebarInnerContainer}>
         <Profile />
         <nav css={sidebarNavContainer}>
-          <SidebarNav
-            url={`${PATH.HISTORY.MAIN}/${PATH.HISTORY.POSTS}`}
-            icon={<Home />}
-          >
-            활동내역
-          </SidebarNav>
-          <SidebarNav url={PATH.UPDATE} icon={<Person />}>
-            회원정보 수정
-          </SidebarNav>
-          <SidebarNav url={PATH.DELETE} icon={<Lock />}>
-            회원탈퇴
-          </SidebarNav>
+          {sidebarNavs.map((nav) => {
+            return (
+              <SidebarNav
+                key={nav.id}
+                navId={nav.id}
+                selectedId={selectedId}
+                icon={nav.icon}
+                text={nav.text}
+                changeSelect={onTabChange}
+              />
+            );
+          })}
         </nav>
       </div>
       <Divider />
