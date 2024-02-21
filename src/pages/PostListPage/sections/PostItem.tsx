@@ -123,7 +123,7 @@ const PostItem = ({ post }: PostItemProps) => {
           </span>
         </div>
         <div css={css({ display: 'flex', height: '100%' })}>
-          <HeartButton isLiked={isLiked} />
+          <HeartButton isLiked={isLiked} postId={post.id} />
           <div
             css={css({
               margin: 'auto',
