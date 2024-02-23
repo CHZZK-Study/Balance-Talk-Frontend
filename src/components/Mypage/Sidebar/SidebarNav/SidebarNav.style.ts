@@ -9,20 +9,20 @@ export const sidebarNavStyling = (isSelected: boolean) => ({
   cursor: 'pointer',
 
   '& p': {
-    color: isSelected ? Theme.color.colorHunt_black : Theme.color.gray400,
+    color: isSelected ? Theme.color.colorHunt_gray : Theme.color.gray400,
     fontWeight: isSelected ? '600' : '400',
   },
   '& svg': {
-    fill: isSelected ? Theme.color.colorHunt_black : Theme.color.gray400,
+    fill: isSelected ? Theme.color.colorHunt_gray : Theme.color.gray400,
   },
 
   '&:hover': {
     '& p': {
-      color: Theme.color.colorHunt_black,
+      color: Theme.color.colorHunt_gray,
       fontWeight: '600',
     },
     '& svg': {
-      fill: Theme.color.colorHunt_black,
+      fill: Theme.color.colorHunt_gray,
     },
   },
 });

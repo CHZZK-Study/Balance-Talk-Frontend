@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import Tab from '../../../components/Mypage/TopTab/Tab';
+import Tab from '../../../components/Mypage/TopTab/Tab/Tab';
 import TopTab from '../../../components/Mypage/TopTab/TopTab';
 import { PATH } from '../../../constants/path';
 import { historyContainer } from './HistoryPage.style';

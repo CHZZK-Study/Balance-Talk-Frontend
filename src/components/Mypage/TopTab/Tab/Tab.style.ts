@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { Theme } from '../../../styles/Theme';
+import { Theme } from '../../../../styles/Theme';
 
 export const tabStyling = (isSelected: boolean) =>
   css({
@@ -17,11 +17,11 @@ export const tabStyling = (isSelected: boolean) =>
 
     cursor: 'pointer',
 
-    borderBottom: `2px solid ${isSelected ? Theme.color.colorHunt_black : 'transparent'}`,
+    borderBottom: `2px solid ${isSelected ? Theme.color.colorHunt_gray : 'transparent'}`,
 
-    color: isSelected ? Theme.color.colorHunt_black : Theme.color.gray300,
+    color: isSelected ? Theme.color.colorHunt_gray : Theme.color.gray300,
 
     '&:hover': {
-      color: isSelected ? Theme.color.colorHunt_black : Theme.color.gray400,
+      color: isSelected ? Theme.color.colorHunt_gray : Theme.color.gray400,
     },
   });
