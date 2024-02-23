@@ -1,9 +1,9 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import Heart from '../assets/svg/Heart';
 import { fetchAddLike, fetchDeleteLike } from '../api/posts/posts';
 import { Post } from '../types/post';
+import { Hearts } from '../assets';
 
 type HeartButtonProps = {
   isLiked?: boolean;
@@ -83,7 +83,7 @@ const HeartButton = ({ isLiked, postId }: HeartButtonProps) => {
       onClick={onHeartClickHandler}
       role="presentation"
     >
-      <Heart isLiked={isLiked} />
+      <Hearts css={css({ fill: `${isLiked ? 'red' : 'none'}` })} />
     </div>
   );
 };

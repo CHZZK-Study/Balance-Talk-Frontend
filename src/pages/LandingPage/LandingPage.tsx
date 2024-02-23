@@ -7,6 +7,7 @@ import PostImage from '../../components/PostImage';
 import Carousel from '../../components/Carousel';
 import { Post } from '../../types/post';
 import { fetchPostsData } from '../../api/posts/posts';
+import { Hearts } from '../../assets';
 
 const LandingPage = () => {
   const navigate = useNavigate();
