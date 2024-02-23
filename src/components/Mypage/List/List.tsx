@@ -10,7 +10,7 @@ const List = (
   return (
     <ul
       css={css({
-        margin: '20px',
+        margin: '0px 20px',
       })}
       ref={ref}
       {...attributes}

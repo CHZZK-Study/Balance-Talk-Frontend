@@ -49,6 +49,11 @@ export const getSizeStyling = (size: Required<ButtonProps>['size']) => {
       fontSize: Theme.text.small.fontSize,
       lineHeight: Theme.text.small.lineHeight,
     }),
+    xSmall: css({
+      padding: '6px 10px',
+      fontSize: Theme.text.xSmall.fontSize,
+      lineHeight: Theme.text.xSmall.lineHeight,
+    }),
   };
 
   return style[size];

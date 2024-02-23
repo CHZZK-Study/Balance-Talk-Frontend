@@ -8,7 +8,7 @@ import {
 } from './Button.style';
 
 export interface ButtonProps extends ComponentPropsWithRef<'button'> {
-  size?: Extract<Size, 'small' | 'medium' | 'large'>;
+  size?: Extract<Size, 'xSmall' | 'small' | 'medium' | 'large'>;
   variant?: 'default' | 'outline' | 'cancel';
 }
 

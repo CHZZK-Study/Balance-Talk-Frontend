@@ -18,8 +18,8 @@ const ItemVotedPosts = ({ item }: ItemVotedPostsProps) => {
       <span css={[mypageTextStyling('xSmall'), noContainer]}>{item.id}</span>
       <div css={[withoutNoContainer, hoverStyling]}>
         <p css={mypageTextStyling('small')}>{item.position}</p>
-        <p css={mypageTextStyling('xSmall')}>{item.title}</p>
         <p css={mypageTextStyling('xSmall')}>{item.date}</p>
+        <p css={mypageTextStyling('xSmall')}>{item.title}</p>
       </div>
     </li>
   );

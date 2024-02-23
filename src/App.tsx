@@ -16,7 +16,7 @@ import HistoryPage from './pages/MyPage/HistoryPage/HistoryPage';
 import PostsPage from './pages/MyPage/HistoryPage/TabPage/PostsPage';
 import CommentsPage from './pages/MyPage/HistoryPage/TabPage/CommentsPage';
 import VotedPostsPage from './pages/MyPage/HistoryPage/TabPage/VotedPostsPage';
-import BookmarksPage from './pages/MyPage/HistoryPage/TabPage/BookmarksPage';
+import BookmarksPage from './pages/MyPage/HistoryPage/TabPage/BookmarksPage/BookmarksPage';
 
 const App: React.FC = () => {
   return (
