@@ -67,7 +67,7 @@ const PostList = () => {
       <div
         css={css({
           display: 'flex',
-          width: '60%',
+          width: '70%',
           justifyContent: 'space-between',
           flexWrap: 'wrap',
           margin: '0 auto',

@@ -23,3 +23,21 @@ export const fetchPost = async (postForm: CreatePost) => {
 
   return response.status;
 };
+
+export const fetchAddLike = async (postId: number) => {
+  const response = await fetch(`${URL}/posts/${postId}/likes`, {
+    method: 'POST',
+    credentials: 'include',
+  });
+
+  return response.body;
+};
+
+export const fetchDeleteLike = async (postId: number) => {
+  const response = await fetch(`${URL}/posts/${postId}/likes`, {
+    method: 'DELETE',
+    credentials: 'include',
+  });
+
+  return response.body;
+};

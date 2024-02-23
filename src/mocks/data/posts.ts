@@ -27,7 +27,7 @@ export const postList = [
     commentCount: 12,
     likeCount: 6,
     myBookmark: true,
-    myLike: true,
+    myLike: false,
     deadline: '2022-02-22',
     tags: ['음식'],
     balanceOptions: [
