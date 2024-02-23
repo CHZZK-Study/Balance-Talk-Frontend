@@ -70,7 +70,8 @@ const mediaQuery = (maxWidth: number): string =>
 
 export const media = {
   custom: mediaQuery,
-  mobile: mediaQuery(414),
-  tablet: mediaQuery(1024),
-  desktop: mediaQuery(1920),
+  mobile: mediaQuery(640),
+  tablet: mediaQuery(768),
+  laptop: mediaQuery(1024),
+  desktop: mediaQuery(1280),
 };
