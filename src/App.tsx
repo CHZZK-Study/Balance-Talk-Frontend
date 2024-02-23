@@ -13,7 +13,7 @@ import ReactQueryProvider from './providers/ReactQueryProvider';
 import UpdatePage from './pages/MyPage/UpdatePage/UpdatePage';
 import DeletePage from './pages/MyPage/DeletePage/DeletePage';
 import HistoryPage from './pages/MyPage/HistoryPage/HistoryPage';
-import PostsPage from './pages/MyPage/HistoryPage/PostsPage/PostsPage';
+import PostsPage from './pages/MyPage/HistoryPage/TabPage/PostsPage';
 
 const App: React.FC = () => {
   return (

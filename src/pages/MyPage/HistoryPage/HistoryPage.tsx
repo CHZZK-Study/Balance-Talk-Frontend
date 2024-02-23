@@ -49,6 +49,7 @@ const HistoryPage = () => {
           );
         })}
       </TopTab>
+
       <Outlet />
     </div>
   );

@@ -2,5 +2,7 @@ import { css } from '@emotion/react';
 
 export const historyContainer = css({
   width: '100%',
-  margin: '60px',
+  paddingBottom: '60px',
+  margin: '20px 60px',
+  overflow: 'auto',
 });

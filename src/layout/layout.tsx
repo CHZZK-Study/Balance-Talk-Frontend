@@ -47,7 +47,6 @@ export const LayoutMypage = () => {
           css={css({
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center',
             width: '100%',
           })}
         >

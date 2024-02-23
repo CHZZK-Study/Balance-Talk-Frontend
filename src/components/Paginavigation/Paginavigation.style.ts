@@ -3,8 +3,9 @@ import { Theme } from '../../styles/Theme';
 
 export const paginavigationContainer = css({
   display: 'flex',
+  justifyContent: 'center',
   alignItems: 'center',
-  padding: `40px 0px `,
+  padding: `20px 0px `,
 });
 
 export const pageBoxStyling = css({
