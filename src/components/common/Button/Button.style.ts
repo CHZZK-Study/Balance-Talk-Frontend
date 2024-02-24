@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-import { Theme } from '../../styles/Theme';
+import { Theme } from '../../../styles/Theme';
 
 import type { ButtonProps } from './Button';
 
@@ -48,6 +48,11 @@ export const getSizeStyling = (size: Required<ButtonProps>['size']) => {
       padding: '8px 12px',
       fontSize: Theme.text.small.fontSize,
       lineHeight: Theme.text.small.lineHeight,
+    }),
+    xSmall: css({
+      padding: '6px 10px',
+      fontSize: Theme.text.xSmall.fontSize,
+      lineHeight: Theme.text.xSmall.lineHeight,
     }),
   };
 

@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import type { ComponentPropsWithRef, ForwardedRef, ReactElement } from 'react';
-import type { Size } from '../../types/temp';
+import type { Size } from '../../../types/temp';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Label from '../Label/Label';
 import {
@@ -16,6 +16,7 @@ export interface InputProps
   label?: string;
   size?: Extract<Size, 'small' | 'medium' | 'large'>;
   isError?: boolean;
+  isDisabled?: boolean;
   icon?: ReactElement;
   btn?: ReactElement;
   errorMessage?: string;
@@ -26,6 +27,7 @@ const Input = (
     label,
     size = 'medium',
     isError = false,
+    isDisabled = false,
     icon,
     btn,
     errorMessage,
@@ -37,7 +39,7 @@ const Input = (
     {label && <Label id={attributes.id}>{label}</Label>}
     <div>
       <div css={inputBtnContainerStyling}>
-        <div css={[getSizeStyling(size), inputWrapperStyling]}>
+        <div css={[getSizeStyling(size), inputWrapperStyling(isDisabled)]}>
           {icon}
           <input
             ref={ref}
