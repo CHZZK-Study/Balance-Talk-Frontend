@@ -64,3 +64,14 @@ export const Theme = {
   text,
   heading,
 };
+
+const mediaQuery = (maxWidth: number): string =>
+  `@media (max-width: ${maxWidth}px)`;
+
+export const media = {
+  custom: mediaQuery,
+  mobile: mediaQuery(640),
+  tablet: mediaQuery(768),
+  laptop: mediaQuery(1024),
+  desktop: mediaQuery(1280),
+};
