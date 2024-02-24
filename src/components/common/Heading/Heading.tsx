@@ -1,5 +1,5 @@
 import React, { ComponentPropsWithoutRef } from 'react';
-import { Size } from '../../types/temp';
+import { Size } from '../../../types/temp';
 import { getSizeStyling } from './Heading.style';
 
 export interface HeadingProps extends ComponentPropsWithoutRef<'h4'> {

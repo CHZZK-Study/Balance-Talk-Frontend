@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 
 import type { HeadingProps } from './Heading';
 
-import { Theme } from '../../styles/Theme';
+import { Theme } from '../../../styles/Theme';
 
 export const getSizeStyling = (size: Required<HeadingProps>['size']) => {
   const style = {

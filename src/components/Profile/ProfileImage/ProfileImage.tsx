@@ -19,17 +19,17 @@ const ProfileImage = (
       css={[
         profileImageContainer,
         isOutline &&
-          css({
-            border: `5px solid ${Theme.color.red}`,
-            background:
-              'radial-gradiant(circle, #0000ff 0%, #0000ff 20%, #ffffff 100%)',
-          }),
+          css([
+            {
+              border: `5px solid ${Theme.color.white}`,
+            },
+          ]),
       ]}
     >
       <img
         ref={ref}
         alt="프로필 이미지"
-        css={[getSizeStyling(size)]}
+        css={getSizeStyling(size)}
         {...attributes}
       />
     </div>

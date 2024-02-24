@@ -2,17 +2,17 @@ import React from 'react';
 import { css } from '@emotion/react';
 import Email from '../../assets/svg/Email';
 import Key from '../../assets/svg/Key';
-import Button from '../../components/Button/Button';
-import Heading from '../../components/Heading/Heading';
-import Input from '../../components/Input/Input';
+import Button from '../../components/common/Button/Button';
+import Heading from '../../components/common/Heading/Heading';
+import Input from '../../components/common/Input/Input';
 import { PATH } from '../../constants/path';
 import {
   btnLogin,
-  divider,
   inputContainer,
   linkContainer,
   loginContainer,
 } from './LoginPage.style';
+import Divider from '../../components/common/Divider';
 
 const LoginPage = () => {
   const isError: boolean = true;
@@ -45,7 +45,7 @@ const LoginPage = () => {
       </div>
       <div css={linkContainer}>
         <a href={PATH.SIGN_UP}>회원가입</a>
-        <div css={divider}>{}</div>
+        <Divider />
         <a href={PATH.PW}>비밀번호 찾기</a>
       </div>
     </div>
