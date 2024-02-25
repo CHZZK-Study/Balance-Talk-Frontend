@@ -199,6 +199,7 @@ const CreatePostPage = () => {
               </div>
               <div>
                 <DatePicker
+                  disablePast
                   value={deadline}
                   onChange={(newDate) => {
                     setEach('deadline', dayjs(newDate).format('YYYY-MM-DD'));
@@ -306,6 +307,7 @@ const CreatePostPage = () => {
                   '::placeholder': {
                     textAlign: 'center',
                     paddingRight: '15px',
+                    color: 'black',
                   },
                   ':focus': {
                     backgroundColor: 'white',

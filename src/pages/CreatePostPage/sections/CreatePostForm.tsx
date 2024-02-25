@@ -43,7 +43,7 @@ const CreatePostForm = ({ setBalanceOptions, index }: CreatePostFormProps) => {
   }, [title, description, file, index, setBalanceOptions]);
 
   return (
-    <div css={css({ margin: '80px' })}>
+    <div css={css({ margin: '80px', marginTop: '40px' })}>
       <ImageDropZone setFile={setEach} />
       <input
         name="title"
