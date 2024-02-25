@@ -1,7 +1,16 @@
 import React from 'react';
 import { css } from '@emotion/react';
+import { ImageInfo } from '../types/post';
+import coffee from '../../public/coffee.jpg';
+import juice from '../../public/juice.jpg';
 
-const PostOptionCard = () => {
+export type BalanceOptionCardProps = ImageInfo;
+
+const BalanceOptionCard = ({
+  optionImg,
+  optionTitle,
+  optionDescription,
+}: BalanceOptionCardProps) => {
   return (
     <div
       css={css({
@@ -18,7 +27,7 @@ const PostOptionCard = () => {
           fontSize: '2rem',
         })}
       >
-        커피
+        {optionTitle}
       </div>
       <div>
         <img
@@ -28,7 +37,7 @@ const PostOptionCard = () => {
             textAlign: 'center',
             fontSize: '2rem',
           })}
-          src="coffee.jpg"
+          src={optionImg === 'coffee.jpg' ? coffee : juice}
           width="400px"
           height="350px"
           alt=""
@@ -45,10 +54,10 @@ const PostOptionCard = () => {
           textAlign: 'center',
         })}
       >
-        남녀노소 누구나 좋아하는 커피
+        {optionDescription}
       </div>
     </div>
   );
 };
 
-export default PostOptionCard;
+export default BalanceOptionCard;

@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { rest } from 'msw';
-import { postList, voteInfo, createdPost } from '../data/posts';
+import { postList, voteInfo, createdPost, postById } from '../data/posts';
 import { CreatePost } from '../../types/post';
 
 const URL = process.env.API_URL;
@@ -14,10 +14,19 @@ const postHandlers = [
     return res(ctx.status(200), ctx.json(voteInfo));
   }),
 
+  rest.get(`${URL}/post/:postId`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(voteInfo));
+  }),
+
   rest.post(`${URL}/posts`, async (req, res, ctx) => {
     const request: CreatePost = await req.json();
     createdPost.push(request);
     return res(ctx.status(201));
+  }),
+
+  rest.get(`${URL}/posts/:postId`, (req, res, ctx) => {
+    const postId = Number(req.params.postId);
+    return res(ctx.status(200), ctx.json(postById(postId)));
   }),
 
   rest.post(`${URL}/posts/:postId/likes`, (req, res, ctx) => {

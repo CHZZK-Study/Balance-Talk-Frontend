@@ -24,6 +24,12 @@ export const fetchPost = async (postForm: CreatePost) => {
   return response.status;
 };
 
+export const fetchPostById = async (postId: number): Promise<Post> => {
+  const response = await fetch(`${URL}/posts/${postId}`);
+  const result = (await response.json()) as Post;
+  return result;
+};
+
 export const fetchAddLike = async (postId: number) => {
   const response = await fetch(`${URL}/posts/${postId}/likes`, {
     method: 'POST',

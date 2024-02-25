@@ -1,4 +1,6 @@
-export const postList = [
+import { Post } from '../../types/post';
+
+export const postList: Post[] = [
   {
     id: 1,
     title: '카페',
@@ -212,3 +214,16 @@ export const createdPost = [
     ],
   },
 ];
+
+export const postById = (postId: number) => {
+  const filteredPost = postList.filter((_post) => _post.id === postId)[0];
+  filteredPost.balanceOptions[0] = {
+    ...filteredPost.balanceOptions[0],
+    optionDescription: '남녀노소 누구나 좋아하는 커피',
+  };
+  filteredPost.balanceOptions[1] = {
+    ...filteredPost.balanceOptions[1],
+    optionDescription: '건강에 좋고 맛도 좋은 쥬스',
+  };
+  return filteredPost;
+};
