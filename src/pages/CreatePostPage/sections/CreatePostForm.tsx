@@ -15,7 +15,7 @@ type CreatePostFormProps = {
 
 const inputStyles = {
   borderRadius: '5px',
-  fontSize: '20px',
+  fontSize: '16px',
   fontFamily: 'SpoqaHanSansNeo-Regular',
   border: 0,
   backgroundColor: '#EEEEEE',

@@ -1,9 +1,10 @@
-import React, { FormEvent } from 'react';
+import React, { FormEvent, useEffect } from 'react';
 import { css } from '@emotion/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
+import { DatePicker } from '@mui/x-date-pickers';
+import dayjs from 'dayjs';
 import CreatePostForm from './sections/CreatePostForm';
-import Calendar from '../../assets/images/calendar.png';
 import Add from '../../assets/images/add.png';
 import useInputs from '../../hooks/useInputs';
 import { CreatePost } from '../../types/post';
@@ -11,7 +12,7 @@ import { fetchPost } from '../../api/posts/posts';
 
 const inputStyles = {
   borderRadius: '5px',
-  fontSize: '20px',
+  fontSize: '16px',
   fontFamily: 'SpoqaHanSansNeo-Regular',
   border: 0,
   backgroundColor: '#EEEEEE',
@@ -52,7 +53,8 @@ const CreatePostPage = () => {
 
   const queryClient = useQueryClient();
 
-  const { form, onChange, setArray } = useInputs<CreatePost>(initialState);
+  const { form, onChange, setArray, setEach } =
+    useInputs<CreatePost>(initialState);
 
   const { title, postCategory } = form;
 
@@ -67,6 +69,9 @@ const CreatePostPage = () => {
     navigate('/');
   };
 
+  useEffect(() => {
+    console.log(form);
+  }, [form]);
   return (
     <div
       css={css({
@@ -159,39 +164,42 @@ const CreatePostPage = () => {
                 </select>
               </div>
               <div>
-                <label
-                  htmlFor="casual"
+                <DatePicker
+                  value={form.deadline}
+                  onChange={(newDate) => {
+                    setEach('deadline', dayjs(newDate).format('YYYY-MM-DD'));
+                  }}
                   css={css({
-                    position: 'relative',
-                    ':before': {
-                      content: "''",
-                      position: 'absolute',
-                      right: '10px',
-                      top: '0',
-                      bottom: '0',
-                      width: '24px',
-                      height: '24px',
-                      backgroundImage: `url(${Calendar})`,
+                    ...inputStyles,
+                    ':hover': {
+                      backgroundColor: '#BEBEBE',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      '&:hover fieldset': {
+                        border: 'none',
+                      },
+                      '& fieldset': {
+                        border: 'none',
+                      },
                     },
                   })}
-                >
-                  <input
-                    id="casual"
-                    css={css({
-                      width: '250px',
-                      height: '40px',
-                      ...inputStyles,
-                      ':hover': {
-                        backgroundColor: '#BEBEBE',
+                  label="마감 기한"
+                  slotProps={{
+                    textField: {
+                      size: 'small',
+                      InputProps: {
+                        style: {
+                          fontFamily: 'SpoqaHanSansNeo-Regular',
+                        },
                       },
-                      '::placeholder': {
-                        textAlign: 'center',
-                        paddingRight: '15px',
+                      InputLabelProps: {
+                        style: {
+                          fontFamily: 'SpoqaHanSansNeo-Regular',
+                        },
                       },
-                    })}
-                    placeholder="마감 기한"
-                  />
-                </label>
+                    },
+                  }}
+                />
               </div>
             </div>
             <button
