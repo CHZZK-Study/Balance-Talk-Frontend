@@ -1,11 +1,19 @@
 import { css } from '@emotion/react';
 import React from 'react';
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import UserProfile from '../../components/UserProfile';
 import IconList from '../../components/IconList';
 import UserComment from '../../components/UserComment';
 import CommentSection from '../../components/CommentSection';
 
 const PostPage = () => {
+  const postId = Number(useParams().id);
+  const { data: post } = useQuery({
+    queryKey: ['posts', postId],
+    queryFn: () => fetchPostById(postId),
+  });
+
   return (
     <div className={css({ margin: '0.5rem 15%' })}>
       <div

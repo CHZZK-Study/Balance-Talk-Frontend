@@ -1,6 +1,8 @@
 export type ImageInfo = {
   optionImg: string;
   optionTitle: string;
+  // 게시물 Description 필요
+  optionDescription?: string;
 };
 
 export type Post = {
@@ -14,6 +16,8 @@ export type Post = {
   deadline: string;
   tags: string[];
   balanceOptions: ImageInfo[];
+  // 게시물을 생성한 사람의 id도 필요
+  creator?: number;
 };
 
 export type VoteInfo = {
