@@ -13,3 +13,12 @@ export interface ItemVotedPostsType extends ItemPostsType {
 }
 
 export interface ItemBookmarksType extends ItemPostsType {}
+
+export type Member = {
+  nickname: string;
+  profilePhoto: string;
+  createdAt: string;
+  postsCount: number;
+  totalPostLike: number;
+  level: number;
+};
