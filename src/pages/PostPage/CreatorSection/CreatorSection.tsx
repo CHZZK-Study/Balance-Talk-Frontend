@@ -1,16 +1,19 @@
 import React from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { css } from '@emotion/react';
-import { Profile } from '../assets';
+import { fetchMember } from '../../../api/member/member';
+import { Profile } from '../../../assets';
 
-export interface UserProfileProps {
-  name: string;
-  img?: string;
-  joinAt?: string;
-  totalLikeCount?: number;
-  level?: string;
+interface CreatorSectionProps {
+  creatorId: number;
 }
 
-const UserProfile = ({ name, joinAt }: UserProfileProps) => {
+const CreatorSection = ({ creatorId }: CreatorSectionProps) => {
+  const { data: member } = useQuery({
+    queryKey: ['member', creatorId],
+    queryFn: () => fetchMember(creatorId),
+  });
+
   return (
     <div
       css={css({
@@ -21,7 +24,11 @@ const UserProfile = ({ name, joinAt }: UserProfileProps) => {
       })}
     >
       <div>
-        <Profile />
+        {member?.profilePhoto === '../' ? (
+          <Profile />
+        ) : (
+          <img src={member?.profilePhoto} alt="Profile" />
+        )}
       </div>
       <div
         css={css({
@@ -37,20 +44,19 @@ const UserProfile = ({ name, joinAt }: UserProfileProps) => {
             fontWeight: '500',
             fontSize: '1rem',
           })}
-        >
-          {name}
-        </div>
+        />
+        {member?.nickname || 'nickname'}
         <div
           css={css({
             fontFamily: 'SpoqaHanSansNeo-thin',
             fontSize: '1rem',
           })}
         >
-          {joinAt}
+          {member?.createdAt}
         </div>
       </div>
     </div>
   );
 };
 
-export default UserProfile;
+export default CreatorSection;
