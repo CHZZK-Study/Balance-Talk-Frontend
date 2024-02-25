@@ -1,4 +1,10 @@
-import React, { FormEvent, useEffect } from 'react';
+import React, {
+  ChangeEvent,
+  FormEvent,
+  useEffect,
+  useState,
+  KeyboardEvent,
+} from 'react';
 import { css } from '@emotion/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +15,7 @@ import Add from '../../assets/images/add.png';
 import useInputs from '../../hooks/useInputs';
 import { CreatePost } from '../../types/post';
 import { fetchPost } from '../../api/posts/posts';
+import TagButton from '../../components/TagButton';
 
 const inputStyles = {
   borderRadius: '5px',
@@ -56,7 +63,24 @@ const CreatePostPage = () => {
   const { form, onChange, setArray, setEach } =
     useInputs<CreatePost>(initialState);
 
-  const { title, postCategory } = form;
+  const { title, postCategory, deadline, tags } = form;
+
+  const [tag, setTag] = useState('');
+
+  const onTagChange = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setTag(e.target.value);
+  };
+
+  const onTagEnter = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+
+      const newTag = [...tags, tag];
+      setEach('tags', newTag);
+      setTag('');
+    }
+  };
 
   const { mutate } = useMutation({
     mutationFn: fetchPost,
@@ -71,7 +95,8 @@ const CreatePostPage = () => {
 
   useEffect(() => {
     console.log(form);
-  }, [form]);
+    console.log(tag);
+  }, [form, tag]);
   return (
     <div
       css={css({
@@ -165,7 +190,7 @@ const CreatePostPage = () => {
               </div>
               <div>
                 <DatePicker
-                  value={form.deadline}
+                  value={deadline}
                   onChange={(newDate) => {
                     setEach('deadline', dayjs(newDate).format('YYYY-MM-DD'));
                   }}
@@ -251,10 +276,17 @@ const CreatePostPage = () => {
                   height: '24px',
                   backgroundImage: `url(${Add})`,
                 },
+                ':focus-within:before': {
+                  display: 'none',
+                },
               })}
             >
               <input
                 id="casual"
+                name="tag"
+                value={tag}
+                onChange={onTagChange}
+                onKeyDown={onTagEnter}
                 css={css({
                   width: '170px',
                   height: '40px',
@@ -266,10 +298,19 @@ const CreatePostPage = () => {
                     textAlign: 'center',
                     paddingRight: '15px',
                   },
+                  ':focus': {
+                    backgroundColor: 'white',
+                    '::placeholder': {
+                      color: 'transparent',
+                    },
+                  },
                 })}
                 placeholder="태그 추가"
               />
             </label>
+            <div css={css({ marginLeft: '10px', marginTop: '5px' })}>
+              {tags && tags.map((tag) => <TagButton key={tag} tag={tag} />)}
+            </div>
           </div>
         </div>
         <div

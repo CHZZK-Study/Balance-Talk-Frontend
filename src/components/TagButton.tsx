@@ -13,7 +13,7 @@ const TagButton = ({ tag }: TagButtonProps) => {
         borderRadius: '15px',
         fontFamily: 'SpoqaHanSansNeo-Bold',
         fontSize: '14px',
-        width: '72px',
+        minWidth: '72px',
         height: '35px',
         boxShadow: '0px 4px 4px gray',
         marginRight: '10px',
