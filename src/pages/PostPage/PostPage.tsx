@@ -2,7 +2,6 @@ import { css } from '@emotion/react';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { Like, Report, Share, Star } from '../../assets';
 import BalanceOptionCardsSection from './BalanceOptionCardsSection/BalanceOptionCardsSection';
 import CommentsSection from './CommentsSection/CommentsSection';
 import { fetchPostById } from '../../api/posts/posts';
