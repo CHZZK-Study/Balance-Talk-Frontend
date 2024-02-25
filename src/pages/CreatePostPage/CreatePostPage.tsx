@@ -4,6 +4,7 @@ import React, {
   useEffect,
   useState,
   KeyboardEvent,
+  MouseEvent,
 } from 'react';
 import { css } from '@emotion/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -80,6 +81,14 @@ const CreatePostPage = () => {
       setEach('tags', newTag);
       setTag('');
     }
+  };
+
+  const onTagClick = (e: MouseEvent<HTMLButtonElement>) => {
+    const tagValue = e.currentTarget.dataset.tag;
+
+    const newTags = tags.filter((_tag) => _tag !== tagValue);
+
+    setEach('tags', newTags);
   };
 
   const { mutate } = useMutation({
@@ -309,7 +318,14 @@ const CreatePostPage = () => {
               />
             </label>
             <div css={css({ marginLeft: '10px', marginTop: '5px' })}>
-              {tags && tags.map((tag) => <TagButton key={tag} tag={tag} />)}
+              {tags &&
+                tags.map((_tag) => (
+                  <TagButton
+                    key={_tag}
+                    tag={_tag}
+                    onClickHandler={onTagClick}
+                  />
+                ))}
             </div>
           </div>
         </div>

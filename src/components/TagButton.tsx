@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import { css } from '@emotion/react';
 
 type TagButtonProps = {
   tag: string;
+  onClickHandler?: (e: MouseEvent<HTMLButtonElement>) => void;
 };
-const TagButton = ({ tag }: TagButtonProps) => {
+const TagButton = ({ tag, onClickHandler }: TagButtonProps) => {
   return (
     <button
+      onClick={onClickHandler}
+      data-tag={tag}
       css={css({
         backgroundColor: '#EEEEEE',
         border: 0,
