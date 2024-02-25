@@ -1,19 +1,19 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
-import { AXIOS, HTTP_STATUS_CODE } from '../../constants/api';
+import { AXIOS, HTTP_STATUS_CODE } from '../constants/api';
 
 export interface AxiosErrorProps {
   status?: number;
   message?: string;
 }
 
-export const instance = axios.create({
+export const axiosInstance = axios.create({
   baseURL: process.env.API_URL,
   withCredentials: true,
   timeout: AXIOS.TIMEOUT,
 });
 
 // request interceptor (before request)
-instance.interceptors.request.use(
+axiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     console.log('요청 전 config');
     // TODO: access, refresh token handling (REST api header setting)
@@ -28,7 +28,7 @@ instance.interceptors.request.use(
 );
 
 // response interceptor (after request)
-instance.interceptors.response.use(
+axiosInstance.interceptors.response.use(
   (response) => {
     console.log('요청 후 response');
     return response;

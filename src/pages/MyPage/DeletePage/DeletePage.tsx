@@ -11,13 +11,13 @@ import { Theme } from '../../../styles/Theme';
 import { loginContainer } from '../../LoginPage/LoginPage.style';
 import { btnSignup, inputContainer } from '../../SignUpPage/SignUpPage.style';
 import { Member } from '../../../types/mypage';
-import { instance } from '../../../api/posts/interceptor';
+import { axiosInstance } from '../../../api/interceptor';
 
 const DeletePage = () => {
   const { data: member }: UseQueryResult<Member, Error> = useQuery({
     queryKey: ['member'],
     queryFn: async () => {
-      const res = await instance.get<Member>(END_POINT.GET_MEMBER(1), {
+      const res = await axiosInstance.get<Member>(END_POINT.GET_MEMBER(1), {
         headers: {
           'Content-Type': 'application/json',
         },
