@@ -17,7 +17,7 @@ export type Post = {
   tags: string[];
   balanceOptions: ImageInfo[];
   // 게시물을 생성한 사람의 id도 필요
-  creator?: number;
+  creatorId?: number;
 };
 
 export type VoteInfo = {

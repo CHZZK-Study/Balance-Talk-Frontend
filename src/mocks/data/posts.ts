@@ -225,5 +225,6 @@ export const postById = (postId: number) => {
     ...filteredPost.balanceOptions[1],
     optionDescription: '건강에 좋고 맛도 좋은 쥬스',
   };
+  filteredPost.creatorId = 1;
   return filteredPost;
 };
