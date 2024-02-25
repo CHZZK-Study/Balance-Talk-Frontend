@@ -1,17 +1,34 @@
 import React from 'react';
 import { css } from '@emotion/react';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
+import Caution from '../../../assets/svg/Caution';
 import InputPw from '../../../components/InputsUserInfo/InputPw';
 import Button from '../../../components/common/Button/Button';
 import Heading from '../../../components/common/Heading/Heading';
 import Input from '../../../components/common/Input/Input';
+import { END_POINT } from '../../../constants/api';
 import { Theme } from '../../../styles/Theme';
-import Caution from '../../../assets/svg/Caution';
 import { loginContainer } from '../../LoginPage/LoginPage.style';
 import { btnSignup, inputContainer } from '../../SignUpPage/SignUpPage.style';
+import { Member } from '../../../types/mypage';
+import { axiosInstance } from '../../../api/interceptor';
 
 const DeletePage = () => {
+  const { data: member }: UseQueryResult<Member, Error> = useQuery({
+    queryKey: ['member'],
+    queryFn: async () => {
+      const res = await axiosInstance.get<Member>(END_POINT.GET_MEMBER(1), {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      console.log(res.data);
+      return res.data;
+    },
+  });
   return (
     <div css={loginContainer}>
+      {member && <span>{member.nickname}</span>}
       <Heading size="medium">회원 탈퇴</Heading>
       <div css={css({ display: 'flex', alignItems: 'center', gap: '10px' })}>
         <Caution />
