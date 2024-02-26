@@ -9,6 +9,7 @@ const mockUserCommentsByOptions: CommentsByOptionProps[] = [
     optionTitle: '커피',
     userComments: [
       {
+        id: 1,
         isMyComment: true,
         name: 'haha',
         content: '밸런스톡',
@@ -16,6 +17,7 @@ const mockUserCommentsByOptions: CommentsByOptionProps[] = [
         likeCount: 100,
         replyList: [
           {
+            id: 2,
             isMyComment: true,
             name: 'haha',
             content: '밸런스톡',
@@ -23,6 +25,7 @@ const mockUserCommentsByOptions: CommentsByOptionProps[] = [
             likeCount: 100,
           },
           {
+            id: 3,
             isMyComment: true,
             name: 'haha',
             content: '밸런스톡',
@@ -32,6 +35,7 @@ const mockUserCommentsByOptions: CommentsByOptionProps[] = [
         ],
       },
       {
+        id: 4,
         isMyComment: false,
         name: 'haha',
         content: '밸런스톡',
@@ -40,6 +44,7 @@ const mockUserCommentsByOptions: CommentsByOptionProps[] = [
         replyList: [],
       },
       {
+        id: 5,
         isMyComment: true,
         name: 'haha',
         content: '밸런스톡',
@@ -47,6 +52,7 @@ const mockUserCommentsByOptions: CommentsByOptionProps[] = [
         likeCount: 100,
         replyList: [
           {
+            id: 6,
             isMyComment: true,
             name: 'haha',
             content: '밸런스톡',
@@ -54,6 +60,7 @@ const mockUserCommentsByOptions: CommentsByOptionProps[] = [
             likeCount: 100,
           },
           {
+            id: 7,
             isMyComment: true,
             name: 'haha',
             content: '밸런스톡',
@@ -63,6 +70,7 @@ const mockUserCommentsByOptions: CommentsByOptionProps[] = [
         ],
       },
       {
+        id: 8,
         isMyComment: true,
         name: 'haha',
         content: '밸런스톡',
@@ -71,6 +79,7 @@ const mockUserCommentsByOptions: CommentsByOptionProps[] = [
         replyList: [],
       },
       {
+        id: 9,
         isMyComment: false,
         name: 'haha',
         content: '밸런스톡',
@@ -78,6 +87,7 @@ const mockUserCommentsByOptions: CommentsByOptionProps[] = [
         likeCount: 100,
         replyList: [
           {
+            id: 10,
             isMyComment: true,
             name: 'haha',
             content: '밸런스톡',
@@ -85,6 +95,7 @@ const mockUserCommentsByOptions: CommentsByOptionProps[] = [
             likeCount: 100,
           },
           {
+            id: 11,
             isMyComment: true,
             name: 'haha',
             content: '밸런스톡',
@@ -100,6 +111,7 @@ const mockUserCommentsByOptions: CommentsByOptionProps[] = [
     optionTitle: '쥬스',
     userComments: [
       {
+        id: 12,
         isMyComment: false,
         name: 'haha',
         content: '밸런스톡',
@@ -108,6 +120,7 @@ const mockUserCommentsByOptions: CommentsByOptionProps[] = [
         replyList: [],
       },
       {
+        id: 13,
         isMyComment: true,
         name: 'haha',
         content: '밸런스톡',
@@ -115,6 +128,7 @@ const mockUserCommentsByOptions: CommentsByOptionProps[] = [
         likeCount: 100,
         replyList: [
           {
+            id: 14,
             isMyComment: true,
             name: 'haha',
             content: '밸런스톡',
@@ -122,6 +136,7 @@ const mockUserCommentsByOptions: CommentsByOptionProps[] = [
             likeCount: 100,
           },
           {
+            id: 15,
             isMyComment: true,
             name: 'haha',
             content: '밸런스톡',
@@ -131,6 +146,7 @@ const mockUserCommentsByOptions: CommentsByOptionProps[] = [
         ],
       },
       {
+        id: 16,
         isMyComment: true,
         name: 'haha',
         content: '밸런스톡',
@@ -139,6 +155,7 @@ const mockUserCommentsByOptions: CommentsByOptionProps[] = [
         replyList: [],
       },
       {
+        id: 17,
         isMyComment: false,
         name: 'haha',
         content: '밸런스톡',
@@ -146,6 +163,7 @@ const mockUserCommentsByOptions: CommentsByOptionProps[] = [
         likeCount: 100,
         replyList: [
           {
+            id: 18,
             isMyComment: true,
             name: 'haha',
             content: '밸런스톡',
@@ -153,6 +171,7 @@ const mockUserCommentsByOptions: CommentsByOptionProps[] = [
             likeCount: 100,
           },
           {
+            id: 19,
             isMyComment: true,
             name: 'haha',
             content: '밸런스톡',
@@ -162,6 +181,7 @@ const mockUserCommentsByOptions: CommentsByOptionProps[] = [
         ],
       },
       {
+        id: 20,
         isMyComment: true,
         name: 'haha',
         content: '밸런스톡',
