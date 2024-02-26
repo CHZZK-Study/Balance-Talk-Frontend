@@ -5,6 +5,7 @@ import React, {
   useState,
   KeyboardEvent,
   MouseEvent,
+  FocusEvent,
 } from 'react';
 import { css } from '@emotion/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -77,6 +78,14 @@ const CreatePostPage = () => {
     if (e.key === 'Enter') {
       e.preventDefault();
 
+      const newTag = [...tags, tag];
+      setEach('tags', newTag);
+      setTag('');
+    }
+  };
+
+  const onTagBlur = () => {
+    if (tag) {
       const newTag = [...tags, tag];
       setEach('tags', newTag);
       setTag('');
@@ -297,6 +306,7 @@ const CreatePostPage = () => {
                 value={tag}
                 onChange={onTagChange}
                 onKeyDown={onTagEnter}
+                onBlur={onTagBlur}
                 css={css({
                   width: '170px',
                   height: '40px',
