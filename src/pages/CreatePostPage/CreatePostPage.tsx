@@ -5,7 +5,6 @@ import React, {
   useState,
   KeyboardEvent,
   MouseEvent,
-  FocusEvent,
 } from 'react';
 import { css } from '@emotion/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';

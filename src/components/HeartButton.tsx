@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { css } from '@emotion/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { fetchAddLike, fetchDeleteLike } from '../api/posts/posts';
 import { Post } from '../types/post';
 import { Hearts } from '../assets';
+import { pulsate } from '../styles/keyframes';
 
 type HeartButtonProps = {
   isLiked?: boolean;
@@ -12,6 +13,13 @@ type HeartButtonProps = {
 
 const HeartButton = ({ isLiked, postId }: HeartButtonProps) => {
   const queryClient = useQueryClient();
+
+  const [isAnimation, setIsAnimation] = useState(false);
+
+  const animationTrigger = () => {
+    setIsAnimation(true);
+    setTimeout(() => setIsAnimation(false), 500);
+  };
 
   const addLike = useMutation({
     mutationFn: fetchAddLike,
@@ -58,6 +66,7 @@ const HeartButton = ({ isLiked, postId }: HeartButtonProps) => {
   });
 
   const onHeartClickHandler = () => {
+    animationTrigger();
     if (postId !== undefined) {
       if (isLiked) {
         deleteLike.mutate(postId);
@@ -83,7 +92,12 @@ const HeartButton = ({ isLiked, postId }: HeartButtonProps) => {
       onClick={onHeartClickHandler}
       role="presentation"
     >
-      <Hearts css={css({ fill: `${isLiked ? 'red' : 'none'}` })} />
+      <Hearts
+        css={css({
+          fill: `${isLiked ? 'red' : 'none'}`,
+          animation: `${isAnimation ? `${pulsate} .5s ease-in-out` : 'none'}`,
+        })}
+      />
     </div>
   );
 };
