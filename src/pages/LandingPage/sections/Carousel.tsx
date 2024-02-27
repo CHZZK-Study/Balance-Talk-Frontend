@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { css } from '@emotion/react';
 import LeftArrowButton from '../../../assets/svg/LeftArrowButton';
 import RightArrowButton from '../../../assets/svg/RightArrowButton';
-import Pagination from '../../../components/common/Pagination';
+import Pagination from './Pagination';
 
 type CarouselProps = {
   items: JSX.Element[];

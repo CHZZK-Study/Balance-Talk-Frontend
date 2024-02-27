@@ -2,7 +2,7 @@
 import React, { useCallback } from 'react';
 import { css } from '@emotion/react';
 import { useDropzone } from 'react-dropzone';
-import { CreatePostImageFile } from '../../types/post';
+import { CreatePostImageFile } from '../../../types/post';
 
 type ImageDropZoneProps = {
   setFile: <U>(name: string, value: U) => void;
