@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import { Profile } from '../assets';
+import { Profile } from '../../assets';
 
 export interface UserProfileProps {
   name: string;

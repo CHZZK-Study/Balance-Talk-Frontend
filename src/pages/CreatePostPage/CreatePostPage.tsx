@@ -16,7 +16,7 @@ import Add from '../../assets/images/add.png';
 import useInputs from '../../hooks/useInputs';
 import { CreatePost } from '../../types/post';
 import { fetchPost } from '../../api/posts/posts';
-import TagButton from '../../components/TagButton';
+import TagButton from '../../components/Buttons/TagButton';
 
 const inputStyles = {
   borderRadius: '5px',

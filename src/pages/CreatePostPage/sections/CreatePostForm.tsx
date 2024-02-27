@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { css } from '@emotion/react';
-import ImageDropZone from '../../../components/ImageDropZone';
+import ImageDropZone from '../../../components/common/ImageDropZone';
 import useInputs from '../../../hooks/useInputs';
 import { CreatePost, CreatePostImage } from '../../../types/post';
 

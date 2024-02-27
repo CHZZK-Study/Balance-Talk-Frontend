@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { fetchAddLike, fetchDeleteLike } from '../api/posts/posts';
-import { Post } from '../types/post';
-import { Hearts } from '../assets';
-import { pulsate } from '../styles/keyframes';
+import { fetchAddLike, fetchDeleteLike } from '../../api/posts/posts';
+import { Post } from '../../types/post';
+import { Hearts } from '../../assets';
+import { pulsate } from '../../styles/keyframes';
 
 type HeartButtonProps = {
   isLiked?: boolean;

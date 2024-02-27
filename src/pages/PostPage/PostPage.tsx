@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import React from 'react';
-import UserProfile from '../../components/UserProfile';
+import UserProfile from '../../components/common/UserProfile';
 import { Profile, Like, Report, Share, Star } from '../../assets';
 import PostCardsSection from './PostCardsSection/PostCardsSection';
 import CommentsSection from './CommentsSection/CommentsSection';

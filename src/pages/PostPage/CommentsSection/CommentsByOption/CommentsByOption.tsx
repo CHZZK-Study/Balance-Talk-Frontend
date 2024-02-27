@@ -2,7 +2,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import UserComment, {
   UserCommentProps,
-} from '../../../../components/UserComment';
+} from '../../../../components/common/UserComment';
 
 export type CommentsByOptionProps = {
   optionTitle: string;

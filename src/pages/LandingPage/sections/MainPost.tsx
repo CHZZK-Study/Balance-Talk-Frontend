@@ -1,13 +1,13 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { useQuery } from '@tanstack/react-query';
-import PostImage from './PostImage';
-import TagButton from './TagButton';
-import Eye from '../assets/svg/Eye';
-import Comment from '../assets/svg/Comment';
-import { Post, VoteInfo } from '../types/post';
-import { fetchVoteCount } from '../api/posts/posts';
-import HeartButton from './HeartButton';
+import PostImage from '../../../components/common/PostImage';
+import TagButton from '../../../components/Buttons/TagButton';
+import Eye from '../../../assets/svg/Eye';
+import Comment from '../../../assets/svg/Comment';
+import { Post, VoteInfo } from '../../../types/post';
+import { fetchVoteCount } from '../../../api/posts/posts';
+import HeartButton from '../../../components/Buttons/HeartButton';
 
 type MainPostProps = {
   post?: Post;

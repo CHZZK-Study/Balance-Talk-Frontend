@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PageNavigation from '../../../../components/Paginavigation/Paginavigation';
-import List from '../../../../components/Mypage/List/List';
-import ItemPosts from '../../../../components/Mypage/ListItem/ItemPosts';
+import List from '../../MypageSections/List/List';
+import ItemPosts from '../../MypageSections/ListItem/ItemPosts';
 
 const PostsPage = () => {
   const items = [

@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
 import React from 'react';
-import TagButton from '../../../components/TagButton';
+import TagButton from '../../../components/Buttons/TagButton';
 import Eye from '../../../assets/svg/Eye';
 import { Hearts } from '../../../assets';
-import PostOptionCard from '../../../components/PostOptionCard';
+import PostOptionCard from '../../../components/common/PostOptionCard';
 
 const PostCardsSection = () => {
   return (

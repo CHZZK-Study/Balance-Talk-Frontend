@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import { Profile, More, Report, Like, Plus } from '../assets';
+import { Profile, More, Report, Like, Plus } from '../../assets';
 
 export interface UserCommentProps {
   isMyComment: boolean;
