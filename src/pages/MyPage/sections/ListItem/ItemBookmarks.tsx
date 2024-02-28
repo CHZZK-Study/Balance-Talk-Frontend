@@ -7,7 +7,7 @@ import {
   noContainer,
   withoutNoContainer,
 } from './ListItem.style';
-import CheckBox from '../../../../components/common/CheckBox/CheckBox';
+import CheckBox from '../../../../components/design/CheckBox/CheckBox';
 
 export interface ItemBookmarksProps extends ComponentPropsWithRef<'li'> {
   item: ItemBookmarksType;

@@ -4,9 +4,9 @@ import InputNickname from '../../../components/InputsUserInfo/InputNickname';
 import InputProfileImage from '../../../components/InputsUserInfo/InputProfileImage/InputProfileImage';
 import InputPw from '../../../components/InputsUserInfo/InputPw';
 import InputPwCheck from '../../../components/InputsUserInfo/InputPwCheck';
-import Button from '../../../components/common/Button/Button';
-import Heading from '../../../components/common/Heading/Heading';
-import Input from '../../../components/common/Input/Input';
+import Button from '../../../components/design/Button/Button';
+import Heading from '../../../components/design/Heading/Heading';
+import Input from '../../../components/design/Input/Input';
 import {
   btnContainer,
   btnSignup,

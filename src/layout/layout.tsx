@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import SearchBar from './SearchBar';
-import Sidebar from '../pages/MyPage/MypageSections/Sidebar/Sidebar';
+import Sidebar from '../pages/MyPage/sections/Sidebar/Sidebar';
 
 export const Layout = () => {
   return (

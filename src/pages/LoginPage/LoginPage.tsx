@@ -2,9 +2,9 @@ import React from 'react';
 import { css } from '@emotion/react';
 import Email from '../../assets/svg/Email';
 import Key from '../../assets/svg/Key';
-import Button from '../../components/common/Button/Button';
-import Heading from '../../components/common/Heading/Heading';
-import Input from '../../components/common/Input/Input';
+import Button from '../../components/design/Button/Button';
+import Heading from '../../components/design/Heading/Heading';
+import Input from '../../components/design/Input/Input';
 import { PATH } from '../../constants/path';
 import {
   btnLogin,

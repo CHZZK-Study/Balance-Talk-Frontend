@@ -1,9 +1,9 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import InputPw from '../../../components/InputsUserInfo/InputPw';
-import Button from '../../../components/common/Button/Button';
-import Heading from '../../../components/common/Heading/Heading';
-import Input from '../../../components/common/Input/Input';
+import Button from '../../../components/design/Button/Button';
+import Heading from '../../../components/design/Heading/Heading';
+import Input from '../../../components/design/Input/Input';
 import { Theme } from '../../../styles/Theme';
 import Caution from '../../../assets/svg/Caution';
 import { loginContainer } from '../../LoginPage/LoginPage.style';
