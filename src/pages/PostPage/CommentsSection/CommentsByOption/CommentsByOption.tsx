@@ -62,7 +62,7 @@ const CommentsByOption = ({
         })}
       >
         {userComments.map((userComment: UserCommentProps) => (
-          <UserComment {...userComment} />
+          <UserComment {...userComment} key={userComment.id} />
         ))}
       </div>
     </div>

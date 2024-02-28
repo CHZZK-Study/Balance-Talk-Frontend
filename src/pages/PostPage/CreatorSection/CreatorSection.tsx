@@ -1,8 +1,8 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { css } from '@emotion/react';
-import { Profile } from '../../assets';
-import { fetchMember } from '../../api/member/member';
+import { fetchMember } from '../../../api/member/member';
+import { Profile } from '../../../assets';
 
 interface CreatorSectionProps {
   creatorId: number;

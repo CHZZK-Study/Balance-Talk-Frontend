@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 import { Profile, More, Report, Like, Plus } from '../../assets';
 
 export interface UserCommentProps {
+  id: number;
   isMyComment: boolean;
   imgUrl?: string;
   name: string;
@@ -13,6 +14,7 @@ export interface UserCommentProps {
 }
 
 const UserComment = ({
+  id,
   isMyComment,
   name,
   content,

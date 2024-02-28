@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import { ImageInfo } from '../types/post';
+import { ImageInfo } from '../../types/post';
 import coffee from '../../public/coffee.jpg';
 import juice from '../../public/juice.jpg';
 

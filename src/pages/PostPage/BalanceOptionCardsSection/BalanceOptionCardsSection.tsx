@@ -3,9 +3,21 @@ import React from 'react';
 import TagButton from '../../../components/Buttons/TagButton';
 import Eye from '../../../assets/svg/Eye';
 import { Hearts } from '../../../assets';
-import PostOptionCard from '../../../components/common/PostOptionCard';
+import BalanceOptionCard from '../../../components/common/BalacneOptionCard';
+import { Post } from '../../../types/post';
 
-const PostCardsSection = () => {
+export type BalanceOptionCardsSectionProps = Pick<
+  Post,
+  'title' | 'views' | 'likeCount' | 'tags' | 'balanceOptions'
+>;
+
+const BalanceOptionCardsSection = ({
+  title,
+  views,
+  likeCount,
+  tags,
+  balanceOptions,
+}: BalanceOptionCardsSectionProps) => {
   return (
     <>
       <div
@@ -29,18 +41,19 @@ const PostCardsSection = () => {
               fontSize: '3rem',
             })}
           >
-            카페 주문
+            {title}
           </div>
-          <div
+          <ul
             css={css({
               display: 'flex',
               alignItems: 'center',
               gap: '0.5rem',
             })}
           >
-            <TagButton tag="태그" />
-            <TagButton tag="태그" />
-          </div>
+            {tags.map((tag) => (
+              <TagButton tag={tag} key={tag} />
+            ))}
+          </ul>
         </div>
         <div
           css={css({
@@ -59,7 +72,7 @@ const PostCardsSection = () => {
             })}
           >
             <Eye />
-            <span>100</span>
+            <span>{views}</span>
           </div>
           <div
             css={css({
@@ -69,7 +82,7 @@ const PostCardsSection = () => {
             })}
           >
             <Hearts />
-            100
+            {likeCount}
           </div>
         </div>
       </div>
@@ -83,7 +96,7 @@ const PostCardsSection = () => {
           backgroundColor: '#EEEEEE',
         })}
       >
-        <PostOptionCard />
+        <BalanceOptionCard {...balanceOptions[0]} />
         <div
           css={css({
             fontFamily: 'SpoqaHanSansNeo-medium',
@@ -92,10 +105,10 @@ const PostCardsSection = () => {
         >
           VS
         </div>
-        <PostOptionCard />
+        <BalanceOptionCard {...balanceOptions[1]} />
       </div>
     </>
   );
 };
 
-export default PostCardsSection;
+export default BalanceOptionCardsSection;
