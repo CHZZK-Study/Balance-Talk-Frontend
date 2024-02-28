@@ -7,7 +7,7 @@ import {
   profileInfoContainer,
   profileText,
 } from './Profile.style';
-import defaultProfile from '../../assets/images/defaultProfile.png';
+import defaultProfile from '../../../assets/images/defaultProfile.png';
 import ProfileInfo from './ProfileInfo';
 
 const Profile = () => {
