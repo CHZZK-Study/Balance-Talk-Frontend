@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import Input from '../common/Input/Input';
+import Input from '../design/Input/Input';
 import { ERROR } from '../../constants/message';
 
 const InputPwCheck = () => {

@@ -1,17 +1,26 @@
-import React, { FormEvent } from 'react';
+import React, {
+  ChangeEvent,
+  FormEvent,
+  useEffect,
+  useState,
+  KeyboardEvent,
+  MouseEvent,
+} from 'react';
 import { css } from '@emotion/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
+import { DatePicker } from '@mui/x-date-pickers';
+import dayjs from 'dayjs';
 import CreatePostForm from './sections/CreatePostForm';
-import Calendar from '../../assets/images/calendar.png';
 import Add from '../../assets/images/add.png';
 import useInputs from '../../hooks/useInputs';
 import { CreatePost } from '../../types/post';
 import { fetchPost } from '../../api/posts/posts';
+import TagButton from '../../components/Buttons/TagButton';
 
 const inputStyles = {
   borderRadius: '5px',
-  fontSize: '20px',
+  fontSize: '16px',
   fontFamily: 'SpoqaHanSansNeo-Regular',
   border: 0,
   backgroundColor: '#EEEEEE',
@@ -52,9 +61,43 @@ const CreatePostPage = () => {
 
   const queryClient = useQueryClient();
 
-  const { form, onChange, setArray } = useInputs<CreatePost>(initialState);
+  const { form, onChange, setArray, setEach } =
+    useInputs<CreatePost>(initialState);
 
-  const { title, postCategory } = form;
+  const { title, postCategory, deadline, tags } = form;
+
+  const [tag, setTag] = useState('');
+
+  const onTagChange = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setTag(e.target.value);
+  };
+
+  const onTagEnter = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+
+      const newTag = [...tags, tag];
+      setEach('tags', newTag);
+      setTag('');
+    }
+  };
+
+  const onTagBlur = () => {
+    if (tag) {
+      const newTag = [...tags, tag];
+      setEach('tags', newTag);
+      setTag('');
+    }
+  };
+
+  const onTagClick = (e: MouseEvent<HTMLButtonElement>) => {
+    const tagValue = e.currentTarget.dataset.tag;
+
+    const newTags = tags.filter((_tag) => _tag !== tagValue);
+
+    setEach('tags', newTags);
+  };
 
   const { mutate } = useMutation({
     mutationFn: fetchPost,
@@ -67,6 +110,10 @@ const CreatePostPage = () => {
     navigate('/');
   };
 
+  useEffect(() => {
+    console.log(form);
+    console.log(tag);
+  }, [form, tag]);
   return (
     <div
       css={css({
@@ -159,39 +206,43 @@ const CreatePostPage = () => {
                 </select>
               </div>
               <div>
-                <label
-                  htmlFor="casual"
+                <DatePicker
+                  disablePast
+                  value={deadline}
+                  onChange={(newDate) => {
+                    setEach('deadline', dayjs(newDate).format('YYYY-MM-DD'));
+                  }}
                   css={css({
-                    position: 'relative',
-                    ':before': {
-                      content: "''",
-                      position: 'absolute',
-                      right: '10px',
-                      top: '0',
-                      bottom: '0',
-                      width: '24px',
-                      height: '24px',
-                      backgroundImage: `url(${Calendar})`,
+                    ...inputStyles,
+                    ':hover': {
+                      backgroundColor: '#BEBEBE',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      '&:hover fieldset': {
+                        border: 'none',
+                      },
+                      '& fieldset': {
+                        border: 'none',
+                      },
                     },
                   })}
-                >
-                  <input
-                    id="casual"
-                    css={css({
-                      width: '250px',
-                      height: '40px',
-                      ...inputStyles,
-                      ':hover': {
-                        backgroundColor: '#BEBEBE',
+                  label="마감 기한"
+                  slotProps={{
+                    textField: {
+                      size: 'small',
+                      InputProps: {
+                        style: {
+                          fontFamily: 'SpoqaHanSansNeo-Regular',
+                        },
                       },
-                      '::placeholder': {
-                        textAlign: 'center',
-                        paddingRight: '15px',
+                      InputLabelProps: {
+                        style: {
+                          fontFamily: 'SpoqaHanSansNeo-Regular',
+                        },
                       },
-                    })}
-                    placeholder="마감 기한"
-                  />
-                </label>
+                    },
+                  }}
+                />
               </div>
             </div>
             <button
@@ -243,10 +294,18 @@ const CreatePostPage = () => {
                   height: '24px',
                   backgroundImage: `url(${Add})`,
                 },
+                ':focus-within:before': {
+                  display: 'none',
+                },
               })}
             >
               <input
                 id="casual"
+                name="tag"
+                value={tag}
+                onChange={onTagChange}
+                onKeyDown={onTagEnter}
+                onBlur={onTagBlur}
                 css={css({
                   width: '170px',
                   height: '40px',
@@ -257,11 +316,28 @@ const CreatePostPage = () => {
                   '::placeholder': {
                     textAlign: 'center',
                     paddingRight: '15px',
+                    color: 'black',
+                  },
+                  ':focus': {
+                    backgroundColor: 'white',
+                    '::placeholder': {
+                      color: 'transparent',
+                    },
                   },
                 })}
                 placeholder="태그 추가"
               />
             </label>
+            <div css={css({ marginLeft: '10px', marginTop: '5px' })}>
+              {tags &&
+                tags.map((_tag) => (
+                  <TagButton
+                    key={_tag}
+                    tag={_tag}
+                    onClickHandler={onTagClick}
+                  />
+                ))}
+            </div>
           </div>
         </div>
         <div

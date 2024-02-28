@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import SearchIcon from '../assets/svg/SearchIcon';
-import TagButton from '../components/TagButton';
+import TagButton from '../components/Buttons/TagButton';
 
 const SearchBar = () => {
   return (

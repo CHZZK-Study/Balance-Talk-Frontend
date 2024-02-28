@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import Button from '../common/Button/Button';
-import Input from '../common/Input/Input';
+import Button from '../design/Button/Button';
+import Input from '../design/Input/Input';
 import { ERROR } from '../../constants/message';
 
 const InputEmail = () => {

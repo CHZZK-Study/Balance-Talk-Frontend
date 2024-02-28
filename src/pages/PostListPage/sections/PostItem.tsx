@@ -1,11 +1,11 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import PostItemImage from './PostItemImage';
-import TagButton from '../../../components/TagButton';
+import TagButton from '../../../components/Buttons/TagButton';
 import Eye from '../../../assets/svg/Eye';
 import Comment from '../../../assets/svg/Comment';
 import { ImageInfo, Post } from '../../../types/post';
-import HeartButton from '../../../components/HeartButton';
+import HeartButton from '../../../components/Buttons/HeartButton';
 
 type PostItemProps = {
   post: Post;

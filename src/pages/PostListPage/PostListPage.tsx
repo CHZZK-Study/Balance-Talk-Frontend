@@ -1,12 +1,14 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { useQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 import PostItem from './sections/PostItem';
-import SortButton from '../../components/SortButton';
-import ToggleButton from '../../components/ToggleButton';
+import SortButton from '../../components/Buttons/SortButton';
+import ToggleButton from '../../components/Buttons/ToggleButton';
 import { fetchPostsData } from '../../api/posts/posts';
 
 const PostList = () => {
+  const navigate = useNavigate();
   const { data: posts } = useQuery({
     queryKey: ['posts'],
     queryFn: fetchPostsData,
@@ -20,6 +22,7 @@ const PostList = () => {
     >
       <button
         type="button"
+        onClick={() => navigate('/post/create')}
         css={css({
           position: 'relative',
           marginBottom: '10px',
