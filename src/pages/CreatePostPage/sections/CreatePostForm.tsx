@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { css } from '@emotion/react';
-import ImageDropZone from '../../../components/ImageDropZone';
+import ImageDropZone from './ImageDropZone';
 import useInputs from '../../../hooks/useInputs';
 import { CreatePost, CreatePostImage } from '../../../types/post';
 
@@ -15,7 +15,7 @@ type CreatePostFormProps = {
 
 const inputStyles = {
   borderRadius: '5px',
-  fontSize: '20px',
+  fontSize: '16px',
   fontFamily: 'SpoqaHanSansNeo-Regular',
   border: 0,
   backgroundColor: '#EEEEEE',
@@ -43,7 +43,7 @@ const CreatePostForm = ({ setBalanceOptions, index }: CreatePostFormProps) => {
   }, [title, description, file, index, setBalanceOptions]);
 
   return (
-    <div css={css({ margin: '80px' })}>
+    <div css={css({ margin: '80px', marginTop: '40px' })}>
       <ImageDropZone setFile={setEach} />
       <input
         name="title"

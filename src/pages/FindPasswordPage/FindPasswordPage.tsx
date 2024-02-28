@@ -1,5 +1,5 @@
 import React from 'react';
-import Heading from '../../components/common/Heading/Heading';
+import Heading from '../../components/design/Heading/Heading';
 import InputCode from '../../components/InputsUserInfo/InputCode';
 import InputEmail from '../../components/InputsUserInfo/InputEmail';
 import { inputContainer, pwContainer } from './FindPasswordPage.style';

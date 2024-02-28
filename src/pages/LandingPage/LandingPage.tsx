@@ -2,12 +2,11 @@ import React from 'react';
 import { css } from '@emotion/react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import MainPost from '../../components/MainPost';
-import PostImage from '../../components/PostImage';
-import Carousel from '../../components/Carousel';
+import MainPost from './sections/MainPost';
+import PostImage from '../../components/common/PostImage';
+import Carousel from './sections/Carousel';
 import { Post } from '../../types/post';
 import { fetchPostsData } from '../../api/posts/posts';
-import { Hearts } from '../../assets';
 
 const LandingPage = () => {
   const navigate = useNavigate();

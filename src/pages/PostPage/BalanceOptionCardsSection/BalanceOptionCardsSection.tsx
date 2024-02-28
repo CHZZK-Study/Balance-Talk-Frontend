@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
 import React from 'react';
-import TagButton from '../../../components/TagButton';
+import TagButton from '../../../components/Buttons/TagButton';
 import Eye from '../../../assets/svg/Eye';
 import { Hearts } from '../../../assets';
-import BalanceOptionCard from '../../../components/BalacneOptionCard';
+import BalanceOptionCard from '../../../components/common/BalacneOptionCard';
 import { Post } from '../../../types/post';
 
 export type BalanceOptionCardsSectionProps = Pick<
