@@ -1,5 +1,5 @@
 import React, { ComponentPropsWithRef } from 'react';
-import { ItemBookmarksType } from '../../../../types/mypage';
+import { ItemBookmarksType } from '../../../types/mypage';
 import {
   hoverStyling,
   mypageListItemContainer,
@@ -7,7 +7,7 @@ import {
   noContainer,
   withoutNoContainer,
 } from './ListItem.style';
-import CheckBox from '../../../../components/design/CheckBox/CheckBox';
+import CheckBox from '../../design/CheckBox/CheckBox';
 
 export interface ItemBookmarksProps extends ComponentPropsWithRef<'li'> {
   item: ItemBookmarksType;

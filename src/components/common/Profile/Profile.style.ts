@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { Theme } from '../../styles/Theme';
+import { Theme } from '../../../styles/Theme';
 
 export const profileContainer = css({
   display: 'flex',

@@ -2,7 +2,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import Caution from '../../../assets/svg/Caution';
-import InputPw from '../../../components/InputsUserInfo/InputPw';
+import InputPw from '../../../components/common/InputsUserInfo/InputPw';
 import Button from '../../../components/design/Button/Button';
 import Heading from '../../../components/design/Heading/Heading';
 import Input from '../../../components/design/Input/Input';

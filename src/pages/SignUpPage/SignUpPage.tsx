@@ -1,18 +1,18 @@
 import React from 'react';
 import Button from '../../components/design/Button/Button';
 import Heading from '../../components/design/Heading/Heading';
-import InputCode from '../../components/InputsUserInfo/InputCode';
-import InputEmail from '../../components/InputsUserInfo/InputEmail';
-import InputNickname from '../../components/InputsUserInfo/InputNickname';
-import InputPw from '../../components/InputsUserInfo/InputPw';
-import InputPwCheck from '../../components/InputsUserInfo/InputPwCheck';
+import InputCode from '../../components/common/InputsUserInfo/InputCode';
+import InputEmail from '../../components/common/InputsUserInfo/InputEmail';
+import InputNickname from '../../components/common/InputsUserInfo/InputNickname';
+import InputPw from '../../components/common/InputsUserInfo/InputPw';
+import InputPwCheck from '../../components/common/InputsUserInfo/InputPwCheck';
 import {
   btnContainer,
   btnSignup,
   inputContainer,
   signupContainer,
 } from './SignUpPage.style';
-import InputProfileImage from '../../components/InputsUserInfo/InputProfileImage/InputProfileImage';
+import InputProfileImage from '../../components/common/InputsUserInfo/InputProfileImage/InputProfileImage';
 
 const SignUpPage = () => {
   return (

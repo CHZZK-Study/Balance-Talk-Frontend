@@ -1,5 +1,5 @@
 import React, { ComponentPropsWithRef, forwardRef } from 'react';
-import { ItemPostsType } from '../../../../types/mypage';
+import { ItemPostsType } from '../../../types/mypage';
 import {
   hoverStyling,
   mypageListItemContainer,

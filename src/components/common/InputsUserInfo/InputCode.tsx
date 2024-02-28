@@ -1,8 +1,8 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import Button from '../design/Button/Button';
-import Input from '../design/Input/Input';
-import { ERROR } from '../../constants/message';
+import Button from '../../design/Button/Button';
+import Input from '../../design/Input/Input';
+import { ERROR } from '../../../constants/message';
 
 const InputCode = () => {
   const isError: boolean = true;

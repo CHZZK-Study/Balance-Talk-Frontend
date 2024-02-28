@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import Input from '../design/Input/Input';
-import { ERROR } from '../../constants/message';
+import Input from '../../design/Input/Input';
+import { ERROR } from '../../../constants/message';
 
 const InputPw = () => {
   const isError: boolean = true;

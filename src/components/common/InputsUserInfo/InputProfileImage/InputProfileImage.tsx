@@ -2,9 +2,9 @@ import { css } from '@emotion/react';
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import defaultProfileImage from '../../../assets/images/defaultProfile.png';
-import { Theme } from '../../../styles/Theme';
-import Button from '../../design/Button/Button';
-import Label from '../../design/Label/Label';
+import { Theme } from '../../../../styles/Theme';
+import Button from '../../../design/Button/Button';
+import Label from '../../../design/Label/Label';
 import ProfileImage from '../../Profile/ProfileImage/ProfileImage';
 import {
   profileImageSelectContainer,

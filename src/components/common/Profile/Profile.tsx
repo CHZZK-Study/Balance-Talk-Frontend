@@ -1,5 +1,5 @@
 import React from 'react';
-import Rank from '../../assets/svg/Rank';
+import Rank from '../../../assets/svg/Rank';
 import ProfileImage from './ProfileImage/ProfileImage';
 
 import {

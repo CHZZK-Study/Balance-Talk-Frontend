@@ -1,9 +1,9 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import InputNickname from '../../../components/InputsUserInfo/InputNickname';
-import InputProfileImage from '../../../components/InputsUserInfo/InputProfileImage/InputProfileImage';
-import InputPw from '../../../components/InputsUserInfo/InputPw';
-import InputPwCheck from '../../../components/InputsUserInfo/InputPwCheck';
+import InputNickname from '../../../components/common/InputsUserInfo/InputNickname';
+import InputProfileImage from '../../../components/common/InputsUserInfo/InputProfileImage/InputProfileImage';
+import InputPw from '../../../components/common/InputsUserInfo/InputPw';
+import InputPwCheck from '../../../components/common/InputsUserInfo/InputPwCheck';
 import Button from '../../../components/design/Button/Button';
 import Heading from '../../../components/design/Heading/Heading';
 import Input from '../../../components/design/Input/Input';
