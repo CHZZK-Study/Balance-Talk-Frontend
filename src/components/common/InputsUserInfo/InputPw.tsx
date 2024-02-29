@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { css } from '@emotion/react';
 import Input from '../../design/Input/Input';
 import { useCheckPassword } from '../../../hooks/common/inputsUserInfo/useCheckPassword';
 
 interface InputPwProps {
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const InputPw = ({ value, onChange }: InputPwProps) => {

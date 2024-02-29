@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { css } from '@emotion/react';
 import Input from '../../design/Input/Input';
 import Button from '../../design/Button/Button';
@@ -6,7 +6,7 @@ import { useCheckNickname } from '../../../hooks/common/inputsUserInfo/useCheckN
 
 interface InputNicknameProps {
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const InputNickname = ({ value, onChange }: InputNicknameProps) => {

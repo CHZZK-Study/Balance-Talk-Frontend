@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { css } from '@emotion/react';
 import Button from '../../design/Button/Button';
 import Input from '../../design/Input/Input';
@@ -6,7 +6,7 @@ import { useCheckCode } from '../../../hooks/common/inputsUserInfo/useCheckCode'
 
 interface InputCodeProps {
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const InputCode = ({ value, onChange }: InputCodeProps) => {
