@@ -13,14 +13,16 @@ import {
   signupContainer,
 } from './SignUpPage.style';
 import InputProfileImage from '../../components/common/InputsUserInfo/InputProfileImage/InputProfileImage';
+import { useSignupForm } from '../../hooks/useSignupForm';
 
 const SignUpPage = () => {
+  const { form, onChange } = useSignupForm();
   return (
     <div css={signupContainer}>
       <Heading size="large">SIGN UP</Heading>
       <InputProfileImage />
       <div css={inputContainer}>
-        <InputEmail />
+        <InputEmail value={form.email} onChange={onChange} />
         <InputCode />
         <InputNickname />
         <InputPw />

@@ -2,17 +2,28 @@ import React from 'react';
 import { css } from '@emotion/react';
 import Button from '../../design/Button/Button';
 import Input from '../../design/Input/Input';
-import { ERROR } from '../../../constants/message';
+import { useCheckEmail } from '../../../hooks/useCheckEmail';
 
-const InputEmail = () => {
-  const isError: boolean = true;
+interface InputEmailProps {
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const InputEmail = ({ value, onChange }: InputEmailProps) => {
+  const { inputRef, isError, errorMessage, handleBlur } = useCheckEmail(value);
+
   return (
     <Input
+      name="email"
       placeholder="이메일을 입력해주세요."
       size="medium"
       label="이메일"
       isError={isError}
-      errorMessage={isError ? ERROR.EMAIL.FORM : undefined}
+      errorMessage={errorMessage}
+      value={value}
+      ref={inputRef}
+      onChange={onChange}
+      onBlur={handleBlur}
       btn={<Button>인증</Button>}
       css={css({ width: '350px' })}
     />
