@@ -1,17 +1,29 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import Input from '../../design/Input/Input';
-import { ERROR } from '../../../constants/message';
+import { useCheckPassword } from '../../../hooks/useCheckPassword';
 
-const InputPw = () => {
-  const isError: boolean = true;
+interface InputPwProps {
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const InputPw = ({ value, onChange }: InputPwProps) => {
+  const { inputRef, isError, errorMessage, handleBlur } =
+    useCheckPassword(value);
+
   return (
     <Input
+      name="password"
       placeholder="비밀번호를 입력해주세요."
       size="medium"
       label="비밀번호"
       isError={isError}
-      errorMessage={isError ? ERROR.PW.FORM : undefined}
+      errorMessage={errorMessage}
+      value={value}
+      ref={inputRef}
+      onChange={onChange}
+      onBlur={handleBlur}
       css={css({ width: '420px' })}
     />
   );
