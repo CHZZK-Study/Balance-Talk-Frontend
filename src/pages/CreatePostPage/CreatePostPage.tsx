@@ -110,10 +110,6 @@ const CreatePostPage = () => {
     navigate('/');
   };
 
-  useEffect(() => {
-    console.log(form);
-    console.log(tag);
-  }, [form, tag]);
   return (
     <div
       css={css({
