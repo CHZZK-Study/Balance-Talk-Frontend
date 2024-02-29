@@ -1,13 +1,11 @@
 import { css } from '@emotion/react';
 import React from 'react';
-import {
-  btnSignup,
-  inputContainer,
-} from '../../../../SignUpPage/SignUpPage.style';
+
 import Button from '../../../../../components/design/Button/Button';
 import InputPw from '../../../../../components/common/InputsUserInfo/InputPw';
 import Input from '../../../../../components/design/Input/Input';
 import { useUserDeleteForm } from '../../../../../hooks/mypage/userDelete/useUserDelete';
+import { btnUserDelete, inputContainer } from './DeleteForm.style';
 
 const DeleteForm = () => {
   const { form, onChange, handleSubmit } = useUserDeleteForm();
@@ -25,7 +23,7 @@ const DeleteForm = () => {
         })}
       />
       <InputPw value={form.password} onChange={onChange} />
-      <Button type="submit" size="large" css={btnSignup}>
+      <Button type="submit" size="large" css={btnUserDelete}>
         탈퇴
       </Button>
     </form>
