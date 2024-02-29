@@ -13,7 +13,7 @@ import {
   signupContainer,
 } from './SignUpPage.style';
 import InputProfileImage from '../../components/common/InputsUserInfo/InputProfileImage/InputProfileImage';
-import { useSignupForm } from '../../hooks/useSignupForm';
+import { useSignupForm } from '../../hooks/signup/useSignupForm';
 
 const SignUpPage = () => {
   const { form, onChange } = useSignupForm();

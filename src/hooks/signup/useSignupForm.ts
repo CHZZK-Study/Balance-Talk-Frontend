@@ -1,4 +1,4 @@
-import useInputs from './useInputs';
+import useInputs from '../common/useInputs';
 
 interface SignupFormProps {
   email: string;

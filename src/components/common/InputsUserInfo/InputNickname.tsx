@@ -2,7 +2,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import Input from '../../design/Input/Input';
 import Button from '../../design/Button/Button';
-import { useCheckNickname } from '../../../hooks/useCheckNickname';
+import { useCheckNickname } from '../../../hooks/common/inputsUserInfo/useCheckNickname';
 
 interface InputNicknameProps {
   value: string;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import Input from '../../design/Input/Input';
-import { useCheckPassword } from '../../../hooks/useCheckPassword';
+import { useCheckPassword } from '../../../hooks/common/inputsUserInfo/useCheckPassword';
 
 interface InputPwProps {
   value: string;

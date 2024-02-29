@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
-import { isEmptyString } from '../utils/validator';
-import { ERROR } from '../constants/message';
+import { isEmptyString } from '../../../utils/validator';
+import { ERROR } from '../../../constants/message';
 
 export const useCheckCode = (value: string) => {
   const inputRef = useRef<HTMLInputElement | null>(null);

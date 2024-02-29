@@ -2,7 +2,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import Button from '../../design/Button/Button';
 import Input from '../../design/Input/Input';
-import { useCheckCode } from '../../../hooks/useCheckCode';
+import { useCheckCode } from '../../../hooks/common/inputsUserInfo/useCheckCode';
 
 interface InputCodeProps {
   value: string;

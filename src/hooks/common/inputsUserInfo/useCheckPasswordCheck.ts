@@ -1,26 +1,30 @@
 import { useRef, useState } from 'react';
-import { isEmptyString } from '../utils/validator';
-import { ERROR } from '../constants/message';
+import { isEmptyString } from '../../../utils/validator';
+import { ERROR } from '../../../constants/message';
 
-export const useCheckEmail = (value: string) => {
+interface CheckPwChkProps {
+  value: string;
+  pw: string;
+}
+
+export const useCheckPasswordCheck = ({ value, pw }: CheckPwChkProps) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
     undefined,
   );
   const [isError, setIsError] = useState<boolean>(false);
 
-  const isValidEmailFormat = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+  const isValidPwChkMatch = (pwChk: string): boolean => {
+    return pwChk === pw;
   };
 
   const handleBlur = () => {
     if (isEmptyString(value)) {
       setIsError(true);
-      setErrorMessage(ERROR.EMAIL.EMPTY);
-    } else if (!isValidEmailFormat(value)) {
+      setErrorMessage(ERROR.PW.EMPTY);
+    } else if (!isValidPwChkMatch(value)) {
       setIsError(true);
-      setErrorMessage(ERROR.EMAIL.FORM);
+      setErrorMessage(ERROR.PW.NOT_MATCH);
     } else {
       setIsError(false);
       setErrorMessage(undefined);
