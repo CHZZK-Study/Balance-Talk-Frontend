@@ -26,7 +26,11 @@ const SignUpPage = () => {
         <InputCode value={form.code} onChange={onChange} />
         <InputNickname value={form.nickname} onChange={onChange} />
         <InputPw value={form.password} onChange={onChange} />
-        <InputPwCheck />
+        <InputPwCheck
+          value={form.passwordCheck}
+          onChange={onChange}
+          pw={form.password}
+        />
       </div>
       <div css={btnContainer}>
         <Button size="large" css={btnSignup}>
