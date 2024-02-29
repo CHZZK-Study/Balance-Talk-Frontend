@@ -1,17 +1,14 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
+import { axiosInstance } from '../../../api/interceptor';
 import Caution from '../../../assets/svg/Caution';
-import InputPw from '../../../components/common/InputsUserInfo/InputPw';
-import Button from '../../../components/design/Button/Button';
 import Heading from '../../../components/design/Heading/Heading';
-import Input from '../../../components/design/Input/Input';
 import { END_POINT } from '../../../constants/api';
 import { Theme } from '../../../styles/Theme';
-import { loginContainer } from '../../LoginPage/LoginPage.style';
-import { btnSignup, inputContainer } from '../../SignUpPage/SignUpPage.style';
 import { Member } from '../../../types/mypage';
-import { axiosInstance } from '../../../api/interceptor';
+import { loginContainer } from '../../LoginPage/LoginPage.style';
+import DeleteForm from './sections/DeleteForm/DeleteForm';
 
 const DeletePage = () => {
   const { data: member }: UseQueryResult<Member, Error> = useQuery({
@@ -45,23 +42,7 @@ const DeletePage = () => {
         </span>
       </div>
 
-      <div css={inputContainer}>
-        <Input
-          placeholder="Username@gamil.com"
-          disabled
-          isDisabled
-          size="medium"
-          label="이메일"
-          css={css({
-            width: '420px',
-          })}
-        />
-        <InputPw />
-      </div>
-
-      <Button size="large" css={btnSignup}>
-        탈퇴
-      </Button>
+      <DeleteForm />
     </div>
   );
 };
