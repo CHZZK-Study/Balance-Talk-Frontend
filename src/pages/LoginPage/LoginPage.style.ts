@@ -10,17 +10,6 @@ export const loginContainer = css({
   background: Theme.color.gray100,
 });
 
-export const inputContainer = css({
-  display: 'flex',
-  flexDirection: 'column',
-  marginTop: '20px',
-});
-
-export const btnLogin = css({
-  marginTop: '10px',
-  borderRadius: '50px',
-});
-
 export const linkContainer = css({
   display: 'flex',
   justifyContent: 'space-between',
