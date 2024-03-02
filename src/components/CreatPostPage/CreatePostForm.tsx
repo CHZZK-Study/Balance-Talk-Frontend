@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { css } from '@emotion/react';
 import ImageDropZone from './ImageDropZone';
-import useInputs from '../../../hooks/useInputs';
-import { CreatePost, CreatePostImage } from '../../../types/post';
+import useInputs from '../../hooks/useInputs';
+import { CreatePost, CreatePostImage } from '../../types/post';
+import { PLACE_HOLDER } from '../../constants/message';
 
 type CreatePostFormProps = {
   setBalanceOptions: <P, K extends keyof CreatePost>(
@@ -59,7 +60,7 @@ const CreatePostForm = ({ setBalanceOptions, index }: CreatePostFormProps) => {
           marginTop: '20px',
           marginBottom: '20px',
         })}
-        placeholder=" 선택지 제목을 입력해 주세요."
+        placeholder={PLACE_HOLDER.POST.CHOICE_TITLE}
       />
       <div>
         <textarea
@@ -74,7 +75,7 @@ const CreatePostForm = ({ setBalanceOptions, index }: CreatePostFormProps) => {
               backgroundColor: '#BEBEBE',
             },
           })}
-          placeholder=" 선택지 설명을 입력해 주세요."
+          placeholder={PLACE_HOLDER.POST.CHOICE_DESCRIPTION}
         />
       </div>
     </div>
