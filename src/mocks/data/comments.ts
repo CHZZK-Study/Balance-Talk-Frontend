@@ -1,0 +1,88 @@
+import { Comment } from '../../types/comment';
+
+export const mockComments: Comment[] = [
+  {
+    balanceOptionId: 40,
+    content: '댓글 내용...',
+    likeCount: 234,
+    createdAt: '2022-02-23',
+    replyCount: 23,
+  },
+  {
+    balanceOptionId: 40,
+    content: '댓글 내용...',
+    likeCount: 111,
+    createdAt: '2022-02-24',
+    replyCount: 1,
+  },
+  {
+    balanceOptionId: 40,
+    content: '댓글 내용...',
+    likeCount: 11,
+    createdAt: '2022-02-25',
+    replyCount: 12,
+  },
+  {
+    balanceOptionId: 40,
+    content: '댓글 내용...',
+    likeCount: 24,
+    createdAt: '2022-02-26',
+    replyCount: 22,
+  },
+  {
+    balanceOptionId: 40,
+    content: '댓글 내용...',
+    likeCount: 24,
+    createdAt: '2022-02-27',
+    replyCount: 32,
+  },
+  {
+    balanceOptionId: 40,
+    content: '댓글 내용...',
+    likeCount: 24,
+    createdAt: '2022-02-28',
+    replyCount: 2,
+  },
+  {
+    balanceOptionId: 40,
+    content: '댓글 내용...',
+    likeCount: 234,
+    createdAt: '2022-02-23',
+    replyCount: 23,
+  },
+  {
+    balanceOptionId: 41,
+    content: '댓글 내용...',
+    likeCount: 111,
+    createdAt: '2022-02-24',
+    replyCount: 1,
+  },
+  {
+    balanceOptionId: 41,
+    content: '댓글 내용...',
+    likeCount: 11,
+    createdAt: '2022-02-25',
+    replyCount: 12,
+  },
+  {
+    balanceOptionId: 41,
+    content: '댓글 내용...',
+    likeCount: 24,
+    createdAt: '2022-02-26',
+    replyCount: 2,
+  },
+  {
+    balanceOptionId: 41,
+    content: '댓글 내용...',
+    likeCount: 24,
+    createdAt: '2022-02-27',
+    replyCount: 2,
+  },
+  {
+    balanceOptionId: 41,
+    content: '댓글 내용...',
+    likeCount: 24,
+    createdAt: '2022-02-28',
+    replyCount: 2,
+  },
+];
