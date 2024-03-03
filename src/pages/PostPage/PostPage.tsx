@@ -7,15 +7,18 @@ import CommentsSection from './CommentsSection/CommentsSection';
 import { fetchPostById } from '../../api/posts/posts';
 import CreatorSection from './CreatorSection/CreatorSection';
 import UserUtilitySection from './UserUtilitySection/UserUtilitySection';
+import { ImageInfo } from '../../types/post';
 
 const PostPage = () => {
   const postId = Number(useParams().id);
-  const { data: post } = useQuery({
+  const { isLoading, data: post } = useQuery({
     queryKey: ['posts', postId],
     queryFn: () => fetchPostById(postId),
   });
 
-  return (
+  return isLoading ? (
+    <div>Loading...</div>
+  ) : (
     <div css={css({ margin: '0.5rem 15%' })}>
       <BalanceOptionCardsSection
         title={post?.title || 'title'}
@@ -34,7 +37,14 @@ const PostPage = () => {
         {post?.creatorId && <CreatorSection creatorId={post?.creatorId} />}
         <UserUtilitySection />
       </div>
-      <CommentsSection />
+      <CommentsSection
+        postId={postId}
+        balanceOptionTitles={
+          post?.balanceOptions?.map(
+            (balanceOption: ImageInfo) => balanceOption?.optionTitle,
+          ) || []
+        }
+      />
     </div>
   );
 };
