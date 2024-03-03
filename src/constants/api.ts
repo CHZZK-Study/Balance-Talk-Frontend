@@ -16,6 +16,7 @@ export const END_POINT = {
   GET_ALL_MEMBERS: '/members',
   GET_MEMBER: (id: number) => `/members/${id}`,
   GET_POST: (id: number) => `/posts/${id}`,
+  COMMENTS: (postId: number) => `/posts/${postId}/comments`,
 };
 
 export const AXIOS = {
