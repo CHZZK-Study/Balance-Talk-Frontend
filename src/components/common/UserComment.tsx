@@ -3,24 +3,29 @@ import { css } from '@emotion/react';
 import { Profile, More, Report, Like, Plus } from '../../assets';
 
 export interface UserCommentProps {
-  id: number;
-  isMyComment: boolean;
+  memberId?: number;
+  isMyComment?: boolean;
   imgUrl?: string;
-  name: string;
+  name?: string;
+  balanceOptionId: number;
   content: string;
   createdAt: string;
   likeCount: number;
   replyList?: UserCommentProps[];
+  replyCount: number;
 }
 
 const UserComment = ({
-  id,
-  isMyComment,
+  memberId,
+  isMyComment = false,
+  imgUrl,
   name,
+  balanceOptionId,
   content,
   createdAt,
   likeCount,
   replyList,
+  replyCount,
 }: UserCommentProps) => {
   return (
     <div
@@ -70,7 +75,7 @@ const UserComment = ({
                   fontSize: '1rem',
                 })}
               >
-                {name}
+                {name || '미정'}
               </div>
               <div
                 css={css({
@@ -104,6 +109,7 @@ const UserComment = ({
             css={css({
               display: 'flex',
               flexDirection: 'column',
+              alignItems: 'center',
               gap: '0.3rem',
             })}
           >
@@ -130,9 +136,7 @@ const UserComment = ({
           <Plus />
         </div>
         <span>
-          {replyList?.length !== 0
-            ? `${replyList?.length}개의 답글`
-            : '답글달기'}
+          {replyList?.length !== 0 ? `${replyCount}개의 답글` : '답글달기'}
         </span>
       </div>
     </div>
