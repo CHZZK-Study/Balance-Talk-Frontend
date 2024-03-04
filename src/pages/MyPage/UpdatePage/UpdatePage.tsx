@@ -1,9 +1,9 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import InputNickname from '../../../components/InputsUserInfo/InputNickname';
-import InputProfileImage from '../../../components/InputsUserInfo/InputProfileImage/InputProfileImage';
-import InputPw from '../../../components/InputsUserInfo/InputPw';
-import InputPwCheck from '../../../components/InputsUserInfo/InputPwCheck';
+import InputNickname from '../../../components/common/InputsUserInfo/InputNickname';
+import InputProfileImage from '../../../components/common/InputsUserInfo/InputProfileImage/InputProfileImage';
+import InputPw from '../../../components/common/InputsUserInfo/InputPw';
+import InputPwCheck from '../../../components/common/InputsUserInfo/InputPwCheck';
 import Button from '../../../components/design/Button/Button';
 import Heading from '../../../components/design/Heading/Heading';
 import Input from '../../../components/design/Input/Input';
@@ -13,8 +13,10 @@ import {
   inputContainer,
   signupContainer,
 } from '../../SignUpPage/SignUpPage.style';
+import { useUserUpdateForm } from '../../../hooks/mypage/userUpdate/useUserUpdate';
 
 const UpdatePage = () => {
+  const { form, onChange } = useUserUpdateForm();
   return (
     <div css={signupContainer}>
       <Heading size="small">회원정보 수정</Heading>
@@ -30,9 +32,13 @@ const UpdatePage = () => {
             width: '420px',
           })}
         />
-        <InputNickname />
-        <InputPw />
-        <InputPwCheck />
+        <InputNickname value={form.nickname} onChange={onChange} />
+        <InputPw value={form.password} onChange={onChange} />
+        <InputPwCheck
+          value={form.passwordCheck}
+          onChange={onChange}
+          pw={form.password}
+        />
       </div>
       <div css={btnContainer}>
         <Button size="large" css={btnSignup}>

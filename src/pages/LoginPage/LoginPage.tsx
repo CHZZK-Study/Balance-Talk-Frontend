@@ -1,48 +1,15 @@
 import React from 'react';
-import { css } from '@emotion/react';
-import Email from '../../assets/svg/Email';
-import Key from '../../assets/svg/Key';
-import Button from '../../components/design/Button/Button';
-import Heading from '../../components/design/Heading/Heading';
-import Input from '../../components/design/Input/Input';
-import { PATH } from '../../constants/path';
-import {
-  btnLogin,
-  inputContainer,
-  linkContainer,
-  loginContainer,
-} from './LoginPage.style';
 import Divider from '../../components/common/Divider';
+import Heading from '../../components/design/Heading/Heading';
+import { PATH } from '../../constants/path';
+import { linkContainer, loginContainer } from './LoginPage.style';
+import LoginForm from './sections/LoginForm/LoginForm';
 
 const LoginPage = () => {
-  const isError: boolean = true;
   return (
     <div css={loginContainer}>
       <Heading size="large">LOGIN</Heading>
-
-      <div css={inputContainer}>
-        <Input
-          placeholder="이메일"
-          size="medium"
-          icon={<Email />}
-          css={css({ width: '400px' })}
-        />
-        <Input
-          placeholder="비밀번호"
-          size="medium"
-          icon={<Key />}
-          isError={isError}
-          errorMessage={
-            isError
-              ? '이메일 또는 비밀번호가 일치하지 않습니다. 다시 확인해주세요.'
-              : undefined
-          }
-          css={css({ width: '400px' })}
-        />
-        <Button size="large" css={btnLogin}>
-          로그인
-        </Button>
-      </div>
+      <LoginForm />
       <div css={linkContainer}>
         <a href={PATH.SIGN_UP}>회원가입</a>
         <Divider />

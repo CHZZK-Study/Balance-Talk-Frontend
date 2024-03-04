@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import PageNavigation from '../../../../components/Paginavigation/Paginavigation';
-import List from '../../sections/List/List';
-import ItemVotedPosts from '../../sections/ListItem/ItemVotedPosts';
+import PageNavigation from '../../../../components/common/Paginavigation/Paginavigation';
+import List from '../../../../components/mypage/List/List';
+import ItemVotedPosts from '../../../../components/mypage/ListItem/ItemVotedPosts';
 
 const VotedPostsPage = () => {
   const items = [

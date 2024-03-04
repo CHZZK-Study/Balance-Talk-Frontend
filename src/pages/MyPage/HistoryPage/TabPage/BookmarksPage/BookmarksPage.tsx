@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import PageNavigation from '../../../../../components/Paginavigation/Paginavigation';
+import PageNavigation from '../../../../../components/common/Paginavigation/Paginavigation';
 import CheckBox from '../../../../../components/design/CheckBox/CheckBox';
 import Button from '../../../../../components/design/Button/Button';
 import { bookmarksBtnContainer } from './BookmarksPage.style';
-import List from '../../../sections/List/List';
-import ItemBookmarks from '../../../sections/ListItem/ItemBookmarks';
+import List from '../../../../../components/mypage/List/List';
+import ItemBookmarks from '../../../../../components/mypage/ListItem/ItemBookmarks';
 
 const BookmarksPage = () => {
   const items = [
