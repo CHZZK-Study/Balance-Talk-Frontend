@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { PATH } from '../../../constants/path';
 import { historyContainer } from './HistoryPage.style';
-import Tab from '../sections/TopTab/Tab/Tab';
-import TopTab from '../sections/TopTab/TopTab';
+import Tab from '../../../components/mypage/TopTab/Tab/Tab';
+import TopTab from '../../../components/mypage/TopTab/TopTab';
 
 const HistoryPage = () => {
   const tabs = [
