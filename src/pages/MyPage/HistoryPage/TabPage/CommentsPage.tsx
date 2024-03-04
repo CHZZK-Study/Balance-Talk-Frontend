@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import PageNavigation from '../../../../components/Paginavigation/Paginavigation';
-import List from '../../sections/List/List';
-import ItemComments from '../../sections/ListItem/ItemComments';
+import PageNavigation from '../../../../components/common/Paginavigation/Paginavigation';
+import List from '../../../../components/mypage/List/List';
+import ItemComments from '../../../../components/mypage/ListItem/ItemComments';
 
 const CommentsPage = () => {
   const items = [

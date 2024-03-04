@@ -13,7 +13,7 @@ import { DatePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import CreatePostForm from './sections/CreatePostForm';
 import Add from '../../assets/images/add.png';
-import useInputs from '../../hooks/useInputs';
+import useInputs from '../../hooks/common/useInputs';
 import { CreatePost } from '../../types/post';
 import { fetchPost } from '../../api/posts/posts';
 import TagButton from '../../components/Buttons/TagButton';

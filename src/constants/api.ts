@@ -13,9 +13,9 @@ export const HTTP_STATUS_CODE = {
 export const END_POINT = {
   SIGN_UP: '/members/join',
   LOGIN: '/members/login',
-  GET_ALL_MEMBERS: '/members',
-  GET_MEMBER: (id: number) => `/members/${id}`,
-  GET_POST: (id: number) => `/posts/${id}`,
+  ALL_MEMBERS: '/members',
+  MEMBER: (id: number) => `/members/${id}`,
+  POST: (id: number) => `/posts/${id}`,
   COMMENTS: (postId: number) => `/posts/${postId}/comments`,
 };
 
