@@ -1,5 +1,5 @@
 import React, { ComponentPropsWithRef } from 'react';
-import { ItemVotedPostsType } from '../../../types/mypage';
+import { ItemVotedPostsType } from '../../../types/history';
 import {
   hoverStyling,
   mypageListItemContainer,

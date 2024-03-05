@@ -6,7 +6,7 @@ import {
   noContainer,
   withoutNoContainer,
 } from './ListItem.style';
-import { ItemCommentsType } from '../../../types/mypage';
+import { ItemCommentsType } from '../../../types/history';
 
 export interface ItemCommentsProps extends ComponentPropsWithRef<'li'> {
   item: ItemCommentsType;

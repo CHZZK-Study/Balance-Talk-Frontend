@@ -1,5 +1,5 @@
 import React, { ComponentPropsWithRef } from 'react';
-import { ItemBookmarksType } from '../../../types/mypage';
+import { ItemBookmarksType } from '../../../types/history';
 import {
   hoverStyling,
   mypageListItemContainer,
