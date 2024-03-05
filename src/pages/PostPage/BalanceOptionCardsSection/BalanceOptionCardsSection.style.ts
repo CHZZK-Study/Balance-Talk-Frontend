@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 
 export const balanceOptionCardsSectionWrapper = css({
+  position: 'relative',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -9,10 +10,11 @@ export const balanceOptionCardsSectionWrapper = css({
 });
 
 export const versusTextwrapper = css({
+  position: 'absolute',
   fontFamily: 'SpoqaHanSansNeo-Bold',
   fontSize: '50px',
-  position: 'absolute',
   zIndex: 1,
+  top: 230,
   WebkitTextStroke: '1px white',
   textShadow: '0px 4px 4px gray',
 });

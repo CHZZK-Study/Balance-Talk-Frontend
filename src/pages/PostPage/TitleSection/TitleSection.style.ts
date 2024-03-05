@@ -26,8 +26,8 @@ export const tagsWrapper = css({
 });
 
 export const titleWrapper = css({
-  fontFamily: 'SpoqaHanSansNeo-Bold',
-  fontSize: '50px',
+  fontFamily: 'SpoqaHanSansNeo-regular',
+  fontSize: '48px',
 });
 
 export const postInfoWrapper = css({
