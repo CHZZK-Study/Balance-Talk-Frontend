@@ -18,7 +18,7 @@ import {
   voteButtonWrapper,
   voteCount,
 } from './MainPost.style';
-import VoteButton from './voteButton';
+import VoteButton from './VoteButton';
 
 type MainPostProps = {
   post?: Post;
