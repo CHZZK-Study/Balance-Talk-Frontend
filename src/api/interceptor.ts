@@ -7,7 +7,8 @@ export interface AxiosErrorProps {
 }
 
 export const axiosInstance = axios.create({
-  baseURL: process.env.API_URL,
+  // baseURL: process.env.API_URL,
+  baseURL: '/api',
   withCredentials: true,
   timeout: AXIOS.TIMEOUT,
 });

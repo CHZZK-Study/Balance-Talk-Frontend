@@ -81,6 +81,12 @@ module.exports = (env) => {
       port: 3000,
       open: true,
       historyApiFallback: true,
+      proxy: {
+        '/api': {
+          target: process.env.API_URL,
+          pathRewrite: { '^/api': '' },
+        },
+      },
     },
   };
 };
