@@ -1,5 +1,9 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { getVoteCount } from '@/api/posts/posts';
+import { VoteInfo } from '@/types/post';
+import { Fight } from '@/assets';
+import { getPercent } from '@/utils/calculator';
 import {
   resultSectionWrapper,
   blankWrapper,
@@ -7,10 +11,6 @@ import {
   fightImageWrapper,
   optionResultWrapper,
 } from './ResultSection.style';
-import { getVoteCount } from '../../../../api/posts/posts';
-import { VoteInfo } from '../../../../types/post';
-import { Fight } from '../../../../assets';
-import { getPercent } from '../../../../utils/calculator';
 
 export type ResultSectionProps = { postId: number };
 

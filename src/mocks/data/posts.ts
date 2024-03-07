@@ -153,7 +153,7 @@ export const postList: Post[] = [
 export const voteInfo = [
   {
     optionTitle: '선택지1 제목',
-    voteCount: 411212,
+    voteCount: 3412,
   },
   {
     optionTitle: '선택지2 제목',
