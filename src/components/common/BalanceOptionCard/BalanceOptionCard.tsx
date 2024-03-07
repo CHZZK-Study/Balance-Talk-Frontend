@@ -7,7 +7,7 @@ import {
   balanceOptionCardWrapper,
   balanceOptionTitleWrapper,
   balanceOptionImageWrapper,
-  balaceOptionDescriptionWrapper,
+  balanceOptionDescriptionWrapper,
   balanceOptionWrapper,
   backgroundWrapper,
   innerButtonWrapper,
@@ -66,8 +66,7 @@ const BalanceOptionCard = ({
         </button>
       </div>
 
-      <div css={balaceOptionDescriptionWrapper}>{optionDescription}</div>
-      {isVoted && <div css={balaceOptionDescriptionWrapper}>결과</div>}
+      <div css={balanceOptionDescriptionWrapper}>{optionDescription}</div>
     </div>
   );
 };
