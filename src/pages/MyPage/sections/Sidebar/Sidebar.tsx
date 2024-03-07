@@ -4,7 +4,7 @@ import Home from '../../../../assets/svg/Home';
 import Lock from '../../../../assets/svg/Lock';
 import Person from '../../../../assets/svg/Person';
 import { PATH } from '../../../../constants/path';
-import Profile from '../../../../components/Profile/Profile';
+import Profile from '../../../../components/common/Profile/Profile';
 import Divider from '../../../../components/common/Divider';
 import {
   sidebarContainer,

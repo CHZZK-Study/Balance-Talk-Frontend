@@ -1,16 +1,18 @@
 import React from 'react';
 import Heading from '../../components/design/Heading/Heading';
-import InputCode from '../../components/InputsUserInfo/InputCode';
-import InputEmail from '../../components/InputsUserInfo/InputEmail';
+import InputCode from '../../components/common/InputsUserInfo/InputCode';
+import InputEmail from '../../components/common/InputsUserInfo/InputEmail';
 import { inputContainer, pwContainer } from './FindPasswordPage.style';
+import { useFindPwForm } from '../../hooks/findPassword/useFindPwForm';
 
 const FindPasswordPage = () => {
+  const { form, onChange } = useFindPwForm();
   return (
     <div css={pwContainer}>
       <Heading size="small">비밀번호를 찾을 이메일을 입력해주세요.</Heading>
       <div css={inputContainer}>
-        <InputEmail />
-        <InputCode />
+        <InputEmail value={form.email} onChange={onChange} />
+        <InputCode value={form.code} onChange={onChange} />
       </div>
     </div>
   );
