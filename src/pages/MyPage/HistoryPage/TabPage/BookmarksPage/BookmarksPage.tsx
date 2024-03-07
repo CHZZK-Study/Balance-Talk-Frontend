@@ -5,10 +5,12 @@ import Button from '../../../../../components/design/Button/Button';
 import { bookmarksBtnContainer } from './BookmarksPage.style';
 import List from '../../../../../components/mypage/List/List';
 import ItemMyBookmarksPosts from '../../../../../components/mypage/ListItem/ItemMyBookmarksPosts';
-import { mockMyBookmarksPosts } from '../../../../../mocks/data/history';
+import { useMyBookmarksPostsQuery } from '../../../../../hooks/api/useMyBookmarksPostsQuery';
+import { NULL } from '../../../../../constants/message';
+import { MyBookmarksPostsType } from '../../../../../types/history';
 
 const BookmarksPage = () => {
-  const items = mockMyBookmarksPosts;
+  const { myBookmarksPosts } = useMyBookmarksPostsQuery();
   const [selectedPage, setSelectedPage] = useState(1);
   const pages: number[] = [1];
   return (
@@ -19,9 +21,11 @@ const BookmarksPage = () => {
       </div>
 
       <List>
-        {items.map((item) => {
-          return <ItemMyBookmarksPosts key={item.id} item={item} />;
-        })}
+        {myBookmarksPosts
+          ? myBookmarksPosts.map((item: MyBookmarksPostsType) => {
+              return <ItemMyBookmarksPosts key={item.id} item={item} />;
+            })
+          : NULL.BOOKMARKS}
       </List>
       <PageNavigation
         pages={pages}

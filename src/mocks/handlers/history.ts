@@ -6,7 +6,6 @@ import {
   mockMyPosts,
   mockMyVotedPosts,
 } from '../data/history';
-import { END_POINT } from '../../constants/api';
 
 const URL = process.env.API_URL;
 
@@ -23,7 +22,7 @@ const getMyVotedPosts = rest.get(`${URL}/myVotedPosts`, (req, res, ctx) => {
 });
 
 const getMyBookmarksPosts = rest.get(
-  `${URL}${END_POINT.POST_BOOKMARK(1)}`,
+  `${URL}/bookmark/members/:memberId`,
   (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(mockMyBookmarksPosts));
   },
