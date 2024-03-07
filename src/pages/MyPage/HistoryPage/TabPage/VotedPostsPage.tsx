@@ -2,16 +2,10 @@ import React, { useState } from 'react';
 import PageNavigation from '../../../../components/common/Paginavigation/Paginavigation';
 import List from '../../../../components/mypage/List/List';
 import ItemVotedPosts from '../../../../components/mypage/ListItem/ItemVotedPosts';
+import { mockMyVotedPosts } from '../../../../mocks/data/history';
 
 const VotedPostsPage = () => {
-  const items = [
-    {
-      id: 1,
-      title: '게시글 제목입니다.',
-      date: '2024.02.23',
-      position: '투표 진영: 찬성',
-    },
-  ];
+  const items = mockMyVotedPosts;
   const [selectedPage, setSelectedPage] = useState(1);
   const pages: number[] = [1];
   return (

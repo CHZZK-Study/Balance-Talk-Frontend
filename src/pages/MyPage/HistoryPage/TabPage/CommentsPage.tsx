@@ -2,28 +2,10 @@ import React, { useState } from 'react';
 import PageNavigation from '../../../../components/common/Paginavigation/Paginavigation';
 import List from '../../../../components/mypage/List/List';
 import ItemComments from '../../../../components/mypage/ListItem/ItemComments';
+import { mockMyCommentPosts } from '../../../../mocks/data/history';
 
 const CommentsPage = () => {
-  const items = [
-    {
-      id: 1,
-      title: '게시글 제목입니다.',
-      comment: '댓글 내용입니다.',
-      date: '2024.02.23',
-    },
-    {
-      id: 2,
-      title: '게시글 제목입니다.',
-      comment: '댓글 내용입니다.',
-      date: '2024.02.23',
-    },
-    {
-      id: 3,
-      title: '게시글 제목입니다.',
-      comment: '댓글 내용입니다.',
-      date: '2024.02.23',
-    },
-  ];
+  const items = mockMyCommentPosts;
   const [selectedPage, setSelectedPage] = useState(1);
   const pages: number[] = [1];
   return (
