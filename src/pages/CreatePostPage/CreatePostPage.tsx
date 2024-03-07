@@ -1,7 +1,6 @@
 import React, {
   ChangeEvent,
   FormEvent,
-  useEffect,
   useState,
   KeyboardEvent,
   MouseEvent,
@@ -11,12 +10,24 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { DatePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
-import CreatePostForm from './sections/CreatePostForm';
+import CreatePostForm from '../../components/CreatPostPage/CreatePostForm';
 import Add from '../../assets/images/add.png';
 import useInputs from '../../hooks/common/useInputs';
 import { CreatePost } from '../../types/post';
 import { fetchPost } from '../../api/posts/posts';
 import TagButton from '../../components/Buttons/TagButton';
+import {
+  createFormContainer,
+  etcButtonContainer,
+  etcButtonWrapper,
+  headingWrapper,
+  inputTitleWrapper,
+  tagContainer,
+  tagWrapper,
+  versusText,
+} from './CreatePostPage.style';
+import Heading from '../../components/design/Heading/Heading';
+import { PLACE_HOLDER } from '../../constants/message';
 
 const inputStyles = {
   borderRadius: '5px',
@@ -111,77 +122,37 @@ const CreatePostPage = () => {
   };
 
   return (
-    <div
-      css={css({
-        width: '100vw',
-      })}
-    >
-      <div
-        css={css({
-          display: 'flex',
-          justifyContent: 'center',
-          marginBottom: '20px',
-        })}
-      >
-        <div
+    <div css={css({ width: '100vw' })}>
+      <div css={headingWrapper}>
+        <Heading
+          size="small"
           css={css({
-            display: 'flex',
-            justifyContent: 'flex-start',
-            width: '1080px',
+            fontFamily: 'SpoqaHanSansNeo-Medium',
           })}
         >
-          <h2
-            css={css({
-              fontSize: '24px',
-              fontFamily: 'SpoqaHanSansNeo-Medium',
-            })}
-          >
-            게시글 작성
-          </h2>
-        </div>
+          게시글 작성
+        </Heading>
       </div>
       <form onSubmit={onSubmitHandler}>
-        <div
-          css={css({
-            display: 'flex',
-            justifyContent: 'center',
-            marginBottom: '20px',
-          })}
-        >
+        <div css={inputTitleWrapper}>
           <input
             name="title"
             value={title}
             onChange={onChange}
             css={css({
-              width: '1080px',
+              width: '60%',
               height: '40px',
               ...inputStyles,
               ':hover': {
                 backgroundColor: '#BEBEBE',
               },
             })}
-            placeholder=" 게시글 제목을 입력해 주세요."
+            placeholder={PLACE_HOLDER.POST.TITLE}
           />
         </div>
-        <div
-          css={css({
-            display: 'flex',
-            justifyContent: 'center',
-            marginBottom: '20px',
-          })}
-        >
-          <div
-            css={css({
-              display: 'flex',
-              justifyContent: 'space-between',
-              width: '1080px',
-            })}
-          >
-            <div
-              css={css({
-                display: 'flex',
-              })}
-            >
+        <div css={etcButtonContainer}>
+          <div css={etcButtonWrapper}>
+            <div css={css({ display: 'flex' })}>
               <div css={css({ marginRight: '20px' })}>
                 <select
                   name="postCategory"
@@ -263,19 +234,8 @@ const CreatePostPage = () => {
             </button>
           </div>
         </div>
-        <div
-          css={css({
-            display: 'flex',
-            justifyContent: 'center',
-          })}
-        >
-          <div
-            css={css({
-              display: 'flex',
-              justifyContent: 'flex-start',
-              width: '1080px',
-            })}
-          >
+        <div css={tagContainer}>
+          <div css={tagWrapper}>
             <label
               htmlFor="casual"
               css={css({
@@ -336,26 +296,9 @@ const CreatePostPage = () => {
             </div>
           </div>
         </div>
-        <div
-          css={css({
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          })}
-        >
+        <div css={createFormContainer}>
           <CreatePostForm setBalanceOptions={setArray} index={0} />
-          <span
-            css={css({
-              fontFamily: 'SpoqaHanSansNeo-Bold',
-              fontSize: '50px',
-              position: 'absolute',
-              zIndex: 1,
-              WebkitTextStroke: '1px white',
-              textShadow: '0px 4px 4px gray',
-            })}
-          >
-            vs
-          </span>
+          <span css={versusText}>vs</span>
           <CreatePostForm setBalanceOptions={setArray} index={1} />
         </div>
       </form>
