@@ -1,19 +1,18 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import UserComment, {
-  UserCommentProps,
-} from '../../../../components/common/UserComment';
+import UserComment from '../../../../components/common/UserComment';
+import { Comment } from '../../../../types/comment';
 
 export type CommentsByOptionProps = {
-  optionTitle: string;
-  userComments: UserCommentProps[];
-  color: string;
+  balanceOptionTitle: string;
+  comments: Comment[];
+  isLeftOption: boolean;
 };
 
 const CommentsByOption = ({
-  optionTitle,
-  userComments,
-  color,
+  balanceOptionTitle,
+  comments,
+  isLeftOption,
 }: CommentsByOptionProps) => {
   return (
     <div
@@ -23,7 +22,7 @@ const CommentsByOption = ({
         width: '450px',
         gap: '1.5rem',
         padding: '1rem',
-        backgroundColor: `${color || 'white'} `,
+        backgroundColor: `${isLeftOption ? 'white' : '#D9D9D9'} `,
       })}
     >
       <div
@@ -33,7 +32,7 @@ const CommentsByOption = ({
           fontSize: '1.5rem',
         })}
       >
-        {optionTitle}
+        {balanceOptionTitle}
       </div>
       <div
         css={css({
@@ -41,7 +40,7 @@ const CommentsByOption = ({
           fontSize: '1rem',
         })}
       >
-        댓글 {userComments.length}개
+        댓글 {comments?.length}개
       </div>
       <div
         css={css({
@@ -61,8 +60,8 @@ const CommentsByOption = ({
           gap: '1rem',
         })}
       >
-        {userComments.map((userComment: UserCommentProps) => (
-          <UserComment {...userComment} key={userComment.id} />
+        {comments.map((comment: Comment) => (
+          <UserComment {...comment} key={comment.createdAt} />
         ))}
       </div>
     </div>
