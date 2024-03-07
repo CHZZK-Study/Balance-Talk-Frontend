@@ -68,6 +68,9 @@ module.exports = (env) => {
         template: './public/index.html',
       }),
       new webpack.EnvironmentPlugin(['API_URL']),
+      new webpack.DefinePlugin({
+        'process.env.MSW': env.MSW,
+      }),
     ],
     output: {
       filename: 'bundle.js',
