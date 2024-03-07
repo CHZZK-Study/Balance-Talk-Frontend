@@ -1,11 +1,11 @@
 import {
-  ItemBookmarksType,
-  ItemCommentsType,
-  ItemPostsType,
-  ItemVotedPostsType,
+  MyBookmarksPostsType,
+  MyCommentsPostsType,
+  MyPostsType,
+  MyVotedPostsType,
 } from '../../types/history';
 
-export const mockMyPosts: ItemPostsType[] = [
+export const mockMyPosts: MyPostsType[] = [
   {
     id: 1,
     title: '게시글 제목입니다.',
@@ -58,7 +58,7 @@ export const mockMyPosts: ItemPostsType[] = [
   },
 ];
 
-export const mockMyCommentPosts: ItemCommentsType[] = [
+export const mockMyCommentPosts: MyCommentsPostsType[] = [
   {
     id: 1,
     title: '게시글 제목입니다.',
@@ -79,7 +79,7 @@ export const mockMyCommentPosts: ItemCommentsType[] = [
   },
 ];
 
-export const mockMyVotedPosts: ItemVotedPostsType[] = [
+export const mockMyVotedPosts: MyVotedPostsType[] = [
   {
     id: 1,
     title: '게시글 제목입니다.',
@@ -88,7 +88,7 @@ export const mockMyVotedPosts: ItemVotedPostsType[] = [
   },
 ];
 
-export const mockMyBookmarksPosts: ItemBookmarksType[] = [
+export const mockMyBookmarksPosts: MyBookmarksPostsType[] = [
   {
     id: 1,
     title: '북마크한 게시글 제목입니다.',

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PageNavigation from '../../../../components/common/Paginavigation/Paginavigation';
 import List from '../../../../components/mypage/List/List';
-import ItemComments from '../../../../components/mypage/ListItem/ItemComments';
+import ItemMyCommentsPosts from '../../../../components/mypage/ListItem/ItemMyCommentsPosts';
 import { mockMyCommentPosts } from '../../../../mocks/data/history';
 
 const CommentsPage = () => {
@@ -12,7 +12,7 @@ const CommentsPage = () => {
     <>
       <List>
         {items.map((item) => {
-          return <ItemComments key={item.id} item={item} />;
+          return <ItemMyCommentsPosts key={item.id} item={item} />;
         })}
       </List>
       <PageNavigation

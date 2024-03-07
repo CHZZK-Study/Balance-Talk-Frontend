@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PageNavigation from '../../../../components/common/Paginavigation/Paginavigation';
 import List from '../../../../components/mypage/List/List';
-import ItemPosts from '../../../../components/mypage/ListItem/ItemPosts';
+import ItemMyPosts from '../../../../components/mypage/ListItem/ItemMyPosts';
 import { mockMyPosts } from '../../../../mocks/data/history';
 
 const PostsPage = () => {
@@ -12,7 +12,7 @@ const PostsPage = () => {
     <>
       <List>
         {items.map((item) => {
-          return <ItemPosts key={item.id} item={item} />;
+          return <ItemMyPosts key={item.id} item={item} />;
         })}
       </List>
       <PageNavigation
