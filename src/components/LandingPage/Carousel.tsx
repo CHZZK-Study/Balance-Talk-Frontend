@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { css } from '@emotion/react';
-import LeftArrowButton from '../../../assets/svg/LeftArrowButton';
-import RightArrowButton from '../../../assets/svg/RightArrowButton';
+import LeftArrowButton from '../../assets/svg/LeftArrowButton';
+import RightArrowButton from '../../assets/svg/RightArrowButton';
 import Pagination from './Pagination';
 
-type CarouselProps = {
-  items: JSX.Element[];
+type CarouselProps<T> = {
+  items: T[];
+  render: (item: T) => ReactNode;
+  itemWidth?: number;
 };
 
-const Carousel: React.FC<CarouselProps> = ({ items }) => {
+const Carousel = <T,>({ items, render, itemWidth = 420 }: CarouselProps<T>) => {
   const totalIndex = items.length - 2;
   const [index, setIndex] = useState(0);
 
@@ -23,36 +25,27 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
   return (
     <div>
       <div css={css({ display: 'flex', alignItems: 'center' })}>
-        <div>
-          <div
-            onClick={onLeftArrowClickHandler}
-            role="presentation"
-            css={css({ cursor: 'pointer' })}
-          >
-            <LeftArrowButton />
-          </div>
+        <div
+          onClick={onLeftArrowClickHandler}
+          role="presentation"
+          css={css({ cursor: 'pointer' })}
+        >
+          <LeftArrowButton />
         </div>
         <div
           css={css({
-            width: '1260px',
+            width: `${itemWidth * 3}px`,
             overflow: 'hidden',
-            position: 'relative',
           })}
         >
           <div
             css={css({
               display: 'flex',
-              transform: `translateX(-${index * 420}px)`,
+              transform: `translateX(-${index * itemWidth}px)`,
               transition: '0.3s ease-in-out',
             })}
           >
-            {items.map((item) => {
-              return (
-                <div key={item.key} css={css({ margin: '10px' })}>
-                  {item}
-                </div>
-              );
-            })}
+            {items && items.map((item) => render?.(item))}
           </div>
         </div>
         <div>

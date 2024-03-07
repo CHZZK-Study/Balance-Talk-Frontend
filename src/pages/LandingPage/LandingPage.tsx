@@ -2,11 +2,24 @@ import React from 'react';
 import { css } from '@emotion/react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import MainPost from './sections/MainPost';
-import PostImage from '../../components/common/PostImage';
-import Carousel from './sections/Carousel';
-import { Post } from '../../types/post';
+import MainPost from '../../components/LandingPage/MainPost';
+import PostImage from '../../components/common/PostImage/PostImage';
+import Carousel from '../../components/LandingPage/Carousel';
+import { ImageInfo, Post } from '../../types/post';
 import { fetchPostsData } from '../../api/posts/posts';
+import {
+  headingWithButtonWrapper,
+  headingWrapper,
+  landingContainer,
+  morePostWrapper,
+  recommendPostWrapper,
+} from './LandingPage.style';
+import Heading from '../../components/design/Heading/Heading';
+
+type PostInfo = {
+  id: number;
+  balanceOptions: ImageInfo[];
+};
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -16,7 +29,7 @@ const LandingPage = () => {
     queryFn: fetchPostsData,
   });
 
-  const extractBalanceOptions = (datas: Post[]) => {
+  const extractBalanceOptions = (datas: Post[]): PostInfo[] => {
     return datas.map((post) => {
       return {
         id: post.id,
@@ -27,74 +40,58 @@ const LandingPage = () => {
 
   const postInfos = data ? extractBalanceOptions(data) : [];
 
-  const CarouselItems = postInfos.map((postInfo) => {
+  const renderCarouselItems = (postInfo: PostInfo) => {
     return (
-      <PostImage
-        key={postInfo.id}
-        images={postInfo.balanceOptions}
-        size="medium"
-      />
+      <div css={css({ margin: '10px' })}>
+        <PostImage
+          key={postInfo.id}
+          images={postInfo.balanceOptions}
+          size="medium"
+        />
+      </div>
     );
-  });
+  };
 
   return (
-    <div
-      css={css({
-        width: '100vw',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      })}
-    >
-      <div
-        css={css({
-          display: 'flex',
-          justifyContent: 'flex-start',
-          width: '1080px',
-          marginBottom: '20px',
-        })}
-      >
-        <h2
-          css={css({
-            fontSize: '24px',
-            fontFamily: 'SpoqaHanSansNeo-Medium',
-          })}
-        >
-          추천 게시글
-        </h2>
+    <div css={landingContainer}>
+      <div css={recommendPostWrapper}>
+        <div css={headingWrapper}>
+          <Heading
+            size="small"
+            css={css({
+              fontFamily: 'SpoqaHanSansNeo-Medium',
+            })}
+          >
+            추천 게시글
+          </Heading>
+        </div>
+        <MainPost post={data?.[0]} />
       </div>
-      <MainPost post={data?.[0]} />
-      <div
-        css={css({
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'baseline',
-          width: '1200px',
-          marginBottom: '20px',
-          marginTop: '50px',
-        })}
-      >
-        <h2
-          css={css({
-            fontSize: '24px',
-            fontFamily: 'SpoqaHanSansNeo-Medium',
-          })}
-        >
-          더 많은 게시글
-        </h2>
-        <span
-          css={css({
-            fontFamily: 'SpoqaHanSansNeo-Regular',
-            fontSize: '14px',
-            cursor: 'pointer',
-          })}
-          onClick={() => navigate('/posts')}
-          role="presentation"
-        >
-          더보기
-        </span>
+
+      <div css={morePostWrapper}>
+        <div css={headingWithButtonWrapper}>
+          <Heading
+            size="small"
+            css={css({
+              fontFamily: 'SpoqaHanSansNeo-Medium',
+            })}
+          >
+            더 많은 게시글
+          </Heading>
+          <span
+            css={css({
+              fontFamily: 'SpoqaHanSansNeo-Regular',
+              fontSize: '14px',
+              cursor: 'pointer',
+            })}
+            onClick={() => navigate('/posts')}
+            role="presentation"
+          >
+            더보기
+          </span>
+        </div>
+        <Carousel items={postInfos} render={renderCarouselItems} />
       </div>
-      <Carousel items={CarouselItems} />
     </div>
   );
 };
