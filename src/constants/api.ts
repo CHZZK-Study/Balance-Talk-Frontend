@@ -17,6 +17,7 @@ export const END_POINT = {
   MEMBER: (id: number) => `/members/${id}`,
   POST: (id: number) => `/posts/${id}`,
   COMMENTS: (postId: number) => `/posts/${postId}/comments`,
+  VOTE_COUNT: (postId: number) => `/posts/${postId}/vote`,
 };
 
 export const AXIOS = {
