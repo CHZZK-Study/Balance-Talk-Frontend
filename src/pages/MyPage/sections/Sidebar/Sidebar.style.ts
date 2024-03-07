@@ -14,8 +14,8 @@ export const sidebarInnerContainer = css({
 
 export const sidebarNavContainer = css({
   '& svg': {
-    width: '20px',
-    height: '20px',
+    width: '25px',
+    height: '25px',
     fill: Theme.color.gray400,
   },
 });
