@@ -16,3 +16,4 @@ export { default as Person } from './svg/Person.svg';
 export { default as Rank } from './svg/Rank.svg';
 export { default as Winner } from './svg/winner.svg';
 export { default as Check } from './svg/check.svg';
+export { default as Fight } from './svg/fight.svg';

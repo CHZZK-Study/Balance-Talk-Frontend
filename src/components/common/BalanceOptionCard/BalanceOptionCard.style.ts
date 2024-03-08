@@ -60,7 +60,7 @@ export const balanceOptionImageWrapper = css({
   fontSize: '2rem',
 });
 
-export const balaceOptionDescriptionWrapper = css({
+export const balanceOptionDescriptionWrapper = css({
   backgroundColor: '#D9D9D9',
   fontFamily: 'SpoqaHanSansNeo-Bold',
   fontSize: '1.5rem',

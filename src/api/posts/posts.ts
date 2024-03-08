@@ -1,4 +1,6 @@
+import { END_POINT } from '../../constants/api';
 import { CreatePost, Post, VoteInfo } from '../../types/post';
+import { axiosInstance } from '../interceptor';
 
 const URL = process.env.API_URL;
 
@@ -47,3 +49,9 @@ export const fetchDeleteLike = async (postId: number) => {
 
   return response.body;
 };
+
+export const getPost = (postId: number): Promise<Post> =>
+  axiosInstance.get(END_POINT.POST(postId));
+
+export const getVoteCount = (postId: number): Promise<VoteInfo[]> =>
+  axiosInstance.get(END_POINT.VOTE_COUNT(postId));
