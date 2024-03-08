@@ -8,7 +8,10 @@ const color = {
   gray300: '#D9D9D9',
   gray400: '#ADADAD',
   red: '#FF0000',
+  lightred: '#FF5666',
+  lightblue: '#99A8DF',
   green: '#20AA26',
+  blue: '#3E69FF',
   white: '#FFFFFF',
   black: '#000000',
 } as const;
