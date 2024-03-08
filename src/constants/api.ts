@@ -16,6 +16,7 @@ export const END_POINT = {
   ALL_MEMBERS: '/members',
   MEMBER: (id: number) => `/members/${id}`,
   POST: (id: number) => `/posts/${id}`,
+  POST_BOOKMARK: (memberId: number) => `/bookmark/members/${memberId}`,
   COMMENTS: (postId: number) => `/posts/${postId}/comments`,
 };
 

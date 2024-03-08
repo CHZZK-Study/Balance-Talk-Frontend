@@ -1,5 +1,5 @@
 import React, { ComponentPropsWithRef } from 'react';
-import { ItemBookmarksType } from '../../../types/mypage';
+import { MyBookmarksPostsType } from '../../../types/history';
 import {
   hoverStyling,
   mypageListItemContainer,
@@ -9,11 +9,11 @@ import {
 } from './ListItem.style';
 import CheckBox from '../../design/CheckBox/CheckBox';
 
-export interface ItemBookmarksProps extends ComponentPropsWithRef<'li'> {
-  item: ItemBookmarksType;
+export interface MyBookmarksPostsProps extends ComponentPropsWithRef<'li'> {
+  item: MyBookmarksPostsType;
 }
 
-const ItemBookmarks = ({ item }: ItemBookmarksProps) => {
+const ItemMyBookmarksPosts = ({ item }: MyBookmarksPostsProps) => {
   return (
     <li css={mypageListItemContainer}>
       <CheckBox />
@@ -26,4 +26,4 @@ const ItemBookmarks = ({ item }: ItemBookmarksProps) => {
   );
 };
 
-export default ItemBookmarks;
+export default ItemMyBookmarksPosts;

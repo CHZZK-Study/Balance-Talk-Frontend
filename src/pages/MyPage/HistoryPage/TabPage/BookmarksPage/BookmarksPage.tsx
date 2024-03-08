@@ -4,16 +4,13 @@ import CheckBox from '../../../../../components/design/CheckBox/CheckBox';
 import Button from '../../../../../components/design/Button/Button';
 import { bookmarksBtnContainer } from './BookmarksPage.style';
 import List from '../../../../../components/mypage/List/List';
-import ItemBookmarks from '../../../../../components/mypage/ListItem/ItemBookmarks';
+import ItemMyBookmarksPosts from '../../../../../components/mypage/ListItem/ItemMyBookmarksPosts';
+import { useMyBookmarksPostsQuery } from '../../../../../hooks/api/useMyBookmarksPostsQuery';
+import { NULL } from '../../../../../constants/message';
+import { MyBookmarksPostsType } from '../../../../../types/history';
 
 const BookmarksPage = () => {
-  const items = [
-    {
-      id: 1,
-      title: '북마크한 게시글 제목입니다.',
-      date: '~ 2024.02.23',
-    },
-  ];
+  const { myBookmarksPosts } = useMyBookmarksPostsQuery();
   const [selectedPage, setSelectedPage] = useState(1);
   const pages: number[] = [1];
   return (
@@ -24,9 +21,11 @@ const BookmarksPage = () => {
       </div>
 
       <List>
-        {items.map((item) => {
-          return <ItemBookmarks key={item.id} item={item} />;
-        })}
+        {myBookmarksPosts
+          ? myBookmarksPosts.map((item: MyBookmarksPostsType) => {
+              return <ItemMyBookmarksPosts key={item.id} item={item} />;
+            })
+          : NULL.BOOKMARKS}
       </List>
       <PageNavigation
         pages={pages}
