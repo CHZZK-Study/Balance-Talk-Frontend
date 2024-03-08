@@ -14,3 +14,5 @@ export { default as LeftButton } from './svg/LeftButton.svg';
 export { default as RightButton } from './svg/RightButton.svg';
 export { default as Person } from './svg/Person.svg';
 export { default as Rank } from './svg/Rank.svg';
+export { default as Winner } from './svg/winner.svg';
+export { default as Check } from './svg/check.svg';

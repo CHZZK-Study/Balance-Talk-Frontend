@@ -43,3 +43,11 @@ export const NULL = {
   VOTES: '투표한 게시글이 없습니다.',
   BOOKMARKS: '북마크한 게시글이 없습니다.',
 } as const;
+
+export const PLACE_HOLDER = {
+  POST: {
+    TITLE: '게시글 제목을 입력해 주세요.',
+    CHOICE_TITLE: '선택지 제목을 입력해 주세요.',
+    CHOICE_DESCRIPTION: '선택지 설명을 입력해 주세요.',
+  },
+};

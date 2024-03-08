@@ -1,14 +1,15 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { useQuery } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
-import PostItem from './sections/PostItem';
+import PostItem from '../../components/PostListPage/PostItem';
 import SortButton from '../../components/Buttons/SortButton';
 import ToggleButton from '../../components/Buttons/ToggleButton';
 import { fetchPostsData } from '../../api/posts/posts';
+import CreatePostButton from '../../components/PostListPage/CreatePostButton';
+import { postListWrapper, headingWrapper } from './PostListPage.style';
+import Heading from '../../components/design/Heading/Heading';
 
 const PostList = () => {
-  const navigate = useNavigate();
   const { data: posts } = useQuery({
     queryKey: ['posts'],
     queryFn: fetchPostsData,
@@ -17,46 +18,20 @@ const PostList = () => {
   return (
     <div
       css={css({
-        width: '100vw',
+        width: '80vw',
+        margin: '0 auto',
       })}
     >
-      <button
-        type="button"
-        onClick={() => navigate('/post/create')}
-        css={css({
-          position: 'relative',
-          marginBottom: '10px',
-          left: '75vw',
-          backgroundColor: '#FFD369',
-          border: 0,
-          borderRadius: '10px',
-          fontFamily: 'SpoqaHanSansNeo-Medium',
-          fontSize: '16px',
-          width: '100px',
-          height: '40px',
-          boxShadow: '0px 4px 4px gray',
-          ':hover': {
-            backgroundColor: '#E5BD5E',
-          },
-        })}
-      >
-        글쓰기
-      </button>
-      <div
-        css={css({
-          display: 'flex',
-          justifyContent: 'space-around',
-          alignItems: 'center',
-        })}
-      >
-        <h2
+      <CreatePostButton />
+      <div css={headingWrapper}>
+        <Heading
+          size="small"
           css={css({
-            fontSize: '24px',
             fontFamily: 'SpoqaHanSansNeo-Medium',
           })}
         >
-          게시글 목록
-        </h2>
+          추천 게시글
+        </Heading>
         <div
           css={css({
             display: 'flex',
@@ -67,15 +42,7 @@ const PostList = () => {
           <SortButton />
         </div>
       </div>
-      <div
-        css={css({
-          display: 'flex',
-          width: '70%',
-          justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          margin: '0 auto',
-        })}
-      >
+      <div css={postListWrapper}>
         {posts &&
           posts.map((post) => {
             return <PostItem key={post.id} post={post} />;
