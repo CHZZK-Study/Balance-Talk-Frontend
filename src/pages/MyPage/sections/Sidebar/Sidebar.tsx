@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Home from '../../../../assets/svg/Home';
-import Lock from '../../../../assets/svg/Lock';
-import Person from '../../../../assets/svg/Person';
 import { PATH } from '../../../../constants/path';
 import Profile from '../../../../components/common/Profile/Profile';
 import Divider from '../../../../components/common/Divider';
@@ -12,6 +9,7 @@ import {
   sidebarNavContainer,
 } from './Sidebar.style';
 import SidebarNav from './SidebarNav/SidebarNav';
+import { Home, Lock, Person } from '../../../../assets';
 
 const Sidebar = () => {
   const sidebarNavs = [

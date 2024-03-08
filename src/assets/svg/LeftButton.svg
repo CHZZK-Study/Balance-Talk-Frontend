@@ -1,8 +1,4 @@
-import React from 'react';
-
-const LeftButton = () => {
-  return (
-    <svg
+<svg
       width="12"
       height="12"
       viewBox="0 0 12 12"
@@ -24,7 +20,3 @@ const LeftButton = () => {
         </clipPath>
       </defs>
     </svg>
-  );
-};
-
-export default LeftButton;
