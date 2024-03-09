@@ -1,43 +1,38 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { PATH } from '../../../../constants/path';
-import Profile from '../../../../components/common/Profile/Profile';
+import React from 'react';
+import { useTabChange } from '@/hooks/mypage/userHistory/useTabChange';
+import { Home, Lock, Person } from '../../../../assets';
 import Divider from '../../../../components/common/Divider';
+import Profile from '../../../../components/common/Profile/Profile';
+import { PATH } from '../../../../constants/path';
 import {
   sidebarContainer,
   sidebarInnerContainer,
   sidebarNavContainer,
 } from './Sidebar.style';
 import SidebarNav from './SidebarNav/SidebarNav';
-import { Home, Lock, Person } from '../../../../assets';
 
 const Sidebar = () => {
   const sidebarNavs = [
     {
-      id: 1,
+      id: 0,
       url: `${PATH.HISTORY.MAIN}/${PATH.HISTORY.POSTS}`,
       icon: <Home />,
       text: '활동내역',
     },
     {
-      id: 2,
+      id: 1,
       url: PATH.UPDATE,
       icon: <Person />,
       text: '회원정보 수정',
     },
     {
-      id: 3,
+      id: 2,
       url: PATH.DELETE,
       icon: <Lock />,
       text: '회원탈퇴',
     },
   ];
-  const [selectedId, setSelectedId] = useState(1);
-  const navigate = useNavigate();
-  const onTabChange = (id: number) => {
-    setSelectedId(id);
-    navigate(sidebarNavs[id - 1].url);
-  };
+  const { selectedId, onTabChange } = useTabChange(sidebarNavs);
   return (
     <section css={sidebarContainer}>
       <div css={sidebarInnerContainer}>
