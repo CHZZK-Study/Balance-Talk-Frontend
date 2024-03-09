@@ -7,12 +7,12 @@ import { PATH } from '../../../../constants/path';
 import {
   sidebarContainer,
   sidebarInnerContainer,
-  sidebarNavContainer,
+  sidebarTabContainer,
 } from './Sidebar.style';
-import SidebarNav from './SidebarNav/SidebarNav';
+import SidebarTab from './SidebarTab/SidebarTab';
 
 const Sidebar = () => {
-  const sidebarNavs = [
+  const Tabs = [
     {
       id: 0,
       url: `${PATH.HISTORY.MAIN}/${PATH.HISTORY.POSTS}`,
@@ -32,25 +32,25 @@ const Sidebar = () => {
       text: '회원탈퇴',
     },
   ];
-  const { selectedId, onTabChange } = useTabChange(sidebarNavs);
+  const { selectedId, onTabChange } = useTabChange(Tabs);
   return (
     <section css={sidebarContainer}>
       <div css={sidebarInnerContainer}>
         <Profile />
-        <nav css={sidebarNavContainer}>
-          {sidebarNavs.map((nav) => {
+        <ul css={sidebarTabContainer}>
+          {Tabs.map((tab) => {
             return (
-              <SidebarNav
-                key={nav.id}
-                navId={nav.id}
+              <SidebarTab
+                key={tab.id}
+                navId={tab.id}
                 selectedId={selectedId}
-                icon={nav.icon}
-                text={nav.text}
+                icon={tab.icon}
+                text={tab.text}
                 changeSelect={onTabChange}
               />
             );
           })}
-        </nav>
+        </ul>
       </div>
       <Divider />
     </section>
