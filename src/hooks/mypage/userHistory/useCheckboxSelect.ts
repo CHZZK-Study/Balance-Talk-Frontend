@@ -10,7 +10,7 @@ export const useCheckboxSelect = (data: MyBookmarksPostsType[] | undefined) => {
     const target = e.currentTarget as HTMLInputElement;
     if (target.checked) {
       setCheckItems([...checkItems, target.id]);
-      if (checkItems.length === data?.length || 0 - 1) {
+      if (checkItems.length === (data?.length || 0) - 1) {
         setIsAllChecked(true);
       }
     } else {
