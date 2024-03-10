@@ -7,14 +7,13 @@ export const useCheckboxSelect = (data: MyBookmarksPostsType[] | undefined) => {
   const [checkItems, setCheckItems] = useState<string[]>([]);
 
   const handleSingleChecked = (e: ChangeEvent<HTMLInputElement>) => {
-    const target = e.currentTarget as HTMLInputElement;
-    if (target.checked) {
-      setCheckItems([...checkItems, target.id]);
+    if (e.currentTarget.checked) {
+      setCheckItems([...checkItems, e.currentTarget.id]);
       if (checkItems.length === (data?.length || 0) - 1) {
         setIsAllChecked(true);
       }
     } else {
-      setCheckItems(checkItems.filter((item) => item !== target.id));
+      setCheckItems(checkItems.filter((item) => item !== e.currentTarget.id));
       setIsAllChecked(false);
     }
     setIsSingleChecked(!isSingleChecked);
