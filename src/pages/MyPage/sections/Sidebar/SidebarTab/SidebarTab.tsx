@@ -5,9 +5,9 @@ import React, {
   ReactElement,
 } from 'react';
 import { Theme } from '../../../../../styles/Theme';
-import { sidebarNavStyling } from './SidebarNav.style';
+import { sidebarTabStyling } from './SidebarTab.style';
 
-interface SidebarNavProps extends ComponentPropsWithoutRef<'nav'> {
+interface SidebarTabProps extends ComponentPropsWithoutRef<'li'> {
   navId: number;
   selectedId: number;
   icon: ReactElement;
@@ -15,13 +15,13 @@ interface SidebarNavProps extends ComponentPropsWithoutRef<'nav'> {
   changeSelect: (navId: number) => void;
 }
 
-const SidebarNav = ({
+const SidebarTab = ({
   navId,
   selectedId,
   icon,
   text,
   changeSelect,
-}: SidebarNavProps) => {
+}: SidebarTabProps) => {
   const handleEnterKeyPress = (event: KeyboardEvent<HTMLLIElement>) => {
     if (event.key === 'Enter') {
       changeSelect(navId);
@@ -31,7 +31,7 @@ const SidebarNav = ({
   return (
     <li
       role="tab"
-      css={sidebarNavStyling(selectedId === navId)}
+      css={sidebarTabStyling(selectedId === navId)}
       onClick={() => {
         changeSelect(navId);
       }}
@@ -50,4 +50,4 @@ const SidebarNav = ({
   );
 };
 
-export default SidebarNav;
+export default SidebarTab;
