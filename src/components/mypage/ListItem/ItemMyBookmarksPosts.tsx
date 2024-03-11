@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithRef } from 'react';
+import React, { ChangeEvent, ComponentPropsWithRef } from 'react';
 import { MyBookmarksPostsType } from '../../../types/history';
 import {
   hoverStyling,
@@ -11,13 +11,20 @@ import CheckBox from '../../design/CheckBox/CheckBox';
 
 export interface MyBookmarksPostsProps extends ComponentPropsWithRef<'li'> {
   item: MyBookmarksPostsType;
+  isChecked: boolean;
+  handleChecked: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const ItemMyBookmarksPosts = ({ item }: MyBookmarksPostsProps) => {
+const ItemMyBookmarksPosts = ({
+  id,
+  item,
+  isChecked,
+  handleChecked,
+}: MyBookmarksPostsProps) => {
   return (
     <li css={mypageListItemContainer}>
-      <CheckBox />
-      <span css={[mypageTextStyling('xSmall'), noContainer]}>{item.id}</span>
+      <CheckBox id={id} isChecked={isChecked} handleChecked={handleChecked} />
+      <span css={[mypageTextStyling('xSmall'), noContainer]}>{id}</span>
       <div css={withoutNoContainer}>
         <p css={[mypageTextStyling('small'), hoverStyling]}>{item.title}</p>
         <p css={mypageTextStyling('xSmall')}>{item.date}</p>
