@@ -99,4 +99,14 @@ export const mockMyBookmarksPosts: MyBookmarksPostsType[] = [
     title: '북마크한 게시글 제목입니다.',
     date: '~ 2024.02.23',
   },
+  {
+    id: 3,
+    title: '북마크한 게시글 제목입니다.',
+    date: '~ 2024.02.23',
+  },
+  {
+    id: 4,
+    title: '북마크한 게시글 제목입니다.',
+    date: '~ 2024.02.23',
+  },
 ];
