@@ -1,55 +1,52 @@
 import React from 'react';
-import { css } from '@emotion/react';
 import { useQuery } from '@tanstack/react-query';
 import { getComments } from '@/api/comments/comments';
 import { Comment } from '@/types/comment';
 import UserComment from '@/components/common/UserComment/UserComment';
-import CommentsByOption from './CommentsByOption/CommentsByOption';
 import {
-  CommentsListSection,
-  CommentsSectionWrapper,
-  InputButtonWrapper,
-  InputSectionWrapper,
-  InputWrapper,
   commentCountWrapper,
   commentPaginationWrapper,
+  commentsListSectionWrapper,
+  commentsSectionWrapper,
+  commentsWrapper,
+  inputButtonWrapper,
+  inputSectionWrapper,
 } from './CommentsSection.style';
+import { CommentsPagination } from './CommentsPagination/CommentsPagination';
 
 interface CommectsSectionProps {
   postId: number;
 }
 
 const CommentsSection = ({ postId }: CommectsSectionProps) => {
+  const totalCommentsCount = 40;
   const { data: comments, isLoading } = useQuery({
     queryKey: ['post', postId, 'comments'],
     queryFn: () => getComments(postId),
+    select: (data: { data: Comment }) => data?.data,
   });
-  const commentCount: number = 124;
-  console.log(comments);
 
   return isLoading ? (
     <div>Loading...</div>
   ) : (
-    <div css={CommentsSectionWrapper}>
-      <div css={commentCountWrapper}>댓글 {commentCount}개</div>
-      <div css={InputSectionWrapper}>
+    <div css={commentsSectionWrapper}>
+      <div css={commentCountWrapper}>댓글 {totalCommentsCount}개</div>
+      <div css={inputSectionWrapper}>
         <input type="text" placeholder="댓글을 입력해주세요" />
-        <button css={InputButtonWrapper} type="submit">
+        <button css={inputButtonWrapper} type="submit">
           등록
         </button>
       </div>
-      <div css={CommentsListSection}>
-        <ul>
-          <UserComment />
-          <UserComment />
-          <UserComment />
-          <UserComment />
-        </ul>
+      <div css={commentsListSectionWrapper}>
+        <div css={commentsWrapper}>
+          {comments &&
+            comments.map((comment: Comment) => <UserComment {...comment} />)}
+        </div>
         <div css={commentPaginationWrapper}>
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
+          <CommentsPagination
+            totalCommentsCount={totalCommentsCount}
+            currentPage={1}
+          />
         </div>
       </div>
     </div>

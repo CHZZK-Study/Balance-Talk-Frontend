@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 import { Comment } from '@/types/comment';
 import { Profile, More, Report, Like, Plus } from '@/assets';
 import {
+  btnsWrapper,
   commentHistoryWrapper,
   commentInfoWrapper,
   commentMainWrapper,
@@ -12,6 +13,7 @@ import {
   likeBtnWrapper,
   likeCountTextWrapper,
   nameWrapper,
+  replyBtnWrapper,
   userCommentWrapper,
   utilityBtnsWrapper,
 } from './UserComment.style';
@@ -33,26 +35,32 @@ const UserComment = ({
 }: UserCommentProps) => {
   const createdAtDate = '3일전';
   return (
-    <div css={userCommentWrapper}>
-      <div css={commentMainWrapper}>
-        <div css={commentWrapper}>
+    <div css={userCommentWrapper(selectedOptionId)}>
+      <div css={commentMainWrapper(selectedOptionId)}>
+        <div css={commentWrapper(selectedOptionId)}>
           {imgUrl ? <img src="" alt="이미지" /> : <Profile width={40} />}
           <div css={commentInfoWrapper}>
-            <div css={commentHistoryWrapper}>
-              <div css={nameWrapper}>{memberName || '김성현'}</div>
+            <div css={commentHistoryWrapper(selectedOptionId)}>
+              <div css={nameWrapper}>{memberName || '익명'}</div>
               <div css={createdAtWrapper}>{createdAtDate}</div>
             </div>
-            <div css={contentWrapper}>댓글입니다. 댓글입니다.</div>
+            <div css={contentWrapper}>{content}</div>
           </div>
         </div>
-        <div css={utilityBtnsWrapper}>
-          <div css={likeBtnWrapper}>
-            <Like />
-            <span css={likeCountTextWrapper}>{123}</span>
+        <div css={btnsWrapper(selectedOptionId)}>
+          <div css={utilityBtnsWrapper}>
+            <div css={likeBtnWrapper}>
+              <Like />
+              <span css={likeCountTextWrapper}>{123}</span>
+            </div>
+            <More />
+            <Report />
           </div>
-          <More />
-          <Report />
-          <Plus />
+          <div css={replyBtnWrapper}>
+            <button type="button" onClick={() => {}}>
+              답글
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import Divider from '@/components/common/Divider';
 import BalanceOptionCardsSection from './BalanceOptionCardsSection/BalanceOptionCardsSection';
 import CommentsSection from './CommentsSection/CommentsSection';
 import { getPost } from '../../api/posts/posts';
@@ -18,7 +17,7 @@ import {
 
 const PostPage = () => {
   const postId = Number(useParams().id);
-  const [isOpened, setIsOpened] = useState(false);
+  const [isOpened, setIsOpened] = useState(true);
   const { isLoading, data: post } = useQuery({
     queryKey: ['posts', postId],
     queryFn: () => getPost(postId),

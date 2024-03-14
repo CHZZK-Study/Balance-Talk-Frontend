@@ -3,7 +3,7 @@ import { Comment } from '../../types/comment';
 export const mockComments: Comment[] = [
   {
     id: 1,
-    content: '댓글 내용...',
+    content: '댓글 내용... 댓글입니다. 댓글 내용. 댓글입니다.',
     memberName: '김성현',
     postId: 1,
     selectedOptionId: 40,
@@ -13,7 +13,7 @@ export const mockComments: Comment[] = [
   },
   {
     id: 2,
-    content: '댓글 내용...',
+    content: '댓글 내용... 댓글입니다. 댓글 내용. 댓글입니다.',
     memberName: '김성현',
     postId: 1,
     selectedOptionId: 41,
@@ -23,7 +23,8 @@ export const mockComments: Comment[] = [
   },
   {
     id: 3,
-    content: '댓글 내용...',
+    content:
+      '댓글 내용... 댓글입니다. 댓글 내용. 댓글입니다. 댓글 내용... 댓글입니다. 댓글 내용. 댓글입니다. ',
     memberName: '김성현',
     postId: 1,
     selectedOptionId: 40,
@@ -33,7 +34,7 @@ export const mockComments: Comment[] = [
   },
   {
     id: 4,
-    content: '댓글 내용...',
+    content: '댓글 내용... 댓글입니다. 댓글 내용. 댓글입니다.',
     memberName: '김성현',
     postId: 1,
     selectedOptionId: 41,
@@ -43,7 +44,7 @@ export const mockComments: Comment[] = [
   },
   {
     id: 5,
-    content: '댓글 내용...',
+    content: '댓글 내용... 댓글입니다. 댓글 내용. 댓글입니다.',
     memberName: '김성현',
     postId: 1,
     selectedOptionId: 41,
@@ -53,7 +54,7 @@ export const mockComments: Comment[] = [
   },
   {
     id: 6,
-    content: '댓글 내용...',
+    content: '댓글 내용... 댓글입니다. 댓글 내용. 댓글입니다.',
     memberName: '김성현',
     postId: 1,
     selectedOptionId: 40,
@@ -63,7 +64,7 @@ export const mockComments: Comment[] = [
   },
   {
     id: 7,
-    content: '댓글 내용...',
+    content: '댓글 내용... 댓글입니다. 댓글 내용. 댓글입니다.',
     memberName: '김성현',
     postId: 1,
     selectedOptionId: 40,
@@ -73,7 +74,7 @@ export const mockComments: Comment[] = [
   },
   {
     id: 8,
-    content: '댓글 내용...',
+    content: '댓글 내용... 댓글입니다. 댓글 내용. 댓글입니다.',
     memberName: '김성현',
     postId: 1,
     selectedOptionId: 41,
@@ -83,7 +84,7 @@ export const mockComments: Comment[] = [
   },
   {
     id: 9,
-    content: '댓글 내용...',
+    content: '댓글 내용... 댓글입니다. 댓글 내용. 댓글입니다.',
     memberName: '김성현',
     postId: 1,
     selectedOptionId: 41,
@@ -93,7 +94,7 @@ export const mockComments: Comment[] = [
   },
   {
     id: 10,
-    content: '댓글 내용...',
+    content: '댓글 내용... 댓글입니다. 댓글 내용. 댓글입니다.',
     memberName: '김성현',
     postId: 1,
     selectedOptionId: 40,
