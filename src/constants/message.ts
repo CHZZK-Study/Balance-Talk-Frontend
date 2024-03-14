@@ -37,6 +37,13 @@ export const SUCCESS = {
   },
 } as const;
 
+export const NULL = {
+  POSTS: '작성한 게시글이 없습니다.',
+  COMMENTS: '작성한 댓글이 없습니다.',
+  VOTES: '투표한 게시글이 없습니다.',
+  BOOKMARKS: '북마크한 게시글이 없습니다.',
+} as const;
+
 export const PLACE_HOLDER = {
   POST: {
     TITLE: '게시글 제목을 입력해 주세요.',

@@ -1,18 +1,18 @@
-export type ItemPostsType = {
+export type MyPostsType = {
   id: number;
   title: string;
   date: string;
 };
 
-export interface ItemCommentsType extends ItemPostsType {
+export interface MyCommentsPostsType extends MyPostsType {
   comment: string;
 }
 
-export interface ItemVotedPostsType extends ItemPostsType {
+export interface MyVotedPostsType extends MyPostsType {
   position: string;
 }
 
-export interface ItemBookmarksType extends ItemPostsType {}
+export interface MyBookmarksPostsType extends MyPostsType {}
 
 export type Member = {
   nickname: string;
