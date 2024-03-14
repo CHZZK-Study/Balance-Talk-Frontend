@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import Divider from '@/components/common/Divider';
@@ -18,6 +18,7 @@ import {
 
 const PostPage = () => {
   const postId = Number(useParams().id);
+  const [isOpened, setIsOpened] = useState(false);
   const { isLoading, data: post } = useQuery({
     queryKey: ['posts', postId],
     queryFn: () => getPost(postId),
@@ -50,18 +51,15 @@ const PostPage = () => {
       </div>
 
       <div css={ButtonSectionWrapper}>
-        <button css={ButtonStyleWrapper} type="button">
-          댓글 확인하기
+        <button
+          css={ButtonStyleWrapper}
+          type="button"
+          onClick={() => setIsOpened(!isOpened)}
+        >
+          {`댓글 ${isOpened ? '접기' : '확인하기'}`}
         </button>
       </div>
-      <CommentsSection
-        postId={postId}
-        balanceOptionTitles={
-          post?.balanceOptions?.map(
-            (balanceOption: ImageInfo) => balanceOption?.optionTitle,
-          ) || []
-        }
-      />
+      {isOpened && <CommentsSection postId={postId} />}
     </div>
   );
 };

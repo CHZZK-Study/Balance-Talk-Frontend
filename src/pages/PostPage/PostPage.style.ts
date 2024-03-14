@@ -26,4 +26,9 @@ export const ButtonStyleWrapper = css({
   color: `${Theme.color.colorHunt_black}`,
   borderRadius: '1rem',
   padding: '0.5rem',
+
+  '&:hover': {
+    backgroundColor: Theme.color.gray300,
+    cursor: 'pointer',
+  },
 });
