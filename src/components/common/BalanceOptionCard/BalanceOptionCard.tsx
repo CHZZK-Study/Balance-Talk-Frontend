@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/react';
-import { ImageInfo } from '../../../types/post';
+import { BalanceOption, ImageInfo } from '../../../types/post';
 import coffee from '../../../../public/coffee.jpg';
 import juice from '../../../../public/juice.jpg';
+
 import {
   balanceOptionCardWrapper,
   balanceOptionTitleWrapper,
@@ -14,24 +15,24 @@ import {
   winnerIconWrapper,
   outerButtonWrapper,
 } from './BalanceOptionCard.style';
-import { Check } from '../../../assets';
+import { Check, NoImage } from '../../../assets';
 
-export type BalanceOptionCardProps = ImageInfo & {
+export type BalanceOptionCardProps = BalanceOption & {
   isVoted: boolean;
   handleVoted: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const BalanceOptionCard = ({
-  optionImg,
-  optionTitle,
-  optionDescription,
+  title,
+  description,
+  storedFileName,
   isVoted,
   handleVoted,
 }: BalanceOptionCardProps) => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
   return (
     <div css={balanceOptionCardWrapper}>
-      <div css={css(balanceOptionTitleWrapper)}>{optionTitle}</div>
+      <div css={css(balanceOptionTitleWrapper)}>{title}</div>
       <div css={css(balanceOptionWrapper)}>
         {isVoted && (
           <div css={css(backgroundWrapper)}>
@@ -60,13 +61,13 @@ const BalanceOptionCard = ({
           <div css={winnerIconWrapper} />
           <img
             css={css(balanceOptionImageWrapper)}
-            src={optionImg === 'coffee.jpg' ? coffee : juice}
+            src={storedFileName === 'coffee.jpg' ? coffee : juice}
             alt="optionImg"
           />
         </button>
       </div>
 
-      <div css={balanceOptionDescriptionWrapper}>{optionDescription}</div>
+      <div css={balanceOptionDescriptionWrapper}>{description}</div>
     </div>
   );
 };

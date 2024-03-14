@@ -5,6 +5,13 @@ export type ImageInfo = {
   optionDescription?: string;
 };
 
+export type BalanceOption = {
+  balanceOptionId: number;
+  title: string;
+  description: string;
+  storedFileName: string | null;
+};
+
 export type Post = {
   id: number;
   title: string;
@@ -20,9 +27,31 @@ export type Post = {
   creatorId?: number;
 };
 
+export type NPost = {
+  id: number;
+  title: string;
+  deadline: string;
+  views: number;
+  likesCount: number;
+  myLike: boolean;
+  myBookmark: boolean;
+  category: 'CASUAL' | 'DISCUSSION';
+  balanceOptions: BalanceOption[];
+  commentCount: number;
+  postTags: string[];
+  createdAt: string;
+  createdBy: string;
+};
+
 export type VoteInfo = {
   optionTitle: string;
   voteCount: number;
+};
+
+// 선택지 투표 및 변경 시, post로 보낼 data 타입
+export type SelectedVoteInfo = {
+  selectedOptionId: number;
+  user: boolean;
 };
 
 export type CreatePost = {

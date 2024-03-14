@@ -1,3 +1,4 @@
+import Comment from '@/assets/svg/Comment';
 import { END_POINT } from '../../constants/api';
 import { axiosInstance } from '../interceptor';
 

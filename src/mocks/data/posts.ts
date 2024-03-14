@@ -1,4 +1,4 @@
-import { Post } from '../../types/post';
+import { NPost, Post } from '@/types/post';
 
 export const postList: Post[] = [
   {
@@ -215,16 +215,36 @@ export const createdPost = [
   },
 ];
 
-export const postById = (postId: number) => {
-  const filteredPost = postList.filter((_post) => _post.id === postId)[0];
-  filteredPost.balanceOptions[0] = {
-    ...filteredPost.balanceOptions[0],
-    optionDescription: '남녀노소 누구나 좋아하는 커피',
+export const postById = (postId?: number) => {
+  const postMockData: NPost = {
+    id: 1,
+    title: '카페 주문',
+    deadline: '2024-03-14T01:32:49.283Z',
+    views: 126,
+    likesCount: 15,
+    myLike: true,
+    myBookmark: false,
+    category: 'CASUAL',
+    commentCount: 12,
+    balanceOptions: [
+      {
+        balanceOptionId: 40,
+        title: '커피',
+        description: '남녀노소 누구나 좋아하는 커피',
+        storedFileName: 'coffee.jpg',
+      },
+      {
+        balanceOptionId: 41,
+        title: '쥬스',
+        description: '건강에 좋고 맛도 좋은 쥬스',
+        storedFileName: 'juice.jpg',
+      },
+    ],
+
+    postTags: ['음료', '카페', 'Beverage'],
+    createdAt: '2024-03-14T01:32:49.283Z',
+    createdBy: '김성현',
   };
-  filteredPost.balanceOptions[1] = {
-    ...filteredPost.balanceOptions[1],
-    optionDescription: '건강에 좋고 맛도 좋은 쥬스',
-  };
-  filteredPost.creatorId = 1;
-  return filteredPost;
+
+  return postId && postMockData;
 };

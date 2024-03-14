@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import BalanceOptionCard from '../../../components/common/BalanceOptionCard/BalanceOptionCard';
-import { Post } from '../../../types/post';
+import { NPost } from '../../../types/post';
 import {
   balanceOptionCardsSectionWrapper,
   balanceOptionCardsWrapper,
@@ -9,7 +9,7 @@ import {
 import ResultSection from './ResultSection/ResultSection';
 
 export type BalanceOptionCardsSectionProps = Pick<
-  Post,
+  NPost,
   'id' | 'balanceOptions'
 >;
 

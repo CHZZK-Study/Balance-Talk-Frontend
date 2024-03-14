@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import UserComment from '../../../../components/common/UserComment';
-import { Comment } from '../../../../types/comment';
+import Comment from '@/assets/svg/Comment';
+import UserComment from '@/components/common/UserComment';
 
 export type CommentsByOptionProps = {
   balanceOptionTitle: string;
