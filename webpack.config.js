@@ -4,9 +4,11 @@ const dotenv = require('dotenv');
 const webpack = require('webpack');
 
 module.exports = (env) => {
-  const { DEV } = env;
+  const { DEV, MSW } = env;
 
-  if (DEV) {
+  if (MSW) {
+    dotenv.config({ path: './.env.msw' });
+  } else if (DEV) {
     dotenv.config({ path: './.env.local' });
   } else {
     dotenv.config({ path: './.env.production' });

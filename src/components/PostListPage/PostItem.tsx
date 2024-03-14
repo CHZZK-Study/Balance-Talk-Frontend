@@ -23,12 +23,12 @@ type PostItemProps = {
 const PostItem = ({ post }: PostItemProps) => {
   const imagesInfo: ImageInfo[] = [
     {
-      optionImg: post.balanceOptions[0].optionImg,
-      optionTitle: post.balanceOptions[0].optionTitle,
+      storedFileName: post.balanceOptions[0].storedFileName,
+      title: post.balanceOptions[0].title,
     },
     {
-      optionImg: post.balanceOptions[1].optionImg,
-      optionTitle: post.balanceOptions[1].optionTitle,
+      storedFileName: post.balanceOptions[1].storedFileName,
+      title: post.balanceOptions[1].title,
     },
   ];
 
@@ -42,16 +42,19 @@ const PostItem = ({ post }: PostItemProps) => {
       </div>
       <div css={tagWrapper}>
         {post &&
-          post.tags.map((tag) => {
-            return <TagButton key={tag} tag={tag} />;
+          post.postTags.map((tag) => {
+            if (tag) {
+              return <TagButton key={tag.tagName} tag={tag.tagName} />;
+            }
+            return <br />;
           })}
       </div>
       <div css={etcButtonWrapper}>
         <div css={css({ height: '24px' })}>
           <Eye />
-          <span css={etcButtonText}>{post.views}</span>
+          <span css={etcButtonText}>{post.views || '0'}</span>
           <Comment />
-          <span css={etcButtonText}>{post.commentCount}</span>
+          <span css={etcButtonText}>{post.commentCount || '0'}</span>
         </div>
         <div css={css({ display: 'flex', height: '100%' })}>
           <HeartButton isLiked={isLiked} postId={post.id} />
@@ -61,7 +64,7 @@ const PostItem = ({ post }: PostItemProps) => {
               fontFamily: 'SpoqaHanSansNeo-Regular',
             })}
           >
-            {post?.likeCount}
+            {post?.likeCount || '0'}
           </div>
         </div>
       </div>

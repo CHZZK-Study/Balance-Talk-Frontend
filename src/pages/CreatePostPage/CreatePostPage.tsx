@@ -4,6 +4,7 @@ import React, {
   useState,
   KeyboardEvent,
   MouseEvent,
+  useEffect,
 } from 'react';
 import { css } from '@emotion/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -42,30 +43,21 @@ const CreatePostPage = () => {
   const navigate = useNavigate();
 
   const initialState = {
+    memberId: 6,
     title: '',
-    postCategory: 'CASUAL',
+    category: 'CASUAL',
     deadline: 'xxxx-xx-xx',
     tags: [],
     balanceOptions: [
       {
         title: '',
         description: '',
-        file: {
-          uploadName: '사진1',
-          path: '',
-          type: '',
-          size: '',
-        },
+        storedFileName: undefined,
       },
       {
         title: '',
         description: '',
-        file: {
-          uploadName: '사진2',
-          path: '',
-          type: '',
-          size: '',
-        },
+        storedFileName: undefined,
       },
     ],
   };
@@ -75,7 +67,7 @@ const CreatePostPage = () => {
   const { form, onChange, setArray, setEach } =
     useInputs<CreatePost>(initialState);
 
-  const { title, postCategory, deadline, tags } = form;
+  const { title, category, deadline, tags } = form;
 
   const [tag, setTag] = useState('');
 
@@ -121,6 +113,10 @@ const CreatePostPage = () => {
     navigate('/');
   };
 
+  useEffect(() => {
+    console.log(form);
+  }, [form]);
+
   return (
     <div css={css({ width: '100vw' })}>
       <div css={headingWrapper}>
@@ -155,8 +151,8 @@ const CreatePostPage = () => {
             <div css={css({ display: 'flex' })}>
               <div css={css({ marginRight: '20px' })}>
                 <select
-                  name="postCategory"
-                  value={postCategory}
+                  name="category"
+                  value={category}
                   onChange={onChange}
                   css={css({
                     width: '100px',

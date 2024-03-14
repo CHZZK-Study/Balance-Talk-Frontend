@@ -1,8 +1,8 @@
 export type ImageInfo = {
-  optionImg: string;
-  optionTitle: string;
+  storedFileName?: string;
+  title: string;
   // 게시물 Description 필요
-  optionDescription?: string;
+  description?: string;
 };
 
 export type Post = {
@@ -14,7 +14,7 @@ export type Post = {
   myBookmark: boolean;
   myLike: boolean;
   deadline: string;
-  tags: string[];
+  postTags: { tagName: string }[];
   balanceOptions: ImageInfo[];
   // 게시물을 생성한 사람의 id도 필요
   creatorId?: number;
@@ -26,17 +26,18 @@ export type VoteInfo = {
 };
 
 export type CreatePost = {
+  memberId: number;
   title: string;
-  postCategory: string;
+  category: string;
   deadline: string;
   tags: string[];
-  balanceOptions: CreatePostImage[];
+  balanceOptions: ImageInfo[];
 };
 
 export type CreatePostImage = {
+  storedFileName?: string;
   title: string;
-  description: string;
-  file: CreatePostImageFile;
+  description?: string;
 };
 
 export type CreatePostImageFile = {
@@ -44,4 +45,13 @@ export type CreatePostImageFile = {
   path: string;
   type: string;
   size: string;
+};
+
+export type UploadedImage = {
+  id: number;
+  originalName: string;
+  storedName: string;
+  path: string;
+  type: string;
+  size: number;
 };
