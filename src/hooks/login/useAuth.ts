@@ -12,8 +12,7 @@ export const useAuth = () => {
     )[0]?.value;
 
     return {
-      // isLoggedIn: jwtCookieValue !== undefined && jwtCookieValue !== ' ',
-      isLoggedIn: true,
+      isLoggedIn: jwtCookieValue !== undefined && jwtCookieValue !== ' ',
     };
   };
 
