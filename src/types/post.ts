@@ -37,21 +37,15 @@ export type NPost = {
   myBookmark: boolean;
   category: 'CASUAL' | 'DISCUSSION';
   balanceOptions: BalanceOption[];
-  commentCount: number;
   postTags: string[];
   createdAt: string;
   createdBy: string;
+  selectedOptionId?: number;
 };
 
 export type VoteInfo = {
   optionTitle: string;
   voteCount: number;
-};
-
-// 선택지 투표 및 변경 시, post로 보낼 data 타입
-export type SelectedVoteInfo = {
-  selectedOptionId: number;
-  user: boolean;
 };
 
 export type CreatePost = {

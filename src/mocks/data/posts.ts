@@ -225,7 +225,6 @@ export const postById = (postId?: number) => {
     myLike: true,
     myBookmark: false,
     category: 'CASUAL',
-    commentCount: 12,
     balanceOptions: [
       {
         balanceOptionId: 40,
