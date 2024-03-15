@@ -22,3 +22,12 @@ export const versusText = css({
   WebkitTextStroke: '1px white',
   textShadow: '0px 4px 4px gray',
 });
+
+export const imageTextWrapper = css({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontFamily: 'SpoqaHanSansNeo-Bold',
+  fontSize: '30px',
+  textAlign: 'center',
+});

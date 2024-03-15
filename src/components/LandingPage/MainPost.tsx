@@ -51,14 +51,17 @@ const MainPost = ({ post }: MainPostProps) => {
         <div css={mainPostTitleWrapper}>
           <h3 css={mainPostTitle}>{postInfo?.title}</h3>
           <div css={TagButtonWrapper}>
-            {postInfo &&
-              postInfo.tags.map((tag) => {
-                return <TagButton key={tag} tag={tag} />;
-              })}
+            {postInfo?.postTags?.map((tag) => {
+              if (tag) {
+                console.log(tag.tagName);
+                return <TagButton key={tag.tagName} tag={tag.tagName} />;
+              }
+              return <br />;
+            })}
           </div>
         </div>
         <div css={voteCount}>
-          현재 투표수 : {data && calculateTotalVoteCount(data)}
+          현재 투표수 : {(data && calculateTotalVoteCount(data)) || '0'}
         </div>
         <div css={voteButtonWrapper}>
           <VoteButton />
@@ -66,9 +69,9 @@ const MainPost = ({ post }: MainPostProps) => {
         <div css={etcButtonWrapper}>
           <div css={css({ height: '24px' })}>
             <Eye />
-            <span css={etcButtonText}>{postInfo?.views}</span>
+            <span css={etcButtonText}>{postInfo?.views || '0'}</span>
             <Comment />
-            <span css={etcButtonText}>{postInfo?.commentCount}</span>
+            <span css={etcButtonText}>{postInfo?.commentCount || '0'}</span>
           </div>
           <div
             css={css({ display: 'flex', height: '100%', marginBottom: '1px' })}
@@ -80,7 +83,7 @@ const MainPost = ({ post }: MainPostProps) => {
                 fontFamily: 'SpoqaHanSansNeo-Regular',
               })}
             >
-              {postInfo?.likeCount}
+              {postInfo?.likeCount || '0'}
             </span>
           </div>
         </div>

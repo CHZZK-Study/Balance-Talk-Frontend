@@ -29,6 +29,10 @@ const LandingPage = () => {
     queryFn: fetchPostsData,
   });
 
+  if (data?.length === 0) {
+    return <div>Fail to Load Post Data</div>;
+  }
+
   const extractBalanceOptions = (datas: Post[]): PostInfo[] => {
     return datas.map((post) => {
       return {
@@ -42,12 +46,8 @@ const LandingPage = () => {
 
   const renderCarouselItems = (postInfo: PostInfo) => {
     return (
-      <div css={css({ margin: '10px' })}>
-        <PostImage
-          key={postInfo.id}
-          images={postInfo.balanceOptions}
-          size="medium"
-        />
+      <div css={css({ margin: '10px' })} key={postInfo.id}>
+        <PostImage images={postInfo.balanceOptions} size="medium" />
       </div>
     );
   };

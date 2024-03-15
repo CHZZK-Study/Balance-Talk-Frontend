@@ -3,6 +3,7 @@ import { ImageInfo } from '../../../types/post';
 import {
   SizeType,
   fontWrapper,
+  imageTextWrapper,
   imageWrapper,
   postImageWrapper,
 } from './PostImage.sylte';
@@ -15,17 +16,29 @@ type PostImageProps = {
 const PostImage = ({ images, size }: PostImageProps) => {
   return (
     <div css={postImageWrapper(size)}>
-      <img
-        css={imageWrapper(size)}
-        src={images?.[0].optionImg}
-        alt={images?.[0].optionTitle}
-      />
+      {images?.[0].storedFileName ? (
+        <img
+          css={imageWrapper(size)}
+          src={images?.[0].storedFileName}
+          alt={images?.[0].title}
+        />
+      ) : (
+        <div css={[imageWrapper(size), imageTextWrapper(size)]}>
+          {images?.[0].title}
+        </div>
+      )}
       <span css={fontWrapper(size)}>vs</span>
-      <img
-        css={imageWrapper(size)}
-        src={images?.[1].optionImg}
-        alt={images?.[1].optionTitle}
-      />
+      {images?.[1].storedFileName ? (
+        <img
+          css={imageWrapper(size)}
+          src={images?.[1].storedFileName}
+          alt={images?.[1].title}
+        />
+      ) : (
+        <div css={[imageWrapper(size), imageTextWrapper(size)]}>
+          {images?.[1]?.title}
+        </div>
+      )}
     </div>
   );
 };

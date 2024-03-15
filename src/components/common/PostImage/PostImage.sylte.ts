@@ -23,7 +23,7 @@ export const sizeStyles: { [key in SizeType]: SizeStyle } = {
     height: '200px',
     imageWidth: '170px',
     imageHeight: '170px',
-    fontSize: '36px',
+    fontSize: '30px',
   },
 };
 
@@ -56,4 +56,14 @@ export const fontWrapper = (size: SizeType) =>
     zIndex: 1,
     WebkitTextStroke: '1px white',
     textShadow: '0px 4px 4px gray',
+  });
+
+export const imageTextWrapper = (size: SizeType) =>
+  css({
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: 'SpoqaHanSansNeo-Bold',
+    fontSize: sizeStyles[size].fontSize,
+    textAlign: 'center',
   });

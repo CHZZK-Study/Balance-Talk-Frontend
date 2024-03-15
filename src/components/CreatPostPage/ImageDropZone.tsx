@@ -3,6 +3,7 @@ import React, { useCallback } from 'react';
 import { css } from '@emotion/react';
 import { useDropzone } from 'react-dropzone';
 import { CreatePostImageFile } from '../../types/post';
+import { fetchFileData } from '../../api/posts/posts';
 
 type ImageDropZoneProps = {
   setFile: <U>(name: string, value: U) => void;
@@ -18,6 +19,7 @@ const ImageDropZone: React.FC<ImageDropZoneProps> = ({ setFile }) => {
         type,
         size: size.toString(),
       });
+      const imageInfo = fetchFileData();
     },
     [setFile],
   );

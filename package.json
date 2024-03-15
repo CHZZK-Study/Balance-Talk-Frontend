@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --env DEV=true",
+    "dev": "webpack-dev-server --env DEV=true MSW=true",
+    "dev-api": "webpack-dev-server --env DEV=true",
     "lint": "eslint './src/**/*.{ts,tsx,js,jsx}'"
   },
   "author": "",
