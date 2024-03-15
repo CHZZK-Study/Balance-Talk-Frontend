@@ -1,5 +1,7 @@
+
+import { CreatePost, Post, UploadedImage, VoteInfo } from '../../types/post';
 import { END_POINT } from '../../constants/api';
-import { CreatePost, Post, VoteInfo, UploadedImage } from '../../types/post';
+
 import { axiosInstance } from '../interceptor';
 
 // const URL = process.env.API_URL;
@@ -48,9 +50,7 @@ export const fetchAddLike = async (postId: number) => {
   //   method: 'POST',
   //   credentials: 'include',
   // });
-
   // return response.body;
-
   const response = await axiosInstance.post(`/posts/${postId}/likes`);
   return response;
 };
