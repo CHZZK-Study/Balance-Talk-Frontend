@@ -3,7 +3,7 @@ import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { axiosInstance } from '../../../api/interceptor';
 import Heading from '../../../components/design/Heading/Heading';
 import { END_POINT } from '../../../constants/api';
-import { Member } from '../../../types/mypage';
+import { Member } from '../../../types/history';
 import { loginContainer } from '../../LoginPage/LoginPage.style';
 import DeleteForm from './sections/DeleteForm/DeleteForm';
 import WarningMessage from './sections/WarningMessage/WarningMessage';

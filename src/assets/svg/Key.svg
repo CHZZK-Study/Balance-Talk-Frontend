@@ -1,8 +1,4 @@
-import React from 'react';
-
-const Key = () => {
-  return (
-    <svg
+<svg
       width="35"
       height="37"
       viewBox="0 0 35 37"
@@ -24,7 +20,3 @@ const Key = () => {
         strokeLinecap="round"
       />
     </svg>
-  );
-};
-
-export default Key;

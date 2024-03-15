@@ -1,6 +1,6 @@
 import { Theme } from '../../../../../styles/Theme';
 
-export const sidebarNavStyling = (isSelected: boolean) => ({
+export const sidebarTabStyling = (isSelected: boolean) => ({
   display: 'flex',
   alignItems: 'center',
   margin: '40px 0px',

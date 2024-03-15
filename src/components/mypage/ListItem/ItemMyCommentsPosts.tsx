@@ -1,5 +1,4 @@
 import React, { ComponentPropsWithRef } from 'react';
-import { ItemVotedPostsType } from '../../../types/mypage';
 import {
   hoverStyling,
   mypageListItemContainer,
@@ -7,22 +6,23 @@ import {
   noContainer,
   withoutNoContainer,
 } from './ListItem.style';
+import { MyCommentsPostsType } from '../../../types/history';
 
-export interface ItemVotedPostsProps extends ComponentPropsWithRef<'li'> {
-  item: ItemVotedPostsType;
+export interface MyCommentsPostsProps extends ComponentPropsWithRef<'li'> {
+  item: MyCommentsPostsType;
 }
 
-const ItemVotedPosts = ({ item }: ItemVotedPostsProps) => {
+const ItemMyCommentsPosts = ({ item }: MyCommentsPostsProps) => {
   return (
     <li css={mypageListItemContainer}>
       <span css={[mypageTextStyling('xSmall'), noContainer]}>{item.id}</span>
       <div css={[withoutNoContainer, hoverStyling]}>
-        <p css={mypageTextStyling('small')}>{item.position}</p>
+        <p css={mypageTextStyling('small')}>{item.comment}</p>
         <p css={mypageTextStyling('xSmall')}>{item.date}</p>
-        <p css={mypageTextStyling('xSmall')}>{item.title}</p>
+        <p css={[mypageTextStyling('xSmall')]}>{item.title}</p>
       </div>
     </li>
   );
 };
 
-export default ItemVotedPosts;
+export default ItemMyCommentsPosts;

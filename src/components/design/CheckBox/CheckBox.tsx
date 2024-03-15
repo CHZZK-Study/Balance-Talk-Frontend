@@ -1,29 +1,30 @@
-import type { ComponentPropsWithRef, ForwardedRef } from 'react';
-import React, { forwardRef, useCallback, useState } from 'react';
+import type { ChangeEvent, ComponentPropsWithRef, ForwardedRef } from 'react';
+import React, { forwardRef } from 'react';
 import { checkBoxContainer, checkBoxLabelStyling } from './CheckBox.style';
 
 export interface CheckboxProps extends ComponentPropsWithRef<'input'> {
   label?: string;
   isChecked?: boolean;
+  handleChecked?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const CheckBox = (
-  { id, label = '', isChecked = false, ...attributes }: CheckboxProps,
+  {
+    id,
+    label = '',
+    isChecked = false,
+    handleChecked,
+    ...attributes
+  }: CheckboxProps,
   ref: ForwardedRef<HTMLInputElement>,
 ) => {
-  const [checked, setChecked] = useState(isChecked);
-
-  const handleChecked = useCallback(() => {
-    setChecked(!checked);
-  }, [checked]);
-
   return (
     <label htmlFor={id} css={checkBoxContainer}>
       <input
         id={id}
-        checked={checked}
+        checked={isChecked}
         type="checkbox"
-        onClick={handleChecked}
+        onChange={handleChecked}
         {...attributes}
         ref={ref}
       />

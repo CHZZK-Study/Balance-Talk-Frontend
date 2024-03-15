@@ -1,5 +1,5 @@
-import React, { ComponentPropsWithRef } from 'react';
-import { ItemBookmarksType } from '../../../types/mypage';
+import React, { ComponentPropsWithRef, forwardRef } from 'react';
+import { MyPostsType } from '../../../types/history';
 import {
   hoverStyling,
   mypageListItemContainer,
@@ -7,16 +7,14 @@ import {
   noContainer,
   withoutNoContainer,
 } from './ListItem.style';
-import CheckBox from '../../design/CheckBox/CheckBox';
 
-export interface ItemBookmarksProps extends ComponentPropsWithRef<'li'> {
-  item: ItemBookmarksType;
+export interface MyPostsProps extends ComponentPropsWithRef<'li'> {
+  item: MyPostsType;
 }
 
-const ItemBookmarks = ({ item }: ItemBookmarksProps) => {
+const ItemMyPosts = ({ item }: MyPostsProps) => {
   return (
     <li css={mypageListItemContainer}>
-      <CheckBox />
       <span css={[mypageTextStyling('xSmall'), noContainer]}>{item.id}</span>
       <div css={withoutNoContainer}>
         <p css={[mypageTextStyling('small'), hoverStyling]}>{item.title}</p>
@@ -26,4 +24,4 @@ const ItemBookmarks = ({ item }: ItemBookmarksProps) => {
   );
 };
 
-export default ItemBookmarks;
+export default forwardRef(ItemMyPosts);
