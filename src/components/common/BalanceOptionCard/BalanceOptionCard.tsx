@@ -44,7 +44,6 @@ const BalanceOptionCard = ({
     mutationFn: (data) => voteBalanceOption(postId, { ...data }),
     onSuccess: async () => {
       setSelectedOptionId(postId, balanceOptionId);
-      console.log(1);
       await queryClient.invalidateQueries({ queryKey: ['posts', postId] });
     },
   });
@@ -53,7 +52,6 @@ const BalanceOptionCard = ({
     mutationFn: (data) => changeBalanceOption(postId, { ...data }),
     onSuccess: async () => {
       setSelectedOptionId(postId, balanceOptionId);
-      console.log(2);
       await queryClient.invalidateQueries({ queryKey: ['posts', postId] });
     },
   });
@@ -61,7 +59,6 @@ const BalanceOptionCard = ({
   const { mutate: voteBalanceOptionByUserMutate } = useMutation({
     mutationFn: (data) => voteBalanceOption(postId, { ...data }),
     onSuccess: async () => {
-      console.log(3);
       await queryClient.invalidateQueries({ queryKey: ['posts', postId] });
     },
   });
@@ -69,7 +66,6 @@ const BalanceOptionCard = ({
   const { mutate: changeBalanceOptionByUserMutate } = useMutation({
     mutationFn: (data) => voteBalanceOption(postId, { ...data }),
     onSuccess: async () => {
-      console.log(4);
       await queryClient.invalidateQueries({ queryKey: ['posts', postId] });
     },
   });
