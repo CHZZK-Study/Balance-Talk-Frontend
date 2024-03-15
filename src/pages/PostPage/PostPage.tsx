@@ -7,7 +7,7 @@ import { getPost } from '../../api/posts/posts';
 import CreatorSection from './CreatorSection/CreatorSection';
 import UserUtilitySection from './UserUtilitySection/UserUtilitySection';
 import TitleSection from './TitleSection/TitleSection';
-import { ImageInfo, Post, NPost } from '../../types/post';
+import { NPost } from '../../types/post';
 import {
   ButtonSectionWrapper,
   ButtonStyleWrapper,
@@ -17,13 +17,12 @@ import {
 
 const PostPage = () => {
   const postId = Number(useParams().id);
-  const [isOpened, setIsOpened] = useState(true);
+  const [isOpened, setIsOpened] = useState(false);
   const { isLoading, data: post } = useQuery({
     queryKey: ['posts', postId],
     queryFn: () => getPost(postId),
     select: (data: { data: NPost }) => data?.data,
   });
-
   return isLoading ? (
     <div>Loading...</div>
   ) : (
@@ -37,6 +36,7 @@ const PostPage = () => {
       <BalanceOptionCardsSection
         id={post?.id || 0}
         balanceOptions={post?.balanceOptions || []}
+        selectedOptionId={post?.selectedOptionId}
       />
 
       <div css={UserSectionWrapper}>

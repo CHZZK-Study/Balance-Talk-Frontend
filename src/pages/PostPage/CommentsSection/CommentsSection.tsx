@@ -18,10 +18,25 @@ interface CommectsSectionProps {
   postId: number;
 }
 
+// interface CommentInputFormProps {
+//   content: string;
+//   selectedOptionId: number;
+// }
+
+// const initialState: AddCommentFormProps = {
+//   content: '',
+// };
+
+// const useAddCommentForm = () => {
+//   const { form, onChange } = useInputs<>;
+//   const { form, onChange } = useInputs<AddCommentFormProps>(initialState);
+//   return { form, onChange };
+// };
+
 const CommentsSection = ({ postId }: CommectsSectionProps) => {
   const totalCommentsCount = 40;
   const { data: comments, isLoading } = useQuery({
-    queryKey: ['post', postId, 'comments'],
+    queryKey: ['posts', 'comments', postId],
     queryFn: () => getComments(postId),
     select: (data: { data: Comment }) => data?.data,
   });
