@@ -26,22 +26,21 @@ const inputStyles = {
 const initialState = {
   title: '',
   description: '',
-  file: {
-    uploadName: '사진1',
-    path: '',
-    type: '',
-    size: '',
-  },
+  storedFileName: undefined,
 };
 
 const CreatePostForm = ({ setBalanceOptions, index }: CreatePostFormProps) => {
   const { form, onChange, setEach } = useInputs<CreatePostImage>(initialState);
 
-  const { title, description, file } = form;
+  const { title, description, storedFileName } = form;
 
   useEffect(() => {
-    setBalanceOptions('balanceOptions', { title, description, file }, index);
-  }, [title, description, file, index, setBalanceOptions]);
+    setBalanceOptions(
+      'balanceOptions',
+      { title, description, storedFileName },
+      index,
+    );
+  }, [title, description, storedFileName, index, setBalanceOptions]);
 
   return (
     <div css={css({ margin: '80px', marginTop: '40px' })}>

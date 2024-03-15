@@ -4,9 +4,11 @@ const dotenv = require('dotenv');
 const webpack = require('webpack');
 
 module.exports = (env) => {
-  const { DEV } = env;
+  const { DEV, MSW } = env;
 
-  if (DEV) {
+  if (MSW) {
+    dotenv.config({ path: './.env.msw' });
+  } else if (DEV) {
     dotenv.config({ path: './.env.local' });
   } else {
     dotenv.config({ path: './.env.production' });
@@ -71,6 +73,9 @@ module.exports = (env) => {
         template: './public/index.html',
       }),
       new webpack.EnvironmentPlugin(['API_URL']),
+      new webpack.DefinePlugin({
+        'process.env.MSW': env.MSW,
+      }),
     ],
     output: {
       filename: 'bundle.js',
@@ -81,6 +86,12 @@ module.exports = (env) => {
       port: 3000,
       open: true,
       historyApiFallback: true,
+      proxy: {
+        '/api': {
+          target: process.env.API_URL,
+          pathRewrite: { '^/api': '' },
+        },
+      },
     },
   };
 };
