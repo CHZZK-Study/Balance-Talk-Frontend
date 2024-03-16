@@ -1,5 +1,5 @@
 import React from 'react';
-import { Post } from '../../../types/post';
+import { NPost } from '../../../types/post';
 import TagButton from '../../../components/Buttons/TagButton';
 import {
   titleSectionWrapper,
@@ -10,32 +10,41 @@ import {
   postInfoWrapper,
 } from './TitleSection.style';
 import Eye from '../../../assets/svg/Eye';
-import { Hearts } from '../../../assets';
+import { Hearts, Vote } from '../../../assets';
 
 export type TitleSectionProps = Pick<
-  Post,
-  'title' | 'views' | 'likeCount' | 'tags'
+  NPost,
+  'title' | 'views' | 'likesCount' | 'postTags'
 >;
 
-const TitleSection = ({ title, views, likeCount, tags }: TitleSectionProps) => {
+const TitleSection = ({
+  title,
+  views,
+  likesCount,
+  postTags,
+}: TitleSectionProps) => {
   return (
     <div css={titleSectionWrapper}>
       <div css={titleSectionLeftWrapper}>
         <div css={titleWrapper}>{title}</div>
         <div css={tagsWrapper}>
-          {tags.map((tag) => (
+          {postTags.map((tag: string) => (
             <TagButton tag={tag} key={tag} />
           ))}
         </div>
       </div>
       <div css={titleSectionRightwrapper}>
         <div css={postInfoWrapper}>
+          <Vote />
+          <span>{1234}</span>
+        </div>
+        <div css={postInfoWrapper}>
           <Eye />
           <span>{views}</span>
         </div>
         <div css={postInfoWrapper}>
           <Hearts />
-          {likeCount}
+          {likesCount}
         </div>
       </div>
     </div>

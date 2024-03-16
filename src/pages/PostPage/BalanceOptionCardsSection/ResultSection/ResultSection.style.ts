@@ -35,6 +35,7 @@ export const optionVoteWrapper = (color: string) =>
     height: '100%',
     padding: '0.5rem 0',
     color: Theme.color.white,
+    whiteSpace: 'nowrap',
     background:
       color === 'lightred' ? Theme.color.lightred : Theme.color.lightblue,
   });

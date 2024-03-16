@@ -1,7 +1,6 @@
 
-import { CreatePost, Post, UploadedImage, VoteInfo } from '../../types/post';
+import { CreatePost, Post, UploadedImage, VoteInfo, NPost } from '../../types/post';
 import { END_POINT } from '../../constants/api';
-
 import { axiosInstance } from '../interceptor';
 
 // const URL = process.env.API_URL;
@@ -72,7 +71,7 @@ export const fetchFileData = async () => {
   return response.data as UploadedImage;
 };
 
-export const getPost = (postId: number): Promise<Post> =>
+export const getPost = (postId: number): Promise<NPost> =>
   axiosInstance.get(END_POINT.POST(postId));
 
 export const getVoteCount = (postId: number): Promise<VoteInfo[]> =>
