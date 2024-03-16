@@ -1,8 +1,9 @@
+import { postEmailRequest } from '@/api/email/email';
 import { useRef, useState } from 'react';
+import { ERROR, SUCCESS } from '../../../constants/message';
 import { isEmptyString } from '../../../utils/validator';
-import { ERROR } from '../../../constants/message';
 
-export const useCheckEmail = (value: string) => {
+export const useCheckEmail = (type: string, value: string) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
     undefined,
@@ -14,18 +15,20 @@ export const useCheckEmail = (value: string) => {
     return emailRegex.test(email);
   };
 
-  const handleBlur = () => {
+  const handleSubmit = () => {
     if (isEmptyString(value)) {
       setIsError(true);
       setErrorMessage(ERROR.EMAIL.EMPTY);
     } else if (!isValidEmailFormat(value)) {
       setIsError(true);
       setErrorMessage(ERROR.EMAIL.FORM);
-    } else {
+    } else if (type === 'signup') {
+      const res = postEmailRequest(value);
+      console.log(res);
       setIsError(false);
-      setErrorMessage(undefined);
+      setErrorMessage(SUCCESS.EMAIL.AVAILABLE);
     }
   };
 
-  return { inputRef, isError, errorMessage, handleBlur };
+  return { inputRef, isError, errorMessage, handleSubmit };
 };

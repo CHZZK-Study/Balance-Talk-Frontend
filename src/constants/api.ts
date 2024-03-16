@@ -15,6 +15,8 @@ export const END_POINT = {
   LOGIN: '/members/login',
   ALL_MEMBERS: '/members',
   MEMBER: (id: number) => `/members/${id}`,
+  EMAIL_VERIFY: '/email/verify',
+  EMAIL_REQUEST: '/email/request',
   POST: (id: number) => `/posts/${id}`,
   POST_BOOKMARK: (memberId: number) => `/bookmark/members/${memberId}`,
   COMMENTS: (postId: number) => `/posts/${postId}/comments`,
