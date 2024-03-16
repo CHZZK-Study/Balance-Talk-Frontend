@@ -19,6 +19,7 @@ export const END_POINT = {
   POST_BOOKMARK: (memberId: number) => `/bookmark/members/${memberId}`,
   COMMENTS: (postId: number) => `/posts/${postId}/comments`,
   VOTE_COUNT: (postId: number) => `/posts/${postId}/vote`,
+  VOTE: (postId: number) => `posts/${postId}/vote`,
 };
 
 export const AXIOS = {

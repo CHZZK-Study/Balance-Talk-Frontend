@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 export const titleSectionWrapper = css({
   display: 'flex',
   justifyContent: 'space-between',
+  marginBottom: '0.5rem',
 });
 
 export const titleSectionLeftWrapper = css({
@@ -32,6 +33,7 @@ export const titleWrapper = css({
 
 export const postInfoWrapper = css({
   display: 'flex',
+  paddingTop: '0.5rem',
   alignItems: 'center',
   gap: '0.5rem',
 });

@@ -17,3 +17,5 @@ export { default as Rank } from './svg/Rank.svg';
 export { default as Winner } from './svg/winner.svg';
 export { default as Check } from './svg/check.svg';
 export { default as Fight } from './svg/fight.svg';
+export { default as NoImage } from './images/no-image.png';
+export { default as Vote } from './svg/vote.svg';
