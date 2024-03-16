@@ -10,7 +10,7 @@ interface InputNicknameProps {
 }
 
 const InputNickname = ({ value, onChange }: InputNicknameProps) => {
-  const { inputRef, isError, errorMessage, handleBlur } =
+  const { inputRef, isError, errorMessage, handleSubmit } =
     useCheckNickname(value);
 
   return (
@@ -24,8 +24,7 @@ const InputNickname = ({ value, onChange }: InputNicknameProps) => {
       value={value}
       ref={inputRef}
       onChange={onChange}
-      onBlur={handleBlur}
-      btn={<Button>확인</Button>}
+      btn={<Button onClick={handleSubmit}>확인</Button>}
       css={css({ width: '350px' })}
     />
   );
