@@ -1,8 +1,8 @@
 import { END_POINT } from '@/constants/api';
-import { AxiosErrorResponse, axiosInstance } from '../interceptor';
+import { axiosInstance } from '../interceptor';
 
 export const getNicknameVerify = async (nickname: string) => {
-  const { data } = await axiosInstance.get<string | AxiosErrorResponse>(
+  const { data } = await axiosInstance.get<string>(
     `${END_POINT.NICKNAME_VERIFY}`,
     {
       params: {
