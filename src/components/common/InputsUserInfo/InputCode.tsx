@@ -1,16 +1,17 @@
-import React, { ChangeEvent } from 'react';
+import { MemberForm } from '@/types/member';
 import { css } from '@emotion/react';
+import React, { ChangeEvent } from 'react';
+import { useCheckCode } from '../../../hooks/common/inputsUserInfo/useCheckCode';
 import Button from '../../design/Button/Button';
 import Input from '../../design/Input/Input';
-import { useCheckCode } from '../../../hooks/common/inputsUserInfo/useCheckCode';
 
 interface InputCodeProps {
-  value: string;
+  value: Pick<MemberForm, 'email' | 'code'>;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const InputCode = ({ value, onChange }: InputCodeProps) => {
-  const { inputRef, isError, errorMessage, handleBlur } = useCheckCode(value);
+  const { inputRef, isError, errorMessage, handleSubmit } = useCheckCode(value);
 
   return (
     <Input
@@ -20,11 +21,10 @@ const InputCode = ({ value, onChange }: InputCodeProps) => {
       label="인증번호"
       isError={isError}
       errorMessage={errorMessage}
-      value={value}
+      value={value.code}
       ref={inputRef}
       onChange={onChange}
-      onBlur={handleBlur}
-      btn={<Button>확인</Button>}
+      btn={<Button onClick={handleSubmit}>확인</Button>}
       css={css({ width: '350px' })}
     />
   );

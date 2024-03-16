@@ -23,7 +23,10 @@ const SignUpPage = () => {
       <InputProfileImage />
       <div css={inputContainer}>
         <InputEmail type="signup" value={form.email} onChange={onChange} />
-        <InputCode value={form.code} onChange={onChange} />
+        <InputCode
+          value={{ code: form.code, email: form.email }}
+          onChange={onChange}
+        />
         <InputNickname value={form.nickname} onChange={onChange} />
         <InputPw value={form.password} onChange={onChange} />
         <InputPwCheck

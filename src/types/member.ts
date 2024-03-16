@@ -7,3 +7,11 @@ export type Member = {
   totalPostLike: number;
   level: number;
 };
+
+export interface MemberForm {
+  email: string;
+  code: string;
+  nickname: string;
+  password: string;
+  passwordCheck: string;
+}

@@ -1,14 +1,8 @@
+// import { useState } from 'react';
+import { MemberForm } from '@/types/member';
 import useInputs from '../common/useInputs';
 
-interface SignupFormProps {
-  email: string;
-  code: string;
-  nickname: string;
-  password: string;
-  passwordCheck: string;
-}
-
-const initialState: SignupFormProps = {
+const initialState: MemberForm = {
   email: '',
   code: '',
   nickname: '',
@@ -17,6 +11,13 @@ const initialState: SignupFormProps = {
 };
 
 export const useSignupForm = () => {
-  const { form, onChange } = useInputs<SignupFormProps>(initialState);
+  const { form, onChange } = useInputs<MemberForm>(initialState);
+  // const [isSuccessForm, setIsSuccessForm] = useState({
+  //   email: false,
+  //   code: false,
+  //   nickname: false,
+  //   password: false,
+  //   passwordCheck: false,
+  // });
   return { form, onChange };
 };
