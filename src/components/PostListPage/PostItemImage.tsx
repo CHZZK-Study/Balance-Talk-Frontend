@@ -2,6 +2,7 @@ import React from 'react';
 import { ImageInfo } from '../../types/post';
 import {
   imageContainer,
+  imageTextWrapper,
   imageWrapper,
   versusText,
 } from './PostItemImage.style';
@@ -13,7 +14,26 @@ type PostImageProps = {
 const PostItemImage = ({ images }: PostImageProps) => {
   return (
     <div css={imageContainer}>
-      <img
+      {images?.[0].storedFileName ? (
+        <img
+          css={imageWrapper}
+          src={images?.[0].storedFileName}
+          alt={images?.[0].title}
+        />
+      ) : (
+        <div css={[imageWrapper, imageTextWrapper]}>{images?.[0].title}</div>
+      )}
+      <span css={versusText}>vs</span>
+      {images?.[1].storedFileName ? (
+        <img
+          css={imageWrapper}
+          src={images?.[1].storedFileName}
+          alt={images?.[1].title}
+        />
+      ) : (
+        <div css={[imageWrapper, imageTextWrapper]}>{images?.[1].title}</div>
+      )}
+      {/* <img
         css={imageWrapper}
         src={images[0].optionImg}
         alt={images[0].optionTitle}
@@ -23,7 +43,7 @@ const PostItemImage = ({ images }: PostImageProps) => {
         css={imageWrapper}
         src={images[1].optionImg}
         alt={images[1].optionTitle}
-      />
+      /> */}
     </div>
   );
 };
