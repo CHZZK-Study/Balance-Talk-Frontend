@@ -41,11 +41,9 @@ export const useSignupForm = () => {
     e.preventDefault();
 
     if (isAllTrue(successForm)) {
-      // const newForm = createNewForm(form);
-      // signup.mutate(newForm);
-    } else {
       const newForm = createNewForm(form);
       signup.mutate(newForm);
+    } else {
       focus(e);
     }
   };
