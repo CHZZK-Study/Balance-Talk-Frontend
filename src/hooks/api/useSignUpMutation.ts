@@ -13,7 +13,7 @@ export const useSignUpMutation = () => {
       alert('회원가입에 성공했습니다😀');
     },
     onError: (err: AxiosErrorResponse) => {
-      console.error('회원가입 실패', err);
+      console.error(err);
     },
   });
 };

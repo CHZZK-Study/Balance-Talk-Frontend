@@ -1,4 +1,7 @@
 import { postEmailRequest } from '@/api/email/email';
+import { AxiosErrorResponse } from '@/api/interceptor';
+import { HTTP_STATUS_CODE } from '@/constants/api';
+import { useMutation } from '@tanstack/react-query';
 import { useRef, useState } from 'react';
 import { ERROR, SUCCESS } from '../../../constants/message';
 import { isEmptyString } from '../../../utils/validator';
@@ -15,6 +18,20 @@ export const useCheckEmail = (type: string, value: string) => {
     return emailRegex.test(email);
   };
 
+  const emailRequest = useMutation({
+    mutationFn: () => postEmailRequest(value),
+    onSuccess: () => {
+      setIsError(false);
+      setErrorMessage(SUCCESS.EMAIL.AVAILABLE);
+    },
+    onError: (err: AxiosErrorResponse) => {
+      if (err.status === HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR) {
+        setIsError(true);
+        setErrorMessage(ERROR.EMAIL.EXIST);
+      }
+    },
+  });
+
   const handleSubmit = () => {
     if (isEmptyString(value)) {
       setIsError(true);
@@ -23,10 +40,7 @@ export const useCheckEmail = (type: string, value: string) => {
       setIsError(true);
       setErrorMessage(ERROR.EMAIL.FORM);
     } else if (type === 'signup') {
-      const res = postEmailRequest(value);
-      console.log(res);
-      setIsError(false);
-      setErrorMessage(SUCCESS.EMAIL.AVAILABLE);
+      emailRequest.mutate();
     }
   };
 
