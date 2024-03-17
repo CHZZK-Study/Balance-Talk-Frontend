@@ -1,5 +1,5 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
-import { AXIOS } from '../constants/api';
+import { AXIOS, END_POINT } from '../constants/api';
 import { HTTPError } from './HttpError';
 
 export interface AxiosErrorResponse {
@@ -20,9 +20,13 @@ export const axiosInstance = axios.create({
 // request interceptor (before request)
 axiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    console.log('요청 전 config');
+    const newConfig = { ...config };
+    if (newConfig.url === END_POINT.FILE_UPLOAD) {
+      newConfig.headers['Content-Type'] = 'multipart/form-data';
+    }
     // TODO: access, refresh token handling (REST api header setting)
-    return config;
+    console.log('요청 전 config', newConfig);
+    return newConfig;
   },
   (error: AxiosError<AxiosErrorResponse>) => {
     console.log('요청 전 config 에러');
