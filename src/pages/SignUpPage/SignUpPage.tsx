@@ -16,34 +16,49 @@ import InputProfileImage from '../../components/common/InputsUserInfo/InputProfi
 import { useSignupForm } from '../../hooks/signup/useSignupForm';
 
 const SignUpPage = () => {
-  const { form, onChange } = useSignupForm();
+  const { form, onChange, onSuccessChange, handleSubmit } = useSignupForm();
   return (
-    <div css={signupContainer}>
+    <form onSubmit={handleSubmit} css={signupContainer}>
       <Heading size="large">SIGN UP</Heading>
       <InputProfileImage />
       <div css={inputContainer}>
-        <InputEmail type="signup" value={form.email} onChange={onChange} />
-        <InputCode
-          value={{ code: form.code, email: form.email }}
+        <InputEmail
+          type="signup"
+          value={form.email}
           onChange={onChange}
+          onSuccessChange={onSuccessChange}
         />
-        <InputNickname value={form.nickname} onChange={onChange} />
-        <InputPw value={form.password} onChange={onChange} />
+        <InputCode
+          value={{ verificationCode: form.verificationCode, email: form.email }}
+          onChange={onChange}
+          onSuccessChange={onSuccessChange}
+        />
+        <InputNickname
+          value={form.nickname}
+          onChange={onChange}
+          onSuccessChange={onSuccessChange}
+        />
+        <InputPw
+          value={form.password}
+          onChange={onChange}
+          onSuccessChange={onSuccessChange}
+        />
         <InputPwCheck
           value={form.passwordCheck}
           onChange={onChange}
+          onSuccessChange={onSuccessChange}
           pw={form.password}
         />
       </div>
       <div css={btnContainer}>
-        <Button size="large" css={btnSignup}>
+        <Button type="submit" size="large" css={btnSignup}>
           회원가입
         </Button>
         <Button variant="cancel" size="large" css={btnSignup}>
           취소
         </Button>
       </div>
-    </div>
+    </form>
   );
 };
 

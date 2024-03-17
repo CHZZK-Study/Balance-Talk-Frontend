@@ -1,5 +1,5 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
-import { AXIOS, HTTP_STATUS_CODE } from '../constants/api';
+import { AXIOS } from '../constants/api';
 import { HTTPError } from './HttpError';
 
 export interface AxiosErrorResponse {
@@ -41,10 +41,10 @@ axiosInstance.interceptors.response.use(
     console.log('요청 후 response 에러');
     if (!error.response) throw error;
     const { data, status } = error.response;
-    if (status === HTTP_STATUS_CODE.BAD_REQUEST) {
-      // TODO: delete token
-      console.log('토큰 삭제 작업');
-    }
+    // if (status === HTTP_STATUS_CODE.BAD_REQUEST) {
+    //   // TODO: delete token
+    //   console.log('토큰 삭제 작업');
+    // }
     throw new HTTPError(status, data.httpStatus, data.message);
   },
 );

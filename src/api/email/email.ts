@@ -3,7 +3,7 @@ import { MemberForm } from '@/types/member';
 import { axiosInstance } from '../interceptor';
 
 export const postEmailVerify = async (
-  value: Pick<MemberForm, 'email' | 'code'>,
+  value: Pick<MemberForm, 'email' | 'verificationCode'>,
 ) => {
   const { data } = await axiosInstance.post<string>(
     `${END_POINT.EMAIL_VERIFY}`,

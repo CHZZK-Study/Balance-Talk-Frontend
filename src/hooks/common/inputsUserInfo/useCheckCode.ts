@@ -7,7 +7,9 @@ import { isEmptyString } from '@/utils/validator';
 import { useMutation } from '@tanstack/react-query';
 import { useRef, useState } from 'react';
 
-export const useCheckCode = (value: Pick<MemberForm, 'email' | 'code'>) => {
+export const useCheckCode = (
+  value: Pick<MemberForm, 'email' | 'verificationCode'>,
+) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
     undefined,
@@ -28,7 +30,7 @@ export const useCheckCode = (value: Pick<MemberForm, 'email' | 'code'>) => {
   });
 
   const handleSubmit = () => {
-    if (isEmptyString(value.code)) {
+    if (isEmptyString(value.verificationCode)) {
       setIsError(true);
       setErrorMessage(ERROR.CODE.EMPTY);
       return;

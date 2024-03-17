@@ -1,4 +1,5 @@
-import React, { ChangeEvent } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { ChangeEvent, useEffect } from 'react';
 import { css } from '@emotion/react';
 import Input from '../../design/Input/Input';
 import Button from '../../design/Button/Button';
@@ -7,11 +8,22 @@ import { useCheckNickname } from '../../../hooks/common/inputsUserInfo/useCheckN
 interface InputNicknameProps {
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onSuccessChange: (name: string, value: boolean) => void;
 }
 
-const InputNickname = ({ value, onChange }: InputNicknameProps) => {
+const InputNickname = ({
+  value,
+  onChange,
+  onSuccessChange,
+}: InputNicknameProps) => {
   const { inputRef, isError, errorMessage, handleSubmit } =
     useCheckNickname(value);
+
+  useEffect(() => {
+    if (value) {
+      onSuccessChange('nickname', !isError);
+    }
+  }, [errorMessage]);
 
   return (
     <Input

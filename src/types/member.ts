@@ -10,8 +10,12 @@ export type Member = {
 
 export interface MemberForm {
   email: string;
-  code: string;
+  verificationCode: string;
   nickname: string;
   password: string;
   passwordCheck: string;
+}
+
+export interface MemberSuccesForm {
+  [key: string]: boolean;
 }

@@ -1,4 +1,5 @@
-import React, { ChangeEvent } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { ChangeEvent, useEffect } from 'react';
 import { css } from '@emotion/react';
 import Button from '../../design/Button/Button';
 import Input from '../../design/Input/Input';
@@ -8,13 +9,25 @@ interface InputEmailProps {
   type: string;
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onSuccessChange: (name: string, value: boolean) => void;
 }
 
-const InputEmail = ({ type, value, onChange }: InputEmailProps) => {
+const InputEmail = ({
+  type,
+  value,
+  onChange,
+  onSuccessChange,
+}: InputEmailProps) => {
   const { inputRef, isError, errorMessage, handleSubmit } = useCheckEmail(
     type,
     value,
   );
+
+  useEffect(() => {
+    if (value) {
+      onSuccessChange('email', !isError);
+    }
+  }, [errorMessage]);
 
   return (
     <Input
