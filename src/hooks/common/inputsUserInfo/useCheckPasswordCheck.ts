@@ -18,7 +18,7 @@ export const useCheckPasswordCheck = ({ value, pw }: CheckPwChkProps) => {
     return pwChk === pw;
   };
 
-  const handleBlur = () => {
+  const handleVerify = () => {
     if (isEmptyString(value)) {
       setIsError(true);
       setErrorMessage(ERROR.PW.EMPTY);
@@ -31,5 +31,5 @@ export const useCheckPasswordCheck = ({ value, pw }: CheckPwChkProps) => {
     }
   };
 
-  return { inputRef, isError, errorMessage, handleBlur };
+  return { inputRef, isError, errorMessage, handleVerify };
 };

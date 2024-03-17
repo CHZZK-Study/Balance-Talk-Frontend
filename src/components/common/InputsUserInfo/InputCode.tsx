@@ -1,30 +1,38 @@
-import React, { ChangeEvent } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { MemberForm } from '@/types/member';
 import { css } from '@emotion/react';
+import React, { ChangeEvent, useEffect } from 'react';
+import { useCheckCode } from '../../../hooks/common/inputsUserInfo/useCheckCode';
 import Button from '../../design/Button/Button';
 import Input from '../../design/Input/Input';
-import { useCheckCode } from '../../../hooks/common/inputsUserInfo/useCheckCode';
 
 interface InputCodeProps {
-  value: string;
+  value: Pick<MemberForm, 'email' | 'verificationCode'>;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onSuccessChange: (name: string, value: boolean) => void;
 }
 
-const InputCode = ({ value, onChange }: InputCodeProps) => {
-  const { inputRef, isError, errorMessage, handleBlur } = useCheckCode(value);
+const InputCode = ({ value, onChange, onSuccessChange }: InputCodeProps) => {
+  const { inputRef, isError, errorMessage, handleSubmit } = useCheckCode(value);
+
+  useEffect(() => {
+    if (value.verificationCode) {
+      onSuccessChange('verificationCode', !isError);
+    }
+  }, [errorMessage]);
 
   return (
     <Input
-      name="code"
+      name="verificationCode"
       placeholder="인증번호 입력"
       size="medium"
       label="인증번호"
       isError={isError}
       errorMessage={errorMessage}
-      value={value}
+      value={value.verificationCode}
       ref={inputRef}
       onChange={onChange}
-      onBlur={handleBlur}
-      btn={<Button>확인</Button>}
+      btn={<Button onClick={handleSubmit}>확인</Button>}
       css={css({ width: '350px' })}
     />
   );

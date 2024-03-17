@@ -1,4 +1,5 @@
-import React, { ChangeEvent } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { ChangeEvent, useEffect } from 'react';
 import { css } from '@emotion/react';
 import Input from '../../design/Input/Input';
 import { useCheckPassword } from '../../../hooks/common/inputsUserInfo/useCheckPassword';
@@ -6,11 +7,18 @@ import { useCheckPassword } from '../../../hooks/common/inputsUserInfo/useCheckP
 interface InputPwProps {
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onSuccessChange: (name: string, value: boolean) => void;
 }
 
-const InputPw = ({ value, onChange }: InputPwProps) => {
-  const { inputRef, isError, errorMessage, handleBlur } =
+const InputPw = ({ value, onChange, onSuccessChange }: InputPwProps) => {
+  const { inputRef, isError, errorMessage, handleVerify } =
     useCheckPassword(value);
+
+  useEffect(() => {
+    if (value) {
+      onSuccessChange('password', !isError);
+    }
+  }, [errorMessage]);
 
   return (
     <Input
@@ -23,7 +31,8 @@ const InputPw = ({ value, onChange }: InputPwProps) => {
       value={value}
       ref={inputRef}
       onChange={onChange}
-      onBlur={handleBlur}
+      onKeyDown={handleVerify}
+      onBlur={handleVerify}
       css={css({ width: '420px' })}
     />
   );
