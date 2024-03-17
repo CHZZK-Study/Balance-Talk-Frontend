@@ -3,7 +3,7 @@ import { isAllTrue } from '@/utils/validator';
 import { ChangeEvent } from 'react';
 import { useActiveSubmit } from '../common/useActiveSubmit';
 import useInputs from '../common/useInputs';
-import { useFocusFalse } from '../common/useFocus';
+import { useFocusFalse } from '../common/useFocusFalse';
 import { useSignUpMutation } from '../api/useSignUpMutation';
 
 const initialState: MemberForm = {
