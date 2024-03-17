@@ -1,7 +1,10 @@
 export type Comment = {
-  balanceOptionId: number;
+  id: number;
   content: string;
+  memberName: string;
+  postId: number;
+  selectedOptionId: number;
   likeCount: number;
   createdAt: string;
-  replyCount: number;
+  lastModifiedAt: string;
 };

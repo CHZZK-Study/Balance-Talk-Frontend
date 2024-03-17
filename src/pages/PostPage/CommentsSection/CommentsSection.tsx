@@ -1,76 +1,68 @@
-import { css } from '@emotion/react';
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import CommentsByOption from './CommentsByOption/CommentsByOption';
-import { getComments } from '../../../api/comments/comments';
-import { Comment } from '../../../types/comment';
+import { getComments } from '@/api/comments/comments';
+import { Comment } from '@/types/comment';
+import UserComment from '@/components/common/UserComment/UserComment';
+import {
+  commentCountWrapper,
+  commentPaginationWrapper,
+  commentsListSectionWrapper,
+  commentsSectionWrapper,
+  commentsWrapper,
+  inputButtonWrapper,
+  inputSectionWrapper,
+} from './CommentsSection.style';
+import { CommentsPagination } from './CommentsPagination/CommentsPagination';
 
 interface CommectsSectionProps {
   postId: number;
-  balanceOptionTitles: string[];
 }
 
-const CommentsSection = ({
-  postId,
-  balanceOptionTitles,
-}: CommectsSectionProps) => {
+// interface CommentInputFormProps {
+//   content: string;
+//   selectedOptionId: number;
+// }
+
+// const initialState: AddCommentFormProps = {
+//   content: '',
+// };
+
+// const useAddCommentForm = () => {
+//   const { form, onChange } = useInputs<>;
+//   const { form, onChange } = useInputs<AddCommentFormProps>(initialState);
+//   return { form, onChange };
+// };
+
+const CommentsSection = ({ postId }: CommectsSectionProps) => {
+  const totalCommentsCount = 40;
   const { data: comments, isLoading } = useQuery({
-    queryKey: ['post', postId, 'comments'],
+    queryKey: ['posts', 'comments', postId],
     queryFn: () => getComments(postId),
-    select: (data) => {
-      const commentsData: Comment[] = data?.data;
-      const balanceOptionIds = [
-        ...new Set(
-          commentsData.map((comment: Comment) => comment?.balanceOptionId),
-        ),
-      ].sort((a, b) => a - b);
-      return [
-        commentsData.filter(
-          (comment: Comment) => comment.balanceOptionId === balanceOptionIds[0],
-        ),
-        commentsData.filter(
-          (comment: Comment) => comment.balanceOptionId === balanceOptionIds[1],
-        ),
-      ];
-    },
+    select: (data: { data: Comment }) => data?.data,
   });
 
   return isLoading ? (
     <div>Loading...</div>
   ) : (
-    <div
-      css={css({
-        display: 'flex',
-        flexDirection: 'column',
-      })}
-    >
-      <div
-        css={css({
-          marginTop: '1rem',
-          marginBottom: '3rem',
-          fontFamily: 'SpoqaHanSansNeo-regular',
-          fontSize: '1.5rem',
-        })}
-      >
-        댓글
-        {comments[0]?.length + comments[1]?.length}개
+    <div css={commentsSectionWrapper}>
+      <div css={commentCountWrapper}>댓글 {totalCommentsCount}개</div>
+      <div css={inputSectionWrapper}>
+        <input type="text" placeholder="댓글을 입력해주세요" />
+        <button css={inputButtonWrapper} type="submit">
+          등록
+        </button>
       </div>
-      <div
-        css={css({
-          display: 'flex',
-          justifyContent: 'space-between',
-        })}
-      >
-        <CommentsByOption
-          comments={[...comments[0]]}
-          balnceOptionTitle={balanceOptionTitles[0]}
-          isLeftOption
-        />
-        <CommentsByOption
-          comments={[...comments[1]]}
-          balnceOptionTitle={balanceOptionTitles[1]}
-          isLeftOption={false}
-        />
+      <div css={commentsListSectionWrapper}>
+        <div css={commentsWrapper}>
+          {comments &&
+            comments.map((comment: Comment) => <UserComment {...comment} />)}
+        </div>
+        <div css={commentPaginationWrapper}>
+          <CommentsPagination
+            totalCommentsCount={totalCommentsCount}
+            currentPage={1}
+          />
+        </div>
       </div>
     </div>
   );
