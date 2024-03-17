@@ -3,6 +3,7 @@ import { isAllTrue } from '@/utils/validator';
 import { ChangeEvent } from 'react';
 import { useActiveSubmit } from '../common/useActiveSubmit';
 import useInputs from '../common/useInputs';
+import { useFocusFalse } from '../common/useFocus';
 
 const initialState: MemberForm = {
   email: '',
@@ -24,6 +25,7 @@ export const useSignupForm = () => {
   const { form, onChange } = useInputs<MemberForm>(initialState);
   const { successForm, onSuccessChange } =
     useActiveSubmit<MemberSuccesForm>(successState);
+  const { focus } = useFocusFalse<MemberSuccesForm>(successForm);
 
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -34,6 +36,7 @@ export const useSignupForm = () => {
       console.log('제출 성공');
     } else {
       console.log('제출 실패');
+      focus(e);
     }
   };
 
