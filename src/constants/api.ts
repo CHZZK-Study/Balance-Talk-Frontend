@@ -25,6 +25,7 @@ export const END_POINT = {
   COMMENTS: (postId: number) => `/posts/${postId}/comments`,
   VOTE_COUNT: (postId: number) => `/posts/${postId}/vote`,
   FILE_UPLOAD: '/files/image/upload',
+  VOTE: (postId: number) => `posts/${postId}/vote`,
 };
 
 export const AXIOS = {

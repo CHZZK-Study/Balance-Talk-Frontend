@@ -1,22 +1,15 @@
 import React from 'react';
-import { css } from '@emotion/react';
+
 import { Hearts, Star, Report, Share } from '../../../assets';
+import {
+  UserUtilitySectionWrapper,
+  UtilityButtonsWrapper,
+} from './UserUtilitySection.style';
 
 const UserUtilitySection = () => {
   return (
-    <div
-      css={css({
-        display: 'flex',
-        alignItems: 'center',
-        gap: '1rem',
-      })}
-    >
-      <div
-        css={css({
-          display: 'flex',
-          gap: '1rem',
-        })}
-      >
+    <div css={UserUtilitySectionWrapper}>
+      <div css={UtilityButtonsWrapper}>
         <Hearts />
         <Star />
         <Report />

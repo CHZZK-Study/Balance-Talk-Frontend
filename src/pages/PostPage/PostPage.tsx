@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import BalanceOptionCardsSection from './BalanceOptionCardsSection/BalanceOptionCardsSection';
@@ -7,17 +7,22 @@ import { getPost } from '../../api/posts/posts';
 import CreatorSection from './CreatorSection/CreatorSection';
 import UserUtilitySection from './UserUtilitySection/UserUtilitySection';
 import TitleSection from './TitleSection/TitleSection';
-import { ImageInfo, Post } from '../../types/post';
-import { PostPageWrapper, UserSectionWrapper } from './PostPage.style';
+import { NPost } from '../../types/post';
+import {
+  ButtonSectionWrapper,
+  ButtonStyleWrapper,
+  PostPageWrapper,
+  UserSectionWrapper,
+} from './PostPage.style';
 
 const PostPage = () => {
   const postId = Number(useParams().id);
+  const [isOpened, setIsOpened] = useState(false);
   const { isLoading, data: post } = useQuery({
     queryKey: ['posts', postId],
     queryFn: () => getPost(postId),
-    select: (data: { data: Post }) => data?.data,
+    select: (data: { data: NPost }) => data?.data,
   });
-
   return isLoading ? (
     <div>Loading...</div>
   ) : (
@@ -25,26 +30,35 @@ const PostPage = () => {
       <TitleSection
         title={post?.title || 'title'}
         views={post?.views || 0}
-        likeCount={post?.likeCount || 0}
-        tags={post?.tags || []}
+        likesCount={post?.likesCount || 0}
+        postTags={post?.postTags || []}
       />
       <BalanceOptionCardsSection
-        id={post?.id}
+        id={post?.id || 0}
         balanceOptions={post?.balanceOptions || []}
+        selectedOptionId={post?.selectedOptionId}
       />
 
       <div css={UserSectionWrapper}>
-        {post?.creatorId && <CreatorSection creatorId={post?.creatorId} />}
+        {post && (
+          <CreatorSection
+            createdBy={post?.createdBy}
+            createdAt={post?.createdAt}
+          />
+        )}
         <UserUtilitySection />
       </div>
-      <CommentsSection
-        postId={postId}
-        balanceOptionTitles={
-          post?.balanceOptions?.map(
-            (balanceOption: ImageInfo) => balanceOption?.optionTitle,
-          ) || []
-        }
-      />
+
+      <div css={ButtonSectionWrapper}>
+        <button
+          css={ButtonStyleWrapper}
+          type="button"
+          onClick={() => setIsOpened(!isOpened)}
+        >
+          {`댓글 ${isOpened ? '접기' : '확인하기'}`}
+        </button>
+      </div>
+      {isOpened && <CommentsSection postId={postId} />}
     </div>
   );
 };
