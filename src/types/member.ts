@@ -7,3 +7,15 @@ export type Member = {
   totalPostLike: number;
   level: number;
 };
+
+export interface MemberForm {
+  email: string;
+  verificationCode: string;
+  nickname: string;
+  password: string;
+  passwordCheck: string;
+}
+
+export interface MemberSuccesForm {
+  [key: string]: boolean;
+}

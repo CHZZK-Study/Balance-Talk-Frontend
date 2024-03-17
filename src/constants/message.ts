@@ -1,7 +1,7 @@
 export const ERROR = {
   EMAIL: {
     NOT_EXIST: '존재하지 않는 이메일입니다.',
-    EXIST: '이미 존재하는 이메일입니다.',
+    EXIST: '이미 가입한 이메일입니다.',
     FORM: '이메일 형식이 올바르지 않습니다.',
     EMPTY: '이메일을 입력해주세요.',
   },
