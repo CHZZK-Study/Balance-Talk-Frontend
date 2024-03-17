@@ -4,6 +4,7 @@ import { ChangeEvent } from 'react';
 import { useActiveSubmit } from '../common/useActiveSubmit';
 import useInputs from '../common/useInputs';
 import { useFocusFalse } from '../common/useFocus';
+import { useSignUpMutation } from '../api/useSignUpMutation';
 
 const initialState: MemberForm = {
   email: '',
@@ -23,19 +24,26 @@ const successState: MemberSuccesForm = {
 
 export const useSignupForm = () => {
   const { form, onChange } = useInputs<MemberForm>(initialState);
+
   const { successForm, onSuccessChange } =
     useActiveSubmit<MemberSuccesForm>(successState);
+
   const { focus } = useFocusFalse<MemberSuccesForm>(successForm);
+
+  const createNewForm = (prevForm: MemberForm) => {
+    const { verificationCode, passwordCheck, ...newForm } = prevForm;
+    return newForm;
+  };
+
+  const signup = useSignUpMutation();
 
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('회원가입 폼 제출');
-    console.log('제출: ', form);
-    console.log('제출: ', successForm);
+
     if (isAllTrue(successForm)) {
-      console.log('제출 성공');
+      const newForm = createNewForm(form);
+      signup.mutate(newForm);
     } else {
-      console.log('제출 실패');
       focus(e);
     }
   };
