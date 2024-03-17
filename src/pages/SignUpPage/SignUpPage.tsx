@@ -16,7 +16,8 @@ import InputProfileImage from '../../components/common/InputsUserInfo/InputProfi
 import { useSignupForm } from '../../hooks/signup/useSignupForm';
 
 const SignUpPage = () => {
-  const { form, onChange, onSuccessChange, handleSubmit } = useSignupForm();
+  const { form, onChange, onSuccessChange, handleSubmit, handleCancle } =
+    useSignupForm();
   return (
     <form onSubmit={handleSubmit} css={signupContainer}>
       <Heading size="large">SIGN UP</Heading>
@@ -54,7 +55,12 @@ const SignUpPage = () => {
         <Button type="submit" size="large" css={btnSignup}>
           회원가입
         </Button>
-        <Button variant="cancel" size="large" css={btnSignup}>
+        <Button
+          onClick={handleCancle}
+          variant="cancel"
+          size="large"
+          css={btnSignup}
+        >
           취소
         </Button>
       </div>

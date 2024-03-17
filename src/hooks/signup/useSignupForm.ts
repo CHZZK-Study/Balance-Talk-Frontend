@@ -1,10 +1,11 @@
 import { MemberForm, MemberSuccesForm } from '@/types/member';
 import { isAllTrue } from '@/utils/validator';
 import { ChangeEvent } from 'react';
-import { useActiveSubmit } from '../common/useActiveSubmit';
-import useInputs from '../common/useInputs';
-import { useFocusFalse } from '../common/useFocusFalse';
+import { useNavigate } from 'react-router-dom';
 import { useSignUpMutation } from '../api/useSignUpMutation';
+import { useActiveSubmit } from '../common/useActiveSubmit';
+import { useFocusFalse } from '../common/useFocusFalse';
+import useInputs from '../common/useInputs';
 
 const initialState: MemberForm = {
   email: '',
@@ -37,6 +38,8 @@ export const useSignupForm = () => {
 
   const signup = useSignUpMutation();
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -48,5 +51,9 @@ export const useSignupForm = () => {
     }
   };
 
-  return { form, onChange, onSuccessChange, handleSubmit };
+  const handleCancle = () => {
+    navigate(-1);
+  };
+
+  return { form, onChange, onSuccessChange, handleSubmit, handleCancle };
 };
