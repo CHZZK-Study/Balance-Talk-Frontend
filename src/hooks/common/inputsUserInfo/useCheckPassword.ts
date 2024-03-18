@@ -14,7 +14,7 @@ export const useCheckPassword = (value: string) => {
     return pwRegex.test(pw);
   };
 
-  const handleBlur = () => {
+  const handleVerify = () => {
     if (isEmptyString(value)) {
       setIsError(true);
       setErrorMessage(ERROR.PW.EMPTY);
@@ -27,5 +27,5 @@ export const useCheckPassword = (value: string) => {
     }
   };
 
-  return { inputRef, isError, errorMessage, handleBlur };
+  return { inputRef, isError, errorMessage, handleVerify };
 };

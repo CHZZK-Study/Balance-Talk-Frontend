@@ -3,6 +3,16 @@ export type ImageInfo = {
   title: string;
   // 게시물 Description 필요
   description?: string;
+<<<<<<< HEAD
+=======
+};
+
+export type BalanceOption = {
+  balanceOptionId: number;
+  title: string;
+  description: string;
+  storedFileName: string | null;
+>>>>>>> 5e796e573edd167faf80d35c7a2efd7bba5dbbf7
 };
 
 export type Post = {
@@ -18,6 +28,22 @@ export type Post = {
   balanceOptions: ImageInfo[];
   // 게시물을 생성한 사람의 id도 필요
   creatorId?: number;
+};
+
+export type NPost = {
+  id: number;
+  title: string;
+  deadline: string;
+  views: number;
+  likesCount: number;
+  myLike: boolean;
+  myBookmark: boolean;
+  category: 'CASUAL' | 'DISCUSSION';
+  balanceOptions: BalanceOption[];
+  postTags: string[];
+  createdAt: string;
+  createdBy: string;
+  selectedOptionId?: number;
 };
 
 export type VoteInfo = {

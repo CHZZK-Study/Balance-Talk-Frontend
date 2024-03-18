@@ -1,39 +1,35 @@
-import React, { useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
-import { PATH } from '../../../constants/path';
-import { historyContainer } from './HistoryPage.style';
+import React from 'react';
+import { useTabChange } from '@/hooks/mypage/userHistory/useTabChange';
+import { Outlet } from 'react-router-dom';
 import Tab from '../../../components/mypage/TopTab/Tab/Tab';
 import TopTab from '../../../components/mypage/TopTab/TopTab';
+import { PATH } from '../../../constants/path';
+import { historyContainer } from './HistoryPage.style';
 
 const HistoryPage = () => {
   const tabs = [
     {
-      id: 1,
-      name: '작성 게시글',
+      id: 0,
+      text: '작성 게시글',
       url: PATH.HISTORY.POSTS,
     },
     {
-      id: 2,
-      name: '작성 댓글',
+      id: 1,
+      text: '작성 댓글',
       url: PATH.HISTORY.COMMENTS,
     },
     {
-      id: 3,
-      name: '투표한 게시글',
+      id: 2,
+      text: '투표한 게시글',
       url: PATH.HISTORY.VOTED_POSTS,
     },
     {
-      id: 4,
-      name: '북마크 게시글',
+      id: 3,
+      text: '북마크 게시글',
       url: PATH.HISTORY.BOOKMARKS,
     },
   ];
-  const [selectedId, setSelectedId] = useState(1);
-  const navigate = useNavigate();
-  const onTabChange = (tabId: number) => {
-    setSelectedId(tabId);
-    navigate(tabs[tabId - 1].url);
-  };
+  const { selectedId, onTabChange } = useTabChange(tabs);
   return (
     <div css={historyContainer}>
       <TopTab>
@@ -41,7 +37,7 @@ const HistoryPage = () => {
           return (
             <Tab
               key={tab.id}
-              text={tab.name}
+              text={tab.text}
               tabId={tab.id}
               selectedId={selectedId}
               changeSelect={onTabChange}

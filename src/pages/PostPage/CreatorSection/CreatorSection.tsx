@@ -1,59 +1,29 @@
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { css } from '@emotion/react';
-import { fetchMember } from '../../../api/member/member';
+
+import { getDate } from '@/utils/date';
 import { Profile } from '../../../assets';
+import {
+  CreatedDateWrapper,
+  CreatorSectionWrapper,
+  creatorInfoWrapper,
+  creatorNameWrapper,
+} from './CreatorSection.style';
 
 interface CreatorSectionProps {
-  creatorId: number;
+  createdBy: string;
+  createdAt: string;
 }
 
-const CreatorSection = ({ creatorId }: CreatorSectionProps) => {
-  const { data: member } = useQuery({
-    queryKey: ['member', creatorId],
-    queryFn: () => fetchMember(creatorId),
-  });
-
+const CreatorSection = ({ createdBy, createdAt }: CreatorSectionProps) => {
   return (
-    <div
-      css={css({
-        display: 'flex',
-        alignItems: 'center',
-        gap: '1.3rem',
-        padding: '1rem 2rem',
-      })}
-    >
+    <div css={CreatorSectionWrapper}>
       <div>
-        {member?.profilePhoto === '../' ? (
-          <Profile />
-        ) : (
-          <img src={member?.profilePhoto} alt="Profile" />
-        )}
+        <Profile />
       </div>
-      <div
-        css={css({
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '0.5rem',
-        })}
-      >
-        <div
-          css={css({
-            fontStyle: 'italic',
-            fontFamily: 'SpoqaHanSansNeo-medium',
-            fontWeight: '500',
-            fontSize: '1rem',
-          })}
-        />
-        {member?.nickname || 'nickname'}
-        <div
-          css={css({
-            fontFamily: 'SpoqaHanSansNeo-thin',
-            fontSize: '1rem',
-          })}
-        >
-          {member?.createdAt}
-        </div>
+      <div css={creatorInfoWrapper}>
+        <div css={creatorNameWrapper} />
+        {createdBy || 'nickname'}
+        <div css={CreatedDateWrapper}>{getDate(createdAt)}</div>
       </div>
     </div>
   );

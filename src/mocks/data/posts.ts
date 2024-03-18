@@ -1,4 +1,4 @@
-import { Post } from '../../types/post';
+import { NPost, Post } from '@/types/post';
 
 export const postList: Post[] = [
   {
@@ -10,15 +10,21 @@ export const postList: Post[] = [
     myBookmark: true,
     myLike: true,
     deadline: '2022-02-22',
-    tags: ['음식', '음료'],
+    postTags: [
+      {
+        tagName: '음식',
+      },
+    ],
     balanceOptions: [
       {
-        optionImg: 'coffee.jpg',
-        optionTitle: '커피',
+        title: '커피',
+        description: '커피',
+        storedFileName: undefined,
       },
       {
-        optionImg: 'juice.jpg',
-        optionTitle: '쥬스',
+        title: '쥬스',
+        description: '쥬스',
+        storedFileName: undefined,
       },
     ],
   },
@@ -31,15 +37,21 @@ export const postList: Post[] = [
     myBookmark: true,
     myLike: false,
     deadline: '2022-02-22',
-    tags: ['음식'],
+    postTags: [
+      {
+        tagName: '음식',
+      },
+    ],
     balanceOptions: [
       {
-        optionImg: 'coffee.jpg',
-        optionTitle: '커피',
+        title: '커피',
+        description: '커피',
+        storedFileName: undefined,
       },
       {
-        optionImg: 'juice.jpg',
-        optionTitle: '쥬스',
+        title: '쥬스',
+        description: '쥬스',
+        storedFileName: undefined,
       },
     ],
   },
@@ -52,15 +64,21 @@ export const postList: Post[] = [
     myBookmark: true,
     myLike: true,
     deadline: '2022-02-22',
-    tags: ['음식'],
+    postTags: [
+      {
+        tagName: '음식',
+      },
+    ],
     balanceOptions: [
       {
-        optionImg: 'coffee.jpg',
-        optionTitle: '커피',
+        title: '커피',
+        description: '커피',
+        storedFileName: undefined,
       },
       {
-        optionImg: 'juice.jpg',
-        optionTitle: '쥬스',
+        title: '쥬스',
+        description: '쥬스',
+        storedFileName: undefined,
       },
     ],
   },
@@ -73,15 +91,21 @@ export const postList: Post[] = [
     myBookmark: true,
     myLike: true,
     deadline: '2022-02-22',
-    tags: ['음식'],
+    postTags: [
+      {
+        tagName: '음식',
+      },
+    ],
     balanceOptions: [
       {
-        optionImg: 'coffee.jpg',
-        optionTitle: '커피',
+        title: '커피',
+        description: '커피',
+        storedFileName: undefined,
       },
       {
-        optionImg: 'juice.jpg',
-        optionTitle: '쥬스',
+        title: '쥬스',
+        description: '쥬스',
+        storedFileName: undefined,
       },
     ],
   },
@@ -94,15 +118,21 @@ export const postList: Post[] = [
     myBookmark: true,
     myLike: true,
     deadline: '2022-02-22',
-    tags: ['음식'],
+    postTags: [
+      {
+        tagName: '음식',
+      },
+    ],
     balanceOptions: [
       {
-        optionImg: 'coffee.jpg',
-        optionTitle: '커피',
+        title: '커피',
+        description: '커피',
+        storedFileName: undefined,
       },
       {
-        optionImg: 'juice.jpg',
-        optionTitle: '쥬스',
+        title: '쥬스',
+        description: '쥬스',
+        storedFileName: undefined,
       },
     ],
   },
@@ -115,15 +145,21 @@ export const postList: Post[] = [
     myBookmark: true,
     myLike: true,
     deadline: '2022-02-22',
-    tags: ['음식'],
+    postTags: [
+      {
+        tagName: '음식',
+      },
+    ],
     balanceOptions: [
       {
-        optionImg: 'coffee.jpg',
-        optionTitle: '커피',
+        title: '커피',
+        description: '커피',
+        storedFileName: undefined,
       },
       {
-        optionImg: 'juice.jpg',
-        optionTitle: '쥬스',
+        title: '쥬스',
+        description: '쥬스',
+        storedFileName: undefined,
       },
     ],
   },
@@ -136,15 +172,21 @@ export const postList: Post[] = [
     myBookmark: true,
     myLike: true,
     deadline: '2022-02-22',
-    tags: ['음식'],
+    postTags: [
+      {
+        tagName: '음식',
+      },
+    ],
     balanceOptions: [
       {
-        optionImg: 'coffee.jpg',
-        optionTitle: '커피',
+        title: '커피',
+        description: '커피',
+        storedFileName: undefined,
       },
       {
-        optionImg: 'juice.jpg',
-        optionTitle: '쥬스',
+        title: '쥬스',
+        description: '쥬스',
+        storedFileName: undefined,
       },
     ],
   },
@@ -215,16 +257,35 @@ export const createdPost = [
   },
 ];
 
-export const postById = (postId: number) => {
-  const filteredPost = postList.filter((_post) => _post.id === postId)[0];
-  filteredPost.balanceOptions[0] = {
-    ...filteredPost.balanceOptions[0],
-    optionDescription: '남녀노소 누구나 좋아하는 커피',
+export const postById = (postId?: number) => {
+  const postMockData: NPost = {
+    id: 1,
+    title: '카페 주문',
+    deadline: '2024-03-14T01:32:49.283Z',
+    views: 126,
+    likesCount: 15,
+    myLike: true,
+    myBookmark: false,
+    category: 'CASUAL',
+    balanceOptions: [
+      {
+        balanceOptionId: 40,
+        title: '커피',
+        description: '남녀노소 누구나 좋아하는 커피',
+        storedFileName: 'coffee.jpg',
+      },
+      {
+        balanceOptionId: 41,
+        title: '쥬스',
+        description: '건강에 좋고 맛도 좋은 쥬스',
+        storedFileName: 'juice.jpg',
+      },
+    ],
+
+    postTags: ['음료', '카페', 'Beverage'],
+    createdAt: '2024-03-14T01:32:49.283Z',
+    createdBy: '김성현',
   };
-  filteredPost.balanceOptions[1] = {
-    ...filteredPost.balanceOptions[1],
-    optionDescription: '건강에 좋고 맛도 좋은 쥬스',
-  };
-  filteredPost.creatorId = 1;
-  return filteredPost;
+
+  return postId && postMockData;
 };

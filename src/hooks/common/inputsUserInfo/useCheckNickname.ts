@@ -1,6 +1,10 @@
+import { AxiosErrorResponse } from '@/api/interceptor';
+import { getNicknameVerify } from '@/api/member/duplicate';
+import { HTTP_STATUS_CODE } from '@/constants/api';
+import { useMutation } from '@tanstack/react-query';
 import { useRef, useState } from 'react';
+import { ERROR, SUCCESS } from '../../../constants/message';
 import { isEmptyString } from '../../../utils/validator';
-import { ERROR } from '../../../constants/message';
 
 export const useCheckNickname = (value: string) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -13,7 +17,21 @@ export const useCheckNickname = (value: string) => {
     return nickname.length >= 2 && nickname.length <= 10;
   }
 
-  const handleBlur = () => {
+  const nicknameVerify = useMutation({
+    mutationFn: () => getNicknameVerify(value),
+    onSuccess: () => {
+      setIsError(false);
+      setErrorMessage(SUCCESS.NICKNAME.AVAILABLE);
+    },
+    onError: (err: AxiosErrorResponse) => {
+      if (err.status === HTTP_STATUS_CODE.CONFLICT) {
+        setIsError(true);
+        setErrorMessage(ERROR.NICKNAME.EXIST);
+      }
+    },
+  });
+
+  const handleSubmit = () => {
     if (isEmptyString(value)) {
       setIsError(true);
       setErrorMessage(ERROR.NICKNAME.EMPTY);
@@ -21,10 +39,9 @@ export const useCheckNickname = (value: string) => {
       setIsError(true);
       setErrorMessage(ERROR.NICKNAME.FORM);
     } else {
-      setIsError(false);
-      setErrorMessage(undefined);
+      nicknameVerify.mutate();
     }
   };
 
-  return { inputRef, isError, errorMessage, handleBlur };
+  return { inputRef, isError, errorMessage, handleSubmit };
 };
