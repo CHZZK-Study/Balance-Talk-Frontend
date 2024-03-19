@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent, useState } from 'react';
 import { css } from '@emotion/react';
 import { useQuery } from '@tanstack/react-query';
 import PostItem from '../../components/PostListPage/PostItem';
@@ -9,12 +9,28 @@ import CreatePostButton from '../../components/PostListPage/CreatePostButton';
 import { postListWrapper, headingWrapper } from './PostListPage.style';
 import Heading from '../../components/design/Heading/Heading';
 
+const sortInfo = {
+  최신순: { index: 0, param: 'createdAt' },
+  조회순: { index: 1, param: 'views' },
+  추천순: { index: 2, param: 'likesCount' },
+};
+
 const PostList = () => {
+  const [focus, setFocus] = useState(0);
+  const [sort, setSort] = useState('createdAt');
+  const [page, setPage] = useState(0);
+  const [showClosed, setShowClosed] = useState(true);
+
   const { data: posts } = useQuery({
-    queryKey: ['posts'],
-    queryFn: fetchPostsData,
+    queryKey: ['posts', { sort, page }],
+    queryFn: () => fetchPostsData(sort, page),
   });
 
+  const onSortClickHandler = (e: MouseEvent<HTMLElement>) => {
+    const selected = e.target.textContent;
+    setSort(sortInfo[selected].param);
+    setFocus(sortInfo[selected].index);
+  };
   return (
     <div
       css={css({
@@ -38,14 +54,16 @@ const PostList = () => {
             alignItems: 'center',
           })}
         >
-          <ToggleButton />
-          <SortButton />
+          <ToggleButton setShowClosed={setShowClosed} showClosed={showClosed} />
+          <SortButton onClickHandler={onSortClickHandler} focus={focus} />
         </div>
       </div>
       <div css={postListWrapper}>
         {posts &&
           posts.map((post) => {
-            return <PostItem key={post.id} post={post} />;
+            return (
+              <PostItem key={post.id} post={post} showClosed={showClosed} />
+            );
           })}
       </div>
     </div>

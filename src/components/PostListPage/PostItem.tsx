@@ -1,5 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/react';
+import { calculateDday } from '@/utils/calculateDday';
 import PostItemImage from './PostItemImage';
 import TagButton from '../Buttons/TagButton';
 import Eye from '../../assets/svg/Eye';
@@ -18,9 +19,10 @@ import {
 
 type PostItemProps = {
   post: Post;
+  showClosed: boolean;
 };
 
-const PostItem = ({ post }: PostItemProps) => {
+const PostItem = ({ post, showClosed }: PostItemProps) => {
   const imagesInfo: ImageInfo[] = [
     {
       storedFileName: post.balanceOptions[0].storedFileName,
@@ -33,12 +35,20 @@ const PostItem = ({ post }: PostItemProps) => {
   ];
 
   const isLiked = post.myLike;
+  const dDay = calculateDday(post.deadline);
+
+  const dDayString = dDay < 0 ? `D+${dDay.toString().slice(1)}` : `D-${dDay}`;
+
+  if (dDay < 0 && showClosed === false) {
+    return <></>;
+  }
+
   return (
     <div css={postItemContainer}>
       <PostItemImage images={imagesInfo} />
       <div css={postItemTitleWrapper}>
         <h4 css={postItemTitle}>{post.title}</h4>
-        <div css={postItemDday}>D-day</div>
+        <div css={postItemDday}>{dDayString}</div>
       </div>
       <div css={tagWrapper}>
         {post &&

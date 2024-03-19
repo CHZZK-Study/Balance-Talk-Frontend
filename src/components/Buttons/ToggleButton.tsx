@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/react';
 
-const ToggleButton = () => {
-  const [isToggled, setIsToggled] = useState(false);
+type Props = {
+  showClosed: boolean;
+  setShowClosed: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const ToggleButton = ({ setShowClosed, showClosed }: Props) => {
   const onToggleButtonClickHandler = () => {
-    setIsToggled(!isToggled);
+    setShowClosed(!showClosed);
   };
-  const circleXPosition = isToggled ? 40 : 16;
-  const toggleButtonColor = isToggled ? '#9BBBD4' : '#D4D4DE';
+  const circleXPosition = showClosed ? 40 : 16;
+  const toggleButtonColor = showClosed ? '#9BBBD4' : '#D4D4DE';
   return (
     <div
       css={css({

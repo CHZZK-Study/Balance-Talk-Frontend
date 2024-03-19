@@ -25,8 +25,12 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   const { data } = useQuery({
-    queryKey: ['posts'],
-    queryFn: fetchPostsData,
+    queryKey: ['posts', { sort: 'createdAt', page: 0 }],
+    queryFn: ({ queryKey }) => {
+      const [, queryOptions] = queryKey;
+      const { sort, page } = queryOptions as { sort: string; page: number };
+      return fetchPostsData(sort, page);
+    },
   });
 
   if (data?.length === 0) {

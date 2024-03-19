@@ -9,12 +9,17 @@ import { END_POINT } from '../../constants/api';
 import { axiosInstance } from '../interceptor';
 
 // const URL = process.env.API_URL;
-export const fetchPostsData = async (): Promise<Post[]> => {
+export const fetchPostsData = async (
+  sort: string = 'createdAt',
+  page: number = 0,
+): Promise<Post[]> => {
   // const response = await fetch(`${URL}/posts?member-id=1`);
   // const result = (await response.json()) as Post[];
   // return result;
-
-  const response = await axiosInstance.get(`/posts`);
+  console.log('sort', sort);
+  const response = await axiosInstance.get(
+    `/posts?page=${page}&sort=${sort},desc`,
+  );
   return response.data as Post[];
 };
 
@@ -22,7 +27,7 @@ export const fetchVoteCount = async (postId: number): Promise<VoteInfo[]> => {
   // const response = await fetch(`${URL}/post/${postId}/vote`);
   // const result = (await response.json()) as VoteInfo[];
   // return result;
-
+  console.log('postId', postId);
   const response = await axiosInstance.get(`/post/${postId}/vote`);
   return response.data as VoteInfo[];
 };

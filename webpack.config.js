@@ -13,10 +13,10 @@ module.exports = (env) => {
   } else {
     dotenv.config({ path: './.env.production' });
   }
-
+  const isProduction = !DEV;
   return {
-    name: 'example',
-    mode: 'development',
+    name: 'balance-talk',
+    mode: isProduction ? 'production' : 'development',
     entry: './src/index.tsx',
     module: {
       rules: [
@@ -79,7 +79,7 @@ module.exports = (env) => {
     ],
     output: {
       filename: 'bundle.js',
-      publicPath: '/',
+      path: path.resolve(__dirname, 'dist'),
     },
     devServer: {
       host: 'localhost',

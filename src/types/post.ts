@@ -3,8 +3,6 @@ export type ImageInfo = {
   title: string;
   // 게시물 Description 필요
   description?: string;
-<<<<<<< HEAD
-=======
 };
 
 export type BalanceOption = {
@@ -12,7 +10,6 @@ export type BalanceOption = {
   title: string;
   description: string;
   storedFileName: string | null;
->>>>>>> 5e796e573edd167faf80d35c7a2efd7bba5dbbf7
 };
 
 export type Post = {
