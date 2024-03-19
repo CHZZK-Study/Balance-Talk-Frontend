@@ -14,7 +14,7 @@ import { Hearts, Vote } from '../../../assets';
 
 export type TitleSectionProps = Pick<
   NPost,
-  'title' | 'views' | 'likesCount' | 'postTags'
+  'title' | 'views' | 'likesCount' | 'postTags' | 'totalVoteCount'
 >;
 
 const TitleSection = ({
@@ -22,6 +22,7 @@ const TitleSection = ({
   views,
   likesCount,
   postTags,
+  totalVoteCount,
 }: TitleSectionProps) => {
   return (
     <div css={titleSectionWrapper}>
@@ -36,7 +37,7 @@ const TitleSection = ({
       <div css={titleSectionRightwrapper}>
         <div css={postInfoWrapper}>
           <Vote />
-          <span>{1234}</span>
+          <span>{totalVoteCount}</span>
         </div>
         <div css={postInfoWrapper}>
           <Eye />

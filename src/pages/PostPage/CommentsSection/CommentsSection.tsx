@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getComments } from '@/api/comments/comments';
 import { Comment } from '@/types/comment';
 import UserComment from '@/components/common/UserComment/UserComment';
+import Input from '@/components/design/Input/Input';
 import {
   commentCountWrapper,
   commentPaginationWrapper,
@@ -16,25 +17,12 @@ import { CommentsPagination } from './CommentsPagination/CommentsPagination';
 
 interface CommectsSectionProps {
   postId: number;
+  selectedOptionId?: number;
 }
-
-// interface CommentInputFormProps {
-//   content: string;
-//   selectedOptionId: number;
-// }
-
-// const initialState: AddCommentFormProps = {
-//   content: '',
-// };
-
-// const useAddCommentForm = () => {
-//   const { form, onChange } = useInputs<>;
-//   const { form, onChange } = useInputs<AddCommentFormProps>(initialState);
-//   return { form, onChange };
-// };
 
 const CommentsSection = ({ postId }: CommectsSectionProps) => {
   const totalCommentsCount = 40;
+
   const { data: comments, isLoading } = useQuery({
     queryKey: ['posts', 'comments', postId],
     queryFn: () => getComments(postId),
@@ -47,7 +35,7 @@ const CommentsSection = ({ postId }: CommectsSectionProps) => {
     <div css={commentsSectionWrapper}>
       <div css={commentCountWrapper}>댓글 {totalCommentsCount}개</div>
       <div css={inputSectionWrapper}>
-        <input type="text" placeholder="댓글을 입력해주세요" />
+        <Input type="text" placeholder="댓글을 입력해주세요" />
         <button css={inputButtonWrapper} type="submit">
           등록
         </button>

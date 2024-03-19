@@ -7,7 +7,7 @@ const URL = process.env.API_URL;
 const getComments = rest.get(
   `${URL}/posts/:postId/comments`,
   (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(mockComments));
+    return res(ctx.status(200), ctx.json({ totalVoteCount: 40, mockComments }));
   },
 );
 

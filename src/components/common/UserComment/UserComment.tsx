@@ -1,7 +1,7 @@
 import React from 'react';
-import { css } from '@emotion/react';
 import { Comment } from '@/types/comment';
-import { Profile, More, Report, Like, Plus } from '@/assets';
+import { Profile, More, Report, Hearts } from '@/assets';
+
 import {
   btnsWrapper,
   commentHistoryWrapper,
@@ -50,7 +50,7 @@ const UserComment = ({
         <div css={btnsWrapper(selectedOptionId)}>
           <div css={utilityBtnsWrapper}>
             <div css={likeBtnWrapper}>
-              <Like />
+              <Hearts />
               <span css={likeCountTextWrapper}>{123}</span>
             </div>
             <More />
