@@ -12,18 +12,6 @@ export const commentCountWrapper = css({
   lineHeight: `${Theme.heading.large.lineHeight}`,
 });
 
-export const inputSectionWrapper = css({
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignContent: 'center',
-  alignItems: 'center',
-  backgroundColor: `${Theme.color.gray100}`,
-  borderRadius: '15px',
-  padding: '0.8rem 1rem',
-  borderBottom: `2px solid ${Theme.color.gray300}`,
-  boxShadow: `0 0 5px ${Theme.color.blue}`,
-});
-
 export const inputButtonWrapper = css({
   border: 'none',
   backgroundColor: 'transparent',

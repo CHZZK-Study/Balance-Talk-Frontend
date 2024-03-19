@@ -2,6 +2,8 @@ import React from 'react';
 import { Comment } from '@/types/comment';
 import { Profile, More, Report, Hearts } from '@/assets';
 
+import { getCreatedDate } from '@/utils/date';
+import { useUserInfo } from '@/hooks/common/useUserInfo';
 import {
   btnsWrapper,
   commentHistoryWrapper,
@@ -29,11 +31,11 @@ const UserComment = ({
   memberName,
   postId,
   selectedOptionId,
-  likeCount,
+  likesCount,
   createdAt,
-  lastModifiedAt,
 }: UserCommentProps) => {
-  const createdAtDate = '3일전';
+  const createdDate = getCreatedDate(createdAt);
+
   return (
     <div css={userCommentWrapper(selectedOptionId)}>
       <div css={commentMainWrapper(selectedOptionId)}>
@@ -42,7 +44,9 @@ const UserComment = ({
           <div css={commentInfoWrapper}>
             <div css={commentHistoryWrapper(selectedOptionId)}>
               <div css={nameWrapper}>{memberName || '익명'}</div>
-              <div css={createdAtWrapper}>{createdAtDate}</div>
+              <div css={createdAtWrapper}>
+                {createdDate < 1 ? '오늘' : `${createdDate}일전`}
+              </div>
             </div>
             <div css={contentWrapper}>{content}</div>
           </div>
@@ -51,7 +55,7 @@ const UserComment = ({
           <div css={utilityBtnsWrapper}>
             <div css={likeBtnWrapper}>
               <Hearts />
-              <span css={likeCountTextWrapper}>{123}</span>
+              <span css={likeCountTextWrapper}>{likesCount}</span>
             </div>
             <More />
             <Report />

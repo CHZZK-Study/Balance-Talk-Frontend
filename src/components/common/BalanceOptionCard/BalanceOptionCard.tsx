@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { css } from '@emotion/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { changeBalanceOption, voteBalanceOption } from '@/api/votes/vote';
-import { useUserrInfo } from '@/hooks/common/useUserInfo';
+import { useUserInfo } from '@/hooks/common/useUserInfo';
 import { useSelectedOptionsInLocalStorage } from '@/hooks/vote/useSelectedOptionsInLocalStorage';
 import { BalanceOption, ImageInfo } from '../../../types/post';
 import coffee from '../../../../public/coffee.jpg';
@@ -36,7 +36,7 @@ const BalanceOptionCard = ({
   isChecked,
 }: BalanceOptionCardProps) => {
   const queryClient = useQueryClient();
-  const { isLoggedIn, userInfo } = useUserrInfo();
+  const { isLoggedIn, userInfo } = useUserInfo();
   const { setSelectedOptionId } = useSelectedOptionsInLocalStorage();
 
   const { mutate: voteBalanceOptionByNonUserMutate } = useMutation({

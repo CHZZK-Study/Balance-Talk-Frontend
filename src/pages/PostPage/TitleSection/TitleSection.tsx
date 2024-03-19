@@ -29,8 +29,8 @@ const TitleSection = ({
       <div css={titleSectionLeftWrapper}>
         <div css={titleWrapper}>{title}</div>
         <div css={tagsWrapper}>
-          {postTags.map((tag: string) => (
-            <TagButton tag={tag} key={tag} />
+          {postTags.map((tag: { tagName: string }) => (
+            <TagButton tag={tag.tagName} key={tag.tagName} />
           ))}
         </div>
       </div>

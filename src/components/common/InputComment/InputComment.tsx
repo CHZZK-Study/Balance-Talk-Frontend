@@ -1,31 +1,42 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { ChangeEvent, useEffect } from 'react';
+import React, { ChangeEvent } from 'react';
 import { css } from '@emotion/react';
+import { useCreateComment } from '@/hooks/comment/useCreateComment';
 import Button from '../../design/Button/Button';
 import Input from '../../design/Input/Input';
 
-interface InputEmailProps {
-  type: string;
+interface InputCommentProps {
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  reset: () => void;
+  postId: number;
+  selectedOptionId: number;
 }
 
-const InputComment = ({ type, value, onChange }: InputEmailProps) => {
+const InputComment = ({
+  value,
+  onChange,
+  reset,
+  postId,
+  selectedOptionId,
+}: InputCommentProps) => {
+  const { inputRef, handleSubmit } = useCreateComment({
+    value,
+    postId,
+    selectedOptionId,
+    reset,
+  });
+
   return (
     <Input
-      name="email"
-      placeholder="이메일을 입력해주세요."
+      name="content"
+      placeholder="댓글을 입력해주세요"
       size="medium"
-      label="이메일"
       value={value}
       ref={inputRef}
       onChange={onChange}
-      btn={
-        <Button onClick={handleSubmit}>
-          {type === 'signup' ? '인증' : '발송'}
-        </Button>
-      }
-      css={css({ width: '350px' })}
+      btn={<Button onClick={handleSubmit}>등록</Button>}
+      css={css({ width: '900px' })}
     />
   );
 };

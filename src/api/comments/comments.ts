@@ -1,11 +1,10 @@
-import Comment from '@/assets/svg/Comment';
+import { CommentsPagination, CreatedComment } from '@/types/comment';
 import { END_POINT } from '../../constants/api';
 import { axiosInstance } from '../interceptor';
 
-export const getComments = async (postId: number): Promise<Comment[]> =>
-  axiosInstance.get(END_POINT.COMMENTS(postId));
-
-export const addComment = async (
+export const getComments = async (
   postId: number,
-  data: { content: string; selectedOptionId: number },
-) => axiosInstance.post(END_POINT.VOTE(postId), { ...data });
+): Promise<CommentsPagination> => axiosInstance.get(END_POINT.COMMENTS(postId));
+
+export const createComment = async (postId: number, data: CreatedComment) =>
+  axiosInstance.post(END_POINT.CREATE_COMMENT(postId), { ...data });

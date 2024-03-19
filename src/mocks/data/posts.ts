@@ -283,9 +283,14 @@ export const postById = (postId?: number) => {
       },
     ],
 
-    postTags: ['음료', '카페', 'Beverage'],
+    postTags: [
+      { tagName: '음료' },
+      { tagName: '카페' },
+      { tagName: 'Beverage' },
+    ],
     createdAt: '2024-03-14T01:32:49.283Z',
     createdBy: '김성현',
+    selectedOptionId: 40,
   };
 
   return postId && postMockData;

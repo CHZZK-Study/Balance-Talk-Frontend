@@ -1,54 +1,64 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getComments } from '@/api/comments/comments';
-import { Comment } from '@/types/comment';
+import { Comment, CommentsPagination } from '@/types/comment';
 import UserComment from '@/components/common/UserComment/UserComment';
-import Input from '@/components/design/Input/Input';
+import { useUserInfo } from '@/hooks/common/useUserInfo';
+import InputComment from '@/components/common/InputComment/InputComment';
+import { useCreateCommentForm } from '@/hooks/comment/useCreateCommentForm';
+import { Pagination } from './CommentsPagination/CommentsPagination';
 import {
   commentCountWrapper,
   commentPaginationWrapper,
   commentsListSectionWrapper,
   commentsSectionWrapper,
   commentsWrapper,
-  inputButtonWrapper,
-  inputSectionWrapper,
 } from './CommentsSection.style';
-import { CommentsPagination } from './CommentsPagination/CommentsPagination';
 
-interface CommectsSectionProps {
+interface CommentsSectionProps {
   postId: number;
   selectedOptionId?: number;
 }
 
-const CommentsSection = ({ postId }: CommectsSectionProps) => {
-  const totalCommentsCount = 40;
+const CommentsSection = ({
+  postId,
+  selectedOptionId,
+}: CommentsSectionProps) => {
+  const { isLoggedIn } = useUserInfo();
+  const { form, onChange, reset } = useCreateCommentForm();
 
-  const { data: comments, isLoading } = useQuery({
+  const { data: commentsPagination, isLoading } = useQuery({
     queryKey: ['posts', 'comments', postId],
     queryFn: () => getComments(postId),
-    select: (data: { data: Comment }) => data?.data,
+    select: (data: { data: CommentsPagination }) => data?.data,
   });
 
   return isLoading ? (
     <div>Loading...</div>
   ) : (
     <div css={commentsSectionWrapper}>
-      <div css={commentCountWrapper}>댓글 {totalCommentsCount}개</div>
-      <div css={inputSectionWrapper}>
-        <Input type="text" placeholder="댓글을 입력해주세요" />
-        <button css={inputButtonWrapper} type="submit">
-          등록
-        </button>
+      <div css={commentCountWrapper}>
+        댓글 {commentsPagination?.totalElements}개
       </div>
+      {isLoggedIn && selectedOptionId && (
+        <InputComment
+          value={form.content}
+          onChange={onChange}
+          reset={reset}
+          postId={postId}
+          selectedOptionId={selectedOptionId}
+        />
+      )}
       <div css={commentsListSectionWrapper}>
         <div css={commentsWrapper}>
-          {comments &&
-            comments.map((comment: Comment) => <UserComment {...comment} />)}
+          {commentsPagination?.content.map((comment: Comment) => (
+            <UserComment {...comment} />
+          ))}
         </div>
         <div css={commentPaginationWrapper}>
-          <CommentsPagination
-            totalCommentsCount={totalCommentsCount}
-            currentPage={1}
+          <Pagination
+            totalCommentsCount={commentsPagination?.totalElements}
+            currentPage={commentsPagination?.pageable.pageNumber + 1 || 1}
           />
         </div>
       </div>

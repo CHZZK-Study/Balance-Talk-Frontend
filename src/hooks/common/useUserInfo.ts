@@ -1,6 +1,6 @@
 import { Member } from '@/types/member';
 
-export const useUserrInfo = () => {
+export const useUserInfo = () => {
   const mockUser = { id: 1, nickname: '김성현' };
   const userInfo: Pick<Member, 'id' | 'nickname'> = { ...mockUser };
 

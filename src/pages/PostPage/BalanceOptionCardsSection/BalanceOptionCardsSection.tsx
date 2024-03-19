@@ -1,5 +1,5 @@
 import React from 'react';
-import { useUserrInfo } from '@/hooks/common/useUserInfo';
+import { useUserInfo } from '@/hooks/common/useUserInfo';
 import { useSelectedOptionsInLocalStorage } from '@/hooks/vote/useSelectedOptionsInLocalStorage';
 import BalanceOptionCard from '../../../components/common/BalanceOptionCard/BalanceOptionCard';
 import { NPost } from '../../../types/post';
@@ -20,7 +20,7 @@ const BalanceOptionCardsSection = ({
   balanceOptions,
   selectedOptionId,
 }: BalanceOptionCardsSectionProps) => {
-  const { isLoggedIn } = useUserrInfo();
+  const { isLoggedIn } = useUserInfo();
 
   const { getSelectedOptionId } = useSelectedOptionsInLocalStorage();
 
