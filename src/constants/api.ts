@@ -23,6 +23,7 @@ export const END_POINT = {
   POST: (id: number) => `/posts/${id}`,
   POST_BOOKMARK: (memberId: number) => `/bookmark/members/${memberId}`,
   COMMENTS: (postId: number) => `/posts/${postId}/comments`,
+  CREATE_COMMENT: (postId: number) => `/posts/${postId}/comments`,
   VOTE_COUNT: (postId: number) => `/posts/${postId}/vote`,
   FILE_UPLOAD: '/files/image/upload',
   VOTE: (postId: number) => `posts/${postId}/vote`,

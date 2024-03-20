@@ -5,13 +5,6 @@ export type ImageInfo = {
   description?: string;
 };
 
-export type BalanceOption = {
-  balanceOptionId: number;
-  title: string;
-  description: string;
-  storedFileName: string | null;
-};
-
 export type Post = {
   id: number;
   title: string;
@@ -27,6 +20,12 @@ export type Post = {
   creatorId?: number;
 };
 
+export type BalanceOption = {
+  balanceOptionId: number;
+  title: string;
+  description: string;
+  storedFileName: string | null;
+};
 export type NPost = {
   id: number;
   title: string;
@@ -37,9 +36,10 @@ export type NPost = {
   myBookmark: boolean;
   category: 'CASUAL' | 'DISCUSSION';
   balanceOptions: BalanceOption[];
-  postTags: string[];
+  postTags: { tagName: string }[];
   createdAt: string;
   createdBy: string;
+  totalVoteCount: number;
   selectedOptionId?: number;
 };
 
@@ -77,4 +77,9 @@ export type UploadedImage = {
   path: string;
   type: string;
   size: number;
+};
+
+export type ReportedPost = {
+  reason: string;
+  description: string;
 };

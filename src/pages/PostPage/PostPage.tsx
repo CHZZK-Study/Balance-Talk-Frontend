@@ -17,7 +17,7 @@ import {
 
 const PostPage = () => {
   const postId = Number(useParams().id);
-  const [isOpened, setIsOpened] = useState(false);
+  const [isOpened, setIsOpened] = useState(true);
   const { isLoading, data: post } = useQuery({
     queryKey: ['posts', postId],
     queryFn: () => getPost(postId),
@@ -32,6 +32,7 @@ const PostPage = () => {
         views={post?.views || 0}
         likesCount={post?.likesCount || 0}
         postTags={post?.postTags || []}
+        totalVoteCount={post?.totalVoteCount || 0}
       />
       <BalanceOptionCardsSection
         id={post?.id || 0}
@@ -58,7 +59,12 @@ const PostPage = () => {
           {`댓글 ${isOpened ? '접기' : '확인하기'}`}
         </button>
       </div>
-      {isOpened && <CommentsSection postId={postId} />}
+      {isOpened && (
+        <CommentsSection
+          postId={postId}
+          selectedOptionId={post?.selectedOptionId}
+        />
+      )}
     </div>
   );
 };
