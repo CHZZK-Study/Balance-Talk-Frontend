@@ -7,8 +7,44 @@ const URL = process.env.API_URL;
 const getComments = rest.get(
   `${URL}/posts/:postId/comments`,
   (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(mockComments));
+    return res(
+      ctx.status(200),
+      ctx.json({
+        content: mockComments,
+        pageable: {
+          pageNumber: 0,
+          pageSize: 10,
+          sort: {
+            empty: false,
+            unsorted: true,
+            sorted: false,
+          },
+          offset: 0,
+          paged: true,
+          unpaged: false,
+        },
+        last: true,
+        totalPages: 1,
+        totalElements: 10,
+        size: 10,
+        number: 10,
+        sort: {
+          empty: false,
+          unsorted: true,
+          sorted: false,
+        },
+        numberOfElements: 10,
+        empty: false,
+      }),
+    );
   },
 );
 
-export default [getComments];
+const createComment = rest.post(
+  `${URL}/posts/:postId/comments`,
+  (req, res, ctx) => {
+    return res(ctx.status(201));
+  },
+);
+
+export default [getComments, createComment];

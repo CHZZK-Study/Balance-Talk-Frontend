@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useAuth } from '@/hooks/login/useAuth';
+import React from 'react';
+import { useUserInfo } from '@/hooks/common/useUserInfo';
 import { useSelectedOptionsInLocalStorage } from '@/hooks/vote/useSelectedOptionsInLocalStorage';
 import BalanceOptionCard from '../../../components/common/BalanceOptionCard/BalanceOptionCard';
 import { NPost } from '../../../types/post';
@@ -20,16 +20,13 @@ const BalanceOptionCardsSection = ({
   balanceOptions,
   selectedOptionId,
 }: BalanceOptionCardsSectionProps) => {
-  const { checkLoggedIn } = useAuth();
-  const { isLoggedIn } = checkLoggedIn();
+  const { isLoggedIn } = useUserInfo();
 
-  const { getSelectedOptionId, setSelectedOptionId, clearSelectedOptions } =
-    useSelectedOptionsInLocalStorage();
+  const { getSelectedOptionId } = useSelectedOptionsInLocalStorage();
 
   const selectedOptionIdByPost: number | undefined = !isLoggedIn
     ? getSelectedOptionId(id)
     : selectedOptionId;
-  // clearSelectedOptions();
 
   return (
     <div css={balanceOptionCardsSectionWrapper}>
