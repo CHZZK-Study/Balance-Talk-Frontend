@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { SetStateAction } from 'react';
 import { Comment } from '@/types/comment';
-import { Profile, More, Report, Hearts } from '@/assets';
-
+import { Profile, More, Report } from '@/assets';
 import { getCreatedDate } from '@/utils/date';
+import CommentLikeButton from '@/components/Buttons/CommentLikeButton';
 import { useUserInfo } from '@/hooks/common/useUserInfo';
 import {
   btnsWrapper,
@@ -13,28 +13,32 @@ import {
   contentWrapper,
   createdAtWrapper,
   likeBtnWrapper,
-  likeCountTextWrapper,
   nameWrapper,
   replyBtnWrapper,
   userCommentWrapper,
   utilityBtnsWrapper,
 } from './UserComment.style';
 
-export type UserCommentProps = Comment & {
-  imgUrl?: string;
+type UserCommentProps = Comment & {
+  handleLoginModal: React.Dispatch<SetStateAction<boolean>>;
 };
 
 const UserComment = ({
   id,
-  imgUrl,
   content,
   memberName,
   postId,
+  imgUrl,
   selectedOptionId,
-  likesCount,
+  myLike,
   createdAt,
+  likesCount,
+  lastModifiedAt,
+  profileImageUrl,
+  handleLoginModal,
 }: UserCommentProps) => {
   const createdDate = getCreatedDate(createdAt);
+  const { userInfo } = useUserInfo();
 
   return (
     <div css={userCommentWrapper(selectedOptionId)}>
@@ -47,6 +51,7 @@ const UserComment = ({
               <div css={createdAtWrapper}>
                 {createdDate < 1 ? '오늘' : `${createdDate}일전`}
               </div>
+              {userInfo.nickname === memberName && <More />}
             </div>
             <div css={contentWrapper}>{content}</div>
           </div>
@@ -54,10 +59,15 @@ const UserComment = ({
         <div css={btnsWrapper(selectedOptionId)}>
           <div css={utilityBtnsWrapper}>
             <div css={likeBtnWrapper}>
-              <Hearts />
-              <span css={likeCountTextWrapper}>{likesCount}</span>
+              <CommentLikeButton
+                handleModal={handleLoginModal}
+                myLike={myLike}
+                postId={postId}
+                commentId={id}
+              />
+              <span>{likesCount}</span>
             </div>
-            <More />
+
             <Report />
           </div>
           <div css={replyBtnWrapper}>

@@ -30,6 +30,10 @@ export const END_POINT = {
   ADD_BOOKMARK: (postId: number) => `bookmarks/${postId}`,
   DELETE_BOOKMARK: (postId: number) => `bookmarks/${postId}`,
   REPORT_POST: (postId: number) => `posts/${postId}/report`,
+  ADD_LIKE_COMMENT: (postId: number, commentId: number) =>
+    `posts/${postId}/comments/${commentId}/likes`,
+  DELETE_LIKE_COMMENT: (postId: number, commentId: number) =>
+    `posts/${postId}/comments/${commentId}/likes`,
 };
 
 export const AXIOS = {

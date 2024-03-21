@@ -17,7 +17,7 @@ import {
 
 const PostPage = () => {
   const postId = Number(useParams().id);
-  const [isOpened, setIsOpened] = useState(false);
+  const [isOpened, setIsOpened] = useState(true);
   const { isLoading, data: post } = useQuery({
     queryKey: ['posts', postId],
     queryFn: () => getPost(postId),
@@ -71,6 +71,7 @@ const PostPage = () => {
         <CommentsSection
           postId={postId}
           selectedOptionId={post?.selectedOptionId}
+          handleLoginModal={setIsLoginModalOpoen}
         />
       )}
       {IsLoginModalOpen && (

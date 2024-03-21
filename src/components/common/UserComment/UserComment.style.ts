@@ -76,7 +76,11 @@ export const likeBtnWrapper = css({
   display: 'inline-flex',
   alignItems: 'center',
   alignContent: 'center',
-  gap: '0.3rem',
+  gap: '0.2rem',
+
+  '& span': {
+    paddingTop: '4px',
+  },
 });
 
 export const likeCountTextWrapper = css({
