@@ -1,4 +1,4 @@
-import React, { SetStateAction, useEffect, useRef, useState } from 'react';
+import React, { SetStateAction, useEffect, useRef } from 'react';
 import Button from '@/components/design/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import { PATH } from '@/constants/path';
@@ -32,7 +32,7 @@ const LoginModal = ({ handleModal, postId }: LoginModalProps) => {
     return () => {
       document.removeEventListener('mousedown', handleOutSideClick);
     };
-  }, [loginModalRef]);
+  }, [loginModalRef, handleModal]);
 
   return (
     <div ref={loginModalRef} css={LoginModalWrapper}>

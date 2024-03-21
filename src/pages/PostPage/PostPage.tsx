@@ -22,10 +22,10 @@ const PostPage = () => {
   const { isLoading, data: post } = useQuery({
     queryKey: ['posts', postId],
     queryFn: () => getPost(postId),
-    select: (data: { data: NPost }) => data?.data,
   });
 
-  const [IsLoginModalOpen, setIsLoginModalOpoen] = useState(true);
+  const [IsLoginModalOpen, setIsLoginModalOpoen] = useState(false);
+  console.log(post);
 
   return isLoading ? (
     <div>Loading...</div>
@@ -52,9 +52,11 @@ const PostPage = () => {
           />
         )}
         <UserUtilitySection
+          postId={postId}
           likesCount={post?.likesCount || 0}
           myBookmark={post?.myBookmark || false}
           myLike={post?.myLike || false}
+          handleLoginModal={setIsLoginModalOpoen}
         />
       </div>
 

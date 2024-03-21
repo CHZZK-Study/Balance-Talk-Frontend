@@ -1,20 +1,27 @@
-import React, { useState } from 'react';
+import React, { SetStateAction, useState } from 'react';
 import { css } from '@emotion/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useUserInfo } from '@/hooks/common/useUserInfo';
 import { fetchAddLike, fetchDeleteLike } from '../../api/posts/posts';
-import { NPost } from '../../types/post';
+import { NPost, Post } from '../../types/post';
 import { Hearts } from '../../assets';
 import { pulsate } from '../../styles/keyframes';
 
-type PostHeartButtonProps = {
-  modalHandler: () => void;
+type PostLikeButtonProps = {
+  handleModal: React.Dispatch<SetStateAction<boolean>>;
   myLike: boolean;
   postId: number;
+  likesCount: number;
 };
 
-const PostHeartButton = ({ modalHandler, myLike postId }: PostHeartButtonProps) => {
-  
+const PostLikeButton = ({
+  handleModal,
+  myLike,
+  postId,
+  likesCount,
+}: PostLikeButtonProps) => {
   const queryClient = useQueryClient();
+  const { isLoggedIn } = useUserInfo();
 
   const [isAnimation, setIsAnimation] = useState(false);
 
@@ -25,53 +32,54 @@ const PostHeartButton = ({ modalHandler, myLike postId }: PostHeartButtonProps) 
 
   const addLike = useMutation({
     mutationFn: fetchAddLike,
-    onMutate: (id) => {
-      const prevPostData: NPost[] | undefined = queryClient.getQueryData([
+    onMutate: () => {
+      const prevPost: NPost | undefined = queryClient.getQueryData([
         'posts',
+        postId,
       ]);
 
-      const newPostData = prevPostData?.map((post) => {
-        return post.id === id
-          ? { ...post, myLike: true, likesCount: post.likesCount + 1 }
-          : post;
+      queryClient.setQueryData(['posts', postId], {
+        ...prevPost,
+        likesCount: likesCount + 1,
+        myLike: true,
       });
 
-      queryClient.setQueryData(['posts'], newPostData);
-
-      return { prevPostData };
+      return { prevPost };
     },
     onError: (err, id, context) => {
-      queryClient.setQueryData(['posts'], context?.prevPostData);
+      queryClient.setQueryData(['posts', postId], context?.prevPost);
     },
   });
 
   const deleteLike = useMutation({
     mutationFn: fetchDeleteLike,
-    onMutate: (id) => {
-      const prevPostData: NPost[] | undefined = queryClient.getQueryData([
+    onMutate: () => {
+      const prevPost: NPost | undefined = queryClient.getQueryData([
         'posts',
+        postId,
       ]);
 
-      const newPostData = prevPostData?.map((post) => {
-        return post.id === id
-          ? { ...post, myLike: false, likesCount: post.likesCount - 1 }
-          : post;
+      queryClient.setQueryData(['posts', postId], {
+        ...prevPost,
+        likesCount: likesCount - 1,
+        myLike: false,
       });
 
-      queryClient.setQueryData(['posts'], newPostData);
-
-      return { prevPostData };
+      return { prevPost };
     },
     onError: (err, id, context) => {
-      queryClient.setQueryData(['posts'], context?.prevPostData);
+      queryClient.setQueryData(['posts', postId], context?.prevPost);
     },
   });
 
   const onHeartClickHandler = () => {
-
+    if (!isLoggedIn) {
+      handleModal(true);
+      return;
+    }
     animationTrigger();
     if (postId !== undefined) {
-      if (isLiked) {
+      if (myLike) {
         deleteLike.mutate(postId);
       } else {
         addLike.mutate(postId);
@@ -97,7 +105,7 @@ const PostHeartButton = ({ modalHandler, myLike postId }: PostHeartButtonProps) 
     >
       <Hearts
         css={css({
-          fill: `${isLiked ? 'red' : 'none'}`,
+          fill: `${myLike ? 'red' : 'none'}`,
           animation: `${isAnimation ? `${pulsate} .5s ease-in-out` : 'none'}`,
         })}
       />
@@ -105,4 +113,4 @@ const PostHeartButton = ({ modalHandler, myLike postId }: PostHeartButtonProps) 
   );
 };
 
-export default PostHeartButton;
+export default PostLikeButton;

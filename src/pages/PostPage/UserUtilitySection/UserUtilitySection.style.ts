@@ -10,3 +10,7 @@ export const UtilityButtonsWrapper = css({
   display: 'flex',
   gap: '1rem',
 });
+
+export const UtilityButtonWrapper = css({
+  display: 'flex',
+});
