@@ -1,3 +1,4 @@
+import { axiosInstance } from '@/api/interceptor';
 import { useNewDispatch, useNewSelector } from '@/store';
 import { selectAccessToken, tokenActions } from '@/store/auth';
 import { useEffect } from 'react';
@@ -17,6 +18,8 @@ export const useTokenRefresh = () => {
         );
         // TODO: 토큰 재발급 api 만들어지면, 아래 코드 변경
         dispatch(tokenActions.setToken(localstorageAccessToken));
+        axiosInstance.defaults.headers.Authorization = `Bearer ${localstorageAccessToken}`;
+        console.log('토큰 재발급 완료');
       }
     };
     tokenRefresh();
