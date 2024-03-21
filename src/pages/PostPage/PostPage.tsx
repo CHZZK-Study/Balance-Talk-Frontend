@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import LoginModal from '@/components/common/Modal/LoginModal';
 import BalanceOptionCardsSection from './BalanceOptionCardsSection/BalanceOptionCardsSection';
 import CommentsSection from './CommentsSection/CommentsSection';
 import { getPost } from '../../api/posts/posts';
@@ -17,12 +18,15 @@ import {
 
 const PostPage = () => {
   const postId = Number(useParams().id);
-  const [isOpened, setIsOpened] = useState(true);
+  const [isOpened, setIsOpened] = useState(false);
   const { isLoading, data: post } = useQuery({
     queryKey: ['posts', postId],
     queryFn: () => getPost(postId),
     select: (data: { data: NPost }) => data?.data,
   });
+
+  const [IsLoginModalOpen, setIsLoginModalOpoen] = useState(true);
+
   return isLoading ? (
     <div>Loading...</div>
   ) : (
@@ -47,7 +51,11 @@ const PostPage = () => {
             createdAt={post?.createdAt}
           />
         )}
-        <UserUtilitySection />
+        <UserUtilitySection
+          likesCount={post?.likesCount || 0}
+          myBookmark={post?.myBookmark || false}
+          myLike={post?.myLike || false}
+        />
       </div>
 
       <div css={ButtonSectionWrapper}>
@@ -64,6 +72,9 @@ const PostPage = () => {
           postId={postId}
           selectedOptionId={post?.selectedOptionId}
         />
+      )}
+      {IsLoginModalOpen && (
+        <LoginModal handleModal={setIsLoginModalOpoen} postId={postId} />
       )}
     </div>
   );
