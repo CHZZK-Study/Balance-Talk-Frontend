@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 import { Theme } from '@/styles/Theme';
 
 export const PostPageWrapper = css({
+  position: 'relative',
   display: 'flex',
   flexDirection: 'column',
   width: '100vw',

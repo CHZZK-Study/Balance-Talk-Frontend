@@ -8,5 +8,11 @@ export const UserUtilitySectionWrapper = css({
 
 export const UtilityButtonsWrapper = css({
   display: 'flex',
+  height: '38px',
   gap: '1rem',
+});
+
+export const UtilityButtonWrapper = css({
+  display: 'flex',
+  alignItems: 'center',
 });

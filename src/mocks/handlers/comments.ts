@@ -47,4 +47,31 @@ const createComment = rest.post(
   },
 );
 
-export default [getComments, createComment];
+const addLikeComment = rest.post(
+  `${URL}/posts/:postId/comments/:commentId/likes`,
+  (req, res, ctx) => {
+    return res(ctx.status(200));
+  },
+);
+
+const deleteLikeComment = rest.delete(
+  `${URL}/posts/:postId/comments/:commentId/likes`,
+  (req, res, ctx) => {
+    return res(ctx.status(204));
+  },
+);
+
+const reportComment = rest.post(
+  `${URL}/posts/:postId/comments/:commentId/report`,
+  (req, res, ctx) => {
+    return res(ctx.status(200));
+  },
+);
+
+export default [
+  getComments,
+  createComment,
+  addLikeComment,
+  deleteLikeComment,
+  reportComment,
+];

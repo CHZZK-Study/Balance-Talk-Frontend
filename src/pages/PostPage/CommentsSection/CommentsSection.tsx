@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { SetStateAction } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getComments } from '@/api/comments/comments';
 import { Comment, CommentsPagination } from '@/types/comment';
@@ -18,11 +18,13 @@ import {
 interface CommentsSectionProps {
   postId: number;
   selectedOptionId?: number;
+  handleLoginModal: React.Dispatch<SetStateAction<boolean>>;
 }
 
 const CommentsSection = ({
   postId,
   selectedOptionId,
+  handleLoginModal,
 }: CommentsSectionProps) => {
   const { isLoggedIn } = useUserInfo();
   const { form, onChange, reset } = useCreateCommentForm();
@@ -30,7 +32,6 @@ const CommentsSection = ({
   const { data: commentsPagination, isLoading } = useQuery({
     queryKey: ['posts', 'comments', postId],
     queryFn: () => getComments(postId),
-    select: (data: { data: CommentsPagination }) => data?.data,
   });
 
   return isLoading ? (
@@ -52,7 +53,7 @@ const CommentsSection = ({
       <div css={commentsListSectionWrapper}>
         <div css={commentsWrapper}>
           {commentsPagination?.content.map((comment: Comment) => (
-            <UserComment {...comment} />
+            <UserComment {...comment} handleLoginModal={handleLoginModal} />
           ))}
         </div>
         <div css={commentPaginationWrapper}>
