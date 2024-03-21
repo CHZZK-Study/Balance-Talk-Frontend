@@ -22,7 +22,7 @@ export const END_POINT = {
   EMAIL_VERIFY: '/email/verify',
   EMAIL_REQUEST: '/email/request',
   POST: (id: number) => `/posts/${id}`,
-  POST_BOOKMARK: (memberId: number) => `/bookmark/members/${memberId}`,
+  GET_BOOKMARK: '/bookmark',
   COMMENTS: (postId: number) => `/posts/${postId}/comments`,
   VOTE_COUNT: (postId: number) => `/posts/${postId}/vote`,
   FILE_UPLOAD: '/files/image/upload',
