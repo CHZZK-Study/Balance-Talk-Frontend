@@ -76,6 +76,16 @@ export const fetchFileData = async () => {
   return response.data as UploadedImage;
 };
 
+export const fetchAddBookarnk = async (postId: number) => {
+  const response = await axiosInstance.post(END_POINT.ADD_BOOKMARK(postId));
+  return response;
+};
+
+export const fetchDeleteBookarnk = async (postId: number) => {
+  const response = await axiosInstance.post(END_POINT.DELETE_BOOKMARK(postId));
+  return response;
+};
+
 export const getPost = async (postId: number): Promise<NPost> => {
   const response = await axiosInstance.get(END_POINT.POST(postId));
   return response.data as NPost;

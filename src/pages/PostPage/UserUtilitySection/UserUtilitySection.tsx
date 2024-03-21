@@ -1,6 +1,8 @@
 import React, { SetStateAction } from 'react';
 import PostLikeButton from '@/components/Buttons/PostLikeButton';
-import { Star, Report } from '../../../assets';
+import PostBookmarkButton from '@/components/Buttons/PostBookmarkButton';
+import { utilityBtnsWrapper } from '@/components/common/UserComment/UserComment.style';
+import { Report } from '../../../assets';
 import {
   UserUtilitySectionWrapper,
   UtilityButtonWrapper,
@@ -34,9 +36,13 @@ const UserUtilitySection = ({
           />
         </div>
         <div css={UtilityButtonWrapper}>
-          <Star />
+          <PostBookmarkButton
+            handleModal={handleLoginModal}
+            postId={postId}
+            myBookmark={myBookmark}
+          />
         </div>
-        <div css={UtilityButtonWrapper}>
+        <div css={utilityBtnsWrapper}>
           <Report />
         </div>
       </div>

@@ -2,24 +2,22 @@ import React, { SetStateAction, useState } from 'react';
 import { css } from '@emotion/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useUserInfo } from '@/hooks/common/useUserInfo';
-import { fetchAddLike, fetchDeleteLike } from '../../api/posts/posts';
+import { Star } from '@/assets';
+import { fetchAddBookarnk, fetchDeleteBookarnk } from '@/api/posts/posts';
 import { NPost } from '../../types/post';
-import { Hearts } from '../../assets';
 import { pulsate } from '../../styles/keyframes';
 
-type PostLikeButtonProps = {
+type PostBookmarkButtonProps = {
   handleModal: React.Dispatch<SetStateAction<boolean>>;
-  myLike: boolean;
+  myBookmark: boolean;
   postId: number;
-  likesCount: number;
 };
 
-const PostLikeButton = ({
+const PostBookmarkButton = ({
   handleModal,
-  myLike,
+  myBookmark,
   postId,
-  likesCount,
-}: PostLikeButtonProps) => {
+}: PostBookmarkButtonProps) => {
   const queryClient = useQueryClient();
   const { isLoggedIn } = useUserInfo();
 
@@ -30,8 +28,8 @@ const PostLikeButton = ({
     setTimeout(() => setIsAnimation(false), 500);
   };
 
-  const addLike = useMutation({
-    mutationFn: fetchAddLike,
+  const addBookmark = useMutation({
+    mutationFn: fetchAddBookarnk,
     onMutate: () => {
       const prevPost: NPost | undefined = queryClient.getQueryData([
         'posts',
@@ -40,8 +38,7 @@ const PostLikeButton = ({
 
       queryClient.setQueryData(['posts', postId], {
         ...prevPost,
-        likesCount: likesCount + 1,
-        myLike: true,
+        myBookmark: true,
       });
 
       return { prevPost };
@@ -51,8 +48,8 @@ const PostLikeButton = ({
     },
   });
 
-  const deleteLike = useMutation({
-    mutationFn: fetchDeleteLike,
+  const deleteBookmark = useMutation({
+    mutationFn: fetchDeleteBookarnk,
     onMutate: () => {
       const prevPost: NPost | undefined = queryClient.getQueryData([
         'posts',
@@ -61,8 +58,7 @@ const PostLikeButton = ({
 
       queryClient.setQueryData(['posts', postId], {
         ...prevPost,
-        likesCount: likesCount - 1,
-        myLike: false,
+        myBookmark: false,
       });
 
       return { prevPost };
@@ -72,17 +68,17 @@ const PostLikeButton = ({
     },
   });
 
-  const handlePostLike = () => {
+  const onHeartClickHandler = () => {
     if (!isLoggedIn) {
       handleModal(true);
       return;
     }
     animationTrigger();
     if (postId !== undefined) {
-      if (myLike) {
-        deleteLike.mutate(postId);
+      if (myBookmark) {
+        deleteBookmark.mutate(postId);
       } else {
-        addLike.mutate(postId);
+        addBookmark.mutate(postId);
       }
     }
   };
@@ -97,15 +93,15 @@ const PostLikeButton = ({
         width: '38px',
         height: '38px',
         cursor: 'pointer',
-        ':hover': { backgroundColor: 'pink' },
+        ':hover': { backgroundColor: 'yellow' },
         transition: 'background-color 0.2s',
       })}
-      onClick={handlePostLike}
+      onClick={onHeartClickHandler}
       role="presentation"
     >
-      <Hearts
+      <Star
         css={css({
-          fill: `${myLike ? 'red' : 'none'}`,
+          fill: `${myBookmark ? '#FFD369' : 'none'}`,
           animation: `${isAnimation ? `${pulsate} .5s ease-in-out` : 'none'}`,
         })}
       />
@@ -113,4 +109,4 @@ const PostLikeButton = ({
   );
 };
 
-export default PostLikeButton;
+export default PostBookmarkButton;

@@ -8,7 +8,6 @@ import { getPost } from '../../api/posts/posts';
 import CreatorSection from './CreatorSection/CreatorSection';
 import UserUtilitySection from './UserUtilitySection/UserUtilitySection';
 import TitleSection from './TitleSection/TitleSection';
-import { NPost } from '../../types/post';
 import {
   ButtonSectionWrapper,
   ButtonStyleWrapper,
@@ -25,7 +24,6 @@ const PostPage = () => {
   });
 
   const [IsLoginModalOpen, setIsLoginModalOpoen] = useState(false);
-  console.log(post);
 
   return isLoading ? (
     <div>Loading...</div>
