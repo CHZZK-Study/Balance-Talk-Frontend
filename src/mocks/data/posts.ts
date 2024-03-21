@@ -265,7 +265,7 @@ export const postById = (postId?: number) => {
     views: 126,
     likesCount: 15,
     myLike: true,
-    myBookmark: false,
+    myBookmark: true,
     category: 'CASUAL',
     totalVoteCount: 1224,
     balanceOptions: [

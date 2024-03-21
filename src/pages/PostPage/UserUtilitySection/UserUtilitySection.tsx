@@ -2,7 +2,8 @@ import React, { SetStateAction } from 'react';
 import PostLikeButton from '@/components/Buttons/PostLikeButton';
 import PostBookmarkButton from '@/components/Buttons/PostBookmarkButton';
 import { utilityBtnsWrapper } from '@/components/common/UserComment/UserComment.style';
-import { Report } from '../../../assets';
+import PostReportButton from '@/components/Buttons/PostReportButton';
+
 import {
   UserUtilitySectionWrapper,
   UtilityButtonWrapper,
@@ -43,7 +44,7 @@ const UserUtilitySection = ({
           />
         </div>
         <div css={utilityBtnsWrapper}>
-          <Report />
+          <PostReportButton handleModal={handleLoginModal} postId={postId} />
         </div>
       </div>
     </div>

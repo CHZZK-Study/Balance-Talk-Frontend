@@ -68,7 +68,7 @@ const PostBookmarkButton = ({
     },
   });
 
-  const onHeartClickHandler = () => {
+  const handlePostBookmark = () => {
     if (!isLoggedIn) {
       handleModal(true);
       return;
@@ -96,7 +96,7 @@ const PostBookmarkButton = ({
         ':hover': { backgroundColor: 'yellow' },
         transition: 'background-color 0.2s',
       })}
-      onClick={onHeartClickHandler}
+      onClick={handlePostBookmark}
       role="presentation"
     >
       <Star

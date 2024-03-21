@@ -86,6 +86,14 @@ export const fetchDeleteBookarnk = async (postId: number) => {
   return response;
 };
 
+export const fetchReportPost = async (postId: number) => {
+  const response = await axiosInstance.post(END_POINT.REPORT_POST(postId), {
+    reason: '신고합니다.',
+    description: '신고 내용',
+  });
+  return response;
+};
+
 export const getPost = async (postId: number): Promise<NPost> => {
   const response = await axiosInstance.get(END_POINT.POST(postId));
   return response.data as NPost;

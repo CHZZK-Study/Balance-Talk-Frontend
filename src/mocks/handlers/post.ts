@@ -47,6 +47,10 @@ const postHandlers = [
   rest.delete(`${URL}/bookmarks/:postId`, (req, res, ctx) => {
     return res(ctx.status(204));
   }),
+
+  rest.post(`${URL}/posts/:postId/report`, (req, res, ctx) => {
+    return res(ctx.status(200));
+  }),
 ];
 
 export default postHandlers;
