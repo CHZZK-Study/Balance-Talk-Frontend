@@ -2,11 +2,11 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface TokenState {
-  accessToken: string;
+  accessToken: string | undefined;
 }
 
 const initialState: TokenState = {
-  accessToken: '',
+  accessToken: undefined,
 };
 
 export const tokenSlice = createSlice({
@@ -17,12 +17,14 @@ export const tokenSlice = createSlice({
       state.accessToken = action.payload;
     },
     deleteToken: (state) => {
-      state.accessToken = '';
+      state.accessToken = undefined;
     },
   },
 });
 
 export const { setToken, deleteToken } = tokenSlice.actions;
+
+export const tokenActions = tokenSlice.actions;
 
 export const selectToken = (state: { token: TokenState }) =>
   state.token.accessToken;
