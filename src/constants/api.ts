@@ -27,6 +27,15 @@ export const END_POINT = {
   VOTE_COUNT: (postId: number) => `/posts/${postId}/vote`,
   FILE_UPLOAD: '/files/image/upload',
   VOTE: (postId: number) => `posts/${postId}/vote`,
+  ADD_BOOKMARK: (postId: number) => `bookmarks/${postId}`,
+  DELETE_BOOKMARK: (postId: number) => `bookmarks/${postId}`,
+  REPORT_POST: (postId: number) => `posts/${postId}/report`,
+  ADD_LIKE_COMMENT: (postId: number, commentId: number) =>
+    `posts/${postId}/comments/${commentId}/likes`,
+  DELETE_LIKE_COMMENT: (postId: number, commentId: number) =>
+    `posts/${postId}/comments/${commentId}/likes`,
+  REPORT_COMMENT: (postId: number, commentId: number) =>
+    `posts/${postId}/comments/${commentId}/report`,
 };
 
 export const AXIOS = {

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import LoginModal from '@/components/common/Modal/LoginModal';
 import BalanceOptionCardsSection from './BalanceOptionCardsSection/BalanceOptionCardsSection';
 import CommentsSection from './CommentsSection/CommentsSection';
 import { getPost } from '../../api/posts/posts';
 import CreatorSection from './CreatorSection/CreatorSection';
 import UserUtilitySection from './UserUtilitySection/UserUtilitySection';
 import TitleSection from './TitleSection/TitleSection';
-import { NPost } from '../../types/post';
 import {
   ButtonSectionWrapper,
   ButtonStyleWrapper,
@@ -21,8 +21,10 @@ const PostPage = () => {
   const { isLoading, data: post } = useQuery({
     queryKey: ['posts', postId],
     queryFn: () => getPost(postId),
-    select: (data: { data: NPost }) => data?.data,
   });
+
+  const [IsLoginModalOpen, setIsLoginModalOpoen] = useState(false);
+
   return isLoading ? (
     <div>Loading...</div>
   ) : (
@@ -47,7 +49,13 @@ const PostPage = () => {
             createdAt={post?.createdAt}
           />
         )}
-        <UserUtilitySection />
+        <UserUtilitySection
+          postId={postId}
+          likesCount={post?.likesCount || 0}
+          myBookmark={post?.myBookmark || false}
+          myLike={post?.myLike || false}
+          handleLoginModal={setIsLoginModalOpoen}
+        />
       </div>
 
       <div css={ButtonSectionWrapper}>
@@ -63,7 +71,11 @@ const PostPage = () => {
         <CommentsSection
           postId={postId}
           selectedOptionId={post?.selectedOptionId}
+          handleLoginModal={setIsLoginModalOpoen}
         />
+      )}
+      {IsLoginModalOpen && (
+        <LoginModal handleModal={setIsLoginModalOpoen} postId={postId} />
       )}
     </div>
   );
