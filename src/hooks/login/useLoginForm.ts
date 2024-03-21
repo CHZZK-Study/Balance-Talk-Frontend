@@ -1,4 +1,4 @@
-import { AxiosErrorResponse } from '@/api/interceptor';
+import { AxiosErrorResponse, axiosInstance } from '@/api/interceptor';
 import { LoginResponseData, postLogin } from '@/api/member/auth';
 import { HTTP_STATUS_CODE } from '@/constants/api';
 import { PATH } from '@/constants/path';
@@ -41,6 +41,11 @@ export const useLoginForm = () => {
       alert('로그인에 성공했습니다😀');
 
       dispatch(tokenActions.setToken(res.accessToken));
+      axiosInstance.defaults.headers.Authorization = `Bearer ${res.accessToken}`;
+
+      // TODO: 백엔드에서 리프레쉬 토큰 쿠키에 저장시키면, 해당 코드 제거
+      localStorage.setItem('accessToken', res.accessToken);
+      localStorage.setItem('refreshToken', res.refreshToken);
 
       navigate(`/${PATH.MYPAGE}/${PATH.HISTORY.MAIN}/${PATH.HISTORY.POSTS}`);
     },
