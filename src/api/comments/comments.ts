@@ -35,3 +35,14 @@ export const fetchDeleteLikeComment = async (
   );
   return response;
 };
+
+export const fetchReportComment = async (postId: number, commetId: number) => {
+  const response = await axiosInstance.post(
+    END_POINT.REPORT_COMMENT(postId, commetId),
+    {
+      reason: '신고합니다.',
+      description: '신고 내용',
+    },
+  );
+  return response;
+};

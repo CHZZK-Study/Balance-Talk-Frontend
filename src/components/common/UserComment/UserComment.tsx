@@ -1,9 +1,10 @@
 import React, { SetStateAction } from 'react';
 import { Comment } from '@/types/comment';
-import { Profile, More, Report } from '@/assets';
+import { Profile, More } from '@/assets';
 import { getCreatedDate } from '@/utils/date';
 import CommentLikeButton from '@/components/Buttons/CommentLikeButton';
 import { useUserInfo } from '@/hooks/common/useUserInfo';
+import CommentReportButton from '@/components/Buttons/CommentReportButton';
 import {
   btnsWrapper,
   commentHistoryWrapper,
@@ -28,7 +29,6 @@ const UserComment = ({
   content,
   memberName,
   postId,
-  imgUrl,
   selectedOptionId,
   myLike,
   createdAt,
@@ -44,7 +44,11 @@ const UserComment = ({
     <div css={userCommentWrapper(selectedOptionId)}>
       <div css={commentMainWrapper(selectedOptionId)}>
         <div css={commentWrapper(selectedOptionId)}>
-          {imgUrl ? <img src="" alt="이미지" /> : <Profile width={40} />}
+          {profileImageUrl ? (
+            <img src="" alt="이미지" />
+          ) : (
+            <Profile width={40} />
+          )}
           <div css={commentInfoWrapper}>
             <div css={commentHistoryWrapper(selectedOptionId)}>
               <div css={nameWrapper}>{memberName || '익명'}</div>
@@ -67,8 +71,11 @@ const UserComment = ({
               />
               <span>{likesCount}</span>
             </div>
-
-            <Report />
+            <CommentReportButton
+              postId={postId}
+              handleModal={handleLoginModal}
+              commentId={id}
+            />
           </div>
           <div css={replyBtnWrapper}>
             <button type="button" onClick={() => {}}>
