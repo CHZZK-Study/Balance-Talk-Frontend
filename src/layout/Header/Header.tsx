@@ -13,6 +13,7 @@ import Logout from './Logout/Logout';
 
 const Header = () => {
   const accessToken = useNewSelector(selectAccessToken);
+  // TODO: token 콘솔 제거
   console.log('token:', accessToken);
   return (
     <div css={headerContainer}>

@@ -1,10 +1,16 @@
 import React from 'react';
 import { PATH } from '@/constants/path';
+import { useLogoutMutation } from '@/hooks/api/useLogoutMutation';
 import { css } from '@emotion/react';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();
+  const logout = useLogoutMutation();
+
+  const handleLogout = () => {
+    logout.mutate();
+  };
   return (
     <>
       <button
@@ -29,9 +35,7 @@ const Login = () => {
           cursor: 'pointer',
         })}
         type="button"
-        onClick={() => {
-          navigate(`/`);
-        }}
+        onClick={handleLogout}
       >
         로그아웃
       </button>

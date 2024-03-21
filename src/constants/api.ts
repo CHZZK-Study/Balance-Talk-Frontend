@@ -15,6 +15,7 @@ export const HTTP_STATUS_CODE = {
 export const END_POINT = {
   SIGN_UP: '/members/join',
   LOGIN: '/members/login',
+  LOGOUT: '/members/logout',
   ALL_MEMBERS: '/members',
   MEMBER: (id: number) => `/members/${id}`,
   NICKNAME_VERIFY: '/members/duplicate',

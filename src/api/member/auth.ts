@@ -16,3 +16,8 @@ export const postLogin = async (
   );
   return data;
 };
+
+export const postLogout = async () => {
+  const { data } = await axiosInstance.post<string>(`${END_POINT.LOGOUT}`);
+  return data;
+};
