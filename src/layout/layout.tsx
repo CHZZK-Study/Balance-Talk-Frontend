@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { Outlet } from 'react-router-dom';
-import Header from './Header';
+import Header from './Header/Header';
 import SearchBar from './SearchBar';
 import Sidebar from '../pages/MyPage/sections/Sidebar/Sidebar';
 
