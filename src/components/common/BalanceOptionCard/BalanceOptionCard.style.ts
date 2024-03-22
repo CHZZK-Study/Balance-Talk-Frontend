@@ -2,7 +2,6 @@ import { css } from '@emotion/react';
 
 export const balanceOptionCardWrapper = css({
   display: 'flex',
-
   flexDirection: 'column',
   alignItems: 'center',
   width: '100%',
@@ -19,21 +18,10 @@ export const checkIconWrapper = css({
 
 export const backgroundWrapper = css({
   position: 'absolute',
-
   width: '100%',
   height: '100%',
   backgroundColor: 'rgba(0, 0, 0, 0.3)',
   zIndex: '1',
-});
-
-export const outerButtonWrapper = css({
-  display: 'flex',
-  width: '100%',
-  height: '100%',
-  background: 'none',
-  ':hover': {
-    cursor: 'pointer',
-  },
 });
 
 export const innerButtonWrapper = css({
@@ -60,7 +48,7 @@ export const balanceOptionImageWrapper = css({
   fontSize: '2rem',
 });
 
-export const balaceOptionDescriptionWrapper = css({
+export const balanceOptionDescriptionWrapper = css({
   backgroundColor: '#D9D9D9',
   fontFamily: 'SpoqaHanSansNeo-Bold',
   fontSize: '1.5rem',

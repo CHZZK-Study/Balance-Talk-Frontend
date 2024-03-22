@@ -28,6 +28,9 @@ const postHandlers = [
     const postId = Number(req.params.postId);
     return res(ctx.status(200), ctx.json(postById(postId)));
   }),
+  rest.get(`${URL}/posts/:postId/vote`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(voteInfo));
+  }),
 
   rest.post(`${URL}/posts/:postId/likes`, (req, res, ctx) => {
     return res(ctx.status(200));
@@ -35,6 +38,18 @@ const postHandlers = [
 
   rest.delete(`${URL}/posts/:postId/likes`, (req, res, ctx) => {
     return res(ctx.status(204));
+  }),
+
+  rest.post(`${URL}/bookmarks/:postId`, (req, res, ctx) => {
+    return res(ctx.status(200));
+  }),
+
+  rest.delete(`${URL}/bookmarks/:postId`, (req, res, ctx) => {
+    return res(ctx.status(204));
+  }),
+
+  rest.post(`${URL}/posts/:postId/report`, (req, res, ctx) => {
+    return res(ctx.status(200));
   }),
 ];
 

@@ -4,8 +4,7 @@ import {
   pageSelectedBoxStyling,
   paginavigationContainer,
 } from './Paginavigation.style';
-import LeftButton from '../../../assets/svg/LeftButton';
-import RightButton from '../../../assets/svg/RightButton';
+import { LeftButton, RightButton } from '../../../assets';
 
 interface PageNavigationProps {
   pages: number[];

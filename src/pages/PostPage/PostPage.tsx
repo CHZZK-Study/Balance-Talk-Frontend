@@ -1,21 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import LoginModal from '@/components/common/Modal/LoginModal';
 import BalanceOptionCardsSection from './BalanceOptionCardsSection/BalanceOptionCardsSection';
 import CommentsSection from './CommentsSection/CommentsSection';
-import { fetchPostById } from '../../api/posts/posts';
+import { getPost } from '../../api/posts/posts';
 import CreatorSection from './CreatorSection/CreatorSection';
 import UserUtilitySection from './UserUtilitySection/UserUtilitySection';
 import TitleSection from './TitleSection/TitleSection';
-import { ImageInfo } from '../../types/post';
-import { PostPageWrapper, UserSectionWrapper } from './PostPage.style';
+import {
+  ButtonSectionWrapper,
+  ButtonStyleWrapper,
+  PostPageWrapper,
+  UserSectionWrapper,
+} from './PostPage.style';
 
 const PostPage = () => {
   const postId = Number(useParams().id);
+  const [isOpened, setIsOpened] = useState(true);
   const { isLoading, data: post } = useQuery({
     queryKey: ['posts', postId],
-    queryFn: () => fetchPostById(postId),
+    queryFn: () => getPost(postId),
   });
+
+  const [IsLoginModalOpen, setIsLoginModalOpoen] = useState(false);
 
   return isLoading ? (
     <div>Loading...</div>
@@ -24,23 +32,51 @@ const PostPage = () => {
       <TitleSection
         title={post?.title || 'title'}
         views={post?.views || 0}
-        likeCount={post?.likeCount || 0}
-        tags={post?.tags || []}
+        likesCount={post?.likesCount || 0}
+        postTags={post?.postTags || []}
+        totalVoteCount={post?.totalVoteCount || 0}
       />
-      <BalanceOptionCardsSection balanceOptions={post?.balanceOptions || []} />
+      <BalanceOptionCardsSection
+        id={post?.id || 0}
+        balanceOptions={post?.balanceOptions || []}
+        selectedOptionId={post?.selectedOptionId}
+      />
 
       <div css={UserSectionWrapper}>
-        {post?.creatorId && <CreatorSection creatorId={post?.creatorId} />}
-        <UserUtilitySection />
+        {post && (
+          <CreatorSection
+            createdBy={post?.createdBy}
+            createdAt={post?.createdAt}
+          />
+        )}
+        <UserUtilitySection
+          postId={postId}
+          likesCount={post?.likesCount || 0}
+          myBookmark={post?.myBookmark || false}
+          myLike={post?.myLike || false}
+          handleLoginModal={setIsLoginModalOpoen}
+        />
       </div>
-      <CommentsSection
-        postId={postId}
-        balanceOptionTitles={
-          post?.balanceOptions?.map(
-            (balanceOption: ImageInfo) => balanceOption?.optionTitle,
-          ) || []
-        }
-      />
+
+      <div css={ButtonSectionWrapper}>
+        <button
+          css={ButtonStyleWrapper}
+          type="button"
+          onClick={() => setIsOpened(!isOpened)}
+        >
+          {`댓글 ${isOpened ? '접기' : '확인하기'}`}
+        </button>
+      </div>
+      {isOpened && (
+        <CommentsSection
+          postId={postId}
+          selectedOptionId={post?.selectedOptionId}
+          handleLoginModal={setIsLoginModalOpoen}
+        />
+      )}
+      {IsLoginModalOpen && (
+        <LoginModal handleModal={setIsLoginModalOpoen} postId={postId} />
+      )}
     </div>
   );
 };

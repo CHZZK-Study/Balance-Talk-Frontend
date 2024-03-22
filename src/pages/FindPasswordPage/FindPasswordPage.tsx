@@ -1,6 +1,5 @@
 import React from 'react';
 import Heading from '../../components/design/Heading/Heading';
-import InputCode from '../../components/common/InputsUserInfo/InputCode';
 import InputEmail from '../../components/common/InputsUserInfo/InputEmail';
 import { inputContainer, pwContainer } from './FindPasswordPage.style';
 import { useFindPwForm } from '../../hooks/findPassword/useFindPwForm';
@@ -11,8 +10,11 @@ const FindPasswordPage = () => {
     <div css={pwContainer}>
       <Heading size="small">비밀번호를 찾을 이메일을 입력해주세요.</Heading>
       <div css={inputContainer}>
-        <InputEmail value={form.email} onChange={onChange} />
-        <InputCode value={form.code} onChange={onChange} />
+        <InputEmail
+          type="findPassword"
+          value={form.email}
+          onChange={onChange}
+        />
       </div>
     </div>
   );

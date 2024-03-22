@@ -1,11 +1,10 @@
 import React, { useRef } from 'react';
 import { css } from '@emotion/react';
-import Email from '../../../../assets/svg/Email';
-import Key from '../../../../assets/svg/Key';
 import Input from '../../../../components/design/Input/Input';
 import { useLoginForm } from '../../../../hooks/login/useLoginForm';
 import Button from '../../../../components/design/Button/Button';
 import { btnLogin, inputContainer } from './LoginForm.style';
+import { Email, Key } from '../../../../assets';
 
 const LoginForm = () => {
   const inputEmailRef = useRef<HTMLInputElement | null>(null);
@@ -27,6 +26,7 @@ const LoginForm = () => {
       />
       <Input
         name="password"
+        type="password"
         placeholder="비밀번호"
         size="medium"
         icon={<Key />}

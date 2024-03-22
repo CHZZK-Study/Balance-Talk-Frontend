@@ -12,10 +12,10 @@ export const sidebarInnerContainer = css({
   padding: '0px 50px',
 });
 
-export const sidebarNavContainer = css({
+export const sidebarTabContainer = css({
   '& svg': {
-    width: '20px',
-    height: '20px',
+    width: '25px',
+    height: '25px',
     fill: Theme.color.gray400,
   },
 });

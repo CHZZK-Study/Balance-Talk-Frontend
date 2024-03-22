@@ -20,6 +20,29 @@ export type Post = {
   creatorId?: number;
 };
 
+export type BalanceOption = {
+  balanceOptionId: number;
+  title: string;
+  description: string;
+  storedFileName: string | null;
+};
+export type NPost = {
+  id: number;
+  title: string;
+  deadline: string;
+  views: number;
+  likesCount: number;
+  myLike: boolean;
+  myBookmark: boolean;
+  category: 'CASUAL' | 'DISCUSSION';
+  balanceOptions: BalanceOption[];
+  postTags: { tagName: string }[];
+  createdAt: string;
+  createdBy: string;
+  totalVoteCount: number;
+  selectedOptionId?: number;
+};
+
 export type VoteInfo = {
   optionTitle: string;
   voteCount: number;
@@ -55,3 +78,11 @@ export type UploadedImage = {
   type: string;
   size: number;
 };
+<<<<<<< HEAD
+=======
+
+export type ReportedPost = {
+  reason: string;
+  description: string;
+};
+>>>>>>> 6f83a3bf22fa562988cc87acbcd680ac320b203b
