@@ -1,31 +1,44 @@
 import React from 'react';
-import ProfileImage from './ProfileImage/ProfileImage';
 
+import { useMemberQuery } from '@/hooks/api/useMemberQuery';
+import { useParseJwt } from '@/hooks/common/useParseJwt';
+import { useNewSelector } from '@/store';
+import { selectAccessToken } from '@/store/auth';
+import defaultProfile from '../../../assets/images/defaultProfile.png';
 import {
   profileContainer,
   profileInfoContainer,
+  profileRankStyling,
   profileText,
 } from './Profile.style';
-import defaultProfile from '../../../assets/images/defaultProfile.png';
+import ProfileImage from './ProfileImage/ProfileImage';
 import ProfileInfo from './ProfileInfo';
 import { Rank } from '../../../assets';
 
 const Profile = () => {
+  const accessToken = useNewSelector(selectAccessToken);
+  const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
+  if (!member) return null;
+
   return (
     <div css={profileContainer}>
-      <ProfileImage src={defaultProfile} size="large" isOutline />
+      <ProfileImage
+        src={member.profilePhoto ? member.profilePhoto : defaultProfile}
+        size="large"
+        isOutline
+      />
       <ProfileInfo title="가입일: 2024.02.01">
-        <p css={profileText}>Username</p>
+        <p css={profileText}>{member.nickname}</p>
       </ProfileInfo>
       <div css={profileInfoContainer}>
         <ProfileInfo title="작성한 게시글">
-          <p css={profileText}>17</p>
+          <p css={profileText}>{member.postsCount}</p>
         </ProfileInfo>
         <ProfileInfo title="추천 수">
-          <p css={profileText}>9.7k</p>
+          <p css={profileText}>{member.totalPostLike}</p>
         </ProfileInfo>
         <ProfileInfo title="등급">
-          <Rank />
+          <Rank css={profileRankStyling(member.level)} />
         </ProfileInfo>
       </div>
     </div>

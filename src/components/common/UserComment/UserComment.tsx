@@ -1,7 +1,10 @@
-import React from 'react';
-import { css } from '@emotion/react';
+import React, { SetStateAction } from 'react';
 import { Comment } from '@/types/comment';
-import { Profile, More, Report, Like, Plus } from '@/assets';
+import { Profile, More } from '@/assets';
+import { getCreatedDate } from '@/utils/date';
+import CommentLikeButton from '@/components/Buttons/CommentLikeButton';
+import { useUserInfo } from '@/hooks/common/useUserInfo';
+import CommentReportButton from '@/components/Buttons/CommentReportButton';
 import {
   btnsWrapper,
   commentHistoryWrapper,
@@ -11,38 +14,48 @@ import {
   contentWrapper,
   createdAtWrapper,
   likeBtnWrapper,
-  likeCountTextWrapper,
   nameWrapper,
   replyBtnWrapper,
   userCommentWrapper,
   utilityBtnsWrapper,
 } from './UserComment.style';
 
-export type UserCommentProps = Comment & {
-  imgUrl?: string;
+type UserCommentProps = Comment & {
+  handleLoginModal: React.Dispatch<SetStateAction<boolean>>;
 };
 
 const UserComment = ({
   id,
-  imgUrl,
   content,
   memberName,
   postId,
   selectedOptionId,
-  likeCount,
+  myLike,
   createdAt,
+  likesCount,
   lastModifiedAt,
+  profileImageUrl,
+  handleLoginModal,
 }: UserCommentProps) => {
-  const createdAtDate = '3일전';
+  const createdDate = getCreatedDate(createdAt);
+  const { userInfo } = useUserInfo();
+
   return (
     <div css={userCommentWrapper(selectedOptionId)}>
       <div css={commentMainWrapper(selectedOptionId)}>
         <div css={commentWrapper(selectedOptionId)}>
-          {imgUrl ? <img src="" alt="이미지" /> : <Profile width={40} />}
+          {profileImageUrl ? (
+            <img src="" alt="이미지" />
+          ) : (
+            <Profile width={40} />
+          )}
           <div css={commentInfoWrapper}>
             <div css={commentHistoryWrapper(selectedOptionId)}>
               <div css={nameWrapper}>{memberName || '익명'}</div>
-              <div css={createdAtWrapper}>{createdAtDate}</div>
+              <div css={createdAtWrapper}>
+                {createdDate < 1 ? '오늘' : `${createdDate}일전`}
+              </div>
+              {userInfo.nickname === memberName && <More />}
             </div>
             <div css={contentWrapper}>{content}</div>
           </div>
@@ -50,11 +63,19 @@ const UserComment = ({
         <div css={btnsWrapper(selectedOptionId)}>
           <div css={utilityBtnsWrapper}>
             <div css={likeBtnWrapper}>
-              <Like />
-              <span css={likeCountTextWrapper}>{123}</span>
+              <CommentLikeButton
+                handleModal={handleLoginModal}
+                myLike={myLike}
+                postId={postId}
+                commentId={id}
+              />
+              <span>{likesCount}</span>
             </div>
-            <More />
-            <Report />
+            <CommentReportButton
+              postId={postId}
+              handleModal={handleLoginModal}
+              commentId={id}
+            />
           </div>
           <div css={replyBtnWrapper}>
             <button type="button" onClick={() => {}}>

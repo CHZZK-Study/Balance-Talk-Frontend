@@ -37,9 +37,10 @@ export type NPost = {
   myBookmark: boolean;
   category: 'CASUAL' | 'DISCUSSION';
   balanceOptions: BalanceOption[];
-  postTags: string[];
+  postTags: { tagName: string }[];
   createdAt: string;
   createdBy: string;
+  totalVoteCount: number;
   selectedOptionId?: number;
 };
 
@@ -77,4 +78,9 @@ export type UploadedImage = {
   path: string;
   type: string;
   size: number;
+};
+
+export type ReportedPost = {
+  reason: string;
+  description: string;
 };

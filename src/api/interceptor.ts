@@ -1,3 +1,4 @@
+import store from '@/store';
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { AXIOS, END_POINT } from '../constants/api';
 import { HTTPError } from './HttpError';
@@ -22,11 +23,18 @@ export const axiosInstance = axios.create({
 // request interceptor (before request)
 axiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
+    if (config.headers.Authorization) return config;
+
+    const { accessToken } = store.getState().token;
     const newConfig = { ...config };
+
     if (newConfig.url === END_POINT.FILE_UPLOAD) {
       newConfig.headers['Content-Type'] = 'multipart/form-data';
     }
-    // TODO: access, refresh token handling (REST api header setting)
+    if (accessToken) {
+      newConfig.headers.Authorization = `Bearer ${accessToken}`;
+    }
+
     console.log('요청 전 config', newConfig);
     return newConfig;
   },

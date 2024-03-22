@@ -9,7 +9,7 @@ export interface PaginationProps {
   currentPage?: number;
 }
 
-export const CommentsPagination = ({
+export const Pagination = ({
   totalCommentsCount,
   currentPage,
 }: PaginationProps) => {

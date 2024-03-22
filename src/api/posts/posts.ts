@@ -83,5 +83,23 @@ export const fetchFileData = async (file: File) => {
 export const getPost = (postId: number): Promise<NPost> =>
   axiosInstance.get(END_POINT.POST(postId));
 
+export const fetchAddBookarnk = async (postId: number) => {
+  const response = await axiosInstance.post(END_POINT.ADD_BOOKMARK(postId));
+  return response;
+};
+
+export const fetchDeleteBookarnk = async (postId: number) => {
+  const response = await axiosInstance.post(END_POINT.DELETE_BOOKMARK(postId));
+  return response;
+};
+
+export const fetchReportPost = async (postId: number) => {
+  const response = await axiosInstance.post(END_POINT.REPORT_POST(postId), {
+    reason: '신고합니다.',
+    description: '신고 내용',
+  });
+  return response;
+};
+
 export const getVoteCount = (postId: number): Promise<VoteInfo[]> =>
   axiosInstance.get(END_POINT.VOTE_COUNT(postId));

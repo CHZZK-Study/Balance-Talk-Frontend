@@ -26,6 +26,7 @@ const LoginForm = () => {
       />
       <Input
         name="password"
+        type="password"
         placeholder="비밀번호"
         size="medium"
         icon={<Key />}
