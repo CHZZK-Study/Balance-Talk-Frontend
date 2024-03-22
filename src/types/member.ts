@@ -5,7 +5,7 @@ export type Member = {
   createdAt: string;
   postsCount: number;
   totalPostLike: number;
-  level: number;
+  level: 0 | 1 | 2;
 };
 
 export interface MemberForm {

@@ -28,7 +28,7 @@ const BookmarksPage = () => {
       </div>
 
       <List>
-        {myBookmarksPosts
+        {myBookmarksPosts && myBookmarksPosts.length > 0
           ? myBookmarksPosts.map((item: MyBookmarksPostsType) => {
               return (
                 <ItemMyBookmarksPosts
