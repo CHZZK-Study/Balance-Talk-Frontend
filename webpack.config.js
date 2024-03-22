@@ -13,10 +13,10 @@ module.exports = (env) => {
   } else {
     dotenv.config({ path: './.env.production' });
   }
-  const isProduction = !DEV;
+
   return {
     name: 'balance-talk',
-    mode: isProduction ? 'production' : 'development',
+    mode: DEV ? 'development' : 'production',
     entry: './src/index.tsx',
     module: {
       rules: [
