@@ -14,6 +14,9 @@ const color = {
   blue: '#3E69FF',
   white: '#FFFFFF',
   black: '#000000',
+  bronze: '#B08A5D',
+  silver: '#C0C0C0',
+  gold: '#FFD700',
 } as const;
 
 const text = {
