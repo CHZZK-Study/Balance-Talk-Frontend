@@ -5,6 +5,13 @@ export type ImageInfo = {
   description?: string;
 };
 
+export type BalanceOption = {
+  balanceOptionId: number;
+  title: string;
+  description: string;
+  storedFileName: string | null;
+};
+
 export type Post = {
   id: number;
   title: string;
@@ -20,12 +27,6 @@ export type Post = {
   creatorId?: number;
 };
 
-export type BalanceOption = {
-  balanceOptionId: number;
-  title: string;
-  description: string;
-  storedFileName: string | null;
-};
 export type NPost = {
   id: number;
   title: string;

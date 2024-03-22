@@ -6,7 +6,7 @@ import { CreatePost } from '../../types/post';
 const URL = process.env.API_URL;
 
 const postHandlers = [
-  rest.get(`${URL}/posts?member-id=1`, (req, res, ctx) => {
+  rest.get(`${URL}/posts`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(postList));
   }),
 

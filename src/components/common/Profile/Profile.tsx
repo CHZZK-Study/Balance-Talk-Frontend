@@ -1,9 +1,9 @@
 import React from 'react';
+
 import { useMemberQuery } from '@/hooks/api/useMemberQuery';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
-import { Rank } from '../../../assets';
 import defaultProfile from '../../../assets/images/defaultProfile.png';
 import {
   profileContainer,
@@ -13,6 +13,7 @@ import {
 } from './Profile.style';
 import ProfileImage from './ProfileImage/ProfileImage';
 import ProfileInfo from './ProfileInfo';
+import { Rank } from '../../../assets';
 
 const Profile = () => {
   const accessToken = useNewSelector(selectAccessToken);

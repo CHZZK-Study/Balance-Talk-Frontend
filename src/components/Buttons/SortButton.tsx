@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import { css } from '@emotion/react';
 
-const SortButton = () => {
+type Props = {
+  onClickHandler: (e: MouseEvent<HTMLElement>) => void;
+  focus: number;
+};
+
+const SortButton = ({ onClickHandler, focus }: Props) => {
   return (
     <div
       css={css({
@@ -13,12 +18,15 @@ const SortButton = () => {
     >
       <div
         css={css({
-          fontFamily: 'SpoqaHanSansNeo-Regular',
           fontSize: '14px',
           borderRight: '1px solid #C4C4C4',
           paddingRight: '5px',
           cursor: 'pointer',
+          fontFamily:
+            focus === 0 ? 'SpoqaHanSansNeo-Regular' : 'SpoqaHanSansNeo-Thin',
         })}
+        onClick={onClickHandler}
+        role="presentation"
       >
         최신순
       </div>
@@ -28,7 +36,11 @@ const SortButton = () => {
           paddingLeft: '5px',
           paddingRight: '5px',
           cursor: 'pointer',
+          fontFamily:
+            focus === 1 ? 'SpoqaHanSansNeo-Regular' : 'SpoqaHanSansNeo-Thin',
         })}
+        onClick={onClickHandler}
+        role="presentation"
       >
         조회순
       </div>
@@ -36,7 +48,11 @@ const SortButton = () => {
         css={css({
           paddingLeft: '5px',
           cursor: 'pointer',
+          fontFamily:
+            focus === 2 ? 'SpoqaHanSansNeo-Regular' : 'SpoqaHanSansNeo-Thin',
         })}
+        onClick={onClickHandler}
+        role="presentation"
       >
         추천순
       </div>

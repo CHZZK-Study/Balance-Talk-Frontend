@@ -1,5 +1,10 @@
+<<<<<<< HEAD
+import React, { useState } from 'react';
+import { useAuth } from '@/hooks/login/useAuth';
+=======
 import React from 'react';
 import { useUserInfo } from '@/hooks/common/useUserInfo';
+>>>>>>> dev
 import { useSelectedOptionsInLocalStorage } from '@/hooks/vote/useSelectedOptionsInLocalStorage';
 import BalanceOptionCard from '../../../components/common/BalanceOptionCard/BalanceOptionCard';
 import { NPost } from '../../../types/post';

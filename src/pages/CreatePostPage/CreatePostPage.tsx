@@ -133,6 +133,7 @@ const CreatePostPage = () => {
         <div css={inputTitleWrapper}>
           <input
             name="title"
+            required
             value={title}
             onChange={onChange}
             css={css({
@@ -142,10 +143,34 @@ const CreatePostPage = () => {
               ':hover': {
                 backgroundColor: '#BEBEBE',
               },
+              '&:required:invalid': {
+                border: '1px solid red',
+              },
             })}
+            autoComplete="nope"
             placeholder={PLACE_HOLDER.POST.TITLE}
           />
+          {!title && (
+            <div
+              css={css({
+                color: 'red',
+                width: '60%',
+                display: 'flex',
+                justifyContent: 'flex-start',
+                marginTop: '7px',
+              })}
+            >
+              <div
+                css={css({
+                  color: 'red',
+                })}
+              >
+                게시글 제목을 입력해 주세요.
+              </div>
+            </div>
+          )}
         </div>
+
         <div css={etcButtonContainer}>
           <div css={etcButtonWrapper}>
             <div css={css({ display: 'flex' })}>

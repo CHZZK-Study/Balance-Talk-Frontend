@@ -15,8 +15,8 @@ module.exports = (env) => {
   }
 
   return {
-    name: 'example',
-    mode: 'development',
+    name: 'balance-talk',
+    mode: DEV ? 'development' : 'production',
     entry: './src/index.tsx',
     module: {
       rules: [
@@ -79,6 +79,7 @@ module.exports = (env) => {
     ],
     output: {
       filename: 'bundle.js',
+      path: path.resolve(__dirname, 'dist'),
       publicPath: '/',
     },
     devServer: {

@@ -10,6 +10,8 @@ export const inputTitleWrapper = css({
   display: 'flex',
   justifyContent: 'center',
   marginBottom: '20px',
+  flexDirection: 'column',
+  alignItems: 'center',
 });
 
 export const etcButtonContainer = css({

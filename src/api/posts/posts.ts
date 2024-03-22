@@ -9,12 +9,16 @@ import { END_POINT } from '../../constants/api';
 import { axiosInstance } from '../interceptor';
 
 // const URL = process.env.API_URL;
-export const fetchPostsData = async (): Promise<Post[]> => {
+export const fetchPostsData = async (
+  sort: string = 'createdAt',
+  page: number = 0,
+): Promise<Post[]> => {
   // const response = await fetch(`${URL}/posts?member-id=1`);
   // const result = (await response.json()) as Post[];
   // return result;
-
-  const response = await axiosInstance.get(`/posts`);
+  const response = await axiosInstance.get(
+    `/posts?page=${page}&sort=${sort},desc`,
+  );
   return response.data as Post[];
 };
 
@@ -22,7 +26,6 @@ export const fetchVoteCount = async (postId: number): Promise<VoteInfo[]> => {
   // const response = await fetch(`${URL}/post/${postId}/vote`);
   // const result = (await response.json()) as VoteInfo[];
   // return result;
-
   const response = await axiosInstance.get(`/post/${postId}/vote`);
   return response.data as VoteInfo[];
 };
@@ -54,6 +57,7 @@ export const fetchAddLike = async (postId: number) => {
   //   method: 'POST',
   //   credentials: 'include',
   // });
+
   // return response.body;
   const response = await axiosInstance.post(`/posts/${postId}/likes`);
   return response;
@@ -71,10 +75,13 @@ export const fetchDeleteLike = async (postId: number) => {
   return response;
 };
 
-export const fetchFileData = async () => {
-  const response = await axiosInstance.post(`/files/image/upload`);
+export const fetchFileData = async (file: File) => {
+  const response = await axiosInstance.post(`/files/image/upload`, file);
   return response.data as UploadedImage;
 };
+
+export const getPost = (postId: number): Promise<NPost> =>
+  axiosInstance.get(END_POINT.POST(postId));
 
 export const fetchAddBookarnk = async (postId: number) => {
   const response = await axiosInstance.post(END_POINT.ADD_BOOKMARK(postId));
@@ -92,11 +99,6 @@ export const fetchReportPost = async (postId: number) => {
     description: '신고 내용',
   });
   return response;
-};
-
-export const getPost = async (postId: number): Promise<NPost> => {
-  const response = await axiosInstance.get(END_POINT.POST(postId));
-  return response.data as NPost;
 };
 
 export const getVoteCount = (postId: number): Promise<VoteInfo[]> =>
