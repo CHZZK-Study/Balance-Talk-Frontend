@@ -15,6 +15,8 @@ const sortInfo = {
   추천순: { index: 2, param: 'likesCount' },
 };
 
+type Sort = '추천순' | '최신순' | '조회순';
+
 const PostList = () => {
   const [focus, setFocus] = useState(0);
   const [sort, setSort] = useState('createdAt');
@@ -27,7 +29,8 @@ const PostList = () => {
   });
 
   const onSortClickHandler = (e: MouseEvent<HTMLElement>) => {
-    const selected = e.target.textContent;
+    const target = e.target as HTMLElement;
+    const selected = target.textContent as Sort;
     setSort(sortInfo[selected].param);
     setFocus(sortInfo[selected].index);
   };
