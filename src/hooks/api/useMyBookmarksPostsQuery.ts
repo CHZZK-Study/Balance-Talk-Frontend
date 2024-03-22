@@ -5,8 +5,7 @@ import { MyBookmarksPostsType } from '../../types/history';
 export const useMyBookmarksPostsQuery = () => {
   const { data: myBookmarksPosts } = useQuery<MyBookmarksPostsType[]>({
     queryKey: ['myBookmarksPosts'],
-    // TODO: memberId 차후 수정
-    queryFn: () => getMyBookmarksPosts(0),
+    queryFn: getMyBookmarksPosts,
   });
   return { myBookmarksPosts };
 };

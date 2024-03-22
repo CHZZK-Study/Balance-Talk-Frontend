@@ -2,11 +2,9 @@ import { END_POINT } from '../../constants/api';
 import { MyBookmarksPostsType } from '../../types/history';
 import { axiosInstance } from '../interceptor';
 
-const URL = process.env.API_URL;
-
-export const getMyBookmarksPosts = async (memberId: number) => {
+export const getMyBookmarksPosts = async () => {
   const { data } = await axiosInstance.get<MyBookmarksPostsType[]>(
-    `${URL}${END_POINT.POST_BOOKMARK(memberId)}`,
+    `${END_POINT.GET_BOOKMARK}`,
   );
   return data;
 };

@@ -1,27 +1,29 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import 'dayjs/locale/ko';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import { PATH } from './constants/path';
+import { useTokenRefresh } from './hooks/common/useTokenRefresh';
 import { Layout, LayoutMypage, LayoutNoSearch } from './layout/layout';
 import CreatePostPage from './pages/CreatePostPage/CreatePostPage';
 import FindPasswordPage from './pages/FindPasswordPage/FindPasswordPage';
 import LandingPage from './pages/LandingPage/LandingPage';
 import LoginPage from './pages/LoginPage/LoginPage';
+import DeletePage from './pages/MyPage/DeletePage/DeletePage';
+import HistoryPage from './pages/MyPage/HistoryPage/HistoryPage';
+import BookmarksPage from './pages/MyPage/HistoryPage/TabPage/BookmarksPage/BookmarksPage';
+import CommentsPage from './pages/MyPage/HistoryPage/TabPage/CommentsPage';
+import PostsPage from './pages/MyPage/HistoryPage/TabPage/PostsPage';
+import VotedPostsPage from './pages/MyPage/HistoryPage/TabPage/VotedPostsPage';
+import UpdatePage from './pages/MyPage/UpdatePage/UpdatePage';
 import PostList from './pages/PostListPage/PostListPage';
 import PostPage from './pages/PostPage/PostPage';
 import SignUpPage from './pages/SignUpPage/SignUpPage';
 import ReactQueryProvider from './providers/ReactQueryProvider';
-import UpdatePage from './pages/MyPage/UpdatePage/UpdatePage';
-import DeletePage from './pages/MyPage/DeletePage/DeletePage';
-import HistoryPage from './pages/MyPage/HistoryPage/HistoryPage';
-import PostsPage from './pages/MyPage/HistoryPage/TabPage/PostsPage';
-import CommentsPage from './pages/MyPage/HistoryPage/TabPage/CommentsPage';
-import VotedPostsPage from './pages/MyPage/HistoryPage/TabPage/VotedPostsPage';
-import BookmarksPage from './pages/MyPage/HistoryPage/TabPage/BookmarksPage/BookmarksPage';
-import 'dayjs/locale/ko';
 
 const App: React.FC = () => {
+  useTokenRefresh();
   return (
     <ReactQueryProvider>
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ko">

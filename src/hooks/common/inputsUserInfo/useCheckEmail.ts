@@ -25,7 +25,7 @@ export const useCheckEmail = (type: string, value: string) => {
       setErrorMessage(SUCCESS.EMAIL.AVAILABLE);
     },
     onError: (err: AxiosErrorResponse) => {
-      if (err.status === HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR) {
+      if (err.status === HTTP_STATUS_CODE.CONFLICT) {
         setIsError(true);
         setErrorMessage(ERROR.EMAIL.EXIST);
       }

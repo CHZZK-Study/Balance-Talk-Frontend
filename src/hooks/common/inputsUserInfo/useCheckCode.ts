@@ -22,7 +22,7 @@ export const useCheckCode = (
       setErrorMessage(SUCCESS.CODE.MATCH);
     },
     onError: (err: AxiosErrorResponse) => {
-      if (err.status === HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR) {
+      if (err.status === HTTP_STATUS_CODE.BAD_REQUEST) {
         setIsError(true);
         setErrorMessage(ERROR.CODE.NOT_MATCH);
       }
