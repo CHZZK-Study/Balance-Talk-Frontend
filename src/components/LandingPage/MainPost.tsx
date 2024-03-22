@@ -45,7 +45,7 @@ const MainPost = ({ post }: MainPostProps) => {
   const postInfo = post;
 
   return (
-    <div css={css({ display: 'flex' })}>
+    <div css={css({ display: 'flex', margin: '10px' })}>
       <PostImage images={images} size="large" />
       <div css={mainPostInfoWrapper}>
         <div css={mainPostTitleWrapper}>
@@ -53,7 +53,6 @@ const MainPost = ({ post }: MainPostProps) => {
           <div css={TagButtonWrapper}>
             {postInfo?.postTags?.map((tag) => {
               if (tag) {
-                console.log(tag.tagName);
                 return <TagButton key={tag.tagName} tag={tag.tagName} />;
               }
               return <br />;

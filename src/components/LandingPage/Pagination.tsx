@@ -2,8 +2,9 @@ import React from 'react';
 import { css } from '@emotion/react';
 
 type PaginationProps = {
-  count: number;
+  count?: number;
   index: number;
+  showLength: number;
 };
 
 type PaginationItemProps = {
@@ -25,11 +26,11 @@ const PaginationItem = ({ isActive }: PaginationItemProps) => {
   );
 };
 
-const Pagination = ({ count, index }: PaginationProps) => {
+const Pagination = ({ count, index, showLength }: PaginationProps) => {
   return (
     <div css={css({ display: 'flex' })}>
       {count &&
-        Array.from({ length: count - 2 }, (_, i) => (
+        Array.from({ length: count - (showLength - 1) }, (_, i) => (
           <PaginationItem key={i} isActive={i === index} />
         ))}
     </div>

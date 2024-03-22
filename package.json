@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --env DEV=true MSW=true",
     "dev-api": "webpack-dev-server --env DEV=true",
-    "lint": "eslint './src/**/*.{ts,tsx,js,jsx}'"
+    "lint": "eslint './src/**/*.{ts,tsx,js,jsx}'",
+    "build": "webpack"
   },
   "author": "",
   "license": "ISC",
@@ -59,7 +60,8 @@
     "typescript": "^5.2.2",
     "webpack": "^5.90.0",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1"
+    "webpack-dev-server": "^4.15.1",
+    "webpack-merge": "^5.10.0"
   },
   "msw": {
     "workerDirectory": "public"

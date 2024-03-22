@@ -2,6 +2,7 @@
 import React, { useCallback } from 'react';
 import { css } from '@emotion/react';
 import { useDropzone } from 'react-dropzone';
+import { AxiosErrorResponse } from '@/api/interceptor';
 import { CreatePostImageFile } from '../../types/post';
 import { fetchFileData } from '../../api/posts/posts';
 
@@ -19,7 +20,12 @@ const ImageDropZone: React.FC<ImageDropZoneProps> = ({ setFile }) => {
         type,
         size: size.toString(),
       });
-      const imageInfo = fetchFileData();
+      try {
+        const imageInfo = fetchFileData(acceptedFiles[0]);
+        console.log(imageInfo);
+      } catch (error: AxiosErrorResponse) {
+        console.log(error);
+      }
     },
     [setFile],
   );

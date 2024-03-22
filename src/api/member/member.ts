@@ -16,6 +16,8 @@ export const fetchMember = async (memberId: number): Promise<Member> => {
   return result;
 };
 
+<<<<<<< HEAD
+=======
 export const getMember = async (memberId: number) => {
   const { data } = await axiosInstance.get<Member>(
     `${END_POINT.MEMBER(memberId)}`,
@@ -23,6 +25,7 @@ export const getMember = async (memberId: number) => {
   return data;
 };
 
+>>>>>>> dev
 export const postMember = async (
   form: Pick<MemberForm, 'nickname' | 'email' | 'password'>,
 ) => {

@@ -5,13 +5,19 @@ import RightArrowButton from '../../assets/svg/RightArrowButton';
 import Pagination from './Pagination';
 
 type CarouselProps<T> = {
-  items: T[];
+  items?: T[];
   render: (item: T) => ReactNode;
   itemWidth?: number;
+  showLength: number;
 };
 
-const Carousel = <T,>({ items, render, itemWidth = 420 }: CarouselProps<T>) => {
-  const totalIndex = items.length - 2;
+const Carousel = <T,>({
+  items,
+  render,
+  itemWidth = 420,
+  showLength = 3,
+}: CarouselProps<T>) => {
+  const totalIndex = items && items.length - (showLength - 1);
   const [index, setIndex] = useState(0);
 
   const onRightArrowClickHandler = () => {
@@ -34,7 +40,7 @@ const Carousel = <T,>({ items, render, itemWidth = 420 }: CarouselProps<T>) => {
         </div>
         <div
           css={css({
-            width: `${itemWidth * 3}px`,
+            width: `${itemWidth * showLength}px`,
             overflow: 'hidden',
           })}
         >
@@ -64,7 +70,11 @@ const Carousel = <T,>({ items, render, itemWidth = 420 }: CarouselProps<T>) => {
           justifyContent: 'center',
         })}
       >
-        <Pagination count={items.length} index={index} />
+        <Pagination
+          count={items?.length}
+          index={index}
+          showLength={showLength}
+        />
       </div>
     </div>
   );

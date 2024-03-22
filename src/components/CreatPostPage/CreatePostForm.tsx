@@ -46,6 +46,7 @@ const CreatePostForm = ({ setBalanceOptions, index }: CreatePostFormProps) => {
     <div css={css({ margin: '80px', marginTop: '40px' })}>
       <ImageDropZone setFile={setEach} />
       <input
+        required
         name="title"
         value={title}
         onChange={onChange}
@@ -57,16 +58,29 @@ const CreatePostForm = ({ setBalanceOptions, index }: CreatePostFormProps) => {
             backgroundColor: '#BEBEBE',
           },
           marginTop: '20px',
-          marginBottom: '20px',
+          '&:required:invalid': {
+            border: '1px solid red',
+          },
         })}
         placeholder={PLACE_HOLDER.POST.CHOICE_TITLE}
       />
+      {!title && (
+        <div
+          css={css({
+            color: 'red',
+            marginTop: '7px',
+          })}
+        >
+          선택지 제목을 입력해 주세요.
+        </div>
+      )}
       <div>
         <textarea
           name="description"
           value={description}
           onChange={onChange}
           css={css({
+            marginTop: '13px',
             width: '450px',
             height: '100px',
             ...inputStyles,
