@@ -16,7 +16,6 @@ export const fetchPostsData = async (
   // const response = await fetch(`${URL}/posts?member-id=1`);
   // const result = (await response.json()) as Post[];
   // return result;
-  console.log('sort', sort);
   const response = await axiosInstance.get(
     `/posts?page=${page}&sort=${sort},desc`,
   );
@@ -27,7 +26,6 @@ export const fetchVoteCount = async (postId: number): Promise<VoteInfo[]> => {
   // const response = await fetch(`${URL}/post/${postId}/vote`);
   // const result = (await response.json()) as VoteInfo[];
   // return result;
-  console.log('postId', postId);
   const response = await axiosInstance.get(`/post/${postId}/vote`);
   return response.data as VoteInfo[];
 };
@@ -77,8 +75,8 @@ export const fetchDeleteLike = async (postId: number) => {
   return response;
 };
 
-export const fetchFileData = async () => {
-  const response = await axiosInstance.post(`/files/image/upload`);
+export const fetchFileData = async (file: File) => {
+  const response = await axiosInstance.post(`/files/image/upload`, file);
   return response.data as UploadedImage;
 };
 

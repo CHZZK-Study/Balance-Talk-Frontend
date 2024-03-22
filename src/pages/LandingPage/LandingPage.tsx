@@ -46,7 +46,7 @@ const LandingPage = () => {
     });
   };
 
-  const postInfos = data ? extractBalanceOptions(data) : [];
+  const postInfos = data ? extractBalanceOptions(data.content) : [];
 
   const renderCarouselItems = (postInfo: PostInfo) => {
     return (
@@ -54,6 +54,10 @@ const LandingPage = () => {
         <PostImage images={postInfo.balanceOptions} size="medium" />
       </div>
     );
+  };
+
+  const renderMainPost = (post: Post) => {
+    return <MainPost post={post} key={post.id} />;
   };
 
   return (
@@ -69,9 +73,14 @@ const LandingPage = () => {
             추천 게시글
           </Heading>
         </div>
-        <MainPost post={data?.[0]} />
+        <Carousel
+          itemWidth={1100}
+          items={data?.content.slice(0, 5)}
+          render={renderMainPost}
+          showLength={1}
+        />
+        {/* <MainPost post={data?.[0]} /> */}
       </div>
-
       <div css={morePostWrapper}>
         <div css={headingWithButtonWrapper}>
           <Heading
@@ -94,7 +103,11 @@ const LandingPage = () => {
             더보기
           </span>
         </div>
-        <Carousel items={postInfos} render={renderCarouselItems} />
+        <Carousel
+          items={postInfos}
+          render={renderCarouselItems}
+          showLength={3}
+        />
       </div>
     </div>
   );

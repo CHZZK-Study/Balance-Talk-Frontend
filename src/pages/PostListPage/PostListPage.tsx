@@ -60,7 +60,7 @@ const PostList = () => {
       </div>
       <div css={postListWrapper}>
         {posts &&
-          posts.map((post) => {
+          posts.content.map((post) => {
             return (
               <PostItem key={post.id} post={post} showClosed={showClosed} />
             );

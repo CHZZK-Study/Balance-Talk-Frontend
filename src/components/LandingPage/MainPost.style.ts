@@ -1,10 +1,11 @@
 import { css } from '@emotion/react';
 
 export const mainPostInfoWrapper = css({
-  marginLeft: '4vw',
+  marginLeft: '30px',
   display: 'flex',
   flexDirection: 'column',
   marginTop: '100px',
+  width: '350px',
 });
 
 export const mainPostTitleWrapper = css({
