@@ -18,3 +18,4 @@ export { default as Check } from './svg/check.svg';
 export { default as Fight } from './svg/fight.svg';
 export { default as NoImage } from './images/no-image.png';
 export { default as Vote } from './svg/vote.svg';
+export { default as DisabledHeart } from './svg/DisabledHeart.svg';

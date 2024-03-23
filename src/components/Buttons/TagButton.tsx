@@ -20,6 +20,7 @@ const TagButton = ({ tag, onClickHandler }: TagButtonProps) => {
         height: '35px',
         boxShadow: '0px 4px 4px gray',
         marginRight: '10px',
+        marginTop: '5px',
         ':hover': {
           backgroundColor: '#BEBEBE',
         },

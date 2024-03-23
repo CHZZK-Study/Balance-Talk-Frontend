@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { css } from '@emotion/react';
 import { useDropzone } from 'react-dropzone';
 import { AxiosErrorResponse } from '@/api/interceptor';
@@ -11,18 +11,15 @@ type ImageDropZoneProps = {
 };
 
 const ImageDropZone: React.FC<ImageDropZoneProps> = ({ setFile }) => {
+  const [imageUrl, setImageUrl] = useState('');
+  const [imageAlt, setImageAlt] = useState('');
   const onDrop = useCallback(
-    (acceptedFiles: File[]) => {
-      const { name, size, type } = acceptedFiles[0];
-      setFile<CreatePostImageFile>('file', {
-        uploadName: name,
-        path: name,
-        type,
-        size: size.toString(),
-      });
+    async (acceptedFiles: File[]) => {
       try {
-        const imageInfo = fetchFileData(acceptedFiles[0]);
-        console.log(imageInfo);
+        const imageInfo = await fetchFileData(acceptedFiles[0]);
+        setImageAlt(imageInfo.originalName);
+        setImageUrl(imageInfo.path + imageInfo.storedName);
+        setFile('storedFileName', imageInfo.storedName);
       } catch (error: AxiosErrorResponse) {
         console.log(error);
       }
@@ -52,14 +49,22 @@ const ImageDropZone: React.FC<ImageDropZoneProps> = ({ setFile }) => {
       })}
     >
       <input {...getInputProps()} />
-      <p
-        css={css({
-          fontFamily: 'SpoqaHanSansNeo-Regular',
-          fontSize: '24px',
-        })}
-      >
-        +
-      </p>
+      {imageUrl ? (
+        <img
+          src={imageUrl}
+          alt={imageAlt}
+          css={css({ width: '100%', height: '100%' })}
+        />
+      ) : (
+        <p
+          css={css({
+            fontFamily: 'SpoqaHanSansNeo-Regular',
+            fontSize: '24px',
+          })}
+        >
+          +
+        </p>
+      )}
     </div>
   );
 };
