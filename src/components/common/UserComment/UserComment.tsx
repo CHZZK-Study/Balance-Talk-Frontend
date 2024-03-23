@@ -1,4 +1,4 @@
-import React, { SetStateAction } from 'react';
+import React, { SetStateAction, useState } from 'react';
 import { Comment } from '@/types/comment';
 import { Profile, More } from '@/assets';
 import { getCreatedDate } from '@/utils/date';
@@ -25,6 +25,7 @@ import {
 
 type UserCommentProps = Comment & {
   handleLoginModal: React.Dispatch<SetStateAction<boolean>>;
+  balanceOptionIds: number[];
 };
 
 const UserComment = ({
@@ -33,31 +34,39 @@ const UserComment = ({
   memberName,
   postId,
   selectedOptionId,
+  balanceOptionIds,
+  parentCommentId,
   myLike,
   createdAt,
   likesCount,
   lastModifiedAt,
   profileImageUrl,
+  postTitle,
   handleLoginModal,
 }: UserCommentProps) => {
   const createdDate = getCreatedDate(createdAt);
+
+  const [isOpenReplies, setIsOpenReplies] = useState<boolean>(false);
   // const { member } = useMemberQuery(
   //   useParseJwt(useNewSelector(selectAccessToken)).memberId,
   // );
 
   const member = { memberId: 100, nickname: '김성현' };
+  const isAlignLeft = selectedOptionId === balanceOptionIds[0];
+  console.log(selectedOptionId, balanceOptionIds);
 
   return (
-    <div css={userCommentWrapper(selectedOptionId)}>
-      <div css={commentMainWrapper(selectedOptionId)}>
-        <div css={commentWrapper(selectedOptionId)}>
+    <div css={userCommentWrapper(isAlignLeft)}>
+      <div css={commentMainWrapper(isAlignLeft)}>
+        <div css={commentWrapper(isAlignLeft)}>
           {profileImageUrl ? (
-            <img src="" alt="이미지" />
+            // 이미지 반영 필요
+            <img src={profileImageUrl} alt="이미지" />
           ) : (
             <Profile width={40} />
           )}
           <div css={commentInfoWrapper}>
-            <div css={commentHistoryWrapper(selectedOptionId)}>
+            <div css={commentHistoryWrapper(isAlignLeft)}>
               <div css={nameWrapper}>{memberName || '익명'}</div>
               <div css={createdAtWrapper}>
                 {createdDate < 1 ? '오늘' : `${createdDate}일전`}
@@ -67,7 +76,7 @@ const UserComment = ({
             <div css={contentWrapper}>{content}</div>
           </div>
         </div>
-        <div css={btnsWrapper(selectedOptionId)}>
+        <div css={btnsWrapper(isAlignLeft)}>
           <div css={utilityBtnsWrapper}>
             <div css={likeBtnWrapper}>
               <CommentLikeButton
@@ -85,8 +94,13 @@ const UserComment = ({
             />
           </div>
           <div css={replyBtnWrapper}>
-            <button type="button" onClick={() => {}}>
-              답글
+            <button
+              type="button"
+              onClick={() => {
+                setIsOpenReplies(!isOpenReplies);
+              }}
+            >
+              {isOpenReplies ? '답글 확인하기' : '답글 접기'}
             </button>
           </div>
         </div>

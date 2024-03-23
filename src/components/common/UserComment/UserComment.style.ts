@@ -1,28 +1,29 @@
 import { css } from '@emotion/react';
 
-export const userCommentWrapper = (id: number) =>
+export const userCommentWrapper = (isAlingLeft: boolean) =>
   css({
     display: 'flex',
-    flexDirection: `${id === 40 ? 'row' : 'row-reverse'}`,
+    flexDirection: `${isAlingLeft ? 'row' : 'row-reverse'}`,
     gap: '1rem',
     borderRadius: '8px',
     padding: '1rem',
   });
 
-export const commentMainWrapper = (id: number) =>
+export const commentMainWrapper = (isAlingLeft: boolean) =>
   css({
     display: 'inline-flex',
     flexDirection: 'column',
-    backgroundColor: `${id === 40 ? 'white' : '#D9D9D9'}`,
+    backgroundColor: `${isAlingLeft ? 'white' : '#D9D9D9'}`,
     gap: '0.5rem',
     padding: '1rem',
     borderRadius: '1rem',
+    minWidth: '400px',
   });
 
-export const commentWrapper = (id: number) =>
+export const commentWrapper = (isAlingLeft: boolean) =>
   css({
     display: 'inline-flex',
-    flexDirection: `${id === 40 ? 'row' : 'row-reverse'}`,
+    flexDirection: `${isAlingLeft ? 'row' : 'row-reverse'}`,
     alignItems: 'center',
     gap: '1rem',
   });
@@ -33,10 +34,10 @@ export const commentInfoWrapper = css({
   gap: '1rem',
 });
 
-export const commentHistoryWrapper = (id: number) =>
+export const commentHistoryWrapper = (isAlingLeft: boolean) =>
   css({
     display: 'inline-flex',
-    flexDirection: `${id === 40 ? 'row' : 'row-reverse'}`,
+    flexDirection: `${isAlingLeft ? 'row' : 'row-reverse'}`,
     alignItems: 'center',
     gap: '1rem',
   });
@@ -58,10 +59,10 @@ export const createdAtWrapper = css({
   fontSize: '0.8rem',
 });
 
-export const btnsWrapper = (id: number) =>
+export const btnsWrapper = (isAlingLeft: boolean) =>
   css({
     display: 'inline-flex',
-    flexDirection: `${id === 40 ? 'row' : 'row-reverse'}`,
+    flexDirection: `${isAlingLeft ? 'row' : 'row-reverse'}`,
     alignItems: 'center',
     gap: '1rem',
   });
@@ -94,5 +95,10 @@ export const replyBtnWrapper = css({
 
   '& button': {
     paddingTop: '0.25rem',
+
+    '&:hover': {
+      cursor: 'pointer',
+      fontWeight: '800',
+    },
   },
 });

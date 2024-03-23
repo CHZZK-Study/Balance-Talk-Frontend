@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import LoginModal from '@/components/common/Modal/LoginModal/LoginModal';
 import { useSelectedOptionsInLocalStorage } from '@/hooks/vote/useSelectedOptionsInLocalStorage';
+import { BalanceOption } from '@/types/post';
 import BalanceOptionCardsSection from './BalanceOptionCardsSection/BalanceOptionCardsSection';
 import CommentsSection from './CommentsSection/CommentsSection';
 import { getPost } from '../../api/posts/posts';
@@ -18,7 +19,7 @@ import {
 
 const PostPage = () => {
   const postId = Number(useParams().id);
-  const [isOpened, setIsOpened] = useState(false);
+  const [isOpened, setIsOpened] = useState(true);
   const { isLoading, data: post } = useQuery({
     queryKey: ['posts', postId],
     queryFn: () => getPost(postId),
@@ -75,6 +76,9 @@ const PostPage = () => {
           postId={postId}
           selectedOptionId={post?.selectedOptionId}
           handleLoginModal={setIsLoginModalOpen}
+          balanceOptionIds={post?.balanceOptions.map(
+            (balanceOption: BalanceOption) => balanceOption.balanceOptionId,
+          )}
         />
       )}
       {isLoginModalOpen && (

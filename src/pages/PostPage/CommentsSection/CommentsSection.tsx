@@ -21,12 +21,14 @@ import { Pagination } from './CommentsPagination/CommentsPagination';
 interface CommentsSectionProps {
   postId: number;
   selectedOptionId?: number;
+  balanceOptionIds: number[];
   handleLoginModal: React.Dispatch<SetStateAction<boolean>>;
 }
 
 const CommentsSection = ({
   postId,
   selectedOptionId,
+  balanceOptionIds,
   handleLoginModal,
 }: CommentsSectionProps) => {
   // const { member } = useMemberQuery(
@@ -60,7 +62,15 @@ const CommentsSection = ({
       <div css={commentsListSectionWrapper}>
         <div css={commentsWrapper}>
           {commentsPagination?.content.map((comment: Comment) => (
-            <UserComment {...comment} handleLoginModal={handleLoginModal} />
+            <UserComment
+              {...comment}
+              handleLoginModal={handleLoginModal}
+              balanceOptionIds={
+                balanceOptionIds[0] !== null && balanceOptionIds[1] !== null
+                  ? balanceOptionIds
+                  : [1, 2]
+              }
+            />
           ))}
         </div>
         <div css={commentPaginationWrapper}>

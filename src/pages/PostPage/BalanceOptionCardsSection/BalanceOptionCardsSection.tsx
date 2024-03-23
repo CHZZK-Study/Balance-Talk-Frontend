@@ -32,8 +32,6 @@ const BalanceOptionCardsSection = ({
     ? selectedOptionId
     : getSelectedOptionId(id);
 
-  console.log(selectedOptionIdByPost);
-
   return (
     <div css={balanceOptionCardsSectionWrapper}>
       <div css={balanceOptionCardsWrapper}>
@@ -54,8 +52,8 @@ const BalanceOptionCardsSection = ({
           {...balanceOptions[1]}
           balanceOptionId={balanceOptions[1].balanceOptionId || 2}
           isChecked={
-            balanceOptions[0].balanceOptionId
-              ? balanceOptions[0].balanceOptionId === selectedOptionIdByPost
+            balanceOptions[1].balanceOptionId
+              ? balanceOptions[1].balanceOptionId === selectedOptionIdByPost
               : selectedOptionIdByPost === 2
           }
           isVoted={selectedOptionIdByPost !== null}
