@@ -19,7 +19,7 @@ const ImageDropZone: React.FC<ImageDropZoneProps> = ({ setFile }) => {
         const imageInfo = await fetchFileData(acceptedFiles[0]);
         setImageAlt(imageInfo.originalName);
         setImageUrl(imageInfo.path + imageInfo.storedName);
-        setFile('storedFileName', imageInfo.storedName);
+        setFile('storedImageName', imageInfo.storedName);
       } catch (error: AxiosErrorResponse) {
         console.log(error);
       }
