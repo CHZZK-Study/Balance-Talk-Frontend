@@ -85,23 +85,17 @@ const BalanceOptionCard = ({
               });
               return;
             }
+            // 비회원 선택지 변경
+            if (isVoted && !member) {
+              setIsChangeVoteModalOpen(true);
+              return;
+            }
             // 회원 선택지 투표
             if (!isVoted && member) {
               setIsChangeVoteModalOpen(true);
               // voteBalanceOptionByUserMutate({
               //   selectedOptionId: balanceOptionId,
               //   isUser: true,
-              // });
-              return;
-            }
-            // 비회원 선택지 변경
-            if (isVoted && !member) {
-              setIsChangeVoteModalOpen(true);
-              console.log(3);
-
-              // changeBalanceOptionByNonUserMutate({
-              //   selectedOptionId: balanceOptionId,
-              //   isUser: false,
               // });
               return;
             }

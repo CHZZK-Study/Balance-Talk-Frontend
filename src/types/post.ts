@@ -39,7 +39,7 @@ export type NPost = {
   category: 'CASUAL' | 'DISCUSSION';
   balanceOptions: BalanceOption[];
   postTags: { tagName: string }[];
-  totalVoteCount: number;
+  totalVotesCount: number;
   createdAt: string;
   createdBy: string;
   selectedOptionId?: number | null;
