@@ -59,7 +59,7 @@ export type CreatePost = {
 };
 
 export type CreatePostImage = {
-  storedFileName?: string;
+  storedImageName?: string;
   title: string;
   description?: string;
 };

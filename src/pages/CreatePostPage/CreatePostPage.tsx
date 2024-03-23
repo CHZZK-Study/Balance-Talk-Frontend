@@ -51,12 +51,12 @@ const CreatePostPage = () => {
       {
         title: '',
         description: '',
-        storedFileName: '',
+        storedImageName: '',
       },
       {
         title: '',
         description: '',
-        storedFileName: '',
+        storedImageName: '',
       },
     ],
   };
@@ -106,9 +106,12 @@ const CreatePostPage = () => {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['posts'] }),
   });
 
-  const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     mutate(form);
+    await queryClient.invalidateQueries({
+      queryKey: ['posts', { sort: 'createdAt', page: 0 }],
+    });
     navigate('/');
   };
 
