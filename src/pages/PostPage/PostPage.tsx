@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import LoginModal from '@/components/common/Modal/LoginModal';
+import LoginModal from '@/components/common/Modal/LoginModal/LoginModal';
+import ChangeVoteModal from '@/components/common/Modal/ChangeVoteModal/ChangeVoteModal';
 import BalanceOptionCardsSection from './BalanceOptionCardsSection/BalanceOptionCardsSection';
 import CommentsSection from './CommentsSection/CommentsSection';
 import { getPost } from '../../api/posts/posts';
@@ -17,13 +18,17 @@ import {
 
 const PostPage = () => {
   const postId = Number(useParams().id);
-  const [isOpened, setIsOpened] = useState(true);
+  const [isOpened, setIsOpened] = useState(false);
   const { isLoading, data: post } = useQuery({
     queryKey: ['posts', postId],
     queryFn: () => getPost(postId),
   });
 
-  const [IsLoginModalOpen, setIsLoginModalOpoen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isIChangeVoteModalOpen, setIsChangeVoteModalOpen] = useState(false);
+  const handleChangeVote = () => {
+    setIsLoginModalOpen;
+  };
 
   return isLoading ? (
     <div>Loading...</div>
@@ -54,7 +59,7 @@ const PostPage = () => {
           likesCount={post?.likesCount || 0}
           myBookmark={post?.myBookmark || false}
           myLike={post?.myLike || false}
-          handleLoginModal={setIsLoginModalOpoen}
+          handleLoginModal={setIsLoginModalOpen}
         />
       </div>
 
@@ -71,12 +76,13 @@ const PostPage = () => {
         <CommentsSection
           postId={postId}
           selectedOptionId={post?.selectedOptionId}
-          handleLoginModal={setIsLoginModalOpoen}
+          handleLoginModal={setIsLoginModalOpen}
         />
       )}
-      {IsLoginModalOpen && (
-        <LoginModal handleModal={setIsLoginModalOpoen} postId={postId} />
+      {isLoginModalOpen && (
+        <LoginModal handleModal={setIsLoginModalOpen} postId={postId} />
       )}
+      {/* {isChangeVoteModalOpen && ()} */}
     </div>
   );
 };

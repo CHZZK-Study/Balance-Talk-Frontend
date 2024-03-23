@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { css } from '@emotion/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { changeBalanceOption, voteBalanceOption } from '@/api/votes/vote';
-import { useUserInfo } from '@/hooks/common/useUserInfo';
 import { useSelectedOptionsInLocalStorage } from '@/hooks/vote/useSelectedOptionsInLocalStorage';
-import { BalanceOption, ImageInfo } from '../../../types/post';
-import coffee from '../../../../public/coffee.jpg';
-import juice from '../../../../public/juice.jpg';
-
+import { useMemberQuery } from '@/hooks/api/useMemberQuery';
+import { useParseJwt } from '@/hooks/common/useParseJwt';
+import { useNewSelector } from '@/store';
+import { selectAccessToken } from '@/store/auth';
+import { Check, NoImage } from '../../../assets';
 import {
   balanceOptionCardWrapper,
   balanceOptionTitleWrapper,
@@ -18,7 +18,7 @@ import {
   innerButtonWrapper,
   winnerIconWrapper,
 } from './BalanceOptionCard.style';
-import { Check, NoImage } from '../../../assets';
+import { BalanceOption, ImageInfo } from '../../../types/post';
 
 export type BalanceOptionCardProps = BalanceOption & {
   postId: number;
@@ -36,7 +36,10 @@ const BalanceOptionCard = ({
   isChecked,
 }: BalanceOptionCardProps) => {
   const queryClient = useQueryClient();
-  const { isLoggedIn, userInfo } = useUserInfo();
+  const { member } = useMemberQuery(
+    useParseJwt(useNewSelector(selectAccessToken)).memberId,
+  );
+
   const { setSelectedOptionId } = useSelectedOptionsInLocalStorage();
 
   const { mutate: voteBalanceOptionByNonUserMutate } = useMutation({
@@ -117,8 +120,8 @@ const BalanceOptionCard = ({
           <div css={winnerIconWrapper} />
           <img
             css={css(balanceOptionImageWrapper)}
-            src={storedFileName === 'coffee.jpg' ? coffee : juice}
-            alt="optionImg"
+            src={storedFileName}
+            alt={title}
           />
         </button>
       </div>

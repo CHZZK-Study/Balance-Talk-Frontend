@@ -1,14 +1,18 @@
 import React, { SetStateAction, useState } from 'react';
 import { css } from '@emotion/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useUserInfo } from '@/hooks/common/useUserInfo';
+
 import { Comment, CommentsPagination } from '@/types/comment';
 import {
   fetchAddLikeComment,
   fetchDeleteLikeComment,
 } from '@/api/comments/comments';
-import { Hearts } from '../../assets';
+import { useMemberQuery } from '@/hooks/api/useMemberQuery';
+import { useParseJwt } from '@/hooks/common/useParseJwt';
+import { useNewSelector } from '@/store';
+import { selectAccessToken } from '@/store/auth';
 import { pulsate } from '../../styles/keyframes';
+import { Hearts } from '../../assets';
 
 type CommentLikeButtonProps = {
   handleModal: React.Dispatch<SetStateAction<boolean>>;
@@ -24,7 +28,9 @@ const CommentLikeButton = ({
   commentId,
 }: CommentLikeButtonProps) => {
   const queryClient = useQueryClient();
-  const { isLoggedIn } = useUserInfo();
+  const { member } = useMemberQuery(
+    useParseJwt(useNewSelector(selectAccessToken)).memberId,
+  );
 
   const [isAnimation, setIsAnimation] = useState(false);
 
@@ -102,7 +108,7 @@ const CommentLikeButton = ({
   });
 
   const handleCommentLike = () => {
-    if (!isLoggedIn) {
+    if (!member) {
       handleModal(true);
       return;
     }

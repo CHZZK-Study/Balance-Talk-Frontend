@@ -3,10 +3,12 @@ import { useQuery } from '@tanstack/react-query';
 import { getComments } from '@/api/comments/comments';
 import { Comment, CommentsPagination } from '@/types/comment';
 import UserComment from '@/components/common/UserComment/UserComment';
-import { useUserInfo } from '@/hooks/common/useUserInfo';
 import InputComment from '@/components/common/InputComment/InputComment';
 import { useCreateCommentForm } from '@/hooks/comment/useCreateCommentForm';
-import { Pagination } from './CommentsPagination/CommentsPagination';
+import { useMemberQuery } from '@/hooks/api/useMemberQuery';
+import { useParseJwt } from '@/hooks/common/useParseJwt';
+import { useNewSelector } from '@/store';
+import { selectAccessToken } from '@/store/auth';
 import {
   commentCountWrapper,
   commentPaginationWrapper,
@@ -14,6 +16,7 @@ import {
   commentsSectionWrapper,
   commentsWrapper,
 } from './CommentsSection.style';
+import { Pagination } from './CommentsPagination/CommentsPagination';
 
 interface CommentsSectionProps {
   postId: number;
@@ -26,7 +29,10 @@ const CommentsSection = ({
   selectedOptionId,
   handleLoginModal,
 }: CommentsSectionProps) => {
-  const { isLoggedIn } = useUserInfo();
+  const { member } = useMemberQuery(
+    useParseJwt(useNewSelector(selectAccessToken)).memberId,
+  );
+
   const { form, onChange, reset } = useCreateCommentForm();
 
   const { data: commentsPagination, isLoading } = useQuery({
@@ -41,7 +47,7 @@ const CommentsSection = ({
       <div css={commentCountWrapper}>
         댓글 {commentsPagination?.totalElements}개
       </div>
-      {isLoggedIn && selectedOptionId && (
+      {member && selectedOptionId && (
         <InputComment
           value={form.content}
           onChange={onChange}

@@ -3,8 +3,11 @@ import { Comment } from '@/types/comment';
 import { Profile, More } from '@/assets';
 import { getCreatedDate } from '@/utils/date';
 import CommentLikeButton from '@/components/Buttons/CommentLikeButton';
-import { useUserInfo } from '@/hooks/common/useUserInfo';
 import CommentReportButton from '@/components/Buttons/CommentReportButton';
+import { useParseJwt } from '@/hooks/common/useParseJwt';
+import { useNewSelector } from '@/store';
+import { selectAccessToken } from '@/store/auth';
+import { useMemberQuery } from '@/hooks/api/useMemberQuery';
 import {
   btnsWrapper,
   commentHistoryWrapper,
@@ -38,7 +41,9 @@ const UserComment = ({
   handleLoginModal,
 }: UserCommentProps) => {
   const createdDate = getCreatedDate(createdAt);
-  const { userInfo } = useUserInfo();
+  const { member } = useMemberQuery(
+    useParseJwt(useNewSelector(selectAccessToken)).memberId,
+  );
 
   return (
     <div css={userCommentWrapper(selectedOptionId)}>
@@ -55,7 +60,7 @@ const UserComment = ({
               <div css={createdAtWrapper}>
                 {createdDate < 1 ? '오늘' : `${createdDate}일전`}
               </div>
-              {userInfo.nickname === memberName && <More />}
+              {member?.nickname === memberName && <More />}
             </div>
             <div css={contentWrapper}>{content}</div>
           </div>

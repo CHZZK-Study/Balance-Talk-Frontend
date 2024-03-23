@@ -1,9 +1,12 @@
 import React, { SetStateAction, useState } from 'react';
 import { css } from '@emotion/react';
 import { useMutation } from '@tanstack/react-query';
-import { useUserInfo } from '@/hooks/common/useUserInfo';
 import { Report } from '@/assets';
 import { fetchReportPost } from '@/api/posts/posts';
+import { useMemberQuery } from '@/hooks/api/useMemberQuery';
+import { useParseJwt } from '@/hooks/common/useParseJwt';
+import { useNewSelector } from '@/store';
+import { selectAccessToken } from '@/store/auth';
 import { pulsate } from '../../styles/keyframes';
 
 type PostReportButtonProps = {
@@ -12,7 +15,9 @@ type PostReportButtonProps = {
 };
 
 const PostReportButton = ({ handleModal, postId }: PostReportButtonProps) => {
-  const { isLoggedIn } = useUserInfo();
+  const { member } = useMemberQuery(
+    useParseJwt(useNewSelector(selectAccessToken)).memberId,
+  );
 
   const [isAnimation, setIsAnimation] = useState(false);
 
@@ -26,7 +31,7 @@ const PostReportButton = ({ handleModal, postId }: PostReportButtonProps) => {
   });
 
   const handlePostReport = () => {
-    if (!isLoggedIn) {
+    if (!member) {
       handleModal(true);
       return;
     }
