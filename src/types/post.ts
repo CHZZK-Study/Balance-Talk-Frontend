@@ -1,5 +1,5 @@
 export type ImageInfo = {
-  storedFileName?: string;
+  imageUrl?: string;
   title: string;
   // 게시물 Description 필요
   description?: string;

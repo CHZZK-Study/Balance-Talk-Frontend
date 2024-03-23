@@ -43,7 +43,6 @@ const CreatePostPage = () => {
   const navigate = useNavigate();
 
   const initialState = {
-    memberId: 6,
     title: '',
     category: 'CASUAL',
     deadline: 'xxxx-xx-xx',
@@ -52,12 +51,12 @@ const CreatePostPage = () => {
       {
         title: '',
         description: '',
-        storedFileName: undefined,
+        storedFileName: '',
       },
       {
         title: '',
         description: '',
-        storedFileName: undefined,
+        storedFileName: '',
       },
     ],
   };
@@ -196,9 +195,12 @@ const CreatePostPage = () => {
               <div>
                 <DatePicker
                   disablePast
-                  value={deadline}
+                  value={dayjs(deadline)}
                   onChange={(newDate) => {
-                    setEach('deadline', dayjs(newDate).format('YYYY-MM-DD'));
+                    setEach(
+                      'deadline',
+                      `${dayjs(newDate).format('YYYY/MM/DD')} 23:59:59`,
+                    );
                   }}
                   css={css({
                     ...inputStyles,

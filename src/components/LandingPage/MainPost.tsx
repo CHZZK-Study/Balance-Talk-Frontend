@@ -82,7 +82,7 @@ const MainPost = ({ post }: MainPostProps) => {
                 fontFamily: 'SpoqaHanSansNeo-Regular',
               })}
             >
-              {postInfo?.likeCount || '0'}
+              {postInfo?.likesCount || '0'}
             </span>
           </div>
         </div>

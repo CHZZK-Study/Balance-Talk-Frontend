@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { selectAccessToken } from '@/store/auth';
+import { useNewSelector } from '@/store';
+import { useParseJwt } from '@/hooks/common/useParseJwt';
+import { useMemberQuery } from '@/hooks/api/useMemberQuery';
 import { fetchAddLike, fetchDeleteLike } from '../../api/posts/posts';
 import { Post } from '../../types/post';
-import { Hearts } from '../../assets';
+import { DisabledHeart, Hearts } from '../../assets';
 import { pulsate } from '../../styles/keyframes';
 
 type HeartButtonProps = {
@@ -12,6 +16,9 @@ type HeartButtonProps = {
 };
 
 const HeartButton = ({ isLiked, postId }: HeartButtonProps) => {
+  const accessToken = useNewSelector(selectAccessToken);
+  const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
+
   const queryClient = useQueryClient();
 
   const [isAnimation, setIsAnimation] = useState(false);
@@ -26,21 +33,28 @@ const HeartButton = ({ isLiked, postId }: HeartButtonProps) => {
     onMutate: (id) => {
       const prevPostData: Post[] | undefined = queryClient.getQueryData([
         'posts',
+        { page: 0, sort: 'createdAt' },
       ]);
-
-      const newPostData = prevPostData?.map((post) => {
+      const newPostData = prevPostData?.content.map((post) => {
         return post.id === id
-          ? { ...post, myLike: true, likeCount: post.likeCount + 1 }
+          ? { ...post, myLike: true, likesCount: post.likesCount + 1 }
           : post;
       });
-
-      queryClient.setQueryData(['posts'], newPostData);
+      const updatedData = {
+        ...prevPostData,
+        content: newPostData,
+      };
+      queryClient.setQueryData(
+        ['posts', { page: 0, sort: 'createdAt' }],
+        updatedData,
+      );
 
       return { prevPostData };
     },
-    onError: (err, id, context) => {
-      queryClient.setQueryData(['posts'], context?.prevPostData);
-    },
+    // onError: (err, id, context) => {
+    //   console.log(err);
+    //   queryClient.setQueryData(['posts'], context?.prevPostData);
+    // },
   });
 
   const deleteLike = useMutation({
@@ -48,15 +62,21 @@ const HeartButton = ({ isLiked, postId }: HeartButtonProps) => {
     onMutate: (id) => {
       const prevPostData: Post[] | undefined = queryClient.getQueryData([
         'posts',
+        { page: 0, sort: 'createdAt' },
       ]);
-
-      const newPostData = prevPostData?.map((post) => {
+      const newPostData = prevPostData?.content.map((post) => {
         return post.id === id
-          ? { ...post, myLike: false, likeCount: post.likeCount - 1 }
+          ? { ...post, myLike: false, likesCount: post.likesCount - 1 }
           : post;
       });
-
-      queryClient.setQueryData(['posts'], newPostData);
+      const updatedData = {
+        ...prevPostData,
+        content: newPostData,
+      };
+      queryClient.setQueryData(
+        ['posts', { page: 0, sort: 'createdAt' }],
+        updatedData,
+      );
 
       return { prevPostData };
     },
@@ -76,7 +96,7 @@ const HeartButton = ({ isLiked, postId }: HeartButtonProps) => {
     }
   };
 
-  return (
+  return member ? (
     <div
       css={css({
         display: 'flex',
@@ -98,6 +118,20 @@ const HeartButton = ({ isLiked, postId }: HeartButtonProps) => {
           animation: `${isAnimation ? `${pulsate} .5s ease-in-out` : 'none'}`,
         })}
       />
+    </div>
+  ) : (
+    <div
+      css={css({
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: '19px',
+        width: '38px',
+        hegiht: '38px',
+      })}
+      role="presentation"
+    >
+      <DisabledHeart />
     </div>
   );
 };

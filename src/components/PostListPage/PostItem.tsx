@@ -74,7 +74,7 @@ const PostItem = ({ post, showClosed }: PostItemProps) => {
               fontFamily: 'SpoqaHanSansNeo-Regular',
             })}
           >
-            {post?.likeCount || '0'}
+            {post?.likesCount || '0'}
           </div>
         </div>
       </div>
