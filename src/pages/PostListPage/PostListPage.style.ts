@@ -9,9 +9,11 @@ export const headingWrapper = css({
 });
 
 export const postListWrapper = css({
-  display: 'flex',
-  width: '90%',
-  justifyContent: 'space-between',
-  flexWrap: 'wrap',
-  margin: '0 auto',
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
+  gridGap: '50px',
+  // width: '90%',
+  // justifyContent: 'space-between',
+  // flexWrap: 'wrap',
+  // margin: '0 auto',
 });

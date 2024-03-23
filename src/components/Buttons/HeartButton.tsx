@@ -31,54 +31,113 @@ const HeartButton = ({ isLiked, postId }: HeartButtonProps) => {
   const addLike = useMutation({
     mutationFn: fetchAddLike,
     onMutate: (id) => {
-      const prevPostData: Post[] | undefined = queryClient.getQueryData([
-        'posts',
-        { page: 0, sort: 'createdAt' },
-      ]);
-      const newPostData = prevPostData?.content.map((post) => {
-        return post.id === id
-          ? { ...post, myLike: true, likesCount: post.likesCount + 1 }
-          : post;
-      });
-      const updatedData = {
-        ...prevPostData,
-        content: newPostData,
-      };
-      queryClient.setQueryData(
-        ['posts', { page: 0, sort: 'createdAt' }],
-        updatedData,
-      );
+      const queryCache = queryClient.getQueryCache();
+      const queryKeys = queryCache.getAll().map((cache) => cache.queryKey);
+      console.log(queryKeys);
+      queryKeys.forEach((queryKey) => {
+        console.log(queryKey);
+        if (queryKey[0] === 'posts' && queryKey[1] !== 'vote') {
+          console.log(queryKey);
+          const prevPostData: Post[] | undefined =
+            queryClient.getQueryData(queryKey);
 
-      return { prevPostData };
+          console.log('prevPost', prevPostData);
+          console.log('length', Object.keys(prevPostData).length);
+          if (Object.keys(prevPostData).length > 3) {
+            const newPostData = prevPostData?.content.map((post) => {
+              return post.id === id
+                ? { ...post, myLike: true, likesCount: post.likesCount + 1 }
+                : post;
+            });
+            console.log(id);
+            const updatedData = {
+              ...prevPostData,
+              content: newPostData,
+            };
+            console.log('updated', updatedData);
+            queryClient.setQueryData(queryKey, updatedData);
+          } else {
+            const realUpdatedData = prevPostData?.pages.map((page) => {
+              console.log('page', page);
+              const postContent = page.content.map((post) => {
+                return post.id === id
+                  ? { ...post, myLike: true, likesCount: post.likesCount + 1 }
+                  : post;
+              });
+              console.log(postContent);
+              const updatedData = {
+                ...page,
+                content: postContent,
+              };
+              return updatedData;
+            });
+
+            const updatedData = {
+              ...prevPostData,
+              pages: realUpdatedData,
+            };
+            queryClient.setQueryData(queryKey, updatedData);
+          }
+          return { prevPostData };
+        }
+      });
     },
-    // onError: (err, id, context) => {
-    //   console.log(err);
-    //   queryClient.setQueryData(['posts'], context?.prevPostData);
-    // },
+    onError: (err, id, context) => {
+      console.log(err);
+      queryClient.setQueryData(['posts'], context?.prevPostData);
+    },
   });
 
   const deleteLike = useMutation({
     mutationFn: fetchDeleteLike,
     onMutate: (id) => {
-      const prevPostData: Post[] | undefined = queryClient.getQueryData([
-        'posts',
-        { page: 0, sort: 'createdAt' },
-      ]);
-      const newPostData = prevPostData?.content.map((post) => {
-        return post.id === id
-          ? { ...post, myLike: false, likesCount: post.likesCount - 1 }
-          : post;
-      });
-      const updatedData = {
-        ...prevPostData,
-        content: newPostData,
-      };
-      queryClient.setQueryData(
-        ['posts', { page: 0, sort: 'createdAt' }],
-        updatedData,
-      );
+      const queryCache = queryClient.getQueryCache();
+      const queryKeys = queryCache.getAll().map((cache) => cache.queryKey);
+      queryKeys.forEach((queryKey) => {
+        if (queryKey[0] === 'posts' && queryKey[1] !== 'vote') {
+          const prevPostData: Post[] | undefined =
+            queryClient.getQueryData(queryKey);
+          console.log('length', Object.keys(prevPostData).length);
 
-      return { prevPostData };
+          if (Object.keys(prevPostData).length > 3) {
+            console.log(prevPostData);
+            const newPostData = prevPostData?.content.map((post) => {
+              return post.id === id
+                ? { ...post, myLike: false, likesCount: post.likesCount - 1 }
+                : post;
+            });
+            console.log(id);
+            const updatedData = {
+              ...prevPostData,
+              content: newPostData,
+            };
+            console.log('updated', updatedData);
+            queryClient.setQueryData(queryKey, updatedData);
+          } else {
+            const realUpdatedData = prevPostData?.pages.map((page) => {
+              console.log('page', page);
+              const postContent = page.content.map((post) => {
+                return post.id === id
+                  ? { ...post, myLike: false, likesCount: post.likesCount - 1 }
+                  : post;
+              });
+              console.log(postContent);
+              const updatedData = {
+                ...page,
+                content: postContent,
+              };
+              return updatedData;
+            });
+
+            const updatedData = {
+              ...prevPostData,
+              pages: realUpdatedData,
+            };
+            queryClient.setQueryData(queryKey, updatedData);
+          }
+          return { prevPostData };
+        }
+      });
     },
     onError: (err, id, context) => {
       queryClient.setQueryData(['posts'], context?.prevPostData);
