@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { css } from '@emotion/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { changeBalanceOption, voteBalanceOption } from '@/api/votes/vote';
+
 import { useSelectedOptionsInLocalStorage } from '@/hooks/vote/useSelectedOptionsInLocalStorage';
 import { useMemberQuery } from '@/hooks/api/useMemberQuery';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
+import { voteBalanceOption } from '@/api/votes/vote';
 import { Check, NoImage } from '../../../assets';
 import {
   balanceOptionCardWrapper,
@@ -19,6 +20,7 @@ import {
   winnerIconWrapper,
 } from './BalanceOptionCard.style';
 import { BalanceOption, ImageInfo } from '../../../types/post';
+import ChangeVoteModal from '../Modal/ChangeVoteModal/ChangeVoteModal';
 
 export type BalanceOptionCardProps = BalanceOption & {
   postId: number;
@@ -36,28 +38,15 @@ const BalanceOptionCard = ({
   isChecked,
 }: BalanceOptionCardProps) => {
   const queryClient = useQueryClient();
+  const [isChangeVoteModalOpen, setIsChangeVoteModalOpen] = useState(false);
+  const [voteChangeData, setVoteChangeData] = useState();
+  const { setSelectedOptionId } = useSelectedOptionsInLocalStorage();
+
   const { member } = useMemberQuery(
     useParseJwt(useNewSelector(selectAccessToken)).memberId,
   );
 
-  const { setSelectedOptionId } = useSelectedOptionsInLocalStorage();
-
-  const { mutate: voteBalanceOptionByNonUserMutate } = useMutation({
-    mutationFn: (data) => voteBalanceOption(postId, { ...data }),
-    onSuccess: async () => {
-      setSelectedOptionId(postId, balanceOptionId);
-      await queryClient.invalidateQueries({ queryKey: ['posts', postId] });
-    },
-  });
-
-  const { mutate: changeBalanceOptionByNonUserMutate } = useMutation({
-    mutationFn: (data) => changeBalanceOption(postId, { ...data }),
-    onSuccess: async () => {
-      setSelectedOptionId(postId, balanceOptionId);
-      await queryClient.invalidateQueries({ queryKey: ['posts', postId] });
-    },
-  });
-
+  // 회원 투표
   const { mutate: voteBalanceOptionByUserMutate } = useMutation({
     mutationFn: (data) => voteBalanceOption(postId, { ...data }),
     onSuccess: async () => {
@@ -65,9 +54,11 @@ const BalanceOptionCard = ({
     },
   });
 
-  const { mutate: changeBalanceOptionByUserMutate } = useMutation({
+  // 비회원 투표
+  const { mutate: voteBalanceOptionByNonUserMutate } = useMutation({
     mutationFn: (data) => voteBalanceOption(postId, { ...data }),
     onSuccess: async () => {
+      setSelectedOptionId(postId, balanceOptionId);
       await queryClient.invalidateQueries({ queryKey: ['posts', postId] });
     },
   });
@@ -87,7 +78,7 @@ const BalanceOptionCard = ({
           onClick={() => {
             if (isChecked) return;
             // 비회원 선택지 투표
-            if (!isVoted && !isLoggedIn) {
+            if (!isVoted && !member) {
               voteBalanceOptionByNonUserMutate({
                 selectedOptionId: balanceOptionId,
                 isUser: false,
@@ -95,26 +86,33 @@ const BalanceOptionCard = ({
               return;
             }
             // 회원 선택지 투표
-            if (!isVoted && isLoggedIn) {
-              voteBalanceOptionByUserMutate({
-                selectedOptionId: balanceOptionId,
-                isUser: true,
-              });
+            if (!isVoted && member) {
+              setIsChangeVoteModalOpen(true);
+              // voteBalanceOptionByUserMutate({
+              //   selectedOptionId: balanceOptionId,
+              //   isUser: true,
+              // });
               return;
             }
             // 비회원 선택지 변경
-            if (isVoted && !isLoggedIn) {
-              changeBalanceOptionByNonUserMutate({
-                selectedOptionId: balanceOptionId,
-                isUser: false,
-              });
+            if (isVoted && !member) {
+              setIsChangeVoteModalOpen(true);
+              console.log(3);
+
+              // changeBalanceOptionByNonUserMutate({
+              //   selectedOptionId: balanceOptionId,
+              //   isUser: false,
+              // });
               return;
             }
+            setIsChangeVoteModalOpen(true);
+            console.log(4);
+
             // 회원 선택지 변경
-            changeBalanceOptionByUserMutate({
-              selectedOptionId: balanceOptionId,
-              isUser: true,
-            });
+            // changeBalanceOptionByUserMutate({
+            //   selectedOptionId: balanceOptionId,
+            //   isUser: true,
+            // });
           }}
         >
           <div css={winnerIconWrapper} />
@@ -125,8 +123,14 @@ const BalanceOptionCard = ({
           />
         </button>
       </div>
-
       <div css={balanceOptionDescriptionWrapper}>{description}</div>
+      {isChangeVoteModalOpen && (
+        <ChangeVoteModal
+          handleModal={setIsChangeVoteModalOpen}
+          postId={postId}
+          balanceOptionId={balanceOptionId}
+        />
+      )}
     </div>
   );
 };

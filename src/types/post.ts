@@ -35,13 +35,15 @@ export type NPost = {
   likesCount: number;
   myLike: boolean;
   myBookmark: boolean;
+  myVote?: boolean;
   category: 'CASUAL' | 'DISCUSSION';
   balanceOptions: BalanceOption[];
   postTags: { tagName: string }[];
+  totalVoteCount: number;
   createdAt: string;
   createdBy: string;
-  totalVoteCount: number;
-  selectedOptionId?: number;
+  selectedOptionId?: number | null;
+  profileImageUrl: string;
 };
 
 export type VoteInfo = {

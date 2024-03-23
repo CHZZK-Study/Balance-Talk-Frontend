@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import LoginModal from '@/components/common/Modal/LoginModal/LoginModal';
-import ChangeVoteModal from '@/components/common/Modal/ChangeVoteModal/ChangeVoteModal';
+import { useSelectedOptionsInLocalStorage } from '@/hooks/vote/useSelectedOptionsInLocalStorage';
 import BalanceOptionCardsSection from './BalanceOptionCardsSection/BalanceOptionCardsSection';
 import CommentsSection from './CommentsSection/CommentsSection';
 import { getPost } from '../../api/posts/posts';
@@ -24,11 +24,9 @@ const PostPage = () => {
     queryFn: () => getPost(postId),
   });
 
+  // const { clearSelectedOptions } = useSelectedOptionsInLocalStorage();
+  // clearSelectedOptions();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const [isIChangeVoteModalOpen, setIsChangeVoteModalOpen] = useState(false);
-  const handleChangeVote = () => {
-    setIsLoginModalOpen;
-  };
 
   return isLoading ? (
     <div>Loading...</div>
@@ -82,7 +80,6 @@ const PostPage = () => {
       {isLoginModalOpen && (
         <LoginModal handleModal={setIsLoginModalOpen} postId={postId} />
       )}
-      {/* {isChangeVoteModalOpen && ()} */}
     </div>
   );
 };
