@@ -39,7 +39,6 @@ const BalanceOptionCard = ({
 }: BalanceOptionCardProps) => {
   const queryClient = useQueryClient();
   const [isChangeVoteModalOpen, setIsChangeVoteModalOpen] = useState(false);
-  const [voteChangeData, setVoteChangeData] = useState();
   const { setSelectedOptionId } = useSelectedOptionsInLocalStorage();
 
   const { member } = useMemberQuery(
@@ -92,21 +91,13 @@ const BalanceOptionCard = ({
             }
             // 회원 선택지 투표
             if (!isVoted && member) {
-              setIsChangeVoteModalOpen(true);
-              // voteBalanceOptionByUserMutate({
-              //   selectedOptionId: balanceOptionId,
-              //   isUser: true,
-              // });
+              voteBalanceOptionByUserMutate({
+                selectedOptionId: balanceOptionId,
+                isUser: true,
+              });
               return;
             }
             setIsChangeVoteModalOpen(true);
-            console.log(4);
-
-            // 회원 선택지 변경
-            // changeBalanceOptionByUserMutate({
-            //   selectedOptionId: balanceOptionId,
-            //   isUser: true,
-            // });
           }}
         >
           <div css={winnerIconWrapper} />

@@ -1,16 +1,12 @@
 import React, { SetStateAction, useEffect, useRef } from 'react';
 import Button from '@/components/design/Button/Button';
-import { useNavigate } from 'react-router-dom';
-import { PATH } from '@/constants/path';
-import { useSelectedOptionsInLocalStorage } from '@/hooks/vote/useSelectedOptionsInLocalStorage';
-import { useMutation } from '@tanstack/react-query';
-import { changeBalanceOption, voteBalanceOption } from '@/api/votes/vote';
 import { useMemberQuery } from '@/hooks/api/useMemberQuery';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { changeBalanceOption } from '@/api/votes/vote';
 import {
-  ChagneVoteModalWrapper,
   ChangeVoteModalWrapper,
   btnsWrapper,
   titleWrapper,
@@ -19,15 +15,27 @@ import {
 interface LoginModalProps {
   handleModal: React.Dispatch<SetStateAction<boolean>>;
   postId: number;
+  balanceOptionId: number;
 }
 
-const ChangeVoteModal = ({ handleModal, postId }: LoginModalProps) => {
+const ChangeVoteModal = ({
+  handleModal,
+  postId,
+  balanceOptionId,
+}: LoginModalProps) => {
   const { member } = useMemberQuery(
     useParseJwt(useNewSelector(selectAccessToken)).memberId,
   );
+  const queryClient = useQueryClient();
 
   const changeVoteModalRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
+
+  const { mutate: changeBalanceOptionByUserMutate } = useMutation({
+    mutationFn: (data) => changeBalanceOption(postId, { ...data }),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['posts', postId] });
+    },
+  });
 
   useEffect(() => {
     const handleOutSideClick = (event: MouseEvent) => {
@@ -59,7 +67,16 @@ const ChangeVoteModal = ({ handleModal, postId }: LoginModalProps) => {
             <Button variant="cancel" onClick={() => handleModal(false)}>
               다음에 하기
             </Button>
-            <Button onClick={() => {}}>선택지 변경하기</Button>
+            <Button
+              onClick={() => {
+                changeBalanceOptionByUserMutate({
+                  selectedOptionId: balanceOptionId,
+                  isUser: true,
+                });
+              }}
+            >
+              선택지 변경하기
+            </Button>
           </>
         ) : (
           <Button variant="cancel" onClick={() => handleModal(false)}>

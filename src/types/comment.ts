@@ -4,11 +4,13 @@ export type Comment = {
   memberName: string;
   postId: number;
   selectedOptionId: number;
+  parentCommentId?: number;
+  likesCount: number;
   myLike: boolean;
   createdAt: string;
-  likesCount: number;
   lastModifiedAt: string;
   profileImageUrl: string | null;
+  postTitle: string;
 };
 
 export type CreatedComment = Pick<Comment, 'content' | 'selectedOptionId'>;

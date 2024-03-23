@@ -41,9 +41,11 @@ const UserComment = ({
   handleLoginModal,
 }: UserCommentProps) => {
   const createdDate = getCreatedDate(createdAt);
-  const { member } = useMemberQuery(
-    useParseJwt(useNewSelector(selectAccessToken)).memberId,
-  );
+  // const { member } = useMemberQuery(
+  //   useParseJwt(useNewSelector(selectAccessToken)).memberId,
+  // );
+
+  const member = { memberId: 100, nickname: '김성현' };
 
   return (
     <div css={userCommentWrapper(selectedOptionId)}>

@@ -29,9 +29,10 @@ const CommentsSection = ({
   selectedOptionId,
   handleLoginModal,
 }: CommentsSectionProps) => {
-  const { member } = useMemberQuery(
-    useParseJwt(useNewSelector(selectAccessToken)).memberId,
-  );
+  // const { member } = useMemberQuery(
+  //   useParseJwt(useNewSelector(selectAccessToken)).memberId,
+  // );
+  const member = { memberId: 100, nickname: '김성현' };
 
   const { form, onChange, reset } = useCreateCommentForm();
 

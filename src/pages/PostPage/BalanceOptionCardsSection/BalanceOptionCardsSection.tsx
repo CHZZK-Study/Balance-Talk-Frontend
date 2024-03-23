@@ -28,9 +28,9 @@ const BalanceOptionCardsSection = ({
 
   const { getSelectedOptionId } = useSelectedOptionsInLocalStorage();
 
-  const selectedOptionIdByPost: number | null = !member
-    ? getSelectedOptionId(id)
-    : selectedOptionId;
+  const selectedOptionIdByPost: number | null = member
+    ? selectedOptionId
+    : getSelectedOptionId(id);
 
   console.log(selectedOptionIdByPost);
 
