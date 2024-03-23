@@ -16,10 +16,10 @@ export const fetchPostsData = async (
   // const response = await fetch(`${URL}/posts?member-id=1`);
   // const result = (await response.json()) as Post[];
   // return result;
+  console.log('page', page);
   const response = await axiosInstance.get(
     `/posts?page=${page}&sort=${sort},desc`,
   );
-  console.log(response.data);
   return response.data as Post[];
 };
 
