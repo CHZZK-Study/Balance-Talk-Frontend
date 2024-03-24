@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import MainPost from '../../components/LandingPage/MainPost';
 import PostImage from '../../components/common/PostImage/PostImage';
 import Carousel from '../../components/LandingPage/Carousel';
-import { ImageInfo, Post } from '../../types/post';
+import { ImageInfo, Post, PostWithPagenation } from '../../types/post';
 import { fetchPostsData } from '../../api/posts/posts';
 import {
   headingWithButtonWrapper,
@@ -33,12 +33,12 @@ const LandingPage = () => {
     },
   });
 
-  if (data?.length === 0) {
+  if (data?.content.length === 0) {
     return <div>Fail to Load Post Data</div>;
   }
 
-  const extractBalanceOptions = (datas: Post[]): PostInfo[] => {
-    return datas.map((post) => {
+  const extractBalanceOptions = (datas: PostWithPagenation): PostInfo[] => {
+    return datas.content.map((post) => {
       return {
         id: post.id,
         balanceOptions: post.balanceOptions,
@@ -46,7 +46,7 @@ const LandingPage = () => {
     });
   };
 
-  const postInfos = data ? extractBalanceOptions(data.content) : [];
+  const postInfos = data ? extractBalanceOptions(data) : [];
 
   const renderCarouselItems = (postInfo: PostInfo) => {
     return (

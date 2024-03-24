@@ -4,6 +4,7 @@ import {
   UploadedImage,
   VoteInfo,
   NPost,
+  PostWithPagenation,
 } from '../../types/post';
 import { END_POINT } from '../../constants/api';
 import { axiosInstance } from '../interceptor';
@@ -12,15 +13,15 @@ import { axiosInstance } from '../interceptor';
 export const fetchPostsData = async (
   sort: string = 'createdAt',
   page: number = 0,
-): Promise<Post[]> => {
+): Promise<PostWithPagenation> => {
   // const response = await fetch(`${URL}/posts?member-id=1`);
   // const result = (await response.json()) as Post[];
   // return result;
-  console.log('page', page);
   const response = await axiosInstance.get(
     `/posts?page=${page}&sort=${sort},desc`,
   );
-  return response.data as Post[];
+  console.log(response.data);
+  return response.data as PostWithPagenation;
 };
 
 export const fetchVoteCount = async (postId: number): Promise<VoteInfo[]> => {

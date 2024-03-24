@@ -1,6 +1,6 @@
 import React, { MouseEvent, useEffect, useState } from 'react';
 import { css } from '@emotion/react';
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
 import PostItem from '../../components/PostListPage/PostItem';
 import SortButton from '../../components/Buttons/SortButton';
@@ -20,7 +20,7 @@ type Sort = '추천순' | '최신순' | '조회순';
 
 const PostList = () => {
   const { ref, inView } = useInView({
-    threshold: 1,
+    threshold: 0,
     delay: 0,
   });
 

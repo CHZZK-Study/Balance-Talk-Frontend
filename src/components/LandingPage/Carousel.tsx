@@ -17,7 +17,7 @@ const Carousel = <T,>({
   itemWidth = 420,
   showLength = 3,
 }: CarouselProps<T>) => {
-  const totalIndex = items && items.length - (showLength - 1);
+  const totalIndex = (items && items.length - (showLength - 1)) || 0;
   const [index, setIndex] = useState(0);
 
   const onRightArrowClickHandler = () => {
