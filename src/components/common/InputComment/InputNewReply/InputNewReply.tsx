@@ -1,29 +1,33 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { ChangeEvent } from 'react';
 import { css } from '@emotion/react';
-import { useCreateComment } from '@/hooks/comment/useCreateComment';
+
 import Button from '@/components/design/Button/Button';
 import Input from '@/components/design/Input/Input';
+import { useCreateReply } from '@/hooks/comment/useCreateReply';
 
 interface InputNewReplyProps {
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   reset: () => void;
   postId: number;
-  selectedOptionId: number;
+  commentId: number;
+  memberId: number;
 }
 
 const InputNewReply = ({
   value,
   onChange,
   reset,
+  commentId,
+  memberId,
   postId,
-  selectedOptionId,
 }: InputNewReplyProps) => {
-  const { inputRef, handleSubmit } = useCreateComment({
+  const { inputRef, handleSubmit } = useCreateReply({
     value,
     postId,
-    selectedOptionId,
+    commentId,
+    memberId,
     reset,
   });
 

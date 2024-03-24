@@ -1,6 +1,7 @@
 import {
   CommentsPagination,
   CreatedComment,
+  CreatedReply,
   EditedComment,
   Replies,
 } from '@/types/comment';
@@ -82,4 +83,18 @@ export const getReplies = async (
     END_POINT.COMMENT_REPLILES(postId, commentId),
   );
   return response.data as Replies;
+};
+
+export const createReply = async (
+  postId: number,
+  commentId: number,
+  data: CreatedReply,
+) => {
+  const response = await axiosInstance.post(
+    END_POINT.CREATE_REPLY(postId, commentId),
+    {
+      ...data,
+    },
+  );
+  return response;
 };

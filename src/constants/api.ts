@@ -43,6 +43,8 @@ export const END_POINT = {
     `posts/${postId}/comments/${commentId}`,
   COMMENT_REPLILES: (postId: number, commentId: number) =>
     `posts/${postId}/comments/${commentId}/replies`,
+  CREATE_REPLY: (postId: number, commentId: number) =>
+    `posts/${postId}/comments/${commentId}/replies`,
 };
 
 export const AXIOS = {

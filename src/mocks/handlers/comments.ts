@@ -103,6 +103,13 @@ const getReplies = rest.get(
   },
 );
 
+const createReply = rest.post(
+  `${URL}/posts/:postId/comments/:commentId/replies`,
+  (req, res, ctx) => {
+    return res(ctx.status(201));
+  },
+);
+
 export default [
   getComments,
   createComment,
@@ -112,4 +119,5 @@ export default [
   editComment,
   deleteComment,
   getReplies,
+  createReply,
 ];

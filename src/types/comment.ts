@@ -15,7 +15,11 @@ export type Comment = {
 
 export type CreatedComment = Pick<Comment, 'content' | 'selectedOptionId'>;
 export type EditedComment = Pick<Comment, 'content' | 'selectedOptionId'>;
-export type CreatedReply = Pick<Comment, 'content'>;
+export type CreatedReply = {
+  content: string;
+  memberId: number;
+  commentId: number;
+};
 export type CommentsPagination = {
   totalPages: number;
   totalElements: number;

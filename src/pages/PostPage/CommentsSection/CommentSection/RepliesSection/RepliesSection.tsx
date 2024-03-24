@@ -53,8 +53,8 @@ const RepliesSection = ({
           onChange={onChange}
           reset={reset}
           postId={postId}
-          selectedOptionId={selectedOptionId}
-          isAlignLeft={isAlignLeft}
+          commentId={parentCommentId}
+          memberId={member.memberId}
         />
       )}
       <div css={repliesListSectionWrapper}>
