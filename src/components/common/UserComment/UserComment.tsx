@@ -1,6 +1,6 @@
 import React, { SetStateAction, useState } from 'react';
 import { Comment } from '@/types/comment';
-import { Profile, More } from '@/assets';
+import { Profile } from '@/assets';
 import { getCreatedDate } from '@/utils/date';
 import CommentLikeButton from '@/components/Buttons/CommentLikeButton';
 import CommentReportButton from '@/components/Buttons/CommentReportButton';
@@ -8,6 +8,8 @@ import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
 import { useMemberQuery } from '@/hooks/api/useMemberQuery';
+import CommentEditButton from '@/components/Buttons/CommentEditButton';
+import { useEditCommentForm } from '@/hooks/comment/useEditCommentForm';
 import {
   btnsWrapper,
   commentHistoryWrapper,
@@ -22,6 +24,7 @@ import {
   userCommentWrapper,
   utilityBtnsWrapper,
 } from './UserComment.style';
+import InputEditedComment from '../InputComment/InputEditedComment/InputEditedComment';
 
 type UserCommentProps = Comment & {
   handleLoginModal: React.Dispatch<SetStateAction<boolean>>;
@@ -45,15 +48,16 @@ const UserComment = ({
   handleLoginModal,
 }: UserCommentProps) => {
   const createdDate = getCreatedDate(createdAt);
+  const [isActiveEditInput, setIsActiveEditInput] = useState(false);
 
   const [isOpenReplies, setIsOpenReplies] = useState<boolean>(false);
   // const { member } = useMemberQuery(
   //   useParseJwt(useNewSelector(selectAccessToken)).memberId,
   // );
+  const { form, onChange } = useEditCommentForm(content);
 
   const member = { memberId: 100, nickname: '김성현' };
   const isAlignLeft = selectedOptionId === balanceOptionIds[0];
-  console.log(selectedOptionId, balanceOptionIds);
 
   return (
     <div css={userCommentWrapper(isAlignLeft)}>
@@ -65,15 +69,30 @@ const UserComment = ({
           ) : (
             <Profile width={40} />
           )}
-          <div css={commentInfoWrapper}>
+          <div css={commentInfoWrapper(isActiveEditInput)}>
             <div css={commentHistoryWrapper(isAlignLeft)}>
               <div css={nameWrapper}>{memberName || '익명'}</div>
               <div css={createdAtWrapper}>
                 {createdDate < 1 ? '오늘' : `${createdDate}일전`}
               </div>
-              {member?.nickname === memberName && <More />}
+              {member?.nickname === memberName && (
+                <div css={btnsWrapper(isAlignLeft)}>
+                  <CommentEditButton handleActiveEdit={setIsActiveEditInput} />
+                </div>
+              )}
             </div>
-            <div css={contentWrapper}>{content}</div>
+            {isActiveEditInput ? (
+              <InputEditedComment
+                value={form.content}
+                onChange={onChange}
+                postId={postId}
+                commentId={id}
+                selectedOptionId={selectedOptionId}
+                handleActiveEdit={setIsActiveEditInput}
+              />
+            ) : (
+              <div css={contentWrapper}>{content}</div>
+            )}
           </div>
         </div>
         <div css={btnsWrapper(isAlignLeft)}>

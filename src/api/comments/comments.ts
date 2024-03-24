@@ -1,4 +1,8 @@
-import { CommentsPagination, CreatedComment } from '@/types/comment';
+import {
+  CommentsPagination,
+  CreatedComment,
+  EditedComment,
+} from '@/types/comment';
 import { END_POINT } from '../../constants/api';
 import { axiosInstance } from '../interceptor';
 
@@ -43,6 +47,18 @@ export const fetchReportComment = async (postId: number, commetId: number) => {
       reason: '신고합니다.',
       description: '신고 내용',
     },
+  );
+  return response;
+};
+
+export const editComment = async (
+  postId: number,
+  commentId: number,
+  data: EditedComment,
+) => {
+  const response = await axiosInstance.put(
+    END_POINT.EDIT_COMMENT(postId, commentId),
+    { ...data },
   );
   return response;
 };

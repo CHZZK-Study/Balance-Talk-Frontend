@@ -24,15 +24,16 @@ export const commentWrapper = (isAlingLeft: boolean) =>
   css({
     display: 'inline-flex',
     flexDirection: `${isAlingLeft ? 'row' : 'row-reverse'}`,
-    alignItems: 'center',
+    alignItems: 'flex-start',
     gap: '1rem',
   });
 
-export const commentInfoWrapper = css({
-  display: 'inline-flex',
-  flexDirection: 'column',
-  gap: '1rem',
-});
+export const commentInfoWrapper = (isActiveEditInput: boolean) =>
+  css({
+    display: 'inline-flex',
+    flexDirection: 'column',
+    gap: `${isActiveEditInput ? '0px' : '10px'}`,
+  });
 
 export const commentHistoryWrapper = (isAlingLeft: boolean) =>
   css({

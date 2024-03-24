@@ -75,7 +75,7 @@ const CommentReportButton = ({
     >
       <Report
         css={css({
-          fill: `green`,
+          fill: `none`,
           animation: `${isAnimation ? `${pulsate} .5s ease-in-out` : 'none'}`,
         })}
       />

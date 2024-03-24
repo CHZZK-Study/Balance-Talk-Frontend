@@ -68,10 +68,18 @@ const reportComment = rest.post(
   },
 );
 
+const editComment = rest.put(
+  `${URL}/posts/:postId/comments/:commentId`,
+  (req, res, ctx) => {
+    return res(ctx.status(200));
+  },
+);
+
 export default [
   getComments,
   createComment,
   addLikeComment,
   deleteLikeComment,
   reportComment,
+  editComment,
 ];

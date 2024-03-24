@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getComments } from '@/api/comments/comments';
 import { Comment, CommentsPagination } from '@/types/comment';
 import UserComment from '@/components/common/UserComment/UserComment';
-import InputComment from '@/components/common/InputComment/InputComment';
+import InputNewComment from '@/components/common/InputComment/InputNewComment/InputNewComment';
 import { useCreateCommentForm } from '@/hooks/comment/useCreateCommentForm';
 import { useMemberQuery } from '@/hooks/api/useMemberQuery';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
@@ -51,7 +51,7 @@ const CommentsSection = ({
         댓글 {commentsPagination?.totalElements}개
       </div>
       {member && selectedOptionId && (
-        <InputComment
+        <InputNewComment
           value={form.content}
           onChange={onChange}
           reset={reset}

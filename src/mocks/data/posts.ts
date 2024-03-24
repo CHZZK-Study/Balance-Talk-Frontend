@@ -288,7 +288,7 @@ export const postById = (postId?: number) => {
       { tagName: '카페' },
       { tagName: 'Beverage' },
     ],
-    createdAt: '2024-03-14T01:32:49.283Z',
+    createdAt: '2024/03/14 01:32:49',
     createdBy: '김성현',
     selectedOptionId: 2,
   };
