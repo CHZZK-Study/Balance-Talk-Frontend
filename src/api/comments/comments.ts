@@ -2,6 +2,7 @@ import {
   CommentsPagination,
   CreatedComment,
   EditedComment,
+  Replies,
 } from '@/types/comment';
 import { END_POINT } from '../../constants/api';
 import { axiosInstance } from '../interceptor';
@@ -71,4 +72,14 @@ export const deleteComment = async (postId: number, commentId: number) => {
     END_POINT.DELETE_COMMENT(postId, commentId),
   );
   return response;
+};
+
+export const getReplies = async (
+  postId: number,
+  commentId: number,
+): Promise<Replies> => {
+  const response = await axiosInstance.get(
+    END_POINT.COMMENT_REPLILES(postId, commentId),
+  );
+  return response.data as Replies;
 };

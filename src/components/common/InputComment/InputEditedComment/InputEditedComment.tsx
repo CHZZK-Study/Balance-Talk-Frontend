@@ -44,7 +44,7 @@ const InputEditedComment = ({
         </Button>
       }
       css={css({
-        width: '100%',
+        width: '200px',
       })}
     />
   );

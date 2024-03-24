@@ -6,14 +6,14 @@ export const userCommentWrapper = (isAlingLeft: boolean) =>
     flexDirection: `${isAlingLeft ? 'row' : 'row-reverse'}`,
     gap: '1rem',
     borderRadius: '8px',
-    padding: '1rem',
+    padding: '0.8rem',
   });
 
-export const commentMainWrapper = (isAlingLeft: boolean) =>
+export const commentMainWrapper = (isReply: boolean, isAlingLeft: boolean) =>
   css({
     display: 'inline-flex',
     flexDirection: 'column',
-    backgroundColor: `${isAlingLeft ? 'white' : '#D9D9D9'}`,
+    backgroundColor: `${isReply ? '#D4C5D5' : isAlingLeft ? 'white' : '#D9D9D9'}`,
     gap: '0.5rem',
     padding: '1rem',
     borderRadius: '1rem',

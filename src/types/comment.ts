@@ -49,3 +49,8 @@ export type ReportedComment = {
   reason: string;
   description: string;
 };
+
+// 추후 수정
+export type Replies = {
+  content: Comment[];
+};

@@ -30,7 +30,10 @@ import InputEditedComment from '../InputComment/InputEditedComment/InputEditedCo
 
 type UserCommentProps = Comment & {
   handleLoginModal: React.Dispatch<SetStateAction<boolean>>;
+  handleOpenReplies?: React.Dispatch<SetStateAction<boolean>>;
+  isOpenReplies?: boolean;
   balanceOptionIds: number[];
+  alignLeft?: boolean;
 };
 
 const UserComment = ({
@@ -46,27 +49,33 @@ const UserComment = ({
   likesCount,
   lastModifiedAt,
   profileImageUrl,
-  postTitle,
+  isOpenReplies,
+  alignLeft,
   handleLoginModal,
+  handleOpenReplies,
 }: UserCommentProps) => {
   const createdDate = getDate(createdAt);
   const lastModifedDate = lastModifiedAt ? getDate(lastModifiedAt) : null;
   const commentDate = lastModifedDate || createdDate;
   const [isActiveEditInput, setIsActiveEditInput] = useState(false);
 
-  const [isOpenReplies, setIsOpenReplies] = useState<boolean>(false);
   // const { member } = useMemberQuery(
   //   useParseJwt(useNewSelector(selectAccessToken)).memberId,
   // );
   const { form, onChange } = useEditCommentForm(content);
 
   const member = { memberId: 100, nickname: '김성현' };
-  const isAlignLeft = selectedOptionId === balanceOptionIds[0];
+
+  const isReply = parentCommentId !== null && parentCommentId !== undefined;
+
+  const isAlignLeft = parentCommentId
+    ? alignLeft
+    : selectedOptionId === balanceOptionIds[0];
 
   return (
-    <div css={userCommentWrapper(isAlignLeft)}>
-      <div css={commentMainWrapper(isAlignLeft)}>
-        <div css={commentWrapper(isAlignLeft)}>
+    <div css={userCommentWrapper(!!isAlignLeft)}>
+      <div css={commentMainWrapper(isReply, !!isAlignLeft)}>
+        <div css={commentWrapper(!!isAlignLeft)}>
           {profileImageUrl ? (
             // 이미지 반영 필요
             <img src={profileImageUrl} alt="이미지" />
@@ -79,13 +88,13 @@ const UserComment = ({
               member?.nickname === memberName,
             )}
           >
-            <div css={commentHistoryWrapper(isAlignLeft)}>
+            <div css={commentHistoryWrapper(!!isAlignLeft)}>
               <div css={nameWrapper}>{memberName || '익명'}</div>
               <div css={createdAtWrapper}>
                 {commentDate < 1 ? '오늘' : `${createdDate}일전`}
               </div>
               {member?.nickname === memberName && (
-                <div css={editDeletebtnsWrapper(isAlignLeft)}>
+                <div css={editDeletebtnsWrapper(!!isAlignLeft)}>
                   <CommentEditButton handleActiveEdit={setIsActiveEditInput} />
                   <CommentDeleteButton postId={postId} commentId={id} />
                 </div>
@@ -105,7 +114,7 @@ const UserComment = ({
             )}
           </div>
         </div>
-        <div css={btnsWrapper(isAlignLeft)}>
+        <div css={btnsWrapper(!!isAlignLeft)}>
           <div css={utilityBtnsWrapper}>
             <div css={likeBtnWrapper}>
               <CommentLikeButton
@@ -122,16 +131,16 @@ const UserComment = ({
               commentId={id}
             />
           </div>
-          <div css={replyBtnWrapper}>
-            <button
-              type="button"
-              onClick={() => {
-                setIsOpenReplies(!isOpenReplies);
-              }}
-            >
-              {isOpenReplies ? '답글 확인하기' : '답글 접기'}
-            </button>
-          </div>
+          {!parentCommentId && (
+            <div css={replyBtnWrapper}>
+              <button
+                type="button"
+                onClick={() => handleOpenReplies((prev) => !prev)}
+              >
+                {isOpenReplies ? '답글 접기' : '답글 확인하기'}
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

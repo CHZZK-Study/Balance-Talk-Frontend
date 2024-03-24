@@ -2,7 +2,6 @@ import React, { SetStateAction, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getComments } from '@/api/comments/comments';
 import { Comment } from '@/types/comment';
-import UserComment from '@/components/common/UserComment/UserComment';
 import InputNewComment from '@/components/common/InputComment/InputNewComment/InputNewComment';
 import { useCreateCommentForm } from '@/hooks/comment/useCreateCommentForm';
 import { useMemberQuery } from '@/hooks/api/useMemberQuery';
@@ -18,6 +17,7 @@ import {
   commentsWrapper,
 } from './CommentsSection.style';
 import CommentsPagination from './CommentsPagination/CommentsPagination';
+import CommentSection from './CommentSection/CommentSection';
 
 interface CommentsSectionProps {
   postId: number;
@@ -69,14 +69,16 @@ const CommentsSection = ({
       <div css={commentsListSectionWrapper}>
         <div css={commentsWrapper}>
           {commentsPagination?.content.map((comment: Comment) => (
-            <UserComment
-              {...comment}
+            <CommentSection
+              comment={comment}
+              postId={postId}
               handleLoginModal={handleLoginModal}
               balanceOptionIds={
                 balanceOptionIds[0] !== null && balanceOptionIds[1] !== null
                   ? balanceOptionIds
                   : [1, 2]
               }
+              selectedOptionId={selectedOptionId || null}
             />
           ))}
         </div>
@@ -84,7 +86,7 @@ const CommentsSection = ({
           <CommentsPagination
             totalPages={commentsPagination?.totalPages || 0}
             selectedPage={selectedPageNumber}
-            isLast={commentsPagination?.last}
+            isLast={commentsPagination?.last || false}
             handleSelectedPage={setSelectedPageNumber}
           />
         </div>

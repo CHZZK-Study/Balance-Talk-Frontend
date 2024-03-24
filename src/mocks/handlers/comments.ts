@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { rest } from 'msw';
 import { COMMENTS_PER_PAGE } from '@/constants/pagination';
-import { mockComments } from '../data/comments';
+import { mockComments, mockReplies } from '../data/comments';
 
 const URL = process.env.API_URL;
 
@@ -90,6 +90,19 @@ const deleteComment = rest.delete(
   },
 );
 
+const getReplies = rest.get(
+  `${URL}/posts/:postId/comments/:commentId/replies`,
+  (req, res, ctx) => {
+    const { pathname } = req.url;
+    return res(
+      ctx.status(200),
+      ctx.json({
+        content: mockReplies(Number(pathname.split('/')[4])),
+      }),
+    );
+  },
+);
+
 export default [
   getComments,
   createComment,
@@ -98,4 +111,5 @@ export default [
   reportComment,
   editComment,
   deleteComment,
+  getReplies,
 ];
