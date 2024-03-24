@@ -43,7 +43,7 @@ export type NPost = {
   createdAt: string;
   createdBy: string;
   selectedOptionId?: number | null;
-  profileImageUrl: string;
+  profileImageUrl: string | null;
 };
 
 export type VoteInfo = {

@@ -1,7 +1,7 @@
-import React, { SetStateAction } from 'react';
+import React, { SetStateAction, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getComments } from '@/api/comments/comments';
-import { Comment, CommentsPagination } from '@/types/comment';
+import { Comment } from '@/types/comment';
 import UserComment from '@/components/common/UserComment/UserComment';
 import InputNewComment from '@/components/common/InputComment/InputNewComment/InputNewComment';
 import { useCreateCommentForm } from '@/hooks/comment/useCreateCommentForm';
@@ -9,6 +9,7 @@ import { useMemberQuery } from '@/hooks/api/useMemberQuery';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
+import { COMMENTS_PER_PAGE } from '@/constants/pagination';
 import {
   commentCountWrapper,
   commentPaginationWrapper,
@@ -16,7 +17,7 @@ import {
   commentsSectionWrapper,
   commentsWrapper,
 } from './CommentsSection.style';
-import { Pagination } from './CommentsPagination/CommentsPagination';
+import CommentsPagination from './CommentsPagination/CommentsPagination';
 
 interface CommentsSectionProps {
   postId: number;
@@ -35,12 +36,18 @@ const CommentsSection = ({
   //   useParseJwt(useNewSelector(selectAccessToken)).memberId,
   // );
   const member = { memberId: 100, nickname: '김성현' };
+  const [selectedPageNumber, setSelectedPageNumber] = useState<number>(0);
 
   const { form, onChange, reset } = useCreateCommentForm();
 
   const { data: commentsPagination, isLoading } = useQuery({
-    queryKey: ['posts', 'comments', postId],
-    queryFn: () => getComments(postId),
+    queryKey: ['posts', 'comments', postId, selectedPageNumber],
+    queryFn: () =>
+      getComments(postId, {
+        page: selectedPageNumber,
+        size: COMMENTS_PER_PAGE,
+        sort: [],
+      }),
   });
 
   return isLoading ? (
@@ -74,9 +81,11 @@ const CommentsSection = ({
           ))}
         </div>
         <div css={commentPaginationWrapper}>
-          <Pagination
-            totalCommentsCount={commentsPagination?.totalElements}
-            currentPage={commentsPagination?.pageable.pageNumber + 1 || 1}
+          <CommentsPagination
+            totalPages={commentsPagination?.totalPages || 0}
+            selectedPage={selectedPageNumber}
+            isLast={commentsPagination?.last}
+            handleSelectedPage={setSelectedPageNumber}
           />
         </div>
       </div>

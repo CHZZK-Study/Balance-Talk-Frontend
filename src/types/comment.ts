@@ -17,23 +17,10 @@ export type CreatedComment = Pick<Comment, 'content' | 'selectedOptionId'>;
 export type EditedComment = Pick<Comment, 'content' | 'selectedOptionId'>;
 export type CreatedReply = Pick<Comment, 'content'>;
 export type CommentsPagination = {
-  content: Comment[];
-  pageable: {
-    pageNumber: number;
-    pageSize: number;
-    sort: {
-      empty: boolean;
-      unsorted: boolean;
-      sorted: boolean;
-    };
-    offset: number;
-    paged: boolean;
-    unpaged: boolean;
-  };
-  last: boolean;
   totalPages: number;
   totalElements: number;
   size: number;
+  content: Comment[];
   number: number;
   sort: {
     empty: boolean;
@@ -41,6 +28,20 @@ export type CommentsPagination = {
     sorted: boolean;
   };
   numberOfElements: number;
+  pageable: {
+    offset: number;
+    sort: {
+      empty: boolean;
+      unsorted: boolean;
+      sorted: boolean;
+    };
+    pageSize: number;
+    paged: boolean;
+    pageNumber: number;
+    unpaged: boolean;
+  };
+  first: boolean;
+  last: boolean;
   empty: boolean;
 };
 
