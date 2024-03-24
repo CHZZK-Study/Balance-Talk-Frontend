@@ -17,14 +17,17 @@ export type Post = {
   title: string;
   views: number;
   commentCount: number;
-  likeCount: number;
+  likesCount: number;
   myBookmark: boolean;
   myLike: boolean;
   deadline: string;
+  category: 'CASUAL' | 'DISCUSSION';
   postTags: { tagName: string }[];
   balanceOptions: ImageInfo[];
-  // 게시물을 생성한 사람의 id도 필요
-  creatorId?: number;
+  createdAt: string;
+  createdBy: string;
+  totalVoteCount: number;
+  selectedOptionId?: number;
 };
 
 export type NPost = {
@@ -83,4 +86,33 @@ export type UploadedImage = {
 export type ReportedPost = {
   reason: string;
   description: string;
+};
+
+export type PostWithPagenation = {
+  content: Post[];
+  pageable: {
+    pageNumber: number;
+    pageSize: number;
+    sort: {
+      empty: boolean;
+      sorted: boolean;
+      unsorted: boolean;
+    };
+    offset: number;
+    paged: boolean;
+    unpaged: boolean;
+  };
+  totalPages: number;
+  totalElements: number;
+  last: boolean;
+  size: number;
+  number: number;
+  sort: {
+    empty: boolean;
+    sorted: boolean;
+    unsorted: boolean;
+  };
+  numberOfElements: number;
+  first: boolean;
+  empty: boolean;
 };

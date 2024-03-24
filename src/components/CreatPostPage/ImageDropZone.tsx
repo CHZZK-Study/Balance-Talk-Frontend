@@ -3,7 +3,6 @@ import React, { useCallback, useState } from 'react';
 import { css } from '@emotion/react';
 import { useDropzone } from 'react-dropzone';
 import { AxiosErrorResponse } from '@/api/interceptor';
-import { CreatePostImageFile } from '../../types/post';
 import { fetchFileData } from '../../api/posts/posts';
 
 type ImageDropZoneProps = {

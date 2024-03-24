@@ -1,6 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { useQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 import PostImage from '../common/PostImage/PostImage';
 import TagButton from '../Buttons/TagButton';
 import HeartButton from '../Buttons/HeartButton';
@@ -43,7 +44,7 @@ const MainPost = ({ post }: MainPostProps) => {
   const images = post?.balanceOptions;
 
   const postInfo = post;
-
+  const navigate = useNavigate();
   return (
     <div css={css({ display: 'flex', margin: '10px' })}>
       <PostImage images={images} size="large" />
@@ -62,7 +63,13 @@ const MainPost = ({ post }: MainPostProps) => {
         <div css={voteCount}>
           현재 투표수 : {(data && calculateTotalVoteCount(data)) || '0'}
         </div>
-        <div css={voteButtonWrapper}>
+        <div
+          css={voteButtonWrapper}
+          onClick={() => {
+            navigate(`posts/${postId}`);
+          }}
+          role="presentation"
+        >
           <VoteButton />
         </div>
         <div css={etcButtonWrapper}>
