@@ -32,3 +32,17 @@ export const postMember = async (
   );
   return data;
 };
+
+export const deleteMember = async (
+  form: Pick<MemberForm, 'email' | 'password'>,
+) => {
+  const params = {
+    data: form,
+  };
+
+  const { data } = await axiosInstance.delete<string>(
+    `${END_POINT.ALL_MEMBERS}`,
+    params,
+  );
+  return data;
+};
