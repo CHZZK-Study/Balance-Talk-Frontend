@@ -39,6 +39,8 @@ export const END_POINT = {
     `posts/${postId}/comments/${commentId}/report`,
   EDIT_COMMENT: (postId: number, commentId: number) =>
     `posts/${postId}/comments/${commentId}`,
+  DELETE_COMMENT: (postId: number, commentId: number) =>
+    `posts/${postId}/comments/${commentId}`,
 };
 
 export const AXIOS = {

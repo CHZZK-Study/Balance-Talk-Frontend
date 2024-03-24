@@ -1,7 +1,7 @@
 import React, { SetStateAction, useState } from 'react';
 import { Comment } from '@/types/comment';
 import { Profile } from '@/assets';
-import { getCreatedDate } from '@/utils/date';
+import { getDate } from '@/utils/date';
 import CommentLikeButton from '@/components/Buttons/CommentLikeButton';
 import CommentReportButton from '@/components/Buttons/CommentReportButton';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
@@ -10,6 +10,7 @@ import { selectAccessToken } from '@/store/auth';
 import { useMemberQuery } from '@/hooks/api/useMemberQuery';
 import CommentEditButton from '@/components/Buttons/CommentEditButton';
 import { useEditCommentForm } from '@/hooks/comment/useEditCommentForm';
+import CommentDeleteButton from '@/components/Buttons/CommentDeleteButton';
 import {
   btnsWrapper,
   commentHistoryWrapper,
@@ -18,6 +19,7 @@ import {
   commentWrapper,
   contentWrapper,
   createdAtWrapper,
+  editDeletebtnsWrapper,
   likeBtnWrapper,
   nameWrapper,
   replyBtnWrapper,
@@ -47,7 +49,9 @@ const UserComment = ({
   postTitle,
   handleLoginModal,
 }: UserCommentProps) => {
-  const createdDate = getCreatedDate(createdAt);
+  const createdDate = getDate(createdAt);
+  const lastModifedDate = lastModifiedAt ? getDate(lastModifiedAt) : null;
+  const commentDate = lastModifedDate || createdDate;
   const [isActiveEditInput, setIsActiveEditInput] = useState(false);
 
   const [isOpenReplies, setIsOpenReplies] = useState<boolean>(false);
@@ -69,15 +73,21 @@ const UserComment = ({
           ) : (
             <Profile width={40} />
           )}
-          <div css={commentInfoWrapper(isActiveEditInput)}>
+          <div
+            css={commentInfoWrapper(
+              isActiveEditInput,
+              member?.nickname === memberName,
+            )}
+          >
             <div css={commentHistoryWrapper(isAlignLeft)}>
               <div css={nameWrapper}>{memberName || '익명'}</div>
               <div css={createdAtWrapper}>
-                {createdDate < 1 ? '오늘' : `${createdDate}일전`}
+                {commentDate < 1 ? '오늘' : `${createdDate}일전`}
               </div>
               {member?.nickname === memberName && (
-                <div css={btnsWrapper(isAlignLeft)}>
+                <div css={editDeletebtnsWrapper(isAlignLeft)}>
                   <CommentEditButton handleActiveEdit={setIsActiveEditInput} />
+                  <CommentDeleteButton postId={postId} commentId={id} />
                 </div>
               )}
             </div>

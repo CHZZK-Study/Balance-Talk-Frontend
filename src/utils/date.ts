@@ -1,9 +1,9 @@
-export const getDate = (datetime: string) => {
+export const getFormattedDate = (datetime: string) => {
   const date = datetime.split(' ')[0];
   return date.replace(/\//g, '.');
 };
 
-export const getCreatedDate = (createdDate: string) => {
-  const diff = new Date().getTime() - new Date(createdDate).getTime();
+export const getDate = (date: string) => {
+  const diff = new Date().getTime() - new Date(date).getTime();
   return Math.floor(diff / (60 * 60 * 24 * 1000));
 };

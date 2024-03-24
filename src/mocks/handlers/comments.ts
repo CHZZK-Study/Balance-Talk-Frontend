@@ -75,6 +75,13 @@ const editComment = rest.put(
   },
 );
 
+const deleteComment = rest.delete(
+  `${URL}/posts/:postId/comments/:commentId`,
+  (req, res, ctx) => {
+    return res(ctx.status(204));
+  },
+);
+
 export default [
   getComments,
   createComment,
@@ -82,4 +89,5 @@ export default [
   deleteLikeComment,
   reportComment,
   editComment,
+  deleteComment,
 ];

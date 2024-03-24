@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getDate } from '@/utils/date';
+import { getFormattedDate } from '@/utils/date';
 import { Profile } from '../../../assets';
 import {
   CreatedDateWrapper,
@@ -23,7 +23,7 @@ const CreatorSection = ({ createdBy, createdAt }: CreatorSectionProps) => {
       <div css={creatorInfoWrapper}>
         <div css={creatorNameWrapper} />
         {createdBy || 'nickname'}
-        <div css={CreatedDateWrapper}>{getDate(createdAt)}</div>
+        <div css={CreatedDateWrapper}>{getFormattedDate(createdAt)}</div>
       </div>
     </div>
   );

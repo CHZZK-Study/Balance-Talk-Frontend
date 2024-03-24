@@ -28,11 +28,14 @@ export const commentWrapper = (isAlingLeft: boolean) =>
     gap: '1rem',
   });
 
-export const commentInfoWrapper = (isActiveEditInput: boolean) =>
+export const commentInfoWrapper = (
+  isActiveEditInput: boolean,
+  isMyComment: boolean,
+) =>
   css({
     display: 'inline-flex',
     flexDirection: 'column',
-    gap: `${isActiveEditInput ? '0px' : '10px'}`,
+    gap: `${isMyComment ? '0px' : '10px'}`,
   });
 
 export const commentHistoryWrapper = (isAlingLeft: boolean) =>
@@ -40,7 +43,7 @@ export const commentHistoryWrapper = (isAlingLeft: boolean) =>
     display: 'inline-flex',
     flexDirection: `${isAlingLeft ? 'row' : 'row-reverse'}`,
     alignItems: 'center',
-    gap: '1rem',
+    gap: '10px',
   });
 
 export const nameWrapper = css({
@@ -59,6 +62,14 @@ export const createdAtWrapper = css({
   fontWeight: '300',
   fontSize: '0.8rem',
 });
+
+export const editDeletebtnsWrapper = (isAlingLeft: boolean) =>
+  css({
+    display: 'inline-flex',
+    flexDirection: `${isAlingLeft ? 'row' : 'row-reverse'}`,
+    alignItems: 'center',
+    gap: '0.3rem',
+  });
 
 export const btnsWrapper = (isAlingLeft: boolean) =>
   css({

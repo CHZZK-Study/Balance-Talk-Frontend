@@ -62,3 +62,10 @@ export const editComment = async (
   );
   return response;
 };
+
+export const deleteComment = async (postId: number, commentId: number) => {
+  const response = await axiosInstance.delete(
+    END_POINT.DELETE_COMMENT(postId, commentId),
+  );
+  return response;
+};
