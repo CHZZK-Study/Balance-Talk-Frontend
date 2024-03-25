@@ -21,6 +21,7 @@ export const END_POINT = {
   NICKNAME_VERIFY: '/members/duplicate',
   EMAIL_VERIFY: '/email/verify',
   EMAIL_REQUEST: '/email/request',
+  FIND_PW: '/email/password',
   POST: (id: number) => `/posts/${id}`,
   GET_BOOKMARK: '/bookmark',
   COMMENTS: (postId: number) => `/posts/${postId}/comments`,

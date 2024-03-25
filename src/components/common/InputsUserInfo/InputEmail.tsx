@@ -9,7 +9,7 @@ interface InputEmailProps {
   type: string;
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onSuccessChange: (name: string, value: boolean) => void;
+  onSuccessChange?: (name: string, value: boolean) => void;
 }
 
 const InputEmail = ({
@@ -24,7 +24,7 @@ const InputEmail = ({
   );
 
   useEffect(() => {
-    if (value) {
+    if (value && onSuccessChange) {
       onSuccessChange('email', !isError);
     }
   }, [errorMessage]);
