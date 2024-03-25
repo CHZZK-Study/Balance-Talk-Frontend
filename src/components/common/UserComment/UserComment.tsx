@@ -130,6 +130,8 @@ const UserComment = ({
                 myLike={myLike}
                 postId={postId}
                 commentId={id}
+                selectedPageNumber={selectedPageNumber}
+                parentCommentId={parentCommentId}
               />
               <span>{likesCount}</span>
             </div>

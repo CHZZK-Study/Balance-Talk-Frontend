@@ -12,7 +12,7 @@ const CommentDeleteButton = ({
 }: {
   postId: number;
   commentId: number;
-  parentCommentId: number;
+  parentCommentId: number | null;
 }) => {
   const [isAnimation, setIsAnimation] = useState(false);
   const queryClient = useQueryClient();

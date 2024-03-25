@@ -4,7 +4,7 @@ export type Comment = {
   memberName: string;
   postId: number;
   selectedOptionId: number;
-  parentCommentId?: number;
+  parentCommentId?: number | null;
   likesCount: number;
   myLike: boolean;
   createdAt: string;

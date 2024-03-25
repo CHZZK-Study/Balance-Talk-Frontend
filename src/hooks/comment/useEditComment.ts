@@ -19,7 +19,7 @@ export const useEditComment = ({
 }: {
   postId: number;
   selectedOptionId: number;
-  parentCommentId: number;
+  parentCommentId: number | null;
   commentId: number;
   value: string;
   handleActiveEdit: React.Dispatch<SetStateAction<boolean>>;
