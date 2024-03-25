@@ -1,4 +1,7 @@
+import { postFile } from '@/api/file/file';
+import { UploadedImage } from '@/types/post';
 import { css } from '@emotion/react';
+import { useMutation } from '@tanstack/react-query';
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import defaultProfileImage from '../../../../assets/images/defaultProfile.png';
@@ -11,21 +14,40 @@ import {
   profileImageText,
 } from './InputProfileImage.style';
 
-const InputProfileImage = () => {
+interface InputProfileImageProps {
+  setProfilePhoto: (name: string, profilePhoto: string) => void;
+}
+
+const InputProfileImage = ({ setProfilePhoto }: InputProfileImageProps) => {
   const [imageSrc, setImageSrc] = useState<string>(defaultProfileImage);
   const [isError, setIsError] = useState<boolean>(false);
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    if (acceptedFiles.length) {
-      const reader = new FileReader();
-      reader.readAsDataURL(acceptedFiles[0]);
-      reader.onloadend = (e) => {
-        setImageSrc(e.target?.result as string);
-      };
-      setIsError(false);
-    } else {
-      setIsError(true);
-    }
-  }, []);
+
+  const fileUpload = useMutation({
+    mutationFn: postFile,
+    onSuccess: (res: UploadedImage) => {
+      setProfilePhoto('profilePhoto', res.storedName);
+    },
+  });
+
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      if (acceptedFiles.length) {
+        const reader = new FileReader();
+        reader.readAsDataURL(acceptedFiles[0]);
+        reader.onloadend = (e) => {
+          setImageSrc(e.target?.result as string);
+        };
+        setIsError(false);
+        const frm = new FormData();
+        frm.append('file', acceptedFiles[0]);
+        fileUpload.mutate(frm);
+      } else {
+        setIsError(true);
+        setProfilePhoto('profilePhoto', '');
+      }
+    },
+    [fileUpload, setProfilePhoto],
+  );
 
   const { getRootProps } = useDropzone({
     onDrop,

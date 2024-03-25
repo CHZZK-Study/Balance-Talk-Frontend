@@ -13,6 +13,7 @@ const initialState: MemberForm = {
   nickname: '',
   password: '',
   passwordCheck: '',
+  profilePhoto: '',
 };
 
 const successState: MemberSuccesForm = {
@@ -24,8 +25,7 @@ const successState: MemberSuccesForm = {
 };
 
 export const useSignupForm = () => {
-  const { form, onChange } = useInputs<MemberForm>(initialState);
-
+  const { form, onChange, setEach } = useInputs<MemberForm>(initialState);
   const { successForm, onSuccessChange } =
     useActiveSubmit<MemberSuccesForm>(successState);
 
@@ -42,11 +42,11 @@ export const useSignupForm = () => {
 
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     if (isAllTrue(successForm)) {
       const newForm = createNewForm(form);
       signup.mutate(newForm);
     } else {
+      console.log(form);
       focus(e);
     }
   };
@@ -55,5 +55,12 @@ export const useSignupForm = () => {
     navigate(-1);
   };
 
-  return { form, onChange, onSuccessChange, handleSubmit, handleCancle };
+  return {
+    form,
+    onChange,
+    setEach,
+    onSuccessChange,
+    handleSubmit,
+    handleCancle,
+  };
 };
