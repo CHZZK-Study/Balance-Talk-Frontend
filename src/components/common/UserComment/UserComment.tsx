@@ -98,7 +98,11 @@ const UserComment = ({
               {member?.nickname === memberName && (
                 <div css={editDeletebtnsWrapper(!!isAlignLeft)}>
                   <CommentEditButton handleActiveEdit={setIsActiveEditInput} />
-                  <CommentDeleteButton postId={postId} commentId={id} />
+                  <CommentDeleteButton
+                    postId={postId}
+                    commentId={id}
+                    parentCommentId={parentCommentId}
+                  />
                 </div>
               )}
             </div>

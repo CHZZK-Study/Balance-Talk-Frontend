@@ -8,9 +8,11 @@ import { pulsate } from '../../styles/keyframes';
 const CommentDeleteButton = ({
   postId,
   commentId,
+  parentCommentId,
 }: {
   postId: number;
   commentId: number;
+  parentCommentId: number;
 }) => {
   const [isAnimation, setIsAnimation] = useState(false);
   const queryClient = useQueryClient();
@@ -29,9 +31,15 @@ const CommentDeleteButton = ({
       _commentId: number;
     }) => deleteComment(_postId, _commentId),
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ['posts', 'comments', postId],
-      });
+      if (parentCommentId) {
+        queryClient.invalidateQueries({
+          queryKey: ['posts', 'comments', postId, parentCommentId, 'replies'],
+        });
+      } else {
+        queryClient.invalidateQueries({
+          queryKey: ['posts', 'comments', postId],
+        });
+      }
     },
   });
 
