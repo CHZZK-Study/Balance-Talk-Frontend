@@ -9,6 +9,7 @@ interface CommentSectionProps {
   balanceOptionIds: number[];
   postId: number;
   selectedOptionId: number | null;
+  selectedPageNumber: number;
 }
 
 const CommentSection = ({
@@ -17,6 +18,7 @@ const CommentSection = ({
   balanceOptionIds,
   selectedOptionId,
   postId,
+  selectedPageNumber,
 }: CommentSectionProps) => {
   const [isOpenReplies, setIsOpenReplies] = useState<boolean>(false);
 
@@ -28,6 +30,7 @@ const CommentSection = ({
         balanceOptionIds={balanceOptionIds}
         isOpenReplies={isOpenReplies}
         handleOpenReplies={setIsOpenReplies}
+        selectedPageNumber={selectedPageNumber}
       />
       {isOpenReplies && (
         <RepliesSection

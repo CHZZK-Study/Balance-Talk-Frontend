@@ -34,6 +34,7 @@ type UserCommentProps = Comment & {
   isOpenReplies?: boolean;
   balanceOptionIds: number[];
   alignLeft?: boolean;
+  selectedPageNumber?: number;
 };
 
 const UserComment = ({
@@ -51,6 +52,7 @@ const UserComment = ({
   profileImageUrl,
   isOpenReplies,
   alignLeft,
+  selectedPageNumber,
   handleLoginModal,
   handleOpenReplies,
 }: UserCommentProps) => {
@@ -107,10 +109,12 @@ const UserComment = ({
                 postId={postId}
                 commentId={id}
                 selectedOptionId={selectedOptionId}
+                parentCommentId={parentCommentId}
                 handleActiveEdit={setIsActiveEditInput}
+                selectedPageNumber={selectedPageNumber}
               />
             ) : (
-              <div css={contentWrapper}>{content}</div>
+              <div css={contentWrapper(!!isAlignLeft)}>{content}</div>
             )}
           </div>
         </div>

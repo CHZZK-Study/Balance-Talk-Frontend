@@ -10,8 +10,10 @@ interface InputEditedCommentProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   postId: number;
   commentId: number;
+  parentCommentId: number;
   selectedOptionId: number;
   handleActiveEdit: React.Dispatch<SetStateAction<boolean>>;
+  selectedPageNumber: number;
 }
 
 const InputEditedComment = ({
@@ -19,8 +21,10 @@ const InputEditedComment = ({
   onChange,
   commentId,
   postId,
+  parentCommentId,
   selectedOptionId,
   handleActiveEdit,
+  selectedPageNumber,
 }: InputEditedCommentProps) => {
   const { inputRef, handleEditComment } = useEditComment({
     value,
@@ -28,6 +32,8 @@ const InputEditedComment = ({
     commentId,
     selectedOptionId,
     handleActiveEdit,
+    selectedPageNumber,
+    parentCommentId,
   });
 
   return (

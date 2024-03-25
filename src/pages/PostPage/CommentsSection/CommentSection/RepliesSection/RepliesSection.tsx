@@ -59,16 +59,14 @@ const RepliesSection = ({
       )}
       <div css={repliesListSectionWrapper}>
         <div css={repliesWrapper}>
-          {replies?.content.map((reply: Comment) => {
-            return (
-              <UserComment
-                {...reply}
-                balanceOptionIds={balanceOptionIds}
-                handleLoginModal={handleLoginModal}
-                alignLeft={isAlignLeft}
-              />
-            );
-          })}
+          {replies?.content.map((reply: Comment) => (
+            <UserComment
+              {...reply}
+              balanceOptionIds={balanceOptionIds}
+              handleLoginModal={handleLoginModal}
+              alignLeft={isAlignLeft}
+            />
+          ))}
         </div>
       </div>
     </div>

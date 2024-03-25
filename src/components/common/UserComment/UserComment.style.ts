@@ -9,11 +9,11 @@ export const userCommentWrapper = (isAlingLeft: boolean) =>
     padding: '0.8rem',
   });
 
-export const commentMainWrapper = (isReply: boolean, isAlingLeft: boolean) =>
+export const commentMainWrapper = (isReply: boolean, isAlignLeft: boolean) =>
   css({
     display: 'inline-flex',
     flexDirection: 'column',
-    backgroundColor: `${isReply ? '#D4C5D5' : isAlingLeft ? 'white' : '#D9D9D9'}`,
+    backgroundColor: `${isReply ? '#D4C5D5' : isAlignLeft ? 'white' : '#D9D9D9'}`,
     gap: '0.5rem',
     padding: '1rem',
     borderRadius: '1rem',
@@ -52,10 +52,13 @@ export const nameWrapper = css({
   fontWeight: '500',
 });
 
-export const contentWrapper = css({
-  fontFamily: 'SpoqaHanSansNeo-regular',
-  fontSize: '1rem',
-});
+export const contentWrapper = (isAlingLeft: boolean) =>
+  css({
+    display: 'flex',
+    flexDirection: `${isAlingLeft ? 'row' : 'row-reverse'}`,
+    fontFamily: 'SpoqaHanSansNeo-regular',
+    fontSize: '1rem',
+  });
 
 export const createdAtWrapper = css({
   fontFamily: 'SpoqaHanSansNeo-thin',

@@ -1,6 +1,11 @@
 import React, { SetStateAction, useRef } from 'react';
 import { editComment } from '@/api/comments/comments';
-import { CommentsPagination, EditedComment, Comment } from '@/types/comment';
+import {
+  CommentsPagination,
+  EditedComment,
+  Comment,
+  Replies,
+} from '@/types/comment';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const useEditComment = ({
@@ -8,13 +13,17 @@ export const useEditComment = ({
   commentId,
   selectedOptionId,
   handleActiveEdit,
+  parentCommentId,
   value,
+  selectedPageNumber,
 }: {
   postId: number;
   selectedOptionId: number;
+  parentCommentId: number;
   commentId: number;
   value: string;
   handleActiveEdit: React.Dispatch<SetStateAction<boolean>>;
+  selectedPageNumber: number;
 }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const queryClient = useQueryClient();
@@ -24,7 +33,12 @@ export const useEditComment = ({
       editComment(postId, commentId, { ...data }),
     onMutate: () => {
       const prevCommentsPagination: CommentsPagination | undefined =
-        queryClient.getQueryData(['posts', 'comments', postId]);
+        queryClient.getQueryData([
+          'posts',
+          'comments',
+          postId,
+          selectedPageNumber,
+        ]);
 
       const newComments = prevCommentsPagination?.content.map(
         (comment: Comment) => {
@@ -34,24 +48,67 @@ export const useEditComment = ({
         },
       );
 
-      queryClient.setQueryData(['posts', 'comments', postId], {
-        ...prevCommentsPagination,
-        content: newComments,
-      });
+      queryClient.setQueryData(
+        ['posts', 'comments', postId, selectedPageNumber],
+        {
+          ...prevCommentsPagination,
+          content: newComments,
+        },
+      );
 
       return { prevCommentsPagination };
     },
     onError: (error, id, context) => {
       queryClient.setQueryData(
-        ['posts', 'comments', postId],
+        ['posts', 'comments', postId, selectedPageNumber],
         context?.prevCommentsPagination,
+      );
+    },
+  });
+
+  const { mutate: editRepliyMutate } = useMutation({
+    mutationFn: (data: EditedComment) =>
+      editComment(postId, commentId, { ...data }),
+    onMutate: () => {
+      const prevReplies: Replies | undefined = queryClient.getQueryData([
+        'posts',
+        'comments',
+        postId,
+        parentCommentId,
+        'replies',
+      ]);
+
+      const newReplies = prevReplies?.content.map((comment: Comment) => {
+        return comment.id === commentId
+          ? { ...comment, content: value }
+          : comment;
+      });
+
+      queryClient.setQueryData(
+        ['posts', 'comments', postId, parentCommentId, 'replies'],
+        {
+          ...prevReplies,
+          content: newReplies,
+        },
+      );
+
+      return { prevReplies };
+    },
+    onError: (error, id, context) => {
+      queryClient.setQueryData(
+        ['posts', 'comments', postId, parentCommentId, 'replies'],
+        context?.prevReplies,
       );
     },
   });
 
   const handleEditComment = () => {
     handleActiveEdit(false);
-    editCommentMutate({ content: value, selectedOptionId });
+    if (parentCommentId) {
+      editRepliyMutate({ content: value, selectedOptionId: null });
+    } else {
+      editCommentMutate({ content: value, selectedOptionId });
+    }
   };
   return { inputRef, handleEditComment };
 };

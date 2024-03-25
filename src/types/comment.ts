@@ -14,7 +14,10 @@ export type Comment = {
 };
 
 export type CreatedComment = Pick<Comment, 'content' | 'selectedOptionId'>;
-export type EditedComment = Pick<Comment, 'content' | 'selectedOptionId'>;
+export type EditedComment = {
+  content: string;
+  selectedOptionId: number | null;
+};
 export type CreatedReply = {
   content: string;
   memberId: number;

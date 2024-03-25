@@ -79,6 +79,7 @@ const CommentsSection = ({
                   : [1, 2]
               }
               selectedOptionId={selectedOptionId || null}
+              selectedPageNumber={selectedPageNumber}
             />
           ))}
         </div>
