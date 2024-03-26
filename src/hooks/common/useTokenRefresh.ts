@@ -12,7 +12,6 @@ export const useTokenRefresh = () => {
   const dispatch = useNewDispatch();
 
   useEffect(() => {
-    console.log(accessToken, refreshToken);
     const tokenRefresh = () => {
       if (!accessToken && refreshToken) {
         console.log('토큰 리프레시');
