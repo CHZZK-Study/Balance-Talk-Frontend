@@ -1,6 +1,5 @@
 import React, { SetStateAction, useState } from 'react';
 import { Comment } from '@/types/comment';
-import { Profile } from '@/assets';
 import { getDate } from '@/utils/date';
 import CommentLikeButton from '@/components/Buttons/CommentLikeButton';
 import CommentReportButton from '@/components/Buttons/CommentReportButton';
@@ -27,6 +26,8 @@ import {
   utilityBtnsWrapper,
 } from './UserComment.style';
 import InputEditedComment from '../InputComment/InputEditedComment/InputEditedComment';
+import ProfileImage from '../Profile/ProfileImage/ProfileImage';
+import defaultProfile from '../../../assets/images/defaultProfile.png';
 
 type UserCommentProps = Comment & {
   handleLoginModal: React.Dispatch<SetStateAction<boolean>>;
@@ -61,13 +62,12 @@ const UserComment = ({
   const commentDate = lastModifedDate || createdDate;
   const [isActiveEditInput, setIsActiveEditInput] = useState(false);
 
-  // const { member } = useMemberQuery(
-  //   useParseJwt(useNewSelector(selectAccessToken)).memberId,
-  // );
+  const { member } = useMemberQuery(
+    useParseJwt(useNewSelector(selectAccessToken)).memberId,
+  );
+  // const member = { memberId: 103, nickname: '김성현' };
+
   const { form, onChange } = useEditCommentForm(content);
-
-  const member = { memberId: 100, nickname: '김성현' };
-
   const isReply = parentCommentId !== null && parentCommentId !== undefined;
 
   const isAlignLeft = parentCommentId
@@ -78,12 +78,7 @@ const UserComment = ({
     <div css={userCommentWrapper(!!isAlignLeft)}>
       <div css={commentMainWrapper(isReply, !!isAlignLeft)}>
         <div css={commentWrapper(!!isAlignLeft)}>
-          {profileImageUrl ? (
-            // 이미지 반영 필요
-            <img src={profileImageUrl} alt="이미지" />
-          ) : (
-            <Profile width={40} />
-          )}
+          <ProfileImage src={profileImageUrl || defaultProfile} size="small" />
           <div
             css={commentInfoWrapper(
               isActiveEditInput,

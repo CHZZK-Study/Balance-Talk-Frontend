@@ -21,7 +21,7 @@ import CommentSection from './CommentSection/CommentSection';
 
 interface CommentsSectionProps {
   postId: number;
-  selectedOptionId?: number;
+  selectedOptionId?: number | null;
   balanceOptionIds: number[];
   handleLoginModal: React.Dispatch<SetStateAction<boolean>>;
 }
@@ -32,10 +32,10 @@ const CommentsSection = ({
   balanceOptionIds,
   handleLoginModal,
 }: CommentsSectionProps) => {
-  // const { member } = useMemberQuery(
-  //   useParseJwt(useNewSelector(selectAccessToken)).memberId,
-  // );
-  const member = { memberId: 100, nickname: '김성현' };
+  const { member } = useMemberQuery(
+    useParseJwt(useNewSelector(selectAccessToken)).memberId,
+  );
+  // const member = { memberId: 103, nickname: '김성현' };
   const [selectedPageNumber, setSelectedPageNumber] = useState<number>(0);
 
   const { form, onChange, reset } = useCreateCommentForm();

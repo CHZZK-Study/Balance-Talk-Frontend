@@ -24,7 +24,7 @@ export const commentWrapper = (isAlingLeft: boolean) =>
   css({
     display: 'inline-flex',
     flexDirection: `${isAlingLeft ? 'row' : 'row-reverse'}`,
-    alignItems: 'flex-start',
+    alignItems: 'flex-end',
     gap: '1rem',
   });
 

@@ -31,10 +31,10 @@ const CommentLikeButton = ({
   selectedPageNumber,
 }: CommentLikeButtonProps) => {
   const queryClient = useQueryClient();
-  // const { member } = useMemberQuery(
-  //   useParseJwt(useNewSelector(selectAccessToken)).memberId,
-  // );
-  const member = { memberId: 100, nickname: '김성현' };
+  const { member } = useMemberQuery(
+    useParseJwt(useNewSelector(selectAccessToken)).memberId,
+  );
+  // const member = { memberId: 103, nickname: '김성현' };
 
   const [isAnimation, setIsAnimation] = useState(false);
 

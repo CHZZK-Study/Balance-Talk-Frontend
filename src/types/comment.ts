@@ -10,7 +10,7 @@ export type Comment = {
   createdAt: string;
   lastModifiedAt: string;
   profileImageUrl: string | null;
-  postTitle: string;
+  postTitle?: string;
 };
 
 export type CreatedComment = Pick<Comment, 'content' | 'selectedOptionId'>;

@@ -273,13 +273,13 @@ export const postById = (postId?: number) => {
         balanceOptionId: 1,
         title: '커피',
         description: '남녀노소 누구나 좋아하는 커피',
-        storedFileName: 'coffee.jpg',
+        storedFileName: null,
       },
       {
         balanceOptionId: 2,
         title: '쥬스',
         description: '건강에 좋고 맛도 좋은 쥬스',
-        storedFileName: 'juice.jpg',
+        storedFileName: null,
       },
     ],
 

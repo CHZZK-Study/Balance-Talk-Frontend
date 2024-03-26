@@ -31,9 +31,10 @@ const RepliesSection = ({
   postId,
   handleLoginModal,
 }: RepliesSectionProps) => {
-  // const { member } = useMemberQuery(
-  //   useParseJwt(useNewSelector(selectAccessToken)).memberId,
-  // );
+  const { member } = useMemberQuery(
+    useParseJwt(useNewSelector(selectAccessToken)).memberId,
+  );
+  // const member = { memberId: 103, nickname: '김성현' };
 
   const { data: replies, isLoading } = useQuery({
     queryKey: ['posts', 'comments', postId, parentCommentId, 'replies'],
@@ -41,7 +42,6 @@ const RepliesSection = ({
   });
 
   const { form, onChange, reset } = useCreateCommentForm();
-  const member = { memberId: 100, nickname: '김성현' };
 
   return isLoading ? (
     <div>Loading...</div>

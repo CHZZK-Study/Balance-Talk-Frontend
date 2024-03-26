@@ -26,6 +26,7 @@ const ChangeVoteModal = ({
   const { member } = useMemberQuery(
     useParseJwt(useNewSelector(selectAccessToken)).memberId,
   );
+  // const member = { memberId: 103, nickname: '김성현' };
   const queryClient = useQueryClient();
 
   const changeVoteModalRef = useRef<HTMLDivElement>(null);
@@ -71,11 +72,11 @@ const ChangeVoteModal = ({
               onClick={() => {
                 changeBalanceOptionByUserMutate({
                   selectedOptionId: balanceOptionId,
-                  isUser: true,
                 });
+                handleModal(false);
               }}
             >
-              선택지 변경하기
+              선택지 변경
             </Button>
           </>
         ) : (

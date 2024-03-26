@@ -25,10 +25,11 @@ const BalanceOptionCardsSection = ({
   const { member } = useMemberQuery(
     useParseJwt(useNewSelector(selectAccessToken)).memberId,
   );
+  // const member = { memberId: 103, nickname: '김성현' };
 
   const { getSelectedOptionId } = useSelectedOptionsInLocalStorage();
 
-  const selectedOptionIdByPost: number | null = member
+  const selectedOptionIdByPost: number | null | undefined = member
     ? selectedOptionId
     : getSelectedOptionId(id);
 

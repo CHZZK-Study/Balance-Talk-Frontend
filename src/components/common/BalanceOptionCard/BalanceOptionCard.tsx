@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-
 import { useSelectedOptionsInLocalStorage } from '@/hooks/vote/useSelectedOptionsInLocalStorage';
 import { useMemberQuery } from '@/hooks/api/useMemberQuery';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
 import { voteBalanceOption } from '@/api/votes/vote';
-import { Check, NoImage } from '../../../assets';
+import { Check } from '../../../assets';
+import DefaultImage from '../../../../public/defaultImage.png';
 import {
   balanceOptionCardWrapper,
   balanceOptionTitleWrapper,
@@ -19,7 +19,7 @@ import {
   innerButtonWrapper,
   winnerIconWrapper,
 } from './BalanceOptionCard.style';
-import { BalanceOption, ImageInfo } from '../../../types/post';
+import { BalanceOption } from '../../../types/post';
 import ChangeVoteModal from '../Modal/ChangeVoteModal/ChangeVoteModal';
 
 export type BalanceOptionCardProps = BalanceOption & {
@@ -80,7 +80,6 @@ const BalanceOptionCard = ({
             if (!isVoted && !member) {
               voteBalanceOptionByNonUserMutate({
                 selectedOptionId: balanceOptionId,
-                isUser: false,
               });
               return;
             }
@@ -93,7 +92,6 @@ const BalanceOptionCard = ({
             if (!isVoted && member) {
               voteBalanceOptionByUserMutate({
                 selectedOptionId: balanceOptionId,
-                isUser: true,
               });
               return;
             }
@@ -103,7 +101,7 @@ const BalanceOptionCard = ({
           <div css={winnerIconWrapper} />
           <img
             css={css(balanceOptionImageWrapper)}
-            src={storedFileName}
+            src={storedFileName || DefaultImage}
             alt={title}
           />
         </button>
