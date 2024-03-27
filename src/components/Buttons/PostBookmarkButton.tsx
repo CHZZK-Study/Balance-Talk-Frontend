@@ -1,11 +1,14 @@
 import React, { SetStateAction, useState } from 'react';
 import { css } from '@emotion/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useUserInfo } from '@/hooks/common/useUserInfo';
 import { Star } from '@/assets';
-import { fetchAddBookarnk, fetchDeleteBookarnk } from '@/api/posts/posts';
-import { NPost } from '../../types/post';
+import { fetchAddBookmark, fetchDeleteBookarnk } from '@/api/posts/posts';
+import { useMemberQuery } from '@/hooks/api/useMemberQuery';
+import { useParseJwt } from '@/hooks/common/useParseJwt';
+import { useNewSelector } from '@/store';
+import { selectAccessToken } from '@/store/auth';
 import { pulsate } from '../../styles/keyframes';
+import { NPost } from '../../types/post';
 
 type PostBookmarkButtonProps = {
   handleModal: React.Dispatch<SetStateAction<boolean>>;
@@ -19,7 +22,10 @@ const PostBookmarkButton = ({
   postId,
 }: PostBookmarkButtonProps) => {
   const queryClient = useQueryClient();
-  const { isLoggedIn } = useUserInfo();
+  const { member } = useMemberQuery(
+    useParseJwt(useNewSelector(selectAccessToken)).memberId,
+  );
+  // const member = { memberId: 103, nickname: '김성현' };
 
   const [isAnimation, setIsAnimation] = useState(false);
 
@@ -29,7 +35,7 @@ const PostBookmarkButton = ({
   };
 
   const addBookmark = useMutation({
-    mutationFn: fetchAddBookarnk,
+    mutationFn: fetchAddBookmark,
     onMutate: () => {
       const prevPost: NPost | undefined = queryClient.getQueryData([
         'posts',
@@ -69,7 +75,7 @@ const PostBookmarkButton = ({
   });
 
   const handlePostBookmark = () => {
-    if (!isLoggedIn) {
+    if (!member) {
       handleModal(true);
       return;
     }

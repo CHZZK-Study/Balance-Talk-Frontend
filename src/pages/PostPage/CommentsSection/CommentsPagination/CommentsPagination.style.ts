@@ -1,16 +1,35 @@
-import { Theme } from '@/styles/Theme';
 import { css } from '@emotion/react';
+import { Theme } from '@/styles/Theme';
 
-export const commentsPaginationWrapper = css({
+export const paginationWrapper = css({
   display: 'flex',
-  alignContent: 'center',
+  justifyContent: 'center',
   alignItems: 'center',
-  '& button': {
-    height: '38px',
-    border: `1px solid ${Theme.color.gray300}`,
-    padding: '6px 12px 6px 12px',
+  padding: `20px 0px `,
+});
+
+export const pageBoxWrapper = css({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '30px',
+  height: '30px',
+  borderRadius: '10%',
+  outline: `1px solid ${Theme.color.gray300}`,
+
+  transition: 'all .1s ease-in',
+  cursor: 'pointer',
+
+  '&:hover': {
+    backgroundColor: Theme.color.gray300,
   },
-  '.number': {
-    textDecorationLine: 'underline',
+});
+
+export const pageSelectedBoxWrapper = css({
+  backgroundColor: Theme.color.colorHunt_gray,
+  color: Theme.color.white,
+
+  '&:hover': {
+    backgroundColor: Theme.color.colorHunt_gray,
   },
 });

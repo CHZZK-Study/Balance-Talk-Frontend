@@ -1,1 +1,1 @@
-export const COMMENTS_LIMIT = 10;
+export const COMMENTS_PER_PAGE = 10;

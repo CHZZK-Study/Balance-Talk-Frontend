@@ -2,10 +2,10 @@
 import React, { ChangeEvent } from 'react';
 import { css } from '@emotion/react';
 import { useCreateComment } from '@/hooks/comment/useCreateComment';
-import Button from '../../design/Button/Button';
-import Input from '../../design/Input/Input';
+import Button from '@/components/design/Button/Button';
+import Input from '@/components/design/Input/Input';
 
-interface InputCommentProps {
+interface InputNewCommentProps {
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   reset: () => void;
@@ -13,13 +13,13 @@ interface InputCommentProps {
   selectedOptionId: number;
 }
 
-const InputComment = ({
+const InputNewComment = ({
   value,
   onChange,
   reset,
   postId,
   selectedOptionId,
-}: InputCommentProps) => {
+}: InputNewCommentProps) => {
   const { inputRef, handleSubmit } = useCreateComment({
     value,
     postId,
@@ -41,4 +41,4 @@ const InputComment = ({
   );
 };
 
-export default InputComment;
+export default InputNewComment;
