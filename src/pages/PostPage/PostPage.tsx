@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import LoginModal from '@/components/common/Modal/LoginModal';
+import LoginModal from '@/components/common/Modal/LoginModal/LoginModal';
+import { BalanceOption } from '@/types/post';
 import BalanceOptionCardsSection from './BalanceOptionCardsSection/BalanceOptionCardsSection';
 import CommentsSection from './CommentsSection/CommentsSection';
 import { getPost } from '../../api/posts/posts';
@@ -17,13 +18,13 @@ import {
 
 const PostPage = () => {
   const postId = Number(useParams().id);
-  const [isOpened, setIsOpened] = useState(true);
+  const [isOpened, setIsOpened] = useState(false);
   const { isLoading, data: post } = useQuery({
     queryKey: ['posts', postId],
     queryFn: () => getPost(postId),
   });
 
-  const [IsLoginModalOpen, setIsLoginModalOpoen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   return isLoading ? (
     <div>Loading...</div>
@@ -34,7 +35,7 @@ const PostPage = () => {
         views={post?.views || 0}
         likesCount={post?.likesCount || 0}
         postTags={post?.postTags || []}
-        totalVoteCount={post?.totalVoteCount || 0}
+        totalVotesCount={post?.totalVotesCount || 0}
       />
       <BalanceOptionCardsSection
         id={post?.id || 0}
@@ -47,6 +48,7 @@ const PostPage = () => {
           <CreatorSection
             createdBy={post?.createdBy}
             createdAt={post?.createdAt}
+            creatorProfileImageUrl={post?.profileImageUrl}
           />
         )}
         <UserUtilitySection
@@ -54,7 +56,7 @@ const PostPage = () => {
           likesCount={post?.likesCount || 0}
           myBookmark={post?.myBookmark || false}
           myLike={post?.myLike || false}
-          handleLoginModal={setIsLoginModalOpoen}
+          handleLoginModal={setIsLoginModalOpen}
         />
       </div>
 
@@ -71,11 +73,14 @@ const PostPage = () => {
         <CommentsSection
           postId={postId}
           selectedOptionId={post?.selectedOptionId}
-          handleLoginModal={setIsLoginModalOpoen}
+          handleLoginModal={setIsLoginModalOpen}
+          balanceOptionIds={post?.balanceOptions.map(
+            (balanceOption: BalanceOption) => balanceOption.balanceOptionId,
+          )}
         />
       )}
-      {IsLoginModalOpen && (
-        <LoginModal handleModal={setIsLoginModalOpoen} postId={postId} />
+      {isLoginModalOpen && (
+        <LoginModal handleModal={setIsLoginModalOpen} postId={postId} />
       )}
     </div>
   );

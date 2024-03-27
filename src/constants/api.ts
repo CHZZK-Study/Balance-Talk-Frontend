@@ -42,6 +42,14 @@ export const END_POINT = {
   REPORT_COMMENT: (postId: number, commentId: number) =>
     `posts/${postId}/comments/${commentId}/report`,
   REFRESH: '/members/reissue',
+  EDIT_COMMENT: (postId: number, commentId: number) =>
+    `posts/${postId}/comments/${commentId}`,
+  DELETE_COMMENT: (postId: number, commentId: number) =>
+    `posts/${postId}/comments/${commentId}`,
+  COMMENT_REPLILES: (postId: number, commentId: number) =>
+    `posts/${postId}/comments/${commentId}/replies`,
+  CREATE_REPLY: (postId: number, commentId: number) =>
+    `posts/${postId}/comments/${commentId}/replies`,
 };
 
 export const AXIOS = {

@@ -1,10 +1,15 @@
-import React, { SetStateAction } from 'react';
+import React, { SetStateAction, useState } from 'react';
 import { Comment } from '@/types/comment';
-import { Profile, More } from '@/assets';
-import { getCreatedDate } from '@/utils/date';
+import { getDate } from '@/utils/date';
 import CommentLikeButton from '@/components/Buttons/CommentLikeButton';
-import { useUserInfo } from '@/hooks/common/useUserInfo';
 import CommentReportButton from '@/components/Buttons/CommentReportButton';
+import { useParseJwt } from '@/hooks/common/useParseJwt';
+import { useNewSelector } from '@/store';
+import { selectAccessToken } from '@/store/auth';
+import { useMemberQuery } from '@/hooks/api/useMemberQuery';
+import CommentEditButton from '@/components/Buttons/CommentEditButton';
+import { useEditCommentForm } from '@/hooks/comment/useEditCommentForm';
+import CommentDeleteButton from '@/components/Buttons/CommentDeleteButton';
 import {
   btnsWrapper,
   commentHistoryWrapper,
@@ -13,15 +18,24 @@ import {
   commentWrapper,
   contentWrapper,
   createdAtWrapper,
+  editDeletebtnsWrapper,
   likeBtnWrapper,
   nameWrapper,
   replyBtnWrapper,
   userCommentWrapper,
   utilityBtnsWrapper,
 } from './UserComment.style';
+import InputEditedComment from '../InputComment/InputEditedComment/InputEditedComment';
+import ProfileImage from '../Profile/ProfileImage/ProfileImage';
+import defaultProfile from '../../../assets/images/defaultProfile.png';
 
 type UserCommentProps = Comment & {
   handleLoginModal: React.Dispatch<SetStateAction<boolean>>;
+  handleOpenReplies?: React.Dispatch<SetStateAction<boolean>>;
+  isOpenReplies?: boolean;
+  balanceOptionIds: number[];
+  alignLeft?: boolean;
+  selectedPageNumber?: number;
 };
 
 const UserComment = ({
@@ -30,37 +44,80 @@ const UserComment = ({
   memberName,
   postId,
   selectedOptionId,
+  balanceOptionIds,
+  parentCommentId,
   myLike,
   createdAt,
   likesCount,
   lastModifiedAt,
   profileImageUrl,
+  isOpenReplies,
+  alignLeft,
+  selectedPageNumber,
   handleLoginModal,
+  handleOpenReplies,
 }: UserCommentProps) => {
-  const createdDate = getCreatedDate(createdAt);
-  const { userInfo } = useUserInfo();
+  const createdDate = getDate(createdAt);
+  const lastModifedDate = lastModifiedAt ? getDate(lastModifiedAt) : null;
+  const commentDate = lastModifedDate || createdDate;
+  const [isActiveEditInput, setIsActiveEditInput] = useState(false);
+
+  const { member } = useMemberQuery(
+    useParseJwt(useNewSelector(selectAccessToken)).memberId,
+  );
+  // const member = { memberId: 103, nickname: '김성현' };
+
+  const { form, onChange } = useEditCommentForm(content);
+  const isReply = parentCommentId !== null && parentCommentId !== undefined;
+
+  const isAlignLeft = parentCommentId
+    ? alignLeft
+    : selectedOptionId === balanceOptionIds[0];
 
   return (
-    <div css={userCommentWrapper(selectedOptionId)}>
-      <div css={commentMainWrapper(selectedOptionId)}>
-        <div css={commentWrapper(selectedOptionId)}>
-          {profileImageUrl ? (
-            <img src="" alt="이미지" />
-          ) : (
-            <Profile width={40} />
-          )}
-          <div css={commentInfoWrapper}>
-            <div css={commentHistoryWrapper(selectedOptionId)}>
+    <div css={userCommentWrapper(!!isAlignLeft)}>
+      <div css={commentMainWrapper(isReply, !!isAlignLeft)}>
+        <div css={commentWrapper(!!isAlignLeft)}>
+          <ProfileImage src={profileImageUrl || defaultProfile} size="small" />
+          <div
+            css={commentInfoWrapper(
+              isActiveEditInput,
+              member?.nickname === memberName,
+            )}
+          >
+            <div css={commentHistoryWrapper(!!isAlignLeft)}>
               <div css={nameWrapper}>{memberName || '익명'}</div>
               <div css={createdAtWrapper}>
-                {createdDate < 1 ? '오늘' : `${createdDate}일전`}
+                {commentDate < 1 ? '오늘' : `${createdDate}일전`}
               </div>
-              {userInfo.nickname === memberName && <More />}
+              {member?.nickname === memberName && (
+                <div css={editDeletebtnsWrapper(!!isAlignLeft)}>
+                  <CommentEditButton handleActiveEdit={setIsActiveEditInput} />
+                  <CommentDeleteButton
+                    postId={postId}
+                    commentId={id}
+                    parentCommentId={parentCommentId}
+                  />
+                </div>
+              )}
             </div>
-            <div css={contentWrapper}>{content}</div>
+            {isActiveEditInput ? (
+              <InputEditedComment
+                value={form.content}
+                onChange={onChange}
+                postId={postId}
+                commentId={id}
+                selectedOptionId={selectedOptionId}
+                parentCommentId={parentCommentId}
+                handleActiveEdit={setIsActiveEditInput}
+                selectedPageNumber={selectedPageNumber}
+              />
+            ) : (
+              <div css={contentWrapper(!!isAlignLeft)}>{content}</div>
+            )}
           </div>
         </div>
-        <div css={btnsWrapper(selectedOptionId)}>
+        <div css={btnsWrapper(!!isAlignLeft)}>
           <div css={utilityBtnsWrapper}>
             <div css={likeBtnWrapper}>
               <CommentLikeButton
@@ -68,6 +125,8 @@ const UserComment = ({
                 myLike={myLike}
                 postId={postId}
                 commentId={id}
+                selectedPageNumber={selectedPageNumber}
+                parentCommentId={parentCommentId}
               />
               <span>{likesCount}</span>
             </div>
@@ -77,11 +136,16 @@ const UserComment = ({
               commentId={id}
             />
           </div>
-          <div css={replyBtnWrapper}>
-            <button type="button" onClick={() => {}}>
-              답글
-            </button>
-          </div>
+          {!parentCommentId && (
+            <div css={replyBtnWrapper}>
+              <button
+                type="button"
+                onClick={() => handleOpenReplies((prev) => !prev)}
+              >
+                {isOpenReplies ? '답글 접기' : '답글 확인하기'}
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

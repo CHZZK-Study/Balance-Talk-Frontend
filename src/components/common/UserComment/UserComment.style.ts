@@ -1,44 +1,49 @@
 import { css } from '@emotion/react';
 
-export const userCommentWrapper = (id: number) =>
+export const userCommentWrapper = (isAlingLeft: boolean) =>
   css({
     display: 'flex',
-    flexDirection: `${id === 40 ? 'row' : 'row-reverse'}`,
+    flexDirection: `${isAlingLeft ? 'row' : 'row-reverse'}`,
     gap: '1rem',
     borderRadius: '8px',
-    padding: '1rem',
+    padding: '0.8rem',
   });
 
-export const commentMainWrapper = (id: number) =>
+export const commentMainWrapper = (isReply: boolean, isAlignLeft: boolean) =>
   css({
     display: 'inline-flex',
     flexDirection: 'column',
-    backgroundColor: `${id === 40 ? 'white' : '#D9D9D9'}`,
+    backgroundColor: `${isReply ? '#D4C5D5' : isAlignLeft ? 'white' : '#D9D9D9'}`,
     gap: '0.5rem',
     padding: '1rem',
     borderRadius: '1rem',
+    minWidth: '400px',
   });
 
-export const commentWrapper = (id: number) =>
+export const commentWrapper = (isAlingLeft: boolean) =>
   css({
     display: 'inline-flex',
-    flexDirection: `${id === 40 ? 'row' : 'row-reverse'}`,
-    alignItems: 'center',
+    flexDirection: `${isAlingLeft ? 'row' : 'row-reverse'}`,
+    alignItems: 'flex-end',
     gap: '1rem',
   });
 
-export const commentInfoWrapper = css({
-  display: 'inline-flex',
-  flexDirection: 'column',
-  gap: '1rem',
-});
-
-export const commentHistoryWrapper = (id: number) =>
+export const commentInfoWrapper = (
+  isActiveEditInput: boolean,
+  isMyComment: boolean,
+) =>
   css({
     display: 'inline-flex',
-    flexDirection: `${id === 40 ? 'row' : 'row-reverse'}`,
+    flexDirection: 'column',
+    gap: `${isMyComment ? '0px' : '10px'}`,
+  });
+
+export const commentHistoryWrapper = (isAlingLeft: boolean) =>
+  css({
+    display: 'inline-flex',
+    flexDirection: `${isAlingLeft ? 'row' : 'row-reverse'}`,
     alignItems: 'center',
-    gap: '1rem',
+    gap: '10px',
   });
 
 export const nameWrapper = css({
@@ -47,10 +52,13 @@ export const nameWrapper = css({
   fontWeight: '500',
 });
 
-export const contentWrapper = css({
-  fontFamily: 'SpoqaHanSansNeo-regular',
-  fontSize: '1rem',
-});
+export const contentWrapper = (isAlingLeft: boolean) =>
+  css({
+    display: 'flex',
+    flexDirection: `${isAlingLeft ? 'row' : 'row-reverse'}`,
+    fontFamily: 'SpoqaHanSansNeo-regular',
+    fontSize: '1rem',
+  });
 
 export const createdAtWrapper = css({
   fontFamily: 'SpoqaHanSansNeo-thin',
@@ -58,10 +66,18 @@ export const createdAtWrapper = css({
   fontSize: '0.8rem',
 });
 
-export const btnsWrapper = (id: number) =>
+export const editDeletebtnsWrapper = (isAlingLeft: boolean) =>
   css({
     display: 'inline-flex',
-    flexDirection: `${id === 40 ? 'row' : 'row-reverse'}`,
+    flexDirection: `${isAlingLeft ? 'row' : 'row-reverse'}`,
+    alignItems: 'center',
+    gap: '0.3rem',
+  });
+
+export const btnsWrapper = (isAlingLeft: boolean) =>
+  css({
+    display: 'inline-flex',
+    flexDirection: `${isAlingLeft ? 'row' : 'row-reverse'}`,
     alignItems: 'center',
     gap: '1rem',
   });
@@ -94,5 +110,10 @@ export const replyBtnWrapper = css({
 
   '& button': {
     paddingTop: '0.25rem',
+
+    '&:hover': {
+      cursor: 'pointer',
+      fontWeight: '800',
+    },
   },
 });

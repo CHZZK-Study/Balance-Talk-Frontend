@@ -1,9 +1,12 @@
 import React, { SetStateAction, useState } from 'react';
 import { css } from '@emotion/react';
 import { useMutation } from '@tanstack/react-query';
-import { useUserInfo } from '@/hooks/common/useUserInfo';
 import { Report } from '@/assets';
 import { fetchReportPost } from '@/api/posts/posts';
+import { useMemberQuery } from '@/hooks/api/useMemberQuery';
+import { useParseJwt } from '@/hooks/common/useParseJwt';
+import { useNewSelector } from '@/store';
+import { selectAccessToken } from '@/store/auth';
 import { pulsate } from '../../styles/keyframes';
 
 type PostReportButtonProps = {
@@ -12,7 +15,10 @@ type PostReportButtonProps = {
 };
 
 const PostReportButton = ({ handleModal, postId }: PostReportButtonProps) => {
-  const { isLoggedIn } = useUserInfo();
+  const { member } = useMemberQuery(
+    useParseJwt(useNewSelector(selectAccessToken)).memberId,
+  );
+  // const member = { memberId: 103, nickname: '김성현' };
 
   const [isAnimation, setIsAnimation] = useState(false);
 
@@ -26,7 +32,7 @@ const PostReportButton = ({ handleModal, postId }: PostReportButtonProps) => {
   });
 
   const handlePostReport = () => {
-    if (!isLoggedIn) {
+    if (!member) {
       handleModal(true);
       return;
     }
@@ -58,7 +64,7 @@ const PostReportButton = ({ handleModal, postId }: PostReportButtonProps) => {
     >
       <Report
         css={css({
-          fill: `green`,
+          fill: `none`,
           animation: `${isAnimation ? `${pulsate} .5s ease-in-out` : 'none'}`,
         })}
       />

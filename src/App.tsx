@@ -20,46 +20,49 @@ import UpdatePage from './pages/MyPage/UpdatePage/UpdatePage';
 import PostList from './pages/PostListPage/PostListPage';
 import PostPage from './pages/PostPage/PostPage';
 import SignUpPage from './pages/SignUpPage/SignUpPage';
-import ReactQueryProvider from './providers/ReactQueryProvider';
+import { useNewSelector } from './store';
+import { useParseJwt } from './hooks/common/useParseJwt';
+import { useMemberQuery } from './hooks/api/useMemberQuery';
+import { selectAccessToken } from './store/auth';
+import ProtectedRoutes from './components/Routes/ProtectedRoutes';
 
 const App: React.FC = () => {
+  const accessToken = useNewSelector(selectAccessToken);
+  const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
   useTokenRefresh();
   return (
-    <ReactQueryProvider>
-      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ko">
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<LandingPage />} />
-            <Route path="posts" element={<PostList />} />
+    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ko">
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<LandingPage />} />
+          <Route path="posts" element={<PostList />} />
+          <Route path="posts/:id" element={<PostPage />} />
+          <Route element={<ProtectedRoutes member={member} />}>
             <Route path="post/create" element={<CreatePostPage />} />
-            <Route path="posts/:id" element={<PostPage />} />
           </Route>
+        </Route>
 
-          <Route element={<LayoutNoSearch />}>
-            <Route path={PATH.LOGIN} element={<LoginPage />} />
-            <Route path={PATH.PW} element={<FindPasswordPage />} />
-            <Route path={PATH.SIGN_UP} element={<SignUpPage />} />
-          </Route>
+        <Route element={<LayoutNoSearch />}>
+          <Route path={PATH.LOGIN} element={<LoginPage />} />
+          <Route path={PATH.PW} element={<FindPasswordPage />} />
+          <Route path={PATH.SIGN_UP} element={<SignUpPage />} />
+        </Route>
 
-          <Route path={PATH.MYPAGE} element={<LayoutMypage />}>
-            <Route path={PATH.HISTORY.MAIN} element={<HistoryPage />}>
-              <Route path={PATH.HISTORY.POSTS} element={<PostsPage />} />
-              <Route path={PATH.HISTORY.COMMENTS} element={<CommentsPage />} />
-              <Route
-                path={PATH.HISTORY.VOTED_POSTS}
-                element={<VotedPostsPage />}
-              />
-              <Route
-                path={PATH.HISTORY.BOOKMARKS}
-                element={<BookmarksPage />}
-              />
-            </Route>
-            <Route path={PATH.UPDATE} element={<UpdatePage />} />
-            <Route path={PATH.DELETE} element={<DeletePage />} />
+        <Route path={PATH.MYPAGE} element={<LayoutMypage />}>
+          <Route path={PATH.HISTORY.MAIN} element={<HistoryPage />}>
+            <Route path={PATH.HISTORY.POSTS} element={<PostsPage />} />
+            <Route path={PATH.HISTORY.COMMENTS} element={<CommentsPage />} />
+            <Route
+              path={PATH.HISTORY.VOTED_POSTS}
+              element={<VotedPostsPage />}
+            />
+            <Route path={PATH.HISTORY.BOOKMARKS} element={<BookmarksPage />} />
           </Route>
-        </Routes>
-      </LocalizationProvider>
-    </ReactQueryProvider>
+          <Route path={PATH.UPDATE} element={<UpdatePage />} />
+          <Route path={PATH.DELETE} element={<DeletePage />} />
+        </Route>
+      </Routes>
+    </LocalizationProvider>
   );
 };
 
