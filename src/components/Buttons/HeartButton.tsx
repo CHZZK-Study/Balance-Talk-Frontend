@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { MouseEvent, useState } from 'react';
 import { css } from '@emotion/react';
 import {
   InfiniteData,
@@ -66,13 +66,11 @@ const HeartButton = ({ isLiked, postId }: HeartButtonProps) => {
             const realUpdatedData = (
               prevPostData as InfiniteData<PostWithPagenation, unknown>
             )?.pages.map((page) => {
-              console.log('page', page);
               const postContent = page.content.map((post) => {
                 return post.id === id
                   ? { ...post, myLike: true, likesCount: post.likesCount + 1 }
                   : post;
               });
-              console.log(postContent);
               const updatedData = {
                 ...page,
                 content: postContent,
@@ -130,13 +128,11 @@ const HeartButton = ({ isLiked, postId }: HeartButtonProps) => {
             const realUpdatedData = (
               prevPostData as InfiniteData<PostWithPagenation, unknown>
             )?.pages.map((page) => {
-              console.log('page', page);
               const postContent = page.content.map((post) => {
                 return post.id === id
                   ? { ...post, myLike: false, likesCount: post.likesCount - 1 }
                   : post;
               });
-              console.log(postContent);
               const updatedData = {
                 ...page,
                 content: postContent,
@@ -160,7 +156,8 @@ const HeartButton = ({ isLiked, postId }: HeartButtonProps) => {
     },
   });
 
-  const onHeartClickHandler = () => {
+  const onHeartClickHandler = (e: MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
     animationTrigger();
     if (postId !== undefined) {
       if (isLiked) {

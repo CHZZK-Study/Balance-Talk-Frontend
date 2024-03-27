@@ -76,6 +76,7 @@ const CreatePostForm = ({ setBalanceOptions, index }: CreatePostFormProps) => {
       )}
       <div>
         <textarea
+          required
           name="description"
           value={description}
           onChange={onChange}
@@ -86,6 +87,10 @@ const CreatePostForm = ({ setBalanceOptions, index }: CreatePostFormProps) => {
             ...inputStyles,
             ':hover': {
               backgroundColor: '#BEBEBE',
+            },
+            resize: 'none',
+            '&:required:invalid': {
+              border: '1px solid red',
             },
           })}
           placeholder={PLACE_HOLDER.POST.CHOICE_DESCRIPTION}

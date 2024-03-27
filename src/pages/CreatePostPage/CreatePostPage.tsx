@@ -79,8 +79,11 @@ const CreatePostPage = () => {
     if (e.key === 'Enter') {
       e.preventDefault();
 
-      const newTag = [...tags, tag];
-      setEach('tags', newTag);
+      if (!tags.includes(tag)) {
+        const newTag = [...tags, tag];
+        setEach('tags', newTag);
+      }
+
       setTag('');
     }
   };
