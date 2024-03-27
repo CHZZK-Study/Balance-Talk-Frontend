@@ -32,3 +32,41 @@ export const postMember = async (
   );
   return data;
 };
+
+export const deleteMember = async (
+  form: Pick<MemberForm, 'email' | 'password'>,
+) => {
+  const params = {
+    data: form,
+  };
+
+  const { data } = await axiosInstance.delete<string>(
+    `${END_POINT.ALL_MEMBERS}`,
+    params,
+  );
+  return data;
+};
+
+export const putMemberImage = async (profilePhoto: string) => {
+  const { data } = await axiosInstance.put<string>(
+    `${END_POINT.MEMBER_IMAGE}`,
+    profilePhoto,
+  );
+  return data;
+};
+
+export const putMemberNickname = async (nickname: string) => {
+  const { data } = await axiosInstance.put<string>(
+    `${END_POINT.MEMBER_NICKNAME}`,
+    nickname,
+  );
+  return data;
+};
+
+export const putMemberPw = async (pw: string) => {
+  const { data } = await axiosInstance.put<string>(
+    `${END_POINT.MEMBER_PASSWORD}`,
+    pw,
+  );
+  return data;
+};

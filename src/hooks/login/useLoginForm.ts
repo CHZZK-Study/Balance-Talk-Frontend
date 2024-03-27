@@ -1,5 +1,5 @@
 import { AxiosErrorResponse, axiosInstance } from '@/api/interceptor';
-import { LoginResponseData, postLogin } from '@/api/member/auth';
+import { postLogin } from '@/api/member/auth';
 import { HTTP_STATUS_CODE } from '@/constants/api';
 import { PATH } from '@/constants/path';
 import { useNewDispatch } from '@/store';
@@ -34,18 +34,18 @@ export const useLoginForm = () => {
   const login = useMutation({
     mutationFn: postLogin,
 
-    onSuccess: (res: LoginResponseData) => {
+    onSuccess: (res: string) => {
       setIsError(false);
       setErrorMessage(undefined);
 
       alert('로그인에 성공했습니다😀');
 
-      dispatch(tokenActions.setToken(res.accessToken));
-      axiosInstance.defaults.headers.Authorization = `Bearer ${res.accessToken}`;
+      dispatch(tokenActions.setToken(res));
+      axiosInstance.defaults.headers.Authorization = `Bearer ${res}`;
 
       // TODO: 백엔드에서 리프레쉬 토큰 쿠키에 저장시키면, 해당 코드 제거
-      localStorage.setItem('accessToken', res.accessToken);
-      localStorage.setItem('refreshToken', res.refreshToken);
+      localStorage.setItem('accessToken', res);
+      localStorage.setItem('rtk', 'rtk');
 
       navigate(`/${PATH.MYPAGE}/${PATH.HISTORY.MAIN}/${PATH.HISTORY.POSTS}`);
     },
