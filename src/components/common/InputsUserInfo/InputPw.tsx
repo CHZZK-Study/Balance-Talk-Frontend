@@ -8,7 +8,7 @@ import Input from '../../design/Input/Input';
 interface InputPwProps {
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onSuccessChange: (name: string, value: boolean) => void;
+  onSuccessChange?: (name: string, value: boolean) => void;
 }
 
 const InputPw = ({ value, onChange, onSuccessChange }: InputPwProps) => {
@@ -16,7 +16,7 @@ const InputPw = ({ value, onChange, onSuccessChange }: InputPwProps) => {
     useCheckPassword(value);
 
   useEffect(() => {
-    if (value) {
+    if (value && onSuccessChange) {
       onSuccessChange('password', !isError);
     }
   }, [errorMessage]);

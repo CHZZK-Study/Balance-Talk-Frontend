@@ -16,10 +16,16 @@ import {
 
 interface InputProfileImageProps {
   setProfilePhoto: (name: string, profilePhoto: string) => void;
+  imgSrc?: string;
 }
 
-const InputProfileImage = ({ setProfilePhoto }: InputProfileImageProps) => {
-  const [imageSrc, setImageSrc] = useState<string>(defaultProfileImage);
+const InputProfileImage = ({
+  setProfilePhoto,
+  imgSrc,
+}: InputProfileImageProps) => {
+  const [imageSrc, setImageSrc] = useState<string>(
+    imgSrc || defaultProfileImage,
+  );
   const [isError, setIsError] = useState<boolean>(false);
 
   const fileUpload = useMutation({
@@ -31,6 +37,7 @@ const InputProfileImage = ({ setProfilePhoto }: InputProfileImageProps) => {
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
+      console.log(acceptedFiles[0]);
       if (acceptedFiles.length) {
         const reader = new FileReader();
         reader.readAsDataURL(acceptedFiles[0]);
@@ -39,7 +46,7 @@ const InputProfileImage = ({ setProfilePhoto }: InputProfileImageProps) => {
         };
         setIsError(false);
         const frm = new FormData();
-        frm.append('file', acceptedFiles[0]);
+        frm.append('file', acceptedFiles[0], acceptedFiles[0].name);
         fileUpload.mutate(frm);
       } else {
         setIsError(true);
