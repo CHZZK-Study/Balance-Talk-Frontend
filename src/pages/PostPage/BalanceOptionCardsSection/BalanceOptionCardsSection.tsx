@@ -46,6 +46,7 @@ const BalanceOptionCardsSection = ({
               : selectedOptionIdByPost === 1
           }
           isVoted={selectedOptionIdByPost !== null}
+          title={balanceOptions[0].title}
         />
         <div css={versusTextwrapper}>VS</div>
         <BalanceOptionCard
@@ -58,6 +59,7 @@ const BalanceOptionCardsSection = ({
               : selectedOptionIdByPost === 2
           }
           isVoted={selectedOptionIdByPost !== null}
+          title={balanceOptions[1].title}
         />
       </div>
       {selectedOptionIdByPost && <ResultSection postId={id} />}

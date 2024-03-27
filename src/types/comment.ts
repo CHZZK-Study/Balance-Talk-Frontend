@@ -58,6 +58,4 @@ export type ReportedComment = {
 };
 
 // 추후 수정
-export type Replies = {
-  content: Comment[];
-};
+export type Replies = Comment[];

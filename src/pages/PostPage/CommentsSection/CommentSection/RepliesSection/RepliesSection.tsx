@@ -44,7 +44,7 @@ const RepliesSection = ({
   const { form, onChange, reset } = useCreateCommentForm();
 
   return isLoading ? (
-    <div>Loading...</div>
+    <div />
   ) : (
     <div css={repliesSectionWrapper(isAlignLeft)}>
       {member && selectedOptionId && (
@@ -59,7 +59,7 @@ const RepliesSection = ({
       )}
       <div css={repliesListSectionWrapper}>
         <div css={repliesWrapper}>
-          {replies?.content.map((reply: Comment) => (
+          {replies?.map((reply: Comment) => (
             <UserComment
               {...reply}
               balanceOptionIds={balanceOptionIds}

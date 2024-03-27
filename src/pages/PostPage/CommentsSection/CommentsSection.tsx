@@ -8,7 +8,6 @@ import { useMemberQuery } from '@/hooks/api/useMemberQuery';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
-import { COMMENTS_PER_PAGE } from '@/constants/pagination';
 import {
   commentCountWrapper,
   commentPaginationWrapper,

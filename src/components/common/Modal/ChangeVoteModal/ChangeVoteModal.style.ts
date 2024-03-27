@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 
 export const ChangeVoteModalWrapper = css({
   position: 'fixed',
-  top: '40%',
+  top: '35%',
   left: '36%',
   display: 'flex',
   padding: '50px 40px',

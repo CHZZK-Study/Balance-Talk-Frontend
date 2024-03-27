@@ -27,7 +27,7 @@ const PostPage = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   return isLoading ? (
-    <div>Loading...</div>
+    <div />
   ) : (
     <div css={PostPageWrapper}>
       <TitleSection
