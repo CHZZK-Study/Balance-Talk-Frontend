@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useSelectedOptionsInLocalStorage } from '@/hooks/vote/useSelectedOptionsInLocalStorage';
 import { useMemberQuery } from '@/hooks/api/useMemberQuery';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
 import { voteBalanceOption } from '@/api/votes/vote';
-import { Check } from '../../../assets';
+import { VoteInfo, BalanceOption } from '@/types/post';
+import { getVoteCount } from '@/api/posts/posts';
+import { Check, Winner } from '../../../assets';
 import DefaultImage from '../../../../public/defaultImage.png';
 import {
   balanceOptionCardWrapper,
@@ -19,13 +21,23 @@ import {
   innerButtonWrapper,
   winnerIconWrapper,
 } from './BalanceOptionCard.style';
-import { BalanceOption } from '../../../types/post';
 import ChangeVoteModal from '../Modal/ChangeVoteModal/ChangeVoteModal';
 
 export type BalanceOptionCardProps = BalanceOption & {
   postId: number;
   isVoted: boolean;
   isChecked: boolean;
+  title: string;
+};
+
+const isWinner = (voteResult: VoteInfo[], balanceOptionTitle: string) => {
+  const winnerTitle =
+    voteResult[0].voteCount > voteResult[1].voteCount
+      ? voteResult[0].optionTitle
+      : voteResult[0].voteCount < voteResult[1].voteCount
+        ? voteResult[1].optionTitle
+        : null;
+  return winnerTitle === balanceOptionTitle;
 };
 
 const BalanceOptionCard = ({
@@ -40,6 +52,12 @@ const BalanceOptionCard = ({
   const queryClient = useQueryClient();
   const [isChangeVoteModalOpen, setIsChangeVoteModalOpen] = useState(false);
   const { setSelectedOptionId } = useSelectedOptionsInLocalStorage();
+
+  const { isLoading: isVotInfoLoading, data: voteInfos } = useQuery({
+    queryKey: ['posts', 'vote', postId],
+    queryFn: () => getVoteCount(postId),
+    select: (data: { data: VoteInfo[] }) => data?.data,
+  });
 
   const { member } = useMemberQuery(
     useParseJwt(useNewSelector(selectAccessToken)).memberId,
@@ -98,7 +116,11 @@ const BalanceOptionCard = ({
             setIsChangeVoteModalOpen(true);
           }}
         >
-          <div css={winnerIconWrapper} />
+          {isVoted && !isVotInfoLoading && isWinner(voteInfos, title) && (
+            <div css={winnerIconWrapper}>
+              <Winner />
+            </div>
+          )}
           <img
             css={css(balanceOptionImageWrapper)}
             src={storedFileName || DefaultImage}

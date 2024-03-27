@@ -7,7 +7,7 @@ export const PostPageWrapper = css({
   flexDirection: 'column',
   width: '100vw',
   maxWidth: '1000px',
-  margin: '0 auto',
+  margin: '1rem auto',
 });
 
 export const UserSectionWrapper = css({

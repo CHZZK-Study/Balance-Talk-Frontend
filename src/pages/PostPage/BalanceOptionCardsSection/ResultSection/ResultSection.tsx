@@ -28,7 +28,7 @@ const ResultSection = ({ postId }: ResultSectionProps) => {
   );
 
   return isLoading ? (
-    <div>isLoading</div>
+    <div />
   ) : (
     <div css={resultSectionWrapper}>
       <div css={optionResultWrapper(votePercents[0])}>
