@@ -17,7 +17,7 @@ import useInputs from '../../common/useInputs';
 const successState: Pick<MemberSuccesForm, 'password'> = {
   password: false,
 };
-export const useUserDeleteForm = () => {
+export const useMemberDeleteForm = () => {
   const { sub } = useParseJwt(useNewSelector(selectAccessToken));
   const initialState: Pick<MemberForm, 'email' | 'password'> = {
     email: sub,
