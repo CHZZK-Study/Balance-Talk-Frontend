@@ -25,7 +25,7 @@ const successState: MemberUpdateSuccessForm = {
   passwordCheck: false,
 };
 
-export const useMemberUpdateForm = () => {
+export const useMemberUpdate = () => {
   const { form, onChange, setEach } =
     useInputs<MemberUpdateFormProps>(initialState);
 

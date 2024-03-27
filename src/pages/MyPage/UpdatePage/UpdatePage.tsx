@@ -11,7 +11,7 @@ import InputPwCheck from '@/components/common/InputsUserInfo/InputPwCheck';
 import Button from '@/components/design/Button/Button';
 import Heading from '@/components/design/Heading/Heading';
 import Input from '@/components/design/Input/Input';
-import { useMemberUpdateForm } from '@/hooks/mypage/memberUpdate/useMemberUpdate';
+import { useMemberUpdate } from '@/hooks/mypage/memberUpdate/useMemberUpdate';
 import {
   btnContainer,
   btnSignup,
@@ -25,7 +25,7 @@ const UpdatePage = () => {
   const { member } = useMemberQuery(token.memberId);
   console.log(member);
   const { form, onChange, onSuccessChange, setEach, handleSubmit } =
-    useMemberUpdateForm();
+    useMemberUpdate();
 
   return (
     <form css={signupContainer} onSubmit={handleSubmit}>

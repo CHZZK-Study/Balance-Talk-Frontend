@@ -7,7 +7,7 @@ import { css } from '@emotion/react';
 import InputPw from '../../../../../components/common/InputsUserInfo/InputPw';
 import Button from '../../../../../components/design/Button/Button';
 import Input from '../../../../../components/design/Input/Input';
-import { useMemberDeleteForm } from '../../../../../hooks/mypage/userDelete/useMemberDelete';
+import { useMemberDelete } from '../../../../../hooks/mypage/memberDelete/useMemberDelete';
 import {
   btnUserDelete,
   formContainer,
@@ -17,7 +17,7 @@ import {
 const DeleteForm = () => {
   const { sub } = useParseJwt(useNewSelector(selectAccessToken));
   const { form, onChange, onSuccessChange, handleSubmit, errorMessage } =
-    useMemberDeleteForm();
+    useMemberDelete();
 
   return (
     <form onSubmit={handleSubmit} css={formContainer}>
