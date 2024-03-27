@@ -16,10 +16,10 @@ type PostImageProps = {
 const PostImage = ({ images, size }: PostImageProps) => {
   return (
     <div css={postImageWrapper(size)}>
-      {images?.[0].storedFileName ? (
+      {images?.[0].imageUrl ? (
         <img
           css={imageWrapper(size)}
-          src={images?.[0].storedFileName}
+          src={images?.[0].imageUrl}
           alt={images?.[0].title}
         />
       ) : (
@@ -28,10 +28,10 @@ const PostImage = ({ images, size }: PostImageProps) => {
         </div>
       )}
       <span css={fontWrapper(size)}>vs</span>
-      {images?.[1].storedFileName ? (
+      {images?.[1].imageUrl ? (
         <img
           css={imageWrapper(size)}
-          src={images?.[1].storedFileName}
+          src={images?.[1].imageUrl}
           alt={images?.[1].title}
         />
       ) : (

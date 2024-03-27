@@ -6,6 +6,7 @@ import App from './App';
 import worker from './mocks/browser';
 import store from './store';
 import './styles/index.css';
+import ReactQueryProvider from './providers/ReactQueryProvider';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) throw new Error('Failed to find the root element');
@@ -21,8 +22,10 @@ if (process.env.NODE_ENV === 'development' && process.env.MSW) {
 
 root.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <ReactQueryProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ReactQueryProvider>
   </Provider>,
 );

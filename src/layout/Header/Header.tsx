@@ -19,6 +19,7 @@ const Header = () => {
       <div css={logoContainer}>
         {/* 로고가 들어갈 부분 */}
         <Hearts />
+        <div>1.0.1</div>
       </div>
       <div css={logoNameContainer}>Balance Talk</div>
       <div css={headerBtnContainer}>{accessToken ? <Login /> : <Logout />}</div>

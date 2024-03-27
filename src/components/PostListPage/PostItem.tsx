@@ -25,11 +25,11 @@ type PostItemProps = {
 const PostItem = ({ post, showClosed }: PostItemProps) => {
   const imagesInfo: ImageInfo[] = [
     {
-      storedFileName: post.balanceOptions[0].storedFileName,
+      imageUrl: post.balanceOptions[0].imageUrl,
       title: post.balanceOptions[0].title,
     },
     {
-      storedFileName: post.balanceOptions[1].storedFileName,
+      imageUrl: post.balanceOptions[1].imageUrl,
       title: post.balanceOptions[1].title,
     },
   ];
@@ -74,7 +74,7 @@ const PostItem = ({ post, showClosed }: PostItemProps) => {
               fontFamily: 'SpoqaHanSansNeo-Regular',
             })}
           >
-            {post?.likeCount || '0'}
+            {post?.likesCount || '0'}
           </div>
         </div>
       </div>
