@@ -24,6 +24,12 @@ export const fetchPostsData = async (
   return response.data as PostWithPagenation;
 };
 
+export const fetchBestPostsData = async () => {
+  const response = await axiosInstance.get(`/posts/best`);
+  console.log(response.data);
+  return response.data as Post[];
+};
+
 export const fetchVoteCount = async (postId: number): Promise<VoteInfo[]> => {
   // const response = await fetch(`${URL}/post/${postId}/vote`);
   // const result = (await response.json()) as VoteInfo[];
