@@ -26,21 +26,21 @@ const inputStyles = {
 const initialState = {
   title: '',
   description: '',
-  storedFileName: undefined,
+  storedImageName: '',
 };
 
 const CreatePostForm = ({ setBalanceOptions, index }: CreatePostFormProps) => {
   const { form, onChange, setEach } = useInputs<CreatePostImage>(initialState);
 
-  const { title, description, storedFileName } = form;
+  const { title, description, storedImageName } = form;
 
   useEffect(() => {
     setBalanceOptions(
       'balanceOptions',
-      { title, description, storedFileName },
+      { title, description, storedImageName },
       index,
     );
-  }, [title, description, storedFileName, index, setBalanceOptions]);
+  }, [title, description, storedImageName, index, setBalanceOptions]);
 
   return (
     <div css={css({ margin: '80px', marginTop: '40px' })}>

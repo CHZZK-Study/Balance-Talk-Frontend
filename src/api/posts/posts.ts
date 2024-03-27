@@ -4,6 +4,7 @@ import {
   UploadedImage,
   VoteInfo,
   NPost,
+  PostWithPagenation,
 } from '../../types/post';
 import { END_POINT } from '../../constants/api';
 import { axiosInstance } from '../interceptor';
@@ -12,22 +13,27 @@ import { axiosInstance } from '../interceptor';
 export const fetchPostsData = async (
   sort: string = 'createdAt',
   page: number = 0,
-): Promise<Post[]> => {
+): Promise<PostWithPagenation> => {
   // const response = await fetch(`${URL}/posts?member-id=1`);
   // const result = (await response.json()) as Post[];
   // return result;
   const response = await axiosInstance.get(
     `/posts?page=${page}&sort=${sort},desc`,
   );
-  return response.data as Post[];
+  console.log(response.data);
+  return response.data as PostWithPagenation;
 };
 
 export const fetchVoteCount = async (postId: number): Promise<VoteInfo[]> => {
   // const response = await fetch(`${URL}/post/${postId}/vote`);
   // const result = (await response.json()) as VoteInfo[];
   // return result;
-  const response = await axiosInstance.get(`/post/${postId}/vote`);
-  return response.data as VoteInfo[];
+  try {
+    const response = await axiosInstance.get(END_POINT.VOTE_COUNT(postId));
+    return response.data as VoteInfo[];
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const fetchPost = async (postForm: CreatePost) => {
@@ -39,8 +45,19 @@ export const fetchPost = async (postForm: CreatePost) => {
 
   // return response.status;
 
-  const response = await axiosInstance.post('/posts', postForm);
-  return response.status;
+  try {
+    const response = await axiosInstance.post('/posts', postForm, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    console.log(postForm);
+    console.log(response.data);
+
+    return response.status;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const fetchPostById = async (postId: number): Promise<Post> => {
@@ -76,7 +93,13 @@ export const fetchDeleteLike = async (postId: number) => {
 };
 
 export const fetchFileData = async (file: File) => {
-  const response = await axiosInstance.post(`/files/image/upload`, file);
+  const formData = new FormData();
+  formData.append('file', file, file.name);
+  const response = await axiosInstance.post(`/files/image/upload`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
   return response.data as UploadedImage;
 };
 

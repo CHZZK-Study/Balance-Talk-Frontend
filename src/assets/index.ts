@@ -20,3 +20,4 @@ export { default as NoImage } from './images/no-image.png';
 export { default as Vote } from './svg/vote.svg';
 export { default as Edit } from './svg/Edit.svg';
 export { default as Delete } from './svg/Delete.svg';
+export { default as DisabledHeart } from './svg/DisabledHeart.svg';
