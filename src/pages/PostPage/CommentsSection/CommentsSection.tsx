@@ -45,7 +45,6 @@ const CommentsSection = ({
     queryFn: () =>
       getComments(postId, {
         page: selectedPageNumber,
-        size: COMMENTS_PER_PAGE,
         sort: [],
       }),
   });

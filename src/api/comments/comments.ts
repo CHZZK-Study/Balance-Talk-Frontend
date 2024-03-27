@@ -10,10 +10,10 @@ import { axiosInstance } from '../interceptor';
 
 export const getComments = async (
   postId: number,
-  pageable: { page: number; size: number; sort: string[] },
+  pageable: { page: number; size?: number; sort: string[] },
 ): Promise<CommentsPagination> => {
   const response = await axiosInstance.get(END_POINT.COMMENTS(postId), {
-    params: { pageable: { ...pageable } },
+    params: { ...pageable },
   });
   return response.data as CommentsPagination;
 };
