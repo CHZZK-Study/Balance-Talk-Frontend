@@ -103,10 +103,12 @@ export const fetchFileData = async (file: File) => {
   return response.data as UploadedImage;
 };
 
-export const getPost = (postId: number): Promise<NPost> =>
-  axiosInstance.get(END_POINT.POST(postId));
+export const getPost = async (postId: number): Promise<NPost> => {
+  const response = await axiosInstance.get(END_POINT.POST(postId));
+  return response.data as NPost;
+};
 
-export const fetchAddBookarnk = async (postId: number) => {
+export const fetchAddBookmark = async (postId: number) => {
   const response = await axiosInstance.post(END_POINT.ADD_BOOKMARK(postId));
   return response;
 };

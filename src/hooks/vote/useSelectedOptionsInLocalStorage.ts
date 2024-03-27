@@ -21,7 +21,7 @@ export const useSelectedOptionsInLocalStorage = () => {
       (vote: { postId: number; selectedOptionId: number }) =>
         vote.postId === postId,
     )[0];
-    return selectedVote ? selectedVote.selectedOptionId : undefined;
+    return selectedVote ? selectedVote.selectedOptionId : null;
   };
 
   const clearSelectedOptions = () => {

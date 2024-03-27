@@ -11,6 +11,7 @@ export const creatorInfoWrapper = css({
   display: 'flex',
   flexDirection: 'column',
   gap: '0.5rem',
+  marginBottom: '0.5rem',
 });
 
 export const creatorNameWrapper = css({

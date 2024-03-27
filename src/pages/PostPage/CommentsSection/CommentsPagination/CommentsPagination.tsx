@@ -1,33 +1,64 @@
-import { LeftButton, RightButton } from '@/assets';
-import Button from '@/components/design/Button/Button';
-import { COMMENTS_LIMIT } from '@/constants/pagination';
-import React from 'react';
-import { commentsPaginationWrapper } from './CommentsPagination.style';
+import React, { SetStateAction } from 'react';
 
-export interface PaginationProps {
-  totalCommentsCount: number;
-  currentPage?: number;
+import { LeftButton, RightButton } from '@/assets';
+import {
+  pageBoxWrapper,
+  pageSelectedBoxWrapper,
+  paginationWrapper,
+} from './CommentsPagination.style';
+
+interface CommentsPaginationProps {
+  totalPages: number;
+  selectedPage: number;
+  isLast: boolean;
+  handleSelectedPage: React.Dispatch<SetStateAction<number>>;
 }
 
-export const Pagination = ({
-  totalCommentsCount,
-  currentPage,
-}: PaginationProps) => {
-  const pages: number = Math.ceil(totalCommentsCount / COMMENTS_LIMIT);
-
+const CommentsPagination = ({
+  totalPages,
+  isLast,
+  selectedPage,
+  handleSelectedPage,
+}: CommentsPaginationProps) => {
   return (
-    <div css={commentsPaginationWrapper}>
-      <button type="button">
+    <div css={paginationWrapper}>
+      <button
+        type="button"
+        css={pageBoxWrapper}
+        onClick={() => {
+          if (selectedPage === 0) return;
+          handleSelectedPage(selectedPage - 1);
+        }}
+      >
         <LeftButton />
       </button>
-      {Array.from({ length: pages }).map((_, idx) => (
-        <button type="button" className="number">
-          {idx + 1}
-        </button>
-      ))}
-      <button type="button">
+      {Array.from({ length: totalPages }, (_, i) => i).map((page: number) => {
+        return (
+          <button
+            type="button"
+            css={[
+              pageBoxWrapper,
+              selectedPage === page && pageSelectedBoxWrapper,
+            ]}
+            key={page}
+            onClick={() => handleSelectedPage(page)}
+          >
+            {page + 1}
+          </button>
+        );
+      })}
+      <button
+        type="button"
+        css={pageBoxWrapper}
+        onClick={() => {
+          if (isLast) return;
+          handleSelectedPage(selectedPage + 1);
+        }}
+      >
         <RightButton />
       </button>
     </div>
   );
 };
+
+export default CommentsPagination;

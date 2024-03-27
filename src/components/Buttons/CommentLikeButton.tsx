@@ -1,20 +1,25 @@
 import React, { SetStateAction, useState } from 'react';
 import { css } from '@emotion/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useUserInfo } from '@/hooks/common/useUserInfo';
-import { Comment, CommentsPagination } from '@/types/comment';
+import { Comment, CommentsPagination, Replies } from '@/types/comment';
 import {
   fetchAddLikeComment,
   fetchDeleteLikeComment,
 } from '@/api/comments/comments';
-import { Hearts } from '../../assets';
+import { useMemberQuery } from '@/hooks/api/useMemberQuery';
+import { useParseJwt } from '@/hooks/common/useParseJwt';
+import { useNewSelector } from '@/store';
+import { selectAccessToken } from '@/store/auth';
 import { pulsate } from '../../styles/keyframes';
+import { Hearts } from '../../assets';
 
 type CommentLikeButtonProps = {
   handleModal: React.Dispatch<SetStateAction<boolean>>;
   myLike: boolean;
   postId: number;
   commentId: number;
+  selectedPageNumber: number;
+  parentCommentId: number;
 };
 
 const CommentLikeButton = ({
@@ -22,9 +27,14 @@ const CommentLikeButton = ({
   myLike,
   postId,
   commentId,
+  parentCommentId,
+  selectedPageNumber,
 }: CommentLikeButtonProps) => {
   const queryClient = useQueryClient();
-  const { isLoggedIn } = useUserInfo();
+  const { member } = useMemberQuery(
+    useParseJwt(useNewSelector(selectAccessToken)).memberId,
+  );
+  // const member = { memberId: 103, nickname: '김성현' };
 
   const [isAnimation, setIsAnimation] = useState(false);
 
@@ -42,8 +52,38 @@ const CommentLikeButton = ({
       _commentId: number;
     }) => fetchAddLikeComment(_postId, _commentId),
     onMutate: () => {
+      if (parentCommentId) {
+        const prevReplies: Replies | undefined = queryClient.getQueryData([
+          'posts',
+          'comments',
+          postId,
+          parentCommentId,
+          'replies',
+        ]);
+
+        const newReplies = prevReplies?.content.map((comment: Comment) => {
+          return comment.id === commentId
+            ? { ...comment, myLike: true, likesCount: comment.likesCount + 1 }
+            : comment;
+        });
+
+        queryClient.setQueryData(
+          ['posts', 'comments', postId, parentCommentId, 'replies'],
+          {
+            ...prevReplies,
+            content: newReplies,
+          },
+        );
+        return { prevReplies };
+      }
       const prevCommentsPagination: CommentsPagination | undefined =
-        queryClient.getQueryData(['posts', 'comments', postId]);
+        queryClient.getQueryData([
+          'posts',
+          'comments',
+          postId,
+          selectedPageNumber,
+        ]);
+
       const newComments = prevCommentsPagination?.content.map(
         (comment: Comment) => {
           return comment.id === commentId
@@ -52,18 +92,27 @@ const CommentLikeButton = ({
         },
       );
 
-      queryClient.setQueryData(['posts', 'comments', postId], {
-        ...prevCommentsPagination,
-        content: newComments,
-      });
-
+      queryClient.setQueryData(
+        ['posts', 'comments', postId, selectedPageNumber],
+        {
+          ...prevCommentsPagination,
+          content: newComments,
+        },
+      );
       return { prevCommentsPagination };
     },
     onError: (error, id, context) => {
-      queryClient.setQueryData(
-        ['posts', 'commnets', postId],
-        context?.prevCommentsPagination,
-      );
+      if (parentCommentId) {
+        queryClient.setQueryData(
+          ['posts', 'comments', postId, parentCommentId, 'replies'],
+          context?.prevReplies,
+        );
+      } else {
+        queryClient.setQueryData(
+          ['posts', 'commnets', postId, selectedPageNumber],
+          context?.prevCommentsPagination,
+        );
+      }
     },
   });
 
@@ -76,8 +125,37 @@ const CommentLikeButton = ({
       _commentId: number;
     }) => fetchDeleteLikeComment(_postId, _commentId),
     onMutate: () => {
+      if (parentCommentId) {
+        const prevReplies: Replies | undefined = queryClient.getQueryData([
+          'posts',
+          'comments',
+          postId,
+          parentCommentId,
+          'replies',
+        ]);
+
+        const newReplies = prevReplies?.content.map((comment: Comment) => {
+          return comment.id === commentId
+            ? { ...comment, myLike: false, likesCount: comment.likesCount - 1 }
+            : comment;
+        });
+
+        queryClient.setQueryData(
+          ['posts', 'comments', postId, parentCommentId, 'replies'],
+          {
+            ...prevReplies,
+            content: newReplies,
+          },
+        );
+        return { prevReplies };
+      }
       const prevCommentsPagination: CommentsPagination | undefined =
-        queryClient.getQueryData(['posts', 'comments', postId]);
+        queryClient.getQueryData([
+          'posts',
+          'comments',
+          postId,
+          selectedPageNumber,
+        ]);
       const newComments = prevCommentsPagination?.content.map(
         (comment: Comment) => {
           return comment.id === commentId
@@ -86,23 +164,33 @@ const CommentLikeButton = ({
         },
       );
 
-      queryClient.setQueryData(['posts', 'comments', postId], {
-        ...prevCommentsPagination,
-        content: newComments,
-      });
+      queryClient.setQueryData(
+        ['posts', 'comments', postId, selectedPageNumber],
+        {
+          ...prevCommentsPagination,
+          content: newComments,
+        },
+      );
 
       return { prevCommentsPagination };
     },
     onError: (error, id, context) => {
-      queryClient.setQueryData(
-        ['posts', 'comments', postId],
-        context?.prevCommentsPagination,
-      );
+      if (parentCommentId) {
+        queryClient.setQueryData(
+          ['posts', 'comments', postId, parentCommentId, 'replies'],
+          context?.prevReplies,
+        );
+      } else {
+        queryClient.setQueryData(
+          ['posts', 'commnets', postId, selectedPageNumber],
+          context?.prevCommentsPagination,
+        );
+      }
     },
   });
 
   const handleCommentLike = () => {
-    if (!isLoggedIn) {
+    if (!member) {
       handleModal(true);
       return;
     }

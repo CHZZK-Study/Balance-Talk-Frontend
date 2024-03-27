@@ -45,6 +45,7 @@ export const balanceOptionImageWrapper = css({
   backgroundColor: '#ADADAD',
   fontFamily: 'SpoqaHanSansNeo-Medium',
   textAlign: 'center',
+  alignItems: 'center',
   fontSize: '2rem',
 });
 
