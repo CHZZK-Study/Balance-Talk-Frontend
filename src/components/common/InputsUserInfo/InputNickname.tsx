@@ -8,7 +8,7 @@ import { useCheckNickname } from '../../../hooks/common/inputsUserInfo/useCheckN
 interface InputNicknameProps {
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onSuccessChange: (name: string, value: boolean) => void;
+  onSuccessChange?: (name: string, value: boolean) => void;
 }
 
 const InputNickname = ({
@@ -20,7 +20,7 @@ const InputNickname = ({
     useCheckNickname(value);
 
   useEffect(() => {
-    if (value) {
+    if (value && onSuccessChange) {
       onSuccessChange('nickname', !isError);
     }
   }, [errorMessage]);

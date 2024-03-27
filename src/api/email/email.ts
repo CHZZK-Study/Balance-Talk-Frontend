@@ -20,3 +20,10 @@ export const postEmailRequest = async (email: string) => {
   );
   return data;
 };
+
+export const getFindPw = async (email: string) => {
+  const { data } = await axiosInstance.get<string>(`${END_POINT.FIND_PW}`, {
+    params: { email },
+  });
+  return data;
+};
