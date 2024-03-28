@@ -19,6 +19,7 @@ export const logoNameContainer = css({
   fontFamily: 'SpoqaHanSansNeo-medium',
   textAlign: 'center',
   color: 'white',
+  cursor: 'pointer',
 });
 
 export const headerBtnContainer = css({

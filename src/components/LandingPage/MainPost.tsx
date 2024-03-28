@@ -47,7 +47,7 @@ const MainPost = ({ post }: MainPostProps) => {
   const navigate = useNavigate();
   return (
     <div css={css({ display: 'flex', margin: '10px' })}>
-      <PostImage images={images} size="large" />
+      <PostImage images={images} size="large" postId={post?.id} />
       <div css={mainPostInfoWrapper}>
         <div css={mainPostTitleWrapper}>
           <h3 css={mainPostTitle}>{postInfo?.title}</h3>
