@@ -261,7 +261,7 @@ export const postById = (postId?: number) => {
   const postMockData: NPost = {
     id: 1,
     title: '카페 주문',
-    deadline: '2024-03-14T01:32:49.283Z',
+    deadline: '2024-12-29 01:32:49',
     views: 126,
     likesCount: 15,
     myLike: true,
@@ -273,13 +273,13 @@ export const postById = (postId?: number) => {
         balanceOptionId: 1,
         title: '커피',
         description: '남녀노소 누구나 좋아하는 커피',
-        storedFileName: null,
+        imageUrl: null,
       },
       {
         balanceOptionId: 2,
         title: '쥬스',
         description: '건강에 좋고 맛도 좋은 쥬스',
-        storedFileName: null,
+        imageUrl: null,
       },
     ],
 
