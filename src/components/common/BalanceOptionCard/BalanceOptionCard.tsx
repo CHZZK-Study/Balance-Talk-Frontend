@@ -44,7 +44,7 @@ const BalanceOptionCard = ({
   postId,
   title,
   description,
-  storedFileName,
+  imageUrl,
   balanceOptionId,
   isVoted,
   isChecked,
@@ -123,7 +123,7 @@ const BalanceOptionCard = ({
           )}
           <img
             css={css(balanceOptionImageWrapper)}
-            src={storedFileName || DefaultImage}
+            src={imageUrl || DefaultImage}
             alt={title}
           />
         </button>
