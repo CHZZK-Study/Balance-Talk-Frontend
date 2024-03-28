@@ -14,6 +14,7 @@ export interface MemberForm {
   nickname: string;
   password: string;
   passwordCheck: string;
+  profilePhoto: string;
 }
 
 export interface MemberSuccesForm {

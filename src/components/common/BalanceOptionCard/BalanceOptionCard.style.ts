@@ -31,7 +31,11 @@ export const innerButtonWrapper = css({
     cursor: 'pointer',
   },
 });
-export const winnerIconWrapper = css({ position: 'absolute' });
+export const winnerIconWrapper = css({
+  position: 'absolute',
+  right: 0,
+  zIndex: '100',
+});
 
 export const balanceOptionTitleWrapper = css({
   fontFamily: 'SpoqaHanSansNeo-Bold',
@@ -45,6 +49,7 @@ export const balanceOptionImageWrapper = css({
   backgroundColor: '#ADADAD',
   fontFamily: 'SpoqaHanSansNeo-Medium',
   textAlign: 'center',
+  alignItems: 'center',
   fontSize: '2rem',
 });
 
@@ -56,4 +61,5 @@ export const balanceOptionDescriptionWrapper = css({
   padding: '1.5rem 1rem',
   width: '400px',
   textAlign: 'center',
+  whiteSpace: 'nowrap',
 });

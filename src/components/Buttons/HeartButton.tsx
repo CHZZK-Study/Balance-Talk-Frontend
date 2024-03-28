@@ -10,7 +10,7 @@ import { useNewSelector } from '@/store';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useMemberQuery } from '@/hooks/api/useMemberQuery';
 import { fetchAddLike, fetchDeleteLike } from '../../api/posts/posts';
-import { PostWithPagenation } from '../../types/post';
+import { Post, PostWithPagenation } from '../../types/post';
 import { DisabledHeart, Hearts } from '../../assets';
 import { pulsate } from '../../styles/keyframes';
 
@@ -41,15 +41,17 @@ const HeartButton = ({ isLiked, postId }: HeartButtonProps) => {
       let prevData:
         | InfiniteData<PostWithPagenation, unknown>
         | PostWithPagenation
+        | Post[]
         | undefined;
       queryKeys.forEach((queryKey) => {
         if (queryKey[0] === 'posts' && queryKey[1] !== 'vote') {
           const prevPostData:
             | InfiniteData<PostWithPagenation, unknown>
             | PostWithPagenation
+            | Post[]
             | undefined = queryClient.getQueryData(queryKey);
           prevData = prevPostData;
-          if (prevPostData && Object.keys(prevPostData).length > 3) {
+          if (prevPostData && Object.keys(prevPostData).length > 7) {
             const newPostData = (
               prevPostData as PostWithPagenation
             )?.content.map((post) => {
@@ -62,6 +64,14 @@ const HeartButton = ({ isLiked, postId }: HeartButtonProps) => {
               content: newPostData,
             };
             queryClient.setQueryData(queryKey, updatedData);
+          } else if (queryKey[1] === 'best') {
+            const newPostData = (prevPostData as Post[])?.map((post) => {
+              return post.id === id
+                ? { ...post, myLike: true, likesCount: post.likesCount + 1 }
+                : post;
+            });
+
+            queryClient.setQueryData(queryKey, newPostData);
           } else {
             const realUpdatedData = (
               prevPostData as InfiniteData<PostWithPagenation, unknown>
@@ -103,15 +113,17 @@ const HeartButton = ({ isLiked, postId }: HeartButtonProps) => {
       let prevData:
         | InfiniteData<PostWithPagenation, unknown>
         | PostWithPagenation
+        | Post[]
         | undefined;
       queryKeys.forEach((queryKey) => {
         if (queryKey[0] === 'posts' && queryKey[1] !== 'vote') {
           const prevPostData:
             | InfiniteData<PostWithPagenation, unknown>
             | PostWithPagenation
+            | Post[]
             | undefined = queryClient.getQueryData(queryKey);
           prevData = prevPostData;
-          if (prevPostData && Object.keys(prevPostData).length > 3) {
+          if (prevPostData && Object.keys(prevPostData).length > 7) {
             const newPostData = (
               prevPostData as PostWithPagenation
             )?.content.map((post) => {
@@ -124,6 +136,14 @@ const HeartButton = ({ isLiked, postId }: HeartButtonProps) => {
               content: newPostData,
             };
             queryClient.setQueryData(queryKey, updatedData);
+          } else if (queryKey[1] === 'best') {
+            const newPostData = (prevPostData as Post[])?.map((post) => {
+              return post.id === id
+                ? { ...post, myLike: false, likesCount: post.likesCount - 1 }
+                : post;
+            });
+
+            queryClient.setQueryData(queryKey, newPostData);
           } else {
             const realUpdatedData = (
               prevPostData as InfiniteData<PostWithPagenation, unknown>

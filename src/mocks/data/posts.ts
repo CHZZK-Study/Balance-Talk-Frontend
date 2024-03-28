@@ -267,19 +267,19 @@ export const postById = (postId?: number) => {
     myLike: true,
     myBookmark: true,
     category: 'CASUAL',
-    totalVoteCount: 1224,
+    totalVotesCount: 1224,
     balanceOptions: [
       {
-        balanceOptionId: 40,
+        balanceOptionId: 1,
         title: '커피',
         description: '남녀노소 누구나 좋아하는 커피',
-        storedFileName: 'coffee.jpg',
+        storedFileName: null,
       },
       {
-        balanceOptionId: 41,
+        balanceOptionId: 2,
         title: '쥬스',
         description: '건강에 좋고 맛도 좋은 쥬스',
-        storedFileName: 'juice.jpg',
+        storedFileName: null,
       },
     ],
 
@@ -288,9 +288,10 @@ export const postById = (postId?: number) => {
       { tagName: '카페' },
       { tagName: 'Beverage' },
     ],
-    createdAt: '2024-03-14T01:32:49.283Z',
+    createdAt: '2024/03/14 01:32:49',
     createdBy: '김성현',
-    selectedOptionId: 40,
+    selectedOptionId: 2,
+    profileImageUrl: null,
   };
 
   return postId && postMockData;

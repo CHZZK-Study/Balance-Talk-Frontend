@@ -18,9 +18,13 @@ export const END_POINT = {
   LOGOUT: '/members/logout',
   ALL_MEMBERS: '/members',
   MEMBER: (id: number) => `/members/${id}`,
+  MEMBER_IMAGE: '/members/image',
+  MEMBER_NICKNAME: '/members/nickname',
+  MEMBER_PASSWORD: '/members/password',
   NICKNAME_VERIFY: '/members/duplicate',
   EMAIL_VERIFY: '/email/verify',
   EMAIL_REQUEST: '/email/request',
+  FIND_PW: '/email/password',
   POST: (id: number) => `/posts/${id}`,
   GET_BOOKMARK: '/bookmark',
   COMMENTS: (postId: number) => `/posts/${postId}/comments`,
@@ -37,6 +41,15 @@ export const END_POINT = {
     `posts/${postId}/comments/${commentId}/likes`,
   REPORT_COMMENT: (postId: number, commentId: number) =>
     `posts/${postId}/comments/${commentId}/report`,
+  REFRESH: '/members/reissue',
+  EDIT_COMMENT: (postId: number, commentId: number) =>
+    `posts/${postId}/comments/${commentId}`,
+  DELETE_COMMENT: (postId: number, commentId: number) =>
+    `posts/${postId}/comments/${commentId}`,
+  COMMENT_REPLILES: (postId: number, commentId: number) =>
+    `posts/${postId}/comments/${commentId}/replies`,
+  CREATE_REPLY: (postId: number, commentId: number) =>
+    `posts/${postId}/comments/${commentId}/replies`,
 };
 
 export const AXIOS = {

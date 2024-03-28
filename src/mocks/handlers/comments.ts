@@ -1,18 +1,26 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { rest } from 'msw';
-import { mockComments } from '../data/comments';
+import { COMMENTS_PER_PAGE } from '@/constants/pagination';
+import { mockComments, mockReplies } from '../data/comments';
 
 const URL = process.env.API_URL;
 
 const getComments = rest.get(
   `${URL}/posts/:postId/comments`,
   (req, res, ctx) => {
+    const pageNumber: number = Number(
+      req.url.searchParams.get('pageable[page]'),
+    );
+
     return res(
       ctx.status(200),
       ctx.json({
-        content: mockComments,
+        content: mockComments.slice(
+          pageNumber * COMMENTS_PER_PAGE,
+          (pageNumber + 1) * COMMENTS_PER_PAGE,
+        ),
         pageable: {
-          pageNumber: 0,
+          pageNumber,
           pageSize: 10,
           sort: {
             empty: false,
@@ -23,9 +31,9 @@ const getComments = rest.get(
           paged: true,
           unpaged: false,
         },
-        last: true,
-        totalPages: 1,
-        totalElements: 10,
+        last: mockComments.length / 10 - 1 === pageNumber,
+        totalPages: mockComments.length / 10,
+        totalElements: mockComments.length,
         size: 10,
         number: 10,
         sort: {
@@ -68,10 +76,48 @@ const reportComment = rest.post(
   },
 );
 
+const editComment = rest.put(
+  `${URL}/posts/:postId/comments/:commentId`,
+  (req, res, ctx) => {
+    return res(ctx.status(200));
+  },
+);
+
+const deleteComment = rest.delete(
+  `${URL}/posts/:postId/comments/:commentId`,
+  (req, res, ctx) => {
+    return res(ctx.status(204));
+  },
+);
+
+const getReplies = rest.get(
+  `${URL}/posts/:postId/comments/:commentId/replies`,
+  (req, res, ctx) => {
+    const { pathname } = req.url;
+    return res(
+      ctx.status(200),
+      ctx.json({
+        content: mockReplies(Number(pathname.split('/')[4])),
+      }),
+    );
+  },
+);
+
+const createReply = rest.post(
+  `${URL}/posts/:postId/comments/:commentId/replies`,
+  (req, res, ctx) => {
+    return res(ctx.status(201));
+  },
+);
+
 export default [
   getComments,
   createComment,
   addLikeComment,
   deleteLikeComment,
   reportComment,
+  editComment,
+  deleteComment,
+  getReplies,
+  createReply,
 ];

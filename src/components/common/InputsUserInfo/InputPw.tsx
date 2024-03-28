@@ -1,13 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { ChangeEvent, useEffect } from 'react';
+import { INPUT_LIMIT } from '@/constants/input';
 import { css } from '@emotion/react';
-import Input from '../../design/Input/Input';
+import React, { ChangeEvent, useEffect } from 'react';
 import { useCheckPassword } from '../../../hooks/common/inputsUserInfo/useCheckPassword';
+import Input from '../../design/Input/Input';
 
 interface InputPwProps {
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onSuccessChange: (name: string, value: boolean) => void;
+  onSuccessChange?: (name: string, value: boolean) => void;
 }
 
 const InputPw = ({ value, onChange, onSuccessChange }: InputPwProps) => {
@@ -15,7 +16,7 @@ const InputPw = ({ value, onChange, onSuccessChange }: InputPwProps) => {
     useCheckPassword(value);
 
   useEffect(() => {
-    if (value) {
+    if (value && onSuccessChange) {
       onSuccessChange('password', !isError);
     }
   }, [errorMessage]);
@@ -26,6 +27,8 @@ const InputPw = ({ value, onChange, onSuccessChange }: InputPwProps) => {
       placeholder="비밀번호를 입력해주세요."
       size="medium"
       label="비밀번호"
+      minLength={INPUT_LIMIT.PW_MIN}
+      maxLength={INPUT_LIMIT.PW_MAX}
       isError={isError}
       errorMessage={errorMessage}
       value={value}

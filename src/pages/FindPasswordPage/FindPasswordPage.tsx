@@ -8,7 +8,9 @@ const FindPasswordPage = () => {
   const { form, onChange } = useFindPwForm();
   return (
     <div css={pwContainer}>
-      <Heading size="small">비밀번호를 찾을 이메일을 입력해주세요.</Heading>
+      <Heading size="small">
+        임시 비밀번호를 발급받을 이메일을 입력해주세요.
+      </Heading>
       <div css={inputContainer}>
         <InputEmail
           type="findPassword"

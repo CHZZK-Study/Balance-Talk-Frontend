@@ -66,6 +66,7 @@ export const buttonStyling = css({
   border: 'none',
   borderRadius: '5px',
   fontWeight: 'bold',
+  whiteSpace: 'nowrap',
   transition: 'all .2s ease-in',
   cursor: 'pointer',
 

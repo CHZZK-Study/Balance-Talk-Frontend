@@ -3,13 +3,13 @@ import { css } from '@emotion/react';
 
 export const LoginModalWrapper = css({
   position: 'fixed',
-  top: '50%',
-  left: '38%',
+  top: '35%',
+  left: '36%',
   display: 'flex',
-  padding: '30px 20px',
+  padding: '50px 40px',
   flexDirection: 'column',
   alignItems: 'center',
-  gap: '20px',
+  gap: '40px',
   borderRadius: '10px',
   background: 'white',
   zIndex: '300',

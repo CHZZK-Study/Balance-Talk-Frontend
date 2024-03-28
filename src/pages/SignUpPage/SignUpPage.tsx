@@ -16,12 +16,18 @@ import InputProfileImage from '../../components/common/InputsUserInfo/InputProfi
 import { useSignupForm } from '../../hooks/signup/useSignupForm';
 
 const SignUpPage = () => {
-  const { form, onChange, onSuccessChange, handleSubmit, handleCancle } =
-    useSignupForm();
+  const {
+    form,
+    onChange,
+    onSuccessChange,
+    setEach,
+    handleSubmit,
+    handleCancle,
+  } = useSignupForm();
   return (
     <form onSubmit={handleSubmit} css={signupContainer}>
       <Heading size="large">SIGN UP</Heading>
-      <InputProfileImage />
+      <InputProfileImage setProfilePhoto={setEach} />
       <div css={inputContainer}>
         <InputEmail
           type="signup"
