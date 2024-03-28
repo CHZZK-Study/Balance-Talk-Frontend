@@ -9,7 +9,6 @@ export const getDate = (date: string) => {
 };
 
 export const isFinished = (date: string) => {
-  console.log(date);
   const [yearMonthDay, hourMinuteSecond] = date.split(' ');
   const [year, month, day] = yearMonthDay
     .split('/')
