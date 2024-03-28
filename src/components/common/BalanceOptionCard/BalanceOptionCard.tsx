@@ -121,14 +121,11 @@ const BalanceOptionCard = ({
             setIsChangeVoteModalOpen(true);
           }}
         >
-          {isVoted &&
-            voteInfos &&
-            isFinished(deadline) &&
-            isWinner(voteInfos, title) && (
-              <div css={winnerIconWrapper}>
-                <Winner />
-              </div>
-            )}
+          {voteInfos && isFinished(deadline) && isWinner(voteInfos, title) && (
+            <div css={winnerIconWrapper}>
+              <Winner />
+            </div>
+          )}
           <img
             css={css(balanceOptionImageWrapper)}
             src={imageUrl || DefaultImage}
