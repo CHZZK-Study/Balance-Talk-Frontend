@@ -44,7 +44,7 @@ const HeartButton = ({ isLiked, postId }: HeartButtonProps) => {
         | Post[]
         | undefined;
       queryKeys.forEach((queryKey) => {
-        if (queryKey[0] === 'posts' && queryKey[1] !== 'vote') {
+        if (queryKey[0] === 'posts' && queryKey[1] !== 'votes') {
           const prevPostData:
             | InfiniteData<PostWithPagenation, unknown>
             | PostWithPagenation
