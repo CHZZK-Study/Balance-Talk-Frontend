@@ -35,7 +35,7 @@ const MainPost = ({ post }: MainPostProps) => {
   const postId = post?.id;
 
   const { data } = useQuery({
-    queryKey: ['posts', 'vote', postId],
+    queryKey: ['posts', 'votes', postId],
     queryFn: () => fetchVoteCount(postId as number),
     enabled: !!postId,
   });
