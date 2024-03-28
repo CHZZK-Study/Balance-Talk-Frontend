@@ -8,7 +8,7 @@ export const getDate = (date: string) => {
   return Math.floor(diff / (60 * 60 * 24 * 1000));
 };
 
-export const isFinish = (date: string) => {
+export const isFinished = (date: string) => {
   const [yearMonthDay, hourMinuteSecond] = date.split(' ');
   const [year, month, day] = yearMonthDay
     .split('/')

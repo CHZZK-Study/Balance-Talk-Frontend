@@ -9,7 +9,7 @@ import { selectAccessToken } from '@/store/auth';
 import { voteBalanceOption } from '@/api/votes/vote';
 import { VoteInfo, BalanceOption } from '@/types/post';
 import { getVoteCount } from '@/api/posts/posts';
-import { isFinish } from '@/utils/date';
+import { isFinished } from '@/utils/date';
 import { Check, Winner } from '../../../assets';
 import DefaultImage from '../../../../public/defaultImage.png';
 import {
@@ -98,7 +98,7 @@ const BalanceOptionCard = ({
           css={innerButtonWrapper}
           type="button"
           onClick={() => {
-            if (isChecked || isFinish(deadline)) return;
+            if (isChecked || isFinished(deadline)) return;
             // 비회원 선택지 투표
             if (!isVoted && !member) {
               voteBalanceOptionByNonUserMutate({
@@ -123,7 +123,7 @@ const BalanceOptionCard = ({
         >
           {isVoted &&
             voteInfos &&
-            isFinish(deadline) &&
+            isFinished(deadline) &&
             isWinner(voteInfos, title) && (
               <div css={winnerIconWrapper}>
                 <Winner />

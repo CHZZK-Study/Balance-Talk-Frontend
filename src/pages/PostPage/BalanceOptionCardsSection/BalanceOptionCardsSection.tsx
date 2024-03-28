@@ -4,7 +4,7 @@ import { selectAccessToken } from '@/store/auth';
 import { useNewSelector } from '@/store';
 import { useMemberQuery } from '@/hooks/api/useMemberQuery';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
-import { isFinish } from '@/utils/date';
+import { isFinished } from '@/utils/date';
 import BalanceOptionCard from '../../../components/common/BalanceOptionCard/BalanceOptionCard';
 import { NPost } from '../../../types/post';
 import {
@@ -69,7 +69,7 @@ const BalanceOptionCardsSection = ({
           deadline={deadline}
         />
       </div>
-      {(selectedOptionIdByPost || isFinish(deadline)) && (
+      {(selectedOptionIdByPost || isFinished(deadline)) && (
         <ResultSection postId={id} />
       )}
     </div>
