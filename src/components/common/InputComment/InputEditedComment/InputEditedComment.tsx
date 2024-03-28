@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { ChangeEvent, SetStateAction } from 'react';
+import React, { ChangeEvent, SetStateAction, KeyboardEvent } from 'react';
 import { css } from '@emotion/react';
 import Button from '@/components/design/Button/Button';
 import Input from '@/components/design/Input/Input';
@@ -36,6 +36,11 @@ const InputEditedComment = ({
     parentCommentId,
   });
 
+  const handleEnterKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && e.nativeEvent.isComposing === false)
+      handleEditComment();
+  };
+
   return (
     <Input
       name="content"
@@ -44,6 +49,7 @@ const InputEditedComment = ({
       value={value}
       ref={inputRef}
       onChange={onChange}
+      onKeyDown={handleEnterKeyDown}
       btn={
         <Button size="small" onClick={handleEditComment}>
           수정

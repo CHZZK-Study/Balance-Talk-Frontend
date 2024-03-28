@@ -34,7 +34,7 @@ const CommentsSection = ({
   const { member } = useMemberQuery(
     useParseJwt(useNewSelector(selectAccessToken)).memberId,
   );
-  // const member = { memberId: 103, nickname: '김성현' };
+
   const [selectedPageNumber, setSelectedPageNumber] = useState<number>(0);
 
   const { form, onChange, reset } = useCreateCommentForm();

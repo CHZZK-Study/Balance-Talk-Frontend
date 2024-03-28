@@ -4,6 +4,7 @@ import { selectAccessToken } from '@/store/auth';
 import { useNewSelector } from '@/store';
 import { useMemberQuery } from '@/hooks/api/useMemberQuery';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
+import { isFinished } from '@/utils/date';
 import BalanceOptionCard from '../../../components/common/BalanceOptionCard/BalanceOptionCard';
 import { NPost } from '../../../types/post';
 import {
@@ -15,17 +16,18 @@ import ResultSection from './ResultSection/ResultSection';
 
 export type BalanceOptionCardsSectionProps = Pick<
   NPost,
-  'id' | 'balanceOptions' | 'selectedOptionId'
+  'id' | 'balanceOptions' | 'selectedOptionId' | 'category' | 'deadline'
 >;
 const BalanceOptionCardsSection = ({
   id,
   balanceOptions,
   selectedOptionId,
+  category,
+  deadline,
 }: BalanceOptionCardsSectionProps) => {
   const { member } = useMemberQuery(
     useParseJwt(useNewSelector(selectAccessToken)).memberId,
   );
-  // const member = { memberId: 103, nickname: '김성현' };
 
   const { getSelectedOptionId } = useSelectedOptionsInLocalStorage();
 
@@ -47,6 +49,8 @@ const BalanceOptionCardsSection = ({
           }
           isVoted={selectedOptionIdByPost !== null}
           title={balanceOptions[0].title}
+          category={category}
+          deadline={deadline}
         />
         <div css={versusTextwrapper}>VS</div>
         <BalanceOptionCard
@@ -60,9 +64,13 @@ const BalanceOptionCardsSection = ({
           }
           isVoted={selectedOptionIdByPost !== null}
           title={balanceOptions[1].title}
+          category={category}
+          deadline={deadline}
         />
       </div>
-      {selectedOptionIdByPost && <ResultSection postId={id} />}
+      {(selectedOptionIdByPost || isFinished(deadline)) && (
+        <ResultSection postId={id} />
+      )}
     </div>
   );
 };

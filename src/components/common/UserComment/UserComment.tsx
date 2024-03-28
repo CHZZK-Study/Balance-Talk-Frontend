@@ -28,6 +28,7 @@ import {
 import InputEditedComment from '../InputComment/InputEditedComment/InputEditedComment';
 import ProfileImage from '../Profile/ProfileImage/ProfileImage';
 import defaultProfile from '../../../assets/images/defaultProfile.png';
+import ReportModal from '../Modal/ReportModal/ReportModal';
 
 type UserCommentProps = Comment & {
   handleLoginModal: React.Dispatch<SetStateAction<boolean>>;
@@ -61,11 +62,11 @@ const UserComment = ({
   const lastModifedDate = lastModifiedAt ? getDate(lastModifiedAt) : null;
   const commentDate = lastModifedDate || createdDate;
   const [isActiveEditInput, setIsActiveEditInput] = useState(false);
+  const [isReportModalOpoen, setIsReportModalOpen] = useState(false);
 
   const { member } = useMemberQuery(
     useParseJwt(useNewSelector(selectAccessToken)).memberId,
   );
-  // const member = { memberId: 103, nickname: '김성현' };
 
   const { form, onChange } = useEditCommentForm(content);
   const isReply = parentCommentId !== null && parentCommentId !== undefined;
@@ -132,8 +133,9 @@ const UserComment = ({
             </div>
             <CommentReportButton
               postId={postId}
-              handleModal={handleLoginModal}
+              handleLoginModal={handleLoginModal}
               commentId={id}
+              handleReportModal={setIsReportModalOpen}
             />
           </div>
           {!parentCommentId && (
@@ -148,6 +150,9 @@ const UserComment = ({
           )}
         </div>
       </div>
+      {isReportModalOpoen && (
+        <ReportModal handleModal={setIsReportModalOpen} type="댓글" />
+      )}
     </div>
   );
 };

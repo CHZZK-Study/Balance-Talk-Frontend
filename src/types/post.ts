@@ -9,7 +9,7 @@ export type BalanceOption = {
   balanceOptionId: number;
   title: string;
   description: string;
-  storedFileName: string | null;
+  imageUrl: string | null;
 };
 
 export type Post = {
@@ -86,7 +86,7 @@ export type UploadedImage = {
 };
 
 export type ReportedPost = {
-  reason: string;
+  category: string;
   description: string;
 };
 

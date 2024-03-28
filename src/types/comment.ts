@@ -53,7 +53,7 @@ export type CommentsPagination = {
 };
 
 export type ReportedComment = {
-  reason: string;
+  category: string;
   description: string;
 };
 
