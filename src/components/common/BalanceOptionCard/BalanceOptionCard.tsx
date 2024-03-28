@@ -31,6 +31,7 @@ export type BalanceOptionCardProps = BalanceOption & {
 };
 
 const isWinner = (voteResult: VoteInfo[], balanceOptionTitle: string) => {
+  console.log(voteResult, balanceOptionTitle);
   const winnerTitle =
     voteResult[0].voteCount > voteResult[1].voteCount
       ? voteResult[0].optionTitle
@@ -53,11 +54,12 @@ const BalanceOptionCard = ({
   const [isChangeVoteModalOpen, setIsChangeVoteModalOpen] = useState(false);
   const { setSelectedOptionId } = useSelectedOptionsInLocalStorage();
 
-  const { isLoading: isVotInfoLoading, data: voteInfos } = useQuery({
+  const { data: voteInfos } = useQuery({
     queryKey: ['posts', 'vote', postId],
     queryFn: () => getVoteCount(postId),
     select: (data: { data: VoteInfo[] }) => data?.data,
   });
+  console.log(voteInfos);
 
   const { member } = useMemberQuery(
     useParseJwt(useNewSelector(selectAccessToken)).memberId,
@@ -116,7 +118,7 @@ const BalanceOptionCard = ({
             setIsChangeVoteModalOpen(true);
           }}
         >
-          {isVoted && !isVotInfoLoading && isWinner(voteInfos, title) && (
+          {isVoted && voteInfos && isWinner(voteInfos, title) && (
             <div css={winnerIconWrapper}>
               <Winner />
             </div>
