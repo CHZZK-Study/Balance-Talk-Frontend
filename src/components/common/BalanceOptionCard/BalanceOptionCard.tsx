@@ -28,10 +28,10 @@ export type BalanceOptionCardProps = BalanceOption & {
   isVoted: boolean;
   isChecked: boolean;
   title: string;
+  category: 'CASUAL' | 'DISCUSSION';
 };
 
 const isWinner = (voteResult: VoteInfo[], balanceOptionTitle: string) => {
-  console.log(voteResult, balanceOptionTitle);
   const winnerTitle =
     voteResult[0].voteCount > voteResult[1].voteCount
       ? voteResult[0].optionTitle
@@ -49,6 +49,7 @@ const BalanceOptionCard = ({
   balanceOptionId,
   isVoted,
   isChecked,
+  category,
 }: BalanceOptionCardProps) => {
   const queryClient = useQueryClient();
   const [isChangeVoteModalOpen, setIsChangeVoteModalOpen] = useState(false);
@@ -59,7 +60,6 @@ const BalanceOptionCard = ({
     queryFn: () => getVoteCount(postId),
     select: (data: { data: VoteInfo[] }) => data?.data,
   });
-  console.log(voteInfos);
 
   const { member } = useMemberQuery(
     useParseJwt(useNewSelector(selectAccessToken)).memberId,
@@ -136,6 +136,7 @@ const BalanceOptionCard = ({
           handleModal={setIsChangeVoteModalOpen}
           postId={postId}
           balanceOptionId={balanceOptionId}
+          category={category}
         />
       )}
     </div>

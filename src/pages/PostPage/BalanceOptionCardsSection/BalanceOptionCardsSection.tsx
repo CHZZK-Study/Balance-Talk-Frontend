@@ -15,12 +15,13 @@ import ResultSection from './ResultSection/ResultSection';
 
 export type BalanceOptionCardsSectionProps = Pick<
   NPost,
-  'id' | 'balanceOptions' | 'selectedOptionId'
+  'id' | 'balanceOptions' | 'selectedOptionId' | 'category'
 >;
 const BalanceOptionCardsSection = ({
   id,
   balanceOptions,
   selectedOptionId,
+  category,
 }: BalanceOptionCardsSectionProps) => {
   const { member } = useMemberQuery(
     useParseJwt(useNewSelector(selectAccessToken)).memberId,
@@ -47,6 +48,7 @@ const BalanceOptionCardsSection = ({
           }
           isVoted={selectedOptionIdByPost !== null}
           title={balanceOptions[0].title}
+          category={category}
         />
         <div css={versusTextwrapper}>VS</div>
         <BalanceOptionCard
@@ -60,6 +62,7 @@ const BalanceOptionCardsSection = ({
           }
           isVoted={selectedOptionIdByPost !== null}
           title={balanceOptions[1].title}
+          category={category}
         />
       </div>
       {selectedOptionIdByPost && <ResultSection postId={id} />}

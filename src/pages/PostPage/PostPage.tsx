@@ -41,6 +41,7 @@ const PostPage = () => {
         id={post?.id || 0}
         balanceOptions={post?.balanceOptions || []}
         selectedOptionId={post?.selectedOptionId}
+        category={post?.category}
       />
 
       <div css={UserSectionWrapper}>
