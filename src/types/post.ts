@@ -86,7 +86,7 @@ export type UploadedImage = {
 };
 
 export type ReportedPost = {
-  reason: string;
+  category: string;
   description: string;
 };
 

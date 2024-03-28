@@ -122,7 +122,7 @@ export const fetchDeleteBookmark = async (postId: number) => {
 
 export const fetchReportPost = async (postId: number) => {
   const response = await axiosInstance.post(END_POINT.REPORT_POST(postId), {
-    reason: '신고합니다.',
+    category: '신고합니다.',
     description: '신고 내용',
   });
   return response;

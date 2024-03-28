@@ -40,6 +40,7 @@ const RepliesSection = ({
     queryKey: ['posts', 'comments', postId, parentCommentId, 'replies'],
     queryFn: () => getReplies(postId, parentCommentId),
   });
+  console.log(replies);
 
   const { form, onChange, reset } = useCreateCommentForm();
 
