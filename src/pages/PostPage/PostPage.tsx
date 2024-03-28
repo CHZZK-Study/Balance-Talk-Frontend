@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import LoginModal from '@/components/common/Modal/LoginModal/LoginModal';
 import { BalanceOption } from '@/types/post';
+import { isFinish } from '@/utils/date';
 import BalanceOptionCardsSection from './BalanceOptionCardsSection/BalanceOptionCardsSection';
 import CommentsSection from './CommentsSection/CommentsSection';
 import { getPost } from '../../api/posts/posts';
@@ -41,7 +42,8 @@ const PostPage = () => {
         id={post?.id || 0}
         balanceOptions={post?.balanceOptions || []}
         selectedOptionId={post?.selectedOptionId}
-        category={post?.category}
+        category={post?.category || 'CASUAL'}
+        deadline={post?.deadline || ''}
       />
 
       <div css={UserSectionWrapper}>

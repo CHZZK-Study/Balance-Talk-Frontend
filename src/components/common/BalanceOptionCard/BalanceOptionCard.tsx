@@ -9,6 +9,7 @@ import { selectAccessToken } from '@/store/auth';
 import { voteBalanceOption } from '@/api/votes/vote';
 import { VoteInfo, BalanceOption } from '@/types/post';
 import { getVoteCount } from '@/api/posts/posts';
+import { isFinish } from '@/utils/date';
 import { Check, Winner } from '../../../assets';
 import DefaultImage from '../../../../public/defaultImage.png';
 import {
@@ -29,6 +30,7 @@ export type BalanceOptionCardProps = BalanceOption & {
   isChecked: boolean;
   title: string;
   category: 'CASUAL' | 'DISCUSSION';
+  deadline: string;
 };
 
 const isWinner = (voteResult: VoteInfo[], balanceOptionTitle: string) => {
@@ -50,6 +52,7 @@ const BalanceOptionCard = ({
   isVoted,
   isChecked,
   category,
+  deadline,
 }: BalanceOptionCardProps) => {
   const queryClient = useQueryClient();
   const [isChangeVoteModalOpen, setIsChangeVoteModalOpen] = useState(false);
@@ -95,7 +98,7 @@ const BalanceOptionCard = ({
           css={innerButtonWrapper}
           type="button"
           onClick={() => {
-            if (isChecked) return;
+            if (isChecked || isFinish(deadline)) return;
             // 비회원 선택지 투표
             if (!isVoted && !member) {
               voteBalanceOptionByNonUserMutate({
@@ -118,11 +121,14 @@ const BalanceOptionCard = ({
             setIsChangeVoteModalOpen(true);
           }}
         >
-          {isVoted && voteInfos && isWinner(voteInfos, title) && (
-            <div css={winnerIconWrapper}>
-              <Winner />
-            </div>
-          )}
+          {isVoted &&
+            voteInfos &&
+            isFinish(deadline) &&
+            isWinner(voteInfos, title) && (
+              <div css={winnerIconWrapper}>
+                <Winner />
+              </div>
+            )}
           <img
             css={css(balanceOptionImageWrapper)}
             src={imageUrl || DefaultImage}
