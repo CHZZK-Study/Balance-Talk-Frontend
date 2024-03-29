@@ -1,7 +1,9 @@
-import { MyBookmarksPostsType } from '@/types/history';
+import { MyBookmarksPostsContentType } from '@/types/mypage';
 import { ChangeEvent, useState } from 'react';
 
-export const useCheckboxSelect = (data: MyBookmarksPostsType[] | undefined) => {
+export const useCheckboxSelect = (
+  data: MyBookmarksPostsContentType[] | undefined,
+) => {
   const [isAllChecked, setIsAllChecked] = useState(false);
   const [isSingleChecked, setIsSingleChecked] = useState(false);
   const [checkItems, setCheckItems] = useState<string[]>([]);

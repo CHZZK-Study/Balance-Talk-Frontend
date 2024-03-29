@@ -1,4 +1,5 @@
 import React, { ComponentPropsWithRef } from 'react';
+import { MyCommentsPostsContentType } from '@/types/mypage';
 import {
   hoverStyling,
   mypageListItemContainer,
@@ -6,20 +7,21 @@ import {
   noContainer,
   withoutNoContainer,
 } from './ListItem.style';
-import { MyCommentsPostsType } from '../../../types/history';
 
 export interface MyCommentsPostsProps extends ComponentPropsWithRef<'li'> {
-  item: MyCommentsPostsType;
+  item: MyCommentsPostsContentType;
 }
 
 const ItemMyCommentsPosts = ({ item }: MyCommentsPostsProps) => {
   return (
     <li css={mypageListItemContainer}>
-      <span css={[mypageTextStyling('xSmall'), noContainer]}>{item.id}</span>
+      <span css={[mypageTextStyling('xSmall'), noContainer]}>
+        {item.postId}
+      </span>
       <div css={[withoutNoContainer, hoverStyling]}>
-        <p css={mypageTextStyling('small')}>{item.comment}</p>
-        <p css={mypageTextStyling('xSmall')}>{item.date}</p>
-        <p css={[mypageTextStyling('xSmall')]}>{item.title}</p>
+        <p css={mypageTextStyling('small')}>{item.commentContent}</p>
+        <p css={mypageTextStyling('xSmall')}>{item.commentCreatedAt}</p>
+        <p css={[mypageTextStyling('xSmall')]}>{item.postTitle}</p>
       </div>
     </li>
   );

@@ -1,25 +1,30 @@
+import { MyVotedPostsContentType } from '@/types/mypage';
+import { getYearMonthDay } from '@/utils/date';
 import React, { ComponentPropsWithRef } from 'react';
-import { MyVotedPostsType } from '../../../types/history';
 import {
   hoverStyling,
   mypageListItemContainer,
   mypageTextStyling,
-  noContainer,
   withoutNoContainer,
+  noContainer,
 } from './ListItem.style';
 
 export interface MyVotedPostsProps extends ComponentPropsWithRef<'li'> {
-  item: MyVotedPostsType;
+  item: MyVotedPostsContentType;
 }
 
 const ItemMyVotedPosts = ({ item }: MyVotedPostsProps) => {
   return (
     <li css={mypageListItemContainer}>
-      <span css={[mypageTextStyling('xSmall'), noContainer]}>{item.id}</span>
+      <span css={[mypageTextStyling('xSmall'), noContainer]}>
+        {item.postId}
+      </span>
       <div css={[withoutNoContainer, hoverStyling]}>
-        <p css={mypageTextStyling('small')}>{item.position}</p>
-        <p css={mypageTextStyling('xSmall')}>{item.date}</p>
-        <p css={mypageTextStyling('xSmall')}>{item.title}</p>
+        <p
+          css={mypageTextStyling('small')}
+        >{`투표진영: ${item.balanceOptionTitle}`}</p>
+        <p css={mypageTextStyling('xSmall')}>{getYearMonthDay(item.votedAt)}</p>
+        <p css={mypageTextStyling('xSmall')}>{item.postTitle}</p>
       </div>
     </li>
   );

@@ -1,21 +1,38 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
+import PageNavigation from '@/components/common/Paginavigation/Paginavigation';
+import Button from '@/components/design/Button/Button';
+import CheckBox from '@/components/design/CheckBox/CheckBox';
+import List from '@/components/mypage/List/List';
+import ItemMyBookmarksPosts from '@/components/mypage/ListItem/ItemMyBookmarksPosts';
+import ItemNull from '@/components/mypage/ListItem/ItemNull';
+import { NULL } from '@/constants/message';
+import { useMyBookmarksPostsQuery } from '@/hooks/api/useMyBookmarksPostsQuery';
 import { useCheckboxSelect } from '@/hooks/mypage/userHistory/useCheckboxSelect';
+import { MyBookmarksPostsContentType } from '@/types/mypage';
+import { createRangeArray } from '@/utils/array';
+import { useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
-import PageNavigation from '../../../../../components/common/Paginavigation/Paginavigation';
-import Button from '../../../../../components/design/Button/Button';
-import CheckBox from '../../../../../components/design/CheckBox/CheckBox';
-import List from '../../../../../components/mypage/List/List';
-import ItemMyBookmarksPosts from '../../../../../components/mypage/ListItem/ItemMyBookmarksPosts';
-import { NULL } from '../../../../../constants/message';
-import { useMyBookmarksPostsQuery } from '../../../../../hooks/api/useMyBookmarksPostsQuery';
-import { MyBookmarksPostsType } from '../../../../../types/history';
 import { bookmarksBtnContainer } from './BookmarksPage.style';
 
 const BookmarksPage = () => {
-  const { myBookmarksPosts } = useMyBookmarksPostsQuery();
   const [selectedPage, setSelectedPage] = useState(1);
-  const pages: number[] = [1];
+  const { myBookmarksPosts, isLoading } = useMyBookmarksPostsQuery(
+    selectedPage - 1,
+  );
+  const pages = createRangeArray(myBookmarksPosts?.totalPages || 0);
   const { isAllChecked, checkItems, handleSingleChecked, handleAllChecked } =
-    useCheckboxSelect(myBookmarksPosts);
+    useCheckboxSelect(myBookmarksPosts?.content);
+
+  const queryClient = useQueryClient();
+
+  const handleChangeNavigate = async (page: number) => {
+    setSelectedPage(page);
+    await queryClient.invalidateQueries({
+      queryKey: ['myBookmarksPosts', page],
+    });
+  };
+
+  if (isLoading) return <div>Loading...</div>;
   return (
     <>
       <div css={bookmarksBtnContainer}>
@@ -28,27 +45,27 @@ const BookmarksPage = () => {
       </div>
 
       <List>
-        {myBookmarksPosts && myBookmarksPosts.length > 0
-          ? myBookmarksPosts.map((item: MyBookmarksPostsType) => {
-              return (
-                <ItemMyBookmarksPosts
-                  id={item.id.toString()}
-                  key={item.id}
-                  item={item}
-                  isChecked={checkItems.includes(item.id.toString())}
-                  handleChecked={handleSingleChecked}
-                />
-              );
-            })
-          : NULL.BOOKMARKS}
+        {myBookmarksPosts && myBookmarksPosts.totalPages > 0 ? (
+          myBookmarksPosts.content.map((item: MyBookmarksPostsContentType) => {
+            return (
+              <ItemMyBookmarksPosts
+                id={item.postId.toString()}
+                key={item.postId}
+                item={item}
+                isChecked={checkItems.includes(item.postId.toString())}
+                handleChecked={handleSingleChecked}
+              />
+            );
+          })
+        ) : (
+          <ItemNull>{NULL.BOOKMARKS}</ItemNull>
+        )}
       </List>
       <PageNavigation
         pages={pages}
         selected={selectedPage}
         maxPage={pages.length}
-        onChangeNavigate={(page: number) => {
-          setSelectedPage(page);
-        }}
+        onChangeNavigate={handleChangeNavigate}
       />
     </>
   );

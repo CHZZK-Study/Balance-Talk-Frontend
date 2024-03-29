@@ -1,5 +1,5 @@
 import React, { ComponentPropsWithRef, forwardRef } from 'react';
-import { MyPostsType } from '../../../types/history';
+import { MyPostsContentType } from '@/types/mypage';
 import {
   hoverStyling,
   mypageListItemContainer,
@@ -9,16 +9,18 @@ import {
 } from './ListItem.style';
 
 export interface MyPostsProps extends ComponentPropsWithRef<'li'> {
-  item: MyPostsType;
+  item: MyPostsContentType;
 }
 
 const ItemMyPosts = ({ item }: MyPostsProps) => {
   return (
     <li css={mypageListItemContainer}>
-      <span css={[mypageTextStyling('xSmall'), noContainer]}>{item.id}</span>
+      <span css={[mypageTextStyling('xSmall'), noContainer]}>
+        {item.postId}
+      </span>
       <div css={withoutNoContainer}>
-        <p css={[mypageTextStyling('small'), hoverStyling]}>{item.title}</p>
-        <p css={mypageTextStyling('xSmall')}>{item.date}</p>
+        <p css={[mypageTextStyling('small'), hoverStyling]}>{item.postTitle}</p>
+        <p css={mypageTextStyling('xSmall')}>{item.postCreatedAt}</p>
       </div>
     </li>
   );
