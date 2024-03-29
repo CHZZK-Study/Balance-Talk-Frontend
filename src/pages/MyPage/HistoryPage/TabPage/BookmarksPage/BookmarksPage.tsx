@@ -6,6 +6,7 @@ import List from '@/components/mypage/List/List';
 import ItemMyBookmarksPosts from '@/components/mypage/ListItem/ItemMyBookmarksPosts';
 import ItemNull from '@/components/mypage/ListItem/ItemNull';
 import { NULL } from '@/constants/message';
+import { useBookmarkDeleteAllMutation } from '@/hooks/api/useBookmarkDeleteAllMutation';
 import { useMyBookmarksPostsQuery } from '@/hooks/api/useMyBookmarksPostsQuery';
 import { useCheckboxSelect } from '@/hooks/mypage/userHistory/useCheckboxSelect';
 import { MyBookmarksPostsContentType } from '@/types/mypage';
@@ -24,6 +25,16 @@ const BookmarksPage = () => {
     useCheckboxSelect(myBookmarksPosts?.content);
 
   const queryClient = useQueryClient();
+  const deleteBookmark = useBookmarkDeleteAllMutation(
+    checkItems,
+    selectedPage - 1,
+  );
+
+  const handleClearSubmit = () => {
+    checkItems.forEach((postId) => {
+      deleteBookmark.mutate(Number(postId));
+    });
+  };
 
   const handleChangeNavigate = async (page: number) => {
     setSelectedPage(page);
@@ -41,7 +52,9 @@ const BookmarksPage = () => {
           isChecked={isAllChecked}
           handleChecked={handleAllChecked}
         />
-        <Button size="xSmall">북마크 해제</Button>
+        <Button size="xSmall" onClick={handleClearSubmit}>
+          북마크 해제
+        </Button>
       </div>
 
       <List>

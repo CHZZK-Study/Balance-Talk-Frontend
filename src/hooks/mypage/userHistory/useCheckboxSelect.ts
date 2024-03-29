@@ -23,7 +23,7 @@ export const useCheckboxSelect = (
 
   const handleAllChecked = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.currentTarget.checked) {
-      setCheckItems(data?.map((item) => item.id?.toString() || '') || []);
+      setCheckItems(data?.map((item) => item.postId?.toString() || '') || []);
     } else {
       setCheckItems([]);
     }
