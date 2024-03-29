@@ -70,7 +70,7 @@ const deleteLikeComment = rest.delete(
 );
 
 const reportComment = rest.post(
-  `${URL}/posts/:postId/comments/:commentId/report`,
+  `${URL}/posts/:postId/:commentId/report`,
   (req, res, ctx) => {
     return res(ctx.status(200));
   },

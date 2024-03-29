@@ -66,7 +66,7 @@ export const useEditComment = ({
     },
   });
 
-  const { mutate: editRepliyMutate } = useMutation({
+  const { mutate: editReplyMutate } = useMutation({
     mutationFn: (data: EditedComment) =>
       editComment(postId, commentId, { ...data }),
     onMutate: () => {
@@ -78,7 +78,7 @@ export const useEditComment = ({
         'replies',
       ]);
 
-      const newReplies = prevReplies?.content.map((comment: Comment) => {
+      const newReplies = prevReplies?.map((comment: Comment) => {
         return comment.id === commentId
           ? { ...comment, content: value }
           : comment;
@@ -86,10 +86,7 @@ export const useEditComment = ({
 
       queryClient.setQueryData(
         ['posts', 'comments', postId, parentCommentId, 'replies'],
-        {
-          ...prevReplies,
-          content: newReplies,
-        },
+        newReplies,
       );
 
       return { prevReplies };
@@ -105,7 +102,7 @@ export const useEditComment = ({
   const handleEditComment = () => {
     handleActiveEdit(false);
     if (parentCommentId) {
-      editRepliyMutate({ content: value, selectedOptionId: null });
+      editReplyMutate({ content: value, selectedOptionId: null });
     } else {
       editCommentMutate({ content: value, selectedOptionId });
     }
