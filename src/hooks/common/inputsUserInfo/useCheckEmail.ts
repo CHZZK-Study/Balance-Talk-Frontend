@@ -36,20 +36,20 @@ export const useCheckEmail = (type: string, value: string) => {
     },
   });
 
-  const findPw = () => {
-    getFindPw(value)
-      .then(() => {
-        setIsError(false);
-        navigate(`/${PATH.LOGIN}`);
-        alert('임시 비밀번호가 발송되었습니다. 이메일을 확인해주세요.');
-      })
-      .catch((err: AxiosErrorResponse) => {
-        if (err.status === HTTP_STATUS_CODE.NOT_FOUND) {
-          setIsError(true);
-          setErrorMessage(ERROR.EMAIL.NOT_EXIST);
-        }
-      });
-  };
+  const findPw = useMutation({
+    mutationFn: () => getFindPw(value),
+    onSuccess: () => {
+      setIsError(false);
+      navigate(`/${PATH.LOGIN}`);
+      alert('임시 비밀번호가 발송되었습니다. 이메일을 확인해주세요.');
+    },
+    onError: (err: AxiosErrorResponse) => {
+      if (err.status === HTTP_STATUS_CODE.NOT_FOUND) {
+        setIsError(true);
+        setErrorMessage(ERROR.EMAIL.NOT_EXIST);
+      }
+    },
+  });
 
   const handleSubmit = () => {
     if (isEmptyString(value)) {
@@ -61,7 +61,7 @@ export const useCheckEmail = (type: string, value: string) => {
     } else if (type === 'signup') {
       emailRequest.mutate();
     } else if (type === 'findPassword') {
-      findPw();
+      findPw.mutate();
     }
   };
 
