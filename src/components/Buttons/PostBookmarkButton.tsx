@@ -2,7 +2,7 @@ import React, { SetStateAction, useState } from 'react';
 import { css } from '@emotion/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Star } from '@/assets';
-import { fetchAddBookmark, fetchDeleteBookarnk } from '@/api/posts/posts';
+import { fetchAddBookmark, fetchDeleteBookmark } from '@/api/posts/posts';
 import { useMemberQuery } from '@/hooks/api/useMemberQuery';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useNewSelector } from '@/store';
@@ -55,7 +55,7 @@ const PostBookmarkButton = ({
   });
 
   const deleteBookmark = useMutation({
-    mutationFn: fetchDeleteBookarnk,
+    mutationFn: fetchDeleteBookmark,
     onMutate: () => {
       const prevPost: NPost | undefined = queryClient.getQueryData([
         'posts',

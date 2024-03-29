@@ -113,8 +113,10 @@ export const fetchAddBookmark = async (postId: number) => {
   return response;
 };
 
-export const fetchDeleteBookarnk = async (postId: number) => {
-  const response = await axiosInstance.post(END_POINT.DELETE_BOOKMARK(postId));
+export const fetchDeleteBookmark = async (postId: number) => {
+  const response = await axiosInstance.delete(
+    END_POINT.DELETE_BOOKMARK(postId),
+  );
   return response;
 };
 
