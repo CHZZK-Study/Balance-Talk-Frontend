@@ -12,21 +12,23 @@ import {
   titleWrapper,
 } from './ChangeVoteModal.style';
 
-interface LoginModalProps {
+interface ChangeVoteModalProps {
   handleModal: React.Dispatch<SetStateAction<boolean>>;
   postId: number;
   balanceOptionId: number;
+  category: 'CASUAL' | 'DISCUSSION';
 }
 
 const ChangeVoteModal = ({
   handleModal,
   postId,
   balanceOptionId,
-}: LoginModalProps) => {
+  category,
+}: ChangeVoteModalProps) => {
   const { member } = useMemberQuery(
     useParseJwt(useNewSelector(selectAccessToken)).memberId,
   );
-  // const member = { memberId: 103, nickname: '김성현' };
+
   const queryClient = useQueryClient();
 
   const changeVoteModalRef = useRef<HTMLDivElement>(null);
@@ -35,6 +37,9 @@ const ChangeVoteModal = ({
     mutationFn: (data) => changeBalanceOption(postId, { ...data }),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ['posts', postId] });
+      await queryClient.invalidateQueries({
+        queryKey: ['posts', 'vote', postId],
+      });
     },
   });
 
@@ -59,26 +64,34 @@ const ChangeVoteModal = ({
     <div ref={changeVoteModalRef} css={ChangeVoteModalWrapper}>
       <div css={titleWrapper}>
         {member
-          ? '선택지를 바꾸시겠습니까?'
+          ? category === 'CASUAL'
+            ? '캐쥬얼 밸런스게임은 선택지를 변경할 수 없습니다.'
+            : '선택지를 바꾸시겠습니까?'
           : '비회원은 선택지를 바꿀 수 없습니다.'}
       </div>
       <div css={btnsWrapper}>
         {member ? (
-          <>
+          category === 'CASUAL' ? (
             <Button variant="cancel" onClick={() => handleModal(false)}>
-              다음에 하기
+              닫기
             </Button>
-            <Button
-              onClick={() => {
-                changeBalanceOptionByUserMutate({
-                  selectedOptionId: balanceOptionId,
-                });
-                handleModal(false);
-              }}
-            >
-              선택지 변경
-            </Button>
-          </>
+          ) : (
+            <>
+              <Button variant="cancel" onClick={() => handleModal(false)}>
+                다음에 하기
+              </Button>
+              <Button
+                onClick={() => {
+                  changeBalanceOptionByUserMutate({
+                    selectedOptionId: balanceOptionId,
+                  });
+                  handleModal(false);
+                }}
+              >
+                선택지 변경
+              </Button>
+            </>
+          )
         ) : (
           <Button variant="cancel" onClick={() => handleModal(false)}>
             닫기
