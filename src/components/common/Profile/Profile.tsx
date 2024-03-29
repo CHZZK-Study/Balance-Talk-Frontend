@@ -23,7 +23,7 @@ const Profile = () => {
   return (
     <div css={profileContainer}>
       <ProfileImage
-        src={member.profilePhoto ? member.profilePhoto : defaultProfile}
+        src={member.profileImageUrl ? member.profileImageUrl : defaultProfile}
         size="large"
         isOutline
       />

@@ -23,7 +23,6 @@ const UpdatePage = () => {
   const accessToken = useNewSelector(selectAccessToken);
   const token = useParseJwt(accessToken);
   const { member } = useMemberQuery(token.memberId);
-  console.log(member);
   const { form, onChange, onSuccessChange, setEach, handleSubmit } =
     useMemberUpdate();
   if (!member) return null;
@@ -32,7 +31,7 @@ const UpdatePage = () => {
       <Heading size="small">회원정보 수정</Heading>
       <InputProfileImage
         setProfilePhoto={setEach}
-        imgSrc={member.profilePhoto}
+        imgSrc={member.profileImageUrl}
       />
       <div css={inputContainer}>
         <Input
