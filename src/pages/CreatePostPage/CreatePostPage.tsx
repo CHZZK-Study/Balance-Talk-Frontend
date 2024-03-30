@@ -76,7 +76,7 @@ const CreatePostPage = () => {
   };
 
   const onTagEnter = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && e.nativeEvent.isComposing === false) {
       e.preventDefault();
 
       if (!tags.includes(tag)) {
