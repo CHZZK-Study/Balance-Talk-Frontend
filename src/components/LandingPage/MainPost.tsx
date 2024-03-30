@@ -35,7 +35,7 @@ const MainPost = ({ post }: MainPostProps) => {
   const postId = post?.id;
 
   const { data } = useQuery({
-    queryKey: ['posts', 'vote', postId],
+    queryKey: ['posts', 'votes', postId],
     queryFn: () => fetchVoteCount(postId as number),
     enabled: !!postId,
   });
@@ -47,7 +47,7 @@ const MainPost = ({ post }: MainPostProps) => {
   const navigate = useNavigate();
   return (
     <div css={css({ display: 'flex', margin: '10px' })}>
-      <PostImage images={images} size="large" />
+      <PostImage images={images} size="large" postId={post?.id} />
       <div css={mainPostInfoWrapper}>
         <div css={mainPostTitleWrapper}>
           <h3 css={mainPostTitle}>{postInfo?.title}</h3>

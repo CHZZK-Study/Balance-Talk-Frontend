@@ -10,4 +10,19 @@ export const getDate = (date: string) => {
 
 export const getYearMonthDay = (date: string) => {
   return date.split('T')[0];
+
+export const isFinished = (date: string) => {
+  const [yearMonthDay, hourMinuteSecond] = date.split(' ');
+  const [year, month, day] = yearMonthDay
+    .split('/')
+    .map((el: string) => Number(el));
+  const [hour, minute, second] = hourMinuteSecond
+    .split(':')
+    .map((el: string) => Number(el));
+
+  return (
+    new Date(year, month, day, hour, minute, second).getTime() -
+      new Date().getTime() <
+    0
+  );
 };

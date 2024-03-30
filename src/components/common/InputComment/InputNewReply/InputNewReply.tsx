@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, KeyboardEvent } from 'react';
 import { css } from '@emotion/react';
 
 import Button from '@/components/design/Button/Button';
@@ -31,6 +31,11 @@ const InputNewReply = ({
     reset,
   });
 
+  const handleEnterKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && e.nativeEvent.isComposing === false)
+      handleSubmit();
+  };
+
   return (
     <Input
       name="content"
@@ -39,6 +44,7 @@ const InputNewReply = ({
       value={value}
       ref={inputRef}
       onChange={onChange}
+      onKeyDown={handleEnterKeyDown}
       btn={<Button onClick={handleSubmit}>등록</Button>}
       css={css({ width: '250px' })}
     />

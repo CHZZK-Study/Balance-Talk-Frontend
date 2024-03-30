@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ImageInfo } from '../../../types/post';
 import {
   SizeType,
@@ -11,11 +12,18 @@ import {
 type PostImageProps = {
   images?: ImageInfo[];
   size: SizeType;
+  postId?: number;
 };
 
-const PostImage = ({ images, size }: PostImageProps) => {
+const PostImage = ({ images, size, postId }: PostImageProps) => {
+  const navigate = useNavigate();
+
   return (
-    <div css={postImageWrapper(size)}>
+    <div
+      css={postImageWrapper(size)}
+      onClick={() => navigate(`/posts/${postId}`)}
+      role="presentation"
+    >
       {images?.[0].imageUrl ? (
         <img
           css={imageWrapper(size)}

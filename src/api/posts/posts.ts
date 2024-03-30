@@ -24,6 +24,12 @@ export const fetchPostsData = async (
   return response.data as PostWithPagenation;
 };
 
+export const fetchBestPostsData = async () => {
+  const response = await axiosInstance.get(`/posts/best`);
+  console.log(response.data);
+  return response.data as Post[];
+};
+
 export const fetchVoteCount = async (postId: number): Promise<VoteInfo[]> => {
   // const response = await fetch(`${URL}/post/${postId}/vote`);
   // const result = (await response.json()) as VoteInfo[];
@@ -122,7 +128,7 @@ export const fetchDeleteBookmark = async (postId: number) => {
 
 export const fetchReportPost = async (postId: number) => {
   const response = await axiosInstance.post(END_POINT.REPORT_POST(postId), {
-    reason: '신고합니다.',
+    category: '신고합니다.',
     description: '신고 내용',
   });
   return response;
