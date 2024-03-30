@@ -44,14 +44,18 @@ const HeartButton = ({ isLiked, postId }: HeartButtonProps) => {
         | Post[]
         | undefined;
       queryKeys.forEach((queryKey) => {
-        if (queryKey[0] === 'posts' && queryKey[1] !== 'votes') {
+        if (
+          queryKey[0] === 'posts' &&
+          queryKey[1] !== 'votes' &&
+          queryKey[1] !== 'vote'
+        ) {
           const prevPostData:
             | InfiniteData<PostWithPagenation, unknown>
             | PostWithPagenation
             | Post[]
             | undefined = queryClient.getQueryData(queryKey);
           prevData = prevPostData;
-          if (prevPostData && Object.keys(prevPostData).length > 7) {
+          if (prevPostData && Object.keys(queryKey[1]).length === 2) {
             const newPostData = (
               prevPostData as PostWithPagenation
             )?.content.map((post) => {
@@ -72,7 +76,7 @@ const HeartButton = ({ isLiked, postId }: HeartButtonProps) => {
             });
 
             queryClient.setQueryData(queryKey, newPostData);
-          } else {
+          } else if (prevPostData && Object.keys(queryKey[1]).length === 1) {
             const realUpdatedData = (
               prevPostData as InfiniteData<PostWithPagenation, unknown>
             )?.pages.map((page) => {
@@ -116,14 +120,18 @@ const HeartButton = ({ isLiked, postId }: HeartButtonProps) => {
         | Post[]
         | undefined;
       queryKeys.forEach((queryKey) => {
-        if (queryKey[0] === 'posts' && queryKey[1] !== 'votes') {
+        if (
+          queryKey[0] === 'posts' &&
+          queryKey[1] !== 'votes' &&
+          queryKey[1] !== 'vote'
+        ) {
           const prevPostData:
             | InfiniteData<PostWithPagenation, unknown>
             | PostWithPagenation
             | Post[]
             | undefined = queryClient.getQueryData(queryKey);
           prevData = prevPostData;
-          if (prevPostData && Object.keys(prevPostData).length > 7) {
+          if (prevPostData && Object.keys(queryKey[1]).length === 2) {
             const newPostData = (
               prevPostData as PostWithPagenation
             )?.content.map((post) => {
@@ -144,7 +152,7 @@ const HeartButton = ({ isLiked, postId }: HeartButtonProps) => {
             });
 
             queryClient.setQueryData(queryKey, newPostData);
-          } else {
+          } else if (prevPostData && Object.keys(queryKey[1]).length === 1) {
             const realUpdatedData = (
               prevPostData as InfiniteData<PostWithPagenation, unknown>
             )?.pages.map((page) => {
