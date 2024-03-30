@@ -41,12 +41,14 @@ const VotedPostsPage = () => {
           <ItemNull>{NULL.VOTES}</ItemNull>
         )}
       </List>
-      <PageNavigation
-        pages={pages}
-        selected={selectedPage}
-        maxPage={pages.length}
-        onChangeNavigate={handleChangeNavigate}
-      />
+      {myVotedPosts && myVotedPosts.totalPages > 0 && (
+        <PageNavigation
+          pages={pages}
+          selected={selectedPage}
+          maxPage={pages.length}
+          onChangeNavigate={handleChangeNavigate}
+        />
+      )}
     </>
   );
 };

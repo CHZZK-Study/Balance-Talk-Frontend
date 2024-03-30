@@ -43,12 +43,14 @@ const CommentsPage = () => {
           <ItemNull>{NULL.COMMENTS}</ItemNull>
         )}
       </List>
-      <PageNavigation
-        pages={pages}
-        selected={selectedPage}
-        maxPage={pages.length}
-        onChangeNavigate={handleChangeNavigate}
-      />
+      {myCommentsPosts && myCommentsPosts.totalPages > 0 && (
+        <PageNavigation
+          pages={pages}
+          selected={selectedPage}
+          maxPage={pages.length}
+          onChangeNavigate={handleChangeNavigate}
+        />
+      )}
     </>
   );
 };

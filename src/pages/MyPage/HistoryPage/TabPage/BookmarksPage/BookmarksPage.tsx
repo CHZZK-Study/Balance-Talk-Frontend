@@ -74,12 +74,14 @@ const BookmarksPage = () => {
           <ItemNull>{NULL.BOOKMARKS}</ItemNull>
         )}
       </List>
-      <PageNavigation
-        pages={pages}
-        selected={selectedPage}
-        maxPage={pages.length}
-        onChangeNavigate={handleChangeNavigate}
-      />
+      {myBookmarksPosts && myBookmarksPosts.totalPages > 0 && (
+        <PageNavigation
+          pages={pages}
+          selected={selectedPage}
+          maxPage={pages.length}
+          onChangeNavigate={handleChangeNavigate}
+        />
+      )}
     </>
   );
 };
