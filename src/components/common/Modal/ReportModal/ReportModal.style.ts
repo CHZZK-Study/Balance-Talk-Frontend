@@ -1,7 +1,7 @@
 import { Theme } from '@/styles/Theme';
 import { css } from '@emotion/react';
 
-export const ChangeVoteModalWrapper = css({
+export const reportModalWrapper = css({
   position: 'fixed',
   top: '50%',
   left: '50%',

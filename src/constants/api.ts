@@ -26,7 +26,10 @@ export const END_POINT = {
   EMAIL_REQUEST: '/email/request',
   FIND_PW: '/email/password',
   POST: (id: number) => `/posts/${id}`,
-  GET_BOOKMARK: '/bookmark',
+  MYPAGE_POSTS: '/myPage/history/posts',
+  MYPAGE_COMMENTS: '/myPage/history/comments',
+  MYPAGE_VOTEDPOSTS: '/myPage/history/votedPosts',
+  MYPAGE_BOOKMARKS: '/myPage/history/bookmarks',
   COMMENTS: (postId: number) => `/posts/${postId}/comments`,
   CREATE_COMMENT: (postId: number) => `/posts/${postId}/comments`,
   VOTE_COUNT: (postId: number) => `/posts/${postId}/vote`,
@@ -40,7 +43,7 @@ export const END_POINT = {
   DELETE_LIKE_COMMENT: (postId: number, commentId: number) =>
     `posts/${postId}/comments/${commentId}/likes`,
   REPORT_COMMENT: (postId: number, commentId: number) =>
-    `posts/${postId}/comments/${commentId}/report`,
+    `posts/${postId}/${commentId}/report`,
   REFRESH: '/members/reissue',
   EDIT_COMMENT: (postId: number, commentId: number) =>
     `posts/${postId}/comments/${commentId}`,

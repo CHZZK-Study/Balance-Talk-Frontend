@@ -34,7 +34,6 @@ const InputProfileImage = ({
       setProfilePhoto('profilePhoto', res.storedName);
     },
   });
-
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       console.log(acceptedFiles[0]);
