@@ -22,8 +22,9 @@ export const postEmailRequest = async (email: string) => {
 };
 
 export const getFindPw = async (email: string) => {
-  const { data } = await axiosInstance.get<string>(`${END_POINT.FIND_PW}`, {
-    params: { email },
-  });
+  const { data } = await axiosInstance.post<string>(
+    `${END_POINT.FIND_PW}`,
+    email,
+  );
   return data;
 };
