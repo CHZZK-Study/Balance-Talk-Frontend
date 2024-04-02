@@ -75,7 +75,7 @@ const PostItem = ({ post, showClosed }: PostItemProps) => {
           <Eye />
           <span css={etcButtonText}>{post.views || '0'}</span>
           <Comment />
-          <span css={etcButtonText}>{post.commentCount || '0'}</span>
+          <span css={etcButtonText}>{post.commentsCount || '0'}</span>
         </div>
         <div css={css({ display: 'flex', height: '100%' })}>
           <HeartButton isLiked={isLiked} postId={post.id} />

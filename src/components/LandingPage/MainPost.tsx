@@ -81,7 +81,7 @@ const MainPost = ({ post }: MainPostProps) => {
             <Eye />
             <span css={etcButtonText}>{postInfo?.views || '0'}</span>
             <Comment />
-            <span css={etcButtonText}>{postInfo?.commentCount || '0'}</span>
+            <span css={etcButtonText}>{postInfo?.commentsCount || '0'}</span>
           </div>
           <div
             css={css({ display: 'flex', height: '100%', marginBottom: '1px' })}
