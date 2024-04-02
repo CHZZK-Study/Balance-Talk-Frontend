@@ -2,7 +2,7 @@ export type ImageInfo = {
   imageUrl?: string;
   title: string;
   // 게시물 Description 필요
-  description?: string;
+  description: string;
 };
 
 export type BalanceOption = {
@@ -55,7 +55,6 @@ export type VoteInfo = {
 };
 
 export type CreatePost = {
-  memberId: number;
   title: string;
   category: string;
   deadline: string;

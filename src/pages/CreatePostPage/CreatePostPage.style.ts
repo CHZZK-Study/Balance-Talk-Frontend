@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
 
 export const headingWrapper = css({
   position: 'relative',
@@ -50,4 +50,22 @@ export const versusText = css({
   zIndex: 1,
   WebkitTextStroke: '1px white',
   textShadow: '0px 4px 4px gray',
+});
+
+export const shakeAnimation = keyframes({
+  '0%': {
+    transform: 'translateX(0)',
+  },
+  '25%': {
+    transform: 'translateX(-4px)',
+  },
+  '50%': {
+    transform: 'translateX(4px)',
+  },
+  '75%': {
+    transform: 'translateX(-4px)',
+  },
+  '100%': {
+    transform: 'translateX(0px)',
+  },
 });

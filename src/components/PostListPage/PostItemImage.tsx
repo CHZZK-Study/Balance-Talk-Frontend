@@ -21,7 +21,11 @@ const PostItemImage = ({ images }: PostImageProps) => {
           alt={images?.[0].title}
         />
       ) : (
-        <div css={[imageWrapper, imageTextWrapper]}>{images?.[0].title}</div>
+        <div css={[imageWrapper, imageTextWrapper]}>
+          {images?.[0].title.length > 7
+            ? `${images?.[0]?.title.slice(0, 6)}...`
+            : images?.[0]?.title ?? ''}
+        </div>
       )}
       <span css={versusText}>vs</span>
       {images?.[1].imageUrl ? (
@@ -31,7 +35,11 @@ const PostItemImage = ({ images }: PostImageProps) => {
           alt={images?.[1].title}
         />
       ) : (
-        <div css={[imageWrapper, imageTextWrapper]}>{images?.[1].title}</div>
+        <div css={[imageWrapper, imageTextWrapper]}>
+          {images?.[1].title.length > 7
+            ? `${images?.[1]?.title.slice(0, 6)}...`
+            : images?.[1]?.title ?? ''}
+        </div>
       )}
       {/* <img
         css={imageWrapper}
