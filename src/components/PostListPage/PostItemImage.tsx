@@ -22,7 +22,7 @@ const PostItemImage = ({ images }: PostImageProps) => {
         />
       ) : (
         <div css={[imageWrapper, imageTextWrapper]}>
-          {images?.[0].title.length > 7
+          {images?.[0].title.length > 8
             ? `${images?.[0]?.title.slice(0, 6)}...`
             : images?.[0]?.title ?? ''}
         </div>
@@ -36,7 +36,7 @@ const PostItemImage = ({ images }: PostImageProps) => {
         />
       ) : (
         <div css={[imageWrapper, imageTextWrapper]}>
-          {images?.[1].title.length > 7
+          {images?.[1].title.length > 8
             ? `${images?.[1]?.title.slice(0, 6)}...`
             : images?.[1]?.title ?? ''}
         </div>

@@ -32,8 +32,8 @@ const PostImage = ({ images, size, postId }: PostImageProps) => {
         />
       ) : (
         <div css={[imageWrapper(size), imageTextWrapper(size)]}>
-          {images?.[0].title.length > 7
-            ? `${images?.[0]?.title.slice(0, 7)}...`
+          {images?.[0].title.length > 8
+            ? `${images?.[0]?.title.slice(0, 6)}...`
             : images?.[0]?.title ?? ''}
         </div>
       )}
@@ -46,7 +46,7 @@ const PostImage = ({ images, size, postId }: PostImageProps) => {
         />
       ) : (
         <div css={[imageWrapper(size), imageTextWrapper(size)]}>
-          {images?.[1].title.length > 7
+          {images?.[1].title.length > 8
             ? `${images?.[1]?.title.slice(0, 6)}...`
             : images?.[1]?.title ?? ''}
         </div>

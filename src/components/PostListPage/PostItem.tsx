@@ -54,7 +54,11 @@ const PostItem = ({ post, showClosed }: PostItemProps) => {
     >
       <PostItemImage images={imagesInfo} />
       <div css={postItemTitleWrapper}>
-        <h4 css={postItemTitle}>{post.title}</h4>
+        <h4 css={postItemTitle}>
+          {post?.title.length > 15
+            ? `${post?.title.slice(0, 13)}...`
+            : post?.title}
+        </h4>
         <div css={postItemDday}>{dDayString}</div>
       </div>
       <div css={tagWrapper}>
