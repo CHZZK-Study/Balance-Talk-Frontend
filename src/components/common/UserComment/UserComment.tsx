@@ -56,6 +56,7 @@ const UserComment = ({
   isOpenReplies,
   alignLeft,
   selectedPageNumber,
+  replyCount,
   handleLoginModal,
   handleOpenReplies,
 }: UserCommentProps) => {
@@ -142,7 +143,13 @@ const UserComment = ({
                 type="button"
                 onClick={() => handleOpenReplies((prev) => !prev)}
               >
-                {isOpenReplies ? '답글 접기' : '답글 확인하기'}
+                {isOpenReplies
+                  ? '답글 접기'
+                  : replyCount
+                    ? `${replyCount}개의 답글`
+                    : member
+                      ? '답글 작성하기'
+                      : ''}
               </button>
             </div>
           )}

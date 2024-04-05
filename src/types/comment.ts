@@ -11,6 +11,7 @@ export type Comment = {
   lastModifiedAt: string;
   profileImageUrl: string | null;
   postTitle?: string;
+  replyCount?: number;
 };
 
 export type CreatedComment = Pick<Comment, 'content' | 'selectedOptionId'>;
