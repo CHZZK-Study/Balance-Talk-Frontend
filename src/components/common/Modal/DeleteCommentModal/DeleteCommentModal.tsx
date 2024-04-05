@@ -15,7 +15,6 @@ interface DeleteCommentModalProps {
   parentCommentId: number | null;
 }
 
-// deleteComemntMutation.mutate({ _postId: postId, _commentId: commentId });
 const DeleteCommentModal = ({
   handleModal,
   postId,
