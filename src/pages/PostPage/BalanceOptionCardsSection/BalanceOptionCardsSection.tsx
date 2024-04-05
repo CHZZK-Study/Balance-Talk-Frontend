@@ -39,7 +39,7 @@ const BalanceOptionCardsSection = ({
 
   return (
     <div css={balanceOptionCardsSectionWrapper}>
-      {isFinished(deadline) && (
+      {deadline && isFinished(deadline) && (
         <div css={closedImageWrapper}>
           <Closed />
         </div>

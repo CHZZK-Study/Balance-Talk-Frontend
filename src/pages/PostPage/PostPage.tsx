@@ -19,14 +19,15 @@ import {
 const PostPage = () => {
   const postId = Number(useParams().id);
   const [isOpened, setIsOpened] = useState(false);
-  const { isLoading, data: post } = useQuery({
+  const { data: post } = useQuery({
     queryKey: ['posts', postId],
     queryFn: () => getPost(postId),
   });
 
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  console.log(post);
 
-  return isLoading ? (
+  return !post ? (
     <div />
   ) : (
     <div css={PostPageWrapper}>
