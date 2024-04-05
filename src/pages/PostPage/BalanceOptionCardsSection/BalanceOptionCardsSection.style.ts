@@ -1,10 +1,18 @@
 import { css } from '@emotion/react';
 
 export const balanceOptionCardsSectionWrapper = css({
+  position: 'relative',
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
   justifyContent: 'center',
+});
+
+export const closedImageWrapper = css({
+  position: 'absolute',
+  top: '-5px',
+  left: '-20px',
+  zIndex: '300',
 });
 export const balanceOptionCardsWrapper = css({
   position: 'relative',
