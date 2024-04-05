@@ -20,10 +20,8 @@ export const isFinished = (date: string) => {
   const [hour, minute, second] = hourMinuteSecond
     .split(':')
     .map((el: string) => Number(el));
+  const deadline = new Date(year, month - 1, day, hour, minute, second);
+  const now = new Date();
 
-  return (
-    new Date(year, month, day, hour, minute, second).getTime() -
-      new Date().getTime() <
-    0
-  );
+  return deadline.getTime() - now.getTime() < 0;
 };

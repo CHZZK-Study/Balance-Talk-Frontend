@@ -23,9 +23,12 @@ const ResultSection = ({ postId }: ResultSectionProps) => {
   const voteCounts = voteInfos?.map(
     (voteInfo: VoteInfo) => voteInfo.voteCount,
   ) || [0, 0];
-  const votePercents = voteCounts?.map((voteCount: number) =>
-    getPercent(voteCounts[0] + voteCounts[1], voteCount),
-  );
+
+  const votePercents = voteCounts?.map((voteCount: number) => {
+    return voteCount === 0
+      ? 0
+      : getPercent(voteCounts[0] + voteCounts[1], voteCount);
+  });
 
   return isLoading ? (
     <div />
@@ -35,7 +38,7 @@ const ResultSection = ({ postId }: ResultSectionProps) => {
         <div css={blankWrapper} />
         <div
           css={optionVoteWrapper('lightred')}
-        >{`${getPercent(voteCounts[0] + voteCounts[1], voteCounts[0])}%(${voteCounts[0]})`}</div>
+        >{`${voteCounts[0] + voteCounts[1] === 0 ? 0 : getPercent(voteCounts[0] + voteCounts[1], voteCounts[0])}%(${voteCounts[0]})`}</div>
       </div>
       <div css={fightImageWrapper}>
         <Fight />
@@ -43,7 +46,7 @@ const ResultSection = ({ postId }: ResultSectionProps) => {
       <div css={optionResultWrapper(100 - votePercents[1])}>
         <div
           css={optionVoteWrapper('lightblue')}
-        >{`${getPercent(voteCounts[0] + voteCounts[1], voteCounts[1])}%(${voteCounts[1]})`}</div>
+        >{`${voteCounts[0] + voteCounts[1] === 0 ? 0 : getPercent(voteCounts[0] + voteCounts[1], voteCounts[1])}%(${voteCounts[1]})`}</div>
         <div css={blankWrapper} />
       </div>
     </div>
