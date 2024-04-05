@@ -36,6 +36,7 @@ const PostPage = () => {
         likesCount={post?.likesCount || 0}
         postTags={post?.postTags || []}
         totalVotesCount={post?.totalVotesCount || 0}
+        category={post?.category || 'CASUAL'}
       />
       <BalanceOptionCardsSection
         id={post?.id || 0}

@@ -37,7 +37,7 @@ const ResultSection = ({ postId }: ResultSectionProps) => {
       <div css={optionResultWrapper(votePercents[0])}>
         <div css={blankWrapper} />
         <div
-          css={optionVoteWrapper('lightred')}
+          css={optionVoteWrapper('lightred', votePercents[0])}
         >{`${voteCounts[0] + voteCounts[1] === 0 ? 0 : getPercent(voteCounts[0] + voteCounts[1], voteCounts[0])}%(${voteCounts[0]})`}</div>
       </div>
       <div css={fightImageWrapper}>
@@ -45,7 +45,7 @@ const ResultSection = ({ postId }: ResultSectionProps) => {
       </div>
       <div css={optionResultWrapper(100 - votePercents[1])}>
         <div
-          css={optionVoteWrapper('lightblue')}
+          css={optionVoteWrapper('lightblue', votePercents[1])}
         >{`${voteCounts[0] + voteCounts[1] === 0 ? 0 : getPercent(voteCounts[0] + voteCounts[1], voteCounts[1])}%(${voteCounts[1]})`}</div>
         <div css={blankWrapper} />
       </div>
