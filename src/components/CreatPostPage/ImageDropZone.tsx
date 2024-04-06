@@ -29,7 +29,7 @@ const ImageDropZone: React.FC<ImageDropZoneProps> = ({ setFile }) => {
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: {
-      'image/*': ['.jpeg', '.jpg', '.png'],
+      'image/*': ['.jpeg', '.jpg', '.png', '.svg'],
     },
   });
 

@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, useCallback } from 'react';
+import { useState, ChangeEvent, useCallback, FocusEvent } from 'react';
 
 function useInputs<T>(initialState: T) {
   const [form, setForm] = useState<T>(initialState);
@@ -13,6 +13,15 @@ function useInputs<T>(initialState: T) {
       setForm((prevForm) => ({ ...prevForm, [name]: value }));
     },
     [],
+  );
+
+  const onBlur = useCallback(
+    (
+      e: FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
+    ) => {
+      const { name, value } = e.target;
+      setForm((prevForm) => ({ ...prevForm, [name]: value.trim() }));
+    },
   );
 
   const reset = useCallback(() => {
@@ -37,7 +46,7 @@ function useInputs<T>(initialState: T) {
     [],
   );
 
-  return { form, onChange, reset, setEach, setArray };
+  return { form, onChange, reset, setEach, setArray, onBlur };
 }
 
 export default useInputs;

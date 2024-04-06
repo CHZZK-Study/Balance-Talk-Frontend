@@ -22,7 +22,7 @@ import {
 import VoteButton from './VoteButton';
 
 type MainPostProps = {
-  post?: Post;
+  post: Post;
 };
 
 const calculateTotalVoteCount = (data: VoteInfo[]) => {
@@ -36,7 +36,7 @@ const MainPost = ({ post }: MainPostProps) => {
 
   const { data } = useQuery({
     queryKey: ['posts', 'votes', postId],
-    queryFn: () => fetchVoteCount(postId as number),
+    queryFn: () => fetchVoteCount(postId),
     enabled: !!postId,
   });
 
@@ -50,7 +50,11 @@ const MainPost = ({ post }: MainPostProps) => {
       <PostImage images={images} size="large" postId={post?.id} />
       <div css={mainPostInfoWrapper}>
         <div css={mainPostTitleWrapper}>
-          <h3 css={mainPostTitle}>{postInfo?.title}</h3>
+          <h3 css={mainPostTitle}>
+            {postInfo?.title.length > 15
+              ? `${postInfo?.title.slice(0, 13)}...`
+              : postInfo?.title}
+          </h3>
           <div css={TagButtonWrapper}>
             {postInfo?.postTags?.map((tag) => {
               if (tag) {
@@ -77,7 +81,7 @@ const MainPost = ({ post }: MainPostProps) => {
             <Eye />
             <span css={etcButtonText}>{postInfo?.views || '0'}</span>
             <Comment />
-            <span css={etcButtonText}>{postInfo?.commentCount || '0'}</span>
+            <span css={etcButtonText}>{postInfo?.commentsCount || '0'}</span>
           </div>
           <div
             css={css({ display: 'flex', height: '100%', marginBottom: '1px' })}

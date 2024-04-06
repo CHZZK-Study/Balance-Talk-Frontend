@@ -75,6 +75,22 @@ export const fetchPostById = async (postId: number): Promise<Post> => {
   return response.data as Post;
 };
 
+export const fetchPostSearchTitle = async (
+  keyword: string,
+): Promise<Post[]> => {
+  const response = await axiosInstance.get(
+    `/posts/title?keyword=${encodeURIComponent(keyword)}`,
+  );
+  return response.data as Post[];
+};
+
+export const fetchPostSearchTag = async (tagName: string): Promise<Post[]> => {
+  const response = await axiosInstance.get(
+    `/posts/tag?tagName=${encodeURIComponent(tagName)}`,
+  );
+  return response.data as Post[];
+};
+
 export const fetchAddLike = async (postId: number) => {
   // const response = await fetch(`${URL}/posts/${postId}/likes`, {
   //   method: 'POST',
@@ -95,6 +111,11 @@ export const fetchDeleteLike = async (postId: number) => {
   // return response.body;
 
   const response = await axiosInstance.delete(`/posts/${postId}/likes`);
+  return response;
+};
+
+export const deletePost = async (postId: number) => {
+  const response = await axiosInstance.delete(`/posts/${postId}`);
   return response;
 };
 

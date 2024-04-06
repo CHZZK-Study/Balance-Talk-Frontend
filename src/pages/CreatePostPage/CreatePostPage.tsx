@@ -23,6 +23,7 @@ import {
   etcButtonWrapper,
   headingWrapper,
   inputTitleWrapper,
+  shakeAnimation,
   tagContainer,
   tagWrapper,
   versusText,
@@ -41,6 +42,9 @@ const inputStyles = {
 
 const CreatePostPage = () => {
   const navigate = useNavigate();
+
+  const [isValidDate, setIsValidDate] = useState(false);
+  const [clickSubmit, setClickSubmit] = useState(false);
 
   const initialState = {
     title: '',
@@ -63,10 +67,10 @@ const CreatePostPage = () => {
 
   const queryClient = useQueryClient();
 
-  const { form, onChange, setArray, setEach } =
+  const { form, onChange, setArray, setEach, onBlur } =
     useInputs<CreatePost>(initialState);
 
-  const { title, category, deadline, tags } = form;
+  const { title, category, deadline, tags, balanceOptions } = form;
 
   const [tag, setTag] = useState('');
 
@@ -109,13 +113,29 @@ const CreatePostPage = () => {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['posts'] }),
   });
 
+  const isBlankString = (str: string) => {
+    return str.trim() === '';
+  };
+
   const onSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    mutate(form);
-    await queryClient.invalidateQueries({
-      queryKey: ['posts', { sort: 'createdAt', page: 0 }],
-    });
-    navigate('/');
+    setClickSubmit(true);
+    setTimeout(() => {
+      setClickSubmit(false);
+    }, 500);
+    if (!isValidDate) {
+    } else if (isBlankString(title)) {
+    } else if (isBlankString(balanceOptions[0].title)) {
+    } else if (isBlankString(balanceOptions[0].description)) {
+    } else if (isBlankString(balanceOptions[1].title)) {
+    } else if (isBlankString(balanceOptions[1].description)) {
+    } else {
+      mutate(form);
+      await queryClient.invalidateQueries({
+        queryKey: ['posts', { sort: 'createdAt', page: 0 }],
+      });
+      navigate('/');
+    }
   };
 
   useEffect(() => {
@@ -137,7 +157,9 @@ const CreatePostPage = () => {
       <form onSubmit={onSubmitHandler}>
         <div css={inputTitleWrapper}>
           <input
+            onBlur={onBlur}
             name="title"
+            maxLength={50}
             required
             value={title}
             onChange={onChange}
@@ -198,15 +220,20 @@ const CreatePostPage = () => {
                   <option value="DISCUSSION">토론</option>
                 </select>
               </div>
-              <div>
+              <div
+                css={css({
+                  animation: `${!isValidDate && clickSubmit ? `${shakeAnimation} .5s linear` : 'none'}`,
+                })}
+              >
                 <DatePicker
                   disablePast
                   value={dayjs(deadline)}
                   onChange={(newDate) => {
                     setEach(
                       'deadline',
-                      `${dayjs(newDate).format('YYYY/MM/DD')} 23:59:59`,
+                      `${dayjs(newDate).format('YYYY-MM-DD')}T23:59:59`,
                     );
+                    setIsValidDate(true);
                   }}
                   css={css({
                     ...inputStyles,
@@ -221,6 +248,7 @@ const CreatePostPage = () => {
                         border: 'none',
                       },
                     },
+                    border: isValidDate ? 'none' : '1px solid red',
                   })}
                   label="마감 기한"
                   slotProps={{
@@ -288,6 +316,7 @@ const CreatePostPage = () => {
                 id="casual"
                 name="tag"
                 value={tag}
+                maxLength={20}
                 onChange={onTagChange}
                 onKeyDown={onTagEnter}
                 onBlur={onTagBlur}
@@ -326,9 +355,17 @@ const CreatePostPage = () => {
           </div>
         </div>
         <div css={createFormContainer}>
-          <CreatePostForm setBalanceOptions={setArray} index={0} />
+          <CreatePostForm
+            setBalanceOptions={setArray}
+            index={0}
+            clickSubmit={clickSubmit}
+          />
           <span css={versusText}>vs</span>
-          <CreatePostForm setBalanceOptions={setArray} index={1} />
+          <CreatePostForm
+            setBalanceOptions={setArray}
+            index={1}
+            clickSubmit={clickSubmit}
+          />
         </div>
       </form>
     </div>

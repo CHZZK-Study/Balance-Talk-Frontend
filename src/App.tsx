@@ -25,6 +25,7 @@ import { useParseJwt } from './hooks/common/useParseJwt';
 import { useMemberQuery } from './hooks/api/useMemberQuery';
 import { selectAccessToken } from './store/auth';
 import ProtectedRoutes from './components/Routes/ProtectedRoutes';
+import SearchResultPage from './pages/SearchResultPage/SearchResultPage';
 
 const App: React.FC = () => {
   const accessToken = useNewSelector(selectAccessToken);
@@ -37,6 +38,7 @@ const App: React.FC = () => {
           <Route index element={<LandingPage />} />
           <Route path="posts" element={<PostList />} />
           <Route path="posts/:id" element={<PostPage />} />
+          <Route path="searchResult" element={<SearchResultPage />} />
           <Route element={<ProtectedRoutes member={member} />}>
             <Route path="post/create" element={<CreatePostPage />} />
           </Route>
