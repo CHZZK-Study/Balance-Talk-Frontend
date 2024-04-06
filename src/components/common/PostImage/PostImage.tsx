@@ -10,7 +10,7 @@ import {
 } from './PostImage.sylte';
 
 type PostImageProps = {
-  images?: ImageInfo[];
+  images: ImageInfo[];
   size: SizeType;
   postId?: number;
 };
@@ -32,7 +32,9 @@ const PostImage = ({ images, size, postId }: PostImageProps) => {
         />
       ) : (
         <div css={[imageWrapper(size), imageTextWrapper(size)]}>
-          {images?.[0].title}
+          {images?.[0].title.length > 8
+            ? `${images?.[0]?.title.slice(0, 6)}...`
+            : images?.[0]?.title ?? ''}
         </div>
       )}
       <span css={fontWrapper(size)}>vs</span>
@@ -44,7 +46,9 @@ const PostImage = ({ images, size, postId }: PostImageProps) => {
         />
       ) : (
         <div css={[imageWrapper(size), imageTextWrapper(size)]}>
-          {images?.[1]?.title}
+          {images?.[1].title.length > 8
+            ? `${images?.[1]?.title.slice(0, 6)}...`
+            : images?.[1]?.title ?? ''}
         </div>
       )}
     </div>

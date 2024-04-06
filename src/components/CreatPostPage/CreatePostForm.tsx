@@ -12,6 +12,7 @@ type CreatePostFormProps = {
     index: number,
   ) => void;
   index: number;
+  clickSubmit: boolean;
 };
 
 const inputStyles = {
@@ -29,8 +30,13 @@ const initialState = {
   storedImageName: '',
 };
 
-const CreatePostForm = ({ setBalanceOptions, index }: CreatePostFormProps) => {
-  const { form, onChange, setEach } = useInputs<CreatePostImage>(initialState);
+const CreatePostForm = ({
+  setBalanceOptions,
+  index,
+  clickSubmit,
+}: CreatePostFormProps) => {
+  const { form, onChange, setEach, onBlur } =
+    useInputs<CreatePostImage>(initialState);
 
   const { title, description, storedImageName } = form;
 
@@ -46,6 +52,8 @@ const CreatePostForm = ({ setBalanceOptions, index }: CreatePostFormProps) => {
     <div css={css({ margin: '80px', marginTop: '40px' })}>
       <ImageDropZone setFile={setEach} />
       <input
+        maxLength={50}
+        onBlur={onBlur}
         required
         name="title"
         value={title}
@@ -77,6 +85,8 @@ const CreatePostForm = ({ setBalanceOptions, index }: CreatePostFormProps) => {
       <div>
         <textarea
           required
+          onBlur={onBlur}
+          maxLength={100}
           name="description"
           value={description}
           onChange={onChange}

@@ -3,8 +3,13 @@
 import { MyPostsContentType } from '@/types/mypage';
 import React, { ComponentPropsWithRef, forwardRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Delete } from '@/assets';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { deletePost } from '@/api/posts/posts';
 import {
+  deleteWrapper,
   hoverStyling,
+  myPostContainer,
   mypageListItemContainer,
   mypageTextStyling,
   noContainer,
@@ -16,23 +21,44 @@ export interface MyPostsProps extends ComponentPropsWithRef<'li'> {
 }
 
 const ItemMyPosts = ({ item }: MyPostsProps) => {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
+
   const handleClick = () => {
     navigate(`/posts/${item.postId}`);
   };
+
+  const { mutate } = useMutation({
+    mutationFn: deletePost,
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['myPosts'] }),
+  });
+
+  const handleDeleteClick = () => {
+    mutate(item.postId);
+  };
+
   return (
     <li css={mypageListItemContainer}>
       <span css={[mypageTextStyling('xSmall'), noContainer]}>
         {item.postId}
       </span>
-      <div css={withoutNoContainer}>
-        <p
-          onClick={handleClick}
-          css={[mypageTextStyling('small'), hoverStyling]}
+      <div css={myPostContainer}>
+        <div css={withoutNoContainer}>
+          <p
+            onClick={handleClick}
+            css={[mypageTextStyling('small'), hoverStyling]}
+          >
+            {item.postTitle}
+          </p>
+          <p css={mypageTextStyling('xSmall')}>{item.postCreatedAt}</p>
+        </div>
+        <div
+          css={deleteWrapper}
+          onClick={handleDeleteClick}
+          role="presentation"
         >
-          {item.postTitle}
-        </p>
-        <p css={mypageTextStyling('xSmall')}>{item.postCreatedAt}</p>
+          <Delete />
+        </div>
       </div>
     </li>
   );

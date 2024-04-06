@@ -96,7 +96,7 @@ const ToggleButton = ({ setShowClosed, showClosed }: Props) => {
           fontSize: '16px',
         })}
       >
-        마감된 게시글
+        마감된 게시글 보기
       </div>
     </div>
   );
