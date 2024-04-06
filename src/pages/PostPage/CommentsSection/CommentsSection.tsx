@@ -44,7 +44,7 @@ const CommentsSection = ({
     queryFn: () =>
       getComments(postId, {
         page: selectedPageNumber,
-        sort: [],
+        sort: 'asc',
       }),
   });
 
