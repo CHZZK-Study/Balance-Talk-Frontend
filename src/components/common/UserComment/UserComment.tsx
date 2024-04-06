@@ -29,6 +29,7 @@ import InputEditedComment from '../InputComment/InputEditedComment/InputEditedCo
 import ProfileImage from '../Profile/ProfileImage/ProfileImage';
 import defaultProfile from '../../../assets/images/defaultProfile.png';
 import ReportModal from '../Modal/ReportModal/ReportModal';
+import DeleteCommentModal from '../Modal/DeleteCommentModal/DeleteCommentModal';
 
 type UserCommentProps = Comment & {
   handleLoginModal: React.Dispatch<SetStateAction<boolean>>;
@@ -55,6 +56,7 @@ const UserComment = ({
   isOpenReplies,
   alignLeft,
   selectedPageNumber,
+  replyCount,
   handleLoginModal,
   handleOpenReplies,
 }: UserCommentProps) => {
@@ -63,6 +65,7 @@ const UserComment = ({
   const commentDate = lastModifedDate || createdDate;
   const [isActiveEditInput, setIsActiveEditInput] = useState(false);
   const [isReportModalOpoen, setIsReportModalOpen] = useState(false);
+  const [isDeleteModalOpoen, setIsDeleteModalOpen] = useState(false);
 
   const { member } = useMemberQuery(
     useParseJwt(useNewSelector(selectAccessToken)).memberId,
@@ -94,11 +97,7 @@ const UserComment = ({
               {member?.nickname === memberName && (
                 <div css={editDeletebtnsWrapper(!!isAlignLeft)}>
                   <CommentEditButton handleActiveEdit={setIsActiveEditInput} />
-                  <CommentDeleteButton
-                    postId={postId}
-                    commentId={id}
-                    parentCommentId={parentCommentId}
-                  />
+                  <CommentDeleteButton handleModal={setIsDeleteModalOpen} />
                 </div>
               )}
             </div>
@@ -144,7 +143,13 @@ const UserComment = ({
                 type="button"
                 onClick={() => handleOpenReplies((prev) => !prev)}
               >
-                {isOpenReplies ? '답글 접기' : '답글 확인하기'}
+                {isOpenReplies
+                  ? '답글 접기'
+                  : replyCount
+                    ? `${replyCount}개의 답글`
+                    : member
+                      ? '답글 작성하기'
+                      : ''}
               </button>
             </div>
           )}
@@ -152,6 +157,14 @@ const UserComment = ({
       </div>
       {isReportModalOpoen && (
         <ReportModal handleModal={setIsReportModalOpen} type="댓글" />
+      )}
+      {isDeleteModalOpoen && (
+        <DeleteCommentModal
+          postId={postId}
+          commentId={id}
+          parentCommentId={parentCommentId}
+          handleModal={setIsDeleteModalOpen}
+        />
       )}
     </div>
   );

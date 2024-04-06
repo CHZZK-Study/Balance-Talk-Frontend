@@ -43,7 +43,7 @@ export const END_POINT = {
   DELETE_LIKE_COMMENT: (postId: number, commentId: number) =>
     `posts/${postId}/comments/${commentId}/likes`,
   REPORT_COMMENT: (postId: number, commentId: number) =>
-    `posts/${postId}/${commentId}/report`,
+    `posts/${postId}/comments/${commentId}/report`,
   REFRESH: '/members/reissue',
   EDIT_COMMENT: (postId: number, commentId: number) =>
     `posts/${postId}/comments/${commentId}`,

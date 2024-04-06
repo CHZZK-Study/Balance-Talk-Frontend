@@ -21,3 +21,4 @@ export { default as Vote } from './svg/vote.svg';
 export { default as Edit } from './svg/Edit.svg';
 export { default as Delete } from './svg/Delete.svg';
 export { default as DisabledHeart } from './svg/DisabledHeart.svg';
+export { default as Closed } from './svg/Closed.svg';

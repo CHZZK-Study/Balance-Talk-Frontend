@@ -57,7 +57,6 @@ const BalanceOptionCard = ({
   const queryClient = useQueryClient();
   const [isChangeVoteModalOpen, setIsChangeVoteModalOpen] = useState(false);
   const { setSelectedOptionId } = useSelectedOptionsInLocalStorage();
-
   const { data: voteInfos } = useQuery({
     queryKey: ['posts', 'vote', postId],
     queryFn: () => getVoteCount(postId),
