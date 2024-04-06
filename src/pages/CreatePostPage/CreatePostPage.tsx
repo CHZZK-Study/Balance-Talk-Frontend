@@ -316,6 +316,7 @@ const CreatePostPage = () => {
                 id="casual"
                 name="tag"
                 value={tag}
+                maxLength={20}
                 onChange={onTagChange}
                 onKeyDown={onTagEnter}
                 onBlur={onTagBlur}

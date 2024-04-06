@@ -1,14 +1,21 @@
 import React, { MouseEvent } from 'react';
 import { css } from '@emotion/react';
+import { useNavigate } from 'react-router-dom';
 
 type TagButtonProps = {
   tag: string;
-  onClickHandler?: (e: MouseEvent<HTMLButtonElement>) => void;
 };
-const TagButton = ({ tag, onClickHandler }: TagButtonProps) => {
+const TagButton = ({ tag }: TagButtonProps) => {
+  const navigate = useNavigate();
+
+  const onTagClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    navigate(`/searchResult?tagName=${tag}`);
+  };
+
   return (
     <button
-      onClick={onClickHandler}
+      onClick={onTagClick}
       data-tag={tag}
       css={css({
         backgroundColor: '#EEEEEE',

@@ -16,7 +16,7 @@ export type Post = {
   id: number;
   title: string;
   views: number;
-  commentCount: number;
+  commentsCount: number;
   likesCount: number;
   myBookmark: boolean;
   myLike: boolean;
