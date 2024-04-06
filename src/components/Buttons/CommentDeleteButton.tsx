@@ -1,51 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, SetStateAction } from 'react';
 import { css } from '@emotion/react';
 import { Delete } from '@/assets';
-import { deleteComment } from '@/api/comments/comments';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { pulsate } from '../../styles/keyframes';
 
-const CommentDeleteButton = ({
-  postId,
-  commentId,
-  parentCommentId,
-}: {
-  postId: number;
-  commentId: number;
-  parentCommentId: number | null;
-}) => {
+interface CommentDeleteButtonProps {
+  handleModal: React.Dispatch<SetStateAction<boolean>>;
+}
+const CommentDeleteButton = ({ handleModal }: CommentDeleteButtonProps) => {
   const [isAnimation, setIsAnimation] = useState(false);
-  const queryClient = useQueryClient();
 
   const animationTrigger = () => {
     setIsAnimation(true);
     setTimeout(() => setIsAnimation(false), 200);
   };
 
-  const deleteComemntMutation = useMutation({
-    mutationFn: ({
-      _postId,
-      _commentId,
-    }: {
-      _postId: number;
-      _commentId: number;
-    }) => deleteComment(_postId, _commentId),
-    onSuccess: () => {
-      if (parentCommentId) {
-        queryClient.invalidateQueries({
-          queryKey: ['posts', 'comments', postId, parentCommentId, 'replies'],
-        });
-      } else {
-        queryClient.invalidateQueries({
-          queryKey: ['posts', 'comments', postId],
-        });
-      }
-    },
-  });
-
   const handleDeleteComment = () => {
     animationTrigger();
-    deleteComemntMutation.mutate({ _postId: postId, _commentId: commentId });
+    handleModal(true);
   };
 
   return (

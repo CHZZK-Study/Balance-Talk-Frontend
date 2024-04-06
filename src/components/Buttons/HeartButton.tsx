@@ -68,7 +68,7 @@ const HeartButton = ({ isLiked, postId }: HeartButtonProps) => {
               content: newPostData,
             };
             queryClient.setQueryData(queryKey, updatedData);
-          } else if (queryKey[1] === 'best') {
+          } else if (queryKey[1] === 'best' || queryKey[1] === 'search') {
             const newPostData = (prevPostData as Post[])?.map((post) => {
               return post.id === id
                 ? { ...post, myLike: true, likesCount: post.likesCount + 1 }
@@ -144,7 +144,7 @@ const HeartButton = ({ isLiked, postId }: HeartButtonProps) => {
               content: newPostData,
             };
             queryClient.setQueryData(queryKey, updatedData);
-          } else if (queryKey[1] === 'best') {
+          } else if (queryKey[1] === 'best' || queryKey[1] === 'search') {
             const newPostData = (prevPostData as Post[])?.map((post) => {
               return post.id === id
                 ? { ...post, myLike: false, likesCount: post.likesCount - 1 }

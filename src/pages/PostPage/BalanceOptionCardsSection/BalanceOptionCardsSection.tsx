@@ -5,12 +5,14 @@ import { useNewSelector } from '@/store';
 import { useMemberQuery } from '@/hooks/api/useMemberQuery';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { isFinished } from '@/utils/date';
+import { Closed } from '@/assets';
 import BalanceOptionCard from '../../../components/common/BalanceOptionCard/BalanceOptionCard';
 import { NPost } from '../../../types/post';
 import {
   balanceOptionCardsSectionWrapper,
   balanceOptionCardsWrapper,
   versusTextwrapper,
+  closedImageWrapper,
 } from './BalanceOptionCardsSection.style';
 import ResultSection from './ResultSection/ResultSection';
 
@@ -37,6 +39,12 @@ const BalanceOptionCardsSection = ({
 
   return (
     <div css={balanceOptionCardsSectionWrapper}>
+      {deadline && isFinished(deadline) && (
+        <div css={closedImageWrapper}>
+          <Closed />
+        </div>
+      )}
+
       <div css={balanceOptionCardsWrapper}>
         <BalanceOptionCard
           postId={id}

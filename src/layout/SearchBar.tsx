@@ -1,9 +1,40 @@
-import React from 'react';
+import React, { KeyboardEvent, MouseEvent } from 'react';
 import { css } from '@emotion/react';
+import useInputs from '@/hooks/common/useInputs';
+import { useNavigate } from 'react-router-dom';
 import SearchIcon from '../assets/svg/SearchIcon';
 import TagButton from '../components/Buttons/TagButton';
 
 const SearchBar = () => {
+  const initialState = {
+    searchParam: '',
+  };
+
+  const { form, onChange, onBlur } = useInputs(initialState);
+  const { searchParam } = form;
+
+  const navigate = useNavigate();
+
+  const onClickEnter = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && e.nativeEvent.isComposing === false) {
+      e.preventDefault();
+
+      if (searchParam?.[0] === '#') {
+        navigate(`/searchResult?tagName=${searchParam.slice(1)}`);
+      } else {
+        navigate(`/searchResult?keyword=${searchParam}`);
+      }
+    }
+  };
+
+  const onClickSearchHandler = () => {
+    if (searchParam?.[0] === '#') {
+      navigate(`/searchResult?tagName=${searchParam.slice(1)}`);
+    } else {
+      navigate(`/searchResult?keyword=${searchParam}`);
+    }
+  };
+
   return (
     <div
       css={css({
@@ -29,12 +60,19 @@ const SearchBar = () => {
         })}
       >
         <input
-          type="text"
+          onBlur={onBlur}
+          name="searchParam"
+          value={searchParam}
+          onKeyDown={onClickEnter}
+          type="search"
+          onChange={onChange}
           css={css({
             width: '100%',
           })}
         />
-        <SearchIcon width={20} height={20} />
+        <div onClick={onClickSearchHandler} role="presentation">
+          <SearchIcon width={20} height={20} />
+        </div>
       </div>
       <div css={css({ display: 'flex' })}>
         <TagButton tag="태그" />
