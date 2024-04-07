@@ -34,7 +34,8 @@ const ItemMyPosts = ({ item }: MyPostsProps) => {
   });
 
   const handleDeleteClick = () => {
-    mutate(item.postId);
+    const isDelete = confirm('해당 게시글을 삭제하시겠습니까?');
+    if (isDelete) mutate(item.postId);
   };
 
   return (
