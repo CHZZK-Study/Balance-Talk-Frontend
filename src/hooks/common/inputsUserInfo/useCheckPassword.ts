@@ -1,6 +1,7 @@
+import { INPUT_LIMIT } from '@/constants/input';
 import { useRef, useState } from 'react';
-import { isEmptyString } from '../../../utils/validator';
 import { ERROR } from '../../../constants/message';
+import { isEmptyString } from '../../../utils/validator';
 
 export const useCheckPassword = (value: string) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -10,8 +11,21 @@ export const useCheckPassword = (value: string) => {
   const [isError, setIsError] = useState<boolean>(false);
 
   const isValidPwFormat = (pw: string): boolean => {
-    const pwRegex = /^[a-zA-Z0-9]{10,20}$/;
-    return pwRegex.test(pw);
+    const alphabetPattern = /[a-zA-Z]/;
+    const numberPattern = /[0-9]/;
+    const specialCharPattern = /[`~!@#$%^&*()_+\-=[\]{};':"\\|,.<>?]/;
+    const isContainAlphabet = alphabetPattern.test(pw);
+    const isContainNumber = numberPattern.test(pw);
+    const isContainSpecialChar = specialCharPattern.test(pw);
+    const isLengthValid =
+      pw.length >= INPUT_LIMIT.PW_MIN && pw.length <= INPUT_LIMIT.PW_MAX;
+
+    return (
+      isContainAlphabet &&
+      isContainNumber &&
+      isContainSpecialChar &&
+      isLengthValid
+    );
   };
 
   const handleVerify = () => {
