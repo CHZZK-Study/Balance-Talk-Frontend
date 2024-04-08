@@ -11,6 +11,7 @@ export type Comment = {
   lastModifiedAt: string;
   profileImageUrl: string | null;
   postTitle?: string;
+  replyCount?: number;
 };
 
 export type CreatedComment = Pick<Comment, 'content' | 'selectedOptionId'>;
@@ -53,7 +54,7 @@ export type CommentsPagination = {
 };
 
 export type ReportedComment = {
-  reason: string;
+  category: string;
   description: string;
 };
 

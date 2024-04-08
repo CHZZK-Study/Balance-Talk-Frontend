@@ -4,7 +4,7 @@ export const mainPostInfoWrapper = css({
   marginLeft: '30px',
   display: 'flex',
   flexDirection: 'column',
-  marginTop: '100px',
+  marginTop: '50px',
   width: '350px',
 });
 

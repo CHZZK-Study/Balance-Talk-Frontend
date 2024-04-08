@@ -3,7 +3,7 @@ import {
   MyCommentsPostsType,
   MyPostsType,
   MyVotedPostsType,
-} from '../../types/history';
+} from '../../types/mypage';
 
 export const mockMyPosts: MyPostsType[] = [
   {

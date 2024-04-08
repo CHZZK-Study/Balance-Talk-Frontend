@@ -11,6 +11,7 @@ export const postItemContainer = css({
   borderRadius: '5px',
   boxShadow: '0px 4px 4px gray',
   margin: '20px',
+  cursor: 'pointer',
 });
 
 export const postItemTitleWrapper = css({

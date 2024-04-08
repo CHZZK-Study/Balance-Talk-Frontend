@@ -6,7 +6,7 @@ import MainPost from '../../components/LandingPage/MainPost';
 import PostImage from '../../components/common/PostImage/PostImage';
 import Carousel from '../../components/LandingPage/Carousel';
 import { ImageInfo, Post, PostWithPagenation } from '../../types/post';
-import { fetchPostsData } from '../../api/posts/posts';
+import { fetchBestPostsData, fetchPostsData } from '../../api/posts/posts';
 import {
   headingWithButtonWrapper,
   headingWrapper,
@@ -33,6 +33,11 @@ const LandingPage = () => {
     },
   });
 
+  const { data: bestPost } = useQuery({
+    queryKey: ['posts', 'best'],
+    queryFn: fetchBestPostsData,
+  });
+
   if (data?.content.length === 0) {
     return <div>Fail to Load Post Data</div>;
   }
@@ -51,7 +56,11 @@ const LandingPage = () => {
   const renderCarouselItems = (postInfo: PostInfo) => {
     return (
       <div css={css({ margin: '10px' })} key={postInfo.id}>
-        <PostImage images={postInfo.balanceOptions} size="medium" />
+        <PostImage
+          images={postInfo.balanceOptions}
+          size="medium"
+          postId={postInfo.id}
+        />
       </div>
     );
   };
@@ -75,7 +84,7 @@ const LandingPage = () => {
         </div>
         <Carousel
           itemWidth={1100}
-          items={data?.content.slice(0, 5)}
+          items={bestPost}
           render={renderMainPost}
           showLength={1}
         />

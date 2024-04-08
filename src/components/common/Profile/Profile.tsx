@@ -3,7 +3,7 @@ import { useMemberQuery } from '@/hooks/api/useMemberQuery';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
-import { getDate } from '@/utils/date';
+import { getYearMonthDay } from '@/utils/date';
 import { Rank } from '../../../assets';
 import defaultProfile from '../../../assets/images/defaultProfile.png';
 import {
@@ -23,11 +23,11 @@ const Profile = () => {
   return (
     <div css={profileContainer}>
       <ProfileImage
-        src={member.profilePhoto ? member.profilePhoto : defaultProfile}
+        src={member.profileImageUrl ? member.profileImageUrl : defaultProfile}
         size="large"
         isOutline
       />
-      <ProfileInfo title={`가입일: ${getDate(member.createdAt)}`}>
+      <ProfileInfo title={`가입일: ${getYearMonthDay(member.createdAt)}`}>
         <p css={profileText}>{member.nickname}</p>
       </ProfileInfo>
       <div css={profileInfoContainer}>

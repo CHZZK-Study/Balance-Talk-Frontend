@@ -10,15 +10,19 @@ import { selectAccessToken } from '@/store/auth';
 import { pulsate } from '../../styles/keyframes';
 
 type PostReportButtonProps = {
-  handleModal: React.Dispatch<SetStateAction<boolean>>;
+  handleLoginModal: React.Dispatch<SetStateAction<boolean>>;
+  handleReportModal: React.Dispatch<SetStateAction<boolean>>;
   postId: number;
 };
 
-const PostReportButton = ({ handleModal, postId }: PostReportButtonProps) => {
+const PostReportButton = ({
+  handleLoginModal,
+  handleReportModal,
+  postId,
+}: PostReportButtonProps) => {
   const { member } = useMemberQuery(
     useParseJwt(useNewSelector(selectAccessToken)).memberId,
   );
-  // const member = { memberId: 103, nickname: '김성현' };
 
   const [isAnimation, setIsAnimation] = useState(false);
 
@@ -29,11 +33,12 @@ const PostReportButton = ({ handleModal, postId }: PostReportButtonProps) => {
 
   const reportPost = useMutation({
     mutationFn: fetchReportPost,
+    onSuccess: () => handleReportModal(true),
   });
 
   const handlePostReport = () => {
     if (!member) {
-      handleModal(true);
+      handleLoginModal(true);
       return;
     }
     animationTrigger();

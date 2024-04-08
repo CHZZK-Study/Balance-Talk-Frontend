@@ -8,13 +8,14 @@ import {
   titleSectionLeftWrapper,
   titleSectionRightwrapper,
   postInfoWrapper,
+  categoryWrapper,
 } from './TitleSection.style';
 import Eye from '../../../assets/svg/Eye';
 import { Hearts, Vote } from '../../../assets';
 
 export type TitleSectionProps = Pick<
   NPost,
-  'title' | 'views' | 'likesCount' | 'postTags' | 'totalVotesCount'
+  'title' | 'views' | 'likesCount' | 'postTags' | 'totalVotesCount' | 'category'
 >;
 
 const TitleSection = ({
@@ -23,11 +24,15 @@ const TitleSection = ({
   likesCount,
   postTags,
   totalVotesCount,
+  category,
 }: TitleSectionProps) => {
   return (
     <div css={titleSectionWrapper}>
       <div css={titleSectionLeftWrapper}>
-        <div css={titleWrapper}>{title}</div>
+        <div css={titleWrapper}>
+          <div css={categoryWrapper}>{category}</div>
+          <div>{title}</div>
+        </div>
         <div css={tagsWrapper}>
           {postTags.map((tag: { tagName: string }) => (
             <TagButton tag={tag.tagName} key={tag.tagName} />

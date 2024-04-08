@@ -34,7 +34,6 @@ const CommentLikeButton = ({
   const { member } = useMemberQuery(
     useParseJwt(useNewSelector(selectAccessToken)).memberId,
   );
-  // const member = { memberId: 103, nickname: '김성현' };
 
   const [isAnimation, setIsAnimation] = useState(false);
 
@@ -61,7 +60,7 @@ const CommentLikeButton = ({
           'replies',
         ]);
 
-        const newReplies = prevReplies?.content.map((comment: Comment) => {
+        const newReplies = prevReplies?.map((comment: Comment) => {
           return comment.id === commentId
             ? { ...comment, myLike: true, likesCount: comment.likesCount + 1 }
             : comment;
@@ -69,10 +68,7 @@ const CommentLikeButton = ({
 
         queryClient.setQueryData(
           ['posts', 'comments', postId, parentCommentId, 'replies'],
-          {
-            ...prevReplies,
-            content: newReplies,
-          },
+          newReplies,
         );
         return { prevReplies };
       }
@@ -134,7 +130,7 @@ const CommentLikeButton = ({
           'replies',
         ]);
 
-        const newReplies = prevReplies?.content.map((comment: Comment) => {
+        const newReplies = prevReplies?.map((comment: Comment) => {
           return comment.id === commentId
             ? { ...comment, myLike: false, likesCount: comment.likesCount - 1 }
             : comment;
@@ -142,10 +138,7 @@ const CommentLikeButton = ({
 
         queryClient.setQueryData(
           ['posts', 'comments', postId, parentCommentId, 'replies'],
-          {
-            ...prevReplies,
-            content: newReplies,
-          },
+          newReplies,
         );
         return { prevReplies };
       }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
+import { useNavigate } from 'react-router-dom';
 import { Hearts } from '../../assets';
 import {
   headerBtnContainer,
@@ -14,14 +15,21 @@ import Logout from './Logout/Logout';
 const Header = () => {
   const accessToken = useNewSelector(selectAccessToken);
 
+  const navigate = useNavigate();
+
   return (
     <div css={headerContainer}>
       <div css={logoContainer}>
         {/* 로고가 들어갈 부분 */}
         <Hearts />
-        <div>1.0.1</div>
       </div>
-      <div css={logoNameContainer}>Balance Talk</div>
+      <div
+        css={logoNameContainer}
+        onClick={() => navigate('/')}
+        role="presentation"
+      >
+        Balance Talk
+      </div>
       <div css={headerBtnContainer}>{accessToken ? <Login /> : <Logout />}</div>
     </div>
   );

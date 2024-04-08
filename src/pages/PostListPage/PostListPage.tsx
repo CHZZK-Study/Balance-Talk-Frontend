@@ -78,7 +78,7 @@ const PostList = () => {
               fontFamily: 'SpoqaHanSansNeo-Medium',
             })}
           >
-            추천 게시글
+            게시글 목록
           </Heading>
           <div
             css={css({

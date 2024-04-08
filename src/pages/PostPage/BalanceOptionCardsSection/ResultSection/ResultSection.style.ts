@@ -26,7 +26,7 @@ export const optionResultWrapper = (gridPercent: number) =>
   });
 export const blankWrapper = css({});
 
-export const optionVoteWrapper = (color: string) =>
+export const optionVoteWrapper = (color: string, voteCount: number) =>
   css({
     display: 'flex',
     alignItems: 'center',
@@ -37,5 +37,9 @@ export const optionVoteWrapper = (color: string) =>
     color: Theme.color.white,
     whiteSpace: 'nowrap',
     background:
-      color === 'lightred' ? Theme.color.lightred : Theme.color.lightblue,
+      voteCount === 0
+        ? Theme.color.white
+        : color === 'lightred'
+          ? Theme.color.lightred
+          : Theme.color.lightblue,
   });

@@ -39,3 +39,14 @@ export const noContainer = css({
 });
 
 export const withoutNoContainer = css({});
+
+export const myPostContainer = css({
+  display: 'flex',
+  justifyContent: 'space-between',
+  width: '80%',
+});
+
+export const deleteWrapper = css({
+  margin: 'auto 0',
+  cursor: 'pointer',
+});

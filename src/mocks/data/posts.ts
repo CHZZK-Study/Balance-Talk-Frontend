@@ -194,11 +194,11 @@ export const postList: Post[] = [
 
 export const voteInfo = [
   {
-    optionTitle: '선택지1 제목',
+    optionTitle: '커피',
     voteCount: 3412,
   },
   {
-    optionTitle: '선택지2 제목',
+    optionTitle: '쥬스',
     voteCount: 532,
   },
 ];
@@ -261,25 +261,25 @@ export const postById = (postId?: number) => {
   const postMockData: NPost = {
     id: 1,
     title: '카페 주문',
-    deadline: '2024-03-14T01:32:49.283Z',
+    deadline: '2023/12/29 01:32:49',
     views: 126,
     likesCount: 15,
     myLike: true,
     myBookmark: true,
     category: 'CASUAL',
-    totalVotesCount: 1224,
+    totalVotesCount: 3944,
     balanceOptions: [
       {
         balanceOptionId: 1,
         title: '커피',
         description: '남녀노소 누구나 좋아하는 커피',
-        storedFileName: null,
+        imageUrl: null,
       },
       {
         balanceOptionId: 2,
         title: '쥬스',
         description: '건강에 좋고 맛도 좋은 쥬스',
-        storedFileName: null,
+        imageUrl: null,
       },
     ],
 

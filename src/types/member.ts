@@ -1,7 +1,7 @@
 export type Member = {
   id: number;
   nickname: string;
-  profilePhoto: string;
+  profileImageUrl: string;
   createdAt: string;
   postsCount: number;
   totalPostLike: number;

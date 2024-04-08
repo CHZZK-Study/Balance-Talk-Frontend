@@ -51,6 +51,11 @@ export const putMemberImage = async (profilePhoto: string) => {
   const { data } = await axiosInstance.put<string>(
     `${END_POINT.MEMBER_IMAGE}`,
     profilePhoto,
+    {
+      headers: {
+        'Content-Type': 'text/plain',
+      },
+    },
   );
   return data;
 };
@@ -59,6 +64,11 @@ export const putMemberNickname = async (nickname: string) => {
   const { data } = await axiosInstance.put<string>(
     `${END_POINT.MEMBER_NICKNAME}`,
     nickname,
+    {
+      headers: {
+        'Content-Type': 'text/plain',
+      },
+    },
   );
   return data;
 };
@@ -67,6 +77,11 @@ export const putMemberPw = async (pw: string) => {
   const { data } = await axiosInstance.put<string>(
     `${END_POINT.MEMBER_PASSWORD}`,
     pw,
+    {
+      headers: {
+        'Content-Type': 'text/plain',
+      },
+    },
   );
   return data;
 };

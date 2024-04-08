@@ -37,6 +37,7 @@ export const postImageWrapper = (size: SizeType) =>
     alignItems: 'center',
     borderRadius: '5px',
     boxShadow: '0px 4px 4px gray',
+    cursor: 'pointer',
   });
 
 export const imageWrapper = (size: SizeType) =>
