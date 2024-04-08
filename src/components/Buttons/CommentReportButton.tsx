@@ -10,20 +10,21 @@ import { selectAccessToken } from '@/store/auth';
 import { pulsate } from '../../styles/keyframes';
 
 type CommentReportButtonProps = {
-  handleModal: React.Dispatch<SetStateAction<boolean>>;
+  handleLoginModal: React.Dispatch<SetStateAction<boolean>>;
+  handleReportModal: React.Dispatch<SetStateAction<boolean>>;
   commentId: number;
   postId: number;
 };
 
 const CommentReportButton = ({
-  handleModal,
+  handleLoginModal,
+  handleReportModal,
   commentId,
   postId,
 }: CommentReportButtonProps) => {
   const { member } = useMemberQuery(
     useParseJwt(useNewSelector(selectAccessToken)).memberId,
   );
-  // const member = { memberId: 103, nickname: '김성현' };
 
   const [isAnimation, setIsAnimation] = useState(false);
 
@@ -32,7 +33,7 @@ const CommentReportButton = ({
     setTimeout(() => setIsAnimation(false), 500);
   };
 
-  const reportPost = useMutation({
+  const reportComment = useMutation({
     mutationFn: ({
       _postId,
       _commentId,
@@ -40,16 +41,17 @@ const CommentReportButton = ({
       _postId: number;
       _commentId: number;
     }) => fetchReportComment(_postId, _commentId),
+    onSuccess: () => handleReportModal(true),
   });
 
   const handleCommentReport = () => {
     if (!member) {
-      handleModal(true);
+      handleLoginModal(true);
       return;
     }
     animationTrigger();
     if (postId !== undefined)
-      reportPost.mutate({ _postId: postId, _commentId: commentId });
+      reportComment.mutate({ _postId: postId, _commentId: commentId });
   };
 
   return (

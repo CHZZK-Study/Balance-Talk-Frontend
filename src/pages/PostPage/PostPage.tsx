@@ -19,14 +19,15 @@ import {
 const PostPage = () => {
   const postId = Number(useParams().id);
   const [isOpened, setIsOpened] = useState(false);
-  const { isLoading, data: post } = useQuery({
+  const { data: post } = useQuery({
     queryKey: ['posts', postId],
     queryFn: () => getPost(postId),
   });
 
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  console.log(post);
 
-  return isLoading ? (
+  return !post ? (
     <div />
   ) : (
     <div css={PostPageWrapper}>
@@ -36,11 +37,14 @@ const PostPage = () => {
         likesCount={post?.likesCount || 0}
         postTags={post?.postTags || []}
         totalVotesCount={post?.totalVotesCount || 0}
+        category={post?.category || 'CASUAL'}
       />
       <BalanceOptionCardsSection
         id={post?.id || 0}
         balanceOptions={post?.balanceOptions || []}
         selectedOptionId={post?.selectedOptionId}
+        category={post?.category || 'CASUAL'}
+        deadline={post?.deadline || ''}
       />
 
       <div css={UserSectionWrapper}>

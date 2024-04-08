@@ -10,10 +10,10 @@ import { axiosInstance } from '../interceptor';
 
 export const getComments = async (
   postId: number,
-  pageable: { page: number; size?: number; sort: string[] },
+  pageable: { page: number; size?: number; sort?: string },
 ): Promise<CommentsPagination> => {
   const response = await axiosInstance.get(END_POINT.COMMENTS(postId), {
-    params: { ...pageable },
+    params: { ...pageable, sort: 'createdAt,desc' },
   });
   return response.data as CommentsPagination;
 };
@@ -49,8 +49,8 @@ export const fetchReportComment = async (postId: number, commetId: number) => {
   const response = await axiosInstance.post(
     END_POINT.REPORT_COMMENT(postId, commetId),
     {
-      reason: '신고합니다.',
-      description: '신고 내용',
+      category: 'ETC',
+      description: '댓글 신고 내용',
     },
   );
   return response;

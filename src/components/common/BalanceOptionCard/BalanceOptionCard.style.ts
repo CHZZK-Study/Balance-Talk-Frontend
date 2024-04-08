@@ -38,8 +38,15 @@ export const winnerIconWrapper = css({
 });
 
 export const balanceOptionTitleWrapper = css({
+  display: 'flex',
   fontFamily: 'SpoqaHanSansNeo-Bold',
   fontSize: '40px',
+  width: '400px',
+  height: '100px',
+  alignItems: 'center',
+  justifyContent: 'center',
+  textAlign: 'center',
+  wordBreak: 'break-all',
   padding: '10px 0',
 });
 
@@ -54,12 +61,16 @@ export const balanceOptionImageWrapper = css({
 });
 
 export const balanceOptionDescriptionWrapper = css({
+  display: 'flex',
   backgroundColor: '#D9D9D9',
   fontFamily: 'SpoqaHanSansNeo-Bold',
   fontSize: '1.5rem',
   borderRadius: '1rem',
   padding: '1.5rem 1rem',
   width: '400px',
+  height: '120px',
+  alignItems: 'center',
+  justifyContent: 'center',
   textAlign: 'center',
-  whiteSpace: 'nowrap',
+  wordBreak: 'break-all',
 });

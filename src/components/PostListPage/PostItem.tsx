@@ -1,6 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { calculateDday } from '@/utils/calculateDday';
+import { useNavigate } from 'react-router-dom';
 import PostItemImage from './PostItemImage';
 import TagButton from '../Buttons/TagButton';
 import Eye from '../../assets/svg/Eye';
@@ -23,6 +24,8 @@ type PostItemProps = {
 };
 
 const PostItem = ({ post, showClosed }: PostItemProps) => {
+  const navigate = useNavigate();
+
   const imagesInfo: ImageInfo[] = [
     {
       imageUrl: post.balanceOptions[0].imageUrl,
@@ -44,10 +47,18 @@ const PostItem = ({ post, showClosed }: PostItemProps) => {
   }
 
   return (
-    <div css={postItemContainer}>
+    <div
+      css={postItemContainer}
+      onClick={() => navigate(`/posts/${post.id}`)}
+      role="presentation"
+    >
       <PostItemImage images={imagesInfo} />
       <div css={postItemTitleWrapper}>
-        <h4 css={postItemTitle}>{post.title}</h4>
+        <h4 css={postItemTitle}>
+          {post?.title.length > 15
+            ? `${post?.title.slice(0, 13)}...`
+            : post?.title}
+        </h4>
         <div css={postItemDday}>{dDayString}</div>
       </div>
       <div css={tagWrapper}>
@@ -64,7 +75,7 @@ const PostItem = ({ post, showClosed }: PostItemProps) => {
           <Eye />
           <span css={etcButtonText}>{post.views || '0'}</span>
           <Comment />
-          <span css={etcButtonText}>{post.commentCount || '0'}</span>
+          <span css={etcButtonText}>{post.commentsCount || '0'}</span>
         </div>
         <div css={css({ display: 'flex', height: '100%' })}>
           <HeartButton isLiked={isLiked} postId={post.id} />
