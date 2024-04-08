@@ -3,7 +3,11 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import 'dayjs/locale/ko';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import NotAuthRoutes from './components/Routes/NotAuthRoutes';
+import ProtectedRoutes from './components/Routes/ProtectedRoutes';
 import { PATH } from './constants/path';
+import { useMemberQuery } from './hooks/api/useMemberQuery';
+import { useParseJwt } from './hooks/common/useParseJwt';
 import { useTokenRefresh } from './hooks/common/useTokenRefresh';
 import { Layout, LayoutMypage, LayoutNoSearch } from './layout/layout';
 import CreatePostPage from './pages/CreatePostPage/CreatePostPage';
@@ -17,15 +21,12 @@ import CommentsPage from './pages/MyPage/HistoryPage/TabPage/CommentsPage';
 import PostsPage from './pages/MyPage/HistoryPage/TabPage/PostsPage';
 import VotedPostsPage from './pages/MyPage/HistoryPage/TabPage/VotedPostsPage';
 import UpdatePage from './pages/MyPage/UpdatePage/UpdatePage';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import PostList from './pages/PostListPage/PostListPage';
 import PostPage from './pages/PostPage/PostPage';
 import SignUpPage from './pages/SignUpPage/SignUpPage';
 import { useNewSelector } from './store';
-import { useParseJwt } from './hooks/common/useParseJwt';
-import { useMemberQuery } from './hooks/api/useMemberQuery';
 import { selectAccessToken } from './store/auth';
-import ProtectedRoutes from './components/Routes/ProtectedRoutes';
-import SearchResultPage from './pages/SearchResultPage/SearchResultPage';
 
 const App: React.FC = () => {
   const accessToken = useNewSelector(selectAccessToken);
@@ -44,25 +45,34 @@ const App: React.FC = () => {
           </Route>
         </Route>
 
-        <Route element={<LayoutNoSearch />}>
-          <Route path={PATH.LOGIN} element={<LoginPage />} />
-          <Route path={PATH.PW} element={<FindPasswordPage />} />
-          <Route path={PATH.SIGN_UP} element={<SignUpPage />} />
+        <Route element={<NotAuthRoutes member={member} />}>
+          <Route element={<LayoutNoSearch />}>
+            <Route path={PATH.LOGIN} element={<LoginPage />} />
+            <Route path={PATH.PW} element={<FindPasswordPage />} />
+            <Route path={PATH.SIGN_UP} element={<SignUpPage />} />
+          </Route>
         </Route>
 
-        <Route path={PATH.MYPAGE} element={<LayoutMypage />}>
-          <Route path={PATH.HISTORY.MAIN} element={<HistoryPage />}>
-            <Route path={PATH.HISTORY.POSTS} element={<PostsPage />} />
-            <Route path={PATH.HISTORY.COMMENTS} element={<CommentsPage />} />
-            <Route
-              path={PATH.HISTORY.VOTED_POSTS}
-              element={<VotedPostsPage />}
-            />
-            <Route path={PATH.HISTORY.BOOKMARKS} element={<BookmarksPage />} />
+        <Route element={<ProtectedRoutes member={member} />}>
+          <Route path={PATH.MYPAGE} element={<LayoutMypage />}>
+            <Route path={PATH.HISTORY.MAIN} element={<HistoryPage />}>
+              <Route path={PATH.HISTORY.POSTS} element={<PostsPage />} />
+              <Route path={PATH.HISTORY.COMMENTS} element={<CommentsPage />} />
+              <Route
+                path={PATH.HISTORY.VOTED_POSTS}
+                element={<VotedPostsPage />}
+              />
+              <Route
+                path={PATH.HISTORY.BOOKMARKS}
+                element={<BookmarksPage />}
+              />
+            </Route>
+            <Route path={PATH.UPDATE} element={<UpdatePage />} />
+            <Route path={PATH.DELETE} element={<DeletePage />} />
           </Route>
-          <Route path={PATH.UPDATE} element={<UpdatePage />} />
-          <Route path={PATH.DELETE} element={<DeletePage />} />
         </Route>
+
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </LocalizationProvider>
   );
