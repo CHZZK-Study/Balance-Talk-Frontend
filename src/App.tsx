@@ -24,6 +24,7 @@ import UpdatePage from './pages/MyPage/UpdatePage/UpdatePage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import PostList from './pages/PostListPage/PostListPage';
 import PostPage from './pages/PostPage/PostPage';
+import SearchResultPage from './pages/SearchResultPage/SearchResultPage';
 import SignUpPage from './pages/SignUpPage/SignUpPage';
 import { useNewSelector } from './store';
 import { selectAccessToken } from './store/auth';
