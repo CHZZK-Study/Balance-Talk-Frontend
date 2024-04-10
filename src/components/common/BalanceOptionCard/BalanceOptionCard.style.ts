@@ -40,7 +40,7 @@ export const winnerIconWrapper = css({
 export const balanceOptionTitleWrapper = css({
   display: 'flex',
   fontFamily: 'SpoqaHanSansNeo-Bold',
-  fontSize: '40px',
+  fontSize: '32px',
   width: '400px',
   height: '100px',
   alignItems: 'center',
@@ -64,7 +64,7 @@ export const balanceOptionDescriptionWrapper = css({
   display: 'flex',
   backgroundColor: '#D9D9D9',
   fontFamily: 'SpoqaHanSansNeo-Bold',
-  fontSize: '1.5rem',
+  fontSize: '1.2rem',
   borderRadius: '1rem',
   padding: '1.5rem 1rem',
   width: '400px',
