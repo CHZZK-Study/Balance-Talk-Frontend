@@ -25,7 +25,6 @@ const PostPage = () => {
   });
 
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  console.log(post);
 
   return !post ? (
     <div />
@@ -53,6 +52,7 @@ const PostPage = () => {
             createdBy={post?.createdBy}
             createdAt={post?.createdAt}
             creatorProfileImageUrl={post?.profileImageUrl}
+            creatorId={post?.writerId}
           />
         )}
         <UserUtilitySection

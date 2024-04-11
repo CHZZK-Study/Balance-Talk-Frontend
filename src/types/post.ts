@@ -46,6 +46,7 @@ export type NPost = {
   createdAt: string;
   createdBy: string;
   selectedOptionId?: number | null;
+  writerId: number;
   profileImageUrl: string | null;
 };
 
