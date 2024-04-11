@@ -20,6 +20,7 @@ import {
   createdAtWrapper,
   editDeletebtnsWrapper,
   likeBtnWrapper,
+  creatorImageWrapper,
   nameWrapper,
   replyBtnWrapper,
   userCommentWrapper,
@@ -30,6 +31,7 @@ import ProfileImage from '../Profile/ProfileImage/ProfileImage';
 import defaultProfile from '../../../assets/images/defaultProfile.png';
 import ReportModal from '../Modal/ReportModal/ReportModal';
 import DeleteCommentModal from '../Modal/DeleteCommentModal/DeleteCommentModal';
+import ProfileModal from '../Modal/ProfileModal/ProfileModal';
 
 type UserCommentProps = Comment & {
   handleLoginModal: React.Dispatch<SetStateAction<boolean>>;
@@ -57,6 +59,7 @@ const UserComment = ({
   alignLeft,
   selectedPageNumber,
   replyCount,
+  writerId,
   handleLoginModal,
   handleOpenReplies,
 }: UserCommentProps) => {
@@ -66,6 +69,7 @@ const UserComment = ({
   const [isActiveEditInput, setIsActiveEditInput] = useState(false);
   const [isReportModalOpoen, setIsReportModalOpen] = useState(false);
   const [isDeleteModalOpoen, setIsDeleteModalOpen] = useState(false);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
 
   const { member } = useMemberQuery(
     useParseJwt(useNewSelector(selectAccessToken)).memberId,
@@ -82,7 +86,16 @@ const UserComment = ({
     <div css={userCommentWrapper(!!isAlignLeft)}>
       <div css={commentMainWrapper(isReply, !!isAlignLeft)}>
         <div css={commentWrapper(!!isAlignLeft)}>
-          <ProfileImage src={profileImageUrl || defaultProfile} size="small" />
+          <div
+            css={creatorImageWrapper}
+            onClick={() => setIsProfileModalOpen(!isProfileModalOpen)}
+          >
+            <ProfileImage
+              src={profileImageUrl || defaultProfile}
+              size="small"
+            />
+          </div>
+
           <div
             css={commentInfoWrapper(
               isActiveEditInput,
@@ -164,6 +177,13 @@ const UserComment = ({
           commentId={id}
           parentCommentId={parentCommentId}
           handleModal={setIsDeleteModalOpen}
+        />
+      )}
+
+      {isProfileModalOpen && (
+        <ProfileModal
+          creatorId={writerId}
+          handleModal={setIsProfileModalOpen}
         />
       )}
     </div>
