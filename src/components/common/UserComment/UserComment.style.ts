@@ -9,6 +9,12 @@ export const userCommentWrapper = (isAlingLeft: boolean) =>
     padding: '0.8rem',
   });
 
+export const creatorImageWrapper = css({
+  ':hover': {
+    cursor: 'pointer',
+  },
+});
+
 export const commentMainWrapper = (isReply: boolean, isAlignLeft: boolean) =>
   css({
     display: 'inline-flex',

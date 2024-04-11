@@ -30,7 +30,9 @@ const TitleSection = ({
     <div css={titleSectionWrapper}>
       <div css={titleSectionLeftWrapper}>
         <div css={titleWrapper}>
-          <div css={categoryWrapper}>{category}</div>
+          <div css={categoryWrapper}>
+            {category === 'CASUAL' ? '캐쥬얼' : '토론'}
+          </div>
           <div>{title}</div>
         </div>
         <div css={tagsWrapper}>
