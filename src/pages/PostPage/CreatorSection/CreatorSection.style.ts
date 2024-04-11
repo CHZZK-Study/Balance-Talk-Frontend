@@ -1,12 +1,17 @@
 import { css } from '@emotion/react';
 
-export const CreatorSectionWrapper = css({
+export const creatorSectionWrapper = css({
   display: 'flex',
   alignItems: 'center',
   gap: '1.3rem',
   padding: '1rem 2rem',
 });
 
+export const creatorImageWrapper = css({
+  ':hover': {
+    cursor: 'pointer',
+  },
+});
 export const creatorInfoWrapper = css({
   display: 'flex',
   flexDirection: 'column',
@@ -21,7 +26,7 @@ export const creatorNameWrapper = css({
   fontSize: '1rem',
 });
 
-export const CreatedDateWrapper = css({
+export const createdDateWrapper = css({
   fontFamily: 'SpoqaHanSansNeo-thin',
   fontSize: '1rem',
 });

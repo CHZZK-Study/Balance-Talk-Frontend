@@ -1,12 +1,13 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 import { getFormattedDate } from '@/utils/date';
 import ProfileImage from '@/components/common/Profile/ProfileImage/ProfileImage';
+import ProfileModal from '@/components/common/Modal/ProfileModal/ProfileModal';
 import {
-  CreatedDateWrapper,
-  CreatorSectionWrapper,
+  createdDateWrapper,
+  creatorSectionWrapper,
   creatorInfoWrapper,
   creatorNameWrapper,
+  creatorImageWrapper,
 } from './CreatorSection.style';
 import defaultProfile from '../../../assets/images/defaultProfile.png';
 
@@ -14,16 +15,22 @@ interface CreatorSectionProps {
   createdBy: string;
   createdAt: string;
   creatorProfileImageUrl: string | null;
+  creatorId: number;
 }
 
 const CreatorSection = ({
   createdBy,
   createdAt,
   creatorProfileImageUrl,
+  creatorId,
 }: CreatorSectionProps) => {
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   return (
-    <div css={CreatorSectionWrapper}>
-      <div>
+    <div css={creatorSectionWrapper}>
+      <div
+        css={creatorImageWrapper}
+        onClick={() => setIsProfileModalOpen(!isProfileModalOpen)}
+      >
         <ProfileImage
           src={creatorProfileImageUrl || defaultProfile}
           size="small"
@@ -33,8 +40,14 @@ const CreatorSection = ({
       <div css={creatorInfoWrapper}>
         <div css={creatorNameWrapper} />
         {createdBy || 'nickname'}
-        <div css={CreatedDateWrapper}>{getFormattedDate(createdAt)}</div>
+        <div css={createdDateWrapper}>{getFormattedDate(createdAt)}</div>
       </div>
+      {isProfileModalOpen && (
+        <ProfileModal
+          creatorId={creatorId}
+          handleModal={setIsProfileModalOpen}
+        />
+      )}
     </div>
   );
 };
