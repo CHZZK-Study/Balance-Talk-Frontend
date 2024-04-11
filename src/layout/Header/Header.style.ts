@@ -9,10 +9,12 @@ export const headerContainer = css({
   background: '#222831',
   height: 'auto',
   textAlign: 'center',
-  padding: '1rem',
+  padding: '0 20px',
 });
 
-export const logoContainer = css({ display: 'flex' });
+export const logoContainer = css({
+  display: 'flex',
+});
 
 export const logoNameContainer = css({
   fontSize: '1.5rem',

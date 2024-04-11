@@ -2,7 +2,7 @@ import React from 'react';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
 import { useNavigate } from 'react-router-dom';
-import { Hearts } from '../../assets';
+import logo from '../../assets/images/logo.png';
 import {
   headerBtnContainer,
   headerContainer,
@@ -20,8 +20,8 @@ const Header = () => {
   return (
     <div css={headerContainer}>
       <div css={logoContainer}>
-        {/* 로고가 들어갈 부분 */}
-        <Hearts />
+        {/* <Hearts /> */}
+        <img src={logo} alt="logo" width={70} height={70} />
       </div>
       <div
         css={logoNameContainer}
