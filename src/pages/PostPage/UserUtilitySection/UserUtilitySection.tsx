@@ -26,6 +26,9 @@ const UserUtilitySection = ({
   postId,
 }: UserUtilitySectionProps) => {
   const [isReportModalOpoen, setIsReportModalOpen] = useState(false);
+  const [reportErrorType, setIsReportErrorType] = useState<
+    'FORBIDDEN' | 'CONFLICT' | null
+  >(null);
   return (
     <div css={UserUtilitySectionWrapper}>
       <div css={UtilityButtonsWrapper}>
@@ -49,11 +52,17 @@ const UserUtilitySection = ({
             handleLoginModal={handleLoginModal}
             handleReportModal={setIsReportModalOpen}
             postId={postId}
+            handleReportErrorType={setIsReportErrorType}
           />
         </div>
       </div>
       {isReportModalOpoen && (
-        <ReportModal handleModal={setIsReportModalOpen} type="게시글" />
+        <ReportModal
+          handleModal={setIsReportModalOpen}
+          handleReportErrorType={setIsReportErrorType}
+          type="게시글"
+          errorType={reportErrorType}
+        />
       )}
     </div>
   );
