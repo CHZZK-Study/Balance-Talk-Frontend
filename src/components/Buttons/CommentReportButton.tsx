@@ -12,6 +12,9 @@ import { pulsate } from '../../styles/keyframes';
 type CommentReportButtonProps = {
   handleLoginModal: React.Dispatch<SetStateAction<boolean>>;
   handleReportModal: React.Dispatch<SetStateAction<boolean>>;
+  handleReportErrorType: React.Dispatch<
+    SetStateAction<'CONFLICT' | 'FORBIDDEN' | null>
+  >;
   commentId: number;
   postId: number;
 };
@@ -19,6 +22,7 @@ type CommentReportButtonProps = {
 const CommentReportButton = ({
   handleLoginModal,
   handleReportModal,
+  handleReportErrorType,
   commentId,
   postId,
 }: CommentReportButtonProps) => {
@@ -42,6 +46,10 @@ const CommentReportButton = ({
       _commentId: number;
     }) => fetchReportComment(_postId, _commentId),
     onSuccess: () => handleReportModal(true),
+    onError: (e: { httpStatus: 'CONFLICT' | 'FORBIDDEN'; message: string }) => {
+      handleReportErrorType(e.httpStatus);
+      handleReportModal(true);
+    },
   });
 
   const handleCommentReport = () => {
