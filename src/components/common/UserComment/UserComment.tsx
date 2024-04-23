@@ -70,6 +70,9 @@ const UserComment = ({
   const [isReportModalOpoen, setIsReportModalOpen] = useState(false);
   const [isDeleteModalOpoen, setIsDeleteModalOpen] = useState(false);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+  const [reportErrorType, setIsReportErrorType] = useState<
+    'FORBIDDEN' | 'CONFLICT' | null
+  >(null);
 
   const { member } = useMemberQuery(
     useParseJwt(useNewSelector(selectAccessToken)).memberId,
@@ -148,6 +151,7 @@ const UserComment = ({
               handleLoginModal={handleLoginModal}
               commentId={id}
               handleReportModal={setIsReportModalOpen}
+              handleReportErrorType={setIsReportErrorType}
             />
           </div>
           {!parentCommentId && (
@@ -169,7 +173,12 @@ const UserComment = ({
         </div>
       </div>
       {isReportModalOpoen && (
-        <ReportModal handleModal={setIsReportModalOpen} type="댓글" />
+        <ReportModal
+          handleModal={setIsReportModalOpen}
+          type="댓글"
+          errorType={reportErrorType}
+          handleReportErrorType={setIsReportErrorType}
+        />
       )}
       {isDeleteModalOpoen && (
         <DeleteCommentModal

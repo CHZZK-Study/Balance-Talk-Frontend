@@ -12,12 +12,16 @@ import { pulsate } from '../../styles/keyframes';
 type PostReportButtonProps = {
   handleLoginModal: React.Dispatch<SetStateAction<boolean>>;
   handleReportModal: React.Dispatch<SetStateAction<boolean>>;
+  handleReportErrorType: React.Dispatch<
+    SetStateAction<'CONFLICT' | 'FORBIDDEN' | null>
+  >;
   postId: number;
 };
 
 const PostReportButton = ({
   handleLoginModal,
   handleReportModal,
+  handleReportErrorType,
   postId,
 }: PostReportButtonProps) => {
   const { member } = useMemberQuery(
@@ -34,6 +38,10 @@ const PostReportButton = ({
   const reportPost = useMutation({
     mutationFn: fetchReportPost,
     onSuccess: () => handleReportModal(true),
+    onError: (e: { httpStatus: 'CONFLICT' | 'FORBIDDEN'; message: string }) => {
+      handleReportErrorType(e.httpStatus);
+      handleReportModal(true);
+    },
   });
 
   const handlePostReport = () => {
