@@ -6,12 +6,21 @@ import {
   titleWrapper,
 } from './ReportModal.style';
 
-interface ChangeVoteModalProps {
+interface ReportModalProps {
   handleModal: React.Dispatch<SetStateAction<boolean>>;
+  handleReportErrorType: React.Dispatch<
+    SetStateAction<'CONFLICT' | 'FORBIDDEN' | null>
+  >;
   type: '게시글' | '댓글';
+  errorType?: 'CONFLICT' | 'FORBIDDEN' | null;
 }
 
-const ReportModal = ({ handleModal, type }: ChangeVoteModalProps) => {
+const ReportModal = ({
+  handleModal,
+  handleReportErrorType,
+  type,
+  errorType,
+}: ReportModalProps) => {
   const reportModalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -20,6 +29,7 @@ const ReportModal = ({ handleModal, type }: ChangeVoteModalProps) => {
         reportModalRef.current &&
         !reportModalRef.current.contains(event.target as Node)
       ) {
+        handleReportErrorType(null);
         handleModal(false);
       }
     };
@@ -29,13 +39,25 @@ const ReportModal = ({ handleModal, type }: ChangeVoteModalProps) => {
     return () => {
       document.removeEventListener('mousedown', handleOutSideClick);
     };
-  }, [reportModalRef, handleModal]);
+  }, [reportModalRef, handleModal, handleReportErrorType]);
 
   return (
     <div ref={reportModalRef} css={reportModalWrapper}>
-      <div css={titleWrapper}>{type} 신고가 접수되었습니다.</div>
+      <div css={titleWrapper}>
+        {errorType === null
+          ? `${type} 신고가 접수되었습니다.`
+          : errorType === 'CONFLICT'
+            ? `이미 신고한 ${type}입니다.`
+            : `본인 ${type}을 신고할 수 없습니다.`}
+      </div>
       <div css={btnsWrapper}>
-        <Button variant="cancel" onClick={() => handleModal(false)}>
+        <Button
+          variant="cancel"
+          onClick={() => {
+            handleReportErrorType(null);
+            handleModal(false);
+          }}
+        >
           닫기
         </Button>
       </div>
