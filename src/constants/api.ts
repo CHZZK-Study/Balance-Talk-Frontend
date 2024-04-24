@@ -18,6 +18,7 @@ export const END_POINT = {
   LOGOUT: '/members/logout',
   ALL_MEMBERS: '/members',
   MEMBER: (id: number) => `/members/${id}`,
+  MEMBER_PROFILE: (id: number) => `/members/${id}/profile`,
   MEMBER_IMAGE: '/members/image',
   MEMBER_NICKNAME: '/members/nickname',
   MEMBER_PASSWORD: '/members/password',
