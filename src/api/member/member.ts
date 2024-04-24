@@ -23,6 +23,13 @@ export const getMember = async (memberId: number) => {
   return data;
 };
 
+export const getMemberProfile = async (memberId: number) => {
+  const { data } = await axiosInstance.get<Omit<Member, 'id'>>(
+    `${END_POINT.MEMBER_PROFILE(memberId)}`,
+  );
+  return data;
+};
+
 export const postMember = async (
   form: Pick<MemberForm, 'nickname' | 'email' | 'password'>,
 ) => {

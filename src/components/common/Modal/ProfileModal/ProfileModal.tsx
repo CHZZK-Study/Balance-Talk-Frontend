@@ -8,6 +8,7 @@ import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { selectAccessToken } from '@/store/auth';
 import { Rank } from '@/assets';
 import { getYearMonthDay } from '@/utils/date';
+import { useMemberProfileQuery } from '@/hooks/api/useMemberProfileQuery';
 import {
   profileModalWrapper,
   profileBackgroundWrapper,
@@ -29,7 +30,7 @@ interface ProfileModalProps {
 const ProfileModal = ({ handleModal, creatorId }: ProfileModalProps) => {
   const profileModalRef = useRef<HTMLDivElement>(null);
   const accessToken = useNewSelector(selectAccessToken);
-  const { member: creator } = useMemberQuery(creatorId);
+  const { memberProfile: creator } = useMemberProfileQuery(creatorId);
   const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
 
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ const ProfileModal = ({ handleModal, creatorId }: ProfileModalProps) => {
       document.removeEventListener('mousedown', handleOutSideClick);
     };
   }, [profileModalRef, handleModal]);
-  if (!member) return null;
+  if (!creator) return null;
 
   return (
     <div ref={profileModalRef} css={profileModalWrapper}>
