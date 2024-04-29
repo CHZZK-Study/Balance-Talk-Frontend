@@ -14,6 +14,7 @@ export const headerContainer = css({
 
 export const logoContainer = css({
   display: 'flex',
+  padding: '10px 0',
 });
 
 export const logoNameContainer = css({

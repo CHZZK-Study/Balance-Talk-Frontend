@@ -1,8 +1,8 @@
 import React from 'react';
+import logo from '@/assets/images/logo.png';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
 import { useNavigate } from 'react-router-dom';
-import logo from '../../assets/images/logo.png';
 import {
   headerBtnContainer,
   headerContainer,
@@ -20,8 +20,7 @@ const Header = () => {
   return (
     <div css={headerContainer}>
       <div css={logoContainer}>
-        {/* <Hearts /> */}
-        <img src={logo} alt="logo" width={70} height={70} />
+        <img src={logo} alt="logo" width={40} height={40} />
       </div>
       <div
         css={logoNameContainer}
