@@ -74,12 +74,12 @@ const SearchBar = () => {
           <SearchIcon width={20} height={20} />
         </div>
       </div>
-      <div css={css({ display: 'flex' })}>
+      {/* <div css={css({ display: 'flex' })}>
         <TagButton tag="태그" />
         <TagButton tag="태그" />
         <TagButton tag="태그" />
         <TagButton tag="태그" />
-      </div>
+      </div> */}
     </div>
   );
 };
