@@ -1,12 +1,13 @@
 import React from 'react';
+import { fetchBestPostsData, fetchPostsData } from '@/api/posts/posts';
+import Carousel from '@/components/LandingPage/Carousel';
+import MainPost from '@/components/LandingPage/MainPost';
+import PostImage from '@/components/common/PostImage/PostImage';
+import Heading from '@/components/design/Heading/Heading';
+import { ImageInfo, Post, PostWithPagenation } from '@/types/post';
 import { css } from '@emotion/react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import MainPost from '../../components/LandingPage/MainPost';
-import PostImage from '../../components/common/PostImage/PostImage';
-import Carousel from '../../components/LandingPage/Carousel';
-import { ImageInfo, Post, PostWithPagenation } from '../../types/post';
-import { fetchBestPostsData, fetchPostsData } from '../../api/posts/posts';
 import {
   headingWithButtonWrapper,
   headingWrapper,
@@ -14,7 +15,6 @@ import {
   morePostWrapper,
   recommendPostWrapper,
 } from './LandingPage.style';
-import Heading from '../../components/design/Heading/Heading';
 
 type PostInfo = {
   id: number;
@@ -88,7 +88,6 @@ const LandingPage = () => {
           render={renderMainPost}
           showLength={1}
         />
-        {/* <MainPost post={data?.[0]} /> */}
       </div>
       <div css={morePostWrapper}>
         <div css={headingWithButtonWrapper}>

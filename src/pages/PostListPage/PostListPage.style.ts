@@ -1,5 +1,11 @@
 import { css } from '@emotion/react';
 
+export const postListContainer = css({
+  width: '80vw',
+  margin: '0 auto',
+  height: '100%',
+});
+
 export const headingWrapper = css({
   display: 'flex',
   justifyContent: 'space-between',
@@ -8,12 +14,15 @@ export const headingWrapper = css({
   alignItems: 'center',
 });
 
+export const postListInnerContainer = css({
+  display: 'flex',
+  justifyContent: 'center',
+  flexDirection: 'column',
+  alignItems: 'center',
+});
+
 export const postListWrapper = css({
   display: 'grid',
   gridTemplateColumns: '1fr 1fr',
   gridGap: '50px',
-  // width: '90%',
-  // justifyContent: 'space-between',
-  // flexWrap: 'wrap',
-  // margin: '0 auto',
 });
