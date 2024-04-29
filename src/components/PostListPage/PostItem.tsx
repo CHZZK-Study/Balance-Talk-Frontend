@@ -1,13 +1,12 @@
 import React from 'react';
-import { css } from '@emotion/react';
+import Comment from '@/assets/svg/Comment';
+import Eye from '@/assets/svg/Eye';
+import { ImageInfo, Post } from '@/types/post';
 import { calculateDday } from '@/utils/calculateDday';
+import { css } from '@emotion/react';
 import { useNavigate } from 'react-router-dom';
-import PostItemImage from './PostItemImage';
-import TagButton from '../Buttons/TagButton';
-import Eye from '../../assets/svg/Eye';
-import Comment from '../../assets/svg/Comment';
-import { ImageInfo, Post } from '../../types/post';
 import HeartButton from '../Buttons/HeartButton';
+import TagButton from '../Buttons/TagButton';
 import {
   etcButtonText,
   etcButtonWrapper,
@@ -17,13 +16,13 @@ import {
   postItemTitleWrapper,
   tagWrapper,
 } from './PostItem.style';
+import PostItemImage from './PostItemImage';
 
 type PostItemProps = {
   post: Post;
-  showClosed: boolean;
 };
 
-const PostItem = ({ post, showClosed }: PostItemProps) => {
+const PostItem = ({ post }: PostItemProps) => {
   const navigate = useNavigate();
 
   const imagesInfo: ImageInfo[] = [
@@ -41,10 +40,6 @@ const PostItem = ({ post, showClosed }: PostItemProps) => {
   const dDay = calculateDday(post.deadline);
 
   const dDayString = dDay < 0 ? `D+${dDay.toString().slice(1)}` : `D-${dDay}`;
-
-  if (dDay < 0 && showClosed === false) {
-    return <></>;
-  }
 
   return (
     <div

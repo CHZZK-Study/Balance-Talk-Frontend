@@ -1,8 +1,7 @@
 export type ImageInfo = {
   imageUrl?: string;
   title: string;
-  // 게시물 Description 필요
-  description: string;
+  description?: string;
 };
 
 export type BalanceOption = {

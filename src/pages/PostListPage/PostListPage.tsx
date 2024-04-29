@@ -1,14 +1,19 @@
-import React, { MouseEvent, useEffect, useState } from 'react';
+import { fetchPostsData } from '@/api/posts/posts';
+import SortButton from '@/components/Buttons/SortButton';
+import ToggleButton from '@/components/Buttons/ToggleButton';
+import CreatePostButton from '@/components/PostListPage/CreatePostButton';
+import PostItem from '@/components/PostListPage/PostItem';
+import Heading from '@/components/design/Heading/Heading';
 import { css } from '@emotion/react';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import React, { MouseEvent, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import PostItem from '../../components/PostListPage/PostItem';
-import SortButton from '../../components/Buttons/SortButton';
-import ToggleButton from '../../components/Buttons/ToggleButton';
-import { fetchPostsData } from '../../api/posts/posts';
-import CreatePostButton from '../../components/PostListPage/CreatePostButton';
-import { postListWrapper, headingWrapper } from './PostListPage.style';
-import Heading from '../../components/design/Heading/Heading';
+import {
+  headingWrapper,
+  postListContainer,
+  postListInnerContainer,
+  postListWrapper,
+} from './PostListPage.style';
 
 const sortInfo = {
   최신순: { index: 0, param: 'createdAt' },
@@ -26,7 +31,7 @@ const PostList = () => {
 
   const [focus, setFocus] = useState(0);
   const [sort, setSort] = useState('createdAt');
-  const [showClosed, setShowClosed] = useState(true);
+  const [showClosed, setShowClosed] = useState(false);
 
   const {
     data: posts,
@@ -34,8 +39,8 @@ const PostList = () => {
     hasNextPage,
     isFetching,
   } = useInfiniteQuery({
-    queryKey: ['posts', { sort }],
-    queryFn: ({ pageParam }) => fetchPostsData(sort, pageParam),
+    queryKey: ['posts', showClosed, { sort }],
+    queryFn: ({ pageParam }) => fetchPostsData(sort, pageParam, showClosed),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       if (lastPage.pageable.pageNumber < lastPage.totalPages) {
@@ -43,7 +48,6 @@ const PostList = () => {
       }
       return undefined;
     },
-    // getNextPageParam: (lastPage) => lastPage.pageable.pageNumber + 1,
   });
 
   const onSortClickHandler = (e: MouseEvent<HTMLElement>) => {
@@ -55,20 +59,13 @@ const PostList = () => {
   const contents = posts?.pages;
 
   useEffect(() => {
-    console.log('inview', inView);
     if (inView) {
       !isFetching && hasNextPage && fetchNextPage();
     }
   }, [inView, fetchNextPage, hasNextPage, isFetching]);
 
   return (
-    <div
-      css={css({
-        width: '80vw',
-        margin: '0 auto',
-        height: '100%',
-      })}
-    >
+    <div css={postListContainer}>
       <div css={css({ height: '100%' })}>
         <CreatePostButton />
         <div css={headingWrapper}>
@@ -93,19 +90,12 @@ const PostList = () => {
             <SortButton onClickHandler={onSortClickHandler} focus={focus} />
           </div>
         </div>
-        <div
-          css={css({
-            display: 'flex',
-            justifyContent: 'center',
-            flexDirection: 'column',
-            alignItems: 'center',
-          })}
-        >
+        <div css={postListInnerContainer}>
           <div css={postListWrapper}>
             {contents &&
               contents.map((page) => {
                 const postItems = page.content.map((post) => (
-                  <PostItem key={post.id} post={post} showClosed={showClosed} />
+                  <PostItem key={post.id} post={post} />
                 ));
 
                 return postItems;
