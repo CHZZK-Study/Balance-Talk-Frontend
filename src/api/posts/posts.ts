@@ -9,31 +9,23 @@ import {
 import { END_POINT } from '../../constants/api';
 import { axiosInstance } from '../interceptor';
 
-// const URL = process.env.API_URL;
 export const fetchPostsData = async (
   sort: string = 'createdAt',
   page: number = 0,
+  showClosed: boolean = false,
 ): Promise<PostWithPagenation> => {
-  // const response = await fetch(`${URL}/posts?member-id=1`);
-  // const result = (await response.json()) as Post[];
-  // return result;
   const response = await axiosInstance.get(
-    `/posts?page=${page}&sort=${sort},desc`,
+    `/posts?closed=${showClosed}&page=${page}&sort=${sort},desc`,
   );
-  console.log(response.data);
   return response.data as PostWithPagenation;
 };
 
 export const fetchBestPostsData = async () => {
   const response = await axiosInstance.get(`/posts/best`);
-  console.log(response.data);
   return response.data as Post[];
 };
 
 export const fetchVoteCount = async (postId: number): Promise<VoteInfo[]> => {
-  // const response = await fetch(`${URL}/post/${postId}/vote`);
-  // const result = (await response.json()) as VoteInfo[];
-  // return result;
   try {
     const response = await axiosInstance.get(END_POINT.VOTE_COUNT(postId));
     return response.data as VoteInfo[];
@@ -43,14 +35,6 @@ export const fetchVoteCount = async (postId: number): Promise<VoteInfo[]> => {
 };
 
 export const fetchPost = async (postForm: CreatePost) => {
-  // const response = await fetch(`${URL}/posts`, {
-  //   method: 'POST',
-  //   credentials: 'include',
-  //   body: JSON.stringify(postForm),
-  // });
-
-  // return response.status;
-
   try {
     const response = await axiosInstance.post('/posts', postForm, {
       headers: {
@@ -67,10 +51,6 @@ export const fetchPost = async (postForm: CreatePost) => {
 };
 
 export const fetchPostById = async (postId: number): Promise<Post> => {
-  // const response = await fetch(`${URL}/posts/${postId}`);
-  // const result = (await response.json()) as Post;
-  // return result;
-
   const response = await axiosInstance.get(`/posts/${postId}`);
   return response.data as Post;
 };
@@ -92,24 +72,11 @@ export const fetchPostSearchTag = async (tagName: string): Promise<Post[]> => {
 };
 
 export const fetchAddLike = async (postId: number) => {
-  // const response = await fetch(`${URL}/posts/${postId}/likes`, {
-  //   method: 'POST',
-  //   credentials: 'include',
-  // });
-
-  // return response.body;
   const response = await axiosInstance.post(`/posts/${postId}/likes`);
   return response;
 };
 
 export const fetchDeleteLike = async (postId: number) => {
-  // const response = await fetch(`${URL}/posts/${postId}/likes`, {
-  //   method: 'DELETE',
-  //   credentials: 'include',
-  // });
-
-  // return response.body;
-
   const response = await axiosInstance.delete(`/posts/${postId}/likes`);
   return response;
 };
