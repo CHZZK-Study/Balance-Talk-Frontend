@@ -9,6 +9,7 @@ import { MyVotedPostsContentType } from '@/types/mypage';
 import { createRangeArray } from '@/utils/array';
 import { useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 const VotedPostsPage = () => {
   const [selectedPage, setSelectedPage] = useState(1);
@@ -32,7 +33,7 @@ const VotedPostsPage = () => {
             return (
               <ItemMyVotedPosts
                 id={item.postId.toString()}
-                key={item.postId}
+                key={uuidv4()}
                 item={item}
               />
             );

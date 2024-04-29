@@ -14,6 +14,7 @@ import { createRangeArray } from '@/utils/array';
 import { useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { bookmarksBtnContainer } from './BookmarksPage.style';
+import { v4 as uuidv4 } from 'uuid';
 
 const BookmarksPage = () => {
   const [selectedPage, setSelectedPage] = useState(1);
@@ -63,7 +64,7 @@ const BookmarksPage = () => {
             return (
               <ItemMyBookmarksPosts
                 id={item.postId.toString()}
-                key={item.postId}
+                key={uuidv4()}
                 item={item}
                 isChecked={checkItems.includes(item.postId.toString())}
                 handleChecked={handleSingleChecked}

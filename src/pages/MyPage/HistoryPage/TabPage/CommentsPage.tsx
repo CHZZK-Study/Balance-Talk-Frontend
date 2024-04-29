@@ -9,6 +9,7 @@ import { MyCommentsPostsContentType } from '@/types/mypage';
 import { createRangeArray } from '@/utils/array';
 import { useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 const CommentsPage = () => {
   const [selectedPage, setSelectedPage] = useState(1);
@@ -34,7 +35,7 @@ const CommentsPage = () => {
             return (
               <ItemMyCommentsPosts
                 id={item.postId.toString()}
-                key={item.postId}
+                key={uuidv4()}
                 item={item}
               />
             );
