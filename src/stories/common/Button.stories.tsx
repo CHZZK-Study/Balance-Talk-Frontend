@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@/components/design/Button/Button';
 import type { Meta, StoryObj } from '@storybook/react';
-import { storyContainer, storyInnerContainer } from '../story.styles';
+import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
 
 const meta = {
   title: 'Button',
