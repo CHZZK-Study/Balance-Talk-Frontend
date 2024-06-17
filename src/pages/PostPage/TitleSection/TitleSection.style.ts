@@ -19,7 +19,6 @@ export const titleSectionRightwrapper = css({
   alignItems: 'center',
   gap: '1rem',
   paddingTop: '1rem',
-  fontFamily: 'SpoqaHanSansNeo-Regular',
   fontSize: '1.5rem',
 });
 
@@ -34,7 +33,6 @@ export const titleWrapper = css({
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
-  fontFamily: 'SpoqaHanSansNeo-regular',
   fontSize: '48px',
 });
 

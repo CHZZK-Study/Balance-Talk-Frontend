@@ -16,7 +16,6 @@ const CreatePostButton = () => {
         left: '70vw',
         border: 0,
         borderRadius: '10px',
-        fontFamily: 'SpoqaHanSansNeo-Medium',
         fontSize: '16px',
         width: '100px',
         height: '40px',

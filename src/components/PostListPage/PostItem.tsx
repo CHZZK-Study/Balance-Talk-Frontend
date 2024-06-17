@@ -77,7 +77,6 @@ const PostItem = ({ post }: PostItemProps) => {
           <div
             css={css({
               marginTop: '11px',
-              fontFamily: 'SpoqaHanSansNeo-Regular',
             })}
           >
             {post?.likesCount || '0'}

@@ -51,7 +51,6 @@ export const imageWrapper = (size: SizeType) =>
 
 export const fontWrapper = (size: SizeType) =>
   css({
-    fontFamily: 'SpoqaHanSansNeo-Bold',
     fontSize: sizeStyles[size].fontSize,
     position: 'absolute',
     zIndex: 1,
@@ -64,7 +63,6 @@ export const imageTextWrapper = (size: SizeType) =>
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    fontFamily: 'SpoqaHanSansNeo-Bold',
     fontSize: sizeStyles[size].fontSize,
     textAlign: 'center',
   });

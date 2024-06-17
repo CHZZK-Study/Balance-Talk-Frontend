@@ -50,14 +50,7 @@ const SearchResultPage = () => {
       <div css={css({ height: '100%' })}>
         <CreatePostButton />
         <div css={headingWrapper}>
-          <Heading
-            size="small"
-            css={css({
-              fontFamily: 'SpoqaHanSansNeo-Medium',
-            })}
-          >
-            검색 결과
-          </Heading>
+          <Heading size="small">검색 결과</Heading>
           <div
             css={css({
               display: 'flex',

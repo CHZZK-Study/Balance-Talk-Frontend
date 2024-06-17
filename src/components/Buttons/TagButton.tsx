@@ -21,7 +21,6 @@ const TagButton = ({ tag }: TagButtonProps) => {
         backgroundColor: '#EEEEEE',
         border: 0,
         borderRadius: '15px',
-        fontFamily: 'SpoqaHanSansNeo-Bold',
         fontSize: '14px',
         minWidth: '72px',
         height: '35px',

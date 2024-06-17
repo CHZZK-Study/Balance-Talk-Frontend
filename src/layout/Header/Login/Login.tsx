@@ -15,7 +15,6 @@ const Login = () => {
     <>
       <button
         css={css({
-          fontFamily: 'SpoqaHanSansNeo-medium',
           color: 'white',
           cursor: 'pointer',
         })}
@@ -30,7 +29,6 @@ const Login = () => {
       </button>
       <button
         css={css({
-          fontFamily: 'SpoqaHanSansNeo-medium',
           color: 'white',
           cursor: 'pointer',
         })}

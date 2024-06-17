@@ -21,12 +21,10 @@ export const creatorInfoWrapper = css({
 
 export const creatorNameWrapper = css({
   fontStyle: 'italic',
-  fontFamily: 'SpoqaHanSansNeo-medium',
   fontWeight: '500',
   fontSize: '1rem',
 });
 
 export const createdDateWrapper = css({
-  fontFamily: 'SpoqaHanSansNeo-thin',
   fontSize: '1rem',
 });

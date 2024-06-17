@@ -44,7 +44,6 @@ export const createFormContainer = css({
 });
 
 export const versusText = css({
-  fontFamily: 'SpoqaHanSansNeo-Bold',
   fontSize: '50px',
   position: 'absolute',
   zIndex: 1,

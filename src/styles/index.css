@@ -1,25 +1,6 @@
 @import 'reset.css';
 
 @font-face {
-  font-family: 'SpoqaHanSansNeo-Thin';
-  src: url('../assets/fonts/SpoqaHanSansNeo-Thin.ttf');
-}
-@font-face {
-  font-family: 'SpoqaHanSansNeo-Light';
-  src: url('../assets/fonts/SpoqaHanSansNeo-Light.ttf');
-}
-
-@font-face {
-  font-family: 'SpoqaHanSansNeo-Medium';
-  src: url('../assets/fonts/SpoqaHanSansNeo-Medium.ttf');
-}
-
-@font-face {
-  font-family: 'SpoqaHanSansNeo-Bold';
-  src: url('../assets/fonts/SpoqaHanSansNeo-Bold.ttf');
-}
-
-@font-face {
-  font-family: 'SpoqaHanSansNeo-Regular';
-  src: url('../assets/fonts/SpoqaHanSansNeo-Regular.ttf');
+  font-family: 'Pretendard';
+  src: url('../assets/fonts/PretendardVariable.woff2') format(woff2);
 }

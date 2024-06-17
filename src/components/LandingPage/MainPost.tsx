@@ -90,7 +90,6 @@ const MainPost = ({ post }: MainPostProps) => {
             <span
               css={css({
                 marginTop: '11px',
-                fontFamily: 'SpoqaHanSansNeo-Regular',
               })}
             >
               {postInfo?.likesCount || '0'}

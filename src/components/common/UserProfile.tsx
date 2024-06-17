@@ -40,7 +40,6 @@ const CreatorSection = ({ creatorId }: CreatorSectionProps) => {
         <div
           css={css({
             fontStyle: 'italic',
-            fontFamily: 'SpoqaHanSansNeo-medium',
             fontWeight: '500',
             fontSize: '1rem',
           })}
@@ -48,7 +47,6 @@ const CreatorSection = ({ creatorId }: CreatorSectionProps) => {
         {member?.nickname || 'nickname'}
         <div
           css={css({
-            fontFamily: 'SpoqaHanSansNeo-thin',
             fontSize: '1rem',
           })}
         >

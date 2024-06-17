@@ -9,7 +9,6 @@ const VoteButton = () => {
         backgroundColor: '#FFD369',
         border: 0,
         borderRadius: '10px',
-        fontFamily: 'SpoqaHanSansNeo-Bold',
         fontSize: '20px',
         width: '165px',
         height: '45px',

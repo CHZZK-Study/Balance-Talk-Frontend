@@ -69,14 +69,7 @@ const PostList = () => {
       <div css={css({ height: '100%' })}>
         <CreatePostButton />
         <div css={headingWrapper}>
-          <Heading
-            size="small"
-            css={css({
-              fontFamily: 'SpoqaHanSansNeo-Medium',
-            })}
-          >
-            게시글 목록
-          </Heading>
+          <Heading size="small">게시글 목록</Heading>
           <div
             css={css({
               display: 'flex',

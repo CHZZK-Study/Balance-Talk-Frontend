@@ -15,7 +15,6 @@ export const imageWrapper = css({
 });
 
 export const versusText = css({
-  fontFamily: 'SpoqaHanSansNeo-Bold',
   fontSize: '48px',
   position: 'absolute',
   zIndex: 1,
@@ -27,7 +26,6 @@ export const imageTextWrapper = css({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  fontFamily: 'SpoqaHanSansNeo-Bold',
   fontSize: '30px',
   textAlign: 'center',
 });

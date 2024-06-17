@@ -9,7 +9,6 @@ const Logout = () => {
     <>
       <button
         css={css({
-          fontFamily: 'SpoqaHanSansNeo-medium',
           color: 'white',
           cursor: 'pointer',
         })}
@@ -22,7 +21,6 @@ const Logout = () => {
       </button>
       <button
         css={css({
-          fontFamily: 'SpoqaHanSansNeo-medium',
           color: 'white',
           cursor: 'pointer',
         })}
