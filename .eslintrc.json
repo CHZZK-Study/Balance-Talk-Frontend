@@ -14,36 +14,62 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
-  "ignorePatterns": ["webpack.config.js"],
+  "ignorePatterns": [
+    "webpack.config.js"
+  ],
   "extends": [
     "airbnb",
     "airbnb-typescript",
     "airbnb/hooks",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:storybook/recommended"
   ],
-  "plugins": ["prettier", "@typescript-eslint", "import"],
+  "plugins": [
+    "prettier",
+    "@typescript-eslint",
+    "import"
+  ],
   "settings": {
     "import/resolver": {
       "typescript": {}
     }
   },
   "rules": {
-    "prettier/prettier": ["error", { "endOfLine": "auto" }],
-    "react/no-unknown-property": ["error", { "ignore": ["css"] }],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "react/no-unknown-property": [
+      "error",
+      {
+        "ignore": [
+          "css"
+        ]
+      }
+    ],
     "react/prop-types": "off",
     "react/require-default-props": "off",
     "react/jsx-props-no-spreading": "off",
     "import/prefer-default-export": "off",
     "react/function-component-definition": [
       2,
-      { "namedComponents": ["arrow-function", "function-declaration"] }
+      {
+        "namedComponents": [
+          "arrow-function",
+          "function-declaration"
+        ]
+      }
     ],
     "jsx-a11y/label-has-associated-control": [
       2,
       {
-        "labelAttributes": ["htmlFor"]
+        "labelAttributes": [
+          "htmlFor"
+        ]
       }
     ]
   }
