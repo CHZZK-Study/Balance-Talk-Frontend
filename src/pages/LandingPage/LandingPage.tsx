@@ -74,7 +74,6 @@ const LandingPage = () => {
       <div css={recommendPostWrapper}>
         <div css={headingWrapper}>
           <Heading size="small">추천 게시글</Heading>
-          <p>추천</p>
         </div>
         <Carousel
           itemWidth={1100}
