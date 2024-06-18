@@ -57,7 +57,6 @@ const ImageDropZone: React.FC<ImageDropZoneProps> = ({ setFile }) => {
       ) : (
         <p
           css={css({
-            fontFamily: 'SpoqaHanSansNeo-Regular',
             fontSize: '24px',
           })}
         >

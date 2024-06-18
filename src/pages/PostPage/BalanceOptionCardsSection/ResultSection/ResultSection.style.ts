@@ -8,7 +8,6 @@ export const resultSectionWrapper = css({
   alignItems: 'center',
   textAlign: 'center',
   backgroundColor: 'white',
-  fontFamily: 'SpoqaHanSansNeo-Bold',
   fontSize: Theme.text.large.fontSize,
   lineHeight: Theme.text.large.lineHeight,
 });

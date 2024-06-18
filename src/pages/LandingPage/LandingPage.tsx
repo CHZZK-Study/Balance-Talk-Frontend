@@ -73,14 +73,7 @@ const LandingPage = () => {
     <div css={landingContainer}>
       <div css={recommendPostWrapper}>
         <div css={headingWrapper}>
-          <Heading
-            size="small"
-            css={css({
-              fontFamily: 'SpoqaHanSansNeo-Medium',
-            })}
-          >
-            추천 게시글
-          </Heading>
+          <Heading size="small">추천 게시글</Heading>
         </div>
         <Carousel
           itemWidth={1100}
@@ -91,17 +84,9 @@ const LandingPage = () => {
       </div>
       <div css={morePostWrapper}>
         <div css={headingWithButtonWrapper}>
-          <Heading
-            size="small"
-            css={css({
-              fontFamily: 'SpoqaHanSansNeo-Medium',
-            })}
-          >
-            더 많은 게시글
-          </Heading>
+          <Heading size="small">더 많은 게시글</Heading>
           <span
             css={css({
-              fontFamily: 'SpoqaHanSansNeo-Regular',
               fontSize: '14px',
               cursor: 'pointer',
             })}

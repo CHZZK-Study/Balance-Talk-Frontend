@@ -34,7 +34,6 @@ import { PLACE_HOLDER } from '../../constants/message';
 const inputStyles = {
   borderRadius: '5px',
   fontSize: '16px',
-  fontFamily: 'SpoqaHanSansNeo-Regular',
   border: 0,
   backgroundColor: '#EEEEEE',
   boxShadow: '0px 4px 4px gray',
@@ -145,14 +144,7 @@ const CreatePostPage = () => {
   return (
     <div css={css({ width: '100vw' })}>
       <div css={headingWrapper}>
-        <Heading
-          size="small"
-          css={css({
-            fontFamily: 'SpoqaHanSansNeo-Medium',
-          })}
-        >
-          게시글 작성
-        </Heading>
+        <Heading size="small">게시글 작성</Heading>
       </div>
       <form onSubmit={onSubmitHandler}>
         <div css={inputTitleWrapper}>
@@ -254,16 +246,6 @@ const CreatePostPage = () => {
                   slotProps={{
                     textField: {
                       size: 'small',
-                      InputProps: {
-                        style: {
-                          fontFamily: 'SpoqaHanSansNeo-Regular',
-                        },
-                      },
-                      InputLabelProps: {
-                        style: {
-                          fontFamily: 'SpoqaHanSansNeo-Regular',
-                        },
-                      },
                     },
                   }}
                 />
@@ -277,7 +259,6 @@ const CreatePostPage = () => {
                 backgroundColor: '#FFD369',
                 border: 0,
                 borderRadius: '10px',
-                fontFamily: 'SpoqaHanSansNeo-Medium',
                 fontSize: '16px',
                 width: '100px',
                 height: '40px',

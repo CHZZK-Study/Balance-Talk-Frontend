@@ -10,7 +10,6 @@ const SortButton = ({ onClickHandler, focus }: Props) => {
   return (
     <div
       css={css({
-        fontFamily: 'SpoqaHanSansNeo-Thin',
         fontSize: '14px',
         display: 'flex',
         marginLeft: '30px',
@@ -22,8 +21,6 @@ const SortButton = ({ onClickHandler, focus }: Props) => {
           borderRight: '1px solid #C4C4C4',
           paddingRight: '5px',
           cursor: 'pointer',
-          fontFamily:
-            focus === 0 ? 'SpoqaHanSansNeo-Regular' : 'SpoqaHanSansNeo-Thin',
         })}
         onClick={onClickHandler}
         role="presentation"
@@ -36,8 +33,6 @@ const SortButton = ({ onClickHandler, focus }: Props) => {
           paddingLeft: '5px',
           paddingRight: '5px',
           cursor: 'pointer',
-          fontFamily:
-            focus === 1 ? 'SpoqaHanSansNeo-Regular' : 'SpoqaHanSansNeo-Thin',
         })}
         onClick={onClickHandler}
         role="presentation"
@@ -48,8 +43,6 @@ const SortButton = ({ onClickHandler, focus }: Props) => {
         css={css({
           paddingLeft: '5px',
           cursor: 'pointer',
-          fontFamily:
-            focus === 2 ? 'SpoqaHanSansNeo-Regular' : 'SpoqaHanSansNeo-Thin',
         })}
         onClick={onClickHandler}
         role="presentation"

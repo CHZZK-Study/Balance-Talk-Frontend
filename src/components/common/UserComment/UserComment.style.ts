@@ -54,7 +54,6 @@ export const commentHistoryWrapper = (isAlingLeft: boolean) =>
 
 export const nameWrapper = css({
   fontStyle: 'italic',
-  fontFamily: 'SpoqaHanSansNeo-medium',
   fontWeight: '500',
 });
 
@@ -62,12 +61,10 @@ export const contentWrapper = (isAlingLeft: boolean) =>
   css({
     display: 'flex',
     flexDirection: `${isAlingLeft ? 'row' : 'row-reverse'}`,
-    fontFamily: 'SpoqaHanSansNeo-regular',
     fontSize: '1rem',
   });
 
 export const createdAtWrapper = css({
-  fontFamily: 'SpoqaHanSansNeo-thin',
   fontWeight: '300',
   fontSize: '0.8rem',
 });

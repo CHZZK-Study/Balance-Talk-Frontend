@@ -19,7 +19,6 @@ export const logoContainer = css({
 
 export const logoNameContainer = css({
   fontSize: '1.5rem',
-  fontFamily: 'SpoqaHanSansNeo-medium',
   textAlign: 'center',
   color: 'white',
   cursor: 'pointer',
@@ -30,5 +29,4 @@ export const headerBtnContainer = css({
   justifyContent: 'flex-end',
   gap: '1rem',
   fontSize: '1rem',
-  fontFamily: 'SpoqaHanSansNeo-medium',
 });

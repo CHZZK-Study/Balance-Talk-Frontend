@@ -91,7 +91,6 @@ const ToggleButton = ({ setShowClosed, showClosed }: Props) => {
       </div>
       <div
         css={css({
-          fontFamily: 'SpoqaHanSansNeo-Regular',
           marginLeft: '5px',
           fontSize: '16px',
         })}

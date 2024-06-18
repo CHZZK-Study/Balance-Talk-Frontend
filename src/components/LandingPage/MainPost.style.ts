@@ -19,13 +19,11 @@ export const TagButtonWrapper = css({
 });
 
 export const mainPostTitle = css({
-  fontFamily: 'SpoqaHanSansNeo-Bold',
   fontSize: '48px',
   textShadow: '0px 4px 4px gray',
 });
 
 export const voteCount = css({
-  fontFamily: 'SpoqaHanSansNeo-Regular',
   fontSize: '24px',
   marginBottom: '20px',
 });
@@ -48,5 +46,4 @@ export const etcButtonText = css({
   marginRight: '5px',
   position: 'relative',
   bottom: '7px',
-  fontFamily: 'SpoqaHanSansNeo-Regular',
 });

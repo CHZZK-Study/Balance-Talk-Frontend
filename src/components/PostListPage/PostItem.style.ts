@@ -23,12 +23,10 @@ export const postItemTitleWrapper = css({
 });
 
 export const postItemTitle = css({
-  fontFamily: 'SpoqaHanSansNeo-Bold',
   fontSize: '24px',
 });
 
 export const postItemDday = css({
-  fontFamily: 'SpoqaHanSansNeo-Light',
   fontSize: '16px',
 });
 
@@ -55,5 +53,4 @@ export const etcButtonText = css({
   marginRight: '15px',
   position: 'relative',
   bottom: '7px',
-  fontFamily: 'SpoqaHanSansNeo-Regular',
 });

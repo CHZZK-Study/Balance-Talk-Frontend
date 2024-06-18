@@ -26,7 +26,6 @@ export const balanceOptionCardsWrapper = css({
 
 export const versusTextwrapper = css({
   position: 'absolute',
-  fontFamily: 'SpoqaHanSansNeo-Bold',
   fontSize: '50px',
   zIndex: 1,
   top: 230,
