@@ -144,9 +144,7 @@ const CreatePostPage = () => {
   return (
     <div css={css({ width: '100vw' })}>
       <div css={headingWrapper}>
-        <Heading size="small" css={css({})}>
-          게시글 작성
-        </Heading>
+        <Heading size="small">게시글 작성</Heading>
       </div>
       <form onSubmit={onSubmitHandler}>
         <div css={inputTitleWrapper}>
