@@ -19,6 +19,7 @@ const config: StorybookConfig = {
   docs: {
     autodocs: true,
   },
+  staticDirs: ['../src/assets'],
   webpackFinal: async (config: Configuration) => {
     config.module!.rules = [
       {
