@@ -5,10 +5,9 @@ import type { ChipsProps } from './Chips';
 
 export const getSizeStyling = (size: Required<ChipsProps>['size']) => {
   const style = {
-    large: css({
+    large: css(typo.Body.SemiBold_1, {
       padding: '12px 16px',
       borderRadius: '15px',
-      fontSize: typo.Body.SemiBold_1.fontSize,
     }),
     small: css(typo.Body.Medium_2, {
       padding: '7px 12px',
@@ -23,6 +22,7 @@ export const chipsStyling = css({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  width: 'fit-content',
   backgroundColor: color.Primary[400],
   color: color.Common[100],
   cursor: 'pointer',

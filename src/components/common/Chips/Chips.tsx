@@ -9,9 +9,7 @@ export interface ChipsProps {
 }
 
 const Chips = ({ size = 'large', children }: ChipsProps) => (
-  <div css={[chipsStyling, getSizeStyling(size), { width: 'fit-content' }]}>
-    {children}
-  </div>
+  <div css={[chipsStyling, getSizeStyling(size)]}>{children}</div>
 );
 
 export default Chips;
