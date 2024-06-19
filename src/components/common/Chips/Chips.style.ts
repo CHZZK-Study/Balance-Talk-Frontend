@@ -23,7 +23,7 @@ export const chipsStyling = css({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: color.Primary['400'],
-  color: color.Common['100'],
+  backgroundColor: color.Primary[400],
+  color: color.Common[100],
   cursor: 'pointer',
 });

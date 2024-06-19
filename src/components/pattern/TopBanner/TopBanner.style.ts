@@ -19,7 +19,7 @@ export const bannerStyling = css({
   minHeight: '320px',
   padding: '23px',
   borderRadius: '18px',
-  backgroundColor: color.Neutral['800'],
+  backgroundColor: color.Neutral[800],
   cursor: 'pointer',
 });
 
@@ -30,7 +30,7 @@ export const bannerInfoWrapper = css({
 });
 
 export const bannerTitle = css(typo.Heading_2, {
-  color: color.Common['100'],
+  color: color.Common[100],
 });
 
 export const bannerSummary = css(typo.Body.Medium_1, {
