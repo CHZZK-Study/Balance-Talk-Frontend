@@ -15,12 +15,12 @@ export const pulsate = keyframes({
 
 export const loadingStyle = keyframes({
   '0%': {
-    backgroundColor: color.Neutral['800'],
+    backgroundColor: color.Neutral[800],
   },
   '50%': {
-    backgroundColor: color.Neutral['700'],
+    backgroundColor: color.Neutral[700],
   },
   '100%': {
-    backgroundColor: color.Neutral['800'],
+    backgroundColor: color.Neutral[800],
   },
 });
