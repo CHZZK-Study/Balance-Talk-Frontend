@@ -2,7 +2,7 @@ import type { Size } from '@/types/temp';
 import type { ComponentPropsWithRef, ForwardedRef, ReactElement } from 'react';
 import React, { forwardRef } from 'react';
 import ErrorMessage from '../../design/ErrorMessage/ErrorMessage';
-import Label from '../../design/Label/Label';
+import Label from '../Label/Label';
 import {
   getInputStyling,
   getSizeStyling,
