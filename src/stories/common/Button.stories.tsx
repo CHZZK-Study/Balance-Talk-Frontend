@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
 
 const meta = {
-  title: 'Button',
+  title: 'commons/Button',
   component: Button,
   parameters: {
     layout: 'centered',
