@@ -86,4 +86,9 @@ export const buttonStyling = css({
   whiteSpace: 'nowrap',
   transition: 'all .3s ease-in',
   cursor: 'pointer',
+
+  '& svg': {
+    width: '16px',
+    height: '16px',
+  },
 });
