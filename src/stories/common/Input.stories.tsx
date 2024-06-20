@@ -46,7 +46,7 @@ export const Default: Story = {
 
 export const All: Story = {
   render: (args) => (
-    <ul css={[storyContainer]}>
+    <ul css={storyContainer}>
       <li css={storyInnerContainer}>
         <h3>Size</h3>
         <Input {...args} placeholder="medium" />
