@@ -1,7 +1,7 @@
 import React, { ComponentPropsWithoutRef } from 'react';
 import { getSizeStyling, headingStyling } from './Heading.style';
 
-export interface HeadingProps extends ComponentPropsWithoutRef<'h4'> {
+export interface HeadingProps extends ComponentPropsWithoutRef<'h5'> {
   type: '1' | '2' | '3' | '4';
 }
 
