@@ -1,31 +1,60 @@
+import color from '@/styles/color';
+import typo from '@/styles/typo';
 import { css } from '@emotion/react';
-
-import { Theme } from '../../../styles/Theme';
-
 import type { ButtonProps } from './Button';
 
 export const getVariantStyling = (
   variant: Required<ButtonProps>['variant'],
 ) => {
   const style = {
-    default: css({
-      backgroundColor: Theme.color.colorHunt_yellow,
-      color: Theme.color.black,
-    }),
-    outline: css({
-      backgroundColor: Theme.color.white,
-      color: Theme.color.black,
-      outline: `1px solid ${Theme.color.black}`,
+    solidPrimary: css({
+      backgroundColor: color.Primary[400],
+      color: color.Neutral[50],
 
       '&:hover:enabled': {
-        outline: `1px solid ${Theme.color.red}`,
-        color: Theme.color.red,
+        backgroundColor: color.Primary[500],
+      },
+      '&:disabled': {
+        backgroundColor: color.Neutral[100],
+        color: color.Neutral[400],
       },
     }),
+    solidNeutral: css({
+      backgroundColor: color.Neutral[800],
+      color: color.Neutral[600],
+      opacity: '.4',
 
-    cancel: css({
-      backgroundColor: Theme.color.gray300,
-      color: Theme.color.black,
+      '&:hover:enabled': {
+        opacity: '.8',
+      },
+    }),
+    outlinePrimary: css({
+      backgroundColor: 'transparent',
+      outline: `1px solid ${color.Primary[400]}`,
+      color: color.Primary[400],
+
+      '&:hover:enabled': {
+        backgroundColor: color.Primary[400],
+        color: color.Neutral[50],
+      },
+      '&:disabled': {
+        outline: `1px solid ${color.Neutral[400]}`,
+        color: color.Neutral[400],
+      },
+    }),
+    outlineAssistive: css({
+      backgroundColor: 'transparent',
+      outline: `1px solid ${color.Neutral[800]}`,
+      color: color.Neutral[600],
+
+      '&:hover:enabled': {
+        outline: `1px solid ${color.Neutral[700]}`,
+        color: color.Neutral[400],
+      },
+      '&:disabled': {
+        outline: `1px solid ${color.Neutral[400]}`,
+        color: color.Neutral[400],
+      },
     }),
   };
 
@@ -34,25 +63,15 @@ export const getVariantStyling = (
 
 export const getSizeStyling = (size: Required<ButtonProps>['size']) => {
   const style = {
-    large: css({
-      padding: '14px 16px',
-      fontSize: Theme.text.medium.fontSize,
-      lineHeight: Theme.text.medium.lineHeight,
+    large: css(typo.Body.SemiBold_3, {
+      padding: '10px 24px',
+      borderRadius: '8px',
+      gap: '8px',
     }),
-    medium: css({
-      padding: '12px 16px',
-      fontSize: Theme.text.medium.fontSize,
-      lineHeight: Theme.text.medium.lineHeight,
-    }),
-    small: css({
-      padding: '8px 12px',
-      fontSize: Theme.text.small.fontSize,
-      lineHeight: Theme.text.small.lineHeight,
-    }),
-    xSmall: css({
+    small: css(typo.Body.Regular_1, {
       padding: '6px 10px',
-      fontSize: Theme.text.xSmall.fontSize,
-      lineHeight: Theme.text.xSmall.lineHeight,
+      borderRadius: '6px',
+      gap: '4px',
     }),
   };
 
@@ -64,17 +83,7 @@ export const buttonStyling = css({
   justifyContent: 'center',
   alignItems: 'center',
   border: 'none',
-  borderRadius: '5px',
-  fontWeight: 'bold',
   whiteSpace: 'nowrap',
-  transition: 'all .2s ease-in',
+  transition: 'all .3s ease-in',
   cursor: 'pointer',
-
-  '&:disabled': {
-    opacity: '.4',
-  },
-
-  '&:hover:enabled': {
-    filter: 'brightness(110%)',
-  },
 });
