@@ -15,7 +15,7 @@ const TAG_SIZE = {
 const Heading = ({ type = '1', children, ...attributes }: HeadingProps) => {
   const HeadingTag = TAG_SIZE[type];
   return (
-    <HeadingTag css={(getSizeStyling(type), headingStyling)} {...attributes}>
+    <HeadingTag css={[getSizeStyling(type), headingStyling]} {...attributes}>
       {children}
     </HeadingTag>
   );
