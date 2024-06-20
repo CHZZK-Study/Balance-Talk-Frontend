@@ -2,7 +2,7 @@
 import React, { ChangeEvent, SetStateAction, KeyboardEvent } from 'react';
 import { css } from '@emotion/react';
 import Button from '@/components/common/Button/Button';
-import Input from '@/components/design/Input/Input';
+import Input from '@/components/common/Input/Input';
 import { useEditComment } from '@/hooks/comment/useEditComment';
 
 interface InputEditedCommentProps {

@@ -2,7 +2,7 @@
 import React, { ChangeEvent, useEffect } from 'react';
 import { css } from '@emotion/react';
 import Button from '../Button/Button';
-import Input from '../../design/Input/Input';
+import Input from '../Input/Input';
 import { useCheckEmail } from '../../../hooks/common/inputsUserInfo/useCheckEmail';
 
 interface InputEmailProps {

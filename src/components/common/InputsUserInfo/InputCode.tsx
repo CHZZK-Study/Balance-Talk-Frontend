@@ -4,7 +4,7 @@ import { css } from '@emotion/react';
 import React, { ChangeEvent, useEffect } from 'react';
 import { useCheckCode } from '../../../hooks/common/inputsUserInfo/useCheckCode';
 import Button from '../Button/Button';
-import Input from '../../design/Input/Input';
+import Input from '../Input/Input';
 
 interface InputCodeProps {
   value: Pick<MemberForm, 'email' | 'verificationCode'>;

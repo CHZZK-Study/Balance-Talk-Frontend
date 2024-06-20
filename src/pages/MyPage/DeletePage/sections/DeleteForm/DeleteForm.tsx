@@ -6,7 +6,7 @@ import { selectAccessToken } from '@/store/auth';
 import { css } from '@emotion/react';
 import InputPw from '../../../../../components/common/InputsUserInfo/InputPw';
 import Button from '../../../../../components/common/Button/Button';
-import Input from '../../../../../components/design/Input/Input';
+import Input from '../../../../../components/common/Input/Input';
 import { useMemberDelete } from '../../../../../hooks/mypage/memberDelete/useMemberDelete';
 import {
   btnUserDelete,

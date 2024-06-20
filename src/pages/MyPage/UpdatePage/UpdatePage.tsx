@@ -10,7 +10,7 @@ import InputPw from '@/components/common/InputsUserInfo/InputPw';
 import InputPwCheck from '@/components/common/InputsUserInfo/InputPwCheck';
 import Button from '@/components/common/Button/Button';
 import Heading from '@/components/design/Heading/Heading';
-import Input from '@/components/design/Input/Input';
+import Input from '@/components/common/Input/Input';
 import { useMemberUpdate } from '@/hooks/mypage/memberUpdate/useMemberUpdate';
 import {
   btnContainer,

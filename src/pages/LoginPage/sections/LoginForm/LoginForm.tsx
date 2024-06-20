@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { css } from '@emotion/react';
-import Input from '../../../../components/design/Input/Input';
+import Input from '../../../../components/common/Input/Input';
 import { useLoginForm } from '../../../../hooks/login/useLoginForm';
 import Button from '../../../../components/common/Button/Button';
 import { btnLogin, inputContainer } from './LoginForm.style';
