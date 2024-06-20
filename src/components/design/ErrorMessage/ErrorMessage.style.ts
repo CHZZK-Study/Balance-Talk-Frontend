@@ -1,14 +1,11 @@
+import color from '@/styles/color';
+import typo from '@/styles/typo';
 import { css } from '@emotion/react';
-
 import type { ErrorMessageProps } from './ErrorMessage';
-
-import { Theme } from '../../../styles/Theme';
 
 export const getTextStyling = (
   isError: Required<ErrorMessageProps>['isError'],
 ) =>
-  css({
-    fontSize: Theme.text.small.fontSize,
-    lineHeight: Theme.text.small.lineHeight,
-    color: isError ? Theme.color.red : Theme.color.green,
+  css(typo.Body.Medium_5, {
+    color: isError ? color.Red[500] : color.Neutral[50],
   });
