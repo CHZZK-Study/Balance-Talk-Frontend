@@ -28,24 +28,26 @@ export const highlightBtn = css({
     border: `1px solid ${color.Primary[400]}`,
     boxShadow: `0 0 12px ${color.Primary[400]}`,
   },
-  '.right-arrow': {
+  svg: {
     fill: color.Primary[400],
   },
 });
 
 export const defaultBtn = css({
   border: `1px solid ${color.Neutral[800]}`,
-  ':hover h4': {
-    color: color.Neutral[50],
+  ':hover': {
+    '& h4': {
+      color: color.Neutral[50],
+    },
+    '& p': {
+      color: color.Neutral[400],
+    },
+    '& svg': {
+      fill: color.Neutral[400],
+    },
   },
-  ':hover p': {
-    color: color.Neutral[400],
-  },
-  '.right-arrow': {
+  svg: {
     fill: color.Neutral[600],
-  },
-  ':hover .right-arrow': {
-    fill: color.Neutral[400],
   },
 });
 
