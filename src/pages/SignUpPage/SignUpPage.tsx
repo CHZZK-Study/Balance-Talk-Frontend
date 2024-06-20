@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../../components/common/Button/Button';
-import Heading from '../../components/design/Heading/Heading';
+import Heading from '../../components/common/Heading/Heading';
 import InputCode from '../../components/common/InputsUserInfo/InputCode';
 import InputEmail from '../../components/common/InputsUserInfo/InputEmail';
 import InputNickname from '../../components/common/InputsUserInfo/InputNickname';

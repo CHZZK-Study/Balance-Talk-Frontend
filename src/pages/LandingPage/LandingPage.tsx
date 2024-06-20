@@ -3,7 +3,7 @@ import { fetchBestPostsData, fetchPostsData } from '@/api/posts/posts';
 import Carousel from '@/components/LandingPage/Carousel';
 import MainPost from '@/components/LandingPage/MainPost';
 import PostImage from '@/components/common/PostImage/PostImage';
-import Heading from '@/components/design/Heading/Heading';
+import Heading from '@/components/common/Heading/Heading';
 import { ImageInfo, Post, PostWithPagenation } from '@/types/post';
 import { css } from '@emotion/react';
 import { useQuery } from '@tanstack/react-query';

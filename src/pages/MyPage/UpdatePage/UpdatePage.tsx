@@ -9,7 +9,7 @@ import InputProfileImage from '@/components/common/InputsUserInfo/InputProfileIm
 import InputPw from '@/components/common/InputsUserInfo/InputPw';
 import InputPwCheck from '@/components/common/InputsUserInfo/InputPwCheck';
 import Button from '@/components/common/Button/Button';
-import Heading from '@/components/design/Heading/Heading';
+import Heading from '@/components/common/Heading/Heading';
 import Input from '@/components/common/Input/Input';
 import { useMemberUpdate } from '@/hooks/mypage/memberUpdate/useMemberUpdate';
 import {
