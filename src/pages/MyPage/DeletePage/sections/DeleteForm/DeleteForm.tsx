@@ -1,5 +1,5 @@
 import React from 'react';
-import ErrorMessage from '@/components/design/ErrorMessage/ErrorMessage';
+import ErrorMessage from '@/components/common/ErrorMessage/ErrorMessage';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
