@@ -16,11 +16,17 @@ export const bannerStyling = css({
   display: 'flex',
   flexDirection: 'column-reverse',
   width: '100%',
-  minHeight: '320px',
-  padding: '23px',
-  borderRadius: '18px',
+  minHeight: '297px',
+  padding: '30px',
+  borderRadius: '20px',
   backgroundColor: color.Neutral[800],
   cursor: 'pointer',
+});
+
+export const bannerWrapper = css({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '6px',
 });
 
 export const bannerInfoWrapper = css({
@@ -30,11 +36,10 @@ export const bannerInfoWrapper = css({
 });
 
 export const bannerTitle = css(typo.Heading_2, {
-  color: color.Common[100],
+  color: color.Neutral[50],
 });
 
 export const bannerSummary = css(typo.Body.Medium_1, {
-  gap: '5px',
   color: color.Neutral[400],
   whiteSpace: 'pre-line',
 });

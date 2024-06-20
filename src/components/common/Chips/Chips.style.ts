@@ -5,13 +5,13 @@ import type { ChipsProps } from './Chips';
 
 export const getSizeStyling = (size: Required<ChipsProps>['size']) => {
   const style = {
-    large: css(typo.Body.SemiBold_1, {
-      padding: '12px 16px',
-      borderRadius: '15px',
+    large: css(typo.Body.SemiBold_5, {
+      padding: '6px 12px',
+      borderRadius: '8px',
     }),
-    small: css(typo.Body.Medium_2, {
-      padding: '7px 12px',
-      borderRadius: '12px',
+    small: css(typo.Body.Medium_5, {
+      padding: '2px 8px',
+      borderRadius: '6px',
     }),
   };
 
@@ -24,6 +24,6 @@ export const chipsStyling = css({
   alignItems: 'center',
   width: 'fit-content',
   backgroundColor: color.Primary[400],
-  color: color.Common[100],
+  color: color.Neutral[50],
   cursor: 'pointer',
 });
