@@ -2,7 +2,7 @@
 import React, { ChangeEvent, KeyboardEvent } from 'react';
 import { css } from '@emotion/react';
 
-import Button from '@/components/design/Button/Button';
+import Button from '@/components/common/Button/Button';
 import Input from '@/components/design/Input/Input';
 import { useCreateReply } from '@/hooks/comment/useCreateReply';
 

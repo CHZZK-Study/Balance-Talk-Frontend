@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../../components/design/Button/Button';
+import Button from '../../components/common/Button/Button';
 import Heading from '../../components/design/Heading/Heading';
 import InputCode from '../../components/common/InputsUserInfo/InputCode';
 import InputEmail from '../../components/common/InputsUserInfo/InputEmail';

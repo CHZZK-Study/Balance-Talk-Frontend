@@ -22,56 +22,56 @@ type PostInfo = {
 };
 
 const LandingPage = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const { data } = useQuery({
-    queryKey: ['posts', { sort: 'createdAt', page: 0 }],
-    queryFn: ({ queryKey }) => {
-      const [, queryOptions] = queryKey;
-      const { sort, page } = queryOptions as { sort: string; page: number };
-      return fetchPostsData(sort, page);
-    },
-  });
+  // const { data } = useQuery({
+  //   queryKey: ['posts', { sort: 'createdAt', page: 0 }],
+  //   queryFn: ({ queryKey }) => {
+  //     const [, queryOptions] = queryKey;
+  //     const { sort, page } = queryOptions as { sort: string; page: number };
+  //     return fetchPostsData(sort, page);
+  //   },
+  // });
 
-  const { data: bestPost } = useQuery({
-    queryKey: ['posts', 'best'],
-    queryFn: fetchBestPostsData,
-  });
+  // const { data: bestPost } = useQuery({
+  //   queryKey: ['posts', 'best'],
+  //   queryFn: fetchBestPostsData,
+  // });
 
-  if (data?.content.length === 0) {
-    return <div>Fail to Load Post Data</div>;
-  }
+  // if (data?.content.length === 0) {
+  //   return <div>Fail to Load Post Data</div>;
+  // }
 
-  const extractBalanceOptions = (datas: PostWithPagenation): PostInfo[] => {
-    return datas.content.map((post) => {
-      return {
-        id: post.id,
-        balanceOptions: post.balanceOptions,
-      };
-    });
-  };
+  // const extractBalanceOptions = (datas: PostWithPagenation): PostInfo[] => {
+  //   return datas.content.map((post) => {
+  //     return {
+  //       id: post.id,
+  //       balanceOptions: post.balanceOptions,
+  //     };
+  //   });
+  // };
 
-  const postInfos = data ? extractBalanceOptions(data) : [];
+  // const postInfos = data ? extractBalanceOptions(data) : [];
 
-  const renderCarouselItems = (postInfo: PostInfo) => {
-    return (
-      <div css={css({ margin: '10px' })} key={postInfo.id}>
-        <PostImage
-          images={postInfo.balanceOptions}
-          size="medium"
-          postId={postInfo.id}
-        />
-      </div>
-    );
-  };
+  // const renderCarouselItems = (postInfo: PostInfo) => {
+  //   return (
+  //     <div css={css({ margin: '10px' })} key={postInfo.id}>
+  //       <PostImage
+  //         images={postInfo.balanceOptions}
+  //         size="medium"
+  //         postId={postInfo.id}
+  //       />
+  //     </div>
+  //   );
+  // };
 
-  const renderMainPost = (post: Post) => {
-    return <MainPost post={post} key={post.id} />;
-  };
+  // const renderMainPost = (post: Post) => {
+  //   return <MainPost post={post} key={post.id} />;
+  // };
 
   return (
     <div css={landingContainer}>
-      <div css={recommendPostWrapper}>
+      {/* <div css={recommendPostWrapper}>
         <div css={headingWrapper}>
           <Heading size="small">추천 게시글</Heading>
         </div>
@@ -101,7 +101,7 @@ const LandingPage = () => {
           render={renderCarouselItems}
           showLength={3}
         />
-      </div>
+      </div> */}
     </div>
   );
 };

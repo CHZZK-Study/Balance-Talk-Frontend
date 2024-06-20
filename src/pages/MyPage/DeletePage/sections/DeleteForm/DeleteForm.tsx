@@ -5,7 +5,7 @@ import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
 import { css } from '@emotion/react';
 import InputPw from '../../../../../components/common/InputsUserInfo/InputPw';
-import Button from '../../../../../components/design/Button/Button';
+import Button from '../../../../../components/common/Button/Button';
 import Input from '../../../../../components/design/Input/Input';
 import { useMemberDelete } from '../../../../../hooks/mypage/memberDelete/useMemberDelete';
 import {

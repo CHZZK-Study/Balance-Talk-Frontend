@@ -1,5 +1,5 @@
 import React, { SetStateAction, useEffect, useRef } from 'react';
-import Button from '@/components/design/Button/Button';
+import Button from '@/components/common/Button/Button';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteComment } from '@/api/comments/comments';
 import {

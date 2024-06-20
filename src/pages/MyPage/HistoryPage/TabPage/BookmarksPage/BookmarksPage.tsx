@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import PageNavigation from '@/components/common/Paginavigation/Paginavigation';
-import Button from '@/components/design/Button/Button';
+import Button from '@/components/common/Button/Button';
 import CheckBox from '@/components/design/CheckBox/CheckBox';
 import List from '@/components/mypage/List/List';
 import ItemMyBookmarksPosts from '@/components/mypage/ListItem/ItemMyBookmarksPosts';

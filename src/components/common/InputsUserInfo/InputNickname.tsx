@@ -2,7 +2,7 @@
 import React, { ChangeEvent, useEffect } from 'react';
 import { css } from '@emotion/react';
 import Input from '../../design/Input/Input';
-import Button from '../../design/Button/Button';
+import Button from '../Button/Button';
 import { useCheckNickname } from '../../../hooks/common/inputsUserInfo/useCheckNickname';
 
 interface InputNicknameProps {
