@@ -3,7 +3,7 @@ import { INPUT_LIMIT } from '@/constants/input';
 import { css } from '@emotion/react';
 import React, { ChangeEvent, useEffect } from 'react';
 import { useCheckPassword } from '../../../hooks/common/inputsUserInfo/useCheckPassword';
-import Input from '../../design/Input/Input';
+import Input from '../Input/Input';
 
 interface InputPwProps {
   value: string;

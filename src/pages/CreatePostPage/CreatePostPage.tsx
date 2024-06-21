@@ -28,7 +28,7 @@ import {
   tagWrapper,
   versusText,
 } from './CreatePostPage.style';
-import Heading from '../../components/design/Heading/Heading';
+import Heading from '../../components/common/Heading/Heading';
 import { PLACE_HOLDER } from '../../constants/message';
 
 const inputStyles = {

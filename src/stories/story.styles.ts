@@ -1,3 +1,4 @@
+import color from '@/styles/color';
 import { css } from '@emotion/react';
 
 export const storyContainer = css({
@@ -11,4 +12,8 @@ export const storyInnerContainer = css({
   flexDirection: 'column',
   gap: '10px',
   alignItems: 'flex-start',
+});
+
+export const darkMode = css({
+  backgroundColor: color.Neutral[700],
 });

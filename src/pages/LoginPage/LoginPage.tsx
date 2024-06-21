@@ -1,6 +1,6 @@
 import React from 'react';
 import Divider from '../../components/common/Divider';
-import Heading from '../../components/design/Heading/Heading';
+import Heading from '../../components/common/Heading/Heading';
 import { PATH } from '../../constants/path';
 import { linkContainer, loginContainer } from './LoginPage.style';
 import LoginForm from './sections/LoginForm/LoginForm';
