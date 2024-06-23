@@ -8,8 +8,10 @@ export const loadingStyling = css`
 `;
 
 export const cardWrapper = css({
+  minWidth: '327px',
+  minHeight: '250px',
   width: '327px',
-  height: '250px',
+  maxWidth: '355px',
   borderRadius: '20px',
   backgroundColor: color.Neutral[800],
   cursor: 'pointer',
@@ -42,7 +44,7 @@ export const backgroundContainer = css({
   display: 'flex',
   flexDirection: 'row',
   width: '100%',
-  height: '100%',
+  height: '250px',
   position: 'absolute',
   maskImage:
     'linear-gradient(to bottom, rgba(0, 0, 0, 1) 35%, rgba(20, 21, 23, 0) 115%)',

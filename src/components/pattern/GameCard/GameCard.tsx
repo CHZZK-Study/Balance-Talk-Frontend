@@ -13,8 +13,8 @@ import {
 
 export interface GameCardProps {
   imgUrl?: string[];
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   isLoading?: boolean;
 }
 
