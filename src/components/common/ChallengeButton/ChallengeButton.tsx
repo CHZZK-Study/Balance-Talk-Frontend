@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import RightArrow from '@/assets/svg/RightArrow';
 import {
   btnWrapper,
@@ -12,8 +12,8 @@ import Heading from '../Heading/Heading';
 
 export interface ChallengeBtnProps {
   highlight?: boolean;
-  title: ReactNode;
-  description: ReactNode;
+  title: string;
+  description: string;
 }
 
 const ChallengeButton = ({
