@@ -1,12 +1,12 @@
-import React, { forwardRef } from 'react';
+import type { Size } from '@/types/temp';
 import type { ComponentPropsWithRef, ForwardedRef, ReactElement } from 'react';
-import type { Size } from '../../../types/temp';
+import React, { forwardRef } from 'react';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Label from '../Label/Label';
 import {
   getInputStyling,
   getSizeStyling,
-  inputBtnContainerStyling,
+  getVariantStyling,
   inputContainerStyling,
   inputWrapperStyling,
 } from './Input.style';
@@ -14,9 +14,9 @@ import {
 export interface InputProps
   extends Omit<ComponentPropsWithRef<'input'>, 'size'> {
   label?: string;
-  size?: Extract<Size, 'small' | 'medium' | 'large'>;
+  size?: Extract<Size, 'medium'>;
+  variant?: 'default';
   isError?: boolean;
-  isDisabled?: boolean;
   icon?: ReactElement;
   btn?: ReactElement;
   errorMessage?: string;
@@ -26,8 +26,8 @@ const Input = (
   {
     label,
     size = 'medium',
+    variant = 'default',
     isError = false,
-    isDisabled = false,
     icon,
     btn,
     errorMessage,
@@ -38,15 +38,19 @@ const Input = (
   <div css={inputContainerStyling}>
     {label && <Label id={attributes.id}>{label}</Label>}
     <div>
-      <div css={inputBtnContainerStyling}>
-        <div css={[getSizeStyling(size), inputWrapperStyling(isDisabled)]}>
-          {icon}
-          <input
-            ref={ref}
-            css={[getSizeStyling(size), getInputStyling]}
-            {...attributes}
-          />
-        </div>
+      <div
+        css={[
+          getVariantStyling(variant),
+          getSizeStyling(size),
+          inputWrapperStyling,
+        ]}
+      >
+        {icon}
+        <input
+          ref={ref}
+          css={[getSizeStyling(size), getInputStyling]}
+          {...attributes}
+        />
         {btn}
       </div>
       {errorMessage && (

@@ -8,7 +8,7 @@ import PostItem from '@/components/PostListPage/PostItem';
 import ToggleButton from '../../components/Buttons/ToggleButton';
 import CreatePostButton from '../../components/PostListPage/CreatePostButton';
 import { postListWrapper, headingWrapper } from './SearchResultPage.style';
-import Heading from '../../components/design/Heading/Heading';
+import Heading from '../../components/common/Heading/Heading';
 
 const SearchResultPage = () => {
   const [showClosed, setShowClosed] = useState(true);

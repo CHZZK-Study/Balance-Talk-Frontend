@@ -1,7 +1,5 @@
 import React from 'react';
-
 import type { ComponentPropsWithoutRef } from 'react';
-
 import { getTextStyling } from './ErrorMessage.style';
 
 export interface ErrorMessageProps extends ComponentPropsWithoutRef<'span'> {

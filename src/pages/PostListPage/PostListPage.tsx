@@ -3,7 +3,7 @@ import SortButton from '@/components/Buttons/SortButton';
 import ToggleButton from '@/components/Buttons/ToggleButton';
 import CreatePostButton from '@/components/PostListPage/CreatePostButton';
 import PostItem from '@/components/PostListPage/PostItem';
-import Heading from '@/components/design/Heading/Heading';
+import Heading from '@/components/common/Heading/Heading';
 import { css } from '@emotion/react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import React, { MouseEvent, useEffect, useState } from 'react';
