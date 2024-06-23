@@ -1,12 +1,7 @@
 import { css } from '@emotion/react';
 import typo from '@/styles/typo';
 import color from '@/styles/color';
-import { loadingStyle } from '@/styles/keyframes';
 import type { ChallengeBtnProps } from './ChallengeButton';
-
-export const loadingStyling = css`
-  animation: ${loadingStyle} 2s infinite;
-`;
 
 export const btnWrapper = css({
   display: 'flex',

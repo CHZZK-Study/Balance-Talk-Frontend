@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react';
 import RightArrow from '@/assets/svg/RightArrow';
 import {
-  loadingStyling,
   btnWrapper,
   textWrapper,
   titleStyling,
@@ -15,22 +14,14 @@ export interface ChallengeBtnProps {
   highlight?: boolean;
   title: ReactNode;
   description: ReactNode;
-  isLoading?: boolean;
 }
 
 const ChallengeButton = ({
   highlight = false,
   title,
   description,
-  isLoading,
 }: ChallengeBtnProps) => (
-  <div
-    css={[
-      btnWrapper,
-      highlight ? highlightBtn : defaultBtn,
-      isLoading && loadingStyling,
-    ]}
-  >
+  <div css={[btnWrapper, highlight ? highlightBtn : defaultBtn]}>
     <div css={textWrapper}>
       <Heading type="4" css={titleStyling(highlight)}>
         {title}
