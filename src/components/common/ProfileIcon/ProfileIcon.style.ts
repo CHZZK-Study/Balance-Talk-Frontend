@@ -11,6 +11,7 @@ export const profileWrapper = css({
   justifyContent: 'center',
   backgroundImage: `linear-gradient(135deg, #7B67F2 0%, #AFFF48 100%)`,
   backgroundClip: 'content-box, border-box',
+  cursor: 'pointer',
 });
 
 export const profileImage = css({

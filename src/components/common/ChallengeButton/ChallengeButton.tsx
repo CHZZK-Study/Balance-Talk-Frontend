@@ -1,32 +1,40 @@
-/* eslint-disable react/react-in-jsx-scope */
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import RightArrow from '@/assets/svg/RightArrow';
 import {
+  loadingStyling,
   btnWrapper,
-  descriptionStyling,
-  // loadingStyling,
   textWrapper,
   titleStyling,
+  descriptionStyling,
   highlightBtn,
   defaultBtn,
 } from './ChallengeButton.style';
+import Heading from '../Heading/Heading';
 
 export interface ChallengeBtnProps {
   highlight?: boolean;
   title: ReactNode;
   description: ReactNode;
-  // isLoading?: boolean;
+  isLoading?: boolean;
 }
 
 const ChallengeButton = ({
-  highlight,
+  highlight = false,
   title,
   description,
-  //   isLoading,
+  isLoading,
 }: ChallengeBtnProps) => (
-  <div css={[btnWrapper, highlight ? highlightBtn : defaultBtn]}>
+  <div
+    css={[
+      btnWrapper,
+      highlight ? highlightBtn : defaultBtn,
+      isLoading && loadingStyling,
+    ]}
+  >
     <div css={textWrapper}>
-      <h4 css={titleStyling({ highlight })}>{title}</h4>
+      <Heading type="4" css={titleStyling(highlight)}>
+        {title}
+      </Heading>
       <p css={descriptionStyling}>{description}</p>
     </div>
     <RightArrow />

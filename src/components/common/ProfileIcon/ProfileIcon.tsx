@@ -1,18 +1,26 @@
-/* eslint-disable react/react-in-jsx-scope */
+import React from 'react';
 import NormalProfile from '@/assets/svg/NormalProfile';
-import image from '@/assets/images/logo.png';
 import { profileImage, profileWrapper } from './ProfileIcon.style';
 
-export interface ProfileProps {
-  interaction?: 'normal' | 'settings';
+interface ProfileProps {
+  interaction: 'normal';
+  imgUrl?: string;
 }
 
-const ProfileIcon = ({ interaction = 'normal' }: ProfileProps) =>
+interface ProfilePropsWithImage {
+  interaction: 'settings';
+  imgUrl: string;
+}
+
+const ProfileIcon = ({
+  interaction = 'normal',
+  imgUrl,
+}: ProfileProps | ProfilePropsWithImage) =>
   interaction === 'normal' ? (
     <NormalProfile />
   ) : (
     <div css={profileWrapper}>
-      <img css={profileImage} src={image} alt="profile" />
+      <img css={profileImage} src={imgUrl} alt="profile" />
     </div>
   );
 

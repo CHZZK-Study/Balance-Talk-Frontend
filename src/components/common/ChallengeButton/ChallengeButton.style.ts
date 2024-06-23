@@ -1,10 +1,11 @@
 import { css } from '@emotion/react';
 import typo from '@/styles/typo';
 import color from '@/styles/color';
+import { loadingStyle } from '@/styles/keyframes';
 import type { ChallengeBtnProps } from './ChallengeButton';
 
 export const loadingStyling = css`
-  /* animation: ${loadingStyle} 2s infinite; */
+  animation: ${loadingStyle} 2s infinite;
 `;
 
 export const btnWrapper = css({
@@ -36,7 +37,7 @@ export const highlightBtn = css({
 export const defaultBtn = css({
   border: `1px solid ${color.Neutral[800]}`,
   ':hover': {
-    '& h4': {
+    '& h5': {
       color: color.Neutral[50],
     },
     '& p': {
@@ -58,13 +59,10 @@ export const textWrapper = css({
   justifyContent: 'space-between',
 });
 
-export const titleStyling = ({
-  highlight,
-}: Pick<ChallengeBtnProps, 'highlight'>) =>
+export const titleStyling = (
+  highlight: Required<ChallengeBtnProps>['highlight'],
+) =>
   css({
-    fontSize: '18px',
-    fontWeight: 700,
-    lineHeight: '25.2px',
     color: highlight ? color.Primary[400] : color.Neutral[500],
   });
 
