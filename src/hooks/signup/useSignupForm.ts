@@ -2,7 +2,7 @@ import { MemberForm, MemberSuccesForm } from '@/types/member';
 import { isAllTrue } from '@/utils/validator';
 import { ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSignUpMutation } from '../api/useSignUpMutation';
+import { useSignUpMutation } from '../api/member/useSignUpMutation';
 import { useActiveSubmit } from '../common/useActiveSubmit';
 import { useFocusFalse } from '../common/useFocusFalse';
 import useInputs from '../common/useInputs';

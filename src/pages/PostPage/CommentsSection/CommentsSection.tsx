@@ -4,7 +4,7 @@ import { getComments } from '@/api/comments';
 import { Comment } from '@/types/comment';
 import InputNewComment from '@/components/common/InputComment/InputNewComment/InputNewComment';
 import { useCreateCommentForm } from '@/hooks/comment/useCreateCommentForm';
-import { useMemberQuery } from '@/hooks/api/useMemberQuery';
+import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';

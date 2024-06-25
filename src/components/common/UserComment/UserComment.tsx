@@ -6,7 +6,7 @@ import CommentReportButton from '@/components/Buttons/CommentReportButton';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
-import { useMemberQuery } from '@/hooks/api/useMemberQuery';
+import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import CommentEditButton from '@/components/Buttons/CommentEditButton';
 import { useEditCommentForm } from '@/hooks/comment/useEditCommentForm';
 import CommentDeleteButton from '@/components/Buttons/CommentDeleteButton';

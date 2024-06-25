@@ -6,7 +6,7 @@ import { Route, Routes } from 'react-router-dom';
 import NotAuthRoutes from './components/Routes/NotAuthRoutes';
 import ProtectedRoutes from './components/Routes/ProtectedRoutes';
 import { PATH } from './constants/path';
-import { useMemberQuery } from './hooks/api/useMemberQuery';
+import { useMemberQuery } from './hooks/api/member/useMemberQuery';
 import { useParseJwt } from './hooks/common/useParseJwt';
 import { useTokenRefresh } from './hooks/common/useTokenRefresh';
 import { Layout, LayoutMypage, LayoutNoSearch } from './layout/layout';

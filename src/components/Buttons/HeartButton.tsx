@@ -8,7 +8,7 @@ import {
 import { selectAccessToken } from '@/store/auth';
 import { useNewSelector } from '@/store';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
-import { useMemberQuery } from '@/hooks/api/useMemberQuery';
+import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import { fetchAddLike, fetchDeleteLike } from '../../api/posts';
 import { Post, PostWithPagenation } from '../../types/post';
 import { DisabledHeart, Hearts } from '../../assets';

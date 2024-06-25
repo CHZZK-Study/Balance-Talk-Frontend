@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { useMutation } from '@tanstack/react-query';
 import { Report } from '@/assets';
 import { fetchReportPost } from '@/api/posts';
-import { useMemberQuery } from '@/hooks/api/useMemberQuery';
+import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';

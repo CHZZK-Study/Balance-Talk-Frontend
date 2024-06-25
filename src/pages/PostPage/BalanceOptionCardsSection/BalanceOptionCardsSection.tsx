@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelectedOptionsInLocalStorage } from '@/hooks/vote/useSelectedOptionsInLocalStorage';
 import { selectAccessToken } from '@/store/auth';
 import { useNewSelector } from '@/store';
-import { useMemberQuery } from '@/hooks/api/useMemberQuery';
+import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { isFinished } from '@/utils/date';
 import { Closed } from '@/assets';

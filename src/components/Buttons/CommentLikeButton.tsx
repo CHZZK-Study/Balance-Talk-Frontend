@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Comment, CommentsPagination, Replies } from '@/types/comment';
 import { fetchAddLikeComment, fetchDeleteLikeComment } from '@/api/comments';
-import { useMemberQuery } from '@/hooks/api/useMemberQuery';
+import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
