@@ -1,4 +1,4 @@
-import { fetchDeleteBookmark } from '@/api/posts/posts';
+import { fetchDeleteBookmark } from '@/api/posts';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const useBookmarkDeleteAllMutation = (

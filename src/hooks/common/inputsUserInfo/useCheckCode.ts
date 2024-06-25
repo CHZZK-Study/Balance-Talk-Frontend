@@ -1,4 +1,4 @@
-import { postEmailVerify } from '@/api/email/email';
+import { postEmailVerify } from '@/api/email';
 import { AxiosErrorResponse } from '@/api/interceptor';
 import { HTTP_STATUS_CODE } from '@/constants/api';
 import { ERROR, SUCCESS } from '@/constants/message';

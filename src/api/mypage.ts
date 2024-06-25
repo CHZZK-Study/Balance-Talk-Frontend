@@ -1,11 +1,11 @@
-import { END_POINT } from '../../constants/api';
+import { END_POINT } from '@/constants/api';
 import {
   MyBookmarksPostsType,
   MyCommentsPostsType,
   MyPostsType,
   MyVotedPostsType,
-} from '../../types/mypage';
-import { axiosInstance } from '../interceptor';
+} from '@/types/mypage';
+import { axiosInstance } from './interceptor';
 
 export const getMyPosts = async (page: number) => {
   const { data } = await axiosInstance.get<MyPostsType>(

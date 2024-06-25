@@ -8,7 +8,7 @@ import HeartButton from '../Buttons/HeartButton';
 import Eye from '../../assets/svg/Eye';
 import Comment from '../../assets/svg/Comment';
 import { Post, VoteInfo } from '../../types/post';
-import { fetchVoteCount } from '../../api/posts/posts';
+import { fetchVoteCount } from '../../api/posts';
 import {
   TagButtonWrapper,
   etcButtonText,

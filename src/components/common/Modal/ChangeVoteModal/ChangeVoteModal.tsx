@@ -5,7 +5,7 @@ import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { changeBalanceOption } from '@/api/votes/vote';
+import { changeBalanceOption } from '@/api/vote';
 import {
   ChangeVoteModalWrapper,
   btnsWrapper,

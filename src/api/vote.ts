@@ -1,6 +1,6 @@
 import { END_POINT } from '@/constants/api';
 import { SelectedVoteInfo } from '@/types/vote';
-import { axiosInstance } from '../interceptor';
+import { axiosInstance } from './interceptor';
 
 export const voteBalanceOption = async (
   postId: number,

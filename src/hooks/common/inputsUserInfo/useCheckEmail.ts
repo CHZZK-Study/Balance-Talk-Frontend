@@ -1,4 +1,4 @@
-import { getFindPw, postEmailRequest } from '@/api/email/email';
+import { getFindPw, postEmailRequest } from '@/api/email';
 import { AxiosErrorResponse } from '@/api/interceptor';
 import { HTTP_STATUS_CODE } from '@/constants/api';
 import { PATH } from '@/constants/path';

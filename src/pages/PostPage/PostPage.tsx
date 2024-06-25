@@ -5,7 +5,7 @@ import LoginModal from '@/components/common/Modal/LoginModal/LoginModal';
 import { BalanceOption } from '@/types/post';
 import BalanceOptionCardsSection from './BalanceOptionCardsSection/BalanceOptionCardsSection';
 import CommentsSection from './CommentsSection/CommentsSection';
-import { getPost } from '../../api/posts/posts';
+import { getPost } from '../../api/posts';
 import CreatorSection from './CreatorSection/CreatorSection';
 import UserUtilitySection from './UserUtilitySection/UserUtilitySection';
 import TitleSection from './TitleSection/TitleSection';

@@ -1,5 +1,5 @@
 import { AxiosErrorResponse } from '@/api/interceptor';
-import { getNicknameVerify } from '@/api/member/duplicate';
+import { getNicknameVerify } from '@/api/member';
 import { HTTP_STATUS_CODE } from '@/constants/api';
 import { useMutation } from '@tanstack/react-query';
 import { useRef, useState } from 'react';

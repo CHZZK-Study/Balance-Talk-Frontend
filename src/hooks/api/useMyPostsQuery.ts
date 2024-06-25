@@ -1,4 +1,4 @@
-import { getMyPosts } from '@/api/mypage/mypage';
+import { getMyPosts } from '@/api/mypage';
 import { MyPostsType } from '@/types/mypage';
 import { useQuery } from '@tanstack/react-query';
 

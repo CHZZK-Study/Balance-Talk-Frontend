@@ -1,4 +1,4 @@
-import { putMemberImage } from '@/api/member/member';
+import { putMemberImage } from '@/api/member';
 import { useMutation } from '@tanstack/react-query';
 
 export const useMemberImageMutation = () => {

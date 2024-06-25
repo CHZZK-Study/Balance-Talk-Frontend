@@ -4,7 +4,7 @@ import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
 import React, { SetStateAction } from 'react';
 import { useCreateCommentForm } from '@/hooks/comment/useCreateCommentForm';
-import { getReplies } from '@/api/comments/comments';
+import { getReplies } from '@/api/comments';
 import { useQuery } from '@tanstack/react-query';
 import UserComment from '@/components/common/UserComment/UserComment';
 import InputNewReply from '@/components/common/InputComment/InputNewReply/InputNewReply';

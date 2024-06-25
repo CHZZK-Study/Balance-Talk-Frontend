@@ -2,7 +2,7 @@ import React, { SetStateAction, useState } from 'react';
 import { css } from '@emotion/react';
 import { useMutation } from '@tanstack/react-query';
 import { Report } from '@/assets';
-import { fetchReportComment } from '@/api/comments/comments';
+import { fetchReportComment } from '@/api/comments';
 import { useMemberQuery } from '@/hooks/api/useMemberQuery';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useNewSelector } from '@/store';

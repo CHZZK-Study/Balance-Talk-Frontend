@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { AxiosErrorResponse, axiosInstance } from '@/api/interceptor';
-import { deleteMember } from '@/api/member/member';
+import { deleteMember } from '@/api/member';
 import { HTTP_STATUS_CODE } from '@/constants/api';
 import { ERROR } from '@/constants/message';
 import { useActiveSubmit } from '@/hooks/common/useActiveSubmit';

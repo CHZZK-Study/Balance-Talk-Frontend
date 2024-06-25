@@ -1,5 +1,5 @@
 import React, { SetStateAction, useRef } from 'react';
-import { editComment } from '@/api/comments/comments';
+import { editComment } from '@/api/comments';
 import {
   CommentsPagination,
   EditedComment,

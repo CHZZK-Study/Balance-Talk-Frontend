@@ -5,7 +5,7 @@ import { useMemberQuery } from '@/hooks/api/useMemberQuery';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
-import { fetchAddLike, fetchDeleteLike } from '../../api/posts/posts';
+import { fetchAddLike, fetchDeleteLike } from '../../api/posts';
 import { NPost } from '../../types/post';
 import { Hearts } from '../../assets';
 import { pulsate } from '../../styles/keyframes';

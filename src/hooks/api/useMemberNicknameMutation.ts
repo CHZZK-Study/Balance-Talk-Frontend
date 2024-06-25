@@ -1,4 +1,4 @@
-import { putMemberNickname } from '@/api/member/member';
+import { putMemberNickname } from '@/api/member';
 import { useMutation } from '@tanstack/react-query';
 
 export const useMemberNicknameMutation = () => {

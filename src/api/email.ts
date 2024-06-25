@@ -1,6 +1,6 @@
 import { END_POINT } from '@/constants/api';
 import { MemberForm } from '@/types/member';
-import { axiosInstance } from '../interceptor';
+import { axiosInstance } from './interceptor';
 
 export const postEmailVerify = async (
   value: Pick<MemberForm, 'email' | 'verificationCode'>,

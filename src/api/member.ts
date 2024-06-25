@@ -1,6 +1,6 @@
 import { END_POINT } from '@/constants/api';
-import { Member, MemberForm } from '../../types/member';
-import { axiosInstance } from '../interceptor';
+import { Member, MemberForm } from '@/types/member';
+import { axiosInstance } from './interceptor';
 
 const URL = process.env.API_URL;
 
@@ -87,6 +87,35 @@ export const putMemberPw = async (pw: string) => {
     {
       headers: {
         'Content-Type': 'text/plain',
+      },
+    },
+  );
+  return data;
+};
+
+export const postLogin = async (
+  form: Pick<MemberForm, 'email' | 'password'>,
+) => {
+  const { data } = await axiosInstance.post<string>(`${END_POINT.LOGIN}`, form);
+  return data;
+};
+
+export const postLogout = async () => {
+  const { data } = await axiosInstance.post<string>(`${END_POINT.LOGOUT}`);
+  return data;
+};
+
+export const getRefreshToken = async () => {
+  const { data } = await axiosInstance.get<string>(`${END_POINT.REFRESH}`);
+  return data;
+};
+
+export const getNicknameVerify = async (nickname: string) => {
+  const { data } = await axiosInstance.get<string>(
+    `${END_POINT.NICKNAME_VERIFY}`,
+    {
+      params: {
+        nickname,
       },
     },
   );

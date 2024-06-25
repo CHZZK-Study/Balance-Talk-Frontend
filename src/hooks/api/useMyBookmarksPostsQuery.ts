@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getMyBookmarksPosts } from '@/api/mypage/mypage';
+import { getMyBookmarksPosts } from '@/api/mypage';
 import { MyBookmarksPostsType } from '@/types/mypage';
 
 export const useMyBookmarksPostsQuery = (page: number) => {

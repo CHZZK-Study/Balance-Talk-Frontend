@@ -1,4 +1,4 @@
-import { postFile } from '@/api/file/file';
+import { postFile } from '@/api/file';
 import { UploadedImage } from '@/types/post';
 import { css } from '@emotion/react';
 import { useMutation } from '@tanstack/react-query';

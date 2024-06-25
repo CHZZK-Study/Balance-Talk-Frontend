@@ -5,9 +5,9 @@ import {
   VoteInfo,
   NPost,
   PostWithPagenation,
-} from '../../types/post';
-import { END_POINT } from '../../constants/api';
-import { axiosInstance } from '../interceptor';
+} from '@/types/post';
+import { END_POINT } from '@/constants/api';
+import { axiosInstance } from './interceptor';
 
 export const fetchPostsData = async (
   sort: string = 'createdAt',

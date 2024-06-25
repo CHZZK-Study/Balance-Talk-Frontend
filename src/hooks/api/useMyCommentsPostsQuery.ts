@@ -1,4 +1,4 @@
-import { getMyCommentsPosts } from '@/api/mypage/mypage';
+import { getMyCommentsPosts } from '@/api/mypage';
 import { MyCommentsPostsType } from '@/types/mypage';
 import { useQuery } from '@tanstack/react-query';
 

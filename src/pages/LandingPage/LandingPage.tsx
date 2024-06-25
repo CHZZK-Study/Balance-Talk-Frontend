@@ -1,5 +1,5 @@
 import React from 'react';
-import { fetchBestPostsData, fetchPostsData } from '@/api/posts/posts';
+import { fetchBestPostsData, fetchPostsData } from '@/api/posts';
 import Carousel from '@/components/LandingPage/Carousel';
 import MainPost from '@/components/LandingPage/MainPost';
 import PostImage from '@/components/common/PostImage/PostImage';
