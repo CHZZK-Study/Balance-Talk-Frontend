@@ -1,5 +1,5 @@
 import React from 'react';
-import RightArrow from '@/assets/svg/RightArrow';
+import { RightArrow } from '@/assets';
 import {
   btnWrapper,
   textWrapper,

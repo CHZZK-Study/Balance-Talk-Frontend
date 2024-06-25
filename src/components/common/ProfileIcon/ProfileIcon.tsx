@@ -1,5 +1,5 @@
 import React from 'react';
-import NormalProfile from '@/assets/svg/NormalProfile';
+import { NormalProfile } from '@/assets';
 import { profileImage, profileWrapper } from './ProfileIcon.style';
 
 interface ProfileProps {
