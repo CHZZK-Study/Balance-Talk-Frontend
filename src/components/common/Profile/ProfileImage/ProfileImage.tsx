@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import type { ComponentPropsWithRef, ForwardedRef } from 'react';
 import React, { forwardRef } from 'react';
 import { Theme } from '../../../../styles/Theme';
-import type { Size } from '../../../../types/temp';
+import type { Size } from '../../../../types/theme';
 import { getSizeStyling, profileImageContainer } from './ProfileImage.style';
 
 export interface ProfileImageProps extends ComponentPropsWithRef<'img'> {

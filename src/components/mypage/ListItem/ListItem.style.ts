@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import { Theme } from '../../../styles/Theme';
-import { Size } from '../../../types/temp';
+import { Size } from '../../../types/theme';
 
 export const mypageListItemContainer = css({
   display: 'flex',
