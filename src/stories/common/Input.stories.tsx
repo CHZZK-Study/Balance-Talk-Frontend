@@ -57,7 +57,7 @@ export const All: Story = {
       </li>
       <li css={storyInnerContainer}>
         <h3>Icon</h3>
-        <Input {...args} icon={<Email />} />
+        <Input {...args} icon={<Email width="16" height="16" />} />
       </li>
       <li css={storyInnerContainer}>
         <h3>Label</h3>
@@ -65,7 +65,7 @@ export const All: Story = {
       </li>
       <li css={storyInnerContainer}>
         <h3>Btn</h3>
-        <Input {...args} btn={<Email />} />
+        <Input {...args} btn={<Email width="16" height="16" />} />
       </li>
       <li css={storyInnerContainer}>
         <h3>IsError and ErrorMessage</h3>
