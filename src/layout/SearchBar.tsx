@@ -2,8 +2,6 @@ import React, { KeyboardEvent, MouseEvent } from 'react';
 import { css } from '@emotion/react';
 import useInputs from '@/hooks/common/useInputs';
 import { useNavigate } from 'react-router-dom';
-import SearchIcon from '../assets/svg/SearchIcon';
-import TagButton from '../components/Buttons/TagButton';
 
 const SearchBar = () => {
   const initialState = {
@@ -70,9 +68,8 @@ const SearchBar = () => {
             width: '100%',
           })}
         />
-        <div onClick={onClickSearchHandler} role="presentation">
-          <SearchIcon width={20} height={20} />
-        </div>
+        {/* <div onClick={onClickSearchHandler} role="presentation">
+        </div> */}
       </div>
       {/* <div css={css({ display: 'flex' })}>
         <TagButton tag="태그" />

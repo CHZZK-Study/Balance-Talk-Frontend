@@ -1,6 +1,4 @@
 import React from 'react';
-import Comment from '@/assets/svg/Comment';
-import Eye from '@/assets/svg/Eye';
 import { ImageInfo, Post } from '@/types/post';
 import { calculateDday } from '@/utils/calculateDday';
 import { css } from '@emotion/react';
@@ -67,9 +65,7 @@ const PostItem = ({ post }: PostItemProps) => {
       </div>
       <div css={etcButtonWrapper}>
         <div css={css({ height: '24px' })}>
-          <Eye />
           <span css={etcButtonText}>{post.views || '0'}</span>
-          <Comment />
           <span css={etcButtonText}>{post.commentsCount || '0'}</span>
         </div>
         <div css={css({ display: 'flex', height: '100%' })}>

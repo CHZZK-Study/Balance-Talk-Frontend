@@ -10,7 +10,6 @@ import {
   postInfoWrapper,
   categoryWrapper,
 } from './TitleSection.style';
-import Eye from '../../../assets/svg/Eye';
 import { Hearts, Vote } from '../../../assets';
 
 export type TitleSectionProps = Pick<
@@ -47,7 +46,6 @@ const TitleSection = ({
           <span>{totalVotesCount}</span>
         </div>
         <div css={postInfoWrapper}>
-          <Eye />
           <span>{views}</span>
         </div>
         <div css={postInfoWrapper}>
