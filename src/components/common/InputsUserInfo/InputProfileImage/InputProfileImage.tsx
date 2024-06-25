@@ -5,7 +5,7 @@ import { useMutation } from '@tanstack/react-query';
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import defaultProfileImage from '../../../../assets/images/defaultProfile.png';
-import { Theme } from '../../../../styles/Theme';
+import { Theme } from '../../../../styles/theme';
 import Button from '../../Button/Button';
 import Label from '../../Label/Label';
 import ProfileImage from '../../Profile/ProfileImage/ProfileImage';

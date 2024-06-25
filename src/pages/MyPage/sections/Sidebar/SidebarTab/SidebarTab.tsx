@@ -4,7 +4,7 @@ import React, {
   KeyboardEvent,
   ReactElement,
 } from 'react';
-import { Theme } from '../../../../../styles/Theme';
+import { Theme } from '../../../../../styles/theme';
 import { sidebarTabStyling } from './SidebarTab.style';
 
 interface SidebarTabProps extends ComponentPropsWithoutRef<'li'> {

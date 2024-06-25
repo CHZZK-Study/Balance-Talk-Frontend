@@ -1,4 +1,4 @@
-import { Theme } from '../../../../../styles/Theme';
+import { Theme } from '../../../../../styles/theme';
 
 export const sidebarTabStyling = (isSelected: boolean) => ({
   display: 'flex',

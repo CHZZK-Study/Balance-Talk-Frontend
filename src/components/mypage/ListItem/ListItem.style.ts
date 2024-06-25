@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { Theme } from '../../../styles/Theme';
+import { Theme } from '../../../styles/theme';
 import { Size } from '../../../types/theme';
 
 export const mypageListItemContainer = css({

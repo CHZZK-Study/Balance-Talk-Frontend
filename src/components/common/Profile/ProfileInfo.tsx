@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import React, { ComponentPropsWithoutRef } from 'react';
-import { Theme } from '../../../styles/Theme';
+import { Theme } from '../../../styles/theme';
 
 interface ProfileInfoProps extends ComponentPropsWithoutRef<'div'> {
   title: string;
