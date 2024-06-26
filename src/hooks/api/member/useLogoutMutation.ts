@@ -1,5 +1,5 @@
 import { AxiosErrorResponse, axiosInstance } from '@/api/interceptor';
-import { postLogout } from '@/api/member/auth';
+import { postLogout } from '@/api/member';
 import { PATH } from '@/constants/path';
 import { useNewDispatch } from '@/store';
 import { tokenActions } from '@/store/auth';

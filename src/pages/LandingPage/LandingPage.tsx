@@ -1,5 +1,5 @@
 import React from 'react';
-import { fetchBestPostsData, fetchPostsData } from '@/api/posts/posts';
+import { fetchBestPostsData, fetchPostsData } from '@/api/posts';
 import Carousel from '@/components/LandingPage/Carousel';
 import MainPost from '@/components/LandingPage/MainPost';
 import PostImage from '@/components/common/PostImage/PostImage';
@@ -15,6 +15,8 @@ import {
   morePostWrapper,
   recommendPostWrapper,
 } from './LandingPage.style';
+import Input from '@/components/common/Input/Input';
+import { Email } from '@/assets';
 
 type PostInfo = {
   id: number;
@@ -71,6 +73,11 @@ const LandingPage = () => {
 
   return (
     <div css={landingContainer}>
+      <Input
+        placeholder="placeholder"
+        icon={<Email width="16" height="16" />}
+        btn={<Email width="34" height="34" />}
+      />
       {/* <div css={recommendPostWrapper}>
         <div css={headingWrapper}>
           <Heading size="small">추천 게시글</Heading>

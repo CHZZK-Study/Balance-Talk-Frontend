@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import React, { ComponentPropsWithRef, ForwardedRef, forwardRef } from 'react';
-import { Theme } from '../../../styles/Theme';
+import { Theme } from '../../../styles/theme';
 
 export type TopTabProps = ComponentPropsWithRef<'ul'>;
 

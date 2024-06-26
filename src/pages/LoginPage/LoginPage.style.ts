@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { Theme } from '../../styles/Theme';
+import { Theme } from '../../styles/theme';
 
 export const loginContainer = css({
   display: 'flex',

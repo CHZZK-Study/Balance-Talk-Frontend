@@ -1,6 +1,6 @@
 import React from 'react';
 import { PATH } from '@/constants/path';
-import { useLogoutMutation } from '@/hooks/api/useLogoutMutation';
+import { useLogoutMutation } from '@/hooks/api/member/useLogoutMutation';
 import { css } from '@emotion/react';
 import { useNavigate } from 'react-router-dom';
 

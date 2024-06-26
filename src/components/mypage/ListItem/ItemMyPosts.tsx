@@ -5,7 +5,7 @@ import React, { ComponentPropsWithRef, forwardRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Delete } from '@/assets';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deletePost } from '@/api/posts/posts';
+import { deletePost } from '@/api/posts';
 import {
   deleteWrapper,
   hoverStyling,

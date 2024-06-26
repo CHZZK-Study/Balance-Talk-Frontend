@@ -1,4 +1,4 @@
-import { createReply } from '@/api/comments/comments';
+import { createReply } from '@/api/comments';
 import { CreatedReply } from '@/types/comment';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRef } from 'react';

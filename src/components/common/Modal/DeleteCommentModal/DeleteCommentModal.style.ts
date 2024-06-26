@@ -1,4 +1,4 @@
-import { Theme } from '@/styles/Theme';
+import { Theme } from '@/styles/theme';
 import { css } from '@emotion/react';
 
 export const deleteCommentModalWrapper = css({

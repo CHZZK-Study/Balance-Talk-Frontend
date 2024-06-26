@@ -15,7 +15,7 @@ import CreatePostForm from '../../components/CreatPostPage/CreatePostForm';
 import Add from '../../assets/images/add.png';
 import useInputs from '../../hooks/common/useInputs';
 import { CreatePost } from '../../types/post';
-import { fetchPost } from '../../api/posts/posts';
+import { fetchPost } from '../../api/posts';
 import TagButton from '../../components/Buttons/TagButton';
 import {
   createFormContainer,

@@ -3,7 +3,7 @@ import React, { useCallback, useState } from 'react';
 import { css } from '@emotion/react';
 import { useDropzone } from 'react-dropzone';
 import { AxiosErrorResponse } from '@/api/interceptor';
-import { fetchFileData } from '../../api/posts/posts';
+import { fetchFileData } from '../../api/posts';
 
 type ImageDropZoneProps = {
   setFile: <U>(name: string, value: U) => void;

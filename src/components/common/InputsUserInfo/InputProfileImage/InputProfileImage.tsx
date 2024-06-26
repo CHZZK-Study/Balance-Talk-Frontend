@@ -1,11 +1,11 @@
-import { postFile } from '@/api/file/file';
+import { postFile } from '@/api/file';
 import { UploadedImage } from '@/types/post';
 import { css } from '@emotion/react';
 import { useMutation } from '@tanstack/react-query';
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import defaultProfileImage from '../../../../assets/images/defaultProfile.png';
-import { Theme } from '../../../../styles/Theme';
+import { Theme } from '../../../../styles/theme';
 import Button from '../../Button/Button';
 import Label from '../../Label/Label';
 import ProfileImage from '../../Profile/ProfileImage/ProfileImage';

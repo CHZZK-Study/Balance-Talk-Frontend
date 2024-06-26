@@ -4,7 +4,7 @@ import List from '@/components/mypage/List/List';
 import ItemMyPosts from '@/components/mypage/ListItem/ItemMyPosts';
 import ItemNull from '@/components/mypage/ListItem/ItemNull';
 import { NULL } from '@/constants/message';
-import { useMyPostsQuery } from '@/hooks/api/useMyPostsQuery';
+import { useMyPostsQuery } from '@/hooks/api/mypage/useMyPostsQuery';
 import { MyPostsContentType } from '@/types/mypage';
 import { createRangeArray } from '@/utils/array';
 import { useQueryClient } from '@tanstack/react-query';

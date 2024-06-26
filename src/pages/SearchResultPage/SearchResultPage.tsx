@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { css } from '@emotion/react';
 import { useLocation } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { fetchPostSearchTag, fetchPostSearchTitle } from '@/api/posts/posts';
+import { fetchPostSearchTag, fetchPostSearchTitle } from '@/api/posts';
 import { Post } from '@/types/post';
 import PostItem from '@/components/PostListPage/PostItem';
 import ToggleButton from '../../components/Buttons/ToggleButton';

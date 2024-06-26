@@ -5,8 +5,8 @@ import {
   EditedComment,
   Replies,
 } from '@/types/comment';
-import { END_POINT } from '../../constants/api';
-import { axiosInstance } from '../interceptor';
+import { END_POINT } from '@/constants/api';
+import { axiosInstance } from './interceptor';
 
 export const getComments = async (
   postId: number,

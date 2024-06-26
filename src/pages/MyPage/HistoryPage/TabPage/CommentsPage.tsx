@@ -4,7 +4,7 @@ import List from '@/components/mypage/List/List';
 import ItemMyCommentsPosts from '@/components/mypage/ListItem/ItemMyCommentsPosts';
 import ItemNull from '@/components/mypage/ListItem/ItemNull';
 import { NULL } from '@/constants/message';
-import { useMyCommentsPostsQuery } from '@/hooks/api/useMyCommentsPostsQuery';
+import { useMyCommentsPostsQuery } from '@/hooks/api/mypage/useMyCommentsPostsQuery';
 import { MyCommentsPostsContentType } from '@/types/mypage';
 import { createRangeArray } from '@/utils/array';
 import { useQueryClient } from '@tanstack/react-query';

@@ -1,4 +1,4 @@
-import { fetchPostsData } from '@/api/posts/posts';
+import { fetchPostsData } from '@/api/posts';
 import SortButton from '@/components/Buttons/SortButton';
 import ToggleButton from '@/components/Buttons/ToggleButton';
 import CreatePostButton from '@/components/PostListPage/CreatePostButton';

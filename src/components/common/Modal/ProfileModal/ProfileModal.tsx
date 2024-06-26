@@ -3,12 +3,12 @@ import Button from '@/components/common/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import { PATH } from '@/constants/path';
 import { useNewSelector } from '@/store';
-import { useMemberQuery } from '@/hooks/api/useMemberQuery';
+import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { selectAccessToken } from '@/store/auth';
 import { Rank } from '@/assets';
 import { getYearMonthDay } from '@/utils/date';
-import { useMemberProfileQuery } from '@/hooks/api/useMemberProfileQuery';
+import { useMemberProfileQuery } from '@/hooks/api/member/useMemberProfileQuery';
 import {
   profileModalWrapper,
   profileBackgroundWrapper,

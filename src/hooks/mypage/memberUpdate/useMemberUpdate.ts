@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react';
-import { useMemberImageMutation } from '@/hooks/api/useMemberImageMutation';
-import { useMemberNicknameMutation } from '@/hooks/api/useMemberNicknameMutation';
-import { useMemberPwMutation } from '@/hooks/api/useMemberPwMutation';
+import { useMemberImageMutation } from '@/hooks/api/member/useMemberImageMutation';
+import { useMemberNicknameMutation } from '@/hooks/api/member/useMemberNicknameMutation';
+import { useMemberPwMutation } from '@/hooks/api/member/useMemberPwMutation';
 import { useActiveSubmit } from '@/hooks/common/useActiveSubmit';
 import { MemberForm, MemberSuccesForm } from '@/types/member';
 import useInputs from '../../common/useInputs';

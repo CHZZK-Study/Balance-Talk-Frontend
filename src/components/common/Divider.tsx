@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import React from 'react';
-import { Theme } from '../../styles/Theme';
+import { Theme } from '../../styles/theme';
 
 const Divider = () => {
   return (

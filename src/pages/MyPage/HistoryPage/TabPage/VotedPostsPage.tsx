@@ -4,7 +4,7 @@ import List from '@/components/mypage/List/List';
 import ItemMyVotedPosts from '@/components/mypage/ListItem/ItemMyVotedPosts';
 import ItemNull from '@/components/mypage/ListItem/ItemNull';
 import { NULL } from '@/constants/message';
-import { useMyVotedPostsQuery } from '@/hooks/api/useMyVotedPostsQuery';
+import { useMyVotedPostsQuery } from '@/hooks/api/mypage/useMyVotedPostsQuery';
 import { MyVotedPostsContentType } from '@/types/mypage';
 import { createRangeArray } from '@/utils/array';
 import { useQueryClient } from '@tanstack/react-query';

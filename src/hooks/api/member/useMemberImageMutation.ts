@@ -1,9 +1,9 @@
-import { putMemberNickname } from '@/api/member/member';
+import { putMemberImage } from '@/api/member';
 import { useMutation } from '@tanstack/react-query';
 
-export const useMemberNicknameMutation = () => {
+export const useMemberImageMutation = () => {
   return useMutation({
-    mutationFn: putMemberNickname,
+    mutationFn: putMemberImage,
     onError: (error) => {
       console.error(error);
     },

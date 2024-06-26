@@ -1,5 +1,5 @@
 import { AxiosErrorResponse, axiosInstance } from '@/api/interceptor';
-import { postLogin } from '@/api/member/auth';
+import { postLogin } from '@/api/member';
 import { HTTP_STATUS_CODE } from '@/constants/api';
 import { PATH } from '@/constants/path';
 import { useNewDispatch } from '@/store';

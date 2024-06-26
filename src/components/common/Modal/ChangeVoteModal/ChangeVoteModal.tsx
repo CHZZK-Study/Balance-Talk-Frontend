@@ -1,11 +1,11 @@
 import React, { SetStateAction, useEffect, useRef } from 'react';
 import Button from '@/components/common/Button/Button';
-import { useMemberQuery } from '@/hooks/api/useMemberQuery';
+import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { changeBalanceOption } from '@/api/votes/vote';
+import { changeBalanceOption } from '@/api/vote';
 import {
   ChangeVoteModalWrapper,
   btnsWrapper,

@@ -1,4 +1,4 @@
-import { getMyVotedPosts } from '@/api/mypage/mypage';
+import { getMyVotedPosts } from '@/api/mypage';
 import { MyVotedPostsType } from '@/types/mypage';
 import { useQuery } from '@tanstack/react-query';
 

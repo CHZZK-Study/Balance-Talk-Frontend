@@ -1,6 +1,6 @@
 import { Member } from '@/types/member';
 import { css } from '@emotion/react';
-import { Theme } from '../../../styles/Theme';
+import { Theme } from '../../../styles/theme';
 
 export const profileContainer = css({
   display: 'flex',

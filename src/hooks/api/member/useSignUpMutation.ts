@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { AxiosErrorResponse } from '@/api/interceptor';
-import { postMember } from '@/api/member/member';
+import { postMember } from '@/api/member';
 import { useMutation } from '@tanstack/react-query';
 import { PATH } from '@/constants/path';
 

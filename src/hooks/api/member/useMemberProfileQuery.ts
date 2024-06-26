@@ -1,4 +1,4 @@
-import { getMemberProfile } from '@/api/member/member';
+import { getMemberProfile } from '@/api/member';
 import { Member } from '@/types/member';
 import { useQuery } from '@tanstack/react-query';
 
