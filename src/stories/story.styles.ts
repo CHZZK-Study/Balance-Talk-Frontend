@@ -14,6 +14,13 @@ export const storyInnerContainer = css({
   alignItems: 'flex-start',
 });
 
+export const storyInnerRowContainer = css({
+  display: 'flex',
+  flexDirection: 'row',
+  gap: '10px',
+  alignItems: 'flex-start',
+});
+
 export const darkMode = css({
   backgroundColor: color.Neutral[700],
 });

@@ -22,3 +22,5 @@ export { default as Edit } from './svg/Edit.svg';
 export { default as Delete } from './svg/Delete.svg';
 export { default as DisabledHeart } from './svg/DisabledHeart.svg';
 export { default as Closed } from './svg/Closed.svg';
+export { default as RightArrow } from './svg/right-arrow.svg';
+export { default as NormalProfile } from './svg/normal-profile.svg';
