@@ -13,7 +13,6 @@ import {
   TodayContent,
 } from '@/types/game';
 
-// 게임 목록 조회
 export const useGameList = (gameProps: GameProps) => {
   const { data: gameList, isLoading } = useQuery<GamesPagination>({
     queryKey: ['gameList', gameProps],
@@ -22,7 +21,6 @@ export const useGameList = (gameProps: GameProps) => {
   return { gameList, isLoading };
 };
 
-// 게임 단건 조회
 export const useGameById = (postId: number) => {
   const { data: game, isLoading } = useQuery<GameItem>({
     queryKey: ['newGames', postId],
@@ -31,7 +29,6 @@ export const useGameById = (postId: number) => {
   return { game, isLoading };
 };
 
-// 오늘의 밸런스톡 조회
 export const useTodayGame = () => {
   const { data: todayGame, isLoading } = useQuery<TodayContent>({
     queryKey: ['todayGame'],
@@ -40,7 +37,6 @@ export const useTodayGame = () => {
   return { todayGame, isLoading };
 };
 
-// 새로운 게시글 목록 조회
 export const useNewGameList = () => {
   const { data: newGames, isLoading } = useQuery<GameItem[]>({
     queryKey: ['newGames'],
@@ -49,7 +45,6 @@ export const useNewGameList = () => {
   return { newGames, isLoading };
 };
 
-// 인기 게시글 목록 조회
 export const useBestGameList = () => {
   const { data: bestGames, isLoading } = useQuery<GameItem[]>({
     queryKey: ['bestGames'],
