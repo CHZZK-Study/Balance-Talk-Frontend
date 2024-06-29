@@ -1,3 +1,5 @@
+import { PostId } from '@/types/type';
+
 export const HTTP_STATUS_CODE = {
   OK: 200,
   BAD_REQUEST: 400,
@@ -59,9 +61,9 @@ export const END_POINT = {
   TODAY_GAME: 'games/today',
   NEW_GAME: '/games/new',
   BEST_GAME: '/games/best',
-  GAME: (postId: number) => `/games/${postId}`,
-  EDIT_GAME: (postId: number) => `/games/${postId}`,
-  DELETE_GAME: (postId: number) => `/games/${postId}`,
+  GAME: (postId: PostId) => `/games/${postId}`,
+  EDIT_GAME: (postId: PostId) => `/games/${postId}`,
+  DELETE_GAME: (postId: PostId) => `/games/${postId}`,
 };
 
 export const AXIOS = {
