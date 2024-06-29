@@ -6,6 +6,7 @@ import {
   GamesPagination,
   TodayContent,
 } from '@/types/game';
+import { PostId, ServerResponse } from '@/types/type';
 import { axiosInstance } from './interceptor';
 
 export const getGameList = async ({ tag, page, size }: GameProps) => {
@@ -26,14 +27,14 @@ export const postGame = async (gameData: Game) => {
   return data;
 };
 
-export const getGameById = async (postId: number) => {
+export const getGameById = async (postId: PostId) => {
   const { data } = await axiosInstance.get<GameItem>(
     `${END_POINT.GAME(postId)}`,
   );
   return data;
 };
 
-export const patchGame = async (postId: number, gameData: Game) => {
+export const patchGame = async (postId: PostId, gameData: Game) => {
   const { data } = await axiosInstance.patch<GameItem>(
     END_POINT.EDIT_GAME(postId),
     gameData,
@@ -41,8 +42,8 @@ export const patchGame = async (postId: number, gameData: Game) => {
   return data;
 };
 
-export const deleteGame = async (postId: number) => {
-  const { data } = await axiosInstance.delete<string>(
+export const deleteGame = async (postId: PostId) => {
+  const { data } = await axiosInstance.delete<ServerResponse>(
     END_POINT.DELETE_GAME(postId),
   );
   return data;
