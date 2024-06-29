@@ -54,6 +54,14 @@ export const END_POINT = {
     `posts/${postId}/comments/${commentId}/replies`,
   CREATE_REPLY: (postId: number, commentId: number) =>
     `posts/${postId}/comments/${commentId}/replies`,
+  GAME_LIST: '/games',
+  CREATE_GAME: '/games',
+  TODAY_GAME: 'games/today',
+  NEW_GAME: '/games/new',
+  BEST_GAME: '/games/best',
+  GAME: (postId: number) => `/games/${postId}`,
+  EDIT_GAME: (postId: number) => `/games/${postId}`,
+  DELETE_GAME: (postId: number) => `/games/${postId}`,
 };
 
 export const AXIOS = {
