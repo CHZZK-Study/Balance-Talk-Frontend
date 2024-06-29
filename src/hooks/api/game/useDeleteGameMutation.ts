@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { deleteGame } from '@/api/game';
-import { PostId } from '@/types/type';
+import { Id } from '@/types/api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-export const useDeleteGameMutation = (postId: PostId) => {
+export const useDeleteGameMutation = (postId: Id) => {
   const queryClient = useQueryClient();
 
   const { mutate: deleteGameMutate } = useMutation({
