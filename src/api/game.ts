@@ -1,69 +1,49 @@
 import { END_POINT } from '@/constants/api';
-import {
-  Game,
-  GameProps,
-  GameItem,
-  GamesPagination,
-  TodayContent,
-} from '@/types/game';
-import { Id, ServerResponse } from '@/types/api';
+import { Game, GameItem, GameContent, GamesPagination } from '@/types/game';
+import { Id, Pageable } from '@/types/api';
 import { axiosInstance } from './interceptor';
 
-export const getGameList = async ({ tag, page, size }: GameProps) => {
-  const { data } = await axiosInstance.get<GamesPagination>(
-    `${END_POINT.GAME_LIST}`,
-    {
-      params: { tag, page, size },
-    },
-  );
-  return data;
-};
-
 export const postGame = async (gameData: Game) => {
-  const { data } = await axiosInstance.post<GameItem>(
+  const { data } = await axiosInstance.post<GameContent>(
     END_POINT.CREATE_GAME,
     gameData,
   );
   return data;
 };
 
-export const getGameById = async (postId: Id) => {
+export const getGameById = async (gameId: Id) => {
   const { data } = await axiosInstance.get<GameItem>(
-    `${END_POINT.GAME(postId)}`,
+    `${END_POINT.GAME(gameId)}`,
   );
   return data;
 };
 
-export const patchGame = async (postId: Id, gameData: Game) => {
-  const { data } = await axiosInstance.patch<GameItem>(
-    END_POINT.EDIT_GAME(postId),
+export const putGame = async (gameId: Id, gameData: Game) => {
+  const { data } = await axiosInstance.put<GameContent>(
+    END_POINT.EDIT_GAME(gameId),
     gameData,
   );
   return data;
 };
 
-export const deleteGame = async (postId: Id) => {
-  const { data } = await axiosInstance.delete<ServerResponse>(
-    END_POINT.DELETE_GAME(postId),
-  );
-  return data;
-};
-
-export const getTodayGame = async () => {
-  const { data } = await axiosInstance.get<TodayContent>(
-    `${END_POINT.TODAY_GAME}`,
-  );
-  return data;
+export const deleteGame = async (gameId: Id) => {
+  const response = await axiosInstance.delete(END_POINT.DELETE_GAME(gameId));
+  return response;
 };
 
 export const getNewGames = async () => {
-  const { data } = await axiosInstance.get<GameItem[]>(`${END_POINT.NEW_GAME}`);
+  const { data } = await axiosInstance.get<GameContent>(
+    `${END_POINT.NEW_GAME}`,
+  );
   return data;
 };
 
-export const getBestGames = async () => {
-  const { data } = await axiosInstance.get<GameItem[]>(
+export const getBestGames = async (pageable: Pageable) => {
+  const { data } = await axiosInstance.get<GamesPagination>(
     `${END_POINT.BEST_GAME}`,
+    {
+      params: pageable,
+    },
   );
   return data;
 };

@@ -3,14 +3,14 @@ import { deleteGame } from '@/api/game';
 import { Id } from '@/types/api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-export const useDeleteGameMutation = (postId: Id) => {
+export const useDeleteGameMutation = (gameId: Id) => {
   const queryClient = useQueryClient();
 
   const { mutate: deleteGameMutate } = useMutation({
-    mutationFn: () => deleteGame(postId),
+    mutationFn: () => deleteGame(gameId),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['games', postId],
+        queryKey: ['games', gameId],
       });
     },
   });

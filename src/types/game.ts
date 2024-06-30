@@ -1,36 +1,20 @@
 import { PaginationType } from './pagination';
 
-export type GameProps = {
-  tag: string;
-  page: number;
-  size: number;
-};
-
-export type GameContent = {
-  id: number;
+export interface Game {
   title: string;
-  summary: string;
-  optionATitle: string;
-  optionBTitle: string;
-};
+  optionA: string;
+  optionB: string;
+}
+
+export interface GameContent extends Game {
+  id: number;
+}
+
+export interface GameItem extends GameContent {
+  myBookMark: boolean;
+  myVote: boolean;
+}
 
 export interface GamesPagination extends PaginationType {
   content: GameContent[];
 }
-
-export type Game = {
-  title: string;
-  options: string[];
-  storedImageName: string;
-};
-
-export type TodayContent = Pick<GameContent, 'id' | 'title' | 'summary'>;
-
-export type GameItem = {
-  id: number;
-  title: string;
-  option: string;
-  myBookMark: boolean;
-  myVote: boolean;
-  imageUrl: string;
-};
