@@ -32,7 +32,7 @@ export const deleteGame = async (gameId: Id) => {
 };
 
 export const getNewGames = async () => {
-  const { data } = await axiosInstance.get<GameContent>(
+  const { data } = await axiosInstance.get<GameContent[]>(
     `${END_POINT.NEW_GAME}`,
   );
   return data;
