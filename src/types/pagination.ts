@@ -1,3 +1,9 @@
+export type Pageable = {
+  page: number;
+  size: number;
+  sort: string[];
+};
+
 export interface PaginationType {
   pageable: {
     pageNumber: number;

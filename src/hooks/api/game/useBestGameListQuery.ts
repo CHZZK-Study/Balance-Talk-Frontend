@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { Pageable } from '@/types/api';
+import { Pageable } from '@/types/pagination';
 import { GamesPagination } from '@/types/game';
 import { getBestGames } from '@/api/game';
 
