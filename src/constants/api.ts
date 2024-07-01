@@ -1,3 +1,5 @@
+import { Id } from '@/types/api';
+
 export const HTTP_STATUS_CODE = {
   OK: 200,
   BAD_REQUEST: 400,
@@ -54,6 +56,12 @@ export const END_POINT = {
     `posts/${postId}/comments/${commentId}/replies`,
   CREATE_REPLY: (postId: number, commentId: number) =>
     `posts/${postId}/comments/${commentId}/replies`,
+  CREATE_GAME: '/games',
+  NEW_GAME: '/games/new',
+  BEST_GAME: '/games/best',
+  GAME: (gameId: Id) => `/games/${gameId}`,
+  EDIT_GAME: (gameId: Id) => `/games/${gameId}`,
+  DELETE_GAME: (gameId: Id) => `/games/${gameId}`,
 };
 
 export const AXIOS = {
