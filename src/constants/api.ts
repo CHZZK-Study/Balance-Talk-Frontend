@@ -1,3 +1,5 @@
+import { Id } from '@/types/api';
+
 export const HTTP_STATUS_CODE = {
   OK: 200,
   BAD_REQUEST: 400,
@@ -16,6 +18,7 @@ export const END_POINT = {
   SIGN_UP: '/members/join',
   LOGIN: '/members/login',
   LOGOUT: '/members/logout',
+  REFRESH: '/members/reissue',
   ALL_MEMBERS: '/members',
   MEMBER: (id: number) => `/members/${id}`,
   MEMBER_PROFILE: (id: number) => `/members/${id}/profile`,
@@ -26,34 +29,29 @@ export const END_POINT = {
   EMAIL_VERIFY: '/email/verify',
   EMAIL_REQUEST: '/email/request',
   FIND_PW: '/email/password',
-  POST: (id: number) => `/posts/${id}`,
   MYPAGE_POSTS: '/myPage/history/posts',
   MYPAGE_COMMENTS: '/myPage/history/comments',
   MYPAGE_VOTEDPOSTS: '/myPage/history/votedPosts',
   MYPAGE_BOOKMARKS: '/myPage/history/bookmarks',
-  COMMENTS: (postId: number) => `/posts/${postId}/comments`,
-  CREATE_COMMENT: (postId: number) => `/posts/${postId}/comments`,
-  VOTE_COUNT: (postId: number) => `/posts/${postId}/vote`,
   FILE_UPLOAD: '/files/image/upload',
-  VOTE: (postId: number) => `posts/${postId}/vote`,
-  ADD_BOOKMARK: (postId: number) => `bookmarks/${postId}`,
-  DELETE_BOOKMARK: (postId: number) => `bookmarks/${postId}`,
+  POST: (id: number) => `/posts/${id}`,
   REPORT_POST: (postId: number) => `posts/${postId}/report`,
-  ADD_LIKE_COMMENT: (postId: number, commentId: number) =>
-    `posts/${postId}/comments/${commentId}/likes`,
-  DELETE_LIKE_COMMENT: (postId: number, commentId: number) =>
-    `posts/${postId}/comments/${commentId}/likes`,
-  REPORT_COMMENT: (postId: number, commentId: number) =>
-    `posts/${postId}/comments/${commentId}/report`,
-  REFRESH: '/members/reissue',
-  EDIT_COMMENT: (postId: number, commentId: number) =>
-    `posts/${postId}/comments/${commentId}`,
-  DELETE_COMMENT: (postId: number, commentId: number) =>
-    `posts/${postId}/comments/${commentId}`,
-  COMMENT_REPLILES: (postId: number, commentId: number) =>
-    `posts/${postId}/comments/${commentId}/replies`,
-  CREATE_REPLY: (postId: number, commentId: number) =>
-    `posts/${postId}/comments/${commentId}/replies`,
+  VOTE_COUNT: (postId: number) => `/posts/${postId}/vote`,
+  VOTE: (postId: number) => `posts/${postId}/vote`,
+  COMMENTS: (talkPickId: Id) => `/talks/${talkPickId}/comments`,
+  BEST_COMMENT: (talkPickId: Id) => `talks/${talkPickId}/comments/best`,
+  CREATE_COMMENT: (talkPickId: Id) => `/talks/${talkPickId}/comments`,
+  EDIT_COMMENT: (talkPickId: Id, commentId: Id) =>
+    `talks/${talkPickId}/comments/${commentId}`,
+  DELETE_COMMENT: (talkPickId: Id, commentId: Id) =>
+    `talks/${talkPickId}/comments/${commentId}`,
+  LIKE_COMMENT: (commentId: Id) => `talks/${commentId}/likes`,
+  DELETE_LIKE_COMMENT: (commentId: Id) => `talks/${commentId}/likes`,
+  // REPLILES: (postId: Id, commentId: Id) =>
+  //   `posts/${postId}/comments/${commentId}/replies`,
+  CREATE_REPLY: (commentId: Id) => `talks/comments/${commentId}/replies`,
+  BOOKMARK: (gameId: Id) => `bookmarks/games/${gameId}`,
+  DELETE_BOOKMARK: (gameId: Id) => `bookmarks/games/${gameId}`,
 };
 
 export const AXIOS = {
