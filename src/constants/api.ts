@@ -47,11 +47,15 @@ export const END_POINT = {
     `talks/${talkPickId}/comments/${commentId}`,
   LIKE_COMMENT: (commentId: Id) => `talks/${commentId}/likes`,
   DELETE_LIKE_COMMENT: (commentId: Id) => `talks/${commentId}/likes`,
-  // REPLILES: (postId: Id, commentId: Id) =>
-  //   `posts/${postId}/comments/${commentId}/replies`,
   CREATE_REPLY: (commentId: Id) => `talks/comments/${commentId}/replies`,
   BOOKMARK: (gameId: Id) => `bookmarks/games/${gameId}`,
   DELETE_BOOKMARK: (gameId: Id) => `bookmarks/games/${gameId}`,
+  CREATE_GAME: '/games',
+  NEW_GAME: '/games/new',
+  BEST_GAME: '/games/best',
+  GAME: (gameId: Id) => `/games/${gameId}`,
+  EDIT_GAME: (gameId: Id) => `/games/${gameId}`,
+  DELETE_GAME: (gameId: Id) => `/games/${gameId}`,
 };
 
 export const AXIOS = {
