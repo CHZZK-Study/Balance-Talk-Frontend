@@ -1,100 +1,72 @@
+import { END_POINT } from '@/constants/api';
+import { Id, ServerResponse } from '@/types/api';
 import {
   CommentsPagination,
-  CreatedComment,
-  CreatedReply,
-  EditedComment,
-  Replies,
+  CreateCommentProps,
+  CreateReplyProps,
+  EditCommentProps,
 } from '@/types/comment';
-import { END_POINT } from '@/constants/api';
+import { Pageable } from '@/types/pagination';
 import { axiosInstance } from './interceptor';
 
-export const getComments = async (
-  postId: number,
-  pageable: { page: number; size?: number; sort?: string },
-): Promise<CommentsPagination> => {
-  const response = await axiosInstance.get(END_POINT.COMMENTS(postId), {
-    params: { ...pageable, sort: 'createdAt,desc' },
-  });
-  return response.data as CommentsPagination;
-};
-
-export const createComment = async (postId: number, data: CreatedComment) => {
-  const response = await axiosInstance.post(END_POINT.CREATE_COMMENT(postId), {
-    ...data,
-  });
-  return response;
-};
-
-export const fetchAddLikeComment = async (
-  postId: number,
-  commentId: number,
+export const putComment = async (
+  talkPickId: Id,
+  commentId: Id,
+  comment: EditCommentProps,
 ) => {
-  const response = await axiosInstance.post(
-    END_POINT.ADD_LIKE_COMMENT(postId, commentId),
+  const { data } = await axiosInstance.put<ServerResponse>(
+    END_POINT.EDIT_COMMENT(talkPickId, commentId),
+    { ...comment },
   );
-  return response;
+  return data;
 };
 
-export const fetchDeleteLikeComment = async (
-  postId: number,
-  commentId: number,
-) => {
-  const response = await axiosInstance.delete(
-    END_POINT.DELETE_LIKE_COMMENT(postId, commentId),
+export const deleteComment = async (talkPickId: Id, commentId: Id) => {
+  const { data } = await axiosInstance.delete<ServerResponse>(
+    END_POINT.DELETE_COMMENT(talkPickId, commentId),
   );
-  return response;
+  return data;
 };
 
-export const fetchReportComment = async (postId: number, commetId: number) => {
-  const response = await axiosInstance.post(
-    END_POINT.REPORT_COMMENT(postId, commetId),
+export const getComments = async (talkPickId: Id, pageable: Pageable) => {
+  const { data } = await axiosInstance.get<CommentsPagination>(
+    END_POINT.COMMENTS(talkPickId),
     {
-      category: 'ETC',
-      description: '댓글 신고 내용',
+      params: { ...pageable, sort: 'createdAt,desc' },
     },
   );
-  return response;
+  return data;
 };
 
-export const editComment = async (
-  postId: number,
-  commentId: number,
-  data: EditedComment,
+export const postComment = async (
+  talkPickId: Id,
+  comment: CreateCommentProps,
 ) => {
-  const response = await axiosInstance.put(
-    END_POINT.EDIT_COMMENT(postId, commentId),
-    { ...data },
-  );
-  return response;
-};
-
-export const deleteComment = async (postId: number, commentId: number) => {
-  const response = await axiosInstance.delete(
-    END_POINT.DELETE_COMMENT(postId, commentId),
-  );
-  return response;
-};
-
-export const getReplies = async (
-  postId: number,
-  commentId: number,
-): Promise<Replies> => {
-  const response = await axiosInstance.get(
-    END_POINT.COMMENT_REPLILES(postId, commentId),
-  );
-  return response.data as Replies;
-};
-
-export const createReply = async (
-  postId: number,
-  commentId: number,
-  data: CreatedReply,
-) => {
-  const response = await axiosInstance.post(
-    END_POINT.CREATE_REPLY(postId, commentId),
+  const { data } = await axiosInstance.post<ServerResponse>(
+    END_POINT.CREATE_COMMENT(talkPickId),
     {
-      ...data,
+      ...comment,
     },
   );
-  return response;
+  return data;
+};
+
+export const postReply = async (commentId: Id, reply: CreateReplyProps) => {
+  const { data } = await axiosInstance.post<ServerResponse>(
+    END_POINT.CREATE_REPLY(commentId),
+    {
+      ...reply,
+    },
+  );
+  return data;
+};
+
+export const getBestComments = async (talkPickId: Id, pageable: Pageable) => {
+  const { data } = await axiosInstance.get<CommentsPagination>(
+    END_POINT.BEST_COMMENT(talkPickId),
+    {
+      params: { ...pageable, sort: 'createdAt,desc' },
+    },
+  );
+  return data;
 };

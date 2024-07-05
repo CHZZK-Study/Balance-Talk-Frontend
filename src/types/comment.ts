@@ -1,63 +1,41 @@
-export type Comment = {
+import { PaginationType } from './pagination';
+
+export interface Comment {
   id: number;
+  talkPickId: number;
+  talkPickTitle: string;
+  ninckname: string;
   content: string;
-  memberName: string;
-  postId: number;
-  selectedOptionId: number;
-  parentCommentId?: number | null;
+  option: string;
+  likesCount: number;
+  myLike: boolean;
+  replyCount: number;
+  createdAt: string;
+  lastModifiedAt: string;
+}
+
+export interface Reply {
+  id: number;
+  talkPickId: number;
+  ninckname: string;
+  content: string;
+  option: string;
   likesCount: number;
   myLike: boolean;
   createdAt: string;
   lastModifiedAt: string;
-  profileImageUrl: string | null;
-  postTitle?: string;
-  replyCount?: number;
-  writerId: number;
-};
+  parentCommentId: number;
+  isBest: boolean;
+}
 
-export type CreatedComment = Pick<Comment, 'content' | 'selectedOptionId'>;
-export type EditedComment = {
-  content: string;
-  selectedOptionId: number | null;
-};
-export type CreatedReply = {
-  content: string;
-  memberId: number;
-  commentId: number;
-};
-export type CommentsPagination = {
-  totalPages: number;
-  totalElements: number;
-  size: number;
+export interface CommentsPagination extends PaginationType {
   content: Comment[];
-  number: number;
-  sort: {
-    empty: boolean;
-    unsorted: boolean;
-    sorted: boolean;
-  };
-  numberOfElements: number;
-  pageable: {
-    offset: number;
-    sort: {
-      empty: boolean;
-      unsorted: boolean;
-      sorted: boolean;
-    };
-    pageSize: number;
-    paged: boolean;
-    pageNumber: number;
-    unpaged: boolean;
-  };
-  first: boolean;
-  last: boolean;
-  empty: boolean;
-};
+}
 
-export type ReportedComment = {
-  category: string;
-  description: string;
-};
+export type CreateCommentProps = Pick<Comment, 'content' | 'option'>;
 
-// 추후 수정
-export type Replies = Comment[];
+export type EditCommentProps = Pick<Comment, 'content'>;
+
+export type CreateReplyProps = Pick<Comment, 'content' | 'option'>;
+
+export type CommentsCategory = 'comments' | 'bestComments';
