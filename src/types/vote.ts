@@ -1,8 +1,6 @@
-export type SelectedVoteInfo = {
-  selectedOptionId: number;
+export type VoteResult = {
+  optionACount: number;
+  optionBCount: number;
 };
 
-export type ChangedVoteInfo = {
-  memberId: number;
-  newOptionId: number;
-};
+export type VoteOption = 'A' | 'B';
