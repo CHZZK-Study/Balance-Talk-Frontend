@@ -64,8 +64,8 @@ export const END_POINT = {
   CREATE_REPLY: (commentId: Id) => `talks/comments/${commentId}/replies`,
 
   // bookmark API
-  BOOKMARK: (gameId: Id) => `bookmarks/games/${gameId}`,
-  DELETE_BOOKMARK: (gameId: Id) => `bookmarks/games/${gameId}`,
+  BOOKMARK_TALKPICK: (talkPickId: Id) => `/bookmarks/talks/${talkPickId}`,
+  BOOKMARK_GAME: (gameId: Id) => `/bookmarks/games/${gameId}`,
 
   // game API
   CREATE_GAME: '/games',
