@@ -1,4 +1,4 @@
-export type TalkPick = {
+export type TalkPickDetail = {
   id: number;
   title: string;
   content: string;
@@ -13,7 +13,7 @@ export type TalkPick = {
   votedOption: 'A' | 'B';
 };
 
-export type TalkPickProps = Pick<
-  TalkPick,
+export type TalkPick = Pick<
+  TalkPickDetail,
   'title' | 'content' | 'summary' | 'optionA' | 'optionB'
 >;
