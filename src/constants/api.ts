@@ -43,8 +43,9 @@ export const END_POINT = {
   FILE_UPLOAD: '/files/image/upload',
 
   // talk pick API
-  POST: (id: number) => `/posts/${id}`,
-  REPORT_POST: (postId: number) => `posts/${postId}/report`,
+  TALKPICK: (talkPickId: number) => `/talks/${talkPickId}`,
+  CREATE_TALKPICK: '/talks',
+  TODAY_TALKPICK: '/talks/today',
 
   // vote API
   VOTE_TALK: (talkPickId: number) => `/votes/talks/${talkPickId}`,
