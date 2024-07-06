@@ -8,10 +8,14 @@ export const useCreateGameVoteMutation = (gameId: Id) => {
 
   return useMutation({
     mutationFn: (data: VoteOption) => postGameVoteResult(gameId, data),
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: ['gameVote', gameId],
-      });
-    },
+    onSuccess: () =>
+      Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: ['gameVote', gameId],
+        }),
+        queryClient.invalidateQueries({
+          queryKey: ['games', gameId],
+        }),
+      ]),
   });
 };

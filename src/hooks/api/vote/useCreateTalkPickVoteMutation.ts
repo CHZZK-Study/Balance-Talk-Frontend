@@ -8,10 +8,14 @@ export const useCreateTalkPickVoteMutation = (talkPickId: Id) => {
 
   return useMutation({
     mutationFn: (data: VoteOption) => postTalkPickVoteResult(talkPickId, data),
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: ['talkPickVote', talkPickId],
-      });
-    },
+    onSuccess: () =>
+      Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: ['talkPickVote', talkPickId],
+        }),
+        queryClient.invalidateQueries({
+          queryKey: ['talkPick', talkPickId],
+        }),
+      ]),
   });
 };
