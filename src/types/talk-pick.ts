@@ -7,7 +7,6 @@ export type TalkPickDetail = {
   optionB: string;
   views: number;
   likesCount: number;
-  myLike: boolean;
   myBookmark: boolean;
   myVote: boolean;
   votedOption: 'A' | 'B';
