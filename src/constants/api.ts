@@ -43,13 +43,13 @@ export const END_POINT = {
   FILE_UPLOAD: '/files/image/upload',
 
   // talk pick API
-  TALKPICK: (talkPickId: number) => `/talks/${talkPickId}`,
+  TALKPICK: (talkPickId: Id) => `/talks/${talkPickId}`,
   CREATE_TALKPICK: '/talks',
   TODAY_TALKPICK: '/talks/today',
 
   // vote API
-  VOTE_TALK: (talkPickId: number) => `/votes/talks/${talkPickId}`,
-  VOTE_GAME: (gameId: number) => `/votes/games/${gameId}`,
+  VOTE_TALK: (talkPickId: Id) => `/votes/talks/${talkPickId}`,
+  VOTE_GAME: (gameId: Id) => `/votes/games/${gameId}`,
 
   // comment API
   COMMENTS: (talkPickId: Id) => `/talks/${talkPickId}/comments`,
