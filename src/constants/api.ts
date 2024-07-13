@@ -15,6 +15,7 @@ export const HTTP_STATUS_CODE = {
 } as const;
 
 export const END_POINT = {
+  // member API
   SIGN_UP: '/members/join',
   LOGIN: '/members/login',
   LOGOUT: '/members/logout',
@@ -26,18 +27,31 @@ export const END_POINT = {
   MEMBER_NICKNAME: '/members/nickname',
   MEMBER_PASSWORD: '/members/password',
   NICKNAME_VERIFY: '/members/duplicate',
+
+  // email API
   EMAIL_VERIFY: '/email/verify',
   EMAIL_REQUEST: '/email/request',
   FIND_PW: '/email/password',
+
+  // mypage API
   MYPAGE_POSTS: '/myPage/history/posts',
   MYPAGE_COMMENTS: '/myPage/history/comments',
   MYPAGE_VOTEDPOSTS: '/myPage/history/votedPosts',
   MYPAGE_BOOKMARKS: '/myPage/history/bookmarks',
+
+  // file API
   FILE_UPLOAD: '/files/image/upload',
-  POST: (id: number) => `/posts/${id}`,
-  REPORT_POST: (postId: number) => `posts/${postId}/report`,
-  VOTE_COUNT: (postId: number) => `/posts/${postId}/vote`,
-  VOTE: (postId: number) => `posts/${postId}/vote`,
+
+  // talk pick API
+  TALKPICK: (talkPickId: Id) => `/talks/${talkPickId}`,
+  CREATE_TALKPICK: '/talks',
+  TODAY_TALKPICK: '/talks/today',
+
+  // vote API
+  VOTE_TALK: (talkPickId: Id) => `/votes/talks/${talkPickId}`,
+  VOTE_GAME: (gameId: Id) => `/votes/games/${gameId}`,
+
+  // comment API
   COMMENTS: (talkPickId: Id) => `/talks/${talkPickId}/comments`,
   BEST_COMMENT: (talkPickId: Id) => `talks/${talkPickId}/comments/best`,
   CREATE_COMMENT: (talkPickId: Id) => `/talks/${talkPickId}/comments`,
@@ -48,8 +62,12 @@ export const END_POINT = {
   LIKE_COMMENT: (commentId: Id) => `talks/${commentId}/likes`,
   DELETE_LIKE_COMMENT: (commentId: Id) => `talks/${commentId}/likes`,
   CREATE_REPLY: (commentId: Id) => `talks/comments/${commentId}/replies`,
-  BOOKMARK: (gameId: Id) => `bookmarks/games/${gameId}`,
-  DELETE_BOOKMARK: (gameId: Id) => `bookmarks/games/${gameId}`,
+
+  // bookmark API
+  BOOKMARK_TALKPICK: (talkPickId: Id) => `/bookmarks/talks/${talkPickId}`,
+  BOOKMARK_GAME: (gameId: Id) => `/bookmarks/games/${gameId}`,
+
+  // game API
   CREATE_GAME: '/games',
   NEW_GAME: '/games/new',
   BEST_GAME: '/games/best',
