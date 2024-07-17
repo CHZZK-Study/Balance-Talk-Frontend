@@ -38,15 +38,15 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<LandingPage />} />
-          <Route path="posts" element={<PostList />} />
+          {/* <Route path="posts" element={<PostList />} />
           <Route path="posts/:id" element={<PostPage />} />
           <Route path="searchResult" element={<SearchResultPage />} />
           <Route element={<ProtectedRoutes member={member} />}>
             <Route path="post/create" element={<CreatePostPage />} />
-          </Route>
+          </Route> */}
         </Route>
 
-        <Route element={<NotAuthRoutes member={member} />}>
+        {/* <Route element={<NotAuthRoutes member={member} />}>
           <Route element={<LayoutNoSearch />}>
             <Route path={PATH.LOGIN} element={<LoginPage />} />
             <Route path={PATH.PW} element={<FindPasswordPage />} />
@@ -73,7 +73,7 @@ const App: React.FC = () => {
           </Route>
         </Route>
 
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="*" element={<NotFoundPage />} /> */}
       </Routes>
     </LocalizationProvider>
   );
