@@ -1,11 +1,13 @@
 const typo = {
   Title: {
+    fontFamily: 'Pretendard',
     fontSize: '40px',
     fontWeight: 700,
     lineHeight: '1.4',
     letterSpacing: `${40 * -0.05}px`,
   },
   SubTitle: {
+    fontFamily: 'Pretendard',
     fontSize: '24px',
     fontWeight: 500,
     lineHeight: '1.4',
@@ -13,12 +15,14 @@ const typo = {
   },
   Component: {
     Bold: {
+      fontFamily: 'Pretendard',
       fontSize: '30px',
       fontWeight: 700,
       lineHeight: '1.4',
       letterSpacing: `${30 * -0.05}px`,
     },
     Medium: {
+      fontFamily: 'Pretendard',
       fontSize: '24px',
       fontWeight: 500,
       lineHeight: '1.4',
@@ -27,12 +31,14 @@ const typo = {
   },
   Main: {
     SemiBold: {
+      fontFamily: 'Pretendard',
       fontSize: '18px',
       fontWeight: 600,
       lineHeight: '1.4',
       letterSpacing: `${18 * -0.05}px`,
     },
     Medium: {
+      fontFamily: 'Pretendard',
       fontSize: '18px',
       fontWeight: 500,
       lineHeight: '1.4',
@@ -41,12 +47,14 @@ const typo = {
   },
   Comment: {
     SemiBold: {
+      fontFamily: 'Pretendard',
       fontSize: '16px',
       fontWeight: 600,
       lineHeight: '1.4',
       letterSpacing: `${16 * -0.05}px`,
     },
     Regular: {
+      fontFamily: 'Pretendard',
       fontSize: '16px',
       fontWeight: 400,
       lineHeight: '1.4',
@@ -55,20 +63,20 @@ const typo = {
   },
   Number: {
     Medium_18: {
+      fontFamily: 'Poppins-Medium',
       fontSize: '18px',
-      fontWeight: 500,
       lineHeight: '1.4',
       letterSpacing: `${18 * -0.05}px`,
     },
     Medium: {
+      fontFamily: 'Poppins-Medium',
       fontSize: '16px',
-      fontWeight: 500,
       lineHeight: '1.4',
       letterSpacing: `${16 * -0.05}px`,
     },
     Regular: {
+      fontFamily: 'Poppins-Regular',
       fontSize: '16px',
-      fontWeight: 400,
       lineHeight: '1.4',
       letterSpacing: `${16 * -0.05}px`,
     },
