@@ -1,23 +1,17 @@
 import { css } from '@emotion/react';
 
 export const profileWrapper = css({
-  width: '32px',
-  height: '32px',
-  borderRadius: '600px',
-  position: 'relative',
+  width: '40px',
+  height: '40px',
+  borderRadius: '50%',
   overflow: 'hidden',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  backgroundImage: `linear-gradient(135deg, #7B67F2 0%, #AFFF48 100%)`,
-  backgroundClip: 'content-box, border-box',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
   cursor: 'pointer',
 });
 
 export const profileImage = css({
-  width: '29px',
-  height: '29px',
+  width: '100%',
+  height: '100%',
   objectFit: 'cover',
-  borderRadius: '600px',
-  backgroundColor: '#ffffff',
 });
