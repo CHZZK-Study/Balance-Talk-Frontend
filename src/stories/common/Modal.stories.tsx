@@ -18,7 +18,7 @@ const meta = {
     children: { control: { type: 'text' } },
   },
   args: {
-    children: '모달 확인용 텍스트',
+    children: 'Modal',
   },
 } satisfies Meta<typeof Modal>;
 
@@ -36,9 +36,9 @@ export const All: Story = {
     <ul css={storyContainer}>
       <li css={storyInnerContainer}>
         <h3>Default</h3>
-        <Modal>기본 팝업 확인용 텍스트</Modal>
+        <Modal>Default Modal</Modal>
         <h3>Share</h3>
-        <Modal action="share">공유하기 팝업 확인용 텍스트</Modal>
+        <Modal action="share">Share Modal</Modal>
       </li>
     </ul>
   ),
