@@ -1,15 +1,17 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable react/react-in-jsx-scope */
 import { ReactNode } from 'react';
-import type { Size } from '@/types/temp';
-import { chipsStyling, getSizeStyling } from './Chips.style';
+// import { Size } from '@/types/theme';
+import { chipsStyling } from './Chips.style';
 
 export interface ChipsProps {
-  size?: Extract<Size, 'small' | 'large'>;
+  // size?: Extract<Size, 'large'>;
+  // variant?: 'outline';
   children?: ReactNode;
 }
 
-const Chips = ({ size = 'large', children }: ChipsProps) => (
-  <div css={[chipsStyling, getSizeStyling(size)]}>{children}</div>
+const Chips = ({ children }: ChipsProps) => (
+  <div css={chipsStyling}>{children}</div>
 );
 
 export default Chips;
