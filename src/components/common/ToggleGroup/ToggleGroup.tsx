@@ -23,7 +23,7 @@ export interface ToggleGroupProps {
 
 const ToggleGroup = ({ items, selectedValue, onClick }: ToggleGroupProps) => (
   <div css={toggleButtonStyling}>
-    {!!items &&
+    {Array.isArray(items) &&
       items.length === 2 &&
       items.map((item, idx) => (
         <div
