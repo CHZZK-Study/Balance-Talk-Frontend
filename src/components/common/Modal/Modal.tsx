@@ -1,6 +1,5 @@
 /* eslint-disable import/no-cycle */
-/* eslint-disable react/react-in-jsx-scope */
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { modalStyling, getModalPadding } from './Modal.style';
 
 export interface ModalProps {

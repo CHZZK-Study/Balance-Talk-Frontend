@@ -1,5 +1,4 @@
-/* eslint-disable react/react-in-jsx-scope */
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { toastModalStyling, getToastModalColor } from './ToastModal.style';
 
 export interface ToastModalProps {

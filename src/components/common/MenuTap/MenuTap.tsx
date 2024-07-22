@@ -1,7 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect } from 'react';
 import { Menu } from '@/assets';
 import {
@@ -43,13 +39,13 @@ const MenuTap = ({ menuData }: MenuTapProps) => {
     <div css={menuTapStyling}>
       <Menu css={menuIconStlying} onClick={handleMenuClick} />
       {view && (
-        <ul css={menuStlying}>
-          {menuData.map((item, idx) => (
-            <li key={idx} css={menuItemStyling} onClick={item?.onClick}>
+        <div css={menuStlying}>
+          {menuData.map((item) => (
+            <button type="button" css={menuItemStyling} onClick={item?.onClick}>
               {item.label}
-            </li>
+            </button>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

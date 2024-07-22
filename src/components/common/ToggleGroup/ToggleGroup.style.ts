@@ -6,17 +6,14 @@ export const toggleButtonStyling = css({
   display: 'flex',
   borderRadius: '6px',
   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-  cursor: 'pointer',
 });
 
 export const toggleButtonItemStyling = css(typo.Main.SemiBold, {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
   padding: '10px 23px',
   backgroundColor: color.WT,
   color: color.GY[1],
   outline: `1px solid ${color.GY[2]}`,
+  cursor: 'pointer',
 });
 
 export const firstItemRadius = css({

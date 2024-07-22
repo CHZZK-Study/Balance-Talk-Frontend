@@ -17,18 +17,19 @@ export const menuIconStlying = css({
 export const menuStlying = css({
   position: 'absolute',
   marginTop: '23px',
+  marginRight: '4px',
   width: '86px',
-  listStyle: 'none',
   backgroundColor: color.WT,
   border: `1px solid ${color.GY[2]}`,
   borderRadius: '10px',
+  overflow: 'hidden',
   boxShadow: '1px 2px 10px rgba(0, 0, 0, 0.07)',
-  cursor: 'pointer',
 });
 
 export const menuItemStyling = css(typo.Comment.SemiBold, {
+  width: '100%',
   padding: '10px',
-  textAlign: 'center',
+  cursor: 'pointer',
   color: color.BK,
   borderBottom: `1px solid ${color.GY[2]}`,
   ':last-child': {

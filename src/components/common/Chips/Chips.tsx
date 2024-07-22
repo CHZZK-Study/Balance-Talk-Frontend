@@ -1,6 +1,5 @@
 /* eslint-disable import/no-cycle */
-/* eslint-disable react/react-in-jsx-scope */
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 // import { Size } from '@/types/theme';
 import { chipsStyling } from './Chips.style';
 

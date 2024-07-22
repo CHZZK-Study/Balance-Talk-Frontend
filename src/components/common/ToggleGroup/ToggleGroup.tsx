@@ -1,7 +1,4 @@
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable react/react-in-jsx-scope */
+import React from 'react';
 import {
   selectedStyling,
   firstItemRadius,
@@ -26,8 +23,8 @@ const ToggleGroup = ({ items, selectedValue, onClick }: ToggleGroupProps) => (
     {Array.isArray(items) &&
       items.length === 2 &&
       items.map((item, idx) => (
-        <div
-          key={idx}
+        <button
+          type="button"
           css={[
             toggleButtonItemStyling,
             idx === 0 ? firstItemRadius : secondItemRadius,
@@ -36,7 +33,7 @@ const ToggleGroup = ({ items, selectedValue, onClick }: ToggleGroupProps) => (
           onClick={() => onClick?.(item.value)}
         >
           {item.label}
-        </div>
+        </button>
       ))}
   </div>
 );
