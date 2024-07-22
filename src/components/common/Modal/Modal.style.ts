@@ -6,7 +6,8 @@ export const modalStyling = css({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  minWidth: '598px',
+  position: 'relative',
+  width: '598px',
   padding: '34px 30px',
   backgroundColor: '#F1F1F1',
   borderRadius: '10px',
@@ -16,3 +17,10 @@ export const modalStyling = css({
 export const getModalPadding = (action: Required<ModalProps>['action']) => css`
   ${action === 'share' && 'padding-bottom: 12px;'}
 `;
+
+export const modalCloseStyling = css({
+  position: 'absolute',
+  top: '34px',
+  right: '30px',
+  cursor: 'pointer',
+});

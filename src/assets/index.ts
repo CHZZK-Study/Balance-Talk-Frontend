@@ -25,3 +25,4 @@ export { default as Closed } from './svg/closed.svg';
 export { default as RightArrow } from './svg/right-arrow.svg';
 export { default as NormalProfile } from './svg/normal-profile.svg';
 export { default as Menu } from './svg/menu.svg';
+export { default as ModalClose } from './svg/modal-close.svg';
