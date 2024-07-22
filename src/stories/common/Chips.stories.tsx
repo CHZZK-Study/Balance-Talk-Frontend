@@ -11,38 +11,28 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    size: {
-      options: ['small', 'large'],
-      control: { type: 'radio' },
-    },
     children: { control: { type: 'text' } },
   },
   args: {
-    size: 'large',
-    children: '오늘의 밸런스톡',
+    children: 'CHIP',
   },
 } satisfies Meta<typeof Chips>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  args: {
-    size: 'large',
-  },
-};
+export const Default: Story = {};
 
 export const All: Story = {
-  render: (args) => (
+  render: () => (
     <ul css={storyContainer}>
       <li css={storyInnerContainer}>
         <h3>Size</h3>
-        <Chips {...args} size="small">
-          Small
-        </Chips>
-        <Chips {...args} size="large">
-          Large
-        </Chips>
+        <Chips>Large</Chips>
+      </li>
+      <li css={storyContainer}>
+        <h3>Variant</h3>
+        <Chips>Outline</Chips>
       </li>
     </ul>
   ),

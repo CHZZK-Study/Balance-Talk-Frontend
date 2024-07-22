@@ -40,7 +40,7 @@ export const All: Story = {
         <h3>Settings</h3>
         <ProfileIcon
           interaction="settings"
-          imgUrl="https://s3-alpha-sig.figma.com/img/5c8e/be0f/7b0b10784c7722a11c385a0625a85c69?Expires=1719792000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=UgTqBSINTYFYzVhzUBn6l~rBQK6-7pxwfZHhz1I4pl91-E7EXIg4vxvXbl9zFTPDhHw9ZHPwrdUIC8nJwbmEU97SV4LLv6whUjE5cFv6I4hhQKjGP2hAn2VGxdSWRlWKCDD54c~vqc2gpU-v7W-j7tC3fZQFWlAOApi8M5O5PNoJ3nUveK3pxFvmpFwdpTxRZVEQCiEcv2gW~rAe3hXy02jN89OY4vxL2Dd-SFYgmLNCuapUi6UXaJD3vjsn5OahtgXbo3h-lDsRTy-cl9WbL~yZXVlwTaX1dWYrP4magP1SPP6ppZ4xCrymFIthtCC69M5Gj0a-mlRMkGvGc3LYJg__"
+          imgUrl="https://www.figma.com/design/NLSmVbazYeN8UxT6sB9qv6/%5BPICK-O%5D-%EC%99%80%EC%9D%B4%EC%96%B4%ED%94%84%EB%A0%88%EC%9E%84?node-id=1474-16802&t=2zl1YNC4nZTO3g09-4"
         />
       </li>
     </ul>

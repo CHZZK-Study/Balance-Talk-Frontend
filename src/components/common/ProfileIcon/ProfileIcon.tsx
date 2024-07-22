@@ -1,6 +1,6 @@
 import React from 'react';
 import { NormalProfile } from '@/assets';
-import { profileImage, profileWrapper } from './ProfileIcon.style';
+import { profileWrapper, profileImage } from './ProfileIcon.style';
 
 interface ProfileProps {
   interaction: 'normal';
