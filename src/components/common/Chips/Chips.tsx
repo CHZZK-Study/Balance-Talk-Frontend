@@ -1,6 +1,5 @@
-/* eslint-disable import/no-cycle */
 import React, { ReactNode } from 'react';
-// import { Size } from '@/types/theme';
+// import type { Size } from '@/types/theme';
 import { chipsStyling } from './Chips.style';
 
 export interface ChipsProps {

@@ -1,6 +1,5 @@
-/* eslint-disable import/no-cycle */
 import { css } from '@emotion/react';
-import { ModalProps } from './Modal';
+import type { ModalProps } from './Modal';
 
 export const modalStyling = css({
   display: 'flex',

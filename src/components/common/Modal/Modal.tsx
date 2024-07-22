@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable import/no-cycle */
 import React, { useRef, useEffect, ReactNode } from 'react';
 import { ModalClose } from '@/assets';
 import {
