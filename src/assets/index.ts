@@ -4,6 +4,9 @@ export { default as BookmarkSR } from './svg/bookmark-sr.svg';
 export { default as Search } from './svg/search.svg';
 export { default as Envelope } from './svg/envelope.svg';
 export { default as Lock } from './svg/lock.svg';
+export { default as KeyboardArrowLeft } from './svg/keyboard-arrow-left.svg';
+export { default as KeyboardArrowRight } from './svg/keyboard-arrow-right.svg';
+
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';
 export { default as Profile } from './svg/profile.svg';
