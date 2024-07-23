@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import PageNavigation from '@/components/common/Paginavigation/Paginavigation';
+import PageNavigation from '@/components/common/Pagination/Pagination';
 import List from '@/components/mypage/List/List';
 import ItemMyPosts from '@/components/mypage/ListItem/ItemMyPosts';
 import ItemNull from '@/components/mypage/ListItem/ItemNull';
