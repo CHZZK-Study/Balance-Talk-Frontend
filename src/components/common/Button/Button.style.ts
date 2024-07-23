@@ -7,75 +7,118 @@ export const getVariantStyling = (
   variant: Required<ButtonProps>['variant'],
 ) => {
   const style = {
-    solidPrimary: css({
-      backgroundColor: color.Primary[400],
-      color: color.Neutral[50],
-
-      '&:hover:enabled': {
-        backgroundColor: color.Primary[500],
-      },
-      '&:disabled': {
-        backgroundColor: color.Neutral[100],
-        color: color.Neutral[400],
-      },
-    }),
-    solidNeutral: css({
-      backgroundColor: color.Neutral[800],
-      color: color.Neutral[600],
-      opacity: '.4',
-
-      '&:hover:enabled': {
-        opacity: '.8',
-      },
+    primary: css({
+      borderRadius: '4px',
+      backgroundColor: color.MAIN,
+      color: color.WT,
     }),
     outlinePrimary: css({
       backgroundColor: 'transparent',
-      outline: `1px solid ${color.Primary[400]}`,
-      color: color.Primary[400],
+      outline: `1px solid ${color.MAIN}`,
+      color: color.MAIN,
+      borderRadius: '30px',
 
-      '&:hover:enabled': {
-        backgroundColor: color.Primary[400],
-        color: color.Neutral[50],
-      },
-      '&:disabled': {
-        outline: `1px solid ${color.Neutral[400]}`,
-        color: color.Neutral[400],
+      '&:hover': {
+        backgroundColor: color.MAIN,
+        color: color.WT,
+        boxShadow: '1px 2px 15px rgba(119, 130, 255, 0.4)',
       },
     }),
-    outlineAssistive: css({
+    outlineShadow: css({
       backgroundColor: 'transparent',
-      outline: `1px solid ${color.Neutral[800]}`,
-      color: color.Neutral[600],
+      outline: `1px solid ${color.GY[2]}`,
+      borderRadius: '30px',
+      gap: '10px',
+    }),
+    outlineHighlightR: css({
+      backgroundColor: 'transparent',
+      outline: `2px solid ${color.PINK}`,
+      borderRadius: '10px',
+      color: color.RED,
+      boxShadow: '1px 2px 7px rgba(0, 0, 0, 0.10)',
 
-      '&:hover:enabled': {
-        outline: `1px solid ${color.Neutral[700]}`,
-        color: color.Neutral[400],
+      '&:hover': {
+        boxShadow: `0px 0px 15px ${color.PINK}`,
       },
-      '&:disabled': {
-        outline: `1px solid ${color.Neutral[400]}`,
-        color: color.Neutral[400],
+    }),
+    outlineHighlightB: css({
+      backgroundColor: 'transparent',
+      outline: `2px solid ${color.SKYBLUE}`,
+      borderRadius: '10px',
+      color: color.BLUE,
+      boxShadow: '1px 2px 7px rgba(0, 0, 0, 0.10)',
+
+      '&:hover': {
+        boxShadow: `0px 0px 15px ${color.SKYBLUE}`,
       },
+    }),
+    circle: css({
+      borderRadius: '50%',
+      backgroundColor: color.MAIN,
+      color: color.WT,
+      boxShadow: '1px 1px 4px rgba(0, 0, 0, 0.25)',
     }),
   };
 
   return style[variant as keyof typeof style];
 };
 
-export const getSizeStyling = (size: Required<ButtonProps>['size']) => {
+export const getSizeByVariantStyling = (
+  variant: Required<ButtonProps>['variant'],
+  size: Required<ButtonProps>['size'],
+) => {
   const style = {
-    large: css(typo.Body.SemiBold_3, {
-      padding: '10px 24px',
-      borderRadius: '8px',
-      gap: '8px',
-    }),
-    small: css(typo.Body.Regular_1, {
-      padding: '6px 10px',
-      borderRadius: '6px',
-      gap: '4px',
-    }),
+    primary: {
+      large: css(typo.Comment.SemiBold, {
+        padding: '8px 16px',
+      }),
+      medium: css({}),
+    },
+    outlinePrimary: {
+      large: css(typo.Main.SemiBold, {
+        padding: '10px 25px',
+      }),
+      medium: css({}),
+    },
+    outlineShadow: {
+      large: css(typo.Main.SemiBold, {
+        padding: '15px 30px',
+        color: color.BK,
+        boxShadow: '1px 2px 15px rgba(0, 0, 0, 0.05)',
+      }),
+      medium: css(typo.Number.Medium_18, {
+        padding: '10px 35px',
+        color: color.MAIN,
+        boxShadow: '1px 2px 7px rgba(0, 0, 0, 0.15)',
+      }),
+    },
+    outlineHighlightR: {
+      large: css(typo.Component.Bold, {
+        width: '410px',
+        padding: '22px 50px',
+      }),
+      medium: css({}),
+    },
+    outlineHighlightB: {
+      large: css(typo.Component.Bold, {
+        width: '410px',
+        padding: '22px 50px',
+      }),
+      medium: css({}),
+    },
+    circle: {
+      large: css({
+        padding: '16px',
+        '& svg': {
+          width: '22px',
+          height: '22px',
+        },
+      }),
+      medium: css({}),
+    },
   };
 
-  return style[size];
+  return style[variant][size];
 };
 
 export const buttonStyling = css({
@@ -88,7 +131,7 @@ export const buttonStyling = css({
   cursor: 'pointer',
 
   '& svg': {
-    width: '16px',
-    height: '16px',
+    width: '24px',
+    height: '24px',
   },
 });

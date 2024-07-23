@@ -15,6 +15,8 @@ import {
   morePostWrapper,
   recommendPostWrapper,
 } from './LandingPage.style';
+import Button from '@/components/common/Button/Button';
+import { AngleSmallDown, BookmarkRR, BookmarkSR, Search } from '@/assets';
 
 type PostInfo = {
   id: number;
@@ -71,6 +73,22 @@ const LandingPage = () => {
 
   return (
     <div css={landingContainer}>
+      <Button variant="primary">BUTTON</Button>
+      <Button variant="outlinePrimary">BUTTON</Button>
+      <Button variant="outlineShadow" iconRight={<AngleSmallDown />}>
+        BUTTON
+      </Button>
+      <Button variant="outlineShadow" size="medium" iconLeft={<BookmarkRR />}>
+        234
+      </Button>
+      <Button variant="outlineShadow" size="medium" iconLeft={<BookmarkSR />}>
+        234
+      </Button>
+      <Button variant="outlineHighlightR">BUTTONNNNNNNNNNN</Button>
+      <Button variant="outlineHighlightB">BUTTONNNNNNNNNNN</Button>
+      <Button variant="circle">
+        <Search />
+      </Button>
       {/* <div css={recommendPostWrapper}>
         <div css={headingWrapper}>
           <Heading size="small">추천 게시글</Heading>

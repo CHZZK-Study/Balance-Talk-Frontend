@@ -1,19 +1,21 @@
-import React, { forwardRef } from 'react';
+import type { Size } from '@/types/theme';
 import type { ComponentPropsWithRef, ForwardedRef, ReactElement } from 'react';
-import type { Size } from '../../../types/theme';
+import React, { forwardRef } from 'react';
 import {
   buttonStyling,
-  getSizeStyling,
+  getSizeByVariantStyling,
   getVariantStyling,
 } from './Button.style';
 
 export interface ButtonProps extends ComponentPropsWithRef<'button'> {
-  size?: Extract<Size, 'small' | 'large'>;
+  size?: Extract<Size, 'large' | 'medium'>;
   variant?:
-    | 'solidPrimary'
-    | 'solidNeutral'
+    | 'primary'
     | 'outlinePrimary'
-    | 'outlineAssistive';
+    | 'outlineShadow'
+    | 'outlineHighlightR'
+    | 'outlineHighlightB'
+    | 'circle';
   iconLeft?: ReactElement;
   iconRight?: ReactElement;
 }
@@ -21,7 +23,7 @@ export interface ButtonProps extends ComponentPropsWithRef<'button'> {
 const Button = (
   {
     size = 'large',
-    variant = 'solidPrimary',
+    variant = 'primary',
     children,
     iconLeft,
     iconRight,
@@ -32,7 +34,11 @@ const Button = (
   <button
     type="button"
     ref={ref}
-    css={[buttonStyling, getVariantStyling(variant), getSizeStyling(size)]}
+    css={[
+      buttonStyling,
+      getVariantStyling(variant),
+      getSizeByVariantStyling(variant, size),
+    ]}
     {...attributes}
   >
     {iconLeft}
