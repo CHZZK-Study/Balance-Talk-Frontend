@@ -1,29 +1,29 @@
 import React from 'react';
+import { KeyboardArrowLeft, KeyboardArrowRight } from '@/assets';
 import {
   pageBoxStyling,
   pageSelectedBoxStyling,
-  paginavigationContainer,
-} from './Paginavigation.style';
-import { LeftButton, RightButton } from '../../../assets';
+  paginationContainer,
+} from './Pagination.style';
 
-interface PageNavigationProps {
+interface PaginationProps {
   pages: number[];
   selected: number;
   maxPage: number;
   onChangeNavigate: (page: number) => void;
 }
 
-const PageNavigation = ({
+const Pagination = ({
   pages,
   selected,
   maxPage,
   onChangeNavigate,
-}: PageNavigationProps) => {
+}: PaginationProps) => {
   const nextId = selected === maxPage ? selected : selected + 1;
   const prevId = selected === 1 ? selected : selected - 1;
 
   return (
-    <div css={paginavigationContainer}>
+    <div css={paginationContainer}>
       <button
         type="button"
         css={pageBoxStyling}
@@ -32,7 +32,7 @@ const PageNavigation = ({
         }}
       >
         {}
-        <LeftButton />
+        <KeyboardArrowLeft />
       </button>
       {pages.map((page) => {
         return (
@@ -56,10 +56,10 @@ const PageNavigation = ({
         }}
       >
         {}
-        <RightButton />
+        <KeyboardArrowRight />
       </button>
     </div>
   );
 };
 
-export default PageNavigation;
+export default Pagination;
