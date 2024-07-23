@@ -16,7 +16,14 @@ import {
   recommendPostWrapper,
 } from './LandingPage.style';
 import Button from '@/components/common/Button/Button';
-import { AngleSmallDown, BookmarkRR, BookmarkSR, Search } from '@/assets';
+import {
+  AngleSmallDown,
+  BookmarkRR,
+  BookmarkSR,
+  Envelope,
+  Search,
+} from '@/assets';
+import Input from '@/components/common/Input/Input';
 
 type PostInfo = {
   id: number;
@@ -89,6 +96,14 @@ const LandingPage = () => {
       <Button variant="circle">
         <Search />
       </Button>
+      <div css={css({ padding: '0px 300px' })}>
+        <Input
+          placeholder="이메일"
+          icon={<Envelope />}
+          isError
+          errorMessage="아이디(로그인 전용 아이디) 또는 비밀번호가 잘못 되었습니다. 아이디와 비밀번호를 정확히 입력해 주세요."
+        />
+      </div>
       {/* <div css={recommendPostWrapper}>
         <div css={headingWrapper}>
           <Heading size="small">추천 게시글</Heading>
