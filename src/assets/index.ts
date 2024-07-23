@@ -1,3 +1,8 @@
+export { default as AngleSmallDown } from './svg/angle-small-down.svg';
+export { default as BookmarkRR } from './svg/bookmark-rr.svg';
+export { default as BookmarkSR } from './svg/bookmark-sr.svg';
+export { default as Search } from './svg/search.svg';
+// TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';
 export { default as Profile } from './svg/profile.svg';
 export { default as Plus } from './svg/plus.svg';
