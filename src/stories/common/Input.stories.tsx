@@ -1,5 +1,5 @@
 import React from 'react';
-import { Email } from '@/assets';
+import { Envelope } from '@/assets';
 import Input from '@/components/common/Input/Input';
 import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
 import type { Meta, StoryObj } from '@storybook/react';
@@ -57,7 +57,7 @@ export const All: Story = {
       </li>
       <li css={storyInnerContainer}>
         <h3>Icon</h3>
-        <Input {...args} icon={<Email width="16" height="16" />} />
+        <Input {...args} icon={<Envelope />} />
       </li>
       <li css={storyInnerContainer}>
         <h3>Label</h3>
@@ -65,7 +65,7 @@ export const All: Story = {
       </li>
       <li css={storyInnerContainer}>
         <h3>Btn</h3>
-        <Input {...args} btn={<Email width="16" height="16" />} />
+        <Input {...args} btn={<Envelope />} />
       </li>
       <li css={storyInnerContainer}>
         <h3>IsError and ErrorMessage</h3>
