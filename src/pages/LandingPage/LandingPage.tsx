@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { fetchBestPostsData, fetchPostsData } from '@/api/posts';
 import Carousel from '@/components/LandingPage/Carousel';
 import MainPost from '@/components/LandingPage/MainPost';
@@ -68,6 +68,9 @@ const LandingPage = () => {
   // const renderMainPost = (post: Post) => {
   //   return <MainPost post={post} key={post.id} />;
   // };
+
+  return (
+    <div css={landingContainer}>
       {/* <div css={recommendPostWrapper}>
         <div css={headingWrapper}>
           <Heading size="small">추천 게시글</Heading>
