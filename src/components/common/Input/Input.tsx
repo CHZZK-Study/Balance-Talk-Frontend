@@ -1,4 +1,4 @@
-import type { Size } from '@/types/temp';
+import { Size } from '@/types/theme';
 import type { ComponentPropsWithRef, ForwardedRef, ReactElement } from 'react';
 import React, { forwardRef } from 'react';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';

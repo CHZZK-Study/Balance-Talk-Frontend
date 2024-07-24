@@ -11,19 +11,28 @@ export const inputContainerStyling = css({
 
 export const inputWrapperStyling = css({
   display: 'flex',
-  gap: '12px',
+  gap: '14px',
   alignItems: 'center',
   paddingTop: 0,
   paddingBottom: 0,
-  margin: '10px 0px',
+  margin: '15px 0px',
+
+  '&:focus-within': {
+    outline: `1.5px solid ${color.MAIN}`,
+  },
+
+  '& svg': {
+    width: '24px',
+    height: '24px',
+  },
 });
 
 export const getVariantStyling = (variant: Required<InputProps>['variant']) => {
   const style = {
     default: css({
       backgroundColor: 'transparent',
-      outline: `1px solid ${color.Neutral[800]}`,
-      borderRadius: '8px',
+      outline: `1px solid ${color.GY[2]}`,
+      borderRadius: '10px',
     }),
   };
 
@@ -32,8 +41,8 @@ export const getVariantStyling = (variant: Required<InputProps>['variant']) => {
 
 export const getSizeStyling = (size: Required<InputProps>['size']) => {
   const style = {
-    medium: css(typo.Body.Medium_4, {
-      padding: '10px 18px',
+    medium: css(typo.SubTitle, {
+      padding: '21px 23px',
     }),
   };
 
@@ -41,9 +50,14 @@ export const getSizeStyling = (size: Required<InputProps>['size']) => {
 };
 
 export const getInputStyling = css({
+  width: '100%',
   paddingLeft: 0,
   paddingRight: 0,
   border: 'none',
   outline: 0,
-  color: color.Neutral[50],
+  color: color.GY[1],
+
+  '&::placeholder': {
+    color: color.GY[1],
+  },
 });

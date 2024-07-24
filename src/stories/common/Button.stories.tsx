@@ -1,8 +1,12 @@
 import React from 'react';
 import Button from '@/components/common/Button/Button';
 import type { Meta, StoryObj } from '@storybook/react';
-import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
-import { Email } from '@/assets';
+import {
+  storyContainer,
+  storyInnerContainer,
+  storyInnerRowContainer,
+} from '@/stories/story.styles';
+import { AngleSmallDown, Search } from '@/assets';
 
 const meta = {
   title: 'commons/Button',
@@ -13,22 +17,24 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {
     size: {
-      options: ['small', 'large'],
+      options: ['large', 'medium'],
       control: { type: 'radio' },
     },
     variant: {
       options: [
-        'solidPrimary',
-        'solidNeutral',
+        'primary',
         'outlinePrimary',
-        'outlineAssistive',
+        'outlineShadow',
+        'outlineHighlightR',
+        'outlineHighlightB',
+        'circle',
       ],
       control: { type: 'radio' },
     },
     children: { control: { type: 'text' } },
   },
   args: {
-    variant: 'solidPrimary',
+    variant: 'primary',
     size: 'large',
     children: 'Button',
   },
@@ -39,7 +45,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    variant: 'solidPrimary',
+    variant: 'primary',
     size: 'large',
   },
 };
@@ -48,68 +54,48 @@ export const All: Story = {
   render: (args) => (
     <ul css={storyContainer}>
       <li css={storyInnerContainer}>
-        <h3>Size</h3>
-        <Button {...args} size="small" variant="solidPrimary">
-          Small
+        <h1>Variant</h1>
+        <Button {...args} variant="primary">
+          primary
         </Button>
-        <Button {...args} size="large" variant="solidPrimary">
-          Large
-        </Button>
-      </li>
-      <li css={storyInnerContainer}>
-        <h3>Variant</h3>
-        <Button {...args} size="large" variant="solidPrimary">
-          solidPrimary
-        </Button>
-        <Button {...args} size="large" variant="solidNeutral">
-          solidNeutral
-        </Button>
-        <Button {...args} size="large" variant="outlinePrimary">
+        <Button {...args} variant="outlinePrimary">
           outlinePrimary
         </Button>
-        <Button {...args} size="large" variant="outlineAssistive">
-          outlineAssistive
+        <div css={storyInnerRowContainer}>
+          <Button {...args} variant="outlineShadow">
+            outlineShadow Large
+          </Button>
+          <Button {...args} variant="outlineShadow" size="medium">
+            outlineShadow Medium
+          </Button>
+        </div>
+        <Button {...args} variant="outlineHighlightR">
+          outlineHighlightR
+        </Button>
+        <Button {...args} variant="outlineHighlightB">
+          outlineHighlightB
+        </Button>
+        <Button {...args} variant="circle">
+          <Search />
         </Button>
       </li>
       <li css={storyInnerContainer}>
-        <h3>Variant Disable</h3>
-        <Button {...args} size="large" variant="solidPrimary" disabled>
-          solidPrimary
-        </Button>
-        <Button {...args} size="large" variant="solidNeutral" disabled>
-          solidNeutral
-        </Button>
-        <Button {...args} size="large" variant="outlinePrimary" disabled>
-          outlinePrimary
-        </Button>
-        <Button {...args} size="large" variant="outlineAssistive" disabled>
-          outlineAssistive
-        </Button>
-      </li>
-      <li css={storyInnerContainer}>
-        <h3>Icon</h3>
-        <Button
-          {...args}
-          size="large"
-          variant="solidPrimary"
-          iconLeft={<Email />}
-        >
+        <h1>Icon</h1>
+        <Button {...args} variant="outlineShadow" iconLeft={<AngleSmallDown />}>
           Icon Left
         </Button>
         <Button
           {...args}
-          size="large"
-          variant="solidPrimary"
-          iconRight={<Email />}
+          variant="outlineShadow"
+          iconRight={<AngleSmallDown />}
         >
           Icon Right
         </Button>
         <Button
           {...args}
-          size="large"
-          variant="solidPrimary"
-          iconLeft={<Email />}
-          iconRight={<Email />}
+          variant="outlineShadow"
+          iconLeft={<AngleSmallDown />}
+          iconRight={<AngleSmallDown />}
         >
           Icon Both
         </Button>
