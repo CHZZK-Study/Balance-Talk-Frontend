@@ -15,17 +15,6 @@ import {
   morePostWrapper,
   recommendPostWrapper,
 } from './LandingPage.style';
-import Button from '@/components/common/Button/Button';
-import {
-  AngleSmallDown,
-  BookmarkRR,
-  BookmarkSR,
-  Envelope,
-  Search,
-} from '@/assets';
-import Input from '@/components/common/Input/Input';
-import { createRangeArray } from '@/utils/array';
-import Pagination from '@/components/common/Pagination/Pagination';
 
 type PostInfo = {
   id: number;
@@ -79,44 +68,6 @@ const LandingPage = () => {
   // const renderMainPost = (post: Post) => {
   //   return <MainPost post={post} key={post.id} />;
   // };
-  const [selectedPage, setSelectedPage] = useState(1);
-  const totalPages = 10;
-  const pages = createRangeArray(totalPages || 0);
-  const handleChangeNavigate = (page: number) => {
-    setSelectedPage(page);
-  };
-  return (
-    <div css={landingContainer}>
-      <Button variant="primary">BUTTON</Button>
-      <Button variant="outlinePrimary">BUTTON</Button>
-      <Button variant="outlineShadow" iconRight={<AngleSmallDown />}>
-        BUTTON
-      </Button>
-      <Button variant="outlineShadow" size="medium" iconLeft={<BookmarkRR />}>
-        234
-      </Button>
-      <Button variant="outlineShadow" size="medium" iconLeft={<BookmarkSR />}>
-        234
-      </Button>
-      <Button variant="outlineHighlightR">BUTTONNNNNNNNNNN</Button>
-      <Button variant="outlineHighlightB">BUTTONNNNNNNNNNN</Button>
-      <Button variant="circle">
-        <Search />
-      </Button>
-      <div css={css({ padding: '0px 300px' })}>
-        <Input
-          placeholder="이메일"
-          icon={<Envelope />}
-          isError
-          errorMessage="아이디(로그인 전용 아이디) 또는 비밀번호가 잘못 되었습니다. 아이디와 비밀번호를 정확히 입력해 주세요."
-        />
-      </div>
-      <Pagination
-        pages={pages}
-        selected={selectedPage}
-        maxPage={pages.length}
-        onChangeNavigate={handleChangeNavigate}
-      />
       {/* <div css={recommendPostWrapper}>
         <div css={headingWrapper}>
           <Heading size="small">추천 게시글</Heading>
