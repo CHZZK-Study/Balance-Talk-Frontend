@@ -6,6 +6,9 @@ export { default as Envelope } from './svg/envelope.svg';
 export { default as Lock } from './svg/lock.svg';
 export { default as KeyboardArrowLeft } from './svg/keyboard-arrow-left.svg';
 export { default as KeyboardArrowRight } from './svg/keyboard-arrow-right.svg';
+export { default as NormalProfile } from './svg/normal-profile.svg';
+export { default as Menu } from './svg/menu.svg';
+export { default as ModalClose } from './svg/modal-close.svg';
 
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';
@@ -32,6 +35,3 @@ export { default as Delete } from './svg/delete.svg';
 export { default as DisabledHeart } from './svg/disabled-heart.svg';
 export { default as Closed } from './svg/closed.svg';
 export { default as RightArrow } from './svg/right-arrow.svg';
-export { default as NormalProfile } from './svg/normal-profile.svg';
-export { default as Menu } from './svg/menu.svg';
-export { default as ModalClose } from './svg/modal-close.svg';
