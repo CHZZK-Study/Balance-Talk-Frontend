@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import Modal from '@/components/common/Modal/Modal';
+import Modal from '@/components/atoms/Modal/Modal';
 import type { Meta, StoryObj } from '@storybook/react';
 import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
 
 const meta = {
-  title: 'commons/Modal',
+  title: 'atoms/Modal',
   component: Modal,
   parameters: {
     layout: 'centered',

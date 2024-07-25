@@ -1,12 +1,12 @@
 import React from 'react';
-import ErrorMessage from '@/components/common/ErrorMessage/ErrorMessage';
+import ErrorMessage from '@/components/atoms/ErrorMessage/ErrorMessage';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
 import { css } from '@emotion/react';
 import InputPw from '../../../../../components/common/InputsUserInfo/InputPw';
-import Button from '../../../../../components/common/Button/Button';
-import Input from '../../../../../components/common/Input/Input';
+import Button from '../../../../../components/atoms/Button/Button';
+import Input from '../../../../../components/atoms/Input/Input';
 import { useMemberDelete } from '../../../../../hooks/mypage/memberDelete/useMemberDelete';
 import {
   btnUserDelete,

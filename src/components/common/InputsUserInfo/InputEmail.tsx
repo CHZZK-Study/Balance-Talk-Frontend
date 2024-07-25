@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { ChangeEvent, useEffect } from 'react';
 import { css } from '@emotion/react';
-import Button from '../Button/Button';
-import Input from '../Input/Input';
+import Button from '../../atoms/Button/Button';
+import Input from '../../atoms/Input/Input';
 import { useCheckEmail } from '../../../hooks/common/inputsUserInfo/useCheckEmail';
 
 interface InputEmailProps {

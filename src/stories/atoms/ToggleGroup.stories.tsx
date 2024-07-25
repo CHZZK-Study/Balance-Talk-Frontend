@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ToggleGroup, {
   ToggleGroupItem,
   ToggleGroupProps,
-} from '@/components/common/ToggleGroup/ToggleGroup';
+} from '@/components/atoms/ToggleGroup/ToggleGroup';
 import type { Meta, StoryObj } from '@storybook/react';
 import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
 
@@ -29,7 +29,7 @@ const toggleItem: ToggleGroupItem[] = [
 ];
 
 const meta = {
-  title: 'commons/ToggleGroup',
+  title: 'atoms/ToggleGroup',
   component: ToggleGroup,
   parameters: {
     layout: 'centered',

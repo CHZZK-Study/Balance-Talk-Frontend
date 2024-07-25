@@ -1,10 +1,10 @@
 import React from 'react';
-import Chips from '@/components/common/Chips/Chips';
+import Chips from '@/components/atoms/Chips/Chips';
 import type { Meta, StoryObj } from '@storybook/react';
 import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
 
 const meta = {
-  title: 'commons/Chips',
+  title: 'atoms/Chips',
   component: Chips,
   parameters: {
     layout: 'centered',

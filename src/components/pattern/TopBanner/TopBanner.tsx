@@ -1,6 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { ReactNode } from 'react';
-import Chips from '@/components/common/Chips/Chips';
+import Chips from '@/components/atoms/Chips/Chips';
 import {
   bannerStyling,
   bannerWrapper,

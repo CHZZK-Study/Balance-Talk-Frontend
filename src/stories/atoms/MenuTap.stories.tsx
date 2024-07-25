@@ -1,6 +1,6 @@
 /* eslint-disable no-alert */
 import React from 'react';
-import MenuTap, { MenuItem } from '@/components/common/MenuTap/MenuTap';
+import MenuTap, { MenuItem } from '@/components/atoms/MenuTap/MenuTap';
 import type { Meta, StoryObj } from '@storybook/react';
 import { storyContainer, storyInnerRowContainer } from '@/stories/story.styles';
 
@@ -52,7 +52,7 @@ const menuOptions = {
 };
 
 const meta = {
-  title: 'commons/MenuTap',
+  title: 'atoms/MenuTap',
   component: MenuTap,
   parameters: {
     layout: 'centered',
