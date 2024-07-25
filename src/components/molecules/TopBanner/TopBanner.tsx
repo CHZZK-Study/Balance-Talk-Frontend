@@ -20,7 +20,7 @@ export interface TopBannerProps {
 const TopBanner = ({ title, summary, isLoading = false }: TopBannerProps) => (
   <div css={[bannerStyling, isLoading && loadingStyling]}>
     <div css={[bannerWrapper, isLoading && hideInfo]}>
-      <Chips size="large">오늘의 톡픽</Chips>
+      <Chips>오늘의 톡픽</Chips>
       <div css={bannerInfoWrapper}>
         <div css={bannerTitle}>{title}</div>
         <div css={bannerSummary}>{summary}</div>

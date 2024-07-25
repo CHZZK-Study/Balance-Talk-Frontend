@@ -1,5 +1,5 @@
 import React from 'react';
-import TopBanner from '@/components/pattern/TopBanner/TopBanner';
+import TopBanner from '@/components/molecules/TopBanner/TopBanner';
 import type { Meta, StoryObj } from '@storybook/react';
 import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
 
@@ -10,7 +10,7 @@ const exampleBanner = {
 };
 
 const meta = {
-  title: 'patterns/TopBanner',
+  title: 'molecules/TopBanner',
   component: TopBanner,
   parameters: {
     layout: 'centered',
