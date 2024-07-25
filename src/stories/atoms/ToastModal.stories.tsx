@@ -1,10 +1,10 @@
 import React from 'react';
-import ToastModal from '@/components/common/ToastModal/ToastModal';
+import ToastModal from '@/components/atoms/ToastModal/ToastModal';
 import type { Meta, StoryObj } from '@storybook/react';
 import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
 
 const meta = {
-  title: 'commons/ToastModal',
+  title: 'atoms/ToastModal',
   component: ToastModal,
   parameters: {
     layout: 'centered',

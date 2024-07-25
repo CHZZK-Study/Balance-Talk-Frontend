@@ -1,10 +1,10 @@
 import React from 'react';
-import ProfileIcon from '@/components/common/ProfileIcon/ProfileIcon';
+import ProfileIcon from '@/components/atoms/ProfileIcon/ProfileIcon';
 import type { Meta, StoryObj } from '@storybook/react';
 import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
 
 const meta = {
-  title: 'commons/ProfileIcon',
+  title: 'atoms/ProfileIcon',
   component: ProfileIcon,
   parameters: {
     layout: 'centered',

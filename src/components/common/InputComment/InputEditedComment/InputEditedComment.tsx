@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { ChangeEvent, SetStateAction, KeyboardEvent } from 'react';
 import { css } from '@emotion/react';
-import Button from '@/components/common/Button/Button';
-import Input from '@/components/common/Input/Input';
+import Button from '@/components/atoms/Button/Button';
+import Input from '@/components/atoms/Input/Input';
 import { useEditComment } from '@/hooks/comment/useEditComment';
 
 interface InputEditedCommentProps {

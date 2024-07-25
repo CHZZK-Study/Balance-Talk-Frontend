@@ -1,5 +1,5 @@
 import React, { SetStateAction, useEffect, useRef } from 'react';
-import Button from '@/components/common/Button/Button';
+import Button from '@/components/atoms/Button/Button';
 import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useNewSelector } from '@/store';

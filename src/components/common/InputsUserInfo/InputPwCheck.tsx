@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import React, { ChangeEvent, useEffect } from 'react';
 import { useCheckPasswordCheck } from '../../../hooks/common/inputsUserInfo/useCheckPasswordCheck';
-import Input from '../Input/Input';
+import Input from '../../atoms/Input/Input';
 
 interface InputPwCheckProps {
   value: string;

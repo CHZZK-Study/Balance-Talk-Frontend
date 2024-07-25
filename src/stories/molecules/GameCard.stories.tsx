@@ -1,10 +1,10 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
-import GameCard from '@/components/pattern/GameCard/GameCard';
+import GameCard from '@/components/molecules/GameCard/GameCard';
 
 const meta = {
-  title: 'patterns/GameCard',
+  title: 'molecules/GameCard',
   component: GameCard,
   parameters: {
     layout: 'centered',

@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '@/components/common/Button/Button';
+import Button from '@/components/atoms/Button/Button';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
   storyContainer,
@@ -9,7 +9,7 @@ import {
 import { AngleSmallDown, Search } from '@/assets';
 
 const meta = {
-  title: 'commons/Button',
+  title: 'atoms/Button',
   component: Button,
   parameters: {
     layout: 'centered',

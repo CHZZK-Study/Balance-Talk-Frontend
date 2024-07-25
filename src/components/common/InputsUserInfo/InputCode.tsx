@@ -3,8 +3,8 @@ import { MemberForm } from '@/types/member';
 import { css } from '@emotion/react';
 import React, { ChangeEvent, useEffect } from 'react';
 import { useCheckCode } from '../../../hooks/common/inputsUserInfo/useCheckCode';
-import Button from '../Button/Button';
-import Input from '../Input/Input';
+import Button from '../../atoms/Button/Button';
+import Input from '../../atoms/Input/Input';
 
 interface InputCodeProps {
   value: Pick<MemberForm, 'email' | 'verificationCode'>;

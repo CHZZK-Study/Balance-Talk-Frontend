@@ -1,10 +1,10 @@
-import Pagination from '@/components/common/Pagination/Pagination';
+import Pagination from '@/components/atoms/Pagination/Pagination';
 import { createRangeArray } from '@/utils/array';
 import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 
 const meta = {
-  title: 'commons/Pagination',
+  title: 'atoms/Pagination',
   component: Pagination,
   parameters: {
     layout: 'centered',

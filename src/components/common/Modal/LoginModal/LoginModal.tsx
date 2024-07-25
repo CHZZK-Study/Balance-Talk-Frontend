@@ -1,5 +1,5 @@
 import React, { SetStateAction, useEffect, useRef } from 'react';
-import Button from '@/components/common/Button/Button';
+import Button from '@/components/atoms/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import { PATH } from '@/constants/path';
 import {

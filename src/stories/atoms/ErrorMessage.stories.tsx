@@ -1,10 +1,10 @@
 import React from 'react';
-import ErrorMessage from '@/components/common/ErrorMessage/ErrorMessage';
+import ErrorMessage from '@/components/atoms/ErrorMessage/ErrorMessage';
 import type { Meta, StoryObj } from '@storybook/react';
 import { storyContainer, storyInnerContainer } from '../story.styles';
 
 const meta = {
-  title: 'commons/ErrorMessage',
+  title: 'atoms/ErrorMessage',
   component: ErrorMessage,
   parameters: {
     layout: 'centered',

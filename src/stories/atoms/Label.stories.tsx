@@ -1,8 +1,8 @@
-import Label from '@/components/common/Label/Label';
+import Label from '@/components/atoms/Label/Label';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'commons/Label',
+  title: 'atoms/Label',
   component: Label,
   parameters: {
     layout: 'centered',

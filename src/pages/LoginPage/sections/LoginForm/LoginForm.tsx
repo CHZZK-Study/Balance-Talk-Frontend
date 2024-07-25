@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { css } from '@emotion/react';
-import Input from '../../../../components/common/Input/Input';
+import Input from '../../../../components/atoms/Input/Input';
 import { useLoginForm } from '../../../../hooks/login/useLoginForm';
-import Button from '../../../../components/common/Button/Button';
+import Button from '../../../../components/atoms/Button/Button';
 import { btnLogin, inputContainer } from './LoginForm.style';
 import { Email, Key } from '../../../../assets';
 

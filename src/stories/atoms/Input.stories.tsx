@@ -1,11 +1,11 @@
 import React from 'react';
 import { Envelope } from '@/assets';
-import Input from '@/components/common/Input/Input';
+import Input from '@/components/atoms/Input/Input';
 import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'commons/Input',
+  title: 'atoms/Input',
   component: Input,
   parameters: {
     layout: 'centered',

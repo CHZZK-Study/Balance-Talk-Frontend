@@ -2,8 +2,8 @@
 import React, { ChangeEvent, KeyboardEvent } from 'react';
 import { css } from '@emotion/react';
 
-import Button from '@/components/common/Button/Button';
-import Input from '@/components/common/Input/Input';
+import Button from '@/components/atoms/Button/Button';
+import Input from '@/components/atoms/Input/Input';
 import { useCreateReply } from '@/hooks/comment/useCreateReply';
 
 interface InputNewReplyProps {
