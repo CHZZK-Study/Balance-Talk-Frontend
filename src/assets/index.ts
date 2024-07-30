@@ -9,6 +9,9 @@ export { default as KeyboardArrowRight } from './svg/keyboard-arrow-right.svg';
 export { default as NormalProfile } from './svg/normal-profile.svg';
 export { default as Menu } from './svg/menu.svg';
 export { default as ModalClose } from './svg/modal-close.svg';
+export { default as PickVote } from './svg/pick-vote.svg';
+export { default as RandomGame } from './svg/random-game.svg';
+export { default as TodayPick } from './svg/today-pick.svg';
 
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';
