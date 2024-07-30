@@ -9,7 +9,7 @@ export interface BookmarkProps extends ComponentPropsWithRef<'button'> {
 
 const Bookmark = (
   { state, ...attributes }: BookmarkProps,
-  ref: ForwardedRef<HTMLButtonElement>
+  ref: ForwardedRef<HTMLButtonElement>,
 ) => {
   const renderIcon = () => {
     switch (state) {
