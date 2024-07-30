@@ -9,7 +9,12 @@ export { default as KeyboardArrowRight } from './svg/keyboard-arrow-right.svg';
 export { default as NormalProfile } from './svg/normal-profile.svg';
 export { default as Menu } from './svg/menu.svg';
 export { default as ModalClose } from './svg/modal-close.svg';
-export { default as NewNotification } from './svg/new-notification.svg'
+export { default as NewNotification } from './svg/new-notification.svg';
+export { default as KakaoLogin } from './svg/kakao-login.svg';
+export { default as GoogleLogin } from './svg/google-login.svg';
+export { default as NaverLogin } from './svg/naver-login.svg';
+export { default as Copy } from './svg/copy.svg';
+export { default as Check } from './svg/check.svg';
 
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';
@@ -27,7 +32,6 @@ export { default as RightButton } from './svg/right-button.svg';
 export { default as Person } from './svg/person.svg';
 export { default as Rank } from './svg/rank.svg';
 export { default as Winner } from './svg/winner.svg';
-export { default as Check } from './svg/check.svg';
 export { default as Fight } from './svg/fight.svg';
 export { default as NoImage } from './images/no-image.png';
 export { default as Vote } from './svg/vote.svg';

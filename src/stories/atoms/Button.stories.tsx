@@ -23,6 +23,7 @@ const meta = {
     variant: {
       options: [
         'primary',
+        'roundPrimary',
         'outlinePrimary',
         'outlineShadow',
         'outlineHighlightR',
@@ -58,6 +59,14 @@ export const All: Story = {
         <Button {...args} variant="primary">
           primary
         </Button>
+        <li css={storyInnerRowContainer}>
+          <Button {...args} variant="roundPrimary">
+            roundPrimary Large
+          </Button>
+          <Button {...args} variant="roundPrimary" size="medium">
+            roundPrimary Medium
+          </Button>
+        </li>
         <Button {...args} variant="outlinePrimary">
           outlinePrimary
         </Button>

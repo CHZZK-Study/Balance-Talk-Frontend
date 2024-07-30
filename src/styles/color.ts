@@ -5,6 +5,7 @@ const color = {
     1: '#8C8C8C',
     2: '#D9D9D9',
     3: '#F1F1F1',
+    4: '#555555',
   },
   WT: '#FFFFFF',
   RED: '#FF587A',
@@ -13,6 +14,7 @@ const color = {
   BLUE_G: 'linear-gradient(to right, #9DB7FF 0%, #7A9AF3 100%)',
   PINK: '#FFAFBF',
   SKYBLUE: '#9DB7FF',
+
   // TODO: 이전 색상 타입 정리
   Common: {
     100: '#FFFFFF',
