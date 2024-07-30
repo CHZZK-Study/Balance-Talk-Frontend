@@ -14,9 +14,9 @@ const Bookmark = (
   const renderIcon = () => {
     switch (state) {
       case 'default':
-        return <BookmarkDF />;
+        return <BookmarkDF css={S.icon} />;
       case 'press':
-        return <BookmarkPR />;
+        return <BookmarkPR css={S.icon} />;
       default:
         return null;
     }
