@@ -4,6 +4,7 @@ const color = {
   GY: {
     1: '#8C8C8C',
     2: '#D9D9D9',
+    3: '#F1F1F1',
   },
   WT: '#FFFFFF',
   RED: '#FF587A',

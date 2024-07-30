@@ -1,4 +1,3 @@
-// NotificationItem.style.ts
 import { css } from '@emotion/react';
 import color from '@/styles/color';
 import typo from '@/styles/typo';
@@ -8,10 +7,9 @@ export const notificationItemStyle = css({
   flexDirection: 'column',
   padding: '12px 0 12px 25px',
   backgroundColor: color.WT,
-  position: 'relative', 
-  border: '1px solid #eee',
+  position: 'relative',
   borderRadius: '5px',
-  width:'392px'
+  width: '392px',
 });
 
 export const NewNotificationStyle = css({
@@ -28,23 +26,23 @@ export const headerStyle = css({
 
 export const categoryStyle = css({
   ...typo.Main.SemiBold,
-  color: color.MAIN, 
+  color: color.MAIN,
 });
 
 export const dateStyle = css({
   ...typo.Number.Regular,
   color: color.GY[1],
-  paddingLeft: '9px'
+  paddingLeft: '9px',
 });
 
 export const titleStyle = css({
-    ...typo.Main.SemiBold,
+  ...typo.Main.SemiBold,
   color: color.BK,
   marginTop: '2px',
   marginBottom: '1px',
 });
 
 export const contentStyle = css({
-    ...typo.Main.Medium,
+  ...typo.Main.Medium,
   color: color.GY[1],
 });

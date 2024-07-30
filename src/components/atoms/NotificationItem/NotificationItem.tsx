@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, ReactNode } from 'react';
+import React from 'react';
 import { NewNotification } from '@/assets';
 import {
   notificationItemStyle,
