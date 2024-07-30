@@ -18,7 +18,7 @@ export { default as SampleLayer } from './images/sample-layer.png';
 export { default as SampleWhole } from './images/sample-whole.png';
 export { default as LikeButtonDF } from './svg/like-button-df.svg';
 export { default as LikeButtonPR } from './svg/like-button-pr.svg';
-
+export { default as Dot } from './svg/dot-button.svg';
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';
 export { default as Profile } from './svg/profile.svg';
