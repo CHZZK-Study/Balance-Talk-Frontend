@@ -12,6 +12,10 @@ export const getVariantStyling = (
       backgroundColor: color.MAIN,
       color: color.WT,
     }),
+    roundPrimary: css({
+      backgroundColor: color.MAIN,
+      color: color.WT,
+    }),
     outlinePrimary: css({
       backgroundColor: 'transparent',
       outline: `1px solid ${color.MAIN}`,
@@ -73,6 +77,17 @@ export const getSizeByVariantStyling = (
         padding: '8px 16px',
       }),
       medium: css({}),
+    },
+    roundPrimary: {
+      large: css(typo.SubTitle, {
+        padding: '10px 35px',
+        borderRadius: '30px',
+        boxShadow: '1px 2px 7px rgba(0, 0, 0, 0.15)',
+      }),
+      medium: css(typo.Main.SemiBold, {
+        padding: '10px 25px',
+        borderRadius: '25px',
+      }),
     },
     outlinePrimary: {
       large: css(typo.Main.SemiBold, {
