@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import Button from '@/components/atoms/Button/Button';
 import VoteBar from '@/components/atoms/VoteBar/VoteBar';
+import color from '@/styles/color';
 import {
   votePrototypeStyle,
   buttonContainerStyle,
+  voteTextStyle,
 } from './VotePrototype.style';
 
 interface VotePrototypeProps {
@@ -24,6 +26,23 @@ const VotePrototype: React.FC<VotePrototypeProps> = ({
   const rightPercentage = ((rightVotes / totalVotes) * 100).toFixed(1);
 
   const [selectedBar, setSelectedBar] = useState<'left' | 'right' | null>(null);
+  const [selectedButton, setSelectedButton] = useState<'left' | 'right' | null>(
+    null,
+  );
+
+  const handleButtonClick = (side: 'left' | 'right') => {
+    setSelectedBar(side);
+    setSelectedButton(side);
+  };
+
+  const getButtonStyle = (side: 'left' | 'right') => {
+    if (selectedButton === side) {
+      return side === 'left'
+        ? { backgroundColor: color.RED, color: color.WT, outline: 'none' }
+        : { backgroundColor: color.BLUE, color: color.WT, outline: 'none' };
+    }
+    return {};
+  };
 
   return (
     <div css={votePrototypeStyle}>
@@ -31,14 +50,17 @@ const VotePrototype: React.FC<VotePrototypeProps> = ({
         <Button
           variant="outlineHighlightR"
           size="large"
-          onClick={() => setSelectedBar('left')}
+          onClick={() => handleButtonClick('left')}
+          style={getButtonStyle('left')}
         >
           {leftButtonText}
         </Button>
+        <div css={voteTextStyle}>VS</div>
         <Button
           variant="outlineHighlightB"
           size="large"
-          onClick={() => setSelectedBar('right')}
+          onClick={() => handleButtonClick('right')}
+          style={getButtonStyle('right')}
         >
           {rightButtonText}
         </Button>
