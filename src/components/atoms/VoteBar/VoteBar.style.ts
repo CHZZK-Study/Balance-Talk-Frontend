@@ -31,7 +31,7 @@ export const leftBarStyle = ({ leftPercentage, selectedBar }: BarProps) =>
   css({
     height: '50px',
     width: selectedBar === 'left' ? `${leftPercentage}%` : '99%',
-    background: selectedBar === 'left' ? color.RED : color.RED_G,
+    background: selectedBar === 'left' ? color.RED_G : color.RED,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-start',
