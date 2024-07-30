@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
-import type { ComponentPropsWithRef } from 'react';
+import React, { useState, forwardRef, useEffect } from 'react';
+import type { ComponentPropsWithRef, ForwardedRef } from 'react';
 import { LikeButtonDF, LikeButtonPR } from '@/assets';
 import * as S from './LikeButton.style';
-import { defaultLabel } from './LikeButton.style';
 
 export interface LikeButtonProps extends ComponentPropsWithRef<'button'> {
   initialCount: number;
+  initialState?: 'default' | 'press';
 }
 
-const LikeButton = ({ initialCount, ...attributes }: LikeButtonProps) => {
+const LikeButton = (
+  { initialCount, initialState = 'default', ...attributes }: LikeButtonProps,
+  ref: ForwardedRef<HTMLButtonElement>,
+) => {
   const [count, setCount] = useState(initialCount);
-  const [isPressed, setIsPressed] = useState(false);
+  const [isPressed, setIsPressed] = useState(initialState === 'press');
+
+  useEffect(() => {
+    setIsPressed(initialState === 'press');
+  }, [initialState]);
 
   const handleClick = () => {
     if (isPressed) {
@@ -24,6 +31,7 @@ const LikeButton = ({ initialCount, ...attributes }: LikeButtonProps) => {
   return (
     <button
       type="button"
+      ref={ref}
       css={S.likeButton}
       onClick={handleClick}
       {...attributes}
@@ -38,4 +46,4 @@ const LikeButton = ({ initialCount, ...attributes }: LikeButtonProps) => {
   );
 };
 
-export default LikeButton;
+export default forwardRef(LikeButton);
