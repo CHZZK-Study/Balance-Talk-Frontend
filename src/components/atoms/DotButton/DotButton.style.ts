@@ -5,14 +5,14 @@ import typo from '@/styles/typo';
 export const container = css`
   position: relative;
   display: inline-block;
+  padding: 0;
 `;
 
 export const dotButton = css`
   background-color: transparent;
   border: none;
   cursor: pointer;
-  padding-right: 4px;
-  padding-left: 4px;
+  padding: 0 4px;
 `;
 
 export const icon = css`
@@ -23,15 +23,15 @@ export const icon = css`
 export const menu = css`
   position: absolute;
   top: 100%;
-  left: 50%;
+  left: 100%;
   width: 86px;
-  transform: translateX(-50%);
+  transform: translateX(-106%);
   background-color: ${color.WT};
   border: 1px solid ${color.GY[2]};
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 10;
-  margin-top: 8px;
+  margin-top: 6px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
