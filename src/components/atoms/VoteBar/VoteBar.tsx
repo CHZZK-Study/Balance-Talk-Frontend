@@ -7,6 +7,7 @@ import {
   percentageStyle,
   votesContainerStyle,
   votesStyle,
+  neutralBarStyle,
 } from './VoteBar.style';
 
 interface VoteBarProps {
@@ -14,7 +15,7 @@ interface VoteBarProps {
   rightPercentage: number;
   leftVotes: number;
   rightVotes: number;
-  selectedBar?: 'left' | 'right';
+  selectedBar?: 'left' | 'right' | null;
 }
 
 const VoteBar: React.FC<VoteBarProps> = ({
@@ -22,16 +23,34 @@ const VoteBar: React.FC<VoteBarProps> = ({
   rightPercentage,
   leftVotes,
   rightVotes,
-  selectedBar = 'left',
+  selectedBar = null,
 }) => (
   <div css={barContainerStyle}>
     <div css={barStyle}>
-      <div css={leftBarStyle(leftPercentage, rightPercentage, selectedBar)}>
-        <span css={percentageStyle}>{leftPercentage}%</span>
-      </div>
-      <div css={rightBarStyle(leftPercentage, rightPercentage, selectedBar)}>
-        <span css={percentageStyle}>{rightPercentage}%</span>
-      </div>
+      {selectedBar === null ? (
+        <div css={neutralBarStyle} />
+      ) : (
+        <>
+          <div
+            css={leftBarStyle({
+              leftPercentage,
+              rightPercentage,
+              selectedBar,
+            })}
+          >
+            <span css={percentageStyle}>{leftPercentage}%</span>
+          </div>
+          <div
+            css={rightBarStyle({
+              leftPercentage,
+              rightPercentage,
+              selectedBar,
+            })}
+          >
+            <span css={percentageStyle}>{rightPercentage}%</span>
+          </div>
+        </>
+      )}
     </div>
     <div css={votesContainerStyle}>
       <div css={votesStyle}>{leftVotes}명 응답</div>

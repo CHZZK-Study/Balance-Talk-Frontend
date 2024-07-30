@@ -2,11 +2,17 @@ import { css } from '@emotion/react';
 import color from '@/styles/color';
 import typo from '@/styles/typo';
 
+interface BarProps {
+  selectedBar?: 'left' | 'right' | null;
+  leftPercentage: number;
+  rightPercentage: number;
+}
+
 export const barContainerStyle = css({
   width: '1010px',
   position: 'relative',
   marginBottom: '20px',
-  height: '60px', // Ensure the container has height
+  height: '60px',
 });
 
 export const barStyle = css({
@@ -21,11 +27,7 @@ export const barStyle = css({
   alignItems: 'center',
 });
 
-export const leftBarStyle = (
-  leftPercentage: number,
-  rightPercentage: number,
-  selectedBar: 'left' | 'right',
-) =>
+export const leftBarStyle = ({ leftPercentage, selectedBar }: BarProps) =>
   css({
     height: '50px',
     width: selectedBar === 'left' ? `${leftPercentage}%` : '99%',
@@ -45,11 +47,7 @@ export const leftBarStyle = (
     transition: 'all 0.3s ease',
   });
 
-export const rightBarStyle = (
-  leftPercentage: number,
-  rightPercentage: number,
-  selectedBar: 'left' | 'right',
-) =>
+export const rightBarStyle = ({ rightPercentage, selectedBar }: BarProps) =>
   css({
     height: '50px',
     width: selectedBar === 'right' ? `${rightPercentage}%` : '99%',
@@ -85,4 +83,11 @@ export const votesContainerStyle = css({
 export const votesStyle = css({
   ...typo.Main.Medium,
   color: color.GY[1],
+});
+
+export const neutralBarStyle = css({
+  width: '100%',
+  height: '100%',
+  backgroundColor: color.GY[2],
+  borderRadius: '50px',
 });
