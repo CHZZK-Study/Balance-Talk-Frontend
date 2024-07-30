@@ -44,7 +44,9 @@ const TopBanner = ({ todayTalkPick }: TopBannerProps) => {
     <div css={bannerStyling}>
       <div css={getBannerMovement(currentId)}>
         {slides.map((slide) => (
-          <div css={bannerWrapperStyling}>{slide.content}</div>
+          <div key={slide.id} css={bannerWrapperStyling}>
+            {slide.content}
+          </div>
         ))}
       </div>
       <div css={dotWrapperStyling}>
