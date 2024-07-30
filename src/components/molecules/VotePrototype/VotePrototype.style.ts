@@ -1,4 +1,6 @@
 import { css } from '@emotion/react';
+import typo from '@/styles/typo';
+import color from '@/styles/color';
 
 export const votePrototypeStyle = css({
   textAlign: 'center',
@@ -11,4 +13,10 @@ export const buttonContainerStyle = css({
   justifyContent: 'center',
   marginBottom: '20px',
   gap: '20px',
+});
+
+export const voteTextStyle = css({
+  ...typo.Component.Bold,
+  color: color.GY[1],
+  padding: '22px 42px 22px 42px',
 });
