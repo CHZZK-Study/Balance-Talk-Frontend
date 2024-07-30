@@ -14,6 +14,8 @@ export { default as RandomGame } from './svg/random-game.svg';
 export { default as TodayPick } from './svg/today-pick.svg';
 export { default as BookmarkDF } from './svg/bookmark-df.svg';
 export { default as BookmarkPR } from './svg/bookmark-pr.svg';
+export { default as SampleLayer } from './images/sample-layer.png';
+export { default as SampleWhole } from './images/sample-whole.png';
 
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';
