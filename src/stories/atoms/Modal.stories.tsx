@@ -12,7 +12,7 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {
     action: {
-      options: ['default', 'share'],
+      options: ['default', 'share', 'report'],
       control: { type: 'radio' },
     },
     isOpen: { control: { type: 'boolean' } },
@@ -53,6 +53,10 @@ export const All: Story = {
           <h3>Share</h3>
           <Modal {...args} action="share">
             Share Modal
+          </Modal>
+          <h3>Report</h3>
+          <Modal {...args} action="report">
+            Report Modal
           </Modal>
         </li>
       </ul>
