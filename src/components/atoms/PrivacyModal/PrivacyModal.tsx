@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useRef, useEffect, ReactNode } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { ModalClose } from '@/assets';
+import { PRIVACY_POLICY } from '@/constants/message';
 import {
   modalStyling,
   modalHeaderStyling,
@@ -9,18 +10,11 @@ import {
 } from './PrivacyModal.style';
 
 export interface ModalProps {
-  action?: 'default' | 'share';
   isOpen?: boolean;
   onClose?: () => void;
-  children?: ReactNode;
 }
 
-const PrivacyModal = ({
-  isOpen,
-  onClose,
-  action = 'default',
-  children,
-}: ModalProps) => {
+const PrivacyModal = ({ isOpen, onClose }: ModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -41,7 +35,7 @@ const PrivacyModal = ({
             개인정보처리방침
             <ModalClose css={modalCloseStyling} onClick={onClose} />
           </div>
-          <div css={modalContentStyling}>{children}</div>
+          <div css={modalContentStyling}>{PRIVACY_POLICY}</div>
         </div>
       )}
     </div>
