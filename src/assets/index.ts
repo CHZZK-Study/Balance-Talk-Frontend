@@ -16,6 +16,8 @@ export { default as BookmarkDF } from './svg/bookmark-df.svg';
 export { default as BookmarkPR } from './svg/bookmark-pr.svg';
 export { default as SampleLayer } from './images/sample-layer.png';
 export { default as SampleWhole } from './images/sample-whole.png';
+export { default as LikeButtonDF } from './svg/like-button-df.svg';
+export { default as LikeButtonPR } from './svg/like-button-pr.svg';
 
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';
