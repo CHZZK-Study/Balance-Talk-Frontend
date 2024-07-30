@@ -1,0 +1,40 @@
+import React from 'react';
+import type { ComponentPropsWithRef } from 'react';
+import { PickVote, RandomGame, TodayPick } from '@/assets';
+import * as S from './CategoryButton.style';
+
+export interface CategoryButtonProps extends ComponentPropsWithRef<'button'> {
+  imageType: 'PickVote' | 'RandomGame' | 'TodayPick';
+  label: string;
+}
+
+const CategoryButton = ({
+  imageType,
+  label,
+  ...attributes
+}: CategoryButtonProps) => {
+  let ImageComponent;
+  switch (imageType) {
+    case 'PickVote':
+      ImageComponent = PickVote;
+      break;
+    case 'RandomGame':
+      ImageComponent = RandomGame;
+      break;
+    case 'TodayPick':
+      ImageComponent = TodayPick;
+      break;
+    default:
+      return null;
+  }
+
+  return (
+    <button type="button" css={S.categoryButtonStyle} {...attributes}>
+      <ImageComponent css={S.imgWrap} />
+      {/* <div css={S.spacer} /> */}
+      <span css={S.labelStyle}>{label}</span>
+    </button>
+  );
+};
+
+export default CategoryButton;
