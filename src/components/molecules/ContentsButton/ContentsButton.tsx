@@ -18,9 +18,7 @@ const ContentsButton = ({
   initialBookmarkState = 'default',
   ...attributes
 }: ContentsButtonProps) => {
-  const [bookmarkState, setBookmarkState] = useState<'default' | 'press'>(
-    initialBookmarkState,
-  );
+  const [bookmarkState] = useState<'default' | 'press'>(initialBookmarkState);
 
   return (
     <div css={S.cardWrapper} {...attributes}>

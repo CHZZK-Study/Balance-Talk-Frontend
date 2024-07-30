@@ -15,6 +15,13 @@ export const cardWrapper = css({
   cursor: 'pointer',
   position: 'relative',
   overflow: 'hidden',
+  transition: 'transform 0.2s, background-color 0.2s, box-shadow 0.2s',
+
+  '&:active': {
+    backgroundColor: color.WT,
+    boxShadow: '0 5px 15px 0 rgba(119, 130, 255, 0.7)',
+    transform: 'scale(0.98)',
+  },
 });
 
 export const imageContainer = css({
