@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Modal from '@/components/atoms/Modal/Modal';
 import Button from '@/components/atoms/Button/Button';
 import CheckBoxButton from '@/components/atoms/CheckBoxButton/CheckBoxButton';
+import { reportOptions } from '@/constants/reportOption';
 import {
   checkBoxWrapperStyling,
   closeBtnStyling,
@@ -20,16 +21,6 @@ export interface ReportModalProps {
 }
 
 const ReportModal = ({ isOpen, onConfirm, onClose }: ReportModalProps) => {
-  const reportOptions = [
-    { value: 'profanity', label: '욕설' },
-    { value: 'spam', label: '도배 및 스팸' },
-    { value: 'illegality', label: '불건전 및 불법 정보' },
-    { value: 'discrimination', label: '차별적 발언' },
-    { value: 'promotion', label: '홍보 목적' },
-    { value: 'privacy', label: '개인정보노출 및 침해' },
-    { value: 'other', label: '기타' },
-  ];
-
   const [reportReason, setReportReason] = useState<string>('');
   const [otherReason, setOtherReason] = useState<string>('');
 
