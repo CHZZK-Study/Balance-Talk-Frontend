@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import color from '@/styles/color';
 import type { ModalProps } from './Modal';
 
 export const modalStyling = css({
@@ -7,15 +8,33 @@ export const modalStyling = css({
   alignItems: 'center',
   position: 'relative',
   width: '598px',
-  padding: '34px 30px',
-  backgroundColor: '#F1F1F1',
+  backgroundColor: color.GY[3],
   borderRadius: '10px',
   boxShadow: '1px 2px 30px rgba(0, 0, 0, 0.15)',
 });
 
-export const getModalPadding = (action: Required<ModalProps>['action']) => css`
-  ${action === 'share' && 'padding-bottom: 12px;'}
-`;
+export const getModalSize = (action: Required<ModalProps>['action']) => {
+  const style = {
+    default: css({
+      padding: '34px 30px',
+    }),
+    share: css({
+      paddingTop: '34px',
+      paddingLeft: '30px',
+      paddingRight: '30px',
+      paddingBottom: '12px',
+    }),
+    report: css({
+      width: '495px',
+      paddingTop: '39px',
+      paddingLeft: '33px',
+      paddingRight: '33px',
+      paddingBottom: '41px',
+    }),
+  };
+
+  return style[action as keyof typeof style];
+};
 
 export const modalCloseStyling = css({
   position: 'absolute',
