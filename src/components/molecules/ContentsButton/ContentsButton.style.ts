@@ -6,12 +6,16 @@ export const cardWrapper = css({
   width: '563px',
   height: '357px',
   borderRadius: '20px',
-  border: `1px solid ${color.MAIN}`,
+  border: `1px solid ${color.GY[2]}`,
   backgroundColor: color.Neutral[800],
   cursor: 'pointer',
   position: 'relative',
   overflow: 'hidden',
   transition: 'transform 0.2s, background-color 0.2s, box-shadow 0.2s',
+
+  '&:hover': {
+    border: `1px solid ${color.MAIN}`,
+  },
 
   '&:active': {
     backgroundColor: color.WT,
