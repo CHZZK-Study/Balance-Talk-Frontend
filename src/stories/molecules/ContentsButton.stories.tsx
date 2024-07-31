@@ -43,9 +43,6 @@ export const All: Story = {
       <div css={storyInnerContainer}>
         <h3>Default</h3>
         <ContentsButton {...args} initialBookmarkState={false} />
-
-        <h3>Pressed</h3>
-        <ContentsButton {...args} initialBookmarkState />
       </div>
     </div>
   ),
