@@ -20,3 +20,15 @@ export const voteTextStyle = css({
   color: color.GY[1],
   padding: '22px 42px 22px 42px',
 });
+
+export const getButtonStyle = (
+  side: 'left' | 'right',
+  selectedButton: 'left' | 'right' | null,
+) =>
+  css({
+    ...(selectedButton === side && {
+      backgroundColor: side === 'left' ? color.RED : color.BLUE,
+      color: color.WT,
+      outline: 'none',
+    }),
+  });

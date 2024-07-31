@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Button from '@/components/atoms/Button/Button';
 import VoteBar from '@/components/atoms/VoteBar/VoteBar';
-import color from '@/styles/color';
 import {
   votePrototypeStyle,
   buttonContainerStyle,
   voteTextStyle,
+  getButtonStyle,
 } from './VotePrototype.style';
 
 interface VotePrototypeProps {
@@ -35,14 +35,14 @@ const VotePrototype: React.FC<VotePrototypeProps> = ({
     setSelectedButton(side);
   };
 
-  const getButtonStyle = (side: 'left' | 'right') => {
-    if (selectedButton === side) {
-      return side === 'left'
-        ? { backgroundColor: color.RED, color: color.WT, outline: 'none' }
-        : { backgroundColor: color.BLUE, color: color.WT, outline: 'none' };
-    }
-    return {};
-  };
+  // const getButtonStyle = (side: 'left' | 'right') => {
+  //   if (selectedButton === side) {
+  //     return side === 'left'
+  //       ? { backgroundColor: color.RED, color: color.WT, outline: 'none' }
+  //       : { backgroundColor: color.BLUE, color: color.WT, outline: 'none' };
+  //   }
+  //   return {};
+  // };
 
   return (
     <div css={votePrototypeStyle}>
@@ -51,7 +51,7 @@ const VotePrototype: React.FC<VotePrototypeProps> = ({
           variant="outlineHighlightR"
           size="large"
           onClick={() => handleButtonClick('left')}
-          style={getButtonStyle('left')}
+          css={getButtonStyle('left', selectedButton)}
         >
           {leftButtonText}
         </Button>
@@ -60,7 +60,7 @@ const VotePrototype: React.FC<VotePrototypeProps> = ({
           variant="outlineHighlightB"
           size="large"
           onClick={() => handleButtonClick('right')}
-          style={getButtonStyle('right')}
+          css={getButtonStyle('right', selectedButton)}
         >
           {rightButtonText}
         </Button>
@@ -75,5 +75,4 @@ const VotePrototype: React.FC<VotePrototypeProps> = ({
     </div>
   );
 };
-
 export default VotePrototype;
