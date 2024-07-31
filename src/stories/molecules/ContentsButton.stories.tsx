@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import ContentsButton from '@/components/molecules/ContentsButton/ContentsButton';
+import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
 import { SampleWhole } from '@/assets';
 
 const meta: Meta<typeof ContentsButton> = {
@@ -14,16 +15,13 @@ const meta: Meta<typeof ContentsButton> = {
     imgUrl: { control: 'text' },
     label: { control: 'text' },
     tagLabel: { control: 'text' },
-    bookmarkState: {
-      control: 'radio',
-      options: ['default', 'press'],
-    },
+    initialBookmarkState: { control: 'boolean' },
   },
   args: {
     imgUrl: SampleWhole,
-    label: '편한 집 데이트 VS 액티브한 활동 데이트',
-    tagLabel: '알아가볼까',
-    bookmarkState: 'default',
+    label: '유진 VS 민지 사복 고르기',
+    tagLabel: '얼마나 맞나 보자',
+    initialBookmarkState: false,
   },
 };
 
@@ -33,30 +31,22 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     imgUrl: SampleWhole,
-    label: '편한 집 데이트 VS 액티브한 활동 데이트',
-    tagLabel: '알아가볼까',
-    bookmarkState: 'default',
-  },
-};
-
-export const PressedBookmark: Story = {
-  args: {
-    imgUrl: SampleWhole,
-    label: '편한 집 데이트 VS 액티브한 활동 데이트',
-    tagLabel: '알아가볼까',
-    bookmarkState: 'press',
+    label: '유진 VS 민지 사복 고르기',
+    tagLabel: '얼마나 맞나 보자',
+    initialBookmarkState: false,
   },
 };
 
 export const All: Story = {
   render: (args) => (
-    <div>
-      <ContentsButton {...args} bookmarkState="default" />
-      <ContentsButton
-        {...args}
-        bookmarkState="press"
-        style={{ marginTop: '20px' }}
-      />
+    <div css={storyContainer}>
+      <div css={storyInnerContainer}>
+        <h3>Default</h3>
+        <ContentsButton {...args} initialBookmarkState={false} />
+
+        <h3>Pressed</h3>
+        <ContentsButton {...args} initialBookmarkState />
+      </div>
     </div>
   ),
 };
