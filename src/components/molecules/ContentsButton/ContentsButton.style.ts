@@ -3,10 +3,6 @@ import color from '@/styles/color';
 import typo from '@/styles/typo';
 
 export const cardWrapper = css({
-  // minWidth: '327px',
-  // minHeight: '250px',
-  // width: '327px',
-  // maxWidth: '355px',
   width: '563px',
   height: '357px',
   borderRadius: '20px',
@@ -36,7 +32,7 @@ export const image = css({
   objectFit: 'cover',
 });
 
-export const tag = css({
+export const chipsPosition = css({
   position: 'absolute',
   top: '10px',
   left: '10px',

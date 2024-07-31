@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import type { ComponentPropsWithRef } from 'react';
-import Tag from '@/components/atoms/Tag/Tag';
+import Chips from '@/components/atoms/Chips/Chips';
 import Bookmark from '@/components/atoms/Bookmark/Bookmark';
 import * as S from './ContentsButton.style';
 
@@ -8,27 +8,29 @@ export interface ContentsButtonProps extends ComponentPropsWithRef<'div'> {
   imgUrl: string;
   label: string;
   tagLabel: string;
-  initialBookmarkState?: 'default' | 'press';
+  initialBookmarkState?: boolean;
 }
 
 const ContentsButton = ({
   imgUrl,
   label,
   tagLabel,
-  initialBookmarkState = 'default',
+  initialBookmarkState = false,
   ...attributes
 }: ContentsButtonProps) => {
-  const [bookmarkState] = useState<'default' | 'press'>(initialBookmarkState);
+  const [bookmarkState] = useState(initialBookmarkState);
 
   return (
     <div css={S.cardWrapper} {...attributes}>
       <div css={S.imageContainer}>
         <img src={imgUrl} alt={label} css={S.image} />
-        <Tag label={tagLabel} css={S.tag} />
+        <div css={S.chipsPosition}>
+          <Chips>{tagLabel}</Chips>
+        </div>
       </div>
       <div css={S.infoContainer}>
         <span css={S.label}>{label}</span>
-        <Bookmark initialState={bookmarkState} />{' '}
+        <Bookmark initialState={bookmarkState} />
       </div>
     </div>
   );
