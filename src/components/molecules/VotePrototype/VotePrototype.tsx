@@ -35,15 +35,6 @@ const VotePrototype: React.FC<VotePrototypeProps> = ({
     setSelectedButton(side);
   };
 
-  // const getButtonStyle = (side: 'left' | 'right') => {
-  //   if (selectedButton === side) {
-  //     return side === 'left'
-  //       ? { backgroundColor: color.RED, color: color.WT, outline: 'none' }
-  //       : { backgroundColor: color.BLUE, color: color.WT, outline: 'none' };
-  //   }
-  //   return {};
-  // };
-
   return (
     <div css={votePrototypeStyle}>
       <div css={buttonContainerStyle}>
