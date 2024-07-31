@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import typo from '@/styles/typo';
 import color from '@/styles/color';
 
-export const textareaContainer = css`
+export const textAreaContainer = css`
   position: relative;
   border: 1px solid #f4f4f4;
   border-radius: 10px;
@@ -25,7 +25,7 @@ export const getContainerSizeStyling = (size: 'large' | 'medium') => {
   return style[size];
 };
 
-export const replyTextarea = css`
+export const replyTextArea = css`
   width: 100%;
   border: none;
   ${typo.Main.Medium}
