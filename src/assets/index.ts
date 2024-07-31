@@ -9,6 +9,7 @@ export { default as KeyboardArrowRight } from './svg/keyboard-arrow-right.svg';
 export { default as NormalProfile } from './svg/normal-profile.svg';
 export { default as Menu } from './svg/menu.svg';
 export { default as ModalClose } from './svg/modal-close.svg';
+export { default as NewNotification } from './svg/new-notification.svg';
 export { default as KakaoLogin } from './svg/kakao-login.svg';
 export { default as GoogleLogin } from './svg/google-login.svg';
 export { default as NaverLogin } from './svg/naver-login.svg';
