@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '@/components/atoms/Button/Button';
 import * as S from './TextArea.style';
+import { replyTextArea, textAreaContainer } from './TextArea.style';
 
 export interface TextAreaProps {
   size: 'large' | 'medium';
@@ -19,9 +20,9 @@ const TextArea = ({
   onChange,
   onSubmit,
 }: TextAreaProps) => (
-  <div css={[S.textareaContainer, S.getContainerSizeStyling(size)]}>
+  <div css={[S.textAreaContainer, S.getContainerSizeStyling(size)]}>
     <textarea
-      css={[S.replyTextarea, S.getTextareaSizeStyling(size)]}
+      css={[S.replyTextArea, S.getTextareaSizeStyling(size)]}
       value={value}
       onChange={onChange}
       placeholder={placeholder}
