@@ -24,25 +24,21 @@ export const headerStyle = css({
   alignItems: 'center',
 });
 
-export const categoryStyle = css({
-  ...typo.Main.SemiBold,
+export const categoryStyle = css(typo.Main.SemiBold, {
   color: color.MAIN,
 });
 
-export const dateStyle = css({
-  ...typo.Number.Regular,
+export const dateStyle = css(typo.Number.Regular, {
   color: color.GY[1],
   paddingLeft: '9px',
 });
 
-export const titleStyle = css({
-  ...typo.Main.SemiBold,
+export const titleStyle = css(typo.Main.SemiBold, {
   color: color.BK,
   marginTop: '2px',
   marginBottom: '1px',
 });
 
-export const contentStyle = css({
-  ...typo.Main.Medium,
+export const contentStyle = css(typo.Main.Medium, {
   color: color.GY[1],
 });

@@ -80,8 +80,7 @@ export const votesContainerStyle = css({
   marginTop: '10px',
 });
 
-export const votesStyle = css({
-  ...typo.Main.Medium,
+export const votesStyle = css(typo.Main.Medium, {
   color: color.GY[1],
 });
 

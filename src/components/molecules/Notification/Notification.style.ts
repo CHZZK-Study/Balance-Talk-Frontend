@@ -12,8 +12,7 @@ export const notificationStyle = css({
   borderRadius: '10px',
 });
 
-export const titleStyle = css({
-  ...typo.SubTitle,
+export const titleStyle = css(typo.SubTitle, {
   color: color.BK,
   padding: '30px 0 18px 23px',
 });

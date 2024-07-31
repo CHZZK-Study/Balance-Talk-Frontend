@@ -14,8 +14,7 @@ export const modalStyling = css({
   boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
 });
 
-export const modalHeaderStyling = css({
-  ...typo.Title,
+export const modalHeaderStyling = css(typo.Title, {
   display: 'flex',
   alignItems: 'center',
   padding: '58px 0 57px 100px',
@@ -36,8 +35,7 @@ export const modalCloseStyling = css({
   cursor: 'pointer',
 });
 
-export const modalContentStyling = css({
-  ...typo.Main.Medium,
+export const modalContentStyling = css(typo.Main.Medium, {
   height: '570px',
   padding: '56px 99px 134px 100px',
   color: color.GY[1],

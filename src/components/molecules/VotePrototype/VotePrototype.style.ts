@@ -15,8 +15,7 @@ export const buttonContainerStyle = css({
   gap: '20px',
 });
 
-export const voteTextStyle = css({
-  ...typo.Component.Bold,
+export const voteTextStyle = css(typo.Component.Bold, {
   color: color.GY[1],
   padding: '22px 42px 22px 42px',
 });
