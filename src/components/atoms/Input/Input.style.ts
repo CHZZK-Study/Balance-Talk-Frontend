@@ -15,7 +15,7 @@ export const inputWrapperStyling = css({
   alignItems: 'center',
   paddingTop: 0,
   paddingBottom: 0,
-  margin: '15px 0px',
+  backgroundColor: color.WT,
 
   '&:focus-within': {
     outline: `1.5px solid ${color.MAIN}`,

@@ -20,6 +20,12 @@ export { default as LikeButtonDF } from './svg/like-button-df.svg';
 export { default as LikeButtonPR } from './svg/like-button-pr.svg';
 export { default as Dot } from './svg/dot-button.svg';
 export { default as SampleComment } from './svg/sample-comment.svg';
+export { default as KakaoLogin } from './svg/kakao-login.svg';
+export { default as GoogleLogin } from './svg/google-login.svg';
+export { default as NaverLogin } from './svg/naver-login.svg';
+export { default as Copy } from './svg/copy.svg';
+export { default as Check } from './svg/check.svg';
+
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';
 export { default as Profile } from './svg/profile.svg';
@@ -36,7 +42,6 @@ export { default as RightButton } from './svg/right-button.svg';
 export { default as Person } from './svg/person.svg';
 export { default as Rank } from './svg/rank.svg';
 export { default as Winner } from './svg/winner.svg';
-export { default as Check } from './svg/check.svg';
 export { default as Fight } from './svg/fight.svg';
 export { default as NoImage } from './images/no-image.png';
 export { default as Vote } from './svg/vote.svg';
