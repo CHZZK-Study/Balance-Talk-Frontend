@@ -1,45 +1,29 @@
-import React, { useState, forwardRef } from 'react';
-import type { ComponentPropsWithRef, ForwardedRef } from 'react';
+import React, { useState } from 'react';
+import type { ComponentPropsWithRef } from 'react';
 import { BookmarkDF, BookmarkPR } from '@/assets';
 import * as S from './Bookmark.style';
 
 export interface BookmarkProps extends ComponentPropsWithRef<'button'> {
-  initialState?: 'default' | 'press';
+  initialState?: boolean;
 }
 
-const Bookmark = (
-  { initialState = 'default', ...attributes }: BookmarkProps,
-  ref: ForwardedRef<HTMLButtonElement>,
-) => {
-  const [state, setState] = useState<'default' | 'press'>(initialState);
+const Bookmark = ({ initialState = false, ...attributes }: BookmarkProps) => {
+  const [isPressed, setIsPressed] = useState(initialState);
 
   const handleClick = () => {
-    setState((prevState) => (prevState === 'default' ? 'press' : 'default'));
-  };
-
-  const renderIcon = () => {
-    switch (state) {
-      case 'default':
-        return <BookmarkDF css={S.icon} />;
-      case 'press':
-        return <BookmarkPR css={S.icon} />;
-      default:
-        return null;
-    }
+    setIsPressed((prevState) => !prevState);
   };
 
   return (
     <button
       type="button"
-      ref={ref}
       css={S.bookmarkButton}
-      {...attributes}
       onClick={handleClick}
+      {...attributes}
     >
-      {' '}
-      {renderIcon()}
+      {isPressed ? <BookmarkPR css={S.icon} /> : <BookmarkDF css={S.icon} />}
     </button>
   );
 };
 
-export default forwardRef(Bookmark);
+export default Bookmark;
