@@ -11,13 +11,10 @@ const meta: Meta<typeof Bookmark> = {
   },
   tags: ['autodocs'],
   argTypes: {
-    state: {
-      options: ['default', 'press'],
-      control: { type: 'radio' },
-    },
+    initialState: { control: 'boolean' },
   },
   args: {
-    state: 'default',
+    initialState: false,
   },
 };
 
@@ -26,27 +23,20 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    state: 'default',
-  },
-};
-
-export const Pressed: Story = {
-  args: {
-    state: 'press',
+    initialState: false,
   },
 };
 
 export const All: Story = {
   render: (args) => (
-    <ul css={storyContainer}>
-      <li css={storyInnerContainer}>
-        <h3>Default</h3>
-        <Bookmark {...args} state="default" />
-      </li>
-      <li css={storyInnerContainer}>
-        <h3>Pressed</h3>
-        <Bookmark {...args} state="press" />
-      </li>
-    </ul>
+    <div css={storyContainer}>
+      <div css={storyInnerContainer}>
+        <h3>Default State</h3>
+        <Bookmark {...args} initialState={false} />
+
+        <h3>Pressed State</h3>
+        <Bookmark {...args} initialState />
+      </div>
+    </div>
   ),
 };
