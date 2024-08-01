@@ -30,7 +30,7 @@ const ContentsButton = ({
       </div>
       <div css={S.infoContainer}>
         <span css={S.label}>{label}</span>
-        <Bookmark initialState={bookmarkState} />
+        <Bookmark bookmarkState={bookmarkState} />
       </div>
     </div>
   );
