@@ -29,9 +29,8 @@ const CategoryButton = ({
   }
 
   return (
-    <button type="button" css={S.categoryButtonStyle} {...attributes}>
+    <button type="button" css={S.categoryButtonBaseStyle} {...attributes}>
       <ImageComponent css={S.imgWrap} />
-      {/* <div css={S.spacer} /> */}
       <span css={S.labelStyle}>{label}</span>
     </button>
   );
