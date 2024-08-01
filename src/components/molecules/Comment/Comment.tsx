@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import type { ComponentPropsWithRef } from 'react';
 import DotButton from '@/components/atoms/DotButton/DotButton';
 import LikeButton from '@/components/atoms/LikeButton/LikeButton';
-import Button from '@/components/atoms/Button/Button';
+import TextArea from '@/components/molecules/TextArea/TextArea';
 import * as S from './Comment.style';
 
 export interface CommentProps extends ComponentPropsWithRef<'div'> {
@@ -11,7 +11,7 @@ export interface CommentProps extends ComponentPropsWithRef<'div'> {
   createdTime: string;
   comment: string;
   likeCount: number;
-  initialLikeState?: 'default' | 'press';
+  initialLikeState?: boolean;
 }
 
 const Comment = ({
@@ -20,7 +20,7 @@ const Comment = ({
   createdTime,
   comment,
   likeCount,
-  initialLikeState = 'default',
+  initialLikeState = false,
   ...attributes
 }: CommentProps) => {
   const likeButtonRef = useRef<HTMLButtonElement>(null);
@@ -33,6 +33,10 @@ const Comment = ({
 
   const handleReplyChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setReplyText(e.target.value);
+  };
+
+  const handleReplySubmit = () => {
+    console.log('Reply submitted:', replyText);
   };
 
   return (
@@ -63,28 +67,21 @@ const Comment = ({
           </div>
           <LikeButton
             ref={likeButtonRef}
-            initialCount={likeCount}
-            initialState={initialLikeState}
+            likeCount={likeCount}
+            likeState={initialLikeState}
           />
         </div>
       </div>
       {showReply && (
         <div css={S.replyForm}>
-          <div css={S.textareaContainer}>
-            <textarea
-              css={S.replyTextarea}
-              value={replyText}
-              onChange={handleReplyChange}
-              placeholder="댓글을 어쩌고저쩌고 입력하세요"
-              maxLength={500}
-            />
-            <div css={S.replyFooter}>
-              <span css={S.replyCount}>{replyText.length}/500</span>
-              <Button size="large" variant="primary">
-                답글달기
-              </Button>
-            </div>
-          </div>
+          <TextArea
+            size="medium"
+            value={replyText}
+            onChange={handleReplyChange}
+            onSubmit={handleReplySubmit}
+            placeholder="댓글을 입력하세요"
+            label="답글달기"
+          />
         </div>
       )}
     </div>
