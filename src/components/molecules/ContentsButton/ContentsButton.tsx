@@ -7,14 +7,14 @@ import * as S from './ContentsButton.style';
 export interface ContentsButtonProps extends ComponentPropsWithRef<'div'> {
   imgUrl: string;
   label: string;
-  tagLabel: string;
+  tagLabels: string[];
   initialBookmarkState?: boolean;
 }
 
 const ContentsButton = ({
   imgUrl,
   label,
-  tagLabel,
+  tagLabels,
   initialBookmarkState = false,
   ...attributes
 }: ContentsButtonProps) => {
@@ -24,8 +24,10 @@ const ContentsButton = ({
     <div css={S.cardWrapper} {...attributes}>
       <div css={S.imageContainer}>
         <img src={imgUrl} alt={label} css={S.image} />
-        <div css={S.chipsPosition}>
-          <Chips>{tagLabel}</Chips>
+        <div css={S.chipsContainer}>
+          {tagLabels.map((tagLabel) => (
+            <Chips key={tagLabel}>{tagLabel}</Chips>
+          ))}
         </div>
       </div>
       <div css={S.infoContainer}>
