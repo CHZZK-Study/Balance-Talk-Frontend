@@ -21,6 +21,12 @@ export const cardWrapper = css`
     box-shadow: 0 5px 15px 0 rgba(119, 130, 255, 0.7);
     transform: scale(0.98);
   }
+
+  &:hover {
+    & > div > img {
+      transform: scale(1.05);
+    }
+  }
 `;
 
 export const imageContainer = css`
@@ -36,6 +42,7 @@ export const image = css`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.2s ease-in-out;
 `;
 
 export const chipsContainer = css`
