@@ -28,8 +28,10 @@ export const defaultLabel = css`
   align-items: center;
   width: 22px;
   height: 29px;
-  ${typo.Main.Medium}
+  ${typo.Number.Medium_18}
   color: ${color.GY[1]};
+  padding: 0;
+  margin: 0;
 `;
 
 export const pressedLabel = css`
@@ -39,6 +41,8 @@ export const pressedLabel = css`
   align-items: center;
   width: 22px;
   height: 29px;
-  ${typo.Main.Medium}
+  ${typo.Number.Medium_18}
   color: ${color.MAIN};
+  padding: 0;
+  margin: 0;
 `;

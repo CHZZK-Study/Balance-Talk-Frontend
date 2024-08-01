@@ -4,20 +4,24 @@ import { LikeButtonDF, LikeButtonPR } from '@/assets';
 import * as S from './LikeButton.style';
 
 export interface LikeButtonProps extends ComponentPropsWithRef<'button'> {
-  initialCount: number;
-  initialState?: 'default' | 'press';
+  likeCount: number;
+  likeState?: boolean;
 }
 
 const LikeButton = (
-  { initialCount, initialState = 'default', ...attributes }: LikeButtonProps,
+  { likeCount, likeState = false, ...attributes }: LikeButtonProps,
   ref: ForwardedRef<HTMLButtonElement>,
 ) => {
-  const [count, setCount] = useState(initialCount);
-  const [isPressed, setIsPressed] = useState(initialState === 'press');
+  const [count, setCount] = useState(likeCount);
+  const [isPressed, setIsPressed] = useState(likeState);
 
   useEffect(() => {
-    setIsPressed(initialState === 'press');
-  }, [initialState]);
+    setCount(likeCount);
+  }, [likeCount]);
+
+  useEffect(() => {
+    setIsPressed(likeState);
+  }, [likeState]);
 
   const handleClick = () => {
     if (isPressed) {
