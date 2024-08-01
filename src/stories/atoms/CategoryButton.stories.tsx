@@ -37,7 +37,7 @@ export const All: Story = {
   render: (args) => (
     <ul css={storyContainer}>
       <li css={storyInnerContainer}>
-        <h3>Pick Vote</h3>
+        <h3>낼톡픽 투표하기</h3>
         <CategoryButton
           {...args}
           imageType="PickVote"
@@ -45,7 +45,7 @@ export const All: Story = {
         />
       </li>
       <li css={storyInnerContainer}>
-        <h3>Random Game</h3>
+        <h3>랜덤 밸런스 게임</h3>
         <CategoryButton
           {...args}
           imageType="RandomGame"
@@ -53,7 +53,7 @@ export const All: Story = {
         />
       </li>
       <li css={storyInnerContainer}>
-        <h3>Today Pick</h3>
+        <h3>오늘의 톡픽 모음.zip</h3>
         <CategoryButton
           {...args}
           imageType="TodayPick"
