@@ -55,4 +55,5 @@ export const infoContainer = css({
 export const label = css({
   ...typo.Component.Medium,
   color: color.BK,
+  maxWidth: '440px',
 });
