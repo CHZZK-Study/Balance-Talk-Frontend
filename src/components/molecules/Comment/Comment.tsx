@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
 import type { ComponentPropsWithRef } from 'react';
-import DotButton from '@/components/atoms/DotButton/DotButton';
 import LikeButton from '@/components/atoms/LikeButton/LikeButton';
 import TextArea from '@/components/molecules/TextArea/TextArea';
 import CommentProfile from '@/components/atoms/CommentProfile/CommentProfile';
+import MenuTap, { MenuItem } from '@/components/atoms/MenuTap/MenuTap';
 import * as S from './Comment.style';
 
 export interface CommentProps extends ComponentPropsWithRef<'div'> {
@@ -23,7 +23,7 @@ const Comment = ({
   comment,
   likeCount,
   initialLikeState = false,
-  stance, // 추가
+  stance,
   ...attributes
 }: CommentProps) => {
   const likeButtonRef = useRef<HTMLButtonElement>(null);
@@ -39,9 +39,23 @@ const Comment = ({
   };
 
   const handleReplySubmit = () => {
-    // Reply submit logic
-    console.log('Reply submitted:', replyText);
+    console.log('작성한 답글:', replyText);
   };
+
+  const menuData: MenuItem[] = [
+    {
+      label: '수정',
+      onClick: () => {
+        console.log('수정 클릭됨!!');
+      },
+    },
+    {
+      label: '삭제',
+      onClick: () => {
+        console.log('삭제 클릭됨!!');
+      },
+    },
+  ];
 
   return (
     <div css={S.MainContainer} {...attributes}>
@@ -63,7 +77,7 @@ const Comment = ({
             >
               답글
             </button>
-            <DotButton />
+            <MenuTap menuData={menuData} />
           </div>
           <LikeButton
             ref={likeButtonRef}
