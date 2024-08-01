@@ -19,7 +19,6 @@ export { default as SampleWhole } from './images/sample-whole.png';
 export { default as LikeButtonDF } from './svg/like-button-df.svg';
 export { default as LikeButtonPR } from './svg/like-button-pr.svg';
 export { default as Dot } from './svg/dot-button.svg';
-export { default as SampleComment } from './svg/sample-comment.svg';
 export { default as ProfileSample } from './images/profile-sample.png';
 export { default as ProfileSampleWH } from './images/profile-sample-whole.png';
 
