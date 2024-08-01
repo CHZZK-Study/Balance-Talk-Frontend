@@ -3,24 +3,27 @@ import type { ComponentPropsWithRef } from 'react';
 import DotButton from '@/components/atoms/DotButton/DotButton';
 import LikeButton from '@/components/atoms/LikeButton/LikeButton';
 import TextArea from '@/components/molecules/TextArea/TextArea';
+import CommentProfile from '@/components/atoms/CommentProfile/CommentProfile';
 import * as S from './Comment.style';
 
 export interface CommentProps extends ComponentPropsWithRef<'div'> {
-  imgUrl: string | React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  imgUrl: string;
   nickname: string;
   createdTime: string;
   comment: string;
   likeCount: number;
   initialLikeState?: boolean;
+  stance: 'pros' | 'cons';
 }
 
 const Comment = ({
-  imgUrl: ImgComponent,
+  imgUrl,
   nickname,
   createdTime,
   comment,
   likeCount,
   initialLikeState = false,
+  stance, // 추가
   ...attributes
 }: CommentProps) => {
   const likeButtonRef = useRef<HTMLButtonElement>(null);
@@ -36,17 +39,14 @@ const Comment = ({
   };
 
   const handleReplySubmit = () => {
+    // Reply submit logic
     console.log('Reply submitted:', replyText);
   };
 
   return (
     <div css={S.MainContainer} {...attributes}>
       <div css={S.commentContainer}>
-        {typeof ImgComponent === 'string' ? (
-          <img src={ImgComponent} alt={nickname} css={S.profileImage} />
-        ) : (
-          <ImgComponent css={S.profileImage} />
-        )}
+        <CommentProfile stance={stance} imgUrl={imgUrl} />
         <div css={S.commentWrapper}>
           <div css={S.commentBox}>
             <span css={S.nickname}>{nickname}</span>

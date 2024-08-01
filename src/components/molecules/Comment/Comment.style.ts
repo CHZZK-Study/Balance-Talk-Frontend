@@ -5,8 +5,6 @@ import typo from '@/styles/typo';
 export const MainContainer = css`
   display: flex;
   flex-direction: column;
-  max-width: 1175px;
-  max-height: 368px;
   width: 1175px;
   height: 368px;
 `;
@@ -15,19 +13,10 @@ export const commentContainer = css`
   display: flex;
   flex-direction: row;
   align-items: center;
-  //justify-content: center;
-  //justify-items: center;
   width: 1175px;
   max-width: 1175px;
   height: 131px;
   border-top: 1px solid ${color.GY[2]};
-`;
-
-export const profileImage = css`
-  width: 55px;
-  height: 55px;
-  margin-right: 15px;
-  align-items: center;
 `;
 
 export const commentWrapper = css`
@@ -35,6 +24,7 @@ export const commentWrapper = css`
   flex-direction: column;
   gap: 6px;
   flex-grow: 1;
+  padding-left: 19px;
 `;
 
 export const commentBox = css`
