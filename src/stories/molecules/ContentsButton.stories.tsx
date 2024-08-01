@@ -14,13 +14,13 @@ const meta: Meta<typeof ContentsButton> = {
   argTypes: {
     imgUrl: { control: 'text' },
     label: { control: 'text' },
-    tagLabel: { control: 'text' },
+    tagLabels: { control: { type: 'object' } },
     initialBookmarkState: { control: 'boolean' },
   },
   args: {
     imgUrl: SampleWhole,
     label: '유진 VS 민지 사복 고르기',
-    tagLabel: '얼마나 맞나 보자',
+    tagLabels: ['얼마나 맞나 보자', '#취향'],
     initialBookmarkState: false,
   },
 };
@@ -32,7 +32,7 @@ export const Default: Story = {
   args: {
     imgUrl: SampleWhole,
     label: '유진 VS 민지 사복 고르기',
-    tagLabel: '얼마나 맞나 보자',
+    tagLabels: ['얼마나 맞나 보자', '#취향'],
     initialBookmarkState: false,
   },
 };
@@ -43,6 +43,8 @@ export const All: Story = {
       <div css={storyInnerContainer}>
         <h3>Default</h3>
         <ContentsButton {...args} initialBookmarkState={false} />
+        <h3>Pressed</h3>
+        <ContentsButton {...args} initialBookmarkState />
       </div>
     </div>
   ),
