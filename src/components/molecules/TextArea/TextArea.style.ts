@@ -44,7 +44,7 @@ export const getTextareaSizeStyling = (size: 'large' | 'medium') => {
     `,
     medium: css`
       &::placeholder {
-        ${typo.Comment.SemiBold}
+        ${typo.Comment.Regular}
         color: #b9b9b9;
       }
     `,
