@@ -22,6 +22,13 @@ export { default as Dot } from './svg/dot-button.svg';
 export { default as ProfileSample } from './images/profile-sample.png';
 export { default as ProfileSampleWH } from './images/profile-sample-whole.png';
 
+export { default as SampleComment } from './svg/sample-comment.svg';
+export { default as KakaoLogin } from './svg/kakao-login.svg';
+export { default as GoogleLogin } from './svg/google-login.svg';
+export { default as NaverLogin } from './svg/naver-login.svg';
+export { default as Copy } from './svg/copy.svg';
+export { default as Check } from './svg/check.svg';
+
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';
 export { default as Profile } from './svg/profile.svg';
