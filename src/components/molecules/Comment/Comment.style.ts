@@ -7,6 +7,8 @@ export const MainContainer = css`
   flex-direction: column;
   width: 1175px;
   height: 368px;
+  min-width: 1175px;
+  min-height: 368px;
 `;
 
 export const commentContainer = css`
@@ -14,9 +16,12 @@ export const commentContainer = css`
   flex-direction: row;
   align-items: center;
   width: 1175px;
-  max-width: 1175px;
+  min-width: 1175px;
   height: 131px;
+  min-height: 131px;
   border-top: 1px solid ${color.GY[2]};
+  padding-left: 16px;
+  margin-right: 0;
 `;
 
 export const commentWrapper = css`
@@ -59,6 +64,7 @@ export const sideWrapper = css`
   align-items: center;
   gap: 10px;
   margin-right: 18px;
+  flex-grow: 0;
 `;
 
 export const sideBox = css`
@@ -84,9 +90,17 @@ export const replyButton = css`
 export const replyForm = css`
   display: flex;
   width: 1175px;
+  min-width: 1175px;
   height: 237px;
+  min-height: 237px;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
   border-top: 1px solid ${color.GY[2]};
+  padding-left: 80px;
+`;
+
+export const nicknameInput = css`
+  margin-bottom: 12px;
+  ${typo.Comment.SemiBold}
 `;

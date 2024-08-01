@@ -88,6 +88,7 @@ const Comment = ({
       </div>
       {showReply && (
         <div css={S.replyForm}>
+          <span css={S.nicknameInput}>{nickname}</span>
           <TextArea
             size="medium"
             value={replyText}
