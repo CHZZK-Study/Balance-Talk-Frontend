@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import type { ComponentPropsWithRef } from 'react';
 import Chips from '@/components/atoms/Chips/Chips';
 import Bookmark from '@/components/atoms/Bookmark/Bookmark';
@@ -8,18 +8,16 @@ export interface ContentsButtonProps extends ComponentPropsWithRef<'div'> {
   imgUrl: string;
   label: string;
   tagLabels: string[];
-  initialBookmarkState?: boolean;
+  bookmarkState?: boolean;
 }
 
 const ContentsButton = ({
   imgUrl,
   label,
   tagLabels,
-  initialBookmarkState = false,
+  bookmarkState = false,
   ...attributes
 }: ContentsButtonProps) => {
-  const [bookmarkState] = useState(initialBookmarkState);
-
   return (
     <div css={S.cardWrapper} {...attributes}>
       <div css={S.imageContainer}>
