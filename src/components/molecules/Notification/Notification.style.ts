@@ -2,6 +2,17 @@ import { css } from '@emotion/react';
 import color from '@/styles/color';
 import typo from '@/styles/typo';
 
+export const containerStyle = css({
+  position: 'relative',
+  width: '435px',
+});
+
+export const buttonStyle = css({
+  marginLeft: '412px',
+  marginBottom: '10px',
+  cursor: 'pointer',
+});
+
 export const notificationStyle = css({
   display: 'flex',
   flexDirection: 'column',
