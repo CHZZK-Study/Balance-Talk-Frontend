@@ -30,6 +30,7 @@ export { default as Copy } from './svg/copy.svg';
 export { default as Check } from './svg/check.svg';
 export { default as Share } from './svg/share.svg';
 export { default as Notification } from './svg/notification.svg';
+export { default as NotificationButton } from './svg/notification-button.svg';
 
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';
