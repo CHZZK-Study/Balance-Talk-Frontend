@@ -1,5 +1,5 @@
 import React from 'react';
-import { NewNotification } from '@/assets';
+import { NewDot } from '@/assets';
 import {
   notificationItemStyle,
   headerStyle,
@@ -27,7 +27,7 @@ const NotificationItem = ({
 }: NotificationItemProps) => {
   return (
     <div css={notificationItemStyle}>
-      {isNew ? <NewNotification css={NewNotificationStyle} /> : null}
+      {isNew ? <NewDot css={NewNotificationStyle} /> : null}
       <div css={headerStyle}>
         <div css={categoryStyle}>{category}</div>
         <div css={dateStyle}>{date}</div>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import NotificationItem, {
   NotificationItemProps,
 } from '@/components/atoms/NotificationItem/NotificationItem';
-import { NotificationButton } from '@/assets';
+import { NotificationBell, NotificationBellWithDot } from '@/assets';
 import {
   containerStyle,
   buttonStyle,
@@ -13,10 +13,14 @@ import {
 } from './Notification.style';
 
 export interface NotificationListProps {
+  isNew?: boolean;
   notifications: NotificationItemProps[];
 }
 
-const Notification = ({ notifications }: NotificationListProps) => {
+const Notification = ({
+  isNew = false,
+  notifications,
+}: NotificationListProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleNotification = () => {
@@ -25,7 +29,14 @@ const Notification = ({ notifications }: NotificationListProps) => {
 
   return (
     <div css={containerStyle}>
-      <NotificationButton css={buttonStyle} onClick={handleNotification} />
+      {isNew ? (
+        <NotificationBellWithDot
+          css={buttonStyle}
+          onClick={handleNotification}
+        />
+      ) : (
+        <NotificationBell css={buttonStyle} onClick={handleNotification} />
+      )}
       {isOpen ? (
         <div css={notificationStyle}>
           <div css={titleStyle}>알림</div>
