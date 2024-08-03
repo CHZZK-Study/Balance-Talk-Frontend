@@ -22,7 +22,7 @@ export { default as LikeButtonPR } from './svg/like-button-pr.svg';
 export { default as Dot } from './svg/dot-button.svg';
 export { default as ProfileSample } from './images/profile-sample.png';
 export { default as ProfileSampleWH } from './images/profile-sample-whole.png';
-export { default as NewNotification } from './svg/new-notification.svg';
+export { default as NewDot } from './svg/new-dot.svg';
 export { default as KakaoLogin } from './svg/kakao-login.svg';
 export { default as GoogleLogin } from './svg/google-login.svg';
 export { default as NaverLogin } from './svg/naver-login.svg';
@@ -31,6 +31,8 @@ export { default as Check } from './svg/check.svg';
 export { default as Share } from './svg/share.svg';
 export { default as Notification } from './svg/notification.svg';
 export { default as NotificationButton } from './svg/notification-button.svg';
+export { default as NotificationBell } from './svg/notification-bell.svg';
+export { default as NotificationBellWithDot } from './svg/notification-bell-with-dot.svg';
 
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';
