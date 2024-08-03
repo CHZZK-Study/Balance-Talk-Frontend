@@ -4,8 +4,9 @@ import NotificationItem, {
 } from '@/components/atoms/NotificationItem/NotificationItem';
 import { NotificationBell, NotificationBellWithDot } from '@/assets';
 import {
-  containerStyle,
+  iconContainerStyle,
   buttonStyle,
+  notificationContainerStyle,
   notificationStyle,
   titleStyle,
   notificationContentStyle,
@@ -28,7 +29,7 @@ const Notification = ({
   };
 
   return (
-    <div css={containerStyle}>
+    <div css={iconContainerStyle}>
       {isNew ? (
         <NotificationBellWithDot
           css={buttonStyle}
@@ -38,20 +39,22 @@ const Notification = ({
         <NotificationBell css={buttonStyle} onClick={handleNotification} />
       )}
       {isOpen ? (
-        <div css={notificationStyle}>
-          <div css={titleStyle}>알림</div>
-          <div css={notificationContentStyle}>
-            {notifications.map((notification) => (
-              <div css={notificationItemStyle}>
-                <NotificationItem
-                  category={notification.category}
-                  date={notification.date}
-                  title={notification.title}
-                  content={notification.content}
-                  isNew={notification.isNew}
-                />
-              </div>
-            ))}
+        <div css={notificationContainerStyle}>
+          <div css={notificationStyle}>
+            <div css={titleStyle}>알림</div>
+            <div css={notificationContentStyle}>
+              {notifications.map((notification) => (
+                <div css={notificationItemStyle}>
+                  <NotificationItem
+                    category={notification.category}
+                    date={notification.date}
+                    title={notification.title}
+                    content={notification.content}
+                    isNew={notification.isNew}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       ) : null}
