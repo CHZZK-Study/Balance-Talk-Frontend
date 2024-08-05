@@ -2,14 +2,24 @@ export type TalkPickDetail = {
   id: number;
   title: string;
   content: string;
-  summary: string;
+  summary: TalkPickSummary;
   optionA: string;
   optionB: string;
+  votesCountOfOptionA: number;
+  votesCountOfOptionB: number;
   views: number;
-  likesCount: number;
+  bookmarks: number;
   myBookmark: boolean;
-  myVote: boolean;
-  votedOption: 'A' | 'B';
+  votedOption: 'A' | 'B' | null;
+  writer: string;
+  lastModifiedAt: string;
+  isUpdated: boolean;
+};
+
+export type TalkPickSummary = {
+  summaryFirstLine: string;
+  summarySecondLine: string;
+  summaryThirdLine: string;
 };
 
 export type TalkPick = Pick<
