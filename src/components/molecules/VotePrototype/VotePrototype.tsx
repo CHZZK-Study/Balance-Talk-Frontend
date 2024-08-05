@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@/components/atoms/Button/Button';
 import VoteBar from '@/components/atoms/VoteBar/VoteBar';
 import {
@@ -13,24 +13,64 @@ interface VotePrototypeProps {
   rightButtonText: string;
   leftVotes: number;
   rightVotes: number;
+  selectedVote: 'A' | 'B' | null;
 }
 
 const VotePrototype: React.FC<VotePrototypeProps> = ({
   leftButtonText,
   rightButtonText,
-  leftVotes,
-  rightVotes,
+  leftVotes: initialLeftVotes,
+  rightVotes: initialRightVotes,
+  selectedVote,
 }) => {
-  const totalVotes = leftVotes + rightVotes;
-  const leftPercentage = ((leftVotes / totalVotes) * 100).toFixed(1);
-  const rightPercentage = ((rightVotes / totalVotes) * 100).toFixed(1);
+  const [leftVotes, setLeftVotes] = useState<number>(initialLeftVotes);
+  const [rightVotes, setRightVotes] = useState<number>(initialRightVotes);
 
-  const [selectedBar, setSelectedBar] = useState<'left' | 'right' | null>(null);
-  const [selectedButton, setSelectedButton] = useState<'left' | 'right' | null>(
-    null,
+  useEffect(() => {
+    setLeftVotes(initialLeftVotes);
+    setRightVotes(initialRightVotes);
+  }, [initialLeftVotes, initialRightVotes]);
+
+  const totalVotes: number = leftVotes + rightVotes;
+  const leftPercentage: string = ((leftVotes / totalVotes) * 100).toFixed(1);
+  const rightPercentage: string = ((rightVotes / totalVotes) * 100).toFixed(1);
+
+  const [selectedBar, setSelectedBar] = useState<'A' | 'B' | null>(
+    selectedVote,
+  );
+  const [selectedButton, setSelectedButton] = useState<'A' | 'B' | null>(
+    selectedVote,
   );
 
-  const handleButtonClick = (side: 'left' | 'right') => {
+  const increaseVotes = (side: 'A' | 'B') => {
+    if (side === 'A') {
+      setLeftVotes((prev) => prev + 1);
+    } else if (side === 'B') {
+      setRightVotes((prev) => prev + 1);
+    }
+  };
+
+  const decreaseVotes = (side: 'A' | 'B') => {
+    if (side === 'A') {
+      setRightVotes((prev) => Math.max(prev - 1, 0));
+    } else if (side === 'B') {
+      setLeftVotes((prev) => Math.max(prev - 1, 0));
+    }
+  };
+
+  const updateVoteNumber = (side: 'A' | 'B') => {
+    if (selectedBar === side) return;
+
+    if (selectedBar === null) {
+      increaseVotes(side);
+    } else {
+      increaseVotes(side);
+      decreaseVotes(side);
+    }
+  };
+
+  const handleButtonClick = (side: 'A' | 'B') => {
+    updateVoteNumber(side);
     setSelectedBar(side);
     setSelectedButton(side);
   };
@@ -41,8 +81,8 @@ const VotePrototype: React.FC<VotePrototypeProps> = ({
         <Button
           variant="outlineHighlightR"
           size="large"
-          onClick={() => handleButtonClick('left')}
-          css={getButtonStyle('left', selectedButton)}
+          onClick={() => handleButtonClick('A')}
+          css={getButtonStyle('A', selectedButton)}
         >
           {leftButtonText}
         </Button>
@@ -50,8 +90,8 @@ const VotePrototype: React.FC<VotePrototypeProps> = ({
         <Button
           variant="outlineHighlightB"
           size="large"
-          onClick={() => handleButtonClick('right')}
-          css={getButtonStyle('right', selectedButton)}
+          onClick={() => handleButtonClick('B')}
+          css={getButtonStyle('B', selectedButton)}
         >
           {rightButtonText}
         </Button>
@@ -66,4 +106,5 @@ const VotePrototype: React.FC<VotePrototypeProps> = ({
     </div>
   );
 };
+
 export default VotePrototype;
