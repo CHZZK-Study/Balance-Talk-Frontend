@@ -12,7 +12,7 @@ export const getBannerMovement = (idx: number) =>
   css({
     display: 'flex',
     transform: `translateX(calc(-100% * ${idx}))`,
-    transition: '1s ease-in-out',
+    transition: '0.5s ease-in-out',
   });
 
 export const bannerWrapperStyling = css({
@@ -33,7 +33,7 @@ export const dotStyling = css({
   height: '10px',
   borderRadius: '50%',
   backgroundColor: color.GY[4],
-  transition: '1s ease-in-out',
+  transition: '0.5s ease-in-out',
   cursor: 'pointer',
 });
 
