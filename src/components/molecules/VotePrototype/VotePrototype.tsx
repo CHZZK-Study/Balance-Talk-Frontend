@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import React, { useState, useEffect } from 'react';
 import Button from '@/components/atoms/Button/Button';
 import VoteBar from '@/components/atoms/VoteBar/VoteBar';
+import { updateVoteNumber } from '@/utils/voteUtils';
 import {
   votePrototypeStyle,
   buttonContainerStyle,
@@ -42,36 +44,14 @@ const VotePrototype: React.FC<VotePrototypeProps> = ({
     selectedVote,
   );
 
-  const increaseVotes = (side: 'A' | 'B') => {
-    if (side === 'A') {
-      setLeftVotes((prev) => prev + 1);
-    } else if (side === 'B') {
-      setRightVotes((prev) => prev + 1);
-    }
-  };
-
-  const decreaseVotes = (side: 'A' | 'B') => {
-    if (side === 'A') {
-      setRightVotes((prev) => Math.max(prev - 1, 0));
-    } else if (side === 'B') {
-      setLeftVotes((prev) => Math.max(prev - 1, 0));
-    }
-  };
-
-  const updateVoteNumber = (side: 'A' | 'B') => {
-    if (selectedBar === side) return;
-
-    if (selectedBar === null) {
-      increaseVotes(side);
-    } else {
-      increaseVotes(side);
-      decreaseVotes(side);
-    }
-  };
-
   const handleButtonClick = (side: 'A' | 'B') => {
-    updateVoteNumber(side);
-    setSelectedBar(side);
+    updateVoteNumber(
+      side,
+      selectedBar,
+      setSelectedBar,
+      setLeftVotes,
+      setRightVotes,
+    );
     setSelectedButton(side);
   };
 
