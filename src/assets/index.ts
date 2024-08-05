@@ -35,6 +35,10 @@ export { default as NotificationBell } from './svg/notification-bell.svg';
 export { default as NotificationBellWithDot } from './svg/notification-bell-with-dot.svg';
 export { default as Logo } from './svg/logo.svg';
 export { default as WriteIcon } from './svg/write-icon.svg';
+export { default as Popular } from './svg/popular.svg';
+export { default as Couple } from './svg/couple.svg';
+export { default as Taste } from './svg/taste.svg';
+export { default as Worldcup } from './svg/worldcup.svg';
 
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';
