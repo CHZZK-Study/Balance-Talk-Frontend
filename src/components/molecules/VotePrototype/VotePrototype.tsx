@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from '@/components/atoms/Button/Button';
 import VoteBar from '@/components/atoms/VoteBar/VoteBar';
-import { updateVoteNumber } from '@/utils/voteUtils';
+import { useUpdateVote } from '@/hooks/talk-pick/useUpdateVote';
 import {
   votePrototypeStyle,
   buttonContainerStyle,
@@ -25,33 +25,19 @@ const VotePrototype: React.FC<VotePrototypeProps> = ({
   rightVotes: initialRightVotes,
   selectedVote,
 }) => {
-  const [leftVotes, setLeftVotes] = useState<number>(initialLeftVotes);
-  const [rightVotes, setRightVotes] = useState<number>(initialRightVotes);
-
-  useEffect(() => {
-    setLeftVotes(initialLeftVotes);
-    setRightVotes(initialRightVotes);
-  }, [initialLeftVotes, initialRightVotes]);
+  const { leftVotes, rightVotes, selectedBar, updateVoteNumber } =
+    useUpdateVote(initialLeftVotes, initialRightVotes, selectedVote);
 
   const totalVotes: number = leftVotes + rightVotes;
   const leftPercentage: string = ((leftVotes / totalVotes) * 100).toFixed(1);
   const rightPercentage: string = ((rightVotes / totalVotes) * 100).toFixed(1);
 
-  const [selectedBar, setSelectedBar] = useState<'A' | 'B' | null>(
-    selectedVote,
-  );
   const [selectedButton, setSelectedButton] = useState<'A' | 'B' | null>(
     selectedVote,
   );
 
   const handleButtonClick = (side: 'A' | 'B') => {
-    updateVoteNumber(
-      side,
-      selectedBar,
-      setSelectedBar,
-      setLeftVotes,
-      setRightVotes,
-    );
+    updateVoteNumber(side);
     setSelectedButton(side);
   };
 
