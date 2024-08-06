@@ -10,10 +10,12 @@ export const MainContainer = css`
 `;
 
 export const compactContainer = css`
+  ${MainContainer};
   height: 131px;
 `;
 
 export const expandedContainer = css`
+  ${MainContainer};
   height: 368px;
 `;
 
