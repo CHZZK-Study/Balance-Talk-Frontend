@@ -11,6 +11,8 @@ export const container = css`
   border-radius: 4px;
   background-color: ${color.WT};
   gap: 8px;
+  width: max-content;
+  height: max-content;
 `;
 
 export const label = css`
