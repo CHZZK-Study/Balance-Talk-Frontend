@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowDown } from '@/assets';
+import { AngleSmallDown } from '@/assets';
 import ToggleGroup, {
   ToggleGroupItem,
   ToggleGroupProps,
@@ -66,8 +66,9 @@ const BalanceGameList = ({ contents }: ContentListProps) => {
               variant="outlineShadow"
               size="large"
               onClick={handleLoadMore}
+              iconRight={<AngleSmallDown />}
             >
-              더보기 <ArrowDown />
+              더보기
             </Button>
           </div>
         )}
