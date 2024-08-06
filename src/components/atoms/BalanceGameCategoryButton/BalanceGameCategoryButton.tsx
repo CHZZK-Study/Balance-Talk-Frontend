@@ -9,7 +9,7 @@ interface ButtonProps {
   onClick: () => void;
 }
 
-const ButtonComponent: React.FC<ButtonProps> = ({
+const BalanceGameCategoryButton: React.FC<ButtonProps> = ({
   label,
   icon,
   active,
@@ -41,4 +41,4 @@ const ButtonComponent: React.FC<ButtonProps> = ({
   );
 };
 
-export default ButtonComponent;
+export default BalanceGameCategoryButton;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Popular, Couple, Taste, Worldcup } from '@/assets';
 import * as S from './CategoryBar.style';
-import ButtonComponent from '../../atoms/BalanceGameCategoryButton/BalanceGameCategoryButton';
+import BalanceGameCategoryButton from '../../atoms/BalanceGameCategoryButton/BalanceGameCategoryButton';
 
 export interface CategoryBarProps {
   activeTab: 'Popular' | 'Couple' | 'Taste' | 'Worldcup';
@@ -35,28 +35,28 @@ const CategoryBar: React.FC<CategoryBarProps> = ({
 
   return (
     <div css={S.containerStyle}>
-      <ButtonComponent
+      <BalanceGameCategoryButton
         label="인기"
         icon={<Popular />}
         active={activeTab === 'Popular'}
         badgeText={getBadgeText('Popular')}
         onClick={() => setActiveTab('Popular')}
       />
-      <ButtonComponent
+      <BalanceGameCategoryButton
         label="커플"
         icon={<Couple />}
         active={activeTab === 'Couple'}
         badgeText={getBadgeText('Couple')}
         onClick={() => setActiveTab('Couple')}
       />
-      <ButtonComponent
+      <BalanceGameCategoryButton
         label="취향"
         icon={<Taste />}
         active={activeTab === 'Taste'}
         badgeText={getBadgeText('Taste')}
         onClick={() => setActiveTab('Taste')}
       />
-      <ButtonComponent
+      <BalanceGameCategoryButton
         label="월드컵"
         icon={<Worldcup />}
         active={activeTab === 'Worldcup'}
