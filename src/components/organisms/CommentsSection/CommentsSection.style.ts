@@ -10,6 +10,7 @@ export const commentsSectionContainer = css`
   margin: 0 auto;
   background-color: ${color.WT};
   overflow-y: auto;
+  gap: 29px;
 `;
 
 export const commentsWrapper = css`
@@ -22,12 +23,13 @@ export const commentsWrapper = css`
   margin: 0;
   min-height: 917px;
   height: auto;
+  background-color: aquamarine;
 `;
 
 export const paginationWrapper = css`
   display: flex;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 11px;
   width: 100%;
   height: 40px;
   flex-shrink: 0;
