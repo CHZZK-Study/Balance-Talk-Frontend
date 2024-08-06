@@ -1,6 +1,5 @@
 import { css } from '@emotion/react';
 import color from '@/styles/color';
-import typo from '@/styles/typo';
 
 export const commentsSectionContainer = css`
   display: flex;
@@ -9,8 +8,8 @@ export const commentsSectionContainer = css`
   min-height: 1554px;
   height: 100%;
   margin: 0 auto;
-  background-color: #fff;
-  overflow-y: auto; /* 세로 스크롤 가능하도록 설정 */
+  background-color: ${color.WT};
+  overflow-y: auto;
 `;
 
 export const commentsWrapper = css`
@@ -21,13 +20,15 @@ export const commentsWrapper = css`
   list-style: none;
   padding: 0;
   margin: 0;
-  height: auto; /* 높이를 자동으로 설정하여 무한히 확장 가능 */
+  min-height: 917px;
+  height: auto;
 `;
 
 export const paginationWrapper = css`
   display: flex;
   justify-content: center;
   margin-top: 40px;
-  width: 100%; /* 페이지네이션 너비를 전체로 설정 */
-  flex-shrink: 0; /* 페이지네이션이 줄어들지 않도록 설정 */
+  width: 100%;
+  height: 40px;
+  flex-shrink: 0;
 `;
