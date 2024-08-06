@@ -29,7 +29,6 @@ export { default as NaverLogin } from './svg/naver-login.svg';
 export { default as Copy } from './svg/copy.svg';
 export { default as Check } from './svg/check.svg';
 export { default as Share } from './svg/share.svg';
-export { default as Notification } from './svg/notification.svg';
 export { default as NotificationButton } from './svg/notification-button.svg';
 export { default as NotificationBell } from './svg/notification-bell.svg';
 export { default as NotificationBellWithDot } from './svg/notification-bell-with-dot.svg';
