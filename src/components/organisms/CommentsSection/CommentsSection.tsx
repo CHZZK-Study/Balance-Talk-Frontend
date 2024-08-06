@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Comment from '@/components/molecules/Comment/Comment';
 import Pagination from '@/components/atoms/Pagination/Pagination';
 import TextArea from '@/components/molecules/TextArea/TextArea';
+import Toggle from '@/components/atoms/Toggle/Toggle';
 import * as S from './CommentsSection.style';
 
 interface CommentData {
@@ -51,6 +52,7 @@ const CommentsSection = ({ commentsData }: CommentsSectionProps) => {
 
   return (
     <div css={S.commentsSectionContainer}>
+      <Toggle count={127} label="톡댓톡" />
       <TextArea
         size="large"
         value={replyText}
