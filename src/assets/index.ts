@@ -27,6 +27,7 @@ export { default as GoogleLogin } from './svg/google-login.svg';
 export { default as NaverLogin } from './svg/naver-login.svg';
 export { default as Copy } from './svg/copy.svg';
 export { default as Check } from './svg/check.svg';
+export { default as FooterLogo } from './svg/footer-logo.svg';
 
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';
