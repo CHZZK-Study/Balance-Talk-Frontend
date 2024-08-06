@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatNumber } from '@/utils/formatData';
 import {
   barContainerStyle,
   barStyle,
@@ -15,7 +16,7 @@ interface VoteBarProps {
   rightPercentage: number;
   leftVotes: number;
   rightVotes: number;
-  selectedBar?: 'left' | 'right' | null;
+  selectedBar?: 'A' | 'B' | null;
 }
 
 const VoteBar: React.FC<VoteBarProps> = ({
@@ -53,8 +54,8 @@ const VoteBar: React.FC<VoteBarProps> = ({
       )}
     </div>
     <div css={votesContainerStyle}>
-      <div css={votesStyle}>{leftVotes}명 응답</div>
-      <div css={votesStyle}>{rightVotes}명 응답</div>
+      <div css={votesStyle}>{formatNumber(leftVotes)}명 응답</div>
+      <div css={votesStyle}>{formatNumber(rightVotes)}명 응답</div>
     </div>
   </div>
 );

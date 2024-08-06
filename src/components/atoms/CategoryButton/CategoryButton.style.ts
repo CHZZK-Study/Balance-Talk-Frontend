@@ -9,7 +9,7 @@ export const categoryButtonBaseStyle = css`
   justify-content: center;
   width: 367px;
   height: 189px;
-  padding: 40px 92px;
+  padding: 40px 85px;
   border-radius: 20px;
   border: 1px solid #dedede;
   background-color: ${color.WT};
