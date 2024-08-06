@@ -58,7 +58,13 @@ const Comment = ({
   ];
 
   return (
-    <div css={S.MainContainer} {...attributes}>
+    <div
+      css={[
+        S.MainContainer,
+        showReply ? S.expandedContainer : S.compactContainer,
+      ]}
+      {...attributes}
+    >
       <div css={S.commentContainer}>
         <CommentProfile stance={stance} imgUrl={imgUrl} />
         <div css={S.commentWrapper}>
