@@ -5,9 +5,7 @@ import Header from '@/components/organisms/Header/Header';
 const meta = {
   title: 'organisms/Header',
   component: Header,
-  parameters: {
-    // layout: 'centered',
-  },
+  parameters: {},
   tags: ['autodocs'],
   argTypes: {},
   args: {},
