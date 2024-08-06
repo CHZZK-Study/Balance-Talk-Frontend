@@ -30,7 +30,7 @@ export const Default: Story = {
   },
 };
 
-export const Examples: Story = {
+export const All: Story = {
   render: () => (
     <ul css={storyContainer}>
       <li css={storyInnerContainer}>
