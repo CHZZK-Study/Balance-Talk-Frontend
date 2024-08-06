@@ -11,7 +11,7 @@ export const footerContainer = css`
   padding-left: 200px;
 `;
 
-export const contentContainer = css`
+export const footerWrapper = css`
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -21,7 +21,6 @@ export const leftContainer = css`
   display: flex;
   flex-direction: column;
   width: auto;
-  gap: 20px;
 `;
 
 export const rightContainer = css`
@@ -39,13 +38,14 @@ export const logoContainer = css`
   margin-bottom: 20px;
 `;
 
-export const leftContent = css`
+export const tagContent = css`
   display: flex;
   flex-direction: column;
   margin-left: 19px;
+  margin-bottom: 26px;
 `;
 
-export const middleContent = css`
+export const boldContent = css`
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -72,4 +72,5 @@ export const subLabel = css`
   color: ${color.GY[1]};
   cursor: pointer;
   ${typo.Main.Medium}
+  margin-top: 2px;
 `;
