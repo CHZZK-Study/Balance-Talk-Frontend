@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import React, { useState } from 'react';
 import Button from '@/components/atoms/Button/Button';
 import VoteBar from '@/components/atoms/VoteBar/VoteBar';
+import { useUpdateVote } from '@/hooks/talk-pick/useUpdateVote';
 import {
   votePrototypeStyle,
   buttonContainerStyle,
@@ -13,25 +15,29 @@ interface VotePrototypeProps {
   rightButtonText: string;
   leftVotes: number;
   rightVotes: number;
+  selectedVote: 'A' | 'B' | null;
 }
 
 const VotePrototype: React.FC<VotePrototypeProps> = ({
   leftButtonText,
   rightButtonText,
-  leftVotes,
-  rightVotes,
+  leftVotes: initialLeftVotes,
+  rightVotes: initialRightVotes,
+  selectedVote,
 }) => {
-  const totalVotes = leftVotes + rightVotes;
-  const leftPercentage = ((leftVotes / totalVotes) * 100).toFixed(1);
-  const rightPercentage = ((rightVotes / totalVotes) * 100).toFixed(1);
+  const { leftVotes, rightVotes, selectedBar, updateVoteNumber } =
+    useUpdateVote(initialLeftVotes, initialRightVotes, selectedVote);
 
-  const [selectedBar, setSelectedBar] = useState<'left' | 'right' | null>(null);
-  const [selectedButton, setSelectedButton] = useState<'left' | 'right' | null>(
-    null,
+  const totalVotes: number = leftVotes + rightVotes;
+  const leftPercentage: string = ((leftVotes / totalVotes) * 100).toFixed(1);
+  const rightPercentage: string = ((rightVotes / totalVotes) * 100).toFixed(1);
+
+  const [selectedButton, setSelectedButton] = useState<'A' | 'B' | null>(
+    selectedVote,
   );
 
-  const handleButtonClick = (side: 'left' | 'right') => {
-    setSelectedBar(side);
+  const handleButtonClick = (side: 'A' | 'B') => {
+    updateVoteNumber(side);
     setSelectedButton(side);
   };
 
@@ -41,8 +47,8 @@ const VotePrototype: React.FC<VotePrototypeProps> = ({
         <Button
           variant="outlineHighlightR"
           size="large"
-          onClick={() => handleButtonClick('left')}
-          css={getButtonStyle('left', selectedButton)}
+          onClick={() => handleButtonClick('A')}
+          css={getButtonStyle('A', selectedButton)}
         >
           {leftButtonText}
         </Button>
@@ -50,8 +56,8 @@ const VotePrototype: React.FC<VotePrototypeProps> = ({
         <Button
           variant="outlineHighlightB"
           size="large"
-          onClick={() => handleButtonClick('right')}
-          css={getButtonStyle('right', selectedButton)}
+          onClick={() => handleButtonClick('B')}
+          css={getButtonStyle('B', selectedButton)}
         >
           {rightButtonText}
         </Button>
@@ -66,4 +72,5 @@ const VotePrototype: React.FC<VotePrototypeProps> = ({
     </div>
   );
 };
+
 export default VotePrototype;

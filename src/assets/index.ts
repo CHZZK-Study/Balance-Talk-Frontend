@@ -1,4 +1,5 @@
 export { default as AngleSmallDown } from './svg/angle-small-down.svg';
+export { default as AngleSmallUp } from './svg/angle-small-up.svg';
 export { default as BookmarkRR } from './svg/bookmark-rr.svg';
 export { default as BookmarkSR } from './svg/bookmark-sr.svg';
 export { default as Search } from './svg/search.svg';
@@ -28,6 +29,7 @@ export { default as NaverLogin } from './svg/naver-login.svg';
 export { default as Copy } from './svg/copy.svg';
 export { default as Check } from './svg/check.svg';
 export { default as FooterLogo } from './svg/footer-logo.svg';
+export { default as Share } from './svg/share.svg';
 
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';

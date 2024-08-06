@@ -25,7 +25,7 @@ const meta = {
     leftVotes: { control: { type: 'number', min: 0 } },
     rightVotes: { control: { type: 'number', min: 0 } },
     selectedBar: {
-      control: { type: 'radio', options: ['left', 'right', null] },
+      control: { type: 'radio', options: ['A', 'B', null] },
     },
   },
   args: {
@@ -33,7 +33,7 @@ const meta = {
     rightPercentage: 50,
     leftVotes: 100,
     rightVotes: 100,
-    selectedBar: 'left',
+    selectedBar: 'A',
   },
 } satisfies Meta<typeof VoteBar>;
 
@@ -46,7 +46,7 @@ export const Default: Story = {
     rightPercentage: 50,
     leftVotes: 100,
     rightVotes: 100,
-    selectedBar: 'left',
+    selectedBar: 'A',
   },
 };
 
@@ -70,7 +70,7 @@ export const All: Story = {
             rightPercentage={70}
             leftVotes={60}
             rightVotes={140}
-            selectedBar="right"
+            selectedBar="B"
           />
         </div>
       </div>
