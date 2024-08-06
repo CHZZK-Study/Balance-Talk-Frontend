@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Popular, Couple, Taste, Worldcup } from '@/assets';
 import * as S from './CategoryBar.style';
 import ButtonComponent from '../../atoms/BalanceGameCategoryButton/BalanceGameCategoryButton';
 
-const CategoryBar: React.FC = () => {
+export interface CategoryBarProps {
+  activeTab: 'Popular' | 'Couple' | 'Taste' | 'Worldcup';
+}
+
+const CategoryBar: React.FC<CategoryBarProps> = ({
+  activeTab: initialActiveTab,
+}) => {
   const [activeTab, setActiveTab] = useState<
     'Popular' | 'Couple' | 'Taste' | 'Worldcup'
-  >('Popular');
+  >(initialActiveTab);
+
+  useEffect(() => {
+    setActiveTab(initialActiveTab);
+  }, [initialActiveTab]);
 
   const getBadgeText = (tab: 'Popular' | 'Couple' | 'Taste' | 'Worldcup') => {
     switch (tab) {
