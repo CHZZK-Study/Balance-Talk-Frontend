@@ -12,6 +12,12 @@ export const titleWrapStyle = css(typo.Title, {
   marginBottom: '20px',
 });
 
+export const barStyle = css({
+  margin: '48px 0',
+  display: 'flex',
+  justifyContent: 'center',
+});
+
 export const contentStyle = css({
   display: 'grid',
   gridTemplateColumns: 'repeat(2, 1fr)',

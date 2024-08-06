@@ -5,6 +5,7 @@ import ToggleGroup, {
   ToggleGroupProps,
 } from '@/components/atoms/ToggleGroup/ToggleGroup';
 import Button from '@/components/atoms/Button/Button';
+import CategoryBar from '@/components/molecules/CategoryBar/CategoryBar';
 import ContentsButton from '@/components/molecules/ContentsButton/ContentsButton';
 import * as S from './BalanceGameList.style';
 
@@ -49,6 +50,9 @@ const BalanceGameList = ({ contents }: ContentListProps) => {
           selectedValue={selectedValue}
           onClick={setSelectedValue}
         />
+      </div>
+      <div css={S.barStyle}>
+        <CategoryBar activeTab="Popular" />
       </div>
       <div css={S.contentStyle}>
         {contents.slice(0, visibleItems).map((content) => (
