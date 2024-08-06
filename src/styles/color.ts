@@ -14,7 +14,6 @@ const color = {
   BLUE_G: 'linear-gradient(to right, #9DB7FF 0%, #7A9AF3 100%)',
   PINK: '#FFAFBF',
   SKYBLUE: '#9DB7FF',
-  BLUE_LIGHT: `#D2D6FF`,
 
   // TODO: 이전 색상 타입 정리
   Common: {
