@@ -73,6 +73,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    isNew: false,
     notifications: [
       {
         category: '카테고리',
@@ -90,7 +91,7 @@ export const All: Story = {
     <ul css={storyContainer}>
       <li css={storyInnerContainer}>
         <h3>Single Notification</h3>
-        <Notification notifications={[args.notifications[0]]} />
+        <Notification isNew={false} notifications={[args.notifications[0]]} />
       </li>
 
       <li css={storyInnerContainer}>

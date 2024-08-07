@@ -2,7 +2,25 @@ import { css } from '@emotion/react';
 import color from '@/styles/color';
 import typo from '@/styles/typo';
 
+export const iconContainerStyle = css({
+  position: 'relative',
+  display: 'flex',
+  justifyContent: 'flex-end',
+});
+
+export const buttonStyle = css({
+  cursor: 'pointer',
+});
+
+export const notificationContainerStyle = css({
+  position: 'absolute',
+  top: '30px',
+  right: '10px',
+  zIndex: '1000',
+});
+
 export const notificationStyle = css({
+  marginTop: '10px',
   display: 'flex',
   flexDirection: 'column',
   backgroundColor: color.GY[3],
