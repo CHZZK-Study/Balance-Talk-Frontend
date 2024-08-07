@@ -7,6 +7,7 @@ import MenuTap, { MenuItem } from '@/components/atoms/MenuTap/MenuTap';
 import * as S from './Comment.style';
 
 export interface CommentProps extends ComponentPropsWithRef<'div'> {
+  id: string;
   imgUrl: string;
   nickname: string;
   createdTime: string;
@@ -17,6 +18,7 @@ export interface CommentProps extends ComponentPropsWithRef<'div'> {
 }
 
 const Comment = ({
+  id,
   imgUrl,
   nickname,
   createdTime,
