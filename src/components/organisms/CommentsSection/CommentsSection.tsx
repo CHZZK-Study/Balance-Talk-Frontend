@@ -3,6 +3,7 @@ import Comment from '@/components/molecules/Comment/Comment';
 import Pagination from '@/components/atoms/Pagination/Pagination';
 import TextArea from '@/components/molecules/TextArea/TextArea';
 import Toggle from '@/components/atoms/Toggle/Toggle';
+import ToastModal from '@/components/atoms/ToastModal/ToastModal';
 import { calculateTotalPages, generatePageNumbers } from '@/utils/pagination';
 import * as S from './CommentsSection.style';
 
@@ -18,9 +19,10 @@ interface CommentData {
 
 interface CommentsSectionProps {
   commentsData: CommentData[];
+  loggedIn: boolean;
 }
 
-const CommentsSection = ({ commentsData }: CommentsSectionProps) => {
+const CommentsSection = ({ commentsData, loggedIn }: CommentsSectionProps) => {
   const [selectedPage, setSelectedPage] = useState(1);
   const [displayedComments, setDisplayedComments] = useState<CommentData[]>([]);
   const [replyText, setReplyText] = useState('');
@@ -55,18 +57,29 @@ const CommentsSection = ({ commentsData }: CommentsSectionProps) => {
   return (
     <div css={S.commentsSectionContainer}>
       <Toggle count={127} label="톡댓톡" />
-      <TextArea
-        size="large"
-        value={replyText}
-        onChange={handleReplyChange}
-        onSubmit={handleReplySubmit}
-        placeholder="댓글을 입력하세요"
-        label="등록"
-      />
-      <div css={S.commentsWrapper}>
-        {displayedComments.map((commentData) => (
-          <Comment key={commentData.id} {...commentData} />
-        ))}
+      <div css={S.loggedInBackground}>
+        {!loggedIn && (
+          <div css={S.loggedOutBackground}>
+            <div css={S.toastModalWrapper}>
+              <ToastModal bgColor="black">
+                투표 후에 확인할 수 있습니다.
+              </ToastModal>
+            </div>
+          </div>
+        )}
+        <TextArea
+          size="large"
+          value={replyText}
+          onChange={handleReplyChange}
+          onSubmit={handleReplySubmit}
+          placeholder="댓글을 입력하세요"
+          label="등록"
+        />
+        <div css={S.commentsWrapper}>
+          {displayedComments.map((commentData) => (
+            <Comment key={commentData.id} {...commentData} />
+          ))}
+        </div>
       </div>
       <div css={S.paginationWrapper}>
         <Pagination
