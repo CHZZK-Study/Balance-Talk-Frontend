@@ -3,9 +3,11 @@ import Comment from '@/components/molecules/Comment/Comment';
 import Pagination from '@/components/atoms/Pagination/Pagination';
 import TextArea from '@/components/molecules/TextArea/TextArea';
 import Toggle from '@/components/atoms/Toggle/Toggle';
+import { calculateTotalPages, generatePageNumbers } from '@/utils/pagination';
 import * as S from './CommentsSection.style';
 
 interface CommentData {
+  id: string;
   imgUrl: string;
   nickname: string;
   createdTime: string;
@@ -47,8 +49,8 @@ const CommentsSection = ({ commentsData }: CommentsSectionProps) => {
     setReplyText('');
   };
 
-  const totalPages = Math.ceil(commentsData.length / commentsPerPage);
-  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+  const totalPages = calculateTotalPages(commentsData.length, commentsPerPage);
+  const pages = generatePageNumbers(totalPages);
 
   return (
     <div css={S.commentsSectionContainer}>
@@ -62,8 +64,8 @@ const CommentsSection = ({ commentsData }: CommentsSectionProps) => {
         label="등록"
       />
       <div css={S.commentsWrapper}>
-        {displayedComments.map((commentData, index) => (
-          <Comment key={index} {...commentData} />
+        {displayedComments.map((commentData) => (
+          <Comment key={commentData.id} {...commentData} />
         ))}
       </div>
       <div css={S.paginationWrapper}>
