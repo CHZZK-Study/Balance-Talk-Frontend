@@ -7,9 +7,7 @@ export interface CategoryBarProps {
   activeTab: 'Popular' | 'Couple' | 'Taste' | 'Worldcup';
 }
 
-const CategoryBar: React.FC<CategoryBarProps> = ({
-  activeTab: initialActiveTab,
-}) => {
+const CategoryBar = ({ activeTab: initialActiveTab }: CategoryBarProps) => {
   const [activeTab, setActiveTab] = useState<
     'Popular' | 'Couple' | 'Taste' | 'Worldcup'
   >(initialActiveTab);

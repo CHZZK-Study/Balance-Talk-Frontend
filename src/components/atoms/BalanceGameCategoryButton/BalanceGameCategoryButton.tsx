@@ -9,13 +9,13 @@ interface ButtonProps {
   onClick: () => void;
 }
 
-const BalanceGameCategoryButton: React.FC<ButtonProps> = ({
+const BalanceGameCategoryButton = ({
   label,
   icon,
   active,
   badgeText,
   onClick,
-}) => {
+}: ButtonProps) => {
   return (
     <button
       type="button"
