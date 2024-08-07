@@ -39,7 +39,7 @@ const BalanceGameList = ({ contents }: ContentListProps) => {
   const [visibleItems, setVisibleItems] = useState<number>(4);
 
   const handleLoadMore = () => {
-    setVisibleItems((prev) => Math.min(prev + 2, contents.length));
+    setVisibleItems((prev) => Math.min(prev + 6, contents.length));
   };
   return (
     <div css={S.containerStyle}>
