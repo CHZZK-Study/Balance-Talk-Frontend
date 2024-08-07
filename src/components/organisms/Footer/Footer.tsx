@@ -1,7 +1,11 @@
 import React from 'react';
 import { FooterLogo } from '@/assets';
+import {
+  TAG_CONTENT,
+  BOLD_CONTENT,
+  RIGHT_CONTAINER_LINKS,
+} from '@/constants/message';
 import * as S from './Footer.style';
-import { boldContent, footerWrapper, tagContent } from './Footer.style';
 
 const Footer = () => (
   <footer css={S.footerContainer}>
@@ -11,25 +15,26 @@ const Footer = () => (
           <FooterLogo />
         </div>
         <div css={S.tagContent}>
-          <p css={S.textLabel}>#_몰입하는 즐거움</p>
-          <p css={S.textLabel}>#_함께하는 즐거움</p>
-          <p css={S.textLabel}>#취지직 스터디</p>
-          <p css={S.textLabel}>&nbsp;</p>
-          <p css={S.textLabel}>프로젝트 3팀</p>
+          {TAG_CONTENT.map((text) => (
+            <p css={S.textLabel} key={text}>
+              {text}
+            </p>
+          ))}
         </div>
         <div css={S.boldContent}>
-          <p css={S.email}>개발 이슈 관련 이메일</p>
-          <p css={S.textLabel}>picko12300@gmail.com</p>
+          <p css={S.email}>{BOLD_CONTENT.emailLabel}</p>
+          <p css={S.textLabel}>{BOLD_CONTENT.email}</p>
         </div>
       </div>
       <div css={S.rightContainer}>
-        <p css={S.linkLabel}>오늘의 톡픽</p>
-        <p css={S.linkLabel}>톡픽 쓰기</p>
-        <p css={S.linkLabel}>톡&픽 플레이스</p>
-        <p css={S.linkLabel}>낼톡픽 투표하기</p>
-        <p css={S.linkLabel}>랜덤 밸런스 게임</p>
-        <p css={S.linkLabel}>주제별 밸런스게임</p>
-        <p css={S.subLabel}>개인정보처리방침</p>
+        {RIGHT_CONTAINER_LINKS.map((text) => (
+          <p
+            css={text === '개인정보처리방침' ? S.subLabel : S.linkLabel}
+            key={text}
+          >
+            {text}
+          </p>
+        ))}
       </div>
     </div>
   </footer>
