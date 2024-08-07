@@ -5,6 +5,7 @@ import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
 
 const commentsData = [
   {
+    id: '1',
     imgUrl: 'url1',
     nickname: '닉네임1',
     createdTime: '24.07.04 14:56',
@@ -13,6 +14,7 @@ const commentsData = [
     stance: 'pros' as 'pros' | 'cons',
   },
   {
+    id: '2',
     imgUrl: 'url2',
     nickname: '닉네임2',
     createdTime: '24.07.04 14:57',
@@ -21,6 +23,7 @@ const commentsData = [
     stance: 'cons' as 'pros' | 'cons',
   },
   {
+    id: '3',
     imgUrl: 'url3',
     nickname: '닉네임3',
     createdTime: '24.07.04 14:58',
@@ -29,6 +32,7 @@ const commentsData = [
     stance: 'pros' as 'pros' | 'cons',
   },
   {
+    id: '4',
     imgUrl: 'url4',
     nickname: '닉네임4',
     createdTime: '24.07.04 14:59',
@@ -37,6 +41,7 @@ const commentsData = [
     stance: 'cons' as 'pros' | 'cons',
   },
   {
+    id: '5',
     imgUrl: 'url5',
     nickname: '닉네임5',
     createdTime: '24.07.04 15:00',
@@ -45,6 +50,7 @@ const commentsData = [
     stance: 'pros' as 'pros' | 'cons',
   },
   {
+    id: '6',
     imgUrl: 'url6',
     nickname: '닉네임6',
     createdTime: '24.07.04 15:01',
@@ -53,6 +59,7 @@ const commentsData = [
     stance: 'cons' as 'pros' | 'cons',
   },
   {
+    id: '7',
     imgUrl: 'url7',
     nickname: '닉네임7',
     createdTime: '24.07.04 15:02',
@@ -61,6 +68,7 @@ const commentsData = [
     stance: 'pros' as 'pros' | 'cons',
   },
   {
+    id: '8',
     imgUrl: 'url8',
     nickname: '닉네임8',
     createdTime: '24.07.04 15:03',
@@ -79,6 +87,16 @@ const meta: Meta<typeof CommentsSection> = {
   tags: ['autodocs'],
   args: {
     commentsData,
+    loggedIn: true,
+  },
+  argTypes: {
+    loggedIn: {
+      control: {
+        type: 'boolean',
+      },
+      description: 'Indicates whether the user is logged in',
+      defaultValue: true,
+    },
   },
 };
 
@@ -93,4 +111,17 @@ export const Default: Story = {
       </div>
     </div>
   ),
+};
+
+export const All: Story = {
+  render: (args) => (
+    <div css={storyContainer}>
+      <div css={storyInnerContainer}>
+        <CommentsSection {...args} />
+      </div>
+    </div>
+  ),
+  args: {
+    loggedIn: false,
+  },
 };
