@@ -31,7 +31,7 @@ const TopBanner = ({ todayTalkPick }: TopBannerProps) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentId((prev) => (prev + 1) % slides.length);
-    }, 5000);
+    }, 3000);
 
     return () => clearInterval(interval);
   });

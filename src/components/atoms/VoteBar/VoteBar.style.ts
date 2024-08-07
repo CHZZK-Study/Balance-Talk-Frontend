@@ -3,7 +3,7 @@ import color from '@/styles/color';
 import typo from '@/styles/typo';
 
 interface BarProps {
-  selectedBar?: 'left' | 'right' | null;
+  selectedBar?: 'A' | 'B' | null;
   leftPercentage: number;
   rightPercentage: number;
 }
@@ -25,13 +25,14 @@ export const barStyle = css({
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
+  boxShadow: '1px 2px 5px rgba(0, 0, 0, 0.15)',
 });
 
 export const leftBarStyle = ({ leftPercentage, selectedBar }: BarProps) =>
   css({
     height: '50px',
-    width: selectedBar === 'left' ? `${leftPercentage}%` : '99%',
-    background: selectedBar === 'left' ? color.RED_G : color.RED,
+    width: selectedBar === 'A' ? `${leftPercentage}%` : '99%',
+    background: selectedBar === 'A' ? color.RED_G : color.RED,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-start',
@@ -39,7 +40,7 @@ export const leftBarStyle = ({ leftPercentage, selectedBar }: BarProps) =>
     fontWeight: 'bold',
     fontSize: '18px',
     borderRadius: '100px',
-    zIndex: selectedBar === 'left' ? 999 : 1,
+    zIndex: selectedBar === 'A' ? 999 : 1,
     position: 'absolute',
     left: '5px',
     top: '5px',
@@ -50,8 +51,8 @@ export const leftBarStyle = ({ leftPercentage, selectedBar }: BarProps) =>
 export const rightBarStyle = ({ rightPercentage, selectedBar }: BarProps) =>
   css({
     height: '50px',
-    width: selectedBar === 'right' ? `${rightPercentage}%` : '99%',
-    background: selectedBar === 'right' ? color.BLUE : color.BLUE_G,
+    width: selectedBar === 'B' ? `${rightPercentage}%` : '99%',
+    background: selectedBar === 'B' ? color.BLUE : color.BLUE_G,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
@@ -59,7 +60,7 @@ export const rightBarStyle = ({ rightPercentage, selectedBar }: BarProps) =>
     fontWeight: 'bold',
     fontSize: '18px',
     borderRadius: '100px',
-    zIndex: selectedBar === 'right' ? 999 : 1,
+    zIndex: selectedBar === 'B' ? 999 : 1,
     position: 'absolute',
     right: '5px',
     top: '5px',
