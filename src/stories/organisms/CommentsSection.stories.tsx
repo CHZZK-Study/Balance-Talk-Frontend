@@ -87,14 +87,14 @@ const meta: Meta<typeof CommentsSection> = {
   tags: ['autodocs'],
   args: {
     commentsData,
-    loggedIn: true,
+    voted: true,
   },
   argTypes: {
-    loggedIn: {
+    voted: {
       control: {
         type: 'boolean',
       },
-      description: 'Indicates whether the user is logged in',
+      description: '투표 여부에 따라서 블러 처리가 됩니다.',
       defaultValue: true,
     },
   },
@@ -122,6 +122,6 @@ export const All: Story = {
     </div>
   ),
   args: {
-    loggedIn: false,
+    voted: false,
   },
 };

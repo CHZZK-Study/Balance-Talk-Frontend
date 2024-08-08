@@ -19,10 +19,10 @@ interface CommentData {
 
 interface CommentsSectionProps {
   commentsData: CommentData[];
-  loggedIn: boolean;
+  voted: boolean;
 }
 
-const CommentsSection = ({ commentsData, loggedIn }: CommentsSectionProps) => {
+const CommentsSection = ({ commentsData, voted }: CommentsSectionProps) => {
   const [selectedPage, setSelectedPage] = useState(1);
   const [displayedComments, setDisplayedComments] = useState<CommentData[]>([]);
   const [replyText, setReplyText] = useState('');
@@ -58,7 +58,7 @@ const CommentsSection = ({ commentsData, loggedIn }: CommentsSectionProps) => {
     <div css={S.commentsSectionContainer}>
       <Toggle count={127} label="톡댓톡" />
       <div css={S.loggedInBackground}>
-        {!loggedIn && (
+        {!voted && (
           <div css={S.loggedOutBackground}>
             <div css={S.toastModalWrapper}>
               <ToastModal bgColor="black">
