@@ -64,3 +64,26 @@ export const PRIVACY_POLICY = `[[PICK-O]]는 사용자의 개인정보를 중요
 
 시행일: 2024.07.15
 [[PICK-O]]는 사용자의 개인정보를 소중히 다루며, 개인정보 보호를 위해 최선을 다하겠습니다.`;
+
+export const TAG_CONTENT = [
+  '#_몰입하는 즐거움',
+  '#_함께하는 즐거움',
+  '#취지직 스터디',
+  '',
+  '프로젝트 3팀',
+];
+
+export const BOLD_CONTENT = {
+  emailLabel: '개발 이슈 관련 이메일',
+  email: 'picko12300@gmail.com',
+};
+
+export const RIGHT_CONTAINER_LINKS = [
+  '오늘의 톡픽',
+  '톡픽 쓰기',
+  '톡&픽 플레이스',
+  '낼톡픽 투표하기',
+  '랜덤 밸런스 게임',
+  '주제별 밸런스게임',
+  '개인정보처리방침',
+];

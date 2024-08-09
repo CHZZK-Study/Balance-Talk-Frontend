@@ -28,6 +28,7 @@ export { default as GoogleLogin } from './svg/google-login.svg';
 export { default as NaverLogin } from './svg/naver-login.svg';
 export { default as Copy } from './svg/copy.svg';
 export { default as Check } from './svg/check.svg';
+export { default as FooterLogo } from './svg/footer-logo.svg';
 export { default as Share } from './svg/share.svg';
 export { default as NotificationButton } from './svg/notification-button.svg';
 export { default as NotificationBell } from './svg/notification-bell.svg';

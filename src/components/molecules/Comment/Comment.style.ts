@@ -6,9 +6,17 @@ export const MainContainer = css`
   display: flex;
   flex-direction: column;
   width: 1175px;
-  height: 368px;
   min-width: 1175px;
-  min-height: 368px;
+`;
+
+export const compactContainer = css`
+  ${MainContainer};
+  height: 131px;
+`;
+
+export const expandedContainer = css`
+  ${MainContainer};
+  height: 368px;
 `;
 
 export const commentContainer = css`
