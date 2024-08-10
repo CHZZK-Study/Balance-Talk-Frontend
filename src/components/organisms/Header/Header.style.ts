@@ -3,12 +3,13 @@ import color from '@/styles/color';
 import typo from '@/styles/typo';
 
 export const containerStyle = css({
-  width: '100%',
+  width: '1920px',
   padding: '0 200px',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
   backgroundColor: '#ffffff',
+  boxShadow: '0px 5px 10px rgba(0, 0, 0, 0.1)',
 });
 
 export const logoStyle = css({
