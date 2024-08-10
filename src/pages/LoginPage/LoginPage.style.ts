@@ -1,18 +1,15 @@
 import { css } from '@emotion/react';
-import { Theme } from '../../styles/theme';
+import color from '@/styles/color';
 
 export const loginContainer = css({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  width: '700px',
-  padding: '100px',
-  background: Theme.color.gray100,
+  width: '1920px',
+  padding: '118px 661px 51px 661px',
+  background: color.GY[3],
 });
 
-export const linkContainer = css({
-  display: 'flex',
-  justifyContent: 'space-between',
-  margin: '20px',
-  gap: '10px',
+export const logoStyle = css({
+  marginBottom: '24px',
 });

@@ -1,20 +1,19 @@
 import React from 'react';
-import Divider from '../../components/common/Divider';
-import Heading from '../../components/common/Heading/Heading';
-import { PATH } from '../../constants/path';
-import { linkContainer, loginContainer } from './LoginPage.style';
-import LoginForm from './sections/LoginForm/LoginForm';
+import Header from '@/components/organisms/Header/Header';
+import LoginForm from '@/components/molecules/LoginForm/LoginForm';
+import Footer from '@/components/organisms/Footer/Footer';
+import { LogoLarge } from '@/assets';
+import * as S from './LoginPage.style';
 
 const LoginPage = () => {
   return (
-    <div css={loginContainer}>
-      <Heading size="large">LOGIN</Heading>
-      <LoginForm />
-      <div css={linkContainer}>
-        <a href={PATH.SIGN_UP}>회원가입</a>
-        <Divider />
-        <a href={PATH.PW}>비밀번호 찾기</a>
+    <div>
+      <Header />
+      <div css={S.loginContainer}>
+        <LogoLarge css={S.logoStyle} />
+        <LoginForm />
       </div>
+      <Footer />
     </div>
   );
 };
