@@ -5,10 +5,10 @@ import { useMutation } from '@tanstack/react-query';
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import defaultProfileImage from '../../../../assets/images/defaultProfile.png';
-import { Theme } from '../../../../styles/theme';
-import Button from '../../../atoms/Button/Button';
-import Label from '../../../atoms/Label/Label';
-import ProfileImage from '../../Profile/ProfileImage/ProfileImage';
+import { Theme } from '../../../styles/theme';
+import Button from '../../atoms/Button/Button';
+import Label from '../../atoms/Label/Label';
+import ProfileImage from '../../common/Profile/ProfileImage/ProfileImage';
 import {
   profileImageSelectContainer,
   profileImageText,

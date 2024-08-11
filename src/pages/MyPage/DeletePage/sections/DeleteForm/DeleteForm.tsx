@@ -4,7 +4,7 @@ import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
 import { css } from '@emotion/react';
-import InputPw from '../../../../../components/common/InputsUserInfo/InputPw';
+import InputPw from '../../../../../components/molecules/InputPw/InputPw';
 import Button from '../../../../../components/atoms/Button/Button';
 import Input from '../../../../../components/atoms/Input/Input';
 import { useMemberDelete } from '../../../../../hooks/mypage/memberDelete/useMemberDelete';
