@@ -39,11 +39,11 @@ export { default as Popular } from './svg/popular.svg';
 export { default as Couple } from './svg/couple.svg';
 export { default as Taste } from './svg/taste.svg';
 export { default as Worldcup } from './svg/worldcup.svg';
+export { default as Plus } from './svg/plus.svg';
 
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';
 export { default as Profile } from './svg/profile.svg';
-export { default as Plus } from './svg/plus.svg';
 export { default as More } from './svg/more.svg';
 export { default as Report } from './svg/report.svg';
 export { default as Like } from './svg/like.svg';
