@@ -6,7 +6,7 @@ export const footerContainer = css`
   display: flex;
   flex-direction: column;
   background-color: ${color.BLUE_LIGHT};
-  width: 1920px;
+  width: 100%;
   height: 427px;
   padding-left: 200px;
 `;
