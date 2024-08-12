@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { useCheckCode } from '@/hooks/common/inputsUserInfo/useCheckCode';
 import { MemberForm } from '@/types/member';
-import { css } from '@emotion/react';
 import React, { ChangeEvent, useEffect } from 'react';
-import { useCheckCode } from '../../../hooks/common/inputsUserInfo/useCheckCode';
-import Button from '../../atoms/Button/Button';
-import Input from '../../atoms/Input/Input';
+import Button from '@/components/atoms/Button/Button';
+import Input from '@/components/atoms/Input/Input';
+import Label from '@/components/atoms/Label/Label';
+import { inputCodeBtnStyling, inputCodeContainer } from './InputCode.style';
 
 interface InputCodeProps {
   value: Pick<MemberForm, 'email' | 'verificationCode'>;
@@ -22,19 +23,25 @@ const InputCode = ({ value, onChange, onSuccessChange }: InputCodeProps) => {
   }, [errorMessage]);
 
   return (
-    <Input
-      name="verificationCode"
-      placeholder="인증번호 입력"
-      size="medium"
-      label="인증번호"
-      isError={isError}
-      errorMessage={errorMessage}
-      value={value.verificationCode}
-      ref={inputRef}
-      onChange={onChange}
-      btn={<Button onClick={handleSubmit}>확인</Button>}
-      css={css({ width: '350px' })}
-    />
+    <div css={inputCodeContainer}>
+      <Label id="verificationCode">인증번호</Label>
+      <Input
+        id="verificationCode"
+        name="verificationCode"
+        placeholder="인증번호 입력"
+        size="small"
+        isError={isError}
+        errorMessage={errorMessage}
+        value={value.verificationCode}
+        ref={inputRef}
+        onChange={onChange}
+        btn={
+          <Button onClick={handleSubmit} css={inputCodeBtnStyling}>
+            확인
+          </Button>
+        }
+      />
+    </div>
   );
 };
 
