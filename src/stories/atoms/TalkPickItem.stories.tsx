@@ -52,7 +52,7 @@ export const All: Story = {
       <li css={storyInnerContainer}>
         <h3>Header </h3>
         <TalkPickItem {...args} />
-        <h3>Defult</h3>
+        <h3>Default</h3>
         <TalkPickItem type="default" talkPickItem={defaultTalkPick} />
         <h3>Best</h3>
         <TalkPickItem type="best" rank={1} talkPickItem={bestTalkPick} />
