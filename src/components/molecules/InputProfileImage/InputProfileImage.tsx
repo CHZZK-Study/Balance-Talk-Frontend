@@ -1,17 +1,18 @@
 import { postFile } from '@/api/file';
-import { UploadedImage } from '@/types/post';
+// import defaultProfileImage from '@/assets/svg/normal-profile.svg';
+import Label from '@/components/atoms/Label/Label';
+import ProfileSignUp from '@/components/atoms/ProfileSignUp/ProfileSignUp';
+import color from '@/styles/color';
+import { UploadedImage } from '@/types/file';
 import { css } from '@emotion/react';
 import { useMutation } from '@tanstack/react-query';
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import defaultProfileImage from '../../../../assets/images/defaultProfile.png';
-import { Theme } from '../../../styles/theme';
-import Button from '../../atoms/Button/Button';
-import Label from '../../atoms/Label/Label';
-import ProfileImage from '../../common/Profile/ProfileImage/ProfileImage';
 import {
+  profileDefaultText,
   profileImageSelectContainer,
   profileImageText,
+  profileImageTextContainer,
 } from './InputProfileImage.style';
 
 interface InputProfileImageProps {
@@ -23,9 +24,7 @@ const InputProfileImage = ({
   setProfilePhoto,
   imgSrc,
 }: InputProfileImageProps) => {
-  const [imageSrc, setImageSrc] = useState<string>(
-    imgSrc || defaultProfileImage,
-  );
+  const [imageSrc, setImageSrc] = useState<string>(imgSrc || '');
   const [isError, setIsError] = useState<boolean>(false);
 
   const fileUpload = useMutation({
@@ -63,18 +62,30 @@ const InputProfileImage = ({
     maxSize: 3145728, // 3MB
   });
 
+  const handleDefaultImage = () => {
+    setImageSrc('');
+  };
+
   return (
     <div css={profileImageSelectContainer}>
       <Label>프로필 사진(선택)</Label>
-      <ProfileImage size="large" src={imageSrc} />
-      <Button size="small" {...getRootProps()}>
-        파일 선택
-      </Button>
-      <span
-        css={[profileImageText, isError && css({ color: Theme.color.red })]}
-      >
-        3MB 이하의 사진만 가능합니다.
-      </span>
+      <ProfileSignUp
+        isSetting={!!imageSrc}
+        src={imageSrc}
+        {...getRootProps()}
+      />
+      <div css={profileImageTextContainer}>
+        <button
+          type="button"
+          css={profileDefaultText}
+          onClick={handleDefaultImage}
+        >
+          기본 이미지로 프로필 설정하기
+        </button>
+        <span css={[profileImageText, isError && css({ color: color.RED })]}>
+          3MB 이하의 사진만 가능합니다.
+        </span>
+      </div>
     </div>
   );
 };
