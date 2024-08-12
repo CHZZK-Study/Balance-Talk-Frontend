@@ -28,7 +28,7 @@ const ProfileSetting = ({
               css={profileImageWrapper}
             />
           </div>
-          <div css={profilePlusWrapper}>
+          <div css={profilePlusWrapper} {...attributes}>
             <Plus />
           </div>
         </>
