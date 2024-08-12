@@ -1,9 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { ChangeEvent, useEffect } from 'react';
-import { css } from '@emotion/react';
-import Input from '../../atoms/Input/Input';
-import Button from '../../atoms/Button/Button';
-import { useCheckNickname } from '../../../hooks/common/inputsUserInfo/useCheckNickname';
+import Button from '@/components/atoms/Button/Button';
+import Input from '@/components/atoms/Input/Input';
+import Label from '@/components/atoms/Label/Label';
+import { useCheckNickname } from '@/hooks/common/inputsUserInfo/useCheckNickname';
+import {
+  inputNicknameBtnStyling,
+  inputNicknameContainer,
+} from './InputNickname.style';
 
 interface InputNicknameProps {
   value: string;
@@ -26,19 +30,25 @@ const InputNickname = ({
   }, [errorMessage]);
 
   return (
-    <Input
-      name="nickname"
-      placeholder="닉네임을 입력해주세요."
-      size="medium"
-      label="닉네임"
-      isError={isError}
-      errorMessage={errorMessage}
-      value={value}
-      ref={inputRef}
-      onChange={onChange}
-      btn={<Button onClick={handleSubmit}>확인</Button>}
-      css={css({ width: '350px' })}
-    />
+    <div css={inputNicknameContainer}>
+      <Label id="nickname">닉네임</Label>
+      <Input
+        id="nickname"
+        name="nickname"
+        placeholder="닉네임을 입력해주세요."
+        size="small"
+        isError={isError}
+        errorMessage={errorMessage}
+        value={value}
+        ref={inputRef}
+        onChange={onChange}
+        btn={
+          <Button onClick={handleSubmit} css={inputNicknameBtnStyling}>
+            확인
+          </Button>
+        }
+      />
+    </div>
   );
 };
 
