@@ -5,7 +5,7 @@ export const loginContainer = css({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  width: '1920px',
+  width: '100%',
   padding: '118px 661px 51px 661px',
   background: color.GY[3],
 });
