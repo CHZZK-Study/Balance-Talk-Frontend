@@ -33,7 +33,10 @@ const ProfileSignUp = ({
           </div>
         </>
       ) : (
-        <div css={[profileSignUpInnerContainer, profilePlusImageWrapper]}>
+        <div
+          css={[profileSignUpInnerContainer, profilePlusImageWrapper]}
+          {...attributes}
+        >
           <Plus />
         </div>
       )}
