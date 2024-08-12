@@ -13,7 +13,7 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {
     size: {
-      options: ['medium'],
+      options: ['medium', 'small'],
       control: { type: 'radio' },
     },
     variant: {
@@ -50,6 +50,7 @@ export const All: Story = {
       <li css={storyInnerContainer}>
         <h3>Size</h3>
         <Input {...args} placeholder="medium" />
+        <Input {...args} size="small" placeholder="small" />
       </li>
       <li css={storyInnerContainer}>
         <h3>Variant</h3>
