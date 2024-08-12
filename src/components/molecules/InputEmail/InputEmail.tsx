@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import Button from '@/components/atoms/Button/Button';
+import Input from '@/components/atoms/Input/Input';
+import Label from '@/components/atoms/Label/Label';
+import { useCheckEmail } from '@/hooks/common/inputsUserInfo/useCheckEmail';
 import React, { ChangeEvent, useEffect } from 'react';
-import { css } from '@emotion/react';
-import Button from '../../atoms/Button/Button';
-import Input from '../../atoms/Input/Input';
-import { useCheckEmail } from '../../../hooks/common/inputsUserInfo/useCheckEmail';
+import { inputEmailBtnStyling, inputEmailContainer } from './InputEmail.style';
 
 interface InputEmailProps {
   type: string;
@@ -30,23 +31,25 @@ const InputEmail = ({
   }, [errorMessage]);
 
   return (
-    <Input
-      name="email"
-      placeholder="이메일을 입력해주세요."
-      size="medium"
-      label="이메일"
-      isError={isError}
-      errorMessage={errorMessage}
-      value={value}
-      ref={inputRef}
-      onChange={onChange}
-      btn={
-        <Button onClick={handleSubmit}>
-          {type === 'signup' ? '인증' : '발송'}
-        </Button>
-      }
-      css={css({ width: '350px' })}
-    />
+    <div css={inputEmailContainer}>
+      <Label id="email">이메일</Label>
+      <Input
+        id="email"
+        name="email"
+        placeholder="이메일을 입력해주세요."
+        size="small"
+        isError={isError}
+        errorMessage={errorMessage}
+        value={value}
+        ref={inputRef}
+        onChange={onChange}
+        btn={
+          <Button onClick={handleSubmit} css={inputEmailBtnStyling}>
+            {type === 'signup' ? '인증' : '발송'}
+          </Button>
+        }
+      />
+    </div>
   );
 };
 
