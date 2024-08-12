@@ -25,6 +25,7 @@ const meta = {
         'primary',
         'roundPrimary',
         'outlinePrimary',
+        'outlineSecondary',
         'outlineShadow',
         'outlineHighlightR',
         'outlineHighlightB',
@@ -69,6 +70,9 @@ export const All: Story = {
         </li>
         <Button {...args} variant="outlinePrimary">
           outlinePrimary
+        </Button>
+        <Button {...args} variant="outlineSecondary">
+          outlineSecondary
         </Button>
         <div css={storyInnerRowContainer}>
           <Button {...args} variant="outlineShadow">
