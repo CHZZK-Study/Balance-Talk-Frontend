@@ -20,6 +20,7 @@ export const profileDefaultText = css(typo.Main.Medium, {
   color: color.BK,
   textDecoration: 'underline',
   textUnderlineOffset: '5px',
+  cursor: 'pointer',
   '&:hover': [
     typo.Main.SemiBold,
     {

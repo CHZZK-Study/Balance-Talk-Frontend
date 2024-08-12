@@ -4,6 +4,7 @@ import { css } from '@emotion/react';
 export const profileSignUpContainer = css({
   display: 'inline-block',
   position: 'relative',
+  cursor: 'pointer',
 });
 
 export const profileSignUpInnerContainer = css({
@@ -29,7 +30,6 @@ export const profilePlusWrapper = css({
   borderRadius: '50%',
   backgroundColor: color.GY[3],
   boxShadow: '0px 2px 10px rgba(0, 0, 0, 0.1)',
-  cursor: 'pointer',
 });
 
 export const profilePlusImageWrapper = css({
@@ -39,5 +39,4 @@ export const profilePlusImageWrapper = css({
   width: '135px',
   height: '135px',
   backgroundColor: color.GY[3],
-  cursor: 'pointer',
 });
