@@ -1,19 +1,18 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { Outlet } from 'react-router-dom';
-import Header from './Header/Header';
-import SearchBar from './SearchBar';
+import Header from '@/components/organisms/Header/Header';
+import Footer from '@/components/organisms/Footer/Footer';
 import Sidebar from '../pages/MyPage/sections/Sidebar/Sidebar';
 
 export const Layout = () => {
   return (
     <>
       <Header />
-      <SearchBar />
       <main>
         <Outlet />
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };
