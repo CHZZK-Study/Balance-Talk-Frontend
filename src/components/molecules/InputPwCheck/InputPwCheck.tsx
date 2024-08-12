@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { css } from '@emotion/react';
+import Input from '@/components/atoms/Input/Input';
+import Label from '@/components/atoms/Label/Label';
+import { useCheckPasswordCheck } from '@/hooks/common/inputsUserInfo/useCheckPasswordCheck';
 import React, { ChangeEvent, useEffect } from 'react';
-import { useCheckPasswordCheck } from '../../../hooks/common/inputsUserInfo/useCheckPasswordCheck';
-import Input from '../../atoms/Input/Input';
+import { inputPwCheckContainer } from './InputPwCheck.style';
 
 interface InputPwCheckProps {
   value: string;
@@ -27,20 +28,22 @@ const InputPwCheck = ({
   }, [errorMessage]);
 
   return (
-    <Input
-      name="passwordCheck"
-      placeholder="비밀번호를 재입력해주세요."
-      size="medium"
-      label="비밀번호 확인"
-      isError={isError}
-      errorMessage={errorMessage}
-      value={value}
-      ref={inputRef}
-      onChange={onChange}
-      onKeyDown={handleVerify}
-      onBlur={handleVerify}
-      css={css({ width: '420px' })}
-    />
+    <div css={inputPwCheckContainer}>
+      <Label id="passwordCheck">비밀번호 확인</Label>
+      <Input
+        id="passwordCheck"
+        name="passwordCheck"
+        placeholder="비밀번호를 재입력해주세요."
+        size="small"
+        isError={isError}
+        errorMessage={errorMessage}
+        value={value}
+        ref={inputRef}
+        onChange={onChange}
+        onKeyDown={handleVerify}
+        onBlur={handleVerify}
+      />
+    </div>
   );
 };
 
