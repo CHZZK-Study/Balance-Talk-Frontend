@@ -28,6 +28,13 @@ export const getVariantStyling = (
         boxShadow: '1px 2px 15px rgba(119, 130, 255, 0.4)',
       },
     }),
+    outlineSecondary: css({
+      backgroundColor: color.WT,
+      color: color.GY[1],
+      outline: `1px solid ${color.GY[1]}`,
+      borderRadius: '30px',
+      gap: '10px',
+    }),
     outlineShadow: css({
       backgroundColor: 'transparent',
       outline: `1px solid ${color.GY[2]}`,
@@ -90,6 +97,12 @@ export const getSizeByVariantStyling = (
       }),
     },
     outlinePrimary: {
+      large: css(typo.Main.SemiBold, {
+        padding: '10px 25px',
+      }),
+      medium: css({}),
+    },
+    outlineSecondary: {
       large: css(typo.Main.SemiBold, {
         padding: '10px 25px',
       }),

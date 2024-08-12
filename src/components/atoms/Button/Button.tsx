@@ -13,6 +13,7 @@ export interface ButtonProps extends ComponentPropsWithRef<'button'> {
     | 'primary'
     | 'roundPrimary'
     | 'outlinePrimary'
+    | 'outlineSecondary'
     | 'outlineShadow'
     | 'outlineHighlightR'
     | 'outlineHighlightB'
