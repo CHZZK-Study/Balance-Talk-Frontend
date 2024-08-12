@@ -1,19 +1,19 @@
 import React from 'react';
-import Button from '../../components/atoms/Button/Button';
-import Heading from '../../components/common/Heading/Heading';
-import InputCode from '../../components/molecules/InputCode/InputCode';
-import InputEmail from '../../components/molecules/InputEmail/InputEmail';
-import InputNickname from '../../components/molecules/InputNickname/InputNickname';
-import InputPw from '../../components/molecules/InputPw/InputPw';
-import InputPwCheck from '../../components/molecules/InputPwCheck/InputPwCheck';
+import Button from '@/components/atoms/Button/Button';
+import InputCode from '@/components/molecules/InputCode/InputCode';
+import InputEmail from '@/components/molecules/InputEmail/InputEmail';
+import InputNickname from '@/components/molecules/InputNickname/InputNickname';
+import InputProfileImage from '@/components/molecules/InputProfileImage/InputProfileImage';
+import InputPw from '@/components/molecules/InputPw/InputPw';
+import InputPwCheck from '@/components/molecules/InputPwCheck/InputPwCheck';
+import { useSignupForm } from '@/hooks/signup/useSignupForm';
 import {
   btnContainer,
   btnSignup,
   inputContainer,
   signupContainer,
+  signUpHeadingStyling,
 } from './SignUpPage.style';
-import InputProfileImage from '../../components/molecules/InputProfileImage/InputProfileImage';
-import { useSignupForm } from '../../hooks/signup/useSignupForm';
 
 const SignUpPage = () => {
   const {
@@ -26,7 +26,7 @@ const SignUpPage = () => {
   } = useSignupForm();
   return (
     <form onSubmit={handleSubmit} css={signupContainer}>
-      <Heading size="large">SIGN UP</Heading>
+      <span css={signUpHeadingStyling}>SIGN UP</span>
       <InputProfileImage setProfilePhoto={setEach} />
       <div css={inputContainer}>
         <InputEmail
@@ -58,13 +58,12 @@ const SignUpPage = () => {
         />
       </div>
       <div css={btnContainer}>
-        <Button type="submit" size="large" css={btnSignup}>
+        <Button type="submit" variant="outlinePrimary" css={btnSignup}>
           회원가입
         </Button>
         <Button
           onClick={handleCancle}
-          variant="cancel"
-          size="large"
+          variant="outlineSecondary"
           css={btnSignup}
         >
           취소
