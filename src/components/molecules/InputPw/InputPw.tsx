@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { INPUT_LIMIT } from '@/constants/input';
-import { css } from '@emotion/react';
+import { useCheckPassword } from '@/hooks/common/inputsUserInfo/useCheckPassword';
 import React, { ChangeEvent, useEffect } from 'react';
-import { useCheckPassword } from '../../../hooks/common/inputsUserInfo/useCheckPassword';
-import Input from '../../atoms/Input/Input';
+import Input from '@/components/atoms/Input/Input';
+import Label from '@/components/atoms/Label/Label';
+import { inputPwContainer } from './InputPw.style';
 
 interface InputPwProps {
   value: string;
@@ -22,22 +23,24 @@ const InputPw = ({ value, onChange, onSuccessChange }: InputPwProps) => {
   }, [errorMessage]);
 
   return (
-    <Input
-      name="password"
-      placeholder="비밀번호를 입력해주세요."
-      size="medium"
-      label="비밀번호"
-      minLength={INPUT_LIMIT.PW_MIN}
-      maxLength={INPUT_LIMIT.PW_MAX}
-      isError={isError}
-      errorMessage={errorMessage}
-      value={value}
-      ref={inputRef}
-      onChange={onChange}
-      onKeyDown={handleVerify}
-      onBlur={handleVerify}
-      css={css({ width: '420px' })}
-    />
+    <div css={inputPwContainer}>
+      <Label id="password">비밀번호</Label>
+      <Input
+        id="password"
+        name="password"
+        placeholder="비밀번호를 입력해주세요."
+        size="small"
+        minLength={INPUT_LIMIT.PW_MIN}
+        maxLength={INPUT_LIMIT.PW_MAX}
+        isError={isError}
+        errorMessage={errorMessage}
+        value={value}
+        ref={inputRef}
+        onChange={onChange}
+        onKeyDown={handleVerify}
+        onBlur={handleVerify}
+      />
+    </div>
   );
 };
 
