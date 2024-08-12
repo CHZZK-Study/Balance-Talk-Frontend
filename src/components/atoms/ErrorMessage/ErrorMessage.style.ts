@@ -8,4 +8,5 @@ export const getTextStyling = (
 ) =>
   css(typo.Main.Medium, {
     color: isError ? color.RED : color.GY[1],
+    marginTop: '8px',
   });
