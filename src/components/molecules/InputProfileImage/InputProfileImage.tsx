@@ -1,5 +1,4 @@
 import { postFile } from '@/api/file';
-// import defaultProfileImage from '@/assets/svg/normal-profile.svg';
 import Label from '@/components/atoms/Label/Label';
 import ProfileSignUp from '@/components/atoms/ProfileSignUp/ProfileSignUp';
 import color from '@/styles/color';
@@ -35,7 +34,6 @@ const InputProfileImage = ({
   });
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
-      console.log(acceptedFiles[0]);
       if (acceptedFiles.length) {
         const reader = new FileReader();
         reader.readAsDataURL(acceptedFiles[0]);
