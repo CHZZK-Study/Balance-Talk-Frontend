@@ -28,6 +28,7 @@ import SearchResultPage from './pages/SearchResultPage/SearchResultPage';
 import SignUpPage from './pages/SignUpPage/SignUpPage';
 import { useNewSelector } from './store';
 import { selectAccessToken } from './store/auth';
+import TalkPickPlacePage from './pages/TalkPickPlacePage/TalkPickPlacePage';
 
 const App: React.FC = () => {
   const accessToken = useNewSelector(selectAccessToken);
@@ -38,6 +39,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<LandingPage />} />
+          <Route path="/talkpickplace" element={<TalkPickPlacePage />} />
           {/* <Route path="posts" element={<PostList />} />
           <Route path="posts/:id" element={<PostPage />} />
           <Route path="searchResult" element={<SearchResultPage />} />
