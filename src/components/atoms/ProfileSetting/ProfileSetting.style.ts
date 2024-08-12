@@ -1,13 +1,13 @@
 import color from '@/styles/color';
 import { css } from '@emotion/react';
 
-export const profileSignUpContainer = css({
+export const profileSettingContainer = css({
   display: 'inline-block',
   position: 'relative',
   cursor: 'pointer',
 });
 
-export const profileSignUpInnerContainer = css({
+export const profileSettingInnerContainer = css({
   borderRadius: '50%',
   overflow: 'hidden',
   border: `4px solid ${color.WT}`,

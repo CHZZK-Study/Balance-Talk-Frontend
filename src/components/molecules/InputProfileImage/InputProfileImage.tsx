@@ -1,6 +1,6 @@
 import { postFile } from '@/api/file';
 import Label from '@/components/atoms/Label/Label';
-import ProfileSignUp from '@/components/atoms/ProfileSignUp/ProfileSignUp';
+import ProfileSignUp from '@/components/atoms/ProfileSetting/ProfileSetting';
 import color from '@/styles/color';
 import { UploadedImage } from '@/types/file';
 import { css } from '@emotion/react';

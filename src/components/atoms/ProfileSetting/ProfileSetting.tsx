@@ -1,27 +1,27 @@
 import React from 'react';
-import { Plus, PlusCircle } from '@/assets';
+import { Plus } from '@/assets';
 import type { ComponentPropsWithoutRef } from 'react';
 import {
   profileImageWrapper,
   profilePlusImageWrapper,
   profilePlusWrapper,
-  profileSignUpContainer,
-  profileSignUpInnerContainer,
-} from './ProfileSignUp.style';
+  profileSettingContainer,
+  profileSettingInnerContainer,
+} from './ProfileSetting.style';
 
-export interface ProfileSignUpProps extends ComponentPropsWithoutRef<'img'> {
+export interface ProfileSettingProps extends ComponentPropsWithoutRef<'img'> {
   isSetting?: boolean;
 }
 
-const ProfileSignUp = ({
+const ProfileSetting = ({
   isSetting = false,
   ...attributes
-}: ProfileSignUpProps) => {
+}: ProfileSettingProps) => {
   return (
-    <div css={profileSignUpContainer}>
+    <div css={profileSettingContainer}>
       {isSetting ? (
         <>
-          <div css={profileSignUpInnerContainer}>
+          <div css={profileSettingInnerContainer}>
             <img
               alt="프로필 이미지"
               {...attributes}
@@ -34,7 +34,7 @@ const ProfileSignUp = ({
         </>
       ) : (
         <div
-          css={[profileSignUpInnerContainer, profilePlusImageWrapper]}
+          css={[profileSettingInnerContainer, profilePlusImageWrapper]}
           {...attributes}
         >
           <Plus />
@@ -44,4 +44,4 @@ const ProfileSignUp = ({
   );
 };
 
-export default ProfileSignUp;
+export default ProfileSetting;
