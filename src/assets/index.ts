@@ -8,6 +8,7 @@ export { default as Lock } from './svg/lock.svg';
 export { default as KeyboardArrowLeft } from './svg/keyboard-arrow-left.svg';
 export { default as KeyboardArrowRight } from './svg/keyboard-arrow-right.svg';
 export { default as NormalProfile } from './svg/normal-profile.svg';
+export { default as LargeProfile } from './svg/normal-profile-large.svg';
 export { default as Menu } from './svg/menu.svg';
 export { default as ModalClose } from './svg/modal-close.svg';
 export { default as PickVote } from './svg/pick-vote.svg';
