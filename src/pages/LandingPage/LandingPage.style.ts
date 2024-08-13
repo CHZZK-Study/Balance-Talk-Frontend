@@ -1,38 +1,15 @@
 import { css } from '@emotion/react';
+import color from '@/styles/color';
 
-export const landingContainer = css({
-  width: '100vw',
+export const contentWrapStyle = css({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-});
-
-export const recommendPostWrapper = css({
-  width: '80%',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-});
-
-export const morePostWrapper = css({
   width: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  marginBottom: '20px',
-  marginTop: '50px',
+  background: color.WT,
+  padding: '113px 388px 95px 374px',
 });
 
-export const headingWrapper = css({
-  display: 'flex',
-  justifyContent: 'flex-start',
-  width: '80%',
-  marginBottom: '20px',
-});
-
-export const headingWithButtonWrapper = css({
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'baseline',
-  width: '70%',
+export const categoryBoxStyle = css({
+  margin: '109px 0 137px 0',
 });

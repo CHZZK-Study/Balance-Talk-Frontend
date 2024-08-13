@@ -1,107 +1,174 @@
 import React from 'react';
-import { fetchBestPostsData, fetchPostsData } from '@/api/posts';
-import Carousel from '@/components/LandingPage/Carousel';
-import MainPost from '@/components/LandingPage/MainPost';
-import PostImage from '@/components/common/PostImage/PostImage';
-import Heading from '@/components/common/Heading/Heading';
-import { ImageInfo, Post, PostWithPagenation } from '@/types/post';
-import { css } from '@emotion/react';
-import { useQuery } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
-import {
-  headingWithButtonWrapper,
-  headingWrapper,
-  landingContainer,
-  morePostWrapper,
-  recommendPostWrapper,
-} from './LandingPage.style';
-
-type PostInfo = {
-  id: number;
-  balanceOptions: ImageInfo[];
-};
+import TopBanner from '@/components/molecules/TopBanner/TopBanner';
+import SearchBar from '@/components/molecules/SearchBar/SearchBar';
+import CategoryBox from '@/components/molecules/CategoryBox/CategoryBox';
+import BalanceGameList from '@/components/organisms/BalanceGameList/BalanceGameList';
+import * as S from './LandingPage.style';
 
 const LandingPage = () => {
-  // const navigate = useNavigate();
-
-  // const { data } = useQuery({
-  //   queryKey: ['posts', { sort: 'createdAt', page: 0 }],
-  //   queryFn: ({ queryKey }) => {
-  //     const [, queryOptions] = queryKey;
-  //     const { sort, page } = queryOptions as { sort: string; page: number };
-  //     return fetchPostsData(sort, page);
-  //   },
-  // });
-
-  // const { data: bestPost } = useQuery({
-  //   queryKey: ['posts', 'best'],
-  //   queryFn: fetchBestPostsData,
-  // });
-
-  // if (data?.content.length === 0) {
-  //   return <div>Fail to Load Post Data</div>;
-  // }
-
-  // const extractBalanceOptions = (datas: PostWithPagenation): PostInfo[] => {
-  //   return datas.content.map((post) => {
-  //     return {
-  //       id: post.id,
-  //       balanceOptions: post.balanceOptions,
-  //     };
-  //   });
-  // };
-
-  // const postInfos = data ? extractBalanceOptions(data) : [];
-
-  // const renderCarouselItems = (postInfo: PostInfo) => {
-  //   return (
-  //     <div css={css({ margin: '10px' })} key={postInfo.id}>
-  //       <PostImage
-  //         images={postInfo.balanceOptions}
-  //         size="medium"
-  //         postId={postInfo.id}
-  //       />
-  //     </div>
-  //   );
-  // };
-
-  // const renderMainPost = (post: Post) => {
-  //   return <MainPost post={post} key={post.id} />;
-  // };
-
+  const contents = [
+    {
+      imgUrl: ['sample-image1.jpg'],
+      id: 1,
+      title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
+      tagLabels: ['화제의 중심', '#인기'],
+      bookmarkState: false,
+      optionA: '만원 지하철 1시간 등교',
+      optionB: '좌석 널널한 버스 2시간 등교',
+    },
+    {
+      imgUrl: ['sample-image1.jpg'],
+      id: 2,
+      title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
+      tagLabels: ['화제의 중심', '#인기'],
+      bookmarkState: false,
+      optionA: '만원 지하철 1시간 등교',
+      optionB: '좌석 널널한 버스 2시간 등교',
+    },
+    {
+      imgUrl: ['sample-image1.jpg'],
+      id: 3,
+      title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
+      tagLabels: ['화제의 중심', '#인기'],
+      bookmarkState: false,
+      optionA: '만원 지하철 1시간 등교',
+      optionB: '좌석 널널한 버스 2시간 등교',
+    },
+    {
+      imgUrl: ['sample-image1.jpg'],
+      id: 4,
+      title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
+      tagLabels: ['화제의 중심', '#인기'],
+      bookmarkState: false,
+      optionA: '만원 지하철 1시간 등교',
+      optionB: '좌석 널널한 버스 2시간 등교',
+    },
+    {
+      imgUrl: ['sample-image1.jpg'],
+      id: 5,
+      title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
+      tagLabels: ['화제의 중심', '#인기'],
+      bookmarkState: false,
+      optionA: '만원 지하철 1시간 등교',
+      optionB: '좌석 널널한 버스 2시간 등교',
+    },
+    {
+      imgUrl: ['sample-image1.jpg'],
+      id: 6,
+      title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
+      tagLabels: ['화제의 중심', '#인기'],
+      bookmarkState: false,
+      optionA: '만원 지하철 1시간 등교',
+      optionB: '좌석 널널한 버스 2시간 등교',
+    },
+    {
+      imgUrl: ['sample-image1.jpg'],
+      id: 7,
+      title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
+      tagLabels: ['화제의 중심', '#인기'],
+      bookmarkState: false,
+      optionA: '만원 지하철 1시간 등교',
+      optionB: '좌석 널널한 버스 2시간 등교',
+    },
+    {
+      imgUrl: ['sample-image1.jpg'],
+      id: 8,
+      title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
+      tagLabels: ['화제의 중심', '#인기'],
+      bookmarkState: false,
+      optionA: '만원 지하철 1시간 등교',
+      optionB: '좌석 널널한 버스 2시간 등교',
+    },
+    {
+      imgUrl: ['sample-image1.jpg'],
+      id: 9,
+      title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
+      tagLabels: ['화제의 중심', '#인기'],
+      bookmarkState: false,
+      optionA: '만원 지하철 1시간 등교',
+      optionB: '좌석 널널한 버스 2시간 등교',
+    },
+    {
+      imgUrl: ['sample-image1.jpg'],
+      id: 10,
+      title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
+      tagLabels: ['화제의 중심', '#인기'],
+      bookmarkState: false,
+      optionA: '만원 지하철 1시간 등교',
+      optionB: '좌석 널널한 버스 2시간 등교',
+    },
+    {
+      imgUrl: ['sample-image1.jpg'],
+      id: 11,
+      title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
+      tagLabels: ['화제의 중심', '#인기'],
+      bookmarkState: false,
+      optionA: '만원 지하철 1시간 등교',
+      optionB: '좌석 널널한 버스 2시간 등교',
+    },
+    {
+      imgUrl: ['sample-image1.jpg'],
+      id: 12,
+      title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
+      tagLabels: ['화제의 중심', '#인기'],
+      bookmarkState: false,
+      optionA: '만원 지하철 1시간 등교',
+      optionB: '좌석 널널한 버스 2시간 등교',
+    },
+    {
+      imgUrl: ['sample-image1.jpg'],
+      id: 13,
+      title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
+      tagLabels: ['화제의 중심', '#인기'],
+      bookmarkState: false,
+      optionA: '만원 지하철 1시간 등교',
+      optionB: '좌석 널널한 버스 2시간 등교',
+    },
+    {
+      imgUrl: ['sample-image1.jpg'],
+      id: 14,
+      title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
+      tagLabels: ['화제의 중심', '#인기'],
+      bookmarkState: false,
+      optionA: '만원 지하철 1시간 등교',
+      optionB: '좌석 널널한 버스 2시간 등교',
+    },
+    {
+      imgUrl: ['sample-image1.jpg'],
+      id: 15,
+      title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
+      tagLabels: ['화제의 중심', '#인기'],
+      bookmarkState: false,
+      optionA: '만원 지하철 1시간 등교',
+      optionB: '좌석 널널한 버스 2시간 등교',
+    },
+    {
+      imgUrl: ['sample-image1.jpg'],
+      id: 16,
+      title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
+      tagLabels: ['화제의 중심', '#인기'],
+      bookmarkState: false,
+      optionA: '만원 지하철 1시간 등교',
+      optionB: '좌석 널널한 버스 2시간 등교',
+    },
+  ];
   return (
-    <div css={landingContainer}>
-      {/* <div css={recommendPostWrapper}>
-        <div css={headingWrapper}>
-          <Heading size="small">추천 게시글</Heading>
+    <div>
+      <TopBanner
+        todayTalkPick={{
+          id: 0,
+          optionA: '그럴 수 있다',
+          optionB: '그럴 수 없다',
+          title: '내 친구한테 새우 껍질 까주는 남친,',
+        }}
+      />
+      <div css={S.contentWrapStyle}>
+        <SearchBar />
+        <div css={S.categoryBoxStyle}>
+          <CategoryBox />
         </div>
-        <Carousel
-          itemWidth={1100}
-          items={bestPost}
-          render={renderMainPost}
-          showLength={1}
-        />
+        <BalanceGameList contents={contents} />
       </div>
-      <div css={morePostWrapper}>
-        <div css={headingWithButtonWrapper}>
-          <Heading size="small">더 많은 게시글</Heading>
-          <span
-            css={css({
-              fontSize: '14px',
-              cursor: 'pointer',
-            })}
-            onClick={() => navigate('/posts')}
-            role="presentation"
-          >
-            더보기
-          </span>
-        </div>
-        <Carousel
-          items={postInfos}
-          render={renderCarouselItems}
-          showLength={3}
-        />
-      </div> */}
     </div>
   );
 };
