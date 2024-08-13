@@ -4,6 +4,7 @@ import {
   selectGroupStyling,
   selectGroupItemStyling,
   itemRadius,
+  bottomBarStyling,
 } from './SelectGroup.style';
 
 export type SelectGroupItem = {
@@ -35,6 +36,7 @@ const SelectGroup = ({ items, selectedValue, onSelect }: SelectGroupProps) => (
           {item.label}
         </button>
       ))}
+    <div css={bottomBarStyling} />
   </div>
 );
 

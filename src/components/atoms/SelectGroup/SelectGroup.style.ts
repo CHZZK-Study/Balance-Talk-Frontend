@@ -9,6 +9,7 @@ export const selectGroupStyling = css({
   padding: '4px',
   width: '100%',
   justifyContent: 'space-between',
+  position: 'relative',
 });
 
 export const selectGroupItemStyling = css({
@@ -31,10 +32,23 @@ export const selectGroupItemStyling = css({
 export const selectedStyling = css({
   backgroundColor: color.MAIN,
   color: color.WT,
-  // borderRadius: '20px',
+  zIndex: 1,
+  position: 'relative',
 });
 
 export const itemRadius = css({
   borderTopRightRadius: '20px',
   borderTopLeftRadius: '20px',
+});
+
+export const bottomBarStyling = css({
+  width: '904px',
+  height: '4px',
+  flexShrink: 0,
+  borderRadius: '10px',
+  background: color.GY[2],
+  position: 'absolute',
+  bottom: '4px',
+  left: '50%',
+  transform: 'translateX(-50%)',
 });
