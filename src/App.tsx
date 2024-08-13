@@ -14,6 +14,7 @@ import { Layout, LayoutMypage, LayoutNoSearch } from './layout/layout';
 // import FindPasswordPage from './pages/FindPasswordPage/FindPasswordPage';
 import LandingPage from './pages/LandingPage/LandingPage';
 import LoginPage from './pages/LoginPage/LoginPage';
+import TodayTalkPickPage from './pages/TodayTalkPickPage/TodayTalkPickPage';
 // import DeletePage from './pages/MyPage/DeletePage/DeletePage';
 // import HistoryPage from './pages/MyPage/HistoryPage/HistoryPage';
 // import BookmarksPage from './pages/MyPage/HistoryPage/TabPage/BookmarksPage/BookmarksPage';
@@ -39,6 +40,7 @@ const App: React.FC = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/todaytalkpick" element={<TodayTalkPickPage />} />
           {/* <Route path="posts" element={<PostList />} />
           <Route path="posts/:id" element={<PostPage />} />
           <Route path="searchResult" element={<SearchResultPage />} />
