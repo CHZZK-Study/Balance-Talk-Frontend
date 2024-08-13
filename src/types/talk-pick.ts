@@ -1,3 +1,5 @@
+import { PaginationType } from './pagination';
+
 export type TalkPickDetail = {
   id: number;
   title: string;
@@ -21,6 +23,19 @@ export type TalkPickSummary = {
   summarySecondLine: string;
   summaryThirdLine: string;
 };
+
+export type TalkPickListItem = {
+  id: number;
+  title: string;
+  writer: string;
+  createdAt: string;
+  views: number | string;
+  bookmarks: number | string;
+};
+
+export interface TalkPickListPagination extends PaginationType {
+  content: TalkPickListItem[];
+}
 
 export type TalkPick = Pick<
   TalkPickDetail,
