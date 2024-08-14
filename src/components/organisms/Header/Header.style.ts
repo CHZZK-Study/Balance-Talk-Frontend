@@ -8,7 +8,8 @@ export const containerStyle = css({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  backgroundColor: '#ffffff',
+  backgroundColor: color.WT,
+  boxShadow: '0px 4px 11px rgba(0, 0, 0, 0.1)',
 });
 
 export const logoStyle = css({

@@ -40,6 +40,8 @@ export { default as Couple } from './svg/couple.svg';
 export { default as Taste } from './svg/taste.svg';
 export { default as Worldcup } from './svg/worldcup.svg';
 export { default as Plus } from './svg/plus.svg';
+export { default as LogoLarge } from './svg/logo-large.svg';
+export { default as TalkPickBubble } from './svg/talk-pick-bubble.svg';
 
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';
