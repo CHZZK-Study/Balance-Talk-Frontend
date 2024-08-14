@@ -58,7 +58,7 @@ const SignUpPage = () => {
         />
       </div>
       <div css={btnContainer}>
-        <Button type="submit" variant="outlinePrimary" css={btnSignup}>
+        <Button type="submit" variant="roundPrimary2" css={btnSignup}>
           회원가입
         </Button>
         <Button
