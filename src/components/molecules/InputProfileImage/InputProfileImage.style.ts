@@ -29,6 +29,7 @@ export const profileDefaultText = css(typo.Main.Medium, {
   ],
 });
 
-export const profileImageText = css(typo.Comment.Regular, {
-  color: color.GY[1],
-});
+export const profileImageText = (isError: boolean) =>
+  css(typo.Comment.Regular, {
+    color: isError ? color.RED : color.GY[1],
+  });
