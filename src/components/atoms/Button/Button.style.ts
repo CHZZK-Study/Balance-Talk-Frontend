@@ -16,6 +16,14 @@ export const getVariantStyling = (
       backgroundColor: color.MAIN,
       color: color.WT,
     }),
+    roundPrimary2: css({
+      backgroundColor: color.MAIN,
+      color: color.WT,
+
+      '&:hover': {
+        boxShadow: '1px 2px 15px rgba(119, 130, 255, 0.4)',
+      },
+    }),
     outlinePrimary: css({
       backgroundColor: 'transparent',
       outline: `1px solid ${color.MAIN}`,
@@ -34,6 +42,10 @@ export const getVariantStyling = (
       outline: `1px solid ${color.GY[1]}`,
       borderRadius: '30px',
       gap: '10px',
+
+      '&:hover': {
+        backgroundColor: color.GY[3],
+      },
     }),
     outlineShadow: css({
       backgroundColor: 'transparent',
@@ -95,6 +107,13 @@ export const getSizeByVariantStyling = (
         padding: '10px 25px',
         borderRadius: '25px',
       }),
+    },
+    roundPrimary2: {
+      large: css(typo.Main.SemiBold, {
+        padding: '10px 25px',
+        borderRadius: '25px',
+      }),
+      medium: css({}),
     },
     outlinePrimary: {
       large: css(typo.Main.SemiBold, {
