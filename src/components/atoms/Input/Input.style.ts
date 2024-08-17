@@ -41,6 +41,11 @@ export const getVariantStyling = (variant: Required<InputProps>['variant']) => {
 
 export const getSizeStyling = (size: Required<InputProps>['size']) => {
   const style = {
+    small: css(typo.Main.SemiBold, {
+      width: '461px',
+      height: '66px',
+      padding: '19px 16px 19px 19px',
+    }),
     medium: css(typo.SubTitle, {
       padding: '21px 23px',
     }),

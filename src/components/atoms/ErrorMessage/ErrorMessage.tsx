@@ -11,9 +11,9 @@ const ErrorMessage = ({
   children,
   ...attributes
 }: ErrorMessageProps) => (
-  <span css={getTextStyling(isError)} {...attributes}>
+  <p css={getTextStyling(isError)} {...attributes}>
     {children}
-  </span>
+  </p>
 );
 
 export default ErrorMessage;
