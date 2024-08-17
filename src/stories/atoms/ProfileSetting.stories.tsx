@@ -23,9 +23,12 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    isSetting: false,
-  },
+  render: (args) =>
+    args.isSetting ? (
+      <ProfileSetting isSetting src={ProfileSample} />
+    ) : (
+      <ProfileSetting {...args} />
+    ),
 };
 
 export const All: Story = {
