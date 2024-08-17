@@ -30,6 +30,7 @@ import TodayTalkPickPage from './pages/TodayTalkPickPage/TodayTalkPickPage';
 import { useNewSelector } from './store';
 import { selectAccessToken } from './store/auth';
 import TalkPickPlacePage from './pages/TalkPickPlacePage/TalkPickPlacePage';
+import SignUpPage from './pages/SignUpPage/SignUpPage';
 
 const App: React.FC = () => {
   const accessToken = useNewSelector(selectAccessToken);
