@@ -1,6 +1,6 @@
 import React from 'react';
 import Label from '@/components/atoms/Label/Label';
-import ProfileSignUp from '@/components/atoms/ProfileSetting/ProfileSetting';
+import ProfileSetting from '@/components/atoms/ProfileSetting/ProfileSetting';
 import {
   InputProfileImageProps,
   useCheckProfileImage,
@@ -21,7 +21,7 @@ const InputProfileImage = ({
   return (
     <div css={profileImageSelectContainer}>
       <Label>프로필 사진(선택)</Label>
-      <ProfileSignUp
+      <ProfileSetting
         isSetting={!!imageSrc}
         src={imageSrc}
         {...getRootProps()}
