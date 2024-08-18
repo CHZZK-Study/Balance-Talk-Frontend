@@ -10,7 +10,7 @@ import { useMemberQuery } from './hooks/api/member/useMemberQuery';
 import { useParseJwt } from './hooks/common/useParseJwt';
 import { useTokenRefresh } from './hooks/common/useTokenRefresh';
 import { Layout, LayoutMypage, LayoutNoSearch } from './layout/layout';
-// import CreatePostPage from './pages/CreatePostPage/CreatePostPage';
+import CreatePostPage from './pages/CreatePostPage/CreatePostPage';
 // import FindPasswordPage from './pages/FindPasswordPage/FindPasswordPage';
 import LandingPage from './pages/LandingPage/LandingPage';
 import LoginPage from './pages/LoginPage/LoginPage';
@@ -45,6 +45,7 @@ const App: React.FC = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/todaytalkpick" element={<TodayTalkPickPage />} />
           <Route path="/talkpickplace" element={<TalkPickPlacePage />} />
+          <Route path="/post/create" element={<CreatePostPage />} />
           {/* <Route path="posts" element={<PostList />} />
           <Route path="posts/:id" element={<PostPage />} />
           <Route path="searchResult" element={<SearchResultPage />} />
