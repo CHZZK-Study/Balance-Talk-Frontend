@@ -42,6 +42,11 @@ export { default as Worldcup } from './svg/worldcup.svg';
 export { default as Plus } from './svg/plus.svg';
 export { default as LogoLarge } from './svg/logo-large.svg';
 export { default as TalkPickBubble } from './svg/talk-pick-bubble.svg';
+export { default as Camera } from './svg/camera.svg';
+export { default as DeleteButton } from './svg/delete-button.svg';
+export { default as RightArrowButton } from './svg/right-arrow-button.svg';
+export { default as LeftArrowButton } from './svg/left-arrow-button.svg';
+export { default as DraftFolder } from './svg/draft-folder.svg';
 
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';
