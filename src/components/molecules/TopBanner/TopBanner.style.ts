@@ -2,8 +2,7 @@ import { css } from '@emotion/react';
 import color from '@/styles/color';
 
 export const bannerStyling = css({
-  width: '1920px',
-  // width: '100%',
+  width: '100%',
   overflow: 'hidden',
   position: 'relative',
 });

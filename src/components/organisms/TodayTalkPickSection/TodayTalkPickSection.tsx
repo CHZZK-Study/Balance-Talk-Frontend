@@ -15,7 +15,7 @@ import MenuTap, { MenuItem } from '@/components/atoms/MenuTap/MenuTap';
 import * as S from './TodayTalkPickSection.style';
 
 export interface TodayTalkPickProps {
-  todayTalkPick: TalkPickDetail;
+  todayTalkPick: TalkPickDetail | undefined;
   talkPickMenu: MenuItem[];
 }
 
@@ -25,15 +25,17 @@ const TodayTalkPickSection = ({
 }: TodayTalkPickProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const [bookmark, setBookmark] = useState<number>(todayTalkPick.bookmarks);
+  const [bookmark, setBookmark] = useState<number>(
+    todayTalkPick?.bookmarks ?? 0,
+  );
   const [myBookmark, setMyBookmark] = useState<boolean>(
-    todayTalkPick.myBookmark,
+    todayTalkPick?.myBookmark ?? false,
   );
 
   useEffect(() => {
-    setBookmark(todayTalkPick.bookmarks);
-    setMyBookmark(todayTalkPick.myBookmark);
-  }, [todayTalkPick.bookmarks, todayTalkPick.myBookmark]);
+    setBookmark(todayTalkPick?.bookmarks ?? 0);
+    setMyBookmark(todayTalkPick?.myBookmark ?? false);
+  }, [todayTalkPick?.bookmarks, todayTalkPick?.myBookmark]);
 
   const handleContentToggle = () => {
     setIsExpanded((prev) => !prev);
@@ -50,31 +52,31 @@ const TodayTalkPickSection = ({
       <div css={S.talkPickWrapper}>
         <div css={S.talkPickTopStyling}>
           <div css={S.talkPickDetailWrapper}>
-            <div css={S.talkPickTitle}>{todayTalkPick.title}</div>
+            <div css={S.talkPickTitle}>{todayTalkPick?.title}</div>
             <MenuTap menuData={talkPickMenu} />
           </div>
           <div css={S.talkPickDetailWrapper}>
             <div>
-              <span css={S.talkPickDetail}>{todayTalkPick.writer}</span>
+              <span css={S.talkPickDetail}>{todayTalkPick?.writer}</span>
               <span css={S.talkPickDate}>
-                {formatDate(todayTalkPick.lastModifiedAt)}
+                {formatDate(todayTalkPick?.createdAt ?? '')}
               </span>
-              {todayTalkPick.isUpdated && (
+              {todayTalkPick?.isUpdated && (
                 <span css={S.talkPickDetail}>(수정됨)</span>
               )}
             </div>
             <div css={S.talkPickDetail}>
               조회
               <span css={S.talkPickView}>
-                {formatNumber(todayTalkPick.views)}
+                {formatNumber(todayTalkPick?.views ?? 0)}
               </span>
             </div>
           </div>
         </div>
         <div css={S.talkPickContentWrapper}>
-          <SummaryBox summary={todayTalkPick.summary} />
+          <SummaryBox summary={todayTalkPick?.summary} />
           {isExpanded && (
-            <div css={S.talkPickContent}>{todayTalkPick.content}</div>
+            <div css={S.talkPickContent}>{todayTalkPick?.content}</div>
           )}
           <Button
             variant="outlineShadow"
@@ -88,11 +90,11 @@ const TodayTalkPickSection = ({
         </div>
         <div css={S.voteBarWrapper}>
           <VotePrototype
-            leftButtonText={todayTalkPick.optionA}
-            rightButtonText={todayTalkPick.optionB}
-            leftVotes={todayTalkPick.votesCountOfOptionA}
-            rightVotes={todayTalkPick.votesCountOfOptionB}
-            selectedVote={todayTalkPick.votedOption}
+            leftButtonText={todayTalkPick?.optionA ?? ''}
+            rightButtonText={todayTalkPick?.optionB ?? ''}
+            leftVotes={todayTalkPick?.votesCountOfOptionA ?? 0}
+            rightVotes={todayTalkPick?.votesCountOfOptionB ?? 0}
+            selectedVote={todayTalkPick?.votedOption ?? null}
           />
         </div>
       </div>

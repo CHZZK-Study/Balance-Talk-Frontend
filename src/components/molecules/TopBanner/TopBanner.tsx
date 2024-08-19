@@ -13,7 +13,7 @@ import {
 } from './TopBanner.style';
 
 export interface TopBannerProps {
-  todayTalkPick: TodayTalkPick;
+  todayTalkPick: TodayTalkPick | undefined;
 }
 
 const TopBanner = ({ todayTalkPick }: TopBannerProps) => {
@@ -21,7 +21,7 @@ const TopBanner = ({ todayTalkPick }: TopBannerProps) => {
   const slides = [
     {
       id: 0,
-      content: <TodayTalkPickBanner {...todayTalkPick} />,
+      content: <TodayTalkPickBanner talkPick={todayTalkPick} />,
     },
     { id: 1, content: <Others /> },
     { id: 2, content: <Others /> },
