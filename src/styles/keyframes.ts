@@ -30,3 +30,15 @@ export const rotate = keyframes({
     transform: 'rotate(-360deg)',
   },
 });
+
+export const barStyling = (varPercentage: number) => keyframes`
+  0% {
+    width: 0%;
+  }
+  60% {
+    width: 100%;
+  }
+  100% {
+    width: ${varPercentage}%;
+  }
+`;

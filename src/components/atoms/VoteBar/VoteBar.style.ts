@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import color from '@/styles/color';
 import typo from '@/styles/typo';
+import { barStyling } from '@/styles/keyframes';
 
 interface BarProps {
   selectedBar?: 'A' | 'B' | null;
@@ -21,58 +22,66 @@ export const barStyle = css({
   width: '100%',
   height: '60px',
   borderRadius: '50px',
-  overflow: 'hidden',
-  position: 'relative',
   display: 'flex',
   alignItems: 'center',
   boxShadow: '1px 2px 5px rgba(0, 0, 0, 0.15)',
 });
 
+export const barWrapper = css({
+  display: 'flex',
+  width: '100%',
+  height: '100%',
+  borderRadius: '50px',
+  position: 'relative',
+  overflow: 'hidden',
+});
+
 export const leftBarStyle = ({ leftPercentage, selectedBar }: BarProps) =>
   css({
     height: '50px',
-    width: selectedBar === 'A' ? `${leftPercentage}%` : '99%',
+    width: selectedBar === 'A' ? `${leftPercentage}%` : '100%',
     background: selectedBar === 'A' ? color.RED_G : color.RED,
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'flex-start',
-    color: color.WT,
-    fontWeight: 'bold',
-    fontSize: '18px',
     borderRadius: '100px',
     zIndex: selectedBar === 'A' ? 999 : 1,
     position: 'absolute',
-    left: '5px',
-    top: '5px',
     padding: '0 10px',
-    transition: 'all 0.3s ease',
+    animation:
+      selectedBar === 'A' ? `${barStyling(leftPercentage)} 1s ease` : 'none',
   });
 
 export const rightBarStyle = ({ rightPercentage, selectedBar }: BarProps) =>
   css({
     height: '50px',
-    width: selectedBar === 'B' ? `${rightPercentage}%` : '99%',
+    width: selectedBar === 'B' ? `${rightPercentage}%` : '100%',
     background: selectedBar === 'B' ? color.BLUE : color.BLUE_G,
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'flex-end',
-    color: color.WT,
-    fontWeight: 'bold',
-    fontSize: '18px',
     borderRadius: '100px',
     zIndex: selectedBar === 'B' ? 999 : 1,
     position: 'absolute',
-    right: '5px',
-    top: '5px',
+    right: '0px',
     padding: '0 10px',
-    transition: 'all 0.3s ease',
+    animation:
+      selectedBar === 'B' ? `${barStyling(rightPercentage)} 1s ease` : 'none',
   });
 
-export const percentageStyle = css({
+export const percentageWrapper = css({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  width: '100%',
+  height: '100%',
   position: 'absolute',
-  top: '50%',
-  transform: 'translateY(-50%)',
-  padding: '20px 13px 20px 13px',
+  padding: '0 20px',
+  zIndex: 999,
+});
+
+export const percentageStyle = css({
+  fontWeight: 'bold',
+  fontSize: '18px',
+  color: color.WT,
 });
 
 export const votesContainerStyle = css({
