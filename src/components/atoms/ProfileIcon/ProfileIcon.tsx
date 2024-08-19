@@ -1,5 +1,5 @@
 import React from 'react';
-import { NormalProfile, LargeProfile } from '@/assets';
+import { NormalProfile } from '@/assets';
 import { profileWrapper, profileImage } from './ProfileIcon.style';
 
 interface ProfileProps {
@@ -20,10 +20,11 @@ const ProfileIcon = ({
   size = 'small',
 }: ProfileProps | ProfilePropsWithImage) => {
   const profileComponents = {
-    normal: {
-      small: <NormalProfile />,
-      large: <LargeProfile />,
-    },
+    normal: (
+      <div css={profileWrapper(size)}>
+        <NormalProfile css={profileImage} />
+      </div>
+    ),
     settings: (
       <div css={profileWrapper(size)}>
         <img css={profileImage} src={imgUrl} alt="profile" />
@@ -33,7 +34,7 @@ const ProfileIcon = ({
 
   return interaction === 'settings'
     ? profileComponents.settings
-    : profileComponents.normal[size];
+    : profileComponents.normal;
 };
 
 export default ProfileIcon;

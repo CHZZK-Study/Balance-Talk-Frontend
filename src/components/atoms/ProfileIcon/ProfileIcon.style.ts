@@ -4,6 +4,9 @@ export const profileWrapper = (size: 'small' | 'large') =>
   css({
     width: size === 'small' ? '40px' : '142px',
     height: size === 'small' ? '40px' : '142px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: '50%',
     overflow: 'hidden',
     backgroundSize: 'cover',
