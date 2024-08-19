@@ -33,8 +33,7 @@ export const actionButtonImage = css({
 });
 
 export const actionButtonLabel = (isActive: boolean) =>
-  css({
-    ...typo.Comment.SemiBold,
+  css(typo.Comment.SemiBold, {
     color: isActive ? color.WT : color.BK,
     transition: 'color 0.3s ease',
   });
