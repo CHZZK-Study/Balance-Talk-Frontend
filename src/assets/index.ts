@@ -45,6 +45,7 @@ export { default as TalkPickBubble } from './svg/talk-pick-bubble.svg';
 export { default as ActivityInfo } from './svg/activity-info.svg';
 export { default as EditProfile } from './svg/edit-profile.svg';
 export { default as Withdraw } from './svg/withdraw.svg';
+export { default as ProfileInfoSample } from './images/profileInfo-sample.png';
 
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';
