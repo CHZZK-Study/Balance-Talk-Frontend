@@ -7,10 +7,10 @@ import Divider from '@/components/atoms/Divider/Divider';
 import ImageUploader from '@/components/molecules/ImageUploader/ImageUploader';
 import CitationBox from '@/components/atoms/CitationBox/CitationBox';
 import DraftPostButton from '@/components/atoms/DraftPostButton/DraftPostButton';
-import PostActionButton from '@/components/atoms/PostActionButton/PostActionButton';
+import Button from '@/components/atoms/Button/Button';
 import * as S from './PostInputForm.style';
 
-const PostInputForm = (props: any, ref: ForwardedRef<HTMLInputElement>) => {
+const PostInputForm = (props: any, ref: ForwardedRef<HTMLTextAreaElement>) => {
   return (
     <div css={S.formStyle}>
       <PostTitleBox />
@@ -22,9 +22,8 @@ const PostInputForm = (props: any, ref: ForwardedRef<HTMLInputElement>) => {
         </div>
         <Divider length={1080} orientation="width" />
         <div css={S.inputContainerStyle}>
-          <input
+          <textarea
             css={S.inputStyle}
-            type="text"
             placeholder="다른 토커들에게 내 이야기를 공유하고 의견을 들어보세요!"
             ref={ref}
             {...props}
@@ -39,8 +38,12 @@ const PostInputForm = (props: any, ref: ForwardedRef<HTMLInputElement>) => {
       </div>
 
       <div css={S.buttonStyle}>
-        <PostActionButton action="save" />
-        <PostActionButton action="submit" />
+        <Button size="large" variant="outlinePrimarySquare">
+          임시저장하기
+        </Button>
+        <Button size="large" variant="primarySquare">
+          등록하기
+        </Button>
       </div>
     </div>
   );

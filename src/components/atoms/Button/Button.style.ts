@@ -12,6 +12,11 @@ export const getVariantStyling = (
       backgroundColor: color.MAIN,
       color: color.WT,
     }),
+    primarySquare: css({
+      borderRadius: '4px',
+      backgroundColor: color.MAIN,
+      color: color.WT,
+    }),
     roundPrimary: css({
       backgroundColor: color.MAIN,
       color: color.WT,
@@ -46,6 +51,12 @@ export const getVariantStyling = (
       '&:hover': {
         backgroundColor: color.GY[3],
       },
+    }),
+    outlinePrimarySquare: css({
+      backgroundColor: 'transparent',
+      outline: `1px solid ${color.MAIN}`,
+      color: color.MAIN,
+      borderRadius: '4px',
     }),
     outlineShadow: css({
       backgroundColor: 'transparent',
@@ -97,6 +108,12 @@ export const getSizeByVariantStyling = (
       }),
       medium: css({}),
     },
+    primarySquare: {
+      large: css(typo.Main.SemiBold, {
+        padding: '15.5px 120px',
+      }),
+      medium: css({}),
+    },
     roundPrimary: {
       large: css(typo.SubTitle, {
         padding: '10px 35px',
@@ -124,6 +141,12 @@ export const getSizeByVariantStyling = (
     outlineSecondary: {
       large: css(typo.Main.SemiBold, {
         padding: '10px 25px',
+      }),
+      medium: css({}),
+    },
+    outlinePrimarySquare: {
+      large: css(typo.Main.SemiBold, {
+        padding: '15.5px 105.5px',
       }),
       medium: css({}),
     },

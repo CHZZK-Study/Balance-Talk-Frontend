@@ -8,6 +8,9 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    option: { control: { type: 'radio' }, options: ['A', 'B'] },
+  },
   args: {
     option: 'A',
   },
