@@ -4,14 +4,14 @@ import TalkPickItem from '@/components/atoms/TalkPickItem/TalkPickItem';
 import * as S from './BestTalkPick.style';
 
 export interface BestTalkPickProps {
-  bestTalkPick: TalkPickListItem[];
+  bestTalkPick?: TalkPickListItem[];
 }
 
 const BestTalkPick = ({ bestTalkPick }: BestTalkPickProps) => (
   <div css={S.bestTalkPickContainer}>
     <div css={S.bestTalkPickText}>BEST 3</div>
     <TalkPickItem type="header" />
-    {bestTalkPick.map((talkPick, idx) => (
+    {bestTalkPick?.map((talkPick, idx) => (
       <TalkPickItem
         key={talkPick.id}
         type="best"

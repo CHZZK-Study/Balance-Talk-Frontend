@@ -2,10 +2,18 @@ import React from 'react';
 import CategoryButton from '@/components/atoms/CategoryButton/CategoryButton';
 import { categoryBoxStyling } from './CategoryBox.style';
 
-const CategoryBox = () => {
+interface CategoryBoxProps {
+  handleFirstButton: () => void;
+}
+
+const CategoryBox = ({ handleFirstButton }: CategoryBoxProps) => {
   return (
     <div css={categoryBoxStyling}>
-      <CategoryButton imageType="TodayPick" label="오늘의 톡픽 모음.zip" />
+      <CategoryButton
+        imageType="TodayPick"
+        label="오늘의 톡픽 모음.zip"
+        onClick={handleFirstButton}
+      />
       <CategoryButton imageType="PickVote" label="낼톡픽 투표하기" />
       <CategoryButton imageType="RandomGame" label="랜덤 밸런스 게임" />
     </div>
