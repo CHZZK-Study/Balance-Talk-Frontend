@@ -11,6 +11,6 @@ export const profileBadgeStyling = (badgeUrl?: string) => css`
   height: 20px;
   border-radius: 50%;
   margin-right: 8px;
-  background-color: ${badgeUrl ? '#FFFFFF' : color.MAIN};
+  background-color: ${badgeUrl ? color.WT : color.MAIN};
   ${badgeUrl ? 'object-fit: cover; overflow: hidden;' : ''}
 `;
