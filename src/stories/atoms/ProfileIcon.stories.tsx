@@ -42,18 +42,18 @@ export const All: Story = {
   render: (args) => (
     <ul css={storyContainer}>
       <li css={storyInnerContainer}>
-        <h3>Normal Small</h3>
+        <h3>기본 Small</h3>
         <ProfileIcon {...args} size="small" />
-        <h3>Normal Large</h3>
+        <h3>기본 Large</h3>
         <ProfileIcon {...args} size="large" />
 
-        <h3>Settings Small</h3>
+        <h3>별도 img 있을때 Small</h3>
         <ProfileIcon
           interaction="settings"
           imgUrl={ProfileInfoSample}
           size="small"
         />
-        <h3>Settings Large</h3>
+        <h3>별도 img 있을때 Large</h3>
         <ProfileIcon
           interaction="settings"
           imgUrl={ProfileInfoSample}
