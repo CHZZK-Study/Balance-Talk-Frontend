@@ -24,3 +24,9 @@ export const loadingStyle = keyframes({
     backgroundColor: color.Neutral[800],
   },
 });
+
+export const rotate = keyframes({
+  '100%': {
+    transform: 'rotate(-360deg)',
+  },
+});
