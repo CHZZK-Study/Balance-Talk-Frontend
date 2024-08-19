@@ -2,6 +2,7 @@ import React from 'react';
 import ProfileIcon from '@/components/atoms/ProfileIcon/ProfileIcon';
 import type { Meta, StoryObj } from '@storybook/react';
 import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
+import { ProfileInfoSample } from '@/assets';
 
 const meta = {
   title: 'atoms/ProfileIcon',
@@ -49,13 +50,13 @@ export const All: Story = {
         <h3>Settings Small</h3>
         <ProfileIcon
           interaction="settings"
-          imgUrl="https://www.example.com/path/to/image.jpg"
+          imgUrl={ProfileInfoSample}
           size="small"
         />
         <h3>Settings Large</h3>
         <ProfileIcon
           interaction="settings"
-          imgUrl="https://www.example.com/path/to/image.jpg"
+          imgUrl={ProfileInfoSample}
           size="large"
         />
       </li>
