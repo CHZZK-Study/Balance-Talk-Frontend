@@ -11,7 +11,7 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    number: { control: { type: 'text' }, defaultValue: '23' },
+    count: { control: { type: 'text' }, defaultValue: '23' },
     label: { control: { type: 'text' }, defaultValue: '작성한 글' },
   },
 } satisfies Meta<typeof ProfileInfo>;
@@ -21,14 +21,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    number: 23,
+    count: 23,
     label: '작성한 글',
   },
 };
 
 export const All: Story = {
   args: {
-    number: 23,
+    count: 23,
     label: '작성한 글',
   },
   render: (args) => (
@@ -39,11 +39,11 @@ export const All: Story = {
       </li>
       <li css={storyInnerContainer}>
         <h3>작성한 글</h3>
-        <ProfileInfo number={23} label="작성한 글" />
+        <ProfileInfo count={23} label="작성한 글" />
       </li>
       <li css={storyInnerContainer}>
         <h3>게시글 저장</h3>
-        <ProfileInfo number={21} label="게시글 저장" />
+        <ProfileInfo count={21} label="게시글 저장" />
       </li>
     </ul>
   ),

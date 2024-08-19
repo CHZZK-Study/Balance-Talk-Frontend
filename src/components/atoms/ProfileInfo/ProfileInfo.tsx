@@ -7,13 +7,13 @@ import {
 } from './ProfileInfo.style';
 
 export interface ProfileInfoProps extends ComponentPropsWithoutRef<'div'> {
-  number: number | string;
+  count: number;
   label: string;
 }
 
-const ProfileInfo = ({ number, label, ...attributes }: ProfileInfoProps) => (
+const ProfileInfo = ({ count, label, ...attributes }: ProfileInfoProps) => (
   <div css={profileInfoContainer} {...attributes}>
-    <span css={profileNumberStyling}>{number}</span>
+    <span css={profileNumberStyling}>{count}</span>
     <span css={profileLabelStyling}>{label}</span>
   </div>
 );
