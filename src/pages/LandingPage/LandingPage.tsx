@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import TopBanner from '@/components/molecules/TopBanner/TopBanner';
 import SearchBar from '@/components/molecules/SearchBar/SearchBar';
 import CategoryBox from '@/components/molecules/CategoryBox/CategoryBox';
@@ -155,12 +154,7 @@ const contents = [
 ];
 
 const LandingPage = () => {
-  const navigate = useNavigate();
   const { todayTalkPick } = useTodayTalkPickQuery();
-
-  const onClickTalkPickList = () => {
-    navigate('/talkpickplace');
-  };
 
   return (
     <div>
@@ -168,7 +162,7 @@ const LandingPage = () => {
       <div css={S.contentWrapStyle}>
         <SearchBar />
         <div css={S.categoryBoxStyle}>
-          <CategoryBox handleFirstButton={onClickTalkPickList} />
+          <CategoryBox />
         </div>
         <BalanceGameList contents={contents} />
       </div>
