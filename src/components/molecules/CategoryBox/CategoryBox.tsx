@@ -7,9 +7,9 @@ const CategoryBox = () => {
   return (
     <div css={categoryBoxStyling}>
       <Link to="/talkPickPlace">
-        <CategoryButton imageType="TodayPick" label="오늘의 톡픽 모음.zip" />
+        <CategoryButton imageType="PickVote" label="톡&픽 플레이스" />
       </Link>
-      <CategoryButton imageType="PickVote" label="낼톡픽 투표하기" />
+      <CategoryButton imageType="TodayPick" label="오늘의 톡픽 모음.zip" />
       <CategoryButton imageType="RandomGame" label="랜덤 밸런스 게임" />
     </div>
   );
