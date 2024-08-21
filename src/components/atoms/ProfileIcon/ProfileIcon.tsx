@@ -5,23 +5,36 @@ import { profileWrapper, profileImage } from './ProfileIcon.style';
 interface ProfileProps {
   interaction: 'normal';
   imgUrl?: string;
+  size?: 'small' | 'large';
 }
 
 interface ProfilePropsWithImage {
   interaction: 'settings';
   imgUrl: string;
+  size?: 'small' | 'large';
 }
 
 const ProfileIcon = ({
   interaction = 'normal',
   imgUrl,
-}: ProfileProps | ProfilePropsWithImage) =>
-  interaction === 'normal' ? (
-    <NormalProfile />
-  ) : (
-    <div css={profileWrapper}>
-      <img css={profileImage} src={imgUrl} alt="profile" />
-    </div>
-  );
+  size = 'small',
+}: ProfileProps | ProfilePropsWithImage) => {
+  const profileComponents = {
+    normal: (
+      <div css={profileWrapper(size)}>
+        <NormalProfile css={profileImage} />
+      </div>
+    ),
+    settings: (
+      <div css={profileWrapper(size)}>
+        <img css={profileImage} src={imgUrl} alt="profile" />
+      </div>
+    ),
+  };
+
+  return interaction === 'settings'
+    ? profileComponents.settings
+    : profileComponents.normal;
+};
 
 export default ProfileIcon;
