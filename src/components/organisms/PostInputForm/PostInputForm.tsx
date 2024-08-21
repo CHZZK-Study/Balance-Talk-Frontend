@@ -8,19 +8,12 @@ import CitationBox from '@/components/atoms/CitationBox/CitationBox';
 import DraftPostButton from '@/components/atoms/DraftPostButton/DraftPostButton';
 import Button from '@/components/atoms/Button/Button';
 import { useFileUploadMutation } from '@/hooks/api/file/useFileUploadMutation';
+import { useTempTalkPickQuery } from '@/hooks/api/talk-pick/useTempTalkPickQuery';
+import { NewTalkPick } from '@/types/talk-pick';
 import * as S from './PostInputForm.style';
 
-interface FormData {
-  title: string;
-  optionA: string;
-  optionB: string;
-  content: string;
-  sourceUrl: string;
-  storedNames: string[];
-}
-
 interface PostInputFormProps {
-  onSubmit: (data: FormData) => void;
+  onSubmit: (data: NewTalkPick) => void;
 }
 
 const PostInputForm = (
@@ -33,6 +26,9 @@ const PostInputForm = (
   const [content, setContent] = useState('');
   const [sourceUrl, setSourceUrl] = useState('');
   const [imageFiles, setImageFiles] = useState<File[]>([]);
+  const [imgUrls, setImgUrls] = useState<string[]>([]);
+  const [storedNames, setStoredNames] = useState<string[]>([]);
+  const [isTempLoaded, setIsTempLoaded] = useState(false);
 
   const { mutate: uploadFiles } = useFileUploadMutation();
 
@@ -44,7 +40,7 @@ const PostInputForm = (
       { formData: imageFormData, params: { type } },
       {
         onSuccess: (response) => {
-          const { storedNames } = response;
+          setStoredNames(response.storedNames);
 
           const postData = {
             title,
@@ -58,6 +54,21 @@ const PostInputForm = (
         },
       },
     );
+  };
+
+  const { data: tempTalkPick, isSuccess } = useTempTalkPickQuery();
+
+  const handleLoadDraft = () => {
+    if (isSuccess && tempTalkPick) {
+      setTitle(tempTalkPick.title);
+      setOptionA(tempTalkPick.optionA);
+      setOptionB(tempTalkPick.optionB);
+      setContent(tempTalkPick.content);
+      setSourceUrl(tempTalkPick.sourceUrl as string);
+      setImgUrls(tempTalkPick.imgUrls);
+      setStoredNames(tempTalkPick.storedNames);
+      setIsTempLoaded(true);
+    }
   };
 
   return (
@@ -98,12 +109,20 @@ const PostInputForm = (
             }
           />
         </div>
-        <ImageUploader imageFiles={imageFiles} setImageFiles={setImageFiles} />
+
+        <ImageUploader
+          imageFiles={imageFiles}
+          setImageFiles={setImageFiles}
+          imgUrls={imgUrls}
+          setImgUrls={setImgUrls}
+          setStoredNames={setStoredNames}
+          isTempLoaded={isTempLoaded}
+        />
       </div>
 
       <div css={S.otherStyle}>
         <CitationBox setSourceUrl={setSourceUrl} />
-        <DraftPostButton />
+        <DraftPostButton onClick={handleLoadDraft} />
       </div>
 
       <div css={S.buttonStyle}>

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import ImageUploadButton from '@/components/atoms/ImageUploadButton/ImageUploadButton';
 import ImagePreview from '@/components/atoms/ImagePreview/ImagePreview';
@@ -7,17 +8,31 @@ import * as S from './ImageUploader.style';
 interface ImageUploaderProps {
   imageFiles: File[];
   setImageFiles: React.Dispatch<React.SetStateAction<File[]>>;
+  imgUrls: string[];
+  setImgUrls: React.Dispatch<React.SetStateAction<string[]>>;
+  setStoredNames: React.Dispatch<React.SetStateAction<string[]>>;
+  isTempLoaded: boolean;
 }
 
-const ImageUploader = ({ imageFiles, setImageFiles }: ImageUploaderProps) => {
+const ImageUploader = ({
+  imageFiles,
+  setImageFiles,
+  imgUrls,
+  setImgUrls,
+  setStoredNames,
+  isTempLoaded,
+}: ImageUploaderProps) => {
   const imageContainerRef = useRef<HTMLDivElement | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
 
-  const handleDelete = (fileName: string) => {
-    setImageFiles((prevFiles) =>
-      prevFiles.filter((file) => file.name !== fileName),
-    );
+  const handleDelete = (index: number) => {
+    if (isTempLoaded) {
+      setImgUrls((prevUrls) => prevUrls.filter((_, i) => i !== index));
+      setStoredNames((prevNames) => prevNames.filter((_, i) => i !== index));
+    } else {
+      setImageFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+    }
   };
 
   const scrollToRight = (): void => {
@@ -66,13 +81,22 @@ const ImageUploader = ({ imageFiles, setImageFiles }: ImageUploaderProps) => {
           imageFiles={imageFiles}
           setImageFiles={setImageFiles}
         />
-        {imageFiles.map((imageFile) => (
-          <ImagePreview
-            key={imageFile.name}
-            imgUrl={URL.createObjectURL(imageFile)}
-            onDelete={() => handleDelete(imageFile.name)}
-          />
-        ))}
+
+        {isTempLoaded
+          ? imgUrls.map((url, index) => (
+              <ImagePreview
+                key={index}
+                imgUrl={url}
+                onDelete={() => handleDelete(index)}
+              />
+            ))
+          : imageFiles.map((imageFile, index) => (
+              <ImagePreview
+                key={index}
+                imgUrl={URL.createObjectURL(imageFile)}
+                onDelete={() => handleDelete(index)}
+              />
+            ))}
       </div>
 
       {canScrollLeft && (
