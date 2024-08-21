@@ -53,6 +53,13 @@ const typo = {
       lineHeight: '1.4',
       letterSpacing: `${16 * -0.05}px`,
     },
+    SemiBold_16: {
+      fontFamily: 'Pretendard',
+      fontSize: '16px',
+      fontWeight: 600,
+      lineHeight: '1.6',
+      letterSpacing: `${16 * -0.05}px`,
+    },
     Regular: {
       fontFamily: 'Pretendard',
       fontSize: '16px',
@@ -79,6 +86,13 @@ const typo = {
       fontFamily: 'Poppins-Medium',
       fontSize: '16px',
       lineHeight: '1.4',
+      letterSpacing: `${16 * -0.05}px`,
+    },
+    Medium_16: {
+      fontFamily: 'Poppins-Medium',
+      fontSize: '16px',
+      fontWeight: 500,
+      lineHeight: '1.6',
       letterSpacing: `${16 * -0.05}px`,
     },
     Regular: {
