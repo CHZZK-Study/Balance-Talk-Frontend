@@ -14,21 +14,13 @@ const ImageUploadButton = ({
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       const newImageFiles = Array.from(event.target.files);
-      const totalImages = imageFiles.length + newImageFiles.length;
+      const remainCount = 10 - imageFiles.length;
 
-      if (totalImages > 10) {
-        const remainingSlots = 10 - imageFiles.length;
-        const limitedNewFiles = newImageFiles.slice(0, remainingSlots);
-        setImageFiles((prevImageFiles) => [
-          ...prevImageFiles,
-          ...limitedNewFiles,
-        ]);
-      } else {
-        setImageFiles((prevImageFiles) => [
-          ...prevImageFiles,
-          ...newImageFiles,
-        ]);
-      }
+      const limitedNewFiles = newImageFiles.slice(0, remainCount);
+      setImageFiles((prevImageFiles) => [
+        ...prevImageFiles,
+        ...limitedNewFiles,
+      ]);
     }
   };
 

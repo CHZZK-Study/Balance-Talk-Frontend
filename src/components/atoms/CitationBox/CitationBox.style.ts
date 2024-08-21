@@ -12,7 +12,6 @@ export const boxStyle = css({
   color: color.GY[1],
   border: `1px solid ${color.GY[2]}`,
   borderRadius: '15px',
-  columnGap: '60px',
   backgroundColor: color.WT,
 });
 
