@@ -44,6 +44,13 @@ const typo = {
       lineHeight: '1.4',
       letterSpacing: `${18 * -0.05}px`,
     },
+    Medium_16: {
+      fontFamily: 'Pretendard',
+      fontSize: '18px',
+      fontWeight: 500,
+      lineHeight: '1.6',
+      letterSpacing: `${18 * -0.05}px`,
+    },
   },
   Comment: {
     SemiBold: {
@@ -65,6 +72,13 @@ const typo = {
       fontSize: '16px',
       fontWeight: 400,
       lineHeight: '1.4',
+      letterSpacing: `${16 * -0.05}px`,
+    },
+    Regular_16: {
+      fontFamily: 'Pretendard',
+      fontSize: '16px',
+      fontWeight: 400,
+      lineHeight: '1.6',
       letterSpacing: `${16 * -0.05}px`,
     },
   },
