@@ -1,8 +1,8 @@
 export interface UploadedImage {
-  id: number;
-  originalName: string;
-  storedName: string;
-  path: string;
-  type: string;
-  size: number;
+  imgUrls: string[];
+  storedNames: string[];
 }
+
+export type FileUploadType = {
+  type: 'TALK_PICK' | 'TEMP_TALK_PICK' | 'GAME' | 'MEMBER';
+};

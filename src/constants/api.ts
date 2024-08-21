@@ -40,12 +40,13 @@ export const END_POINT = {
   MYPAGE_BOOKMARKS: '/myPage/history/bookmarks',
 
   // file API
-  FILE_UPLOAD: '/files/image/upload',
+  FILE_UPLOAD: '/images',
 
   // talk pick API
   TALKPICK: (talkPickId: Id) => `/talks/${talkPickId}`,
   CREATE_TALKPICK: '/talks',
   TODAY_TALKPICK: '/talks/today',
+  TEMP_TALKPICK: '/talks/temp',
 
   // vote API
   VOTE_TALK: (talkPickId: Id) => `/votes/talks/${talkPickId}`,

@@ -4,8 +4,12 @@ import ImagePreview from '@/components/atoms/ImagePreview/ImagePreview';
 import { RightArrowButton, LeftArrowButton } from '@/assets';
 import * as S from './ImageUploader.style';
 
-const ImageUploader = () => {
-  const [imageFiles, setImageFiles] = useState<File[]>([]);
+interface ImageUploaderProps {
+  imageFiles: File[];
+  setImageFiles: React.Dispatch<React.SetStateAction<File[]>>;
+}
+
+const ImageUploader = ({ imageFiles, setImageFiles }: ImageUploaderProps) => {
   const imageContainerRef = useRef<HTMLDivElement | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -35,7 +39,7 @@ const ImageUploader = () => {
       setCanScrollLeft(scrollLeft > 0);
 
       setCanScrollRight(
-        imageFiles.length === 10 && scrollLeft < scrollWidth - clientWidth,
+        imageFiles.length > 0 && scrollLeft < scrollWidth - clientWidth,
       );
     }
   }, [imageFiles]);

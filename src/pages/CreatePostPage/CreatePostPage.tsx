@@ -1,9 +1,11 @@
 import React from 'react';
 import PostInputForm from '@/components/organisms/PostInputForm/PostInputForm';
 import Divider from '@/components/atoms/Divider/Divider';
+import { useCreateTalkPickMutation } from '@/hooks/api/talk-pick/useCreateTalkPickMutation';
 import * as S from './CreatePostPage.style';
 
 const CreatePostPage = () => {
+  const { mutate: createTalkPick } = useCreateTalkPickMutation();
   return (
     <div css={S.pageStyle}>
       <div css={S.bestTalkPickStyling}>
@@ -16,7 +18,7 @@ const CreatePostPage = () => {
         <Divider length={1175} orientation="width" />
       </div>
 
-      <PostInputForm />
+      <PostInputForm onSubmit={createTalkPick} />
     </div>
   );
 };
