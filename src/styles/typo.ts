@@ -62,6 +62,13 @@ const typo = {
     },
   },
   Number: {
+    SemiBold: {
+      fontFamily: 'Poppins-Medium',
+      fontSize: '16px',
+      fontWeight: 600,
+      lineHeight: '1.6',
+      letterSpacing: `${16 * -0.05}px`,
+    },
     Medium_18: {
       fontFamily: 'Poppins-Medium',
       fontSize: '18px',

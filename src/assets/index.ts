@@ -8,6 +8,7 @@ export { default as Lock } from './svg/lock.svg';
 export { default as KeyboardArrowLeft } from './svg/keyboard-arrow-left.svg';
 export { default as KeyboardArrowRight } from './svg/keyboard-arrow-right.svg';
 export { default as NormalProfile } from './svg/normal-profile.svg';
+export { default as LargeProfile } from './svg/normal-profile-large.svg';
 export { default as Menu } from './svg/menu.svg';
 export { default as ModalClose } from './svg/modal-close.svg';
 export { default as PickVote } from './svg/pick-vote.svg';
@@ -47,6 +48,10 @@ export { default as DeleteButton } from './svg/delete-button.svg';
 export { default as RightArrowButton } from './svg/right-arrow-button.svg';
 export { default as LeftArrowButton } from './svg/left-arrow-button.svg';
 export { default as DraftFolder } from './svg/draft-folder.svg';
+export { default as ActivityInfo } from './svg/activity-info.svg';
+export { default as EditProfile } from './svg/edit-profile.svg';
+export { default as Withdraw } from './svg/withdraw.svg';
+export { default as ProfileInfoSample } from './images/profileInfo-sample.png';
 
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';
