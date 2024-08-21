@@ -3,15 +3,15 @@ import color from '@/styles/color';
 import typo from '@/styles/typo';
 
 export const container = css`
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   padding: 4px 16px;
   border-radius: 10px;
   background-color: ${color.GY[3]};
   gap: 8px;
-  width: max-content;
-  height: max-content;
+  width: auto;
+  height: 34px;
 `;
 
 export const label = css`
