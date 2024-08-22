@@ -1,14 +1,7 @@
 import React from 'react';
 import Modal from '@/components/atoms/Modal/Modal';
 import Divider from '@/components/atoms/Divider/Divider';
-import {
-  textModalStyling,
-  modalTextStyling,
-  modalSmallTextStyling,
-  buttonTextStyling,
-  buttonWrapperStyling,
-  modalTextWrapper,
-} from './TextModal.style';
+import * as S from './TextModal.style';
 
 export interface TextModalProps {
   text: string;
@@ -26,17 +19,17 @@ const TextModal = ({
   onClose,
 }: TextModalProps) => (
   <Modal action="default" isOpen={isOpen} onClose={onClose}>
-    <div css={textModalStyling}>
-      <div css={modalTextWrapper}>
-        <div css={modalTextStyling}>{text}</div>
-        {smallText && <div css={modalSmallTextStyling}>{smallText}</div>}
+    <div css={S.textModalStyling}>
+      <div css={S.modalTextWrapper}>
+        <div css={S.modalTextStyling}>{text}</div>
+        {smallText && <div css={S.modalSmallTextStyling}>{smallText}</div>}
       </div>
       <Divider orientation="width" length={546} />
-      <div css={buttonWrapperStyling}>
-        <button type="button" onClick={onConfirm} css={buttonTextStyling}>
+      <div css={S.buttonWrapperStyling}>
+        <button type="button" onClick={onConfirm} css={S.buttonTextStyling}>
           확인
         </button>
-        <button type="button" onClick={onClose} css={buttonTextStyling}>
+        <button type="button" onClick={onClose} css={S.buttonTextStyling}>
           취소
         </button>
       </div>
