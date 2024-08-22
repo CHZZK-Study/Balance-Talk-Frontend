@@ -13,7 +13,7 @@ import {
 } from './TopBanner.style';
 
 export interface TopBannerProps {
-  todayTalkPick: TodayTalkPick | undefined;
+  todayTalkPick?: TodayTalkPick;
 }
 
 const TopBanner = ({ todayTalkPick }: TopBannerProps) => {

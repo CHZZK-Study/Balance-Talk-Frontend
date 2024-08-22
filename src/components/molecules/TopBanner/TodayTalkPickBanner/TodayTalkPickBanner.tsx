@@ -10,7 +10,7 @@ import {
 } from './TodayTalkPickBanner.style';
 
 interface TodayTalkPickBannerProps {
-  talkPick: TodayTalkPick | undefined;
+  talkPick?: TodayTalkPick;
 }
 
 const TodayTalkPickBanner = ({ talkPick }: TodayTalkPickBannerProps) => {

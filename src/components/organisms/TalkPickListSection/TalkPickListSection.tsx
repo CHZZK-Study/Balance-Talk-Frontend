@@ -11,7 +11,7 @@ import TalkPickList from '@/components/molecules/TalkPickList/TalkPickList';
 import * as S from './TalkPickListSection.style';
 
 export interface TalkPickListProps {
-  talkPickList: TalkPickListPagination | undefined;
+  talkPickList?: TalkPickListPagination;
   toggleItem: ToggleGroupItem[];
   selectedValue: string;
   setToggleValue: React.Dispatch<React.SetStateAction<string>>;

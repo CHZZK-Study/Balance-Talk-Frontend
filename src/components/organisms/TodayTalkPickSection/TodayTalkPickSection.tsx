@@ -15,7 +15,7 @@ import MenuTap, { MenuItem } from '@/components/atoms/MenuTap/MenuTap';
 import * as S from './TodayTalkPickSection.style';
 
 export interface TodayTalkPickProps {
-  todayTalkPick: TalkPickDetail | undefined;
+  todayTalkPick?: TalkPickDetail;
   talkPickMenu: MenuItem[];
 }
 

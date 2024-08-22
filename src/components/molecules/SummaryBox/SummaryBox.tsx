@@ -5,7 +5,7 @@ import SummaryItem from '@/components/atoms/SummaryItem/SummaryItem';
 import * as S from './SummaryBox.style';
 
 export interface SummaryBoxProps {
-  summary: TalkPickSummary | undefined;
+  summary?: TalkPickSummary;
 }
 
 const SummaryBox = ({ summary }: SummaryBoxProps) => (
