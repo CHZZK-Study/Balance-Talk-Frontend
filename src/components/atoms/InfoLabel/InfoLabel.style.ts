@@ -10,18 +10,25 @@ export const container = css`
   border-radius: 10px;
   background-color: ${color.GY[3]};
   gap: 8px;
-  width: auto;
+  width: max-content;
   height: 34px;
+  box-sizing: border-box;
 `;
 
 export const label = css`
+  display: inline-block;
   ${typo.Comment.SemiBold_16}
   color: ${color.GY[1]};
   text-align: center;
+  width: max-content;
+  height: auto;
 `;
 
 export const count = css`
+  display: inline-block;
   text-align: center;
   ${typo.Number.Medium_16}
   color: ${color.MAIN};
+  width: max-content;
+  height: auto;
 `;

@@ -10,8 +10,8 @@ export interface InfoLabelProps extends ComponentPropsWithRef<'div'> {
 const InfoLabel = ({ label, count, ...attributes }: InfoLabelProps) => {
   return (
     <div css={S.container} {...attributes}>
-      <p css={S.label}>{label}</p>
-      <p css={S.count}>{count}</p>
+      <span css={S.label}>{label}</span>
+      <span css={S.count}>{count}</span>
     </div>
   );
 };
