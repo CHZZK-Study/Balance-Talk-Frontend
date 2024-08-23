@@ -47,7 +47,8 @@ export { default as ActivityInfo } from './svg/activity-info.svg';
 export { default as EditProfile } from './svg/edit-profile.svg';
 export { default as Withdraw } from './svg/withdraw.svg';
 export { default as ProfileInfoSample } from './images/profileInfo-sample.png';
-
+export { default as SampleFirst } from './images/sample-first.png';
+export { default as SampleSecond } from './images/sample-second.png';
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';
 export { default as Profile } from './svg/profile.svg';
