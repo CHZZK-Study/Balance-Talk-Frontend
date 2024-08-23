@@ -5,7 +5,7 @@ import typo from '@/styles/typo';
 export const infoContainer = css`
   display: flex;
   width: 904px;
-  height: 84px;
+  height: 61px;
   padding: 15px 40px;
   flex-direction: row;
   justify-content: center;
