@@ -31,7 +31,6 @@ export const cardWrapper = css`
 
 export const imageContainer = css`
   display: flex;
-  //position: relative;
   width: 100%;
   height: 250px;
   overflow: hidden;
