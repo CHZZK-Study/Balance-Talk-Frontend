@@ -65,7 +65,7 @@ const typo = {
       fontSize: '16px',
       fontWeight: 600,
       lineHeight: '1.6',
-      letterSpacing: `${16 * -0.05}px`,
+      letterSpacing: `-0.8px`,
     },
     Regular: {
       fontFamily: 'Pretendard',
@@ -107,7 +107,7 @@ const typo = {
       fontSize: '16px',
       fontWeight: 500,
       lineHeight: '1.6',
-      letterSpacing: `${16 * -0.05}px`,
+      letterSpacing: `0px`,
     },
     Regular: {
       fontFamily: 'Poppins-Regular',
