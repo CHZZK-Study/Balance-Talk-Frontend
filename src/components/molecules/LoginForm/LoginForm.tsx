@@ -1,66 +1,81 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Envelope, Lock, KakaoLogin, GoogleLogin, NaverLogin } from '@/assets';
 import Button from '@/components/atoms/Button/Button';
 import Input from '@/components/atoms/Input/Input';
 import Divider from '@/components/atoms/Divider/Divider';
-import {
-  btnWrapperMargin,
-  btnWrapperStyling,
-  loginModalStyling,
-  loginButtonStyling,
-  loginTextStyling,
-  signInTextStyling,
-  textWrapperStyling,
-  textStyling,
-  loginFormWrapper,
-  loginBtnStyling,
-} from './LoginFrom.style';
+import ToastModal from '@/components/atoms/ToastModal/ToastModal';
+import { useLoginForm } from '@/hooks/login/useLoginForm';
+import * as S from './LoginFrom.style';
 
 export interface LoginFormProps {
   withSignInText?: boolean;
 }
 
 const LoginForm = ({ withSignInText }: LoginFormProps) => {
+  const { form, onChange, isError, errorMessage, handleSubmit, loginSuccess } =
+    useLoginForm();
+
   return (
-    <div css={loginModalStyling}>
-      <div css={loginTextStyling}>LOGIN</div>
-      <div css={loginFormWrapper}>
+    <form onSubmit={handleSubmit} css={S.loginFormStyling}>
+      {loginSuccess && (
+        <div css={S.toastModalStyling}>
+          <ToastModal bgColor="black">로그인 완료!</ToastModal>
+        </div>
+      )}
+      <div css={S.loginTextStyling}>LOGIN</div>
+      <div css={S.loginFormWrapper}>
         <Input
+          name="email"
+          value={form.email}
           icon={<Envelope />}
           placeholder="이메일"
+          onChange={onChange}
           style={{ width: '450px' }}
         />
         <Input
+          name="password"
+          value={form.password}
           icon={<Lock />}
           placeholder="비밀번호"
+          isError={isError}
+          errorMessage={errorMessage}
+          onChange={onChange}
           style={{ width: '450px' }}
         />
-        <Button size="large" variant="roundPrimary" css={loginBtnStyling}>
+        <Button
+          type="submit"
+          size="large"
+          variant="roundPrimary"
+          css={S.loginBtnStyling}
+        >
           로그인
         </Button>
       </div>
-      <div css={textWrapperStyling}>
-        <div css={textStyling}>회원가입</div>
+      <div css={S.textWrapperStyling}>
+        <Link to="/signup">
+          <div css={S.textStyling}>회원가입</div>
+        </Link>
         <Divider orientation="height" length={14} />
-        <div css={textStyling}>비밀번호 찾기</div>
+        <div css={S.textStyling}>비밀번호 찾기</div>
       </div>
       <Divider orientation="width" length={522} />
       {withSignInText && (
-        <div css={signInTextStyling}>3초만에 회원가입하고 PICK-O 즐기기!</div>
+        <div css={S.signInTextStyling}>3초만에 회원가입하고 PICK-O 즐기기!</div>
       )}
-      <div css={[btnWrapperStyling, withSignInText && btnWrapperMargin]}>
-        <button type="button" css={loginButtonStyling}>
+      <div css={[S.btnWrapperStyling, withSignInText && S.btnWrapperMargin]}>
+        <button type="button" css={S.loginButtonStyling}>
           <KakaoLogin />
         </button>
-        <button type="button" css={loginButtonStyling}>
+        <button type="button" css={S.loginButtonStyling}>
           <GoogleLogin />
         </button>
-        <button type="button" css={loginButtonStyling}>
+        <button type="button" css={S.loginButtonStyling}>
           <NaverLogin />
         </button>
       </div>
-    </div>
+    </form>
   );
 };
 

@@ -1,7 +1,6 @@
 import { AxiosErrorResponse, axiosInstance } from '@/api/interceptor';
 import { postLogin } from '@/api/member';
 import { HTTP_STATUS_CODE } from '@/constants/api';
-import { PATH } from '@/constants/path';
 import { useNewDispatch } from '@/store';
 import { tokenActions } from '@/store/auth';
 import { MemberForm } from '@/types/member';
@@ -21,7 +20,8 @@ export const useLoginForm = () => {
   const { form, onChange } =
     useInputs<Pick<MemberForm, 'email' | 'password'>>(initialState);
 
-  const [isError, setIsError] = useState(false);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [loginSuccess, setLoginSuccess] = useState<boolean>(false);
 
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
     undefined,
@@ -37,17 +37,18 @@ export const useLoginForm = () => {
     onSuccess: (res: string) => {
       setIsError(false);
       setErrorMessage(undefined);
-
-      alert('로그인에 성공했습니다😀');
+      setLoginSuccess(true);
 
       dispatch(tokenActions.setToken(res));
       axiosInstance.defaults.headers.Authorization = `Bearer ${res}`;
 
       // TODO: 백엔드에서 리프레쉬 토큰 쿠키에 저장시키면, 해당 코드 제거
       localStorage.setItem('accessToken', res);
-      localStorage.setItem('rtk', 'rtk');
+      // localStorage.setItem('rtk', 'rtk');
 
-      navigate(`/${PATH.MYPAGE}/${PATH.HISTORY.MAIN}/${PATH.HISTORY.POSTS}`);
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
     },
 
     onError: (err: AxiosErrorResponse) => {
@@ -58,6 +59,16 @@ export const useLoginForm = () => {
     },
   });
 
+  const isValidEmailFormat = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const isValidPwFormat = (pw: string): boolean => {
+    const pwPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{10,20}$/;
+    return pwPattern.test(pw);
+  };
+
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -66,13 +77,23 @@ export const useLoginForm = () => {
       setErrorMessage(ERROR.EMAIL.EMPTY);
       return;
     }
+    if (!isValidEmailFormat(form.email)) {
+      setIsError(true);
+      setErrorMessage(ERROR.EMAIL.FORM);
+      return;
+    }
     if (isEmptyString(form.password)) {
       setIsError(true);
       setErrorMessage(ERROR.PW.EMPTY);
       return;
     }
+    if (!isValidPwFormat(form.password)) {
+      setIsError(true);
+      setErrorMessage(ERROR.PW.FORM);
+      return;
+    }
     login.mutate(form);
   };
 
-  return { form, onChange, isError, errorMessage, handleSubmit };
+  return { form, onChange, isError, errorMessage, handleSubmit, loginSuccess };
 };
