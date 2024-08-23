@@ -9,15 +9,7 @@ import { Logo, WriteIcon, DefaultProfile } from '@/assets';
 import Button from '@/components/atoms/Button/Button';
 import Notification from '@/components/molecules/Notification/Notification';
 import ProfileIcon from '@/components/atoms/ProfileIcon/ProfileIcon';
-import {
-  containerStyle,
-  logoStyle,
-  IconStyle,
-  WriteButtonStyle,
-  LoginButtonStyle,
-  rightContainerStyle,
-  notificationStyle,
-} from './Header.style';
+import * as S from './Header.style';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -43,27 +35,27 @@ const Header = () => {
   };
 
   return (
-    <div css={containerStyle}>
-      <div css={logoStyle}>
+    <div css={S.containerStyle}>
+      <div css={S.logoStyle}>
         <Link to="/">
           <Logo />
         </Link>
       </div>
-      <div css={rightContainerStyle}>
-        <Button variant="roundPrimary" size="medium" css={WriteButtonStyle}>
-          <WriteIcon css={IconStyle} />
+      <div css={S.rightContainerStyle}>
+        <Button variant="roundPrimary" size="medium" css={S.WriteButtonStyle}>
+          <WriteIcon css={S.IconStyle} />
           톡픽쓰기
         </Button>
-        <div css={rightContainerStyle}>
+        <div css={S.rightContainerStyle}>
           <button
             type="button"
             onClick={handleLoginButton}
-            css={LoginButtonStyle}
+            css={S.LoginButtonStyle}
           >
             {accessToken ? '로그아웃' : '로그인'}
           </button>
           <Notification isNew={false} notifications={[]} />
-          <div css={notificationStyle}>
+          <div css={S.notificationStyle}>
             {accessToken ? (
               <ProfileIcon
                 interaction="settings"
