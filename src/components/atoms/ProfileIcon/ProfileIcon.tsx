@@ -10,7 +10,7 @@ interface ProfileProps {
 
 interface ProfilePropsWithImage {
   interaction: 'settings';
-  imgUrl: string;
+  imgUrl?: string;
   size?: 'small' | 'large';
 }
 
