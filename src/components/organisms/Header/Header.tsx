@@ -1,5 +1,9 @@
 import React from 'react';
-import { Logo, WriteIcon } from '@/assets';
+import { useNavigate, Link } from 'react-router-dom';
+import { useLogoutMutation } from '@/hooks/api/member/useLogoutMutation';
+import { useNewSelector } from '@/store';
+import { selectAccessToken } from '@/store/auth';
+import { Logo, WriteIcon, ProfileInfoSample } from '@/assets';
 import Button from '@/components/atoms/Button/Button';
 import Notification from '@/components/molecules/Notification/Notification';
 import ProfileIcon from '@/components/atoms/ProfileIcon/ProfileIcon';
@@ -14,10 +18,33 @@ import {
 } from './Header.style';
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const accessToken = useNewSelector(selectAccessToken);
+  const logout = useLogoutMutation();
+
+  const handleLoginButton = () => {
+    if (accessToken) {
+      logout.mutate();
+    } else {
+      navigate('/login');
+    }
+  };
+
+  const handleProfileIcon = () => {
+    if (accessToken) {
+      navigate('/mypage');
+    } else {
+      navigate('/login');
+    }
+  };
+
   return (
     <div css={containerStyle}>
       <div css={logoStyle}>
-        <Logo />
+        <Link to="/">
+          <Logo />
+        </Link>
       </div>
       <div css={rightContainerStyle}>
         <Button variant="roundPrimary" size="medium" css={WriteButtonStyle}>
@@ -25,12 +52,24 @@ const Header = () => {
           톡픽쓰기
         </Button>
         <div css={rightContainerStyle}>
-          <button type="button" css={LoginButtonStyle}>
-            로그인
+          <button
+            type="button"
+            onClick={handleLoginButton}
+            css={LoginButtonStyle}
+          >
+            {accessToken ? '로그아웃' : '로그인'}
           </button>
           <Notification isNew={false} notifications={[]} />
           <div css={notificationStyle}>
-            <ProfileIcon interaction="normal" />
+            {accessToken ? (
+              <ProfileIcon
+                interaction="settings"
+                imgUrl={ProfileInfoSample}
+                onClick={handleProfileIcon}
+              />
+            ) : (
+              <ProfileIcon interaction="normal" onClick={handleProfileIcon} />
+            )}
           </div>
         </div>
       </div>
