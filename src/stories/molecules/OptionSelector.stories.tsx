@@ -19,6 +19,7 @@ const meta = {
   args: {
     options: ['내가 저장한', '내가 투표한', '내가 댓글단', '내가 작성한'],
     selectedOption: '내가 댓글단',
+    onSelect: (option: string) => console.log(`선택된 항목은 ${option} 입니다`),
   },
 } satisfies Meta<typeof OptionSelector>;
 
@@ -29,10 +30,15 @@ export const Default: Story = {
   args: {
     options: ['내가 저장한', '내가 투표한', '내가 댓글단', '내가 작성한'],
     selectedOption: '내가 댓글단',
+    onSelect: (option: string) => console.log(`선택된 항목은 ${option} 입니다`),
   },
 };
 
 export const All: Story = {
+  args: {
+    options: ['내가 저장한', '내가 투표한', '내가 댓글단', '내가 작성한'],
+    onSelect: (option: string) => console.log(`선택된 항목은 ${option} 입니다`),
+  },
   render: (args) => (
     <ul css={storyContainer}>
       <li css={storyInnerContainer}>
