@@ -13,6 +13,7 @@ export const container = css`
   width: max-content;
   height: 34px;
   box-sizing: border-box;
+  flex-shrink: 0;
 `;
 
 export const label = css`
@@ -22,6 +23,7 @@ export const label = css`
   text-align: center;
   width: max-content;
   height: auto;
+  flex-shrink: 0;
 `;
 
 export const count = css`
@@ -31,4 +33,5 @@ export const count = css`
   color: ${color.MAIN};
   width: max-content;
   height: auto;
+  flex-shrink: 0;
 `;
