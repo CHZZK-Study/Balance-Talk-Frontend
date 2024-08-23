@@ -5,10 +5,11 @@ import Bookmark from '@/components/atoms/Bookmark/Bookmark';
 import * as S from './ContentsButton.style';
 
 export interface ContentsButtonProps extends ComponentPropsWithRef<'div'> {
-  imgUrl: string;
+  imgUrl: string[];
   label: string;
   tagLabels: string[];
-  bookmarkState?: boolean;
+  bookmarkState: boolean;
+  showBookmark?: boolean;
 }
 
 const ContentsButton = ({
@@ -16,12 +17,17 @@ const ContentsButton = ({
   label,
   tagLabels,
   bookmarkState = false,
+  showBookmark = false,
   ...attributes
 }: ContentsButtonProps) => {
   return (
     <div css={S.cardWrapper} {...attributes}>
       <div css={S.imageContainer}>
-        <img src={imgUrl} alt={label} css={S.image} />
+        {imgUrl.map((url, index) => (
+          <div key={index} css={S.imageWrapper}>
+            <img src={url} alt={`${label} ${index + 1}`} css={S.image} />
+          </div>
+        ))}
         <div css={S.chipsContainer}>
           {tagLabels.map((tagLabel) => (
             <Chips key={tagLabel}>{tagLabel}</Chips>
@@ -30,7 +36,9 @@ const ContentsButton = ({
       </div>
       <div css={S.infoContainer}>
         <span css={S.label}>{label}</span>
-        <Bookmark bookmarkState={bookmarkState} />
+        {showBookmark && (
+          <Bookmark bookmarkState={bookmarkState} css={S.bookmarkWrapper} />
+        )}
       </div>
     </div>
   );

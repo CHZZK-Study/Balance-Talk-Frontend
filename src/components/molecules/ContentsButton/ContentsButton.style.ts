@@ -30,7 +30,8 @@ export const cardWrapper = css`
 `;
 
 export const imageContainer = css`
-  position: relative;
+  display: flex;
+  //position: relative;
   width: 100%;
   height: 250px;
   overflow: hidden;
@@ -38,10 +39,17 @@ export const imageContainer = css`
   border-top-right-radius: 20px;
 `;
 
+export const imageWrapper = css`
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+`;
+
 export const image = css`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   transition: transform 0.2s ease-in-out;
 `;
 
@@ -66,3 +74,7 @@ export const label = css({
   color: color.BK,
   maxWidth: '440px',
 });
+
+export const bookmarkWrapper = css`
+  margin-left: auto;
+`;
