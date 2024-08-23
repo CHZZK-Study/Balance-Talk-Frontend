@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Envelope, Lock, KakaoLogin, GoogleLogin, NaverLogin } from '@/assets';
+import { Envelope, Lock } from '@/assets';
 import Button from '@/components/atoms/Button/Button';
 import Input from '@/components/atoms/Input/Input';
 import Divider from '@/components/atoms/Divider/Divider';
 import ToastModal from '@/components/atoms/ToastModal/ToastModal';
+import SocialLoginButton from '@/components/atoms/SocialLoginButton/SocialLoginButton';
 import { useLoginForm } from '@/hooks/login/useLoginForm';
 import * as S from './LoginFrom.style';
 
@@ -65,15 +66,9 @@ const LoginForm = ({ withSignInText }: LoginFormProps) => {
         <div css={S.signInTextStyling}>3초만에 회원가입하고 PICK-O 즐기기!</div>
       )}
       <div css={[S.btnWrapperStyling, withSignInText && S.btnWrapperMargin]}>
-        <button type="button" css={S.loginButtonStyling}>
-          <KakaoLogin />
-        </button>
-        <button type="button" css={S.loginButtonStyling}>
-          <GoogleLogin />
-        </button>
-        <button type="button" css={S.loginButtonStyling}>
-          <NaverLogin />
-        </button>
+        <SocialLoginButton variant="kakao" />
+        <SocialLoginButton variant="google" />
+        <SocialLoginButton variant="naver" />
       </div>
     </form>
   );
