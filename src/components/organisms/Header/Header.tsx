@@ -2,8 +2,10 @@ import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useLogoutMutation } from '@/hooks/api/member/useLogoutMutation';
 import { useNewSelector } from '@/store';
+import { useParseJwt } from '@/hooks/common/useParseJwt';
+import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import { selectAccessToken } from '@/store/auth';
-import { Logo, WriteIcon, ProfileInfoSample } from '@/assets';
+import { Logo, WriteIcon, DefaultProfile } from '@/assets';
 import Button from '@/components/atoms/Button/Button';
 import Notification from '@/components/molecules/Notification/Notification';
 import ProfileIcon from '@/components/atoms/ProfileIcon/ProfileIcon';
@@ -21,6 +23,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const accessToken = useNewSelector(selectAccessToken);
+  const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
   const logout = useLogoutMutation();
 
   const handleLoginButton = () => {
@@ -64,7 +67,7 @@ const Header = () => {
             {accessToken ? (
               <ProfileIcon
                 interaction="settings"
-                imgUrl={ProfileInfoSample}
+                imgUrl={member?.profileImageUrl ?? DefaultProfile}
                 onClick={handleProfileIcon}
               />
             ) : (
