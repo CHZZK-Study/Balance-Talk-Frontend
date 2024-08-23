@@ -37,7 +37,22 @@ export const All: Story = {
         <InfoLabel label="톡댓톡" count={172} />
       </li>
       <li css={storyInnerContainer}>
+        <InfoLabel label="톡댓톡" count={256} />
+      </li>
+      <li css={storyInnerContainer}>
+        <InfoLabel label="톡댓톡" count={151} />
+      </li>
+      <li css={storyInnerContainer}>
         <InfoLabel label="저장" count={172} />
+      </li>
+      <li css={storyInnerContainer}>
+        <InfoLabel label="톡댓톡" count={1} />
+      </li>
+      <li css={storyInnerContainer}>
+        <InfoLabel label="톡댓톡" count={15} />
+      </li>
+      <li css={storyInnerContainer}>
+        <InfoLabel label="저장" count={15} />
       </li>
     </ul>
   ),
