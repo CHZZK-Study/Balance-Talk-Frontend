@@ -36,8 +36,18 @@ export const All: Story = {
       <li css={storyInnerContainer}>
         <h3>Delete Comment Modal</h3>
         <TextModal {...args} text="작성한 댓글을 삭제하시겠습니까?" />
+      </li>
+      <li css={storyInnerContainer}>
         <h3>Report Comment Modal</h3>
         <TextModal {...args} text="해당 댓글을 신고하시겠습니까?" />
+      </li>
+      <li css={storyInnerContainer}>
+        <h3>Modal with Small Text</h3>
+        <TextModal
+          {...args}
+          text="임시저장된 글을 불러올까요?"
+          smallText="최근 임시저장된 게시글을 불러오면 기존에 작성하던 글이 사라져요!"
+        />
       </li>
     </ul>
   ),

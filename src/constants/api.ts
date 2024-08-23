@@ -45,7 +45,9 @@ export const END_POINT = {
   // talk pick API
   TALKPICK: (talkPickId: Id) => `/talks/${talkPickId}`,
   CREATE_TALKPICK: '/talks',
+  TALKPICK_LIST: '/talks',
   TODAY_TALKPICK: '/talks/today',
+  BEST_TALKPICK: '/talks/best',
 
   // vote API
   VOTE_TALK: (talkPickId: Id) => `/votes/talks/${talkPickId}`,

@@ -14,14 +14,14 @@ export type TalkPickDetail = {
   myBookmark: boolean;
   votedOption: 'A' | 'B' | null;
   writer: string;
-  lastModifiedAt: string;
+  createdAt: string;
   isUpdated: boolean;
 };
 
 export type TalkPickSummary = {
-  summaryFirstLine: string;
-  summarySecondLine: string;
-  summaryThirdLine: string;
+  summaryFirstLine: string | null;
+  summarySecondLine: string | null;
+  summaryThirdLine: string | null;
 };
 
 export type TalkPickListItem = {

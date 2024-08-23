@@ -1,78 +1,40 @@
-import React from 'react';
-import { TalkPickListItem, TalkPickListPagination } from '@/types/talk-pick';
+import React, { useState, useEffect } from 'react';
+import { ToggleGroupItem } from '@/components/atoms/ToggleGroup/ToggleGroup';
 import BestTalkPick from '@/components/molecules/BestTalkPick/BestTalkPick';
 import TalkPickListSection from '@/components/organisms/TalkPickListSection/TalkPickListSection';
+import { useBestTalkPickListQuery } from '@/hooks/api/talk-pick/useBestTalkPickListQuery';
+import { useTalkPickListQuery } from '@/hooks/api/talk-pick/useTalkPickListQuery';
 import * as S from './TalkPickPlacePage.style';
 
-const bestTalkPickList: TalkPickListItem[] = [
-  {
-    id: 1,
-    title: '효과적인 의사소통을 위한 비언어적 신호',
-    writer: '닉네임593',
-    createdAt: '2024-07-10',
-    views: 2000,
-    bookmarks: 3000,
-  },
-  {
-    id: 2,
-    title: '세계 최초 3D 프린팅 인간 장기 이식 성공',
-    writer: '닉네임593',
-    createdAt: '2024-07-10',
-    views: 1254,
-    bookmarks: 1127,
-  },
-  {
-    id: 3,
-    title: '역대급 인공지능 슈퍼컴퓨터 개발, 과학 기술 혁신 촉진',
-    writer: '닉네임593',
-    createdAt: '2024-07-10',
-    views: 1030,
-    bookmarks: 752,
-  },
-];
-
-const exampleTalkPickList: TalkPickListItem[] = Array.from(
-  { length: 30 },
-  () => ({
-    id: 5712,
-    title: '효과적인 의사소통을 위한 비언어적 신호',
-    writer: '닉네임593',
-    createdAt: '2024-07-10',
-    views: 2000,
-    bookmarks: 3000,
-  }),
-);
-
-const exampleTalkPickPagination: TalkPickListPagination = {
-  totalPages: 0,
-  totalElements: 0,
-  size: 0,
-  content: exampleTalkPickList,
-  number: 0,
-  sort: {
-    empty: true,
-    sorted: true,
-    unsorted: true,
-  },
-  numberOfElements: 0,
-  pageable: {
-    offset: 0,
-    sort: {
-      empty: true,
-      sorted: true,
-      unsorted: true,
-    },
-    pageNumber: 0,
-    pageSize: 0,
-    paged: true,
-    unpaged: true,
-  },
-  first: true,
-  last: true,
-  empty: true,
-};
-
 const TalkPickPlacePage = () => {
+  const [selectedPage, setSelectedPage] = useState<number>(1);
+  const [selectedValue, setSelectedValue] = useState<string>('trend');
+  const toggleItem: ToggleGroupItem[] = [
+    {
+      label: '최신순',
+      value: 'recent',
+    },
+    {
+      label: '인기순',
+      value: 'trend',
+    },
+  ];
+
+  const { bestTalkPick } = useBestTalkPickListQuery();
+  const { talkPickList } = useTalkPickListQuery({
+    page: selectedPage - 1,
+    size: 20,
+    sort: selectedValue === 'recent' ? 'createdAt,desc' : 'views,desc',
+  });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [selectedPage]);
+
+  useEffect(() => {
+    setSelectedPage(1);
+  }, [selectedValue]);
+
   return (
     <div css={S.talkPickPlaceStyling}>
       <div css={S.bestTalkPickStyling}>
@@ -82,9 +44,16 @@ const TalkPickPlacePage = () => {
           </div>
           <div css={S.bestTalkPickTitle}>톡&픽 플레이스</div>
         </div>
-        <BestTalkPick bestTalkPick={bestTalkPickList} />
+        <BestTalkPick bestTalkPick={bestTalkPick} />
       </div>
-      <TalkPickListSection talkPickList={exampleTalkPickPagination} />
+      <TalkPickListSection
+        talkPickList={talkPickList}
+        toggleItem={toggleItem}
+        selectedValue={selectedValue}
+        setToggleValue={setSelectedValue}
+        selectedPage={selectedPage}
+        handlePageChange={setSelectedPage}
+      />
     </div>
   );
 };

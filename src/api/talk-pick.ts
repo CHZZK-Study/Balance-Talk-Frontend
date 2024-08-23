@@ -1,10 +1,16 @@
 import { END_POINT } from '@/constants/api';
 import { Id } from '@/types/api';
-import { TalkPickDetail, TalkPick } from '@/types/talk-pick';
+import {
+  TalkPick,
+  TalkPickDetail,
+  TodayTalkPick,
+  TalkPickListItem,
+  TalkPickListPagination,
+} from '@/types/talk-pick';
 import { Pageable } from '@/types/pagination';
 import { axiosInstance } from './interceptor';
 
-export const getTalkPick = async (talkPickId: Id) => {
+export const getTalkPickDetail = async (talkPickId: Id) => {
   const { data } = await axiosInstance.get<TalkPickDetail>(
     END_POINT.TALKPICK(talkPickId),
   );
@@ -32,9 +38,26 @@ export const postTalkPick = async (talkPickData: TalkPick) => {
   return response;
 };
 
-export const getTodayTalkPick = async (pageable: Pageable) => {
-  const { data } = await axiosInstance.get<TalkPick>(END_POINT.TODAY_TALKPICK, {
-    params: { ...pageable, sort: 'createdAt,desc' },
-  });
+export const getTodayTalkPick = async () => {
+  const { data } = await axiosInstance.get<TodayTalkPick>(
+    END_POINT.TODAY_TALKPICK,
+  );
+  return data;
+};
+
+export const getBestTalkPickList = async () => {
+  const { data } = await axiosInstance.get<TalkPickListItem[]>(
+    END_POINT.BEST_TALKPICK,
+  );
+  return data;
+};
+
+export const getTalkPickList = async (pageable: Pageable) => {
+  const { data } = await axiosInstance.get<TalkPickListPagination>(
+    END_POINT.TALKPICK_LIST,
+    {
+      params: pageable,
+    },
+  );
   return data;
 };
