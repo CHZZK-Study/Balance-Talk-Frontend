@@ -11,10 +11,12 @@ export interface ButtonProps extends ComponentPropsWithRef<'button'> {
   size?: Extract<Size, 'large' | 'medium'>;
   variant?:
     | 'primary'
+    | 'primarySquare'
     | 'roundPrimary'
     | 'roundPrimary2'
     | 'outlinePrimary'
     | 'outlineSecondary'
+    | 'outlinePrimarySquare'
     | 'outlineShadow'
     | 'outlineHighlightR'
     | 'outlineHighlightB'
