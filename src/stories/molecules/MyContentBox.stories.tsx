@@ -1,0 +1,73 @@
+import React from 'react';
+import MyContentBox from '@/components/molecules/MyContentBox/MyContentBox';
+import type { Meta, StoryObj } from '@storybook/react';
+import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
+
+const meta: Meta<typeof MyContentBox> = {
+  title: 'molecules/MyContentBox',
+  component: MyContentBox,
+  parameters: {
+    layout: 'centered',
+  },
+  tags: ['autodocs'],
+  argTypes: {
+    title: { control: { type: 'text' } },
+    commentCount: { control: { type: 'number' } },
+    saveCount: { control: { type: 'number' } },
+    showBookmark: { control: { type: 'boolean' } },
+    bookmarkState: { control: { type: 'boolean' } },
+  },
+  args: {
+    title: '내가 작성한 게시글',
+    commentCount: 172,
+    saveCount: 85,
+    showBookmark: true,
+    bookmarkState: false,
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    title: '내가 작성한 게시글',
+    commentCount: 172,
+    saveCount: 85,
+    showBookmark: true,
+    bookmarkState: false,
+  },
+};
+
+export const All: Story = {
+  render: () => (
+    <div css={storyContainer}>
+      <div css={storyInnerContainer}>
+        <MyContentBox
+          title="내가 작성한 게시글 1"
+          commentCount={172}
+          saveCount={85}
+          showBookmark
+          bookmarkState
+        />
+      </div>
+      <div css={storyInnerContainer}>
+        <MyContentBox
+          title="내가 작성한 게시글 2"
+          commentCount={256}
+          saveCount={90}
+          showBookmark
+          bookmarkState={false}
+        />
+      </div>
+      <div css={storyInnerContainer}>
+        <MyContentBox
+          title="내가 작성한 게시글 3"
+          commentCount={151}
+          saveCount={60}
+          showBookmark={false}
+        />
+      </div>
+    </div>
+  ),
+};
