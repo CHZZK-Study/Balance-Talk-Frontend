@@ -9,7 +9,7 @@ export interface SocialLoginButtonProps
   recent?: boolean;
 }
 
-const CategoryButton = (
+const SocialLoginButton = (
   { variant, recent = false, ...props }: SocialLoginButtonProps,
   ref: ForwardedRef<HTMLButtonElement>,
 ) => {
@@ -38,4 +38,4 @@ const CategoryButton = (
   );
 };
 
-export default forwardRef(CategoryButton);
+export default forwardRef(SocialLoginButton);
