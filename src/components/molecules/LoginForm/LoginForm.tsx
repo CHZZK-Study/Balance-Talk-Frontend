@@ -33,7 +33,7 @@ const LoginForm = ({ withSignInText }: LoginFormProps) => {
           icon={<Envelope />}
           placeholder="이메일"
           onChange={onChange}
-          style={{ width: '450px' }}
+          css={S.loginInputStyling}
         />
         <Input
           name="password"
@@ -43,7 +43,7 @@ const LoginForm = ({ withSignInText }: LoginFormProps) => {
           isError={isError}
           errorMessage={errorMessage}
           onChange={onChange}
-          style={{ width: '450px' }}
+          css={S.loginInputStyling}
         />
         <Button
           type="submit"

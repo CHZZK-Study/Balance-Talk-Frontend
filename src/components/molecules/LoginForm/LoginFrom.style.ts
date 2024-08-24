@@ -26,6 +26,10 @@ export const textStyling = css(typo.Main.Medium, {
   cursor: 'pointer',
 });
 
+export const loginInputStyling = css({
+  width: '450px',
+});
+
 export const loginBtnStyling = css({
   width: '536px',
 });
