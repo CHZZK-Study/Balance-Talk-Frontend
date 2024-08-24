@@ -8,8 +8,8 @@ import { useMutation } from '@tanstack/react-query';
 import { ChangeEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ERROR } from '../../constants/message';
-import { isEmptyString } from '../../utils/validator';
 import useInputs from '../common/useInputs';
+import { validateLoginForm } from './validateLoginForm';
 
 const initialState: Pick<MemberForm, 'email' | 'password'> = {
   email: '',
@@ -20,12 +20,16 @@ export const useLoginForm = () => {
   const { form, onChange } =
     useInputs<Pick<MemberForm, 'email' | 'password'>>(initialState);
 
-  const [isError, setIsError] = useState<boolean>(false);
   const [loginSuccess, setLoginSuccess] = useState<boolean>(false);
-
+  const [isError, setIsError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
     undefined,
   );
+
+  const setLoginError = (message: string) => {
+    setIsError(true);
+    setErrorMessage(message);
+  };
 
   const navigate = useNavigate();
 
@@ -53,43 +57,18 @@ export const useLoginForm = () => {
 
     onError: (err: AxiosErrorResponse) => {
       if (err.status === HTTP_STATUS_CODE.UNAUTHORIZED) {
-        setIsError(true);
-        setErrorMessage(ERROR.LOGIN.FAIL);
+        setLoginError(ERROR.LOGIN.FAIL);
       }
     },
   });
 
-  const isValidEmailFormat = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const isValidPwFormat = (pw: string): boolean => {
-    const pwPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{10,20}$/;
-    return pwPattern.test(pw);
-  };
-
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (isEmptyString(form.email)) {
-      setIsError(true);
-      setErrorMessage(ERROR.EMAIL.EMPTY);
-      return;
-    }
-    if (!isValidEmailFormat(form.email)) {
-      setIsError(true);
-      setErrorMessage(ERROR.EMAIL.FORM);
-      return;
-    }
-    if (isEmptyString(form.password)) {
-      setIsError(true);
-      setErrorMessage(ERROR.PW.EMPTY);
-      return;
-    }
-    if (!isValidPwFormat(form.password)) {
-      setIsError(true);
-      setErrorMessage(ERROR.PW.FORM);
+    const loginValidation = validateLoginForm(form);
+
+    if (!loginValidation.isValid) {
+      setLoginError(loginValidation.message);
       return;
     }
     login.mutate(form);
