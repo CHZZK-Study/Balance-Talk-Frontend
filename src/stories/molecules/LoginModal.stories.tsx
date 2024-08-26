@@ -1,4 +1,8 @@
 import React from 'react';
+import store from '@/store';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import ReactQueryProvider from '@/providers/ReactQueryProvider';
 import LoginModal from '@/components/molecules/LoginModal/LoginModal';
 import type { Meta, StoryObj } from '@storybook/react';
 import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
@@ -17,6 +21,17 @@ const meta = {
   args: {
     isOpen: true,
   },
+  decorators: [
+    (Story) => (
+      <Provider store={store}>
+        <ReactQueryProvider>
+          <Router>
+            <Story />
+          </Router>
+        </ReactQueryProvider>
+      </Provider>
+    ),
+  ],
 } satisfies Meta<typeof LoginModal>;
 
 export default meta;

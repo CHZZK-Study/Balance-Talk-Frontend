@@ -6,7 +6,8 @@ export const loginContainer = css({
   flexDirection: 'column',
   alignItems: 'center',
   width: '100%',
-  padding: '118px 661px 51px 661px',
+  paddingTop: '118px',
+  paddingBottom: '60px',
   background: color.GY[3],
 });
 
