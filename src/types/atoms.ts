@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ComponentPropsWithRef } from 'react';
 
 export interface ProfileProps {
   interaction: 'normal';
@@ -33,4 +33,9 @@ export interface SelectGroupProps {
   items: SelectGroupItem[];
   selectedValue?: string;
   onSelect?: (value: string) => void;
+}
+
+export interface InfoLabelProps extends ComponentPropsWithRef<'div'> {
+  label: string;
+  count: number;
 }
