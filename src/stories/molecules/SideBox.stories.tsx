@@ -11,8 +11,8 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    postCount: { control: { type: 'number' }, defaultValue: 23 },
-    savedPostCount: { control: { type: 'number' }, defaultValue: 21 },
+    postsCount: { control: { type: 'number' }, defaultValue: 23 },
+    bookmarkedPostsCount: { control: { type: 'number' }, defaultValue: 21 },
   },
 } satisfies Meta<typeof SideBox>;
 
@@ -21,8 +21,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    postCount: 23,
-    savedPostCount: 21,
+    postsCount: 23,
+    bookmarkedPostsCount: 21,
   },
 };
 
@@ -30,13 +30,13 @@ export const All: Story = {
   render: (args) => (
     <div css={storyContainer}>
       <div css={storyInnerContainer}>
-        <h3>활동 정보 박스</h3>
+        <h3>기본</h3>
         <SideBox {...args} />
       </div>
     </div>
   ),
   args: {
-    postCount: 45,
-    savedPostCount: 30,
+    postsCount: 45,
+    bookmarkedPostsCount: 30,
   },
 };
