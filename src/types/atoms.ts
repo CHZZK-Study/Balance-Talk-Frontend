@@ -23,3 +23,14 @@ export interface ProfileInfoProps
 export interface ProfileLabelProps {
   nickname: string;
 }
+
+export type SelectGroupItem = {
+  label: string;
+  value: string;
+};
+
+export interface SelectGroupProps {
+  items: SelectGroupItem[];
+  selectedValue?: string;
+  onSelect?: (value: string) => void;
+}
