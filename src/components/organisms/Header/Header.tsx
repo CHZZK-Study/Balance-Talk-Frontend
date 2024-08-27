@@ -34,6 +34,14 @@ const Header = () => {
     }
   };
 
+  const handleCreatePostButton = () => {
+    if (accessToken) {
+      navigate('/post/create');
+    } else {
+      navigate('/login');
+    }
+  };
+
   return (
     <div css={S.containerStyle}>
       <div css={S.logoStyle}>
@@ -42,12 +50,15 @@ const Header = () => {
         </Link>
       </div>
       <div css={S.rightContainerStyle}>
-        <Link to="/post/create">
-          <Button variant="roundPrimary" size="medium" css={S.WriteButtonStyle}>
-            <WriteIcon css={S.IconStyle} />
-            톡픽쓰기
-          </Button>
-        </Link>
+        <Button
+          variant="roundPrimary"
+          size="medium"
+          css={S.WriteButtonStyle}
+          onClick={() => handleCreatePostButton()}
+        >
+          <WriteIcon css={S.IconStyle} />
+          톡픽쓰기
+        </Button>
         <div css={S.rightContainerStyle}>
           <button
             type="button"
