@@ -18,3 +18,11 @@ export interface InfoBoxProps {
   commentCount: number;
   bookmarks: number;
 }
+
+export interface MyContentBoxProps {
+  title: string;
+  commentCount: number;
+  bookmarks: number;
+  showBookmark?: boolean;
+  bookmarkState?: boolean;
+}

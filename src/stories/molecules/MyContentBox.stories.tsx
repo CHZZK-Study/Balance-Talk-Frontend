@@ -13,14 +13,14 @@ const meta: Meta<typeof MyContentBox> = {
   argTypes: {
     title: { control: { type: 'text' } },
     commentCount: { control: { type: 'number' } },
-    saveCount: { control: { type: 'number' } },
+    bookmarks: { control: { type: 'number' } },
     showBookmark: { control: { type: 'boolean' } },
     bookmarkState: { control: { type: 'boolean' } },
   },
   args: {
     title: '내가 작성한 게시글',
     commentCount: 172,
-    saveCount: 85,
+    bookmarks: 85,
     showBookmark: true,
     bookmarkState: false,
   },
@@ -33,7 +33,7 @@ export const Default: Story = {
   args: {
     title: '내가 작성한 게시글',
     commentCount: 172,
-    saveCount: 85,
+    bookmarks: 85,
     showBookmark: true,
     bookmarkState: false,
   },
@@ -46,7 +46,7 @@ export const All: Story = {
         <MyContentBox
           title="내가 작성한 게시글 1"
           commentCount={172}
-          saveCount={85}
+          bookmarks={85}
           showBookmark
           bookmarkState
         />
@@ -55,7 +55,7 @@ export const All: Story = {
         <MyContentBox
           title="내가 작성한 게시글 2"
           commentCount={256}
-          saveCount={90}
+          bookmarks={90}
           showBookmark
           bookmarkState={false}
         />
@@ -64,7 +64,7 @@ export const All: Story = {
         <MyContentBox
           title="내가 작성한 게시글 3"
           commentCount={151}
-          saveCount={60}
+          bookmarks={60}
           showBookmark={false}
         />
       </div>

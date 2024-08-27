@@ -1,20 +1,13 @@
 import React from 'react';
 import InfoLabel from '@/components/atoms/InfoLabel/InfoLabel';
 import Bookmark from '@/components/atoms/Bookmark/Bookmark';
+import { MyContentBoxProps } from '@/types/molecules';
 import * as S from './MyContentBox.style';
-
-interface MyContentBoxProps {
-  title: string;
-  commentCount: number;
-  saveCount: number;
-  showBookmark?: boolean;
-  bookmarkState?: boolean;
-}
 
 const MyContentBox = ({
   title,
   commentCount,
-  saveCount,
+  bookmarks,
   showBookmark = false,
   bookmarkState = false,
 }: MyContentBoxProps) => {
@@ -24,7 +17,7 @@ const MyContentBox = ({
         <p css={S.titleLabel}>{title}</p>
       </div>
       <InfoLabel label="톡댓톡" count={commentCount} />
-      <InfoLabel label="저장" count={saveCount} />
+      <InfoLabel label="저장" count={bookmarks} />
       {showBookmark && (
         <Bookmark bookmarkState={bookmarkState} css={S.bookmarkWrapper} />
       )}
