@@ -10,7 +10,7 @@ import ContentsButton from '@/components/molecules/ContentsButton/ContentsButton
 import * as S from './BalanceGameList.style';
 
 export interface ContentItemProps {
-  imgUrl?: string[];
+  imgUrl: string[];
   id: number;
   title: string;
   tagLabels: string[];
@@ -58,8 +58,8 @@ const BalanceGameList = ({ contents }: ContentListProps) => {
         {contents.slice(0, visibleItems).map((content) => (
           <ContentsButton
             key={content.id}
-            bookmarkState
-            imgUrl="sample-whole.png"
+            bookmarkState={content.bookmarkState || false}
+            imgUrl={content.imgUrl}
             label={content.title}
             tagLabels={content.tagLabels}
           />
