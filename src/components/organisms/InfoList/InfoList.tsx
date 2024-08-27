@@ -1,27 +1,15 @@
 import React from 'react';
 import InfoBox from '@/components/molecules/InfoBox/InfoBox';
+import { InfoListProps, InfoItem } from '@/types/organisms';
 import * as S from './InfoList.style';
-
-interface InfoItem {
-  date: string;
-  title: string;
-  prefix: string;
-  subtitle: string;
-  commentCount: number;
-  saveCount: number;
-}
-
-interface InfoListProps {
-  items: InfoItem[];
-}
 
 const InfoList = ({ items }: InfoListProps) => {
   const groupedItems = items.reduce(
     (acc, item) => {
-      if (!acc[item.date]) {
-        acc[item.date] = [];
+      if (!acc[item.editedAt]) {
+        acc[item.editedAt] = [];
       }
-      acc[item.date].push(item);
+      acc[item.editedAt].push(item);
       return acc;
     },
     {} as Record<string, InfoItem[]>,
@@ -29,18 +17,18 @@ const InfoList = ({ items }: InfoListProps) => {
 
   return (
     <div css={S.container}>
-      {Object.keys(groupedItems).map((date) => (
-        <div key={date} css={S.dateWrapper}>
-          <span css={S.dateLabel}>{date}</span>
+      {Object.keys(groupedItems).map((editedAt) => (
+        <div key={editedAt} css={S.dateWrapper}>
+          <span css={S.dateLabel}>{editedAt}</span>
           <ul css={S.infoList}>
-            {groupedItems[date].map((infoItem, index) => (
+            {groupedItems[editedAt].map((infoItem, index) => (
               <li key={index} css={S.infoItem}>
                 <InfoBox
                   title={infoItem.title}
                   prefix={infoItem.prefix}
-                  subtitle={infoItem.subtitle}
+                  commentContent={infoItem.commentContent}
                   commentCount={infoItem.commentCount}
-                  saveCount={infoItem.saveCount}
+                  bookmarks={infoItem.bookmarks}
                 />
               </li>
             ))}
