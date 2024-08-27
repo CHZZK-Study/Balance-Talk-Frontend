@@ -4,7 +4,7 @@ import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
 import BalanceGameList from '@/components/organisms/BalanceGameList/BalanceGameList';
 import { SampleFirst, SampleSecond } from '@/assets';
 
-const meta = {
+const meta: Meta<typeof BalanceGameList> = {
   title: 'organisms/BalanceGameList',
   component: BalanceGameList,
   parameters: {
@@ -19,7 +19,8 @@ const meta = {
   args: {
     contents: [
       {
-        imgUrl: [SampleFirst, SampleSecond],
+        optionAImg: SampleFirst,
+        optionBImg: SampleSecond,
         id: 1,
         title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
         tagLabels: ['화제의 중심', '#인기'],
@@ -28,7 +29,8 @@ const meta = {
         optionB: '좌석 널널한 버스 2시간 등교',
       },
       {
-        imgUrl: [SampleFirst, SampleSecond],
+        optionAImg: SampleFirst,
+        optionBImg: SampleSecond,
         id: 2,
         title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
         tagLabels: ['화제의 중심', '#인기'],
@@ -37,7 +39,8 @@ const meta = {
         optionB: '좌석 널널한 버스 2시간 등교',
       },
       {
-        imgUrl: [SampleFirst, SampleSecond],
+        optionAImg: SampleFirst,
+        optionBImg: SampleSecond,
         id: 3,
         title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
         tagLabels: ['화제의 중심', '#인기'],
@@ -46,7 +49,8 @@ const meta = {
         optionB: '좌석 널널한 버스 2시간 등교',
       },
       {
-        imgUrl: [SampleFirst, SampleSecond],
+        optionAImg: SampleFirst,
+        optionBImg: SampleSecond,
         id: 4,
         title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
         tagLabels: ['화제의 중심', '#인기'],
@@ -56,7 +60,7 @@ const meta = {
       },
     ],
   },
-} satisfies Meta<typeof BalanceGameList>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -65,7 +69,8 @@ export const Default: Story = {
   args: {
     contents: [
       {
-        imgUrl: [SampleFirst, SampleSecond],
+        optionAImg: SampleFirst,
+        optionBImg: SampleSecond,
         id: 1,
         title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
         tagLabels: ['화제의 중심', '#인기'],
@@ -74,7 +79,8 @@ export const Default: Story = {
         optionB: '좌석 널널한 버스 2시간 등교',
       },
       {
-        imgUrl: [SampleFirst, SampleSecond],
+        optionAImg: SampleFirst,
+        optionBImg: SampleSecond,
         id: 2,
         title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
         tagLabels: ['화제의 중심', '#인기'],
@@ -83,7 +89,8 @@ export const Default: Story = {
         optionB: '좌석 널널한 버스 2시간 등교',
       },
       {
-        imgUrl: [SampleFirst, SampleSecond],
+        optionAImg: SampleFirst,
+        optionBImg: SampleSecond,
         id: 3,
         title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
         tagLabels: ['화제의 중심', '#인기'],
@@ -92,116 +99,9 @@ export const Default: Story = {
         optionB: '좌석 널널한 버스 2시간 등교',
       },
       {
-        imgUrl: [SampleFirst, SampleSecond],
+        optionAImg: SampleFirst,
+        optionBImg: SampleSecond,
         id: 4,
-        title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
-        tagLabels: ['화제의 중심', '#인기'],
-        bookmarkState: false,
-        optionA: '만원 지하철 1시간 등교',
-        optionB: '좌석 널널한 버스 2시간 등교',
-      },
-      {
-        imgUrl: [SampleFirst, SampleSecond],
-        id: 5,
-        title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
-        tagLabels: ['화제의 중심', '#인기'],
-        bookmarkState: false,
-        optionA: '만원 지하철 1시간 등교',
-        optionB: '좌석 널널한 버스 2시간 등교',
-      },
-      {
-        imgUrl: [SampleFirst, SampleSecond],
-        id: 6,
-        title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
-        tagLabels: ['화제의 중심', '#인기'],
-        bookmarkState: false,
-        optionA: '만원 지하철 1시간 등교',
-        optionB: '좌석 널널한 버스 2시간 등교',
-      },
-      {
-        imgUrl: [SampleFirst, SampleSecond],
-        id: 7,
-        title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
-        tagLabels: ['화제의 중심', '#인기'],
-        bookmarkState: false,
-        optionA: '만원 지하철 1시간 등교',
-        optionB: '좌석 널널한 버스 2시간 등교',
-      },
-      {
-        imgUrl: [SampleFirst, SampleSecond],
-        id: 8,
-        title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
-        tagLabels: ['화제의 중심', '#인기'],
-        bookmarkState: false,
-        optionA: '만원 지하철 1시간 등교',
-        optionB: '좌석 널널한 버스 2시간 등교',
-      },
-      {
-        imgUrl: [SampleFirst, SampleSecond],
-        id: 9,
-        title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
-        tagLabels: ['화제의 중심', '#인기'],
-        bookmarkState: false,
-        optionA: '만원 지하철 1시간 등교',
-        optionB: '좌석 널널한 버스 2시간 등교',
-      },
-      {
-        imgUrl: [SampleFirst, SampleSecond],
-        id: 10,
-        title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
-        tagLabels: ['화제의 중심', '#인기'],
-        bookmarkState: false,
-        optionA: '만원 지하철 1시간 등교',
-        optionB: '좌석 널널한 버스 2시간 등교',
-      },
-      {
-        imgUrl: [SampleFirst, SampleSecond],
-        id: 11,
-        title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
-        tagLabels: ['화제의 중심', '#인기'],
-        bookmarkState: false,
-        optionA: '만원 지하철 1시간 등교',
-        optionB: '좌석 널널한 버스 2시간 등교',
-      },
-      {
-        imgUrl: [SampleFirst, SampleSecond],
-        id: 12,
-        title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
-        tagLabels: ['화제의 중심', '#인기'],
-        bookmarkState: false,
-        optionA: '만원 지하철 1시간 등교',
-        optionB: '좌석 널널한 버스 2시간 등교',
-      },
-      {
-        imgUrl: [SampleFirst, SampleSecond],
-        id: 13,
-        title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
-        tagLabels: ['화제의 중심', '#인기'],
-        bookmarkState: false,
-        optionA: '만원 지하철 1시간 등교',
-        optionB: '좌석 널널한 버스 2시간 등교',
-      },
-      {
-        imgUrl: [SampleFirst, SampleSecond],
-        id: 14,
-        title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
-        tagLabels: ['화제의 중심', '#인기'],
-        bookmarkState: false,
-        optionA: '만원 지하철 1시간 등교',
-        optionB: '좌석 널널한 버스 2시간 등교',
-      },
-      {
-        imgUrl: [SampleFirst, SampleSecond],
-        id: 15,
-        title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
-        tagLabels: ['화제의 중심', '#인기'],
-        bookmarkState: false,
-        optionA: '만원 지하철 1시간 등교',
-        optionB: '좌석 널널한 버스 2시간 등교',
-      },
-      {
-        imgUrl: [SampleFirst, SampleSecond],
-        id: 16,
         title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
         tagLabels: ['화제의 중심', '#인기'],
         bookmarkState: false,
@@ -216,19 +116,53 @@ export const All: Story = {
   render: (args) => (
     <ul css={storyContainer}>
       <li css={storyInnerContainer}>
-        <h3>Single Notification</h3>
+        <h3>하나의 항목</h3>
         <BalanceGameList contents={[args.contents[0]]} />
       </li>
 
       <li css={storyInnerContainer}>
-        <h3>Multiple Notification</h3>
+        <h3>다수의 항목</h3>
         <BalanceGameList {...args} />
       </li>
 
       <li css={storyInnerContainer}>
-        <h3>None</h3>
+        <h3>내용 없음</h3>
         <BalanceGameList contents={[]} />
       </li>
     </ul>
   ),
+  args: {
+    contents: [
+      {
+        optionAImg: SampleFirst,
+        optionBImg: SampleSecond,
+        id: 1,
+        title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
+        tagLabels: ['화제의 중심', '#인기'],
+        bookmarkState: false,
+        optionA: '만원 지하철 1시간 등교',
+        optionB: '좌석 널널한 버스 2시간 등교',
+      },
+      {
+        optionAImg: SampleFirst,
+        optionBImg: SampleSecond,
+        id: 2,
+        title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
+        tagLabels: ['화제의 중심', '#인기'],
+        bookmarkState: false,
+        optionA: '만원 지하철 1시간 등교',
+        optionB: '좌석 널널한 버스 2시간 등교',
+      },
+      {
+        optionAImg: SampleFirst,
+        optionBImg: SampleSecond,
+        id: 3,
+        title: '만원 지하철 1시간 등교 VS 좌석 널널한 버스 2시간 등교',
+        tagLabels: ['화제의 중심', '#인기'],
+        bookmarkState: false,
+        optionA: '만원 지하철 1시간 등교',
+        optionB: '좌석 널널한 버스 2시간 등교',
+      },
+    ],
+  },
 };
