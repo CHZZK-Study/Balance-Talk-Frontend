@@ -25,6 +25,7 @@ const ToggleGroup = ({ items, selectedValue, onClick }: ToggleGroupProps) => (
       items.map((item, idx) => (
         <button
           type="button"
+          key={item.value}
           css={[
             toggleButtonItemStyling,
             idx === 0 ? firstItemRadius : secondItemRadius,

@@ -1,34 +1,38 @@
-import React from 'react';
+import React, { ComponentPropsWithRef, ForwardedRef, forwardRef } from 'react';
 import { NormalProfile } from '@/assets';
 import { profileWrapper, profileImage } from './ProfileIcon.style';
 
-interface ProfileProps {
+interface ProfileProps extends ComponentPropsWithRef<'button'> {
   interaction: 'normal';
   imgUrl?: string;
   size?: 'small' | 'large';
 }
 
-interface ProfilePropsWithImage {
+interface ProfilePropsWithImage extends ComponentPropsWithRef<'button'> {
   interaction: 'settings';
   imgUrl: string;
   size?: 'small' | 'large';
 }
 
-const ProfileIcon = ({
-  interaction = 'normal',
-  imgUrl,
-  size = 'small',
-}: ProfileProps | ProfilePropsWithImage) => {
+const ProfileIcon = (
+  {
+    interaction = 'normal',
+    imgUrl,
+    size = 'small',
+    ...props
+  }: ProfileProps | ProfilePropsWithImage,
+  ref: ForwardedRef<HTMLButtonElement>,
+) => {
   const profileComponents = {
     normal: (
-      <div css={profileWrapper(size)}>
+      <button type="button" ref={ref} css={profileWrapper(size)} {...props}>
         <NormalProfile css={profileImage} />
-      </div>
+      </button>
     ),
     settings: (
-      <div css={profileWrapper(size)}>
+      <button type="button" ref={ref} css={profileWrapper(size)} {...props}>
         <img css={profileImage} src={imgUrl} alt="profile" />
-      </div>
+      </button>
     ),
   };
 
@@ -37,4 +41,4 @@ const ProfileIcon = ({
     : profileComponents.normal;
 };
 
-export default ProfileIcon;
+export default forwardRef(ProfileIcon);

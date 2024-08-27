@@ -5,11 +5,13 @@ import {
   TalkPick,
   NewTalkPick,
   TempTalkPick,
+  TalkPickListItem,
+  TalkPickListPagination,
 } from '@/types/talk-pick';
 import { Pageable } from '@/types/pagination';
 import { axiosInstance } from './interceptor';
 
-export const getTalkPick = async (talkPickId: Id) => {
+export const getTalkPickDetail = async (talkPickId: Id) => {
   const { data } = await axiosInstance.get<TalkPickDetail>(
     END_POINT.TALKPICK(talkPickId),
   );
@@ -44,17 +46,19 @@ export const getTempTalkPick = async () => {
   return data;
 };
 
-export const postTempTalkPick = async (talkPickData: NewTalkPick) => {
-  const response = await axiosInstance.post(
-    END_POINT.TEMP_TALKPICK,
-    talkPickData,
+export const getBestTalkPickList = async () => {
+  const { data } = await axiosInstance.get<TalkPickListItem[]>(
+    END_POINT.BEST_TALKPICK,
   );
-  return response;
+  return data;
 };
 
-export const getTodayTalkPick = async (pageable: Pageable) => {
-  const { data } = await axiosInstance.get<TalkPick>(END_POINT.TODAY_TALKPICK, {
-    params: { ...pageable, sort: 'createdAt,desc' },
-  });
+export const getTalkPickList = async (pageable: Pageable) => {
+  const { data } = await axiosInstance.get<TalkPickListPagination>(
+    END_POINT.TALKPICK_LIST,
+    {
+      params: pageable,
+    },
+  );
   return data;
 };
