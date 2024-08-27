@@ -31,21 +31,16 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  args: {
-    interaction: 'normal',
-    size: 'small',
-  },
-};
+export const Default: Story = {};
 
 export const All: Story = {
   render: (args) => (
     <ul css={storyContainer}>
       <li css={storyInnerContainer}>
         <h3>기본 Small</h3>
-        <ProfileIcon {...args} size="small" />
+        <ProfileIcon {...args} interaction="normal" size="small" />
         <h3>기본 Large</h3>
-        <ProfileIcon {...args} size="large" />
+        <ProfileIcon {...args} interaction="normal" size="large" />
 
         <h3>별도 img 있을때 Small</h3>
         <ProfileIcon
