@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import type { ForwardedRef } from 'react';
+import React, { useState, useEffect, ForwardedRef, forwardRef } from 'react';
 import PostTitleBox from '@/components/atoms/PostTitleBox/PostTitleBox';
 import OptionInputBox from '@/components/atoms/OptionInputBox/OptionInputBox';
 import Divider from '@/components/atoms/Divider/Divider';
@@ -9,6 +8,7 @@ import DraftPostButton from '@/components/atoms/DraftPostButton/DraftPostButton'
 import Button from '@/components/atoms/Button/Button';
 import { useFileUploadMutation } from '@/hooks/api/file/useFileUploadMutation';
 import { useTempTalkPickQuery } from '@/hooks/api/talk-pick/useTempTalkPickQuery';
+import { useSaveTempTalkPickMutation } from '@/hooks/api/talk-pick/useSaveTempTalkPickMutation';
 import { NewTalkPick } from '@/types/talk-pick';
 import * as S from './PostInputForm.style';
 
@@ -29,10 +29,46 @@ const PostInputForm = (
   const [imgUrls, setImgUrls] = useState<string[]>([]);
   const [storedNames, setStoredNames] = useState<string[]>([]);
   const [isTempLoaded, setIsTempLoaded] = useState(false);
+  const [buttonType, setButtonType] = useState<
+    'TALK_PICK' | 'TEMP_TALK_PICK' | null
+  >(null);
 
   const { mutate: uploadFiles } = useFileUploadMutation();
+  const { mutate: saveTempTalkPick } = useSaveTempTalkPickMutation();
+
+  useEffect(() => {
+    if (storedNames.length > 0) {
+      const postData = {
+        title,
+        optionA,
+        optionB,
+        content,
+        sourceUrl,
+        storedNames,
+      };
+
+      if (buttonType === 'TEMP_TALK_PICK') {
+        saveTempTalkPick(postData);
+      } else if (buttonType === 'TALK_PICK') {
+        onSubmit(postData);
+      }
+
+      setButtonType(null);
+    }
+  }, [
+    storedNames,
+    title,
+    optionA,
+    optionB,
+    content,
+    sourceUrl,
+    buttonType,
+    onSubmit,
+    saveTempTalkPick,
+  ]);
 
   const handleFormSubmit = (type: 'TALK_PICK' | 'TEMP_TALK_PICK') => {
+    setButtonType(type);
     const imageFormData = new FormData();
     imageFiles.forEach((file) => imageFormData.append('file', file));
 
@@ -41,16 +77,6 @@ const PostInputForm = (
       {
         onSuccess: (response) => {
           setStoredNames(response.storedNames);
-
-          const postData = {
-            title,
-            optionA,
-            optionB,
-            content,
-            sourceUrl,
-            storedNames,
-          };
-          onSubmit(postData);
         },
       },
     );
@@ -145,4 +171,4 @@ const PostInputForm = (
   );
 };
 
-export default PostInputForm;
+export default forwardRef(PostInputForm);

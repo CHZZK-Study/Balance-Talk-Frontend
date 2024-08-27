@@ -42,10 +42,12 @@ const Header = () => {
         </Link>
       </div>
       <div css={S.rightContainerStyle}>
-        <Button variant="roundPrimary" size="medium" css={S.WriteButtonStyle}>
-          <WriteIcon css={S.IconStyle} />
-          톡픽쓰기
-        </Button>
+        <Link to="/post/create">
+          <Button variant="roundPrimary" size="medium" css={S.WriteButtonStyle}>
+            <WriteIcon css={S.IconStyle} />
+            톡픽쓰기
+          </Button>
+        </Link>
         <div css={S.rightContainerStyle}>
           <button
             type="button"

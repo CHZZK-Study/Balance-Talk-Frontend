@@ -14,7 +14,7 @@ export const imageContainerStyle = css({
   display: 'flex',
   columnGap: '8px',
   overflowX: 'auto',
-  padding: '5px 5px',
+  padding: '0 4px',
   scrollBehavior: 'smooth',
   width: '100%',
   height: '100%',

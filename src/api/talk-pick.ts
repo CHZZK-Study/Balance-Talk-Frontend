@@ -39,6 +39,14 @@ export const postTalkPick = async (talkPickData: NewTalkPick) => {
   return response;
 };
 
+export const postTempTalkPick = async (talkPickData: NewTalkPick) => {
+  const response = await axiosInstance.post(
+    END_POINT.TEMP_TALKPICK,
+    talkPickData,
+  );
+  return response;
+};
+
 export const getTempTalkPick = async () => {
   const { data } = await axiosInstance.get<TempTalkPick>(
     END_POINT.TEMP_TALKPICK,
@@ -50,6 +58,13 @@ export const getBestTalkPickList = async () => {
   const { data } = await axiosInstance.get<TalkPickListItem[]>(
     END_POINT.BEST_TALKPICK,
   );
+  return data;
+};
+
+export const getTodayTalkPick = async (pageable: Pageable) => {
+  const { data } = await axiosInstance.get<TalkPick>(END_POINT.TODAY_TALKPICK, {
+    params: { ...pageable, sort: 'createdAt,desc' },
+  });
   return data;
 };
 

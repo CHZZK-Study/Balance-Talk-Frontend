@@ -36,4 +36,7 @@ export const bestTalkPickTitle = css(typo.Title, {
   color: color.BK,
 });
 
-export const headerStyle = css({});
+export const toastModalStyling = css({
+  position: 'absolute',
+  top: '-180px',
+});
