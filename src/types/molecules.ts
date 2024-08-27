@@ -10,3 +10,11 @@ export interface OptionSelectorProps {
   selectedOption?: string;
   onSelect: (option: string) => void;
 }
+
+export interface InfoBoxProps {
+  title: string;
+  prefix: string;
+  commentContent: string;
+  commentCount: number;
+  bookmarks: number;
+}
