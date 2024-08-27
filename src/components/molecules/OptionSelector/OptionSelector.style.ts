@@ -4,7 +4,7 @@ export const optionSelectorContainer = css`
   display: flex;
   width: 100%;
   height: 49px;
-  padding-left: 10px;
+  padding-left: 11px;
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
