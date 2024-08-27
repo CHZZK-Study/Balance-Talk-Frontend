@@ -3,36 +3,33 @@ import ProfileIcon from '@/components/atoms/ProfileIcon/ProfileIcon';
 import ProfileLabel from '@/components/atoms/ProfileLabel/ProfileLabel';
 import SideBox from '@/components/molecules/SideBox/SideBox';
 import ActionBox from '@/components/molecules/ActionBox/ActionBox';
+import { SideBarProps } from '@/types/organisms';
 import * as S from './SideBar.style';
 
-interface SideBarProps {
-  username: string;
-  badgeUrl?: string;
-  profileImageUrl?: string;
-  postCount: number;
-  savedPostCount: number;
-}
-
 const SideBar = ({
-  username,
-  badgeUrl,
+  nickname,
   profileImageUrl,
-  postCount,
-  savedPostCount,
+  postsCount,
+  bookmarkedPostsCount,
 }: SideBarProps) => {
+  const profileIconInteraction = profileImageUrl ? 'settings' : 'normal';
+
   return (
     <div css={S.sidebarContainer}>
       <div css={S.profileWrapper}>
         <ProfileIcon
-          interaction="settings"
+          interaction={profileIconInteraction}
           imgUrl={profileImageUrl}
           size="large"
         />
         <div css={S.profileLabelBox}>
-          <ProfileLabel badgeUrl={badgeUrl}>{username}</ProfileLabel>
+          <ProfileLabel nickname={nickname} />
         </div>
         <div css={S.sideWrapper}>
-          <SideBox postCount={postCount} savedPostCount={savedPostCount} />
+          <SideBox
+            postsCount={postsCount}
+            bookmarkedPostsCount={bookmarkedPostsCount}
+          />
         </div>
       </div>
       <div css={S.actionWrapper}>

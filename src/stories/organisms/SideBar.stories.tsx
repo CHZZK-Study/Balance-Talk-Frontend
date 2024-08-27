@@ -12,17 +12,13 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    username: { control: { type: 'text' }, defaultValue: 'Aycho' },
-    badgeUrl: {
-      control: { type: 'text' },
-      defaultValue: 'https://example.com/badge.png',
-    },
+    nickname: { control: { type: 'text' }, defaultValue: 'Aycho' },
     profileImageUrl: {
       control: { type: 'text' },
-      defaultValue: 'https://example.com/profile.png',
+      defaultValue: ProfileInfoSample,
     },
-    postCount: { control: { type: 'number' }, defaultValue: 23 },
-    savedPostCount: { control: { type: 'number' }, defaultValue: 21 },
+    postsCount: { control: { type: 'number' }, defaultValue: 23 },
+    bookmarkedPostsCount: { control: { type: 'number' }, defaultValue: 21 },
   },
 } satisfies Meta<typeof SideBar>;
 
@@ -31,11 +27,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    username: 'Aycho',
-    badgeUrl: '',
+    nickname: 'Aycho',
     profileImageUrl: ProfileInfoSample,
-    postCount: 23,
-    savedPostCount: 21,
+    postsCount: 23,
+    bookmarkedPostsCount: 21,
   },
 };
 
@@ -47,34 +42,31 @@ export const All: Story = {
         <SideBar {...args} />
       </li>
       <li css={storyInnerContainer}>
-        <h3>프로필 이미지와 뱃지 없는 경우</h3>
+        <h3>프로필 이미지 없는 경우(settings는 normal로 설정)</h3>
         <SideBar
           {...args}
-          username="Aycho"
+          nickname="Aycho"
           profileImageUrl=""
-          badgeUrl=""
-          postCount={0}
-          savedPostCount={0}
+          postsCount={0}
+          bookmarkedPostsCount={0}
         />
       </li>
       <li css={storyInnerContainer}>
         <h3>게시글 카운트와 저장한 글 카운트 다른 경우</h3>
         <SideBar
           {...args}
-          username="Aycho"
+          nickname="Aycho"
           profileImageUrl={ProfileInfoSample}
-          badgeUrl=""
-          postCount={45}
-          savedPostCount={15}
+          postsCount={45}
+          bookmarkedPostsCount={15}
         />
       </li>
     </ul>
   ),
   args: {
-    username: 'Aycho',
-    badgeUrl: '',
+    nickname: 'Aycho',
     profileImageUrl: ProfileInfoSample,
-    postCount: 23,
-    savedPostCount: 21,
+    postsCount: 23,
+    bookmarkedPostsCount: 21,
   },
 };
