@@ -34,7 +34,7 @@ export const Default: Story = {
 export const All: Story = {
   render: (args) => (
     <div>
-      <h3>OptionBar with TOPIC selected</h3>
+      <h3>톡픽 선택시</h3>
       <OptionBar
         {...args}
         selectGroupItems={[
@@ -43,7 +43,7 @@ export const All: Story = {
         ]}
         initialSelectedGroupValue={OptionKeys.TOPIC}
       />
-      <h3>OptionBar with BALANCE_GAME selected</h3>
+      <h3>밸런스 게임 선택시</h3>
       <OptionBar
         {...args}
         selectGroupItems={[
