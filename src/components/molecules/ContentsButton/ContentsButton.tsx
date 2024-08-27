@@ -1,20 +1,13 @@
 import React from 'react';
-import type { ComponentPropsWithRef } from 'react';
+import type { ContentsButtonProps } from '@/types/molecules';
 import Chips from '@/components/atoms/Chips/Chips';
 import Bookmark from '@/components/atoms/Bookmark/Bookmark';
 import * as S from './ContentsButton.style';
 
-export interface ContentsButtonProps extends ComponentPropsWithRef<'div'> {
-  imgUrl: string[];
-  label: string;
-  tagLabels: string[];
-  bookmarkState: boolean;
-  showBookmark?: boolean;
-}
-
 const ContentsButton = ({
-  imgUrl,
-  label,
+  optionAImg,
+  optionBImg,
+  title,
   tagLabels,
   bookmarkState = false,
   showBookmark = false,
@@ -23,11 +16,12 @@ const ContentsButton = ({
   return (
     <div css={S.cardWrapper} {...attributes}>
       <div css={S.imageContainer}>
-        {imgUrl.map((url, index) => (
-          <div key={index} css={S.imageWrapper}>
-            <img src={url} alt={`${label} ${index + 1}`} css={S.image} />
-          </div>
-        ))}
+        <div css={S.imageWrapper}>
+          <img src={optionAImg} alt="option A" css={S.image} />
+        </div>
+        <div css={S.imageWrapper}>
+          <img src={optionBImg} alt="option B" css={S.image} />
+        </div>
         <div css={S.chipsContainer}>
           {tagLabels.map((tagLabel) => (
             <Chips key={tagLabel}>{tagLabel}</Chips>
@@ -35,7 +29,7 @@ const ContentsButton = ({
         </div>
       </div>
       <div css={S.infoContainer}>
-        <span css={S.label}>{label}</span>
+        <span css={S.label}>{title}</span>
         {showBookmark && (
           <Bookmark bookmarkState={bookmarkState} css={S.bookmarkWrapper} />
         )}

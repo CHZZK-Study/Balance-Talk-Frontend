@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { ComponentPropsWithRef } from 'react';
+import { BookmarkProps } from '@/types/atoms';
 
 export interface SideBoxProps extends React.ComponentPropsWithoutRef<'div'> {
   postsCount: number;
@@ -24,5 +25,14 @@ export interface MyContentBoxProps {
   commentCount: number;
   bookmarks: number;
   showBookmark?: boolean;
-  bookmarkState?: boolean;
+  bookmarkState?: BookmarkProps['bookmarkState'];
+}
+
+export interface ContentsButtonProps extends ComponentPropsWithRef<'div'> {
+  optionAImg: string;
+  optionBImg: string;
+  title: string;
+  tagLabels: string[];
+  bookmarkState?: BookmarkProps['bookmarkState'];
+  showBookmark?: boolean;
 }

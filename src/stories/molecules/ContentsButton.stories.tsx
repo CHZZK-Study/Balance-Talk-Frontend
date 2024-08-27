@@ -12,15 +12,17 @@ const meta: Meta<typeof ContentsButton> = {
   },
   tags: ['autodocs'],
   argTypes: {
-    imgUrl: { control: { type: 'object' } },
-    label: { control: 'text' },
+    optionAImg: { control: { type: 'text' } },
+    optionBImg: { control: { type: 'text' } },
+    title: { control: 'text' },
     tagLabels: { control: { type: 'object' } },
     bookmarkState: { control: 'boolean' },
     showBookmark: { control: 'boolean' },
   },
   args: {
-    imgUrl: [SampleFirst, SampleSecond],
-    label: '유진 VS 민지 사복 고르기',
+    optionAImg: SampleFirst,
+    optionBImg: SampleSecond,
+    title: '유진 VS 민지 사복 고르기',
     tagLabels: ['얼마나 맞나 보자', '#취향'],
     bookmarkState: false,
     showBookmark: true,
@@ -49,8 +51,9 @@ const headerStyle = css`
 
 export const Default: Story = {
   args: {
-    imgUrl: [SampleFirst, SampleSecond],
-    label: '유진 VS 민지 사복 고르기',
+    optionAImg: SampleFirst,
+    optionBImg: SampleSecond,
+    title: '유진 VS 민지 사복 고르기',
     tagLabels: ['얼마나 맞나 보자', '#취향'],
     bookmarkState: false,
     showBookmark: true,
