@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface ProfileProps {
   interaction: 'normal';
   imgUrl?: string;
@@ -11,3 +13,9 @@ export interface ProfilePropsWithImage {
 }
 
 export type ProfileIconProps = ProfileProps | ProfilePropsWithImage;
+
+export interface ProfileInfoProps
+  extends React.ComponentPropsWithoutRef<'div'> {
+  count: number;
+  label: string;
+}
