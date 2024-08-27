@@ -19,3 +19,7 @@ export interface ProfileInfoProps
   count: number;
   label: string;
 }
+
+export interface ProfileLabelProps {
+  nickname: string;
+}
