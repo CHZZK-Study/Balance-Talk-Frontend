@@ -1,6 +1,6 @@
 import { OptionKeys } from '@/constants/optionSets';
 import { ProfileIconProps, ProfileLabelProps, SelectGroupItem } from './atoms';
-import { InfoBoxProps, SideBoxProps } from './molecules';
+import { InfoBoxProps, MyContentBoxProps, SideBoxProps } from './molecules';
 
 export interface SideBarProps extends ProfileLabelProps, SideBoxProps {
   nickname: string;
@@ -18,4 +18,12 @@ export interface InfoItem extends InfoBoxProps {
 
 export interface InfoListProps {
   items: InfoItem[];
+}
+
+export interface MyContentItem extends MyContentBoxProps {
+  editedAt: string;
+}
+
+export interface MyContentListProps {
+  items: MyContentItem[];
 }

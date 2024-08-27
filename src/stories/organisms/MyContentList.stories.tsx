@@ -15,26 +15,26 @@ const meta = {
   args: {
     items: [
       {
-        date: '2024.08.06',
+        editedAt: '2024.08.06',
         title: '유진 사복 패션 VS 민지 사복 패션',
         commentCount: 172,
-        saveCount: 172,
+        bookmarks: 172,
         showBookmark: true,
         bookmarkState: false,
       },
       {
-        date: '2024.08.06',
+        editedAt: '2024.08.06',
         title: '유진 사복 패션 VS 민지 사복 패션',
         commentCount: 250,
-        saveCount: 200,
+        bookmarks: 200,
         showBookmark: true,
         bookmarkState: true,
       },
       {
-        date: '2024.08.05',
+        editedAt: '2024.08.05',
         title: '유진 사복 패션 VS 민지 사복 패션',
         commentCount: 100,
-        saveCount: 50,
+        bookmarks: 50,
         showBookmark: false,
       },
     ],
@@ -48,26 +48,26 @@ export const Default: Story = {
   args: {
     items: [
       {
-        date: '2024.08.06',
+        editedAt: '2024.08.06',
         title: '유진 사복 패션 VS 민지 사복 패션',
         commentCount: 172,
-        saveCount: 172,
+        bookmarks: 172,
         showBookmark: true,
         bookmarkState: false,
       },
       {
-        date: '2024.08.06',
+        editedAt: '2024.08.06',
         title: '유진 사복 패션 VS 민지 사복 패션',
         commentCount: 250,
-        saveCount: 200,
+        bookmarks: 200,
         showBookmark: true,
         bookmarkState: true,
       },
       {
-        date: '2024.08.05',
+        editedAt: '2024.08.05',
         title: '유진 사복 패션 VS 민지 사복 패션',
         commentCount: 100,
-        saveCount: 50,
+        bookmarks: 50,
         showBookmark: false,
       },
     ],
@@ -83,18 +83,18 @@ export const All: Story = {
           {...args}
           items={[
             {
-              date: '2024.08.06',
+              editedAt: '2024.08.06',
               title: '유진 사복 패션 VS 민지 사복 패션',
               commentCount: 172,
-              saveCount: 172,
+              bookmarks: 172,
               showBookmark: true,
               bookmarkState: false,
             },
             {
-              date: '2024.08.06',
+              editedAt: '2024.08.06',
               title: '유진 사복 패션 VS 민지 사복 패션',
               commentCount: 250,
-              saveCount: 200,
+              bookmarks: 200,
               showBookmark: true,
               bookmarkState: true,
             },
@@ -107,10 +107,10 @@ export const All: Story = {
           {...args}
           items={[
             {
-              date: '2024.08.05',
+              editedAt: '2024.08.05',
               title: '유진 사복 패션 VS 민지 사복 패션',
               commentCount: 100,
-              saveCount: 50,
+              bookmarks: 50,
               showBookmark: false,
             },
           ]}

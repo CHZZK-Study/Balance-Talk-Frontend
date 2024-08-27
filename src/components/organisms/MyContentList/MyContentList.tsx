@@ -1,30 +1,18 @@
 import React from 'react';
 import MyContentBox from '@/components/molecules/MyContentBox/MyContentBox';
+import { MyContentListProps, MyContentItem } from '@/types/organisms';
 import * as S from './MyContentList.style';
-
-interface ContentItem {
-  date: string;
-  title: string;
-  commentCount: number;
-  saveCount: number;
-  showBookmark?: boolean;
-  bookmarkState?: boolean;
-}
-
-interface MyContentListProps {
-  items: ContentItem[];
-}
 
 const MyContentList = ({ items }: MyContentListProps) => {
   const groupedItems = items.reduce(
     (acc, item) => {
-      if (!acc[item.date]) {
-        acc[item.date] = [];
+      if (!acc[item.editedAt]) {
+        acc[item.editedAt] = [];
       }
-      acc[item.date].push(item);
+      acc[item.editedAt].push(item);
       return acc;
     },
-    {} as Record<string, ContentItem[]>,
+    {} as Record<string, MyContentItem[]>,
   );
 
   return (
@@ -38,7 +26,7 @@ const MyContentList = ({ items }: MyContentListProps) => {
                 <MyContentBox
                   title={contentItem.title}
                   commentCount={contentItem.commentCount}
-                  saveCount={contentItem.saveCount}
+                  bookmarks={contentItem.bookmarks}
                   showBookmark={contentItem.showBookmark}
                   bookmarkState={contentItem.bookmarkState}
                 />
