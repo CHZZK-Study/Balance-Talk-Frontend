@@ -39,3 +39,7 @@ export interface InfoLabelProps extends ComponentPropsWithRef<'div'> {
   label: string;
   count: number;
 }
+
+export interface BookmarkProps extends ComponentPropsWithRef<'button'> {
+  bookmarkState?: boolean;
+}
