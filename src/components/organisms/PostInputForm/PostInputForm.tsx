@@ -8,16 +8,16 @@ import DraftPostButton from '@/components/atoms/DraftPostButton/DraftPostButton'
 import Button from '@/components/atoms/Button/Button';
 import { useFileUploadMutation } from '@/hooks/api/file/useFileUploadMutation';
 import { useTempTalkPickQuery } from '@/hooks/api/talk-pick/useTempTalkPickQuery';
-import { useSaveTempTalkPickMutation } from '@/hooks/api/talk-pick/useSaveTempTalkPickMutation';
 import { NewTalkPick } from '@/types/talk-pick';
 import * as S from './PostInputForm.style';
 
 interface PostInputFormProps {
   onSubmit: (data: NewTalkPick) => void;
+  onSave: (data: NewTalkPick) => void;
 }
 
 const PostInputForm = (
-  { onSubmit }: PostInputFormProps,
+  { onSubmit, onSave }: PostInputFormProps,
   ref: ForwardedRef<HTMLTextAreaElement>,
 ) => {
   const [title, setTitle] = useState('');
@@ -34,7 +34,6 @@ const PostInputForm = (
   >(null);
 
   const { mutate: uploadFiles } = useFileUploadMutation();
-  const { mutate: saveTempTalkPick } = useSaveTempTalkPickMutation();
 
   useEffect(() => {
     if (storedNames.length > 0) {
@@ -48,7 +47,7 @@ const PostInputForm = (
       };
 
       if (buttonType === 'TEMP_TALK_PICK') {
-        saveTempTalkPick(postData);
+        onSave(postData);
       } else if (buttonType === 'TALK_PICK') {
         onSubmit(postData);
       }
@@ -64,7 +63,7 @@ const PostInputForm = (
     sourceUrl,
     buttonType,
     onSubmit,
-    saveTempTalkPick,
+    onSave,
   ]);
 
   const handleFormSubmit = (type: 'TALK_PICK' | 'TEMP_TALK_PICK') => {

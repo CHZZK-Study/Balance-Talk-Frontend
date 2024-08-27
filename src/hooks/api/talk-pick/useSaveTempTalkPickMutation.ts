@@ -9,7 +9,7 @@ import { ERROR } from '@/constants/message';
 
 export const useSaveTempTalkPickMutation = () => {
   const queryClient = useQueryClient();
-  const [createSuccess, setCreateSuccess] = useState<boolean>(false);
+  const [saveSuccess, setSaveSuccess] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
     undefined,
@@ -28,7 +28,7 @@ export const useSaveTempTalkPickMutation = () => {
         queryKey: ['tempTalkPick'],
       });
 
-      setCreateSuccess(true);
+      setSaveSuccess(true);
 
       setTimeout(() => {
         navigate('/');
@@ -43,7 +43,7 @@ export const useSaveTempTalkPickMutation = () => {
 
   return {
     ...mutation,
-    createSuccess,
+    saveSuccess,
     isError,
     errorMessage,
   };

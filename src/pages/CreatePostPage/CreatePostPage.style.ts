@@ -38,5 +38,5 @@ export const bestTalkPickTitle = css(typo.Title, {
 
 export const toastModalStyling = css({
   position: 'absolute',
-  top: '-180px',
+  top: '-150px',
 });
