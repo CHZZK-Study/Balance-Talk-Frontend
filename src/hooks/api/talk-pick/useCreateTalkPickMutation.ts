@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { HTTP_STATUS_CODE } from '@/constants/api';
 import { postTalkPick } from '@/api/talk-pick';
@@ -43,7 +44,5 @@ export const useCreateTalkPickMutation = () => {
   return {
     ...mutation,
     createSuccess,
-    isError,
-    errorMessage,
   };
 };

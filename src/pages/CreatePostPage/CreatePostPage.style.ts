@@ -16,6 +16,7 @@ export const bestTalkPickStyling = css({
   display: 'flex',
   flexDirection: 'column',
   marginBottom: '56px',
+  position: 'relative',
 });
 
 export const bestTalkPickTextWrapper = css({

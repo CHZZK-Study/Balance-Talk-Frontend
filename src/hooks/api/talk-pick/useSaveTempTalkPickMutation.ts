@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { HTTP_STATUS_CODE } from '@/constants/api';
 import { postTempTalkPick } from '@/api/talk-pick';
@@ -44,7 +45,5 @@ export const useSaveTempTalkPickMutation = () => {
   return {
     ...mutation,
     saveSuccess,
-    isError,
-    errorMessage,
   };
 };

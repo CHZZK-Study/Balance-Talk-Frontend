@@ -56,12 +56,6 @@ export type NewTalkPick = {
   storedNames: string[];
 };
 
-export type TempTalkPick = {
-  title: string;
-  content: string;
-  optionA: string;
-  optionB: string;
-  sourceUrl?: string;
+export interface TempTalkPick extends NewTalkPick {
   imgUrls: string[];
-  storedNames: string[];
-};
+}
