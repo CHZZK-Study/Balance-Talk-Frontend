@@ -35,6 +35,10 @@ const PostInputForm = (
 
   const { mutate: uploadFiles } = useFileUploadMutation();
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   useEffect(() => {
     if (storedNames.length > 0) {
       const postData = {
@@ -47,8 +51,10 @@ const PostInputForm = (
       };
 
       if (buttonType === 'TEMP_TALK_PICK') {
+        scrollToTop();
         onSave(postData);
       } else if (buttonType === 'TALK_PICK') {
+        scrollToTop();
         onSubmit(postData);
       }
 

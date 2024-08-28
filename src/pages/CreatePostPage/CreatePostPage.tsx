@@ -14,12 +14,6 @@ const CreatePostPage = () => {
   return (
     <div css={S.pageStyle}>
       <div css={S.bestTalkPickStyling}>
-        <div css={S.bestTalkPickTextWrapper}>
-          <div css={S.bestTalkPickSubTitle}>
-            모두가 톡커도 되고 픽커도 되는 (두둥탁)
-          </div>
-          <div css={S.bestTalkPickTitle}>톡&픽 플레이스</div>
-        </div>
         {createSuccess && (
           <div css={S.toastModalStyling}>
             <ToastModal bgColor="black">등록 완료!</ToastModal>
@@ -30,6 +24,12 @@ const CreatePostPage = () => {
             <ToastModal bgColor="black">임시저장 완료!</ToastModal>
           </div>
         )}
+        <div css={S.bestTalkPickTextWrapper}>
+          <div css={S.bestTalkPickSubTitle}>
+            모두가 톡커도 되고 픽커도 되는 (두둥탁)
+          </div>
+          <div css={S.bestTalkPickTitle}>톡&픽 플레이스</div>
+        </div>
         <Divider length={1175} orientation="width" />
       </div>
 
