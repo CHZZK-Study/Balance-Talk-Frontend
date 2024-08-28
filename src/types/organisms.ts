@@ -34,3 +34,12 @@ export interface MyContentItem extends MyContentBoxProps {
 export interface MyContentListProps {
   items: MyContentItem[];
 }
+
+export interface MyBalanceGameItem extends Omit<ContentsButtonProps, 'id'> {
+  id: number;
+  editedAt: string;
+}
+
+export interface MyBalanceGameListProps {
+  items: MyBalanceGameItem[];
+}
