@@ -41,6 +41,7 @@ export const END_POINT = {
 
   // file API
   FILE_UPLOAD: '/images',
+  FILE_DELETE: (storedName: string) => `/images/${storedName}`,
 
   // talk pick API
   TALKPICK: (talkPickId: Id) => `/talks/${talkPickId}`,

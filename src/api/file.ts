@@ -1,5 +1,6 @@
 import { END_POINT } from '@/constants/api';
 import { UploadedImage, FileUploadType } from '@/types/file';
+import { ServerResponse } from '@/types/api';
 import { axiosInstance } from './interceptor';
 
 export const postFile = async (file: FormData, params: FileUploadType) => {
@@ -12,4 +13,11 @@ export const postFile = async (file: FormData, params: FileUploadType) => {
     },
   });
   return response.data as UploadedImage;
+};
+
+export const deleteFile = async (storedName: string) => {
+  const { data } = await axiosInstance.delete<ServerResponse>(
+    END_POINT.FILE_DELETE(storedName),
+  );
+  return data;
 };
