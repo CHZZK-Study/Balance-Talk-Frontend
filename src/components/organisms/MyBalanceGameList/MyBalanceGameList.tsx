@@ -30,6 +30,7 @@ const MyBalanceGameList = ({ items }: MyBalanceGameListProps) => {
                   tagLabels={balanceGameItem.tagLabels}
                   bookmarkState={balanceGameItem.bookmarkState}
                   showBookmark={balanceGameItem.showBookmark}
+                  size="small"
                 />
               </li>
             ))}
