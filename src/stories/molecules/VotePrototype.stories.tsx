@@ -1,5 +1,6 @@
 import React from 'react';
 import VotePrototype from '@/components/molecules/VotePrototype/VotePrototype';
+import ReactQueryProvider from '@/providers/ReactQueryProvider';
 import type { Meta, StoryObj } from '@storybook/react';
 import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
 
@@ -20,18 +21,27 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
+    talkPickId: { control: 'number' },
     leftButtonText: { control: 'text' },
     rightButtonText: { control: 'text' },
     leftVotes: { control: 'number' },
     rightVotes: { control: 'number' },
   },
   args: {
+    talkPickId: 1,
     leftButtonText: '상관없다다다다다다',
     rightButtonText: '상관 있다',
     leftVotes: 1963,
     rightVotes: 2635,
     selectedVote: null,
   },
+  decorators: [
+    (Story) => (
+      <ReactQueryProvider>
+        <Story />
+      </ReactQueryProvider>
+    ),
+  ],
 } satisfies Meta<typeof VotePrototype>;
 
 export default meta;
