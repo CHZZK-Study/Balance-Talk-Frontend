@@ -21,8 +21,8 @@ const MyContentList = ({ items }: MyContentListProps) => {
         <div key={date} css={S.dateWrapper}>
           <span css={S.dateLabel}>{date}</span>
           <ul css={S.contentList}>
-            {groupedItems[date].map((contentItem, index) => (
-              <li key={index} css={S.contentItem}>
+            {groupedItems[date].map((contentItem) => (
+              <li key={contentItem.id} css={S.contentItem}>
                 <MyContentBox
                   title={contentItem.title}
                   commentCount={contentItem.commentCount}

@@ -21,8 +21,8 @@ const InfoList = ({ items }: InfoListProps) => {
         <div key={editedAt} css={S.dateWrapper}>
           <span css={S.dateLabel}>{editedAt}</span>
           <ul css={S.infoList}>
-            {groupedItems[editedAt].map((infoItem, index) => (
-              <li key={index} css={S.infoItem}>
+            {groupedItems[editedAt].map((infoItem) => (
+              <li key={infoItem.id} css={S.infoItem}>
                 <InfoBox
                   title={infoItem.title}
                   prefix={infoItem.prefix}
