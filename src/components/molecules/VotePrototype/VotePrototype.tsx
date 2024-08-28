@@ -1,8 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '@/components/atoms/Button/Button';
 import VoteBar from '@/components/atoms/VoteBar/VoteBar';
-import { useUpdateVote } from '@/hooks/talk-pick/useUpdateVote';
+import { useCreateTalkPickVoteMutation } from '@/hooks/api/vote/useCreateTalkPickVoteMutation';
+import { useEditTalkPickVoteMutation } from '@/hooks/api/vote/useEditTalkPickVoteMutation';
+import { useDeleteTalkPickVoteMutation } from '@/hooks/api/vote/useDeleteTalkPickVoteMutation';
 import {
   votePrototypeStyle,
   buttonContainerStyle,
@@ -11,6 +12,7 @@ import {
 } from './VotePrototype.style';
 
 interface VotePrototypeProps {
+  talkPickId: number;
   leftButtonText: string;
   rightButtonText: string;
   leftVotes: number;
@@ -19,26 +21,40 @@ interface VotePrototypeProps {
 }
 
 const VotePrototype: React.FC<VotePrototypeProps> = ({
+  talkPickId,
   leftButtonText,
   rightButtonText,
-  leftVotes: initialLeftVotes,
-  rightVotes: initialRightVotes,
+  leftVotes,
+  rightVotes,
   selectedVote,
 }) => {
-  const { leftVotes, rightVotes, selectedBar, updateVoteNumber } =
-    useUpdateVote(initialLeftVotes, initialRightVotes, selectedVote);
-
   const totalVotes: number = leftVotes + rightVotes;
   const leftPercentage: string = ((leftVotes / totalVotes) * 100).toFixed(1);
   const rightPercentage: string = ((rightVotes / totalVotes) * 100).toFixed(1);
 
-  const [selectedButton, setSelectedButton] = useState<'A' | 'B' | null>(
-    selectedVote,
-  );
+  const { mutate: createTalkPickVote } =
+    useCreateTalkPickVoteMutation(talkPickId);
 
-  const handleButtonClick = (side: 'A' | 'B') => {
-    updateVoteNumber(side);
-    setSelectedButton(side);
+  const { mutate: editTalkPickVote } = useEditTalkPickVoteMutation(talkPickId);
+
+  const { mutate: deleteTalkPickVote } =
+    useDeleteTalkPickVoteMutation(talkPickId);
+
+  const handleTalkPickVote = (
+    selectedOption: 'A' | 'B' | null,
+    voteOption: 'A' | 'B',
+  ) => {
+    if (selectedOption === null) {
+      createTalkPickVote(voteOption);
+    } else if (selectedOption === voteOption) {
+      deleteTalkPickVote();
+    } else {
+      editTalkPickVote(voteOption);
+    }
+  };
+
+  const handleVoteButtonClick = (voteOption: 'A' | 'B') => () => {
+    handleTalkPickVote(selectedVote, voteOption);
   };
 
   return (
@@ -47,8 +63,8 @@ const VotePrototype: React.FC<VotePrototypeProps> = ({
         <Button
           variant="outlineHighlightR"
           size="large"
-          onClick={() => handleButtonClick('A')}
-          css={getButtonStyle('A', selectedButton)}
+          onClick={handleVoteButtonClick('A')}
+          css={getButtonStyle('A', selectedVote)}
         >
           {leftButtonText}
         </Button>
@@ -56,8 +72,8 @@ const VotePrototype: React.FC<VotePrototypeProps> = ({
         <Button
           variant="outlineHighlightB"
           size="large"
-          onClick={() => handleButtonClick('B')}
-          css={getButtonStyle('B', selectedButton)}
+          onClick={handleVoteButtonClick('B')}
+          css={getButtonStyle('B', selectedVote)}
         >
           {rightButtonText}
         </Button>
@@ -67,7 +83,7 @@ const VotePrototype: React.FC<VotePrototypeProps> = ({
         rightPercentage={parseFloat(rightPercentage)}
         leftVotes={leftVotes}
         rightVotes={rightVotes}
-        selectedBar={selectedBar}
+        selectedBar={selectedVote}
       />
     </div>
   );

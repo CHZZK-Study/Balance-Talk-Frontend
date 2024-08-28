@@ -93,6 +93,7 @@ const TodayTalkPickSection = ({
         </div>
         <div css={S.voteBarWrapper}>
           <VotePrototype
+            talkPickId={todayTalkPick?.id ?? 3}
             leftButtonText={todayTalkPick?.optionA ?? ''}
             rightButtonText={todayTalkPick?.optionB ?? ''}
             leftVotes={todayTalkPick?.votesCountOfOptionA ?? 0}
