@@ -35,4 +35,5 @@ export interface ContentsButtonProps extends ComponentPropsWithRef<'div'> {
   tagLabels: string[];
   bookmarkState?: BookmarkProps['bookmarkState'];
   showBookmark?: boolean;
+  size?: 'large' | 'small';
 }

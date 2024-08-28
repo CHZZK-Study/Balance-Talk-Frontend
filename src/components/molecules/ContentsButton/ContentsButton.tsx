@@ -11,10 +11,11 @@ const ContentsButton = ({
   tagLabels,
   bookmarkState = false,
   showBookmark = false,
+  size = 'large',
   ...attributes
 }: ContentsButtonProps) => {
   return (
-    <div css={S.cardWrapper} {...attributes}>
+    <div css={S.cardWrapper(size)} {...attributes}>
       <div css={S.imageContainer}>
         <div css={S.imageWrapper}>
           <img src={optionAImg} alt="option A" css={S.image} />
@@ -28,8 +29,8 @@ const ContentsButton = ({
           ))}
         </div>
       </div>
-      <div css={S.infoContainer}>
-        <span css={S.label}>{title}</span>
+      <div css={S.infoContainer(size)}>
+        <span css={S.label(size)}>{title}</span>
         {showBookmark && (
           <Bookmark bookmarkState={bookmarkState} css={S.bookmarkWrapper} />
         )}

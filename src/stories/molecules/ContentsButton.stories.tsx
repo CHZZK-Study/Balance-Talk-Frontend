@@ -18,6 +18,7 @@ const meta: Meta<typeof ContentsButton> = {
     tagLabels: { control: { type: 'object' } },
     bookmarkState: { control: 'boolean' },
     showBookmark: { control: 'boolean' },
+    size: { control: { type: 'radio' }, options: ['large', 'small'] },
   },
   args: {
     optionAImg: SampleFirst,
@@ -26,6 +27,7 @@ const meta: Meta<typeof ContentsButton> = {
     tagLabels: ['얼마나 맞나 보자', '#취향'],
     bookmarkState: false,
     showBookmark: true,
+    size: 'large',
   },
 };
 
@@ -57,6 +59,7 @@ export const Default: Story = {
     tagLabels: ['얼마나 맞나 보자', '#취향'],
     bookmarkState: false,
     showBookmark: true,
+    size: 'large',
   },
 };
 
@@ -64,16 +67,38 @@ export const All: Story = {
   render: (args) => (
     <div css={containerStyle}>
       <div css={itemStyle}>
-        <h3 css={headerStyle}>기본</h3>
-        <ContentsButton {...args} bookmarkState={false} showBookmark />
+        <h3 css={headerStyle}>기본 (Large)</h3>
+        <ContentsButton
+          {...args}
+          size="large"
+          bookmarkState={false}
+          showBookmark
+        />
       </div>
       <div css={itemStyle}>
-        <h3 css={headerStyle}>북마크 pressed</h3>
-        <ContentsButton {...args} bookmarkState showBookmark />
+        <h3 css={headerStyle}>북마크 pressed (Large)</h3>
+        <ContentsButton {...args} size="large" bookmarkState showBookmark />
       </div>
       <div css={itemStyle}>
-        <h3 css={headerStyle}>북마크 없음</h3>
-        <ContentsButton {...args} showBookmark={false} />
+        <h3 css={headerStyle}>북마크 없음 (Large)</h3>
+        <ContentsButton {...args} size="large" showBookmark={false} />
+      </div>
+      <div css={itemStyle}>
+        <h3 css={headerStyle}>기본 (Small)</h3>
+        <ContentsButton
+          {...args}
+          size="small"
+          bookmarkState={false}
+          showBookmark
+        />
+      </div>
+      <div css={itemStyle}>
+        <h3 css={headerStyle}>북마크 pressed (Small)</h3>
+        <ContentsButton {...args} size="small" bookmarkState showBookmark />
+      </div>
+      <div css={itemStyle}>
+        <h3 css={headerStyle}>북마크 없음 (Small)</h3>
+        <ContentsButton {...args} size="small" showBookmark={false} />
       </div>
     </div>
   ),

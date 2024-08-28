@@ -2,9 +2,9 @@ import { css } from '@emotion/react';
 import color from '@/styles/color';
 import typo from '@/styles/typo';
 
-export const cardWrapper = css`
-  width: 563px;
-  height: 357px;
+export const cardWrapper = (size: 'large' | 'small') => css`
+  width: ${size === 'large' ? '563px' : '432px'};
+  height: ${size === 'large' ? '357px' : '354px'};
   border-radius: 20px;
   border: 1px solid #dedede;
   background-color: ${color.WT};
@@ -60,19 +60,20 @@ export const chipsContainer = css`
   gap: 10px;
 `;
 
-export const infoContainer = css`
-  height: 107px;
+export const infoContainer = (size: 'large' | 'small') => css`
+  width: 100%;
+  height: ${size === 'large' ? '107px' : '104px'};
   padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 `;
 
-export const label = css({
-  ...typo.Component.Medium,
-  color: color.BK,
-  maxWidth: '440px',
-});
+export const label = (size: 'large' | 'small') => css`
+  ${typo.Component.Medium};
+  color: ${color.BK};
+  max-width: ${size === 'large' ? '440px' : '330px'};
+`;
 
 export const bookmarkWrapper = css`
   margin-left: auto;
