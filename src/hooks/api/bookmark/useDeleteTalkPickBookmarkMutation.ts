@@ -13,10 +13,17 @@ export const useDeleteTalkPickBookmarkMutation = (talkPickId: Id) => {
         'talkPick',
         talkPickId,
       ]);
-      queryClient.setQueryData(['talkPick', talkPickId], {
-        ...prevPost,
-        myBookmark: false,
-      });
+
+      if (prevPost) {
+        const { bookmarks } = prevPost;
+
+        queryClient.setQueryData(['talkPick', talkPickId], {
+          ...prevPost,
+          bookmarks: bookmarks - 1,
+          myBookmark: false,
+        });
+      }
+
       return { prevPost };
     },
     onError: (error, id, context) => {
