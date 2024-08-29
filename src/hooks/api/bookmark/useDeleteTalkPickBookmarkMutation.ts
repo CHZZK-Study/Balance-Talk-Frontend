@@ -29,5 +29,11 @@ export const useDeleteTalkPickBookmarkMutation = (talkPickId: Id) => {
     onError: (error, id, context) => {
       queryClient.setQueryData(['talkPick', talkPickId], context?.prevPost);
     },
+    onSuccess: () =>
+      Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: ['talkPick', talkPickId],
+        }),
+      ]),
   });
 };
