@@ -15,11 +15,13 @@ export interface SideBarProps extends ProfileLabelProps, SideBoxProps {
 export interface OptionBarProps {
   selectGroupItems: SelectGroupItem[];
   initialSelectedGroupValue?: OptionKeys;
+  onGroupSelect: (value: OptionKeys) => void;
+  onOptionSelect: (option: string) => void;
 }
 
 export interface InfoItem extends InfoBoxProps {
   id: number;
-  editedAt: string;
+  editedAt?: string;
 }
 
 export interface InfoListProps {
@@ -28,7 +30,7 @@ export interface InfoListProps {
 
 export interface MyContentItem extends MyContentBoxProps {
   id: number;
-  editedAt: string;
+  editedAt?: string;
 }
 
 export interface MyContentListProps {
@@ -42,4 +44,9 @@ export interface MyBalanceGameItem extends Omit<ContentsButtonProps, 'id'> {
 
 export interface MyBalanceGameListProps {
   items: MyBalanceGameItem[];
+}
+
+export interface InfiniteData<T> {
+  pages: T[];
+  pageParams: number[];
 }
