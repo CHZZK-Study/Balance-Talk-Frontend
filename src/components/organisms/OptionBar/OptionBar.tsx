@@ -9,12 +9,16 @@ import * as S from './OptionBar.style';
 const OptionBar = ({
   selectGroupItems,
   initialSelectedGroupValue = OptionKeys.TOPIC,
+  onGroupSelect,
+  onOptionSelect,
 }: OptionBarProps) => {
   const [selectedGroup, setSelectedGroup] = useState<OptionKeys>(
     initialSelectedGroupValue,
   );
   const [options, setOptions] = useState<string[]>(optionSets[selectedGroup]);
-  const [selectedOption, setSelectedOption] = useState<string>('내가 저장한');
+  const [selectedOption, setSelectedOption] = useState<string>(
+    optionSets[selectedGroup][0],
+  );
 
   useEffect(() => {
     setOptions(optionSets[selectedGroup]);
@@ -23,10 +27,12 @@ const OptionBar = ({
 
   const handleGroupSelect = (value: string) => {
     setSelectedGroup(value as OptionKeys);
+    onGroupSelect(value as OptionKeys);
   };
 
   const handleOptionSelect = (option: string) => {
     setSelectedOption(option);
+    onOptionSelect(option);
   };
 
   return (
