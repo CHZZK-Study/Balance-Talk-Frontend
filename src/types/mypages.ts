@@ -5,19 +5,116 @@ import {
   SideBarProps,
 } from '@/types/organisms';
 
-export interface MyWritten extends MyContentItem {}
+interface Sort {
+  empty: boolean;
+  sorted: boolean;
+  unsorted: boolean;
+}
 
-export interface MyVote extends InfoItem {}
+interface Pageable {
+  pageNumber: number;
+  pageSize: number;
+  sort: Sort;
+  offset: number;
+  paged: boolean;
+  unpaged: boolean;
+}
+export interface MyWritten {
+  content: MyContentItem[];
+  pageable: Pageable;
+  totalPages: number;
+  totalElements: number;
+  last: boolean;
+  size: number;
+  number: number;
+  sort: Sort;
+  numberOfElements: number;
+  first: boolean;
+  empty: boolean;
+}
 
-export interface MyComment extends InfoItem {}
+export interface MyVote {
+  content: InfoItem[];
+  pageable: Pageable;
+  totalPages: number;
+  totalElements: number;
+  last: boolean;
+  size: number;
+  number: number;
+  sort: Sort;
+  numberOfElements: number;
+  first: boolean;
+  empty: boolean;
+}
 
-export interface MyBookmark extends MyContentItem {}
+export interface MyComment {
+  content: InfoItem[];
+  pageable: Pageable;
+  totalPages: number;
+  totalElements: number;
+  last: boolean;
+  size: number;
+  number: number;
+  sort: Sort;
+  numberOfElements: number;
+  first: boolean;
+  empty: boolean;
+}
 
-export interface GameWritten extends MyBalanceGameItem {}
+export interface MyBookmark {
+  content: MyContentItem[];
+  pageable: Pageable;
+  totalPages: number;
+  totalElements: number;
+  last: boolean;
+  size: number;
+  number: number;
+  sort: Sort;
+  numberOfElements: number;
+  first: boolean;
+  empty: boolean;
+}
+export interface GameWritten {
+  content: MyBalanceGameItem[];
+  pageable: Pageable;
+  totalPages: number;
+  totalElements: number;
+  last: boolean;
+  size: number;
+  number: number;
+  sort: Sort;
+  numberOfElements: number;
+  first: boolean;
+  empty: boolean;
+}
 
-export interface GameVote extends MyBalanceGameItem {}
+export interface GameVote {
+  content: MyBalanceGameItem[];
+  pageable: Pageable;
+  totalPages: number;
+  totalElements: number;
+  last: boolean;
+  size: number;
+  number: number;
+  sort: Sort;
+  numberOfElements: number;
+  first: boolean;
+  empty: boolean;
+}
 
-export interface GameBookmark extends MyBalanceGameItem {}
+export interface GameBookmark {
+  content: MyBalanceGameItem[];
+  pageable: Pageable;
+  totalPages: number;
+  totalElements: number;
+  last: boolean;
+  size: number;
+  number: number;
+  sort: Sort;
+  numberOfElements: number;
+  first: boolean;
+  empty: boolean;
+}
 
 export interface SideBar extends SideBarProps {}
 
