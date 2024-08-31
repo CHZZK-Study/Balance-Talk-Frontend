@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable consistent-return */
+import React, { useState, useEffect } from 'react';
 import ToastModal from '@/components/atoms/ToastModal/ToastModal';
 import PostInputForm from '@/components/organisms/PostInputForm/PostInputForm';
 import Divider from '@/components/atoms/Divider/Divider';
@@ -7,9 +8,23 @@ import { useSaveTempTalkPickMutation } from '@/hooks/api/talk-pick/useSaveTempTa
 import * as S from './CreatePostPage.style';
 
 const CreatePostPage = () => {
+  const [showSaveSuccessToast, setShowSaveSuccessToast] = useState(false);
   const { mutate: createTalkPick, createSuccess } = useCreateTalkPickMutation();
   const { mutate: saveTempTalkPick, saveSuccess } =
     useSaveTempTalkPickMutation();
+
+  useEffect(() => {
+    if (saveSuccess) {
+      setShowSaveSuccessToast(true);
+      const timer = setTimeout(() => {
+        setShowSaveSuccessToast(false);
+      }, 2000);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [saveSuccess]);
 
   return (
     <div css={S.pageStyle}>
@@ -19,7 +34,7 @@ const CreatePostPage = () => {
             <ToastModal bgColor="black">등록 완료!</ToastModal>
           </div>
         )}
-        {saveSuccess && (
+        {showSaveSuccessToast && (
           <div css={S.toastModalStyling}>
             <ToastModal bgColor="black">임시저장 완료!</ToastModal>
           </div>
