@@ -15,15 +15,6 @@ import {
   useGameWrittensQuery,
   useMyInfoQuery,
 } from '@/hooks/api/mypages';
-// import {
-//   MyWritten,
-//   MyBookmark,
-//   MyVote,
-//   MyComment,
-//   GameBookmark,
-//   GameVote,
-//   GameWritten,
-// } from '@/types/mypages';
 import { InfoItem, MyBalanceGameItem, MyContentItem } from '@/types/organisms';
 import * as S from './MyPage.style';
 
@@ -36,15 +27,6 @@ const MyPage = () => {
   const { gameBookmark: gameBookmarksData } = useGameBookmarksQuery();
   const { gameVote: gameVotesData } = useGameVotesQuery();
   const { gameWritten: gameWrittenData } = useGameWrittensQuery();
-
-  console.log('memberInfo:', memberInfo);
-  console.log('bookmarksData:', bookmarksData);
-  console.log('myVotesData:', myVotesData);
-  console.log('myCommentsData:', myCommentsData);
-  console.log('myWrittenData:', myWrittenData);
-  console.log('gameBookmarksData:', gameBookmarksData);
-  console.log('gameVotesData:', gameVotesData);
-  console.log('gameWrittenData:', gameWrittenData);
 
   const [selectedGroup, setSelectedGroup] = useState<OptionKeys>(
     OptionKeys.TOPIC,
