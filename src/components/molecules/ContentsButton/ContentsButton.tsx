@@ -9,7 +9,7 @@ const ContentsButton = ({
   optionBImg,
   title,
   tagLabels,
-  bookmarkState = false,
+  bookmarked = false,
   showBookmark = false,
   size = 'large',
   ...attributes
@@ -32,7 +32,7 @@ const ContentsButton = ({
       <div css={S.infoContainer(size)}>
         <span css={S.label(size)}>{title}</span>
         {showBookmark && (
-          <Bookmark bookmarkState={bookmarkState} css={S.bookmarkWrapper} />
+          <Bookmark bookmarked={bookmarked} css={S.bookmarkWrapper} />
         )}
       </div>
     </div>

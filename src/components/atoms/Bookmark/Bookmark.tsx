@@ -3,12 +3,12 @@ import { BookmarkProps } from '@/types/atoms';
 import { BookmarkDF, BookmarkPR } from '@/assets';
 import * as S from './Bookmark.style';
 
-const Bookmark = ({ bookmarkState = false, ...attributes }: BookmarkProps) => {
-  const [isPressed, setIsPressed] = useState(bookmarkState);
+const Bookmark = ({ bookmarked = false, ...attributes }: BookmarkProps) => {
+  const [isPressed, setIsPressed] = useState(bookmarked);
 
   useEffect(() => {
-    setIsPressed(bookmarkState);
-  }, [bookmarkState]);
+    setIsPressed(bookmarked);
+  }, [bookmarked]);
 
   const handleClick = () => {
     setIsPressed((prevState) => !prevState);

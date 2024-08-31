@@ -9,7 +9,7 @@ const MyContentBox = ({
   commentCount,
   bookmarks,
   showBookmark = false,
-  bookmarkState = false,
+  bookmarked = false,
 }: MyContentBoxProps) => {
   return (
     <div css={S.infoContainer}>
@@ -19,7 +19,7 @@ const MyContentBox = ({
       <InfoLabel label="톡댓톡" count={commentCount} />
       <InfoLabel label="저장" count={bookmarks} />
       {showBookmark && (
-        <Bookmark bookmarkState={bookmarkState} css={S.bookmarkWrapper} />
+        <Bookmark bookmarked={bookmarked} css={S.bookmarkWrapper} />
       )}
     </div>
   );

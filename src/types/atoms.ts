@@ -41,5 +41,5 @@ export interface InfoLabelProps extends ComponentPropsWithRef<'div'> {
 }
 
 export interface BookmarkProps extends ComponentPropsWithRef<'button'> {
-  bookmarkState?: boolean;
+  bookmarked?: boolean;
 }

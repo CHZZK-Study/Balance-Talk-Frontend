@@ -25,7 +25,7 @@ export interface MyContentBoxProps {
   commentCount: number;
   bookmarks: number;
   showBookmark?: boolean;
-  bookmarkState?: BookmarkProps['bookmarkState'];
+  bookmarked?: BookmarkProps['bookmarked'];
 }
 
 export interface ContentsButtonProps extends ComponentPropsWithRef<'div'> {
@@ -33,7 +33,7 @@ export interface ContentsButtonProps extends ComponentPropsWithRef<'div'> {
   optionBImg: string;
   title: string;
   tagLabels: string[];
-  bookmarkState?: BookmarkProps['bookmarkState'];
+  bookmarked?: BookmarkProps['bookmarked'];
   showBookmark?: boolean;
   size?: 'large' | 'small';
 }
