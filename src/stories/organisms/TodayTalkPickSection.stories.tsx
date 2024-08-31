@@ -1,5 +1,7 @@
+import React from 'react';
 import { TalkPickDetail } from '@/types/talk-pick';
 import { MenuItem } from '@/components/atoms/MenuTap/MenuTap';
+import ReactQueryProvider from '@/providers/ReactQueryProvider';
 import type { Meta, StoryObj } from '@storybook/react';
 import TodayTalkPickSection from '@/components/organisms/TodayTalkPickSection/TodayTalkPickSection';
 
@@ -22,7 +24,7 @@ const defaultTodayTalkPick: TalkPickDetail = {
   myBookmark: false,
   votedOption: 'A',
   writer: '닉네임593',
-  lastModifiedAt: '2024-08-04',
+  createdAt: '2024-08-04',
   isUpdated: false,
 };
 
@@ -39,6 +41,13 @@ const meta = {
     todayTalkPick: defaultTodayTalkPick,
     talkPickMenu: menuItem,
   },
+  decorators: [
+    (Story) => (
+      <ReactQueryProvider>
+        <Story />
+      </ReactQueryProvider>
+    ),
+  ],
 } satisfies Meta<typeof TodayTalkPickSection>;
 
 export default meta;

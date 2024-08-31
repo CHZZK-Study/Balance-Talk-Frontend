@@ -2,13 +2,6 @@ import { css } from '@emotion/react';
 import typo from '@/styles/typo';
 import color from '@/styles/color';
 
-export const searchBarContainerStyling = css({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  gap: '20px',
-});
-
 export const searchBarStyling = css({
   display: 'flex',
   justifyContent: 'space-between',
@@ -23,12 +16,7 @@ export const searchBarStyling = css({
 
 export const inputStyling = css(typo.SubTitle, {
   width: '100%',
-  color: color.GY[1],
+  color: color.BK,
   outline: 'none',
   padding: '0 35px',
-});
-
-export const btnWrapperStyling = css({
-  display: 'flex',
-  gap: '14px',
 });
