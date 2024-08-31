@@ -15,13 +15,14 @@ export interface SideBarProps extends ProfileLabelProps, SideBoxProps {
 export interface OptionBarProps {
   selectGroupItems: SelectGroupItem[];
   initialSelectedGroupValue?: OptionKeys;
+  selectedOption: string;
   onGroupSelect: (value: OptionKeys) => void;
   onOptionSelect: (option: string) => void;
 }
 
 export interface InfoItem extends InfoBoxProps {
   id: number;
-  editedAt?: string;
+  editedAt: string;
 }
 
 export interface InfoListProps {
@@ -30,7 +31,7 @@ export interface InfoListProps {
 
 export interface MyContentItem extends MyContentBoxProps {
   id: number;
-  editedAt?: string;
+  editedAt: string;
 }
 
 export interface MyContentListProps {

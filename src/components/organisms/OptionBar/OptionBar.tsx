@@ -9,6 +9,7 @@ import * as S from './OptionBar.style';
 const OptionBar = ({
   selectGroupItems,
   initialSelectedGroupValue = OptionKeys.TOPIC,
+  selectedOption,
   onGroupSelect,
   onOptionSelect,
 }: OptionBarProps) => {
@@ -16,13 +17,9 @@ const OptionBar = ({
     initialSelectedGroupValue,
   );
   const [options, setOptions] = useState<string[]>(optionSets[selectedGroup]);
-  const [selectedOption, setSelectedOption] = useState<string>(
-    optionSets[selectedGroup][0],
-  );
 
   useEffect(() => {
     setOptions(optionSets[selectedGroup]);
-    setSelectedOption(optionSets[selectedGroup][0]);
   }, [selectedGroup]);
 
   const handleGroupSelect = (value: string) => {
@@ -31,7 +28,6 @@ const OptionBar = ({
   };
 
   const handleOptionSelect = (option: string) => {
-    setSelectedOption(option);
     onOptionSelect(option);
   };
 

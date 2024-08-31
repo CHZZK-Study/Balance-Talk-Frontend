@@ -53,19 +53,13 @@ const MyPage = () => {
     optionSets[selectedGroup][0],
   );
   useEffect(() => {
-    console.log('selectedGroup changed:zzzzzzzzzzzzzzz', selectedGroup);
     setSelectedOption(optionSets[selectedGroup][0]);
-    console.log(
-      'selectedOption set to:zzzzzzzzzzzz',
-      optionSets[selectedGroup][0],
-    );
   }, [selectedGroup]);
 
   const queryResult = useMemo(() => {
     if (selectedGroup === OptionKeys.TOPIC) {
       switch (selectedOption) {
         case '내가 저장한':
-          // showBookmark을 true로 설정
           return {
             ...bookmarksData,
             content: bookmarksData?.content.map((item: MyContentItem) => ({
@@ -74,7 +68,6 @@ const MyPage = () => {
             })),
           };
         case '내가 투표한':
-          // prefix를 '내 선택'으로 설정
           return {
             ...myVotesData,
             content: myVotesData?.content.map((item: InfoItem) => ({
@@ -83,7 +76,6 @@ const MyPage = () => {
             })),
           };
         case '내가 댓글단':
-          // prefix를 '내 댓글'로 설정
           return {
             ...myCommentsData,
             content: myCommentsData?.content.map((item: InfoItem) => ({
@@ -92,7 +84,6 @@ const MyPage = () => {
             })),
           };
         case '내가 작성한':
-          // showBookmark을 false로 설정
           return {
             ...myWrittenData,
             content: myWrittenData?.content.map((item: MyContentItem) => ({
@@ -160,25 +151,24 @@ const MyPage = () => {
         selectedOption === '내가 저장한' ||
         selectedOption === '내가 작성한'
       ) {
-        const content = queryResult.content as MyContentItem[]; // Type assertion을 사용하여 타입을 명확히 함
+        const content = queryResult.content as MyContentItem[];
         return <MyContentList items={content} />;
       }
       if (
         selectedOption === '내가 투표한' ||
         selectedOption === '내가 댓글단'
       ) {
-        const content = queryResult.content as InfoItem[]; // Type assertion을 사용하여 타입을 명확히 함
+        const content = queryResult.content as InfoItem[];
         return <InfoList items={content} />;
       }
     } else if (selectedGroup === OptionKeys.BALANCE_GAME) {
-      const content = queryResult.content as MyBalanceGameItem[]; // Type assertion을 사용하여 타입을 명확히 함
+      const content = queryResult.content as MyBalanceGameItem[];
       return <MyBalanceGameList items={content} />;
     }
 
     return <div>No content available</div>;
   };
 
-  console.log('queryResult:', queryResult);
   return (
     <div css={S.pageContainer}>
       {memberInfo && (
@@ -196,6 +186,7 @@ const MyPage = () => {
             { label: '밸런스 게임', value: OptionKeys.BALANCE_GAME },
           ]}
           initialSelectedGroupValue={selectedGroup}
+          selectedOption={selectedOption}
           onGroupSelect={setSelectedGroup}
           onOptionSelect={setSelectedOption}
         />
