@@ -16,11 +16,14 @@ import {
   useMyInfoQuery,
 } from '@/hooks/api/mypages';
 import { InfoItem, MyBalanceGameItem, MyContentItem } from '@/types/organisms';
+import { useInView } from 'react-intersection-observer';
+import { getMyBookmark } from '@/api/mypages';
+import { MyBookmark } from '@/types/mypages';
 import * as S from './MyPage.style';
 
 const MyPage = () => {
   const { memberInfo } = useMyInfoQuery(1);
-  const { myBookmark: bookmarksData } = useMyBookmarksQuery();
+  const { myBookmark: initialBookmarksData } = useMyBookmarksQuery(0, 20);
   const { myVote: myVotesData } = useMyVotesQuery();
   const { myComment: myCommentsData } = useMyCommentsQuery();
   const { myWritten: myWrittenData } = useMyWrittensQuery();
@@ -34,17 +37,55 @@ const MyPage = () => {
   const [selectedOption, setSelectedOption] = useState<string>(
     optionSets[selectedGroup][0],
   );
+
+  const [bookmarksData, setBookmarksData] = useState<MyContentItem[]>([]);
+  const [page, setPage] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { ref, inView } = useInView({
+    threshold: 1.0,
+  });
+
   useEffect(() => {
     setSelectedOption(optionSets[selectedGroup][0]);
   }, [selectedGroup]);
+
+  useEffect(() => {
+    if (inView && hasMore && !isLoading) {
+      loadMoreBookmarks();
+    }
+  }, [inView, hasMore, isLoading]);
+
+  useEffect(() => {
+    if (initialBookmarksData) {
+      const data = initialBookmarksData as unknown as MyBookmark;
+      setBookmarksData(data.content);
+      setHasMore(!data.last);
+    }
+  }, [initialBookmarksData]);
+
+  const loadMoreBookmarks = async () => {
+    setIsLoading(true);
+    try {
+      const newPage = page + 1;
+      const response = await getMyBookmark(newPage, 20);
+      setBookmarksData((prevData) => [...prevData, ...response.content]);
+      setHasMore(!response.last);
+      setPage(newPage);
+    } catch (error) {
+      console.error('Failed to fetch bookmarks:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const queryResult = useMemo(() => {
     if (selectedGroup === OptionKeys.TOPIC) {
       switch (selectedOption) {
         case '내가 저장한':
           return {
-            ...bookmarksData,
-            content: bookmarksData?.content.map((item: MyContentItem) => ({
+            content: bookmarksData.map((item: MyContentItem) => ({
               ...item,
               showBookmark: true,
             })),
@@ -173,6 +214,9 @@ const MyPage = () => {
           onOptionSelect={setSelectedOption}
         />
         <div css={S.contentList}>{renderContent()}</div>
+        <div ref={ref} css={S.loader}>
+          {isLoading && <p>Loading...</p>}
+        </div>
       </div>
     </div>
   );
