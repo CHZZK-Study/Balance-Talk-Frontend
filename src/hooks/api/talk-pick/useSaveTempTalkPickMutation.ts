@@ -30,6 +30,10 @@ export const useSaveTempTalkPickMutation = () => {
       });
 
       setSaveSuccess(true);
+
+      setTimeout(() => {
+        navigate('/talkpickplace');
+      }, 2000);
     },
     onError: (err: AxiosErrorResponse) => {
       if (err.status === HTTP_STATUS_CODE.UNAUTHORIZED) {

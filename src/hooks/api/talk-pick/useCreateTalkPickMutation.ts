@@ -31,7 +31,7 @@ export const useCreateTalkPickMutation = () => {
       setCreateSuccess(true);
 
       setTimeout(() => {
-        navigate('/talkpickplace');
+        navigate('/');
       }, 2000);
     },
     onError: (err: AxiosErrorResponse) => {
