@@ -3,7 +3,7 @@ import ContentsButton from '@/components/molecules/ContentsButton/ContentsButton
 import { MyBalanceGameListProps, MyBalanceGameItem } from '@/types/organisms';
 import * as S from './MyBalanceGameList.style';
 
-const MyBalanceGameList = ({ items }: MyBalanceGameListProps) => {
+const MyBalanceGameList = ({ items = [] }: MyBalanceGameListProps) => {
   const groupedItems = items.reduce(
     (acc, item) => {
       if (!acc[item.editedAt]) {
@@ -28,7 +28,7 @@ const MyBalanceGameList = ({ items }: MyBalanceGameListProps) => {
                   optionBImg={balanceGameItem.optionBImg}
                   title={balanceGameItem.title}
                   tagLabels={balanceGameItem.tagLabels}
-                  bookmarkState={balanceGameItem.bookmarkState}
+                  bookmarked={balanceGameItem.bookmarked}
                   showBookmark={balanceGameItem.showBookmark}
                   size="small"
                 />

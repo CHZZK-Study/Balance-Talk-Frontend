@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import SideBar from '@/components/organisms/SideBar/SideBar';
 import OptionBar from '@/components/organisms/OptionBar/OptionBar';
 import MyContentList from '@/components/organisms/MyContentList/MyContentList';
@@ -8,155 +8,177 @@ import { OptionKeys, optionSets } from '@/constants/optionSets';
 import {
   useMyVotesQuery,
   useMyCommentsQuery,
-  useMyTalksQuery,
-  useBookmarksQuery,
+  useMyWrittensQuery,
+  useMyBookmarksQuery,
   useGameBookmarksQuery,
   useGameVotesQuery,
-  useGameMyQuery,
+  useGameWrittensQuery,
   useMyInfoQuery,
 } from '@/hooks/api/mypages';
-import {
-  Bookmark,
-  MyTalk,
-  MyVote,
-  MyComment,
-  GameBookmark,
-  GameVote,
-  MyGame,
-  // TopicQueryKeys,
-  // BalanceGameQueryKeys,
-  MyInfiniteData,
-} from '@/types/mypages';
-import { InfiniteData } from '@tanstack/react-query';
+// import {
+//   MyWritten,
+//   MyBookmark,
+//   MyVote,
+//   MyComment,
+//   GameBookmark,
+//   GameVote,
+//   GameWritten,
+// } from '@/types/mypages';
+import { InfoItem, MyBalanceGameItem, MyContentItem } from '@/types/organisms';
 import * as S from './MyPage.style';
 
-// type TopicQueryKeys = (typeof optionSets)[OptionKeys.TOPIC][number];
-// type BalanceGameQueryKeys =
-//   (typeof optionSets)[OptionKeys.BALANCE_GAME][number];
-
 const MyPage = () => {
+  const { memberInfo } = useMyInfoQuery(1);
+  const { myBookmark: bookmarksData } = useMyBookmarksQuery();
+  const { myVote: myVotesData } = useMyVotesQuery();
+  const { myComment: myCommentsData } = useMyCommentsQuery();
+  const { myWritten: myWrittenData } = useMyWrittensQuery();
+  const { gameBookmark: gameBookmarksData } = useGameBookmarksQuery();
+  const { gameVote: gameVotesData } = useGameVotesQuery();
+  const { gameWritten: gameWrittenData } = useGameWrittensQuery();
+
+  console.log('memberInfo:', memberInfo);
+  console.log('bookmarksData:', bookmarksData);
+  console.log('myVotesData:', myVotesData);
+  console.log('myCommentsData:', myCommentsData);
+  console.log('myWrittenData:', myWrittenData);
+  console.log('gameBookmarksData:', gameBookmarksData);
+  console.log('gameVotesData:', gameVotesData);
+  console.log('gameWrittenData:', gameWrittenData);
+
   const [selectedGroup, setSelectedGroup] = useState<OptionKeys>(
     OptionKeys.TOPIC,
   );
   const [selectedOption, setSelectedOption] = useState<string>(
     optionSets[selectedGroup][0],
   );
-
-  const { memberInfo, isLoading } = useMyInfoQuery(1);
-
-  const bookmarksQuery = useBookmarksQuery();
-  const myVotesQuery = useMyVotesQuery();
-  const myCommentsQuery = useMyCommentsQuery();
-  const myTalksQuery = useMyTalksQuery();
-
-  const gameBookmarksQuery = useGameBookmarksQuery();
-  const gameVotesQuery = useGameVotesQuery();
-  const gameMyQuery = useGameMyQuery();
-
-  const [topicContentQueryResult, setTopicContentQueryResult] = useState<
-    InfiniteData<MyInfiniteData<Bookmark | MyTalk>> | undefined
-  >();
-  const [topicInfoQueryResult, setTopicInfoQueryResult] = useState<
-    InfiniteData<MyInfiniteData<MyVote | MyComment>> | undefined
-  >();
-  const [balanceGameQueryResult, setBalanceGameQueryResult] = useState<
-    InfiniteData<MyInfiniteData<GameBookmark | GameVote | MyGame>> | undefined
-  >();
-
   useEffect(() => {
+    console.log('selectedGroup changed:zzzzzzzzzzzzzzz', selectedGroup);
+    setSelectedOption(optionSets[selectedGroup][0]);
+    console.log(
+      'selectedOption set to:zzzzzzzzzzzz',
+      optionSets[selectedGroup][0],
+    );
+  }, [selectedGroup]);
+
+  const queryResult = useMemo(() => {
     if (selectedGroup === OptionKeys.TOPIC) {
-      // `TOPIC` 그룹에 대한 로직
       switch (selectedOption) {
         case '내가 저장한':
-          setTopicContentQueryResult(bookmarksQuery.data);
-          break;
+          // showBookmark을 true로 설정
+          return {
+            ...bookmarksData,
+            content: bookmarksData?.content.map((item: MyContentItem) => ({
+              ...item,
+              showBookmark: true,
+            })),
+          };
         case '내가 투표한':
-          setTopicInfoQueryResult(myVotesQuery.data);
-          break;
+          // prefix를 '내 선택'으로 설정
+          return {
+            ...myVotesData,
+            content: myVotesData?.content.map((item: InfoItem) => ({
+              ...item,
+              prefix: '내 선택',
+            })),
+          };
         case '내가 댓글단':
-          setTopicInfoQueryResult(myCommentsQuery.data);
-          break;
+          // prefix를 '내 댓글'로 설정
+          return {
+            ...myCommentsData,
+            content: myCommentsData?.content.map((item: InfoItem) => ({
+              ...item,
+              prefix: '내 댓글',
+            })),
+          };
         case '내가 작성한':
-          setTopicContentQueryResult(myTalksQuery.data);
-          break;
+          // showBookmark을 false로 설정
+          return {
+            ...myWrittenData,
+            content: myWrittenData?.content.map((item: MyContentItem) => ({
+              ...item,
+              showBookmark: false,
+            })),
+          };
+        default:
+          return null;
       }
     } else if (selectedGroup === OptionKeys.BALANCE_GAME) {
-      // `BALANCE_GAME` 그룹에 대한 로직
       switch (selectedOption) {
         case '내가 저장한':
-          setBalanceGameQueryResult(gameBookmarksQuery.data);
-          break;
+          return {
+            ...gameBookmarksData,
+            content: gameBookmarksData?.content.map(
+              (item: MyBalanceGameItem) => ({
+                ...item,
+                showBookmark: true,
+              }),
+            ),
+          };
         case '내가 투표한':
-          setBalanceGameQueryResult(gameVotesQuery.data);
-          break;
+          return {
+            ...gameVotesData,
+            content: gameVotesData?.content.map((item: MyBalanceGameItem) => ({
+              ...item,
+              showBookmark: false,
+            })),
+          };
         case '내가 만든':
-          setBalanceGameQueryResult(gameMyQuery.data);
-          break;
+          return {
+            ...gameWrittenData,
+            content: gameWrittenData?.content.map(
+              (item: MyBalanceGameItem) => ({
+                ...item,
+                showBookmark: false,
+              }),
+            ),
+          };
+        default:
+          return null;
       }
     }
-  }, [selectedGroup, selectedOption]);
-
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-  //       loadMore();
-  //     }
-  //   };
-  //
-  //   window.addEventListener('scroll', handleScroll);
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, [loadMore]);
+    return null;
+  }, [
+    selectedGroup,
+    selectedOption,
+    bookmarksData,
+    myVotesData,
+    myCommentsData,
+    myWrittenData,
+    gameBookmarksData,
+    gameVotesData,
+    gameWrittenData,
+  ]);
 
   const renderContent = () => {
+    if (!queryResult) {
+      return <div>No content available</div>;
+    }
+
     if (selectedGroup === OptionKeys.TOPIC) {
       if (
         selectedOption === '내가 저장한' ||
         selectedOption === '내가 작성한'
       ) {
-        if (topicContentQueryResult) {
-          const contentList = topicContentQueryResult.pages.flatMap((page) => {
-            if ('content' in page) {
-              // 'content'가 존재하는지 체크
-              return page.content as (Bookmark | MyTalk)[];
-            }
-            return [];
-          });
-
-          return <MyContentList items={contentList} />;
-        }
-      } else if (
+        const content = queryResult.content as MyContentItem[]; // Type assertion을 사용하여 타입을 명확히 함
+        return <MyContentList items={content} />;
+      }
+      if (
         selectedOption === '내가 투표한' ||
         selectedOption === '내가 댓글단'
       ) {
-        if (topicInfoQueryResult) {
-          const infoList = topicInfoQueryResult.pages.flatMap((page) => {
-            if ('content' in page) {
-              return page.content as (MyVote | MyComment)[];
-            }
-            return [];
-          });
-
-          return <InfoList items={infoList} />;
-        }
+        const content = queryResult.content as InfoItem[]; // Type assertion을 사용하여 타입을 명확히 함
+        return <InfoList items={content} />;
       }
     } else if (selectedGroup === OptionKeys.BALANCE_GAME) {
-      if (balanceGameQueryResult) {
-        const gameList = balanceGameQueryResult.pages.flatMap((page) => {
-          if ('content' in page) {
-            return page.content as (GameBookmark | GameVote | MyGame)[];
-          }
-          return [];
-        });
-
-        return <MyBalanceGameList items={gameList} />;
-      }
+      const content = queryResult.content as MyBalanceGameItem[]; // Type assertion을 사용하여 타입을 명확히 함
+      return <MyBalanceGameList items={content} />;
     }
 
-    return <p>데이터를 불러오는 중...</p>;
+    return <div>No content available</div>;
   };
 
+  console.log('queryResult:', queryResult);
   return (
     <div css={S.pageContainer}>
       {memberInfo && (

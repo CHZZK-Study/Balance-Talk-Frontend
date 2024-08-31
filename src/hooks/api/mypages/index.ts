@@ -1,8 +1,8 @@
 export { useMyVotesQuery } from './useMyVotesQuery';
 export { useMyCommentsQuery } from './useMyCommentsQuery';
-export { useMyTalksQuery } from './useMyTalksQuery';
-export { useBookmarksQuery } from './useBookmarksQuery';
+export { useMyWrittensQuery } from './useMyWrittensQuery';
+export { useMyBookmarksQuery } from './useMyBookmarksQuery';
 export { useGameBookmarksQuery } from './useGameBookmarksQuery';
 export { useGameVotesQuery } from './useGameVotesQuery';
-export { useGameMyQuery } from './useGameMyQuery';
+export { useGameWrittensQuery } from './useGameWrittensQuery';
 export { useMyInfoQuery } from './useMyInfoQuery';

@@ -3,7 +3,7 @@ import InfoBox from '@/components/molecules/InfoBox/InfoBox';
 import { InfoListProps, InfoItem } from '@/types/organisms';
 import * as S from './InfoList.style';
 
-const InfoList = ({ items }: InfoListProps) => {
+const InfoList = ({ items = [] }: InfoListProps) => {
   const groupedItems = items.reduce(
     (acc, item) => {
       if (!acc[item.editedAt]) {

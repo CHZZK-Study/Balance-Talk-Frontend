@@ -3,7 +3,7 @@ import MyContentBox from '@/components/molecules/MyContentBox/MyContentBox';
 import { MyContentListProps, MyContentItem } from '@/types/organisms';
 import * as S from './MyContentList.style';
 
-const MyContentList = ({ items }: MyContentListProps) => {
+const MyContentList = ({ items = [] }: MyContentListProps) => {
   const groupedItems = items.reduce(
     (acc, item) => {
       if (!acc[item.editedAt]) {
@@ -28,7 +28,7 @@ const MyContentList = ({ items }: MyContentListProps) => {
                   commentCount={contentItem.commentCount}
                   bookmarks={contentItem.bookmarks}
                   showBookmark={contentItem.showBookmark}
-                  bookmarkState={contentItem.bookmarkState}
+                  bookmarked={contentItem.bookmarked}
                 />
               </li>
             ))}

@@ -23,11 +23,11 @@ const ContentsButton = ({
         <div css={S.imageWrapper}>
           <img src={optionBImg} alt="option B" css={S.image} />
         </div>
-        <div css={S.chipsContainer}>
-          {tagLabels.map((tagLabel) => (
-            <Chips key={tagLabel}>{tagLabel}</Chips>
-          ))}
-        </div>
+        {/* <div css={S.chipsContainer}> */}
+        {/*  {tagLabels.map((tagLabel) => ( */}
+        {/*    <Chips key={tagLabel}>{tagLabel}</Chips> */}
+        {/*  ))} */}
+        {/* </div> */}
       </div>
       <div css={S.infoContainer(size)}>
         <span css={S.label(size)}>{title}</span>
