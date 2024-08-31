@@ -1,27 +1,19 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-console */
 import React from 'react';
 import store from '@/store';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import ReactQueryProvider from '@/providers/ReactQueryProvider';
+import PostInputForm from '@/components/organisms/PostInputForm/PostInputForm';
 import type { Meta, StoryObj } from '@storybook/react';
-import OptionInputBox from '@/components/atoms/OptionInputBox/OptionInputBox';
 
 const meta = {
-  title: 'atoms/OptionInputBox',
-  component: OptionInputBox,
+  title: 'organisms/PostInputForm',
+  component: PostInputForm,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  argTypes: {
-    option: { control: { type: 'radio' }, options: ['A', 'B'] },
-  },
-  args: {
-    option: 'A',
-    value: '',
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => {},
-  },
   decorators: [
     (Story) => (
       <Provider store={store}>
@@ -33,15 +25,19 @@ const meta = {
       </Provider>
     ),
   ],
-} satisfies Meta<typeof OptionInputBox>;
+} satisfies Meta<typeof PostInputForm>;
 
 export default meta;
+
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    option: 'A',
-    value: '',
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => {},
+    onSave: (data) => {
+      console.log('Save clicked with data:', data);
+    },
+    onSubmit: (data) => {
+      console.log('Submit clicked with data:', data);
+    },
   },
 };

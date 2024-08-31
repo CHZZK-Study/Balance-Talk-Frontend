@@ -16,6 +16,7 @@ export const bestTalkPickStyling = css({
   display: 'flex',
   flexDirection: 'column',
   marginBottom: '56px',
+  position: 'relative',
 });
 
 export const bestTalkPickTextWrapper = css({
@@ -36,4 +37,8 @@ export const bestTalkPickTitle = css(typo.Title, {
   color: color.BK,
 });
 
-export const headerStyle = css({});
+export const toastModalStyling = css({
+  position: 'absolute',
+  left: '520px',
+  bottom: '100px',
+});

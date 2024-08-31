@@ -46,3 +46,16 @@ export type TodayTalkPick = Pick<
   TalkPickDetail,
   'id' | 'title' | 'optionA' | 'optionB'
 >;
+
+export type NewTalkPick = {
+  title: string;
+  content: string;
+  optionA: string;
+  optionB: string;
+  sourceUrl?: string;
+  storedNames: string[];
+};
+
+export interface TempTalkPick extends NewTalkPick {
+  imgUrls: string[];
+}

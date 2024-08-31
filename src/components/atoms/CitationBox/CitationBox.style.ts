@@ -15,7 +15,9 @@ export const boxStyle = css({
   backgroundColor: color.WT,
 });
 
-export const boxTitleStyle = css(typo.Main.SemiBold, {});
+export const boxTitleStyle = css(typo.Main.SemiBold, {
+  marginRight: '60px',
+});
 
 export const inputStyle = css(typo.Comment.Regular, {
   width: '153px',

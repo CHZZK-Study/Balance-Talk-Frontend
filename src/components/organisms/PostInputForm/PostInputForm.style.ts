@@ -38,8 +38,11 @@ export const inputContainerStyle = css(typo.Main.Medium, {
 
 export const inputStyle = css(typo.Main.Medium, {
   width: '100%',
-
+  height: '100%',
   textAlign: 'left',
+  border: 'none',
+  resize: 'none',
+  outline: 'none',
   color: color.BK,
   '::placeholder': {
     color: color.GY[1],

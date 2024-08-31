@@ -8,8 +8,8 @@ export const buttonStyle = (imageLength: number) =>
     backgroundColor: imageLength < 10 ? color.WT : color.GY[2],
     borderRadius: '15px',
     padding: '19px 30px',
-    width: '100px',
-    height: '100px',
+    width: 'max-content',
+    height: 'max-content',
     cursor: 'pointer',
   });
 
