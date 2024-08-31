@@ -34,10 +34,8 @@ export const useCreateTalkPickVoteMutation = (talkPickId: Id) => {
       queryClient.setQueryData(['talkPick', talkPickId], context?.prevPost);
     },
     onSuccess: () =>
-      Promise.all([
-        queryClient.invalidateQueries({
-          queryKey: ['talkPick', talkPickId],
-        }),
-      ]),
+      queryClient.invalidateQueries({
+        queryKey: ['talkPick', talkPickId],
+      }),
   });
 };
