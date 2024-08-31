@@ -1,8 +1,8 @@
 import {
-  Bookmark,
   GameBookmark,
   GameVote,
   GameWritten,
+  MyBookmark,
   MyComment,
   MyVote,
   MyWritten,
@@ -33,7 +33,7 @@ export const getMyComment = async () => {
 };
 
 export const getMyBookmark = async () => {
-  const { data } = await axiosInstance.get<Bookmark>(
+  const { data } = await axiosInstance.get<MyBookmark>(
     END_POINT.MYPAGES_TALKS_BOOKMARKS(0, 6),
   );
   return data;

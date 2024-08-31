@@ -5,19 +5,19 @@ import {
   SideBarProps,
 } from '@/types/organisms';
 
-export interface Bookmark extends MyContentItem {}
-
 export interface MyWritten extends MyContentItem {}
 
 export interface MyVote extends InfoItem {}
 
 export interface MyComment extends InfoItem {}
 
+export interface MyBookmark extends MyContentItem {}
+
 export interface GameWritten extends MyBalanceGameItem {}
 
-export interface GameBookmark extends MyBalanceGameItem {}
-
 export interface GameVote extends MyBalanceGameItem {}
+
+export interface GameBookmark extends MyBalanceGameItem {}
 
 export interface SideBar extends SideBarProps {}
 
