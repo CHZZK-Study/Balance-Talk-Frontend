@@ -17,13 +17,12 @@ import {
 } from '@/hooks/api/mypages';
 import { InfoItem, MyBalanceGameItem, MyContentItem } from '@/types/organisms';
 import { useInView } from 'react-intersection-observer';
-import { getMyBookmark } from '@/api/mypages';
-import { MyBookmark } from '@/types/mypages';
 import * as S from './MyPage.style';
 
 const MyPage = () => {
   const { memberInfo } = useMyInfoQuery(1);
-  const { myBookmark: initialBookmarksData } = useMyBookmarksQuery(0, 20);
+  const { bookmarksData, fetchNextPage, hasMore, isLoading } =
+    useMyBookmarksQuery();
   const { myVote: myVotesData } = useMyVotesQuery();
   const { myComment: myCommentsData } = useMyCommentsQuery();
   const { myWritten: myWrittenData } = useMyWrittensQuery();
@@ -38,11 +37,6 @@ const MyPage = () => {
     optionSets[selectedGroup][0],
   );
 
-  const [bookmarksData, setBookmarksData] = useState<MyContentItem[]>([]);
-  const [page, setPage] = useState(0);
-  const [hasMore, setHasMore] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
-
   const { ref, inView } = useInView({
     threshold: 1.0,
   });
@@ -53,42 +47,20 @@ const MyPage = () => {
 
   useEffect(() => {
     if (inView && hasMore && !isLoading) {
-      loadMoreBookmarks();
+      fetchNextPage();
     }
-  }, [inView, hasMore, isLoading]);
-
-  useEffect(() => {
-    if (initialBookmarksData) {
-      const data = initialBookmarksData as unknown as MyBookmark;
-      setBookmarksData(data.content);
-      setHasMore(!data.last);
-    }
-  }, [initialBookmarksData]);
-
-  const loadMoreBookmarks = async () => {
-    setIsLoading(true);
-    try {
-      const newPage = page + 1;
-      const response = await getMyBookmark(newPage, 20);
-      setBookmarksData((prevData) => [...prevData, ...response.content]);
-      setHasMore(!response.last);
-      setPage(newPage);
-    } catch (error) {
-      console.error('Failed to fetch bookmarks:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  }, [inView, hasMore, isLoading, fetchNextPage]);
 
   const queryResult = useMemo(() => {
     if (selectedGroup === OptionKeys.TOPIC) {
       switch (selectedOption) {
         case '내가 저장한':
           return {
-            content: bookmarksData.map((item: MyContentItem) => ({
+            content: bookmarksData.map((item) => ({
               ...item,
               showBookmark: true,
             })),
+            ...bookmarksData,
           };
         case '내가 투표한':
           return {
