@@ -23,8 +23,18 @@ const MyPage = () => {
   const { memberInfo } = useMyInfoQuery(1);
   const { myBookmarks, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useMyBookmarksQuery();
-  const { myVote: myVotesData } = useMyVotesQuery();
-  const { myComment: myCommentsData } = useMyCommentsQuery();
+  const {
+    myVote,
+    fetchNextPage: fetchNextVotesPage,
+    hasNextPage: hasNextVotesPage,
+    isFetchingNextPage: isFetchingNextVotesPage,
+  } = useMyVotesQuery();
+  const {
+    myComments,
+    fetchNextPage: fetchNextCommentsPage,
+    hasNextPage: hasNextCommentsPage,
+    isFetchingNextPage: isFetchingNextCommentsPage,
+  } = useMyCommentsQuery();
   const {
     myWritten,
     fetchNextPage: fetchNextWrittensPage,
@@ -51,12 +61,46 @@ const MyPage = () => {
   }, [selectedGroup]);
 
   useEffect(() => {
-    if (inView && hasNextPage && !isFetchingNextPage) {
-      fetchNextPage().catch((error) => {
-        console.error('Failed to fetch next page:', error);
-      });
+    if (inView) {
+      if (hasNextPage && !isFetchingNextPage) {
+        fetchNextPage().catch((error) => {
+          console.error('Failed to fetch next page of bookmarks:', error);
+        });
+      }
+
+      if (hasNextWrittensPage && !isFetchingNextWrittensPage) {
+        fetchNextWrittensPage().catch((error) => {
+          console.error('Failed to fetch next page of writtens:', error);
+        });
+      }
+
+      if (hasNextVotesPage && !isFetchingNextVotesPage) {
+        fetchNextVotesPage().catch((error) => {
+          console.error('Failed to fetch next page of votes:', error);
+        });
+      }
+
+      if (hasNextCommentsPage && !isFetchingNextCommentsPage) {
+        fetchNextCommentsPage().catch((error) => {
+          console.error('Failed to fetch next page of comments:', error);
+        });
+      }
     }
-  }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
+  }, [
+    inView,
+    hasNextPage,
+    isFetchingNextPage,
+    fetchNextPage,
+    hasNextWrittensPage,
+    isFetchingNextWrittensPage,
+    fetchNextWrittensPage,
+    hasNextVotesPage,
+    isFetchingNextVotesPage,
+    fetchNextVotesPage,
+    hasNextCommentsPage,
+    isFetchingNextCommentsPage,
+    fetchNextCommentsPage,
+  ]);
 
   const queryResult = useMemo(() => {
     if (selectedGroup === OptionKeys.TOPIC) {
@@ -64,21 +108,9 @@ const MyPage = () => {
         case '내가 저장한':
           return myBookmarks;
         case '내가 투표한':
-          return {
-            ...myVotesData,
-            content: myVotesData?.content.map((item: InfoItem) => ({
-              ...item,
-              prefix: '내 선택',
-            })),
-          };
+          return myVote;
         case '내가 댓글단':
-          return {
-            ...myCommentsData,
-            content: myCommentsData?.content.map((item: InfoItem) => ({
-              ...item,
-              prefix: '내 댓글',
-            })),
-          };
+          return myComments;
         case '내가 작성한':
           return myWritten;
       }
@@ -121,8 +153,8 @@ const MyPage = () => {
     selectedGroup,
     selectedOption,
     myBookmarks,
-    myVotesData,
-    myCommentsData,
+    myVote,
+    myComments,
     myWritten,
     gameBookmarksData,
     gameVotesData,

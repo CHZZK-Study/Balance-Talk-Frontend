@@ -1,23 +1,18 @@
-import { InfiniteData, useInfiniteQuery } from '@tanstack/react-query';
 import { getMyWritten } from '@/api/mypages';
 import { MyWritten } from '@/types/mypages';
 import { MyContentItem } from '@/types/organisms';
+import { useInfiniteScroll } from '@/hooks/api/mypages/useInfiniteScroll';
 
 export const useMyWrittensQuery = () => {
   const {
-    data: myWritten,
+    data: myWrittenData,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useInfiniteQuery<MyWritten, Error, MyWritten, [string], number>({
-    queryKey: ['myWritten'],
-    queryFn: ({ pageParam = 0 }: { pageParam?: number }) =>
-      getMyWritten(pageParam, 20),
-    getNextPageParam: (lastPage) => {
-      return lastPage.last ? undefined : lastPage.number + 1;
-    },
-    initialPageParam: 0,
-    select: (data: InfiniteData<MyWritten>) => {
+  } = useInfiniteScroll<MyWritten>(
+    ['myWritten'],
+    ({ pageParam = 0 }) => getMyWritten(pageParam, 20),
+    (data) => {
       const firstPage = data.pages[0];
       return {
         content: data.pages.flatMap((page) =>
@@ -38,7 +33,12 @@ export const useMyWrittensQuery = () => {
         empty: firstPage.empty,
       };
     },
-  });
+  );
 
-  return { myWritten, fetchNextPage, hasNextPage, isFetchingNextPage };
+  return {
+    myWritten: myWrittenData,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  };
 };
