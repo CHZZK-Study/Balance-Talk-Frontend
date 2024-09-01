@@ -25,7 +25,12 @@ const MyPage = () => {
     useMyBookmarksQuery();
   const { myVote: myVotesData } = useMyVotesQuery();
   const { myComment: myCommentsData } = useMyCommentsQuery();
-  const { myWritten: myWrittenData } = useMyWrittensQuery();
+  const {
+    myWritten,
+    fetchNextPage: fetchNextWrittensPage,
+    hasNextPage: hasNextWrittensPage,
+    isFetchingNextPage: isFetchingNextWrittensPage,
+  } = useMyWrittensQuery();
   const { gameBookmark: gameBookmarksData } = useGameBookmarksQuery();
   const { gameVote: gameVotesData } = useGameVotesQuery();
   const { gameWritten: gameWrittenData } = useGameWrittensQuery();
@@ -57,15 +62,7 @@ const MyPage = () => {
     if (selectedGroup === OptionKeys.TOPIC) {
       switch (selectedOption) {
         case '내가 저장한':
-          return myBookmarks
-            ? {
-                ...myBookmarks,
-                content: myBookmarks.content.map((item: MyContentItem) => ({
-                  ...item,
-                  showBookmark: true,
-                })),
-              }
-            : null;
+          return myBookmarks;
         case '내가 투표한':
           return {
             ...myVotesData,
@@ -83,15 +80,7 @@ const MyPage = () => {
             })),
           };
         case '내가 작성한':
-          return {
-            ...myWrittenData,
-            content: myWrittenData?.content.map((item: MyContentItem) => ({
-              ...item,
-              showBookmark: false,
-            })),
-          };
-        default:
-          return null;
+          return myWritten;
       }
     } else if (selectedGroup === OptionKeys.BALANCE_GAME) {
       switch (selectedOption) {
@@ -134,7 +123,7 @@ const MyPage = () => {
     myBookmarks,
     myVotesData,
     myCommentsData,
-    myWrittenData,
+    myWritten,
     gameBookmarksData,
     gameVotesData,
     gameWrittenData,
