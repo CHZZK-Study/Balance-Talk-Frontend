@@ -1,52 +1,44 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, InfiniteData } from '@tanstack/react-query';
 import { getMyBookmark } from '@/api/mypages';
 import { MyBookmark } from '@/types/mypages';
 import { MyContentItem } from '@/types/organisms';
-import { useState, useEffect, useCallback } from 'react';
 
-// Hook to manage bookmarks data with infinite scrolling
 export const useMyBookmarksQuery = () => {
-  const [bookmarksData, setBookmarksData] = useState<MyContentItem[]>([]);
-  const [page, setPage] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
-
-  // Initial data fetch
-  const { data: initialBookmarksData, isLoading: isInitialLoading } =
-    useQuery<MyBookmark>({
-      queryKey: ['myBookmark', 0, 20],
-      queryFn: () => getMyBookmark(0, 20),
-    });
-
-  // useEffect to handle side effects of data fetching
-  useEffect(() => {
-    if (initialBookmarksData) {
-      setBookmarksData(initialBookmarksData.content);
-      setHasMore(!initialBookmarksData.last);
-    }
-  }, [initialBookmarksData]);
-
-  const fetchNextPage = useCallback(async () => {
-    if (isLoading || !hasMore) return;
-
-    setIsLoading(true);
-    try {
-      const newPage = page + 1;
-      const response = await getMyBookmark(newPage, 20);
-      setBookmarksData((prevData) => [...prevData, ...response.content]);
-      setHasMore(!response.last);
-      setPage(newPage);
-    } catch (error) {
-      console.error('Failed to fetch bookmarks:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [isLoading, hasMore, page]);
-
-  return {
-    bookmarksData,
+  const {
+    data: myBookmarks,
     fetchNextPage,
-    hasMore,
-    isLoading: isInitialLoading || isLoading,
-  };
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery<MyBookmark, Error, MyBookmark, [string], number>({
+    queryKey: ['myBookmarks'],
+    queryFn: ({ pageParam = 0 }: { pageParam?: number }) =>
+      getMyBookmark(pageParam, 20),
+    getNextPageParam: (lastPage) => {
+      return lastPage.last ? undefined : lastPage.number + 1;
+    },
+    initialPageParam: 0,
+    select: (data: InfiniteData<MyBookmark>) => {
+      const firstPage = data.pages[0];
+      return {
+        content: data.pages.flatMap((page) =>
+          page.content.map((item: MyContentItem) => ({
+            ...item,
+            showBookmark: true,
+          })),
+        ),
+        pageable: firstPage.pageable,
+        totalPages: firstPage.totalPages,
+        totalElements: firstPage.totalElements,
+        last: firstPage.last,
+        size: firstPage.size,
+        number: firstPage.number,
+        sort: firstPage.sort,
+        numberOfElements: firstPage.numberOfElements,
+        first: firstPage.first,
+        empty: firstPage.empty,
+      };
+    },
+  });
+
+  return { myBookmarks, fetchNextPage, hasNextPage, isFetchingNextPage };
 };

@@ -21,7 +21,7 @@ import * as S from './MyPage.style';
 
 const MyPage = () => {
   const { memberInfo } = useMyInfoQuery(1);
-  const { bookmarksData, fetchNextPage, hasMore, isLoading } =
+  const { myBookmarks, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useMyBookmarksQuery();
   const { myVote: myVotesData } = useMyVotesQuery();
   const { myComment: myCommentsData } = useMyCommentsQuery();
@@ -46,22 +46,26 @@ const MyPage = () => {
   }, [selectedGroup]);
 
   useEffect(() => {
-    if (inView && hasMore && !isLoading) {
-      fetchNextPage();
+    if (inView && hasNextPage && !isFetchingNextPage) {
+      fetchNextPage().catch((error) => {
+        console.error('Failed to fetch next page:', error);
+      });
     }
-  }, [inView, hasMore, isLoading, fetchNextPage]);
+  }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   const queryResult = useMemo(() => {
     if (selectedGroup === OptionKeys.TOPIC) {
       switch (selectedOption) {
         case '내가 저장한':
-          return {
-            content: bookmarksData.map((item) => ({
-              ...item,
-              showBookmark: true,
-            })),
-            ...bookmarksData,
-          };
+          return myBookmarks
+            ? {
+                ...myBookmarks,
+                content: myBookmarks.content.map((item: MyContentItem) => ({
+                  ...item,
+                  showBookmark: true,
+                })),
+              }
+            : null;
         case '내가 투표한':
           return {
             ...myVotesData,
@@ -127,7 +131,7 @@ const MyPage = () => {
   }, [
     selectedGroup,
     selectedOption,
-    bookmarksData,
+    myBookmarks,
     myVotesData,
     myCommentsData,
     myWrittenData,
@@ -187,7 +191,7 @@ const MyPage = () => {
         />
         <div css={S.contentList}>{renderContent()}</div>
         <div ref={ref} css={S.loader}>
-          {isLoading && <p>Loading...</p>}
+          {isFetchingNextPage && <p>Loading...</p>}
         </div>
       </div>
     </div>
