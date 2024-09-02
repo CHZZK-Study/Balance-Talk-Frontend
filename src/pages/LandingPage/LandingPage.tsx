@@ -1,6 +1,6 @@
 import React from 'react';
 import TopBanner from '@/components/molecules/TopBanner/TopBanner';
-import SearchBar from '@/components/molecules/SearchBar/SearchBar';
+import SearchTagBar from '@/components/molecules/SearchTagBar/SearchTagBar';
 import CategoryBox from '@/components/molecules/CategoryBox/CategoryBox';
 import BalanceGameList from '@/components/organisms/BalanceGameList/BalanceGameList';
 import { useTodayTalkPickQuery } from '@/hooks/api/talk-pick/useTodayTalkPickQuery';
@@ -160,7 +160,7 @@ const LandingPage = () => {
     <div>
       <TopBanner todayTalkPick={todayTalkPick} />
       <div css={S.contentWrapStyle}>
-        <SearchBar />
+        <SearchTagBar />
         <div css={S.categoryBoxStyle}>
           <CategoryBox />
         </div>

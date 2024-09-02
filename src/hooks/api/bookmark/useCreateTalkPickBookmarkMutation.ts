@@ -14,15 +14,24 @@ export const useCreateTalkPickBookmarkMutation = (talkPickId: Id) => {
         talkPickId,
       ]);
 
-      queryClient.setQueryData(['talkPick', talkPickId], {
-        ...prevPost,
-        myBookmark: true,
-      });
+      if (prevPost) {
+        const { bookmarks } = prevPost;
+
+        queryClient.setQueryData(['talkPick', talkPickId], {
+          ...prevPost,
+          bookmarks: bookmarks + 1,
+          myBookmark: true,
+        });
+      }
 
       return { prevPost };
     },
     onError: (err, id, context) => {
       queryClient.setQueryData(['talkPick', talkPickId], context?.prevPost);
     },
+    onSuccess: () =>
+      queryClient.invalidateQueries({
+        queryKey: ['talkPick', talkPickId],
+      }),
   });
 };
