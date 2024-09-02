@@ -49,7 +49,7 @@ const TalkPickListSection = ({ talkPickList }: TalkPickListProps) => {
     talkPickList.content.length,
     talkPickListSize,
   );
-  const pages = createRangeArray(totalPages || 0);
+  const pages = createRangeArray(selectedPage, totalPages);
   const handleChangeNavigate = (page: number) => {
     setSelectedPage(page);
   };
@@ -72,12 +72,14 @@ const TalkPickListSection = ({ talkPickList }: TalkPickListProps) => {
       <div css={S.talkPickListWrapper}>
         <TalkPickList talkPickList={displayedTalkPick} />
       </div>
-      <Pagination
-        pages={pages}
-        selected={selectedPage}
-        maxPage={totalPages}
-        onChangeNavigate={handleChangeNavigate}
-      />
+      {totalPages > 1 && (
+        <Pagination
+          pages={pages}
+          selected={selectedPage}
+          maxPage={totalPages}
+          onChangeNavigate={handleChangeNavigate}
+        />
+      )}
     </div>
   );
 };
