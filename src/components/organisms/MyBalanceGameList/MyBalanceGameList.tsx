@@ -27,7 +27,8 @@ const MyBalanceGameList = ({ items = [] }: MyBalanceGameListProps) => {
                   optionAImg={balanceGameItem.optionAImg}
                   optionBImg={balanceGameItem.optionBImg}
                   title={balanceGameItem.title}
-                  tagLabels={balanceGameItem.tagLabels}
+                  mainTag={balanceGameItem.mainTag}
+                  subTag={balanceGameItem.subTag}
                   bookmarked={balanceGameItem.bookmarked}
                   showBookmark={balanceGameItem.showBookmark}
                   size="small"
