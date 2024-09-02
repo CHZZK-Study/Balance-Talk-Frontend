@@ -46,7 +46,6 @@ const App: React.FC = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/todaytalkpick" element={<TodayTalkPickPage />} />
           <Route path="/talkpickplace" element={<TalkPickPlacePage />} />
-          <Route path="/mypage" element={<MyPage />} />
           {/* <Route path="posts" element={<PostList />} />
           <Route path="posts/:id" element={<PostPage />} />
           <Route path="searchResult" element={<SearchResultPage />} />
@@ -54,7 +53,9 @@ const App: React.FC = () => {
             <Route path="post/create" element={<CreatePostPage />} />
           </Route> */}
         </Route>
-
+        <Route path="/mypage" element={<LayoutMypage />}>
+          <Route index element={<MyPage />} />
+        </Route>
         {/* <Route element={<NotAuthRoutes member={member} />}>
           <Route element={<LayoutNoSearch />}>
             <Route path={PATH.LOGIN} element={<LoginPage />} />
