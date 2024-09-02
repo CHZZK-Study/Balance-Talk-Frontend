@@ -8,7 +8,8 @@ const ContentsButton = ({
   optionAImg,
   optionBImg,
   title,
-  tagLabels,
+  mainTag,
+  subTag,
   bookmarked = false,
   showBookmark = false,
   size = 'large',
@@ -23,11 +24,10 @@ const ContentsButton = ({
         <div css={S.imageWrapper}>
           <img src={optionBImg} alt="option B" css={S.image} />
         </div>
-        {/* <div css={S.chipsContainer}> */}
-        {/*  {tagLabels.map((tagLabel) => ( */}
-        {/*    <Chips key={tagLabel}>{tagLabel}</Chips> */}
-        {/*  ))} */}
-        {/* </div> */}
+        <div css={S.chipsContainer}>
+          <Chips>{subTag}</Chips>
+          <Chips>{`#${mainTag}`}</Chips>
+        </div>
       </div>
       <div css={S.infoContainer(size)}>
         <span css={S.label(size)}>{title}</span>

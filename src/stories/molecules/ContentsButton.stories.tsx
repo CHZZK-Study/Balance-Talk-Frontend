@@ -15,8 +15,9 @@ const meta: Meta<typeof ContentsButton> = {
     optionAImg: { control: { type: 'text' } },
     optionBImg: { control: { type: 'text' } },
     title: { control: 'text' },
-    tagLabels: { control: { type: 'object' } },
-    bookmarkState: { control: 'boolean' },
+    mainTag: { control: 'text' },
+    subTag: { control: 'text' },
+    bookmarked: { control: 'boolean' },
     showBookmark: { control: 'boolean' },
     size: { control: { type: 'radio' }, options: ['large', 'small'] },
   },
@@ -24,8 +25,9 @@ const meta: Meta<typeof ContentsButton> = {
     optionAImg: SampleFirst,
     optionBImg: SampleSecond,
     title: '유진 VS 민지 사복 고르기',
-    tagLabels: ['얼마나 맞나 보자', '#취향'],
-    bookmarkState: false,
+    mainTag: '#취향',
+    subTag: '얼마나 맞나 보자',
+    bookmarked: false,
     showBookmark: true,
     size: 'large',
   },
@@ -56,8 +58,9 @@ export const Default: Story = {
     optionAImg: SampleFirst,
     optionBImg: SampleSecond,
     title: '유진 VS 민지 사복 고르기',
-    tagLabels: ['얼마나 맞나 보자', '#취향'],
-    bookmarkState: false,
+    mainTag: '#취향',
+    subTag: '얼마나 맞나 보자',
+    bookmarked: false,
     showBookmark: true,
     size: 'large',
   },
@@ -71,13 +74,13 @@ export const All: Story = {
         <ContentsButton
           {...args}
           size="large"
-          bookmarkState={false}
+          bookmarked={false}
           showBookmark
         />
       </div>
       <div css={itemStyle}>
         <h3 css={headerStyle}>북마크 pressed (Large)</h3>
-        <ContentsButton {...args} size="large" bookmarkState showBookmark />
+        <ContentsButton {...args} size="large" bookmarked showBookmark />
       </div>
       <div css={itemStyle}>
         <h3 css={headerStyle}>북마크 없음 (Large)</h3>
@@ -88,13 +91,13 @@ export const All: Story = {
         <ContentsButton
           {...args}
           size="small"
-          bookmarkState={false}
+          bookmarked={false}
           showBookmark
         />
       </div>
       <div css={itemStyle}>
         <h3 css={headerStyle}>북마크 pressed (Small)</h3>
-        <ContentsButton {...args} size="small" bookmarkState showBookmark />
+        <ContentsButton {...args} size="small" bookmarked showBookmark />
       </div>
       <div css={itemStyle}>
         <h3 css={headerStyle}>북마크 없음 (Small)</h3>

@@ -32,7 +32,8 @@ export interface ContentsButtonProps extends ComponentPropsWithRef<'div'> {
   optionAImg: string;
   optionBImg: string;
   title: string;
-  tagLabels?: string[];
+  mainTag: string;
+  subTag: string;
   bookmarked?: BookmarkProps['bookmarked'];
   showBookmark?: boolean;
   size?: 'large' | 'small';
