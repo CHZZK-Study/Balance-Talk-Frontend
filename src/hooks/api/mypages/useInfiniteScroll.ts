@@ -11,7 +11,6 @@ export const useInfiniteScroll = <T extends { last: boolean; number: number }>(
       queryFn,
       getNextPageParam: (lastPage) => {
         return lastPage.last ? undefined : lastPage.number + 1;
-        // return lastPage.number + 1;
       },
       initialPageParam: 0,
       select: selectFn,
