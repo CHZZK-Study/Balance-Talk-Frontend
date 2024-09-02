@@ -17,52 +17,31 @@ import {
 } from '@/hooks/api/mypages';
 import { InfoItem, MyBalanceGameItem, MyContentItem } from '@/types/organisms';
 import { useInView } from 'react-intersection-observer';
+import { useObserver } from '@/hooks/api/mypages/useObserver';
 import * as S from './MyPage.style';
 
 const MyPage = () => {
   const { memberInfo } = useMyInfoQuery(1);
-  const {
-    myBookmarks,
-    fetchNextPage: fetchNextBookmarksPage,
-    hasNextPage: hasNextBookmarksPage,
-    isFetchingNextPage: isFetchingNextBookmarksPage,
-  } = useMyBookmarksQuery();
-  const {
-    myVote,
-    fetchNextPage: fetchNextVotesPage,
-    hasNextPage: hasNextVotesPage,
-    isFetchingNextPage: isFetchingNextVotesPage,
-  } = useMyVotesQuery();
-  const {
-    myComments,
-    fetchNextPage: fetchNextCommentsPage,
-    hasNextPage: hasNextCommentsPage,
-    isFetchingNextPage: isFetchingNextCommentsPage,
-  } = useMyCommentsQuery();
-  const {
-    myWritten,
-    fetchNextPage: fetchNextWrittensPage,
-    hasNextPage: hasNextWrittensPage,
-    isFetchingNextPage: isFetchingNextWrittensPage,
-  } = useMyWrittensQuery();
-  const {
-    gameBookmark,
-    fetchNextPage: fetchNextGameBookmarksPage,
-    hasNextPage: hasNextGameBookmarksPage,
-    isFetchingNextPage: isFetchingNextGameBookmarksPage,
-  } = useGameBookmarksQuery();
-  const {
-    gameVote,
-    fetchNextPage: fetchNextGameVotesPage,
-    hasNextPage: hasNextGameVotesPage,
-    isFetchingNextPage: isFetchingNextGameVotesPage,
-  } = useGameVotesQuery();
-  const {
-    gameWritten,
-    fetchNextPage: fetchNextGameWrittensPage,
-    hasNextPage: hasNextGameWrittensPage,
-    isFetchingNextPage: isFetchingNextGameWrittensPage,
-  } = useGameWrittensQuery();
+
+  const myBookmarksQuery = useMyBookmarksQuery();
+  const myVotesQuery = useMyVotesQuery();
+  const myCommentsQuery = useMyCommentsQuery();
+  const myWrittensQuery = useMyWrittensQuery();
+  const gameBookmarksQuery = useGameBookmarksQuery();
+  const gameVotesQuery = useGameVotesQuery();
+  const gameWrittensQuery = useGameWrittensQuery();
+
+  const queries = {
+    myBookmarks: useMyBookmarksQuery(),
+    myVotes: useMyVotesQuery(),
+    myComments: useMyCommentsQuery(),
+    myWrittens: useMyWrittensQuery(),
+    gameBookmarks: useGameBookmarksQuery(),
+    gameVotes: useGameVotesQuery(),
+    gameWrittens: useGameWrittensQuery(),
+  };
+
+  const { ref, isFetchingAnyNextPage } = useObserver(queries);
 
   const [selectedGroup, setSelectedGroup] = useState<OptionKeys>(
     OptionKeys.TOPIC,
@@ -71,83 +50,30 @@ const MyPage = () => {
     optionSets[selectedGroup][0],
   );
 
-  const { ref, inView } = useInView({
-    threshold: 1.0,
-  });
-
   useEffect(() => {
     setSelectedOption(optionSets[selectedGroup][0]);
   }, [selectedGroup]);
-
-  useEffect(() => {
-    if (inView) {
-      if (hasNextBookmarksPage && !isFetchingNextBookmarksPage) {
-        fetchNextBookmarksPage();
-      }
-      if (hasNextWrittensPage && !isFetchingNextWrittensPage) {
-        fetchNextWrittensPage();
-      }
-      if (hasNextVotesPage && !isFetchingNextVotesPage) {
-        fetchNextVotesPage();
-      }
-      if (hasNextCommentsPage && !isFetchingNextCommentsPage) {
-        fetchNextCommentsPage();
-      }
-      if (hasNextGameBookmarksPage && !isFetchingNextGameBookmarksPage) {
-        fetchNextGameBookmarksPage();
-      }
-      if (hasNextGameVotesPage && !isFetchingNextGameVotesPage) {
-        fetchNextGameVotesPage();
-      }
-      if (hasNextGameWrittensPage && !isFetchingNextGameWrittensPage) {
-        fetchNextGameWrittensPage();
-      }
-    }
-  }, [
-    inView,
-    hasNextBookmarksPage,
-    isFetchingNextBookmarksPage,
-    fetchNextBookmarksPage,
-    hasNextWrittensPage,
-    isFetchingNextWrittensPage,
-    fetchNextWrittensPage,
-    hasNextVotesPage,
-    isFetchingNextVotesPage,
-    fetchNextVotesPage,
-    hasNextCommentsPage,
-    isFetchingNextCommentsPage,
-    fetchNextCommentsPage,
-    hasNextGameBookmarksPage,
-    isFetchingNextGameBookmarksPage,
-    fetchNextGameBookmarksPage,
-    hasNextGameVotesPage,
-    isFetchingNextGameVotesPage,
-    fetchNextGameVotesPage,
-    hasNextGameWrittensPage,
-    isFetchingNextGameWrittensPage,
-    fetchNextGameWrittensPage,
-  ]);
 
   const queryResult = useMemo(() => {
     if (selectedGroup === OptionKeys.TOPIC) {
       switch (selectedOption) {
         case '내가 저장한':
-          return myBookmarks;
+          return queries.myBookmarks.myBookmarks;
         case '내가 투표한':
-          return myVote;
+          return queries.myVotes.myVote;
         case '내가 댓글단':
-          return myComments;
+          return queries.myComments.myComments;
         case '내가 작성한':
-          return myWritten;
+          return queries.myWrittens.myWritten;
       }
     } else if (selectedGroup === OptionKeys.BALANCE_GAME) {
       switch (selectedOption) {
         case '내가 저장한':
-          return gameBookmark;
+          return queries.gameBookmarks.gameBookmark;
         case '내가 투표한':
-          return gameVote;
+          return queries.gameVotes.gameVote;
         case '내가 만든':
-          return gameWritten;
+          return queries.gameWrittens.gameWritten;
         default:
           return null;
       }
@@ -156,18 +82,18 @@ const MyPage = () => {
   }, [
     selectedGroup,
     selectedOption,
-    myBookmarks,
-    myVote,
-    myComments,
-    myWritten,
-    gameBookmark,
-    gameVote,
-    gameWritten,
+    myBookmarksQuery,
+    myVotesQuery,
+    myCommentsQuery,
+    myWrittensQuery,
+    gameBookmarksQuery,
+    gameVotesQuery,
+    gameWrittensQuery,
   ]);
 
   const renderContent = () => {
     if (!queryResult) {
-      return <div>No content available</div>;
+      return <div>표시할 페이지가 없습니다</div>;
     }
 
     if (selectedGroup === OptionKeys.TOPIC) {
@@ -190,7 +116,7 @@ const MyPage = () => {
       return <MyBalanceGameList items={content} />;
     }
 
-    return <div>No content available</div>;
+    return <div>표시할 페이지가 없습니다</div>;
   };
 
   return (
@@ -216,7 +142,7 @@ const MyPage = () => {
         />
         <div css={S.contentList}>{renderContent()}</div>
         <div ref={ref} css={S.loader}>
-          {isFetchingNextPage && <p>Loading...</p>}
+          {isFetchingAnyNextPage && <p>Loading...</p>}
         </div>
       </div>
     </div>
