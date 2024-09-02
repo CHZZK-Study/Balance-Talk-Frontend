@@ -21,8 +21,12 @@ import * as S from './MyPage.style';
 
 const MyPage = () => {
   const { memberInfo } = useMyInfoQuery(1);
-  const { myBookmarks, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useMyBookmarksQuery();
+  const {
+    myBookmarks,
+    fetchNextPage: fetchNextBookmarksPage,
+    hasNextPage: hasNextBookmarksPage,
+    isFetchingNextPage: isFetchingNextBookmarksPage,
+  } = useMyBookmarksQuery();
   const {
     myVote,
     fetchNextPage: fetchNextVotesPage,
@@ -41,9 +45,24 @@ const MyPage = () => {
     hasNextPage: hasNextWrittensPage,
     isFetchingNextPage: isFetchingNextWrittensPage,
   } = useMyWrittensQuery();
-  const { gameBookmark: gameBookmarksData } = useGameBookmarksQuery();
-  const { gameVote: gameVotesData } = useGameVotesQuery();
-  const { gameWritten: gameWrittenData } = useGameWrittensQuery();
+  const {
+    gameBookmark,
+    fetchNextPage: fetchNextGameBookmarksPage,
+    hasNextPage: hasNextGameBookmarksPage,
+    isFetchingNextPage: isFetchingNextGameBookmarksPage,
+  } = useGameBookmarksQuery();
+  const {
+    gameVote,
+    fetchNextPage: fetchNextGameVotesPage,
+    hasNextPage: hasNextGameVotesPage,
+    isFetchingNextPage: isFetchingNextGameVotesPage,
+  } = useGameVotesQuery();
+  const {
+    gameWritten,
+    fetchNextPage: fetchNextGameWrittensPage,
+    hasNextPage: hasNextGameWrittensPage,
+    isFetchingNextPage: isFetchingNextGameWrittensPage,
+  } = useGameWrittensQuery();
 
   const [selectedGroup, setSelectedGroup] = useState<OptionKeys>(
     OptionKeys.TOPIC,
@@ -62,35 +81,33 @@ const MyPage = () => {
 
   useEffect(() => {
     if (inView) {
-      if (hasNextPage && !isFetchingNextPage) {
-        fetchNextPage().catch((error) => {
-          console.error('Failed to fetch next page of bookmarks:', error);
-        });
+      if (hasNextBookmarksPage && !isFetchingNextBookmarksPage) {
+        fetchNextBookmarksPage();
       }
-
       if (hasNextWrittensPage && !isFetchingNextWrittensPage) {
-        fetchNextWrittensPage().catch((error) => {
-          console.error('Failed to fetch next page of writtens:', error);
-        });
+        fetchNextWrittensPage();
       }
-
       if (hasNextVotesPage && !isFetchingNextVotesPage) {
-        fetchNextVotesPage().catch((error) => {
-          console.error('Failed to fetch next page of votes:', error);
-        });
+        fetchNextVotesPage();
       }
-
       if (hasNextCommentsPage && !isFetchingNextCommentsPage) {
-        fetchNextCommentsPage().catch((error) => {
-          console.error('Failed to fetch next page of comments:', error);
-        });
+        fetchNextCommentsPage();
+      }
+      if (hasNextGameBookmarksPage && !isFetchingNextGameBookmarksPage) {
+        fetchNextGameBookmarksPage();
+      }
+      if (hasNextGameVotesPage && !isFetchingNextGameVotesPage) {
+        fetchNextGameVotesPage();
+      }
+      if (hasNextGameWrittensPage && !isFetchingNextGameWrittensPage) {
+        fetchNextGameWrittensPage();
       }
     }
   }, [
     inView,
-    hasNextPage,
-    isFetchingNextPage,
-    fetchNextPage,
+    hasNextBookmarksPage,
+    isFetchingNextBookmarksPage,
+    fetchNextBookmarksPage,
     hasNextWrittensPage,
     isFetchingNextWrittensPage,
     fetchNextWrittensPage,
@@ -100,6 +117,15 @@ const MyPage = () => {
     hasNextCommentsPage,
     isFetchingNextCommentsPage,
     fetchNextCommentsPage,
+    hasNextGameBookmarksPage,
+    isFetchingNextGameBookmarksPage,
+    fetchNextGameBookmarksPage,
+    hasNextGameVotesPage,
+    isFetchingNextGameVotesPage,
+    fetchNextGameVotesPage,
+    hasNextGameWrittensPage,
+    isFetchingNextGameWrittensPage,
+    fetchNextGameWrittensPage,
   ]);
 
   const queryResult = useMemo(() => {
@@ -117,33 +143,11 @@ const MyPage = () => {
     } else if (selectedGroup === OptionKeys.BALANCE_GAME) {
       switch (selectedOption) {
         case '내가 저장한':
-          return {
-            ...gameBookmarksData,
-            content: gameBookmarksData?.content.map(
-              (item: MyBalanceGameItem) => ({
-                ...item,
-                showBookmark: true,
-              }),
-            ),
-          };
+          return gameBookmark;
         case '내가 투표한':
-          return {
-            ...gameVotesData,
-            content: gameVotesData?.content.map((item: MyBalanceGameItem) => ({
-              ...item,
-              showBookmark: false,
-            })),
-          };
+          return gameVote;
         case '내가 만든':
-          return {
-            ...gameWrittenData,
-            content: gameWrittenData?.content.map(
-              (item: MyBalanceGameItem) => ({
-                ...item,
-                showBookmark: false,
-              }),
-            ),
-          };
+          return gameWritten;
         default:
           return null;
       }
@@ -156,9 +160,9 @@ const MyPage = () => {
     myVote,
     myComments,
     myWritten,
-    gameBookmarksData,
-    gameVotesData,
-    gameWrittenData,
+    gameBookmark,
+    gameVote,
+    gameWritten,
   ]);
 
   const renderContent = () => {
