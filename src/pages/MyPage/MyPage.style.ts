@@ -15,7 +15,6 @@ export const contentWrapper = css`
   flex-direction: column;
   width: calc(100% - 258px);
   padding-left: 20px;
-  //align-items: center;
   align-content: center;
 `;
 
@@ -23,4 +22,13 @@ export const contentList = css`
   margin-top: 15px;
   background-color: ${color.WT};
   overflow-y: auto;
+  position: relative;
+`;
+export const loader = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  color: ${color.BK};
+  margin-top: 10px;
 `;
