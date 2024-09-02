@@ -36,13 +36,11 @@ export const loggedOutBackground = css`
 `;
 
 export const commentsWrapper = css`
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   padding: 0;
   margin: 0;
-  min-height: 917px;
   height: auto;
 `;
 
