@@ -14,7 +14,8 @@ export interface ContentItemProps {
   optionBImg: string;
   id: number;
   title: string;
-  tagLabels: string[];
+  mainTag: string;
+  subTag: string;
   bookmarkState?: boolean;
   optionA?: string;
   optionB?: string;
@@ -59,11 +60,12 @@ const BalanceGameList = ({ contents }: ContentListProps) => {
         {contents.slice(0, visibleItems).map((content) => (
           <ContentsButton
             key={content.id}
-            bookmarkState={content.bookmarkState || false}
+            bookmarked={content.bookmarkState || false}
             optionAImg={content.optionAImg}
             optionBImg={content.optionBImg}
             title={content.title}
-            tagLabels={content.tagLabels}
+            mainTag={content.mainTag}
+            subTag={content.subTag}
           />
         ))}
         {visibleItems < contents.length && (

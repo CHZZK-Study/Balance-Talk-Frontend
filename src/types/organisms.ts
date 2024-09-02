@@ -46,8 +46,3 @@ export interface MyBalanceGameItem extends Omit<ContentsButtonProps, 'id'> {
 export interface MyBalanceGameListProps {
   items: MyBalanceGameItem[];
 }
-
-export interface InfiniteData<T> {
-  pages: T[];
-  pageParams: number[];
-}
