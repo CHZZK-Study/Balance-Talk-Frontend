@@ -22,7 +22,6 @@ export const imageButtonStyling = css({
   width: '141px',
   height: '141px',
   borderRadius: '5px',
-  boxSizing: 'border-box',
   position: 'relative',
   overflow: 'hidden',
   cursor: 'pointer',
