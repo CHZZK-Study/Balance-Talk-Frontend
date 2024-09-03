@@ -3,7 +3,7 @@ import React, { useRef, useEffect, ReactNode } from 'react';
 import { getModalSize, modalStyling } from './Modal.style';
 
 export interface ModalProps {
-  action?: 'default' | 'share' | 'report';
+  action?: 'default' | 'share' | 'report' | 'profile';
   isOpen?: boolean;
   onClose?: () => void;
   children?: ReactNode;

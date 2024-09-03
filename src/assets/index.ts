@@ -56,6 +56,12 @@ export { default as Spinner } from './svg/spinner.svg';
 export { default as RecentLogin } from './svg/recent-login.svg';
 export { default as DefaultProfile } from './images/default-profile.png';
 export { default as More } from './svg/more.svg';
+export { default as RabbitProfile } from './images/rabbit-profile.png';
+export { default as RayProfile } from './images/ray-profile.png';
+export { default as EelProfile } from './images/eel-profile.png';
+export { default as TurtleProfile } from './images/turtle-profile.png';
+export { default as OctopusProfile } from './images/octopus-profile.png';
+export { default as JellyfishProfile } from './images/jellyfish-profile.png';
 
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';

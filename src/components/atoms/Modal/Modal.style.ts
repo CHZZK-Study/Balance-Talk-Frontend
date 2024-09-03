@@ -31,6 +31,10 @@ export const getModalSize = (action: Required<ModalProps>['action']) => {
       paddingRight: '33px',
       paddingBottom: '41px',
     }),
+    profile: css({
+      width: '516px',
+      padding: '38px 35px',
+    }),
   };
 
   return style[action as keyof typeof style];
