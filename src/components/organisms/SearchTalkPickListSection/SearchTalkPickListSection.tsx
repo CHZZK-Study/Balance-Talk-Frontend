@@ -4,17 +4,16 @@ import ToggleGroup, {
   ToggleGroupItem,
 } from '@/components/atoms/ToggleGroup/ToggleGroup';
 import { SearchTalkPickItemProps } from '@/components/atoms/SearchTalkPickItem/SearchTalkPickItem';
-import SearchTalkPickList from '@/components/molecules/SearchTalkPickList/SearchTalkPickList';
+import SearchTalkPickList, {
+  SearchTalkPickListProps,
+} from '@/components/molecules/SearchTalkPickList/SearchTalkPickList';
 import Pagination from '@/components/atoms/Pagination/Pagination';
-import { SampleWhole } from '@/assets';
+import { calculateTotalPages, generatePageNumbers } from '@/utils/pagination';
 import * as S from './SearchTalkPickListSection.style';
 
-const generatePageNumbers = (totalPages: number) =>
-  Array.from({ length: totalPages }, (_, i) => i + 1);
-const calculateTotalPages = (totalItems: number, itemsPerPage: number) =>
-  Math.ceil(totalItems / itemsPerPage);
-
-const SearchTalkPickListSection = () => {
+const SearchTalkPickListSection = ({
+  searchTalkPickList,
+}: SearchTalkPickListProps) => {
   const [selectedPage, setSelectedPage] = useState<number>(1);
   const [selectedValue, setSelectedValue] = useState<string>('trend');
   const [searchTalkPickItems, setSearchTalkPickItems] = useState<
@@ -32,26 +31,15 @@ const SearchTalkPickListSection = () => {
     },
   ];
 
-  const SearchTalkPickItems: SearchTalkPickItemProps[] = Array.from(
-    { length: 30 },
-    (_, index) => ({
-      title: '월클 정국 VS 존잘 차은우',
-      date: '2024.08.26',
-      content:
-        '우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하우하하',
-      imgUrl: SampleWhole,
-    }),
-  );
-
   const commentsPerPage = 10;
 
   const totalPages = calculateTotalPages(
-    SearchTalkPickItems.length,
+    searchTalkPickList.length,
     commentsPerPage,
   );
   const pages = generatePageNumbers(totalPages);
 
-  const displayedItems = SearchTalkPickItems.slice(
+  const displayedItems = searchTalkPickList.slice(
     (selectedPage - 1) * commentsPerPage,
     selectedPage * commentsPerPage,
   );
@@ -71,7 +59,7 @@ const SearchTalkPickListSection = () => {
         />
       </div>
       <div>
-        <SearchTalkPickList searchTalkPickItems={displayedItems} />
+        <SearchTalkPickList searchTalkPickList={displayedItems} />
       </div>
       <div css={S.paginationWrapStyle}>
         <Pagination

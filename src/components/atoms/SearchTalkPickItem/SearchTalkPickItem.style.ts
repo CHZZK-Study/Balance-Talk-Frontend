@@ -7,6 +7,7 @@ export const searchTalkPickItemStyle = css({
   flexDirection: 'row',
   width: '1065px',
   height: '100px',
+  cursor: 'pointer',
 });
 
 export const leftContentStyle = css({
@@ -40,7 +41,6 @@ export const contentWrapStyle = css(typo.Comment.Regular, {
 });
 
 export const imageContainerStyle = css({
-  position: 'relative',
   width: '100px',
   height: '100px',
   borderRadius: '10px',

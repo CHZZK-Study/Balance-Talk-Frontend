@@ -6,15 +6,15 @@ import Divider from '@/components/atoms/Divider/Divider';
 import * as S from './SearchTalkPickList.style';
 
 export interface SearchTalkPickListProps {
-  searchTalkPickItems: SearchTalkPickItemProps[];
+  searchTalkPickList: SearchTalkPickItemProps[];
 }
 
 const SearchTalkPickList = ({
-  searchTalkPickItems,
+  searchTalkPickList,
 }: SearchTalkPickListProps) => {
   return (
     <div css={S.listContainerStyle}>
-      {searchTalkPickItems.map((searchItem, idx) => (
+      {searchTalkPickList.map((searchItem, idx) => (
         <div key={searchItem.title}>
           <SearchTalkPickItem
             title={searchItem.title}
@@ -22,7 +22,7 @@ const SearchTalkPickList = ({
             content={searchItem.content}
             imgUrl={searchItem.imgUrl}
           />
-          {idx < searchTalkPickItems.length - 1 && (
+          {idx < searchTalkPickList.length - 1 && (
             <div css={S.dividerStyle}>
               <Divider length={1065} orientation="width" />
             </div>
