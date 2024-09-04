@@ -11,10 +11,10 @@ const meta = {
   component: SearchTalkPickList,
   tags: ['autodocs'],
   argTypes: {
-    searchTalkPickItems: { control: { type: 'object' } },
+    searchTalkPickList: { control: { type: 'object' } },
   },
   args: {
-    searchTalkPickItems: [
+    searchTalkPickList: [
       {
         title: '월클 정국 VS 존잘 차은우',
         date: '2024.08.26',
@@ -101,7 +101,7 @@ const withReducedSize = (StoryFn: any) => (
 export const Default: Story = {
   decorators: [withReducedSize],
   args: {
-    searchTalkPickItems: [
+    searchTalkPickList: [
       {
         title: '월클 정국 VS 존잘 차은우',
         date: '2024.08.26',
@@ -119,9 +119,7 @@ export const All: Story = {
     <ul css={storyContainer}>
       <li css={storyInnerContainer}>
         <h3>Single SearchTalkPickList</h3>
-        <SearchTalkPickList
-          searchTalkPickItems={[args.searchTalkPickItems[0]]}
-        />
+        <SearchTalkPickList searchTalkPickList={[args.searchTalkPickList[0]]} />
       </li>
 
       <li css={storyInnerContainer}>
@@ -131,7 +129,7 @@ export const All: Story = {
 
       <li css={storyInnerContainer}>
         <h3>None</h3>
-        <SearchTalkPickList searchTalkPickItems={[]} />
+        <SearchTalkPickList searchTalkPickList={[]} />
       </li>
     </ul>
   ),
