@@ -1,8 +1,8 @@
-import SearchBar from '@/components/molecules/SearchBar/SearchBar';
+import SearchBar from '@/components/atoms/SearchBar/SearchBar';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'molecules/SearchBar',
+  title: 'atoms/SearchBar',
   component: SearchBar,
   parameters: {
     layout: 'centered',

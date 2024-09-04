@@ -1,9 +1,10 @@
 import React from 'react';
 import TopBanner from '@/components/molecules/TopBanner/TopBanner';
-import SearchBar from '@/components/molecules/SearchBar/SearchBar';
+import SearchTagBar from '@/components/molecules/SearchTagBar/SearchTagBar';
 import CategoryBox from '@/components/molecules/CategoryBox/CategoryBox';
 import BalanceGameList from '@/components/organisms/BalanceGameList/BalanceGameList';
 import { SampleFirst, SampleSecond } from '@/assets';
+import { useTodayTalkPickQuery } from '@/hooks/api/talk-pick/useTodayTalkPickQuery';
 import * as S from './LandingPage.style';
 
 const LandingPage = () => {
@@ -169,18 +170,13 @@ const LandingPage = () => {
       optionB: '좌석 널널한 버스 2시간 등교',
     },
   ];
+  const { todayTalkPick } = useTodayTalkPickQuery();
+
   return (
     <div>
-      <TopBanner
-        todayTalkPick={{
-          id: 0,
-          optionA: '그럴 수 있다',
-          optionB: '그럴 수 없다',
-          title: '내 친구한테 새우 껍질 까주는 남친,',
-        }}
-      />
+      <TopBanner todayTalkPick={todayTalkPick} />
       <div css={S.contentWrapStyle}>
-        <SearchBar />
+        <SearchTagBar />
         <div css={S.categoryBoxStyle}>
           <CategoryBox />
         </div>

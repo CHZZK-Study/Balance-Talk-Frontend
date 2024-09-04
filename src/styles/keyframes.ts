@@ -24,3 +24,21 @@ export const loadingStyle = keyframes({
     backgroundColor: color.Neutral[800],
   },
 });
+
+export const rotate = keyframes({
+  '100%': {
+    transform: 'rotate(360deg)',
+  },
+});
+
+export const barStyling = (varPercentage: number) => keyframes`
+  0% {
+    width: 0%;
+  }
+  60% {
+    width: 100%;
+  }
+  100% {
+    width: ${varPercentage}%;
+  }
+`;

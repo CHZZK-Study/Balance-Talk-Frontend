@@ -7,7 +7,7 @@ const LoginPage = () => {
   return (
     <div css={S.loginContainer}>
       <LogoLarge css={S.logoStyle} />
-      <LoginForm />
+      <LoginForm withSignInText />
     </div>
   );
 };

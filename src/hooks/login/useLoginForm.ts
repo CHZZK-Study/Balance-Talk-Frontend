@@ -15,6 +15,7 @@ const initialState: Pick<MemberForm, 'email' | 'password'> = {
   email: '',
   password: '',
 };
+
 export const useLoginForm = () => {
   const { form, onChange } =
     useInputs<Pick<MemberForm, 'email' | 'password'>>(initialState);
@@ -33,8 +34,10 @@ export const useLoginForm = () => {
   const navigate = useNavigate();
 
   const dispatch = useNewDispatch();
+
   const login = useMutation({
     mutationFn: postLogin,
+
     onSuccess: (res: string) => {
       setIsError(false);
       setErrorMessage(undefined);
@@ -45,7 +48,6 @@ export const useLoginForm = () => {
 
       // TODO: 백엔드에서 리프레쉬 토큰 쿠키에 저장시키면, 해당 코드 제거
       localStorage.setItem('accessToken', res);
-
       // localStorage.setItem('rtk', 'rtk');
 
       setTimeout(() => {

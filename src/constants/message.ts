@@ -23,6 +23,12 @@ export const ERROR = {
   LOGIN: {
     FAIL: '이메일 또는 비밀번호가 일치하지 않습니다. 다시 확인해주세요.',
   },
+  CREATE: {
+    FAIL: '게시글 작성에 실패했습니다. 다시 시도해주세요.',
+  },
+  SAVE: {
+    FAIL: '게시글 임시 저장에 실패했습니다. 다시 시도해주세요.',
+  },
 } as const;
 
 export const SUCCESS = {

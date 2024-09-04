@@ -14,14 +14,14 @@ export type TalkPickDetail = {
   myBookmark: boolean;
   votedOption: 'A' | 'B' | null;
   writer: string;
-  lastModifiedAt: string;
+  createdAt: string;
   isUpdated: boolean;
 };
 
 export type TalkPickSummary = {
-  summaryFirstLine: string;
-  summarySecondLine: string;
-  summaryThirdLine: string;
+  summaryFirstLine: string | null;
+  summarySecondLine: string | null;
+  summaryThirdLine: string | null;
 };
 
 export type TalkPickListItem = {
@@ -46,3 +46,16 @@ export type TodayTalkPick = Pick<
   TalkPickDetail,
   'id' | 'title' | 'optionA' | 'optionB'
 >;
+
+export type NewTalkPick = {
+  title: string;
+  content: string;
+  optionA: string;
+  optionB: string;
+  sourceUrl?: string;
+  storedNames: string[];
+};
+
+export interface TempTalkPick extends NewTalkPick {
+  imgUrls: string[];
+}

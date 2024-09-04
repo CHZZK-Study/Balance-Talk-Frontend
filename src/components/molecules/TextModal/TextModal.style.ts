@@ -7,13 +7,23 @@ export const textModalStyling = css({
   flexDirection: 'column',
   alignItems: 'center',
   width: '100%',
-  gap: '34px',
+  gap: '30px',
+});
+
+export const modalTextWrapper = css({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  marginTop: '34px',
+  gap: '12px',
 });
 
 export const modalTextStyling = css(typo.SubTitle, {
-  display: 'flex',
-  marginTop: '34px',
   color: color.BK,
+});
+
+export const modalSmallTextStyling = css(typo.Main.Medium, {
+  color: color.GY[1],
 });
 
 export const buttonWrapperStyling = css({

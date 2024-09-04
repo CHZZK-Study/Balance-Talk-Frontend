@@ -2,10 +2,11 @@ import { css } from '@emotion/react';
 import color from '@/styles/color';
 import typo from '@/styles/typo';
 
-export const loginModalStyling = css({
+export const loginFormStyling = css({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  position: 'relative',
 });
 
 export const loginTextStyling = css(typo.Component.Bold, {
@@ -23,6 +24,10 @@ export const loginFormWrapper = css({
 export const textStyling = css(typo.Main.Medium, {
   color: color.GY[1],
   cursor: 'pointer',
+});
+
+export const loginInputStyling = css({
+  width: '450px',
 });
 
 export const loginBtnStyling = css({
@@ -62,4 +67,9 @@ export const loginButtonStyling = css({
   backgroundColor: color.WT,
   outline: `1px solid ${color.GY[2]}`,
   cursor: 'pointer',
+});
+
+export const toastModalStyling = css({
+  position: 'absolute',
+  top: '-180px',
 });

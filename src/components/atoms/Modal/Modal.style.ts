@@ -16,7 +16,7 @@ export const modalStyling = css({
 export const getModalSize = (action: Required<ModalProps>['action']) => {
   const style = {
     default: css({
-      padding: '34px 30px',
+      padding: '30px',
     }),
     share: css({
       paddingTop: '34px',
@@ -31,14 +31,11 @@ export const getModalSize = (action: Required<ModalProps>['action']) => {
       paddingRight: '33px',
       paddingBottom: '41px',
     }),
+    profile: css({
+      width: '516px',
+      padding: '38px 35px',
+    }),
   };
 
   return style[action as keyof typeof style];
 };
-
-export const modalCloseStyling = css({
-  position: 'absolute',
-  top: '34px',
-  right: '30px',
-  cursor: 'pointer',
-});

@@ -10,6 +10,12 @@ const defaultSummary: TalkPickSummary = {
   summaryThirdLine: 'third summary line',
 };
 
+const spinnerSummary: TalkPickSummary = {
+  summaryFirstLine: 'first summary line',
+  summarySecondLine: 'second summary line',
+  summaryThirdLine: null,
+};
+
 const exampleSummary: TalkPickSummary = {
   summaryFirstLine: '남친이 어쩌고 저쩌고 잘못했네 안했네 대충 더미글',
   summarySecondLine: '남친이 친구 새우 껍질을 어쩌고 저쩌고 뭐라뭐라',
@@ -39,6 +45,10 @@ export const All: Story = {
       <li css={storyInnerContainer}>
         <h3>Summary Box</h3>
         <SummaryBox summary={exampleSummary} />
+      </li>
+      <li css={storyInnerContainer}>
+        <h3>Summary Box with Spinner</h3>
+        <SummaryBox summary={spinnerSummary} />
       </li>
     </ul>
   ),
