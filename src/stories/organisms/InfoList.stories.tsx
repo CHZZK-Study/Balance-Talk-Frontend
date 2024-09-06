@@ -15,6 +15,7 @@ const meta = {
   args: {
     items: [
       {
+        id: 1,
         editedAt: '2024.08.06',
         title: '매달 아르 음료 500 대기업 VS 주4일 일급 250 칼퇴근 중소',
         prefix: '내 댓글',
@@ -23,6 +24,7 @@ const meta = {
         bookmarks: 172,
       },
       {
+        id: 2,
         editedAt: '2024.08.06',
         title: '매일 5달란 양아 VS 매일 용돈 10만원 아빠',
         prefix: '내 댓글',
@@ -31,6 +33,7 @@ const meta = {
         bookmarks: 172,
       },
       {
+        id: 3,
         editedAt: '2024.08.05',
         title: '매일 술 취한 만취남친 VS 자신에게 취한 자취남친',
         prefix: '내 댓글',
@@ -39,6 +42,7 @@ const meta = {
         bookmarks: 172,
       },
       {
+        id: 4,
         editedAt: '2024.08.04',
         title: '맛잘알 미식가 추석 여친 VS 먹방 BJ 꿈나무 집밥 여친',
         prefix: '내 댓글',
@@ -57,6 +61,7 @@ export const Default: Story = {
   args: {
     items: [
       {
+        id: 1,
         editedAt: '2024.08.06',
         title: '매달 아르 음료 500 대기업 VS 주4일 일급 250 칼퇴근 중소',
         prefix: '내 댓글',
@@ -65,6 +70,7 @@ export const Default: Story = {
         bookmarks: 172,
       },
       {
+        id: 2,
         editedAt: '2024.08.06',
         title: '매일 5달란 양아 VS 매일 용돈 10만원 아빠',
         prefix: '내 댓글',
@@ -73,6 +79,7 @@ export const Default: Story = {
         bookmarks: 172,
       },
       {
+        id: 3,
         editedAt: '2024.08.05',
         title: '매일 술 취한 만취남친 VS 자신에게 취한 자취남친',
         prefix: '내 댓글',
@@ -93,6 +100,7 @@ export const All: Story = {
           {...args}
           items={[
             {
+              id: 22,
               editedAt: '2024.08.06',
               title: '매달 아르 음료 500 대기업 VS 주4일 일급 250 칼퇴근 중소',
               prefix: '내 댓글',
@@ -101,6 +109,7 @@ export const All: Story = {
               bookmarks: 172,
             },
             {
+              id: 27,
               editedAt: '2024.08.06',
               title: '매일 5달란 양아 VS 매일 용돈 10만원 아빠',
               prefix: '내 댓글',
@@ -117,6 +126,7 @@ export const All: Story = {
           {...args}
           items={[
             {
+              id: 29,
               editedAt: '2024.08.05',
               title: '매일 술 취한 만취남친 VS 자신에게 취한 자취남친',
               prefix: '내 댓글',
@@ -133,6 +143,7 @@ export const All: Story = {
           {...args}
           items={[
             {
+              id: 33,
               editedAt: '2024.08.04',
               title: '맛잘알 미식가 추석 여친 VS 먹방 BJ 꿈나무 집밥 여친',
               prefix: '내 댓글',
@@ -148,6 +159,7 @@ export const All: Story = {
   args: {
     items: [
       {
+        id: 14,
         editedAt: '2024.08.06',
         title: '매달 아르 음료 500 대기업 VS 주4일 일급 250 칼퇴근 중소',
         prefix: '내 댓글',
@@ -156,6 +168,7 @@ export const All: Story = {
         bookmarks: 172,
       },
       {
+        id: 20,
         editedAt: '2024.08.06',
         title: '매일 5달란 양아 VS 매일 용돈 10만원 아빠',
         prefix: '내 댓글',
@@ -164,6 +177,7 @@ export const All: Story = {
         bookmarks: 172,
       },
       {
+        id: 25,
         editedAt: '2024.08.05',
         title: '매일 술 취한 만취남친 VS 자신에게 취한 자취남친',
         prefix: '내 댓글',
@@ -172,6 +186,7 @@ export const All: Story = {
         bookmarks: 172,
       },
       {
+        id: 35,
         editedAt: '2024.08.04',
         title: '맛잘알 미식가 추석 여친 VS 먹방 BJ 꿈나무 집밥 여친',
         prefix: '내 댓글',

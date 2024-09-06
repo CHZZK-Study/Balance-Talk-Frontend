@@ -15,22 +15,25 @@ const meta = {
   args: {
     items: [
       {
+        id: 1,
         editedAt: '2024.08.06',
         title: '유진 사복 패션 VS 민지 사복 패션',
         commentCount: 172,
         bookmarks: 172,
         showBookmark: true,
-        bookmarkState: false,
+        bookmarked: false,
       },
       {
+        id: 2,
         editedAt: '2024.08.06',
         title: '유진 사복 패션 VS 민지 사복 패션',
         commentCount: 250,
         bookmarks: 200,
         showBookmark: true,
-        bookmarkState: true,
+        bookmarked: true,
       },
       {
+        id: 3,
         editedAt: '2024.08.05',
         title: '유진 사복 패션 VS 민지 사복 패션',
         commentCount: 100,
@@ -48,22 +51,25 @@ export const Default: Story = {
   args: {
     items: [
       {
+        id: 1,
         editedAt: '2024.08.06',
         title: '유진 사복 패션 VS 민지 사복 패션',
         commentCount: 172,
         bookmarks: 172,
         showBookmark: true,
-        bookmarkState: false,
+        bookmarked: false,
       },
       {
+        id: 2,
         editedAt: '2024.08.06',
         title: '유진 사복 패션 VS 민지 사복 패션',
         commentCount: 250,
         bookmarks: 200,
         showBookmark: true,
-        bookmarkState: true,
+        bookmarked: true,
       },
       {
+        id: 3,
         editedAt: '2024.08.05',
         title: '유진 사복 패션 VS 민지 사복 패션',
         commentCount: 100,
@@ -83,20 +89,22 @@ export const All: Story = {
           {...args}
           items={[
             {
+              id: 11,
               editedAt: '2024.08.06',
               title: '유진 사복 패션 VS 민지 사복 패션',
               commentCount: 172,
               bookmarks: 172,
               showBookmark: true,
-              bookmarkState: false,
+              bookmarked: false,
             },
             {
+              id: 17,
               editedAt: '2024.08.06',
               title: '유진 사복 패션 VS 민지 사복 패션',
               commentCount: 250,
               bookmarks: 200,
               showBookmark: true,
-              bookmarkState: true,
+              bookmarked: true,
             },
           ]}
         />
@@ -107,6 +115,7 @@ export const All: Story = {
           {...args}
           items={[
             {
+              id: 27,
               editedAt: '2024.08.05',
               title: '유진 사복 패션 VS 민지 사복 패션',
               commentCount: 100,
