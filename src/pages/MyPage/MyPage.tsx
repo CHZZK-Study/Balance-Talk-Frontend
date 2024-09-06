@@ -31,9 +31,7 @@ const MyPage = () => {
   const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
   const memberId: number = member!.id;
 
-  // 2. memberId를 기반으로 MyInfo를 가져옴
   const { memberInfo, isLoading } = useMyInfoQuery(memberId);
-
   const myBookmarksQuery = useMyBookmarksQuery();
   const myVotesQuery = useMyVotesQuery();
   const myCommentsQuery = useMyCommentsQuery();
