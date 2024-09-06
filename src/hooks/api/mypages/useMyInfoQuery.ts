@@ -7,6 +7,7 @@ export const useMyInfoQuery = (memberId: Id) => {
   const { data: memberInfo, isLoading } = useQuery<SideBar>({
     queryKey: ['memberInfo', memberId],
     queryFn: () => getMyInfo(memberId),
+    enabled: !!memberId,
   });
 
   return { memberInfo, isLoading };

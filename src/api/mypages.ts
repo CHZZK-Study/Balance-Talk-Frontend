@@ -9,6 +9,7 @@ import {
   SideBar,
 } from '@/types/mypages';
 import { END_POINT } from '@/constants/api';
+import { Id } from '@/types/api';
 import { axiosInstance } from './interceptor';
 
 export const getMyWritten = async (page: number, size: number) => {
@@ -60,13 +61,7 @@ export const getGameBookmark = async (page: number, size: number) => {
   return data;
 };
 
-export const getMyInfo = async (memberId: number): Promise<SideBar> => {
-  try {
-    // const response = await axiosInstance.get(`/members/${memberId}`);
-    const response = await axiosInstance.get(`/members/${1}`);
-    return response.data;
-  } catch (error) {
-    console.error('Failed to fetch member info:', error);
-    throw error;
-  }
+export const getMyInfo = async (memberId: Id): Promise<SideBar> => {
+  const response = await axiosInstance.get(`/members/${memberId}`);
+  return response.data;
 };

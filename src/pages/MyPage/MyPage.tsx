@@ -20,10 +20,19 @@ import {
   useMyInfoQuery,
 } from '@/hooks/api/mypages';
 import { useObserver } from '@/hooks/api/mypages/useObserver';
+import { useNewSelector } from '@/store';
+import { selectAccessToken } from '@/store/auth';
+import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
+import { useParseJwt } from '@/hooks/common/useParseJwt';
 import * as S from './MyPage.style';
 
 const MyPage = () => {
-  const { memberInfo } = useMyInfoQuery(1);
+  const accessToken = useNewSelector(selectAccessToken);
+  const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
+  const memberId: number = member!.id;
+
+  // 2. memberId를 기반으로 MyInfo를 가져옴
+  const { memberInfo, isLoading } = useMyInfoQuery(memberId);
 
   const myBookmarksQuery = useMyBookmarksQuery();
   const myVotesQuery = useMyVotesQuery();
