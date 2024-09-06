@@ -1,6 +1,9 @@
 import React from 'react';
-import { ProfileLabelProps } from '@/types/atoms';
 import * as S from './ProfileLabel.style';
+
+export interface ProfileLabelProps {
+  nickname: string;
+}
 
 const ProfileLabel = ({ nickname }: ProfileLabelProps) => (
   <div css={S.profileLabelContainer}>

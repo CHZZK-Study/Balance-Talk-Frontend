@@ -1,8 +1,11 @@
 import React from 'react';
 import ProfileInfo from '@/components/atoms/ProfileInfo/ProfileInfo';
-import { SideBoxProps } from '@/types/molecules';
 import * as S from './SideBox.style';
 
+export interface SideBoxProps extends React.ComponentPropsWithoutRef<'div'> {
+  postsCount: number;
+  bookmarkedPostsCount: number;
+}
 const SideBox = ({
   postsCount,
   bookmarkedPostsCount,

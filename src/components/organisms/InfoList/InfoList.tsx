@@ -1,7 +1,20 @@
 import React from 'react';
-import InfoBox from '@/components/molecules/InfoBox/InfoBox';
-import { InfoListProps, InfoItem } from '@/types/organisms';
+import InfoBox, { InfoBoxProps } from '@/components/molecules/InfoBox/InfoBox';
 import * as S from './InfoList.style';
+
+export interface InfoItem {
+  id: number;
+  editedAt: string;
+  title: InfoBoxProps['title'];
+  prefix: InfoBoxProps['prefix'];
+  commentContent: InfoBoxProps['commentContent'];
+  commentCount: InfoBoxProps['commentCount'];
+  bookmarks: InfoBoxProps['bookmarks'];
+}
+
+export interface InfoListProps {
+  items: InfoItem[];
+}
 
 const InfoList = ({ items = [] }: InfoListProps) => {
   const groupedItems = items.reduce(

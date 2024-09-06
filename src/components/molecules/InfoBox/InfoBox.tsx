@@ -1,8 +1,14 @@
 import React from 'react';
 import InfoLabel from '@/components/atoms/InfoLabel/InfoLabel';
-import { InfoBoxProps } from '@/types/molecules';
 import * as S from './InfoBox.style';
 
+export interface InfoBoxProps {
+  title: string;
+  prefix: string;
+  commentContent: string;
+  commentCount: number;
+  bookmarks: number;
+}
 const InfoBox = ({
   title,
   prefix,

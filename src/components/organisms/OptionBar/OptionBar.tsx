@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import SelectGroup from '@/components/atoms/SelectGroup/SelectGroup';
+import SelectGroup, {
+  SelectGroupItem,
+} from '@/components/atoms/SelectGroup/SelectGroup';
 import OptionSelector from '@/components/molecules/OptionSelector/OptionSelector';
 import { optionSets, OptionKeys } from '@/constants/optionSets';
-import { SelectGroupItem } from '@/types/atoms';
-import { OptionBarProps } from '@/types/organisms';
 import * as S from './OptionBar.style';
 
+export interface OptionBarProps {
+  selectGroupItems: SelectGroupItem[];
+  initialSelectedGroupValue?: OptionKeys;
+  selectedOption: string;
+  onGroupSelect: (value: OptionKeys) => void;
+  onOptionSelect: (option: string) => void;
+}
 const OptionBar = ({
   selectGroupItems,
   initialSelectedGroupValue = OptionKeys.TOPIC,

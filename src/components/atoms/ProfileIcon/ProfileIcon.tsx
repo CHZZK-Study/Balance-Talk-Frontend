@@ -1,7 +1,20 @@
 import React from 'react';
-import { ProfileIconProps } from '@/types/atoms';
 import { NormalProfile } from '@/assets';
 import { profileWrapper, profileImage } from './ProfileIcon.style';
+
+interface ProfileProps {
+  interaction: 'normal';
+  imgUrl?: string;
+  size?: 'small' | 'large';
+}
+
+interface ProfilePropsWithImage {
+  interaction: 'settings';
+  imgUrl?: string;
+  size?: 'small' | 'large';
+}
+
+export type ProfileIconProps = ProfileProps | ProfilePropsWithImage;
 
 const ProfileIcon = ({
   interaction = 'normal',

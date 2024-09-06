@@ -1,10 +1,20 @@
 import React from 'react';
-import ProfileIcon from '@/components/atoms/ProfileIcon/ProfileIcon';
-import ProfileLabel from '@/components/atoms/ProfileLabel/ProfileLabel';
-import SideBox from '@/components/molecules/SideBox/SideBox';
+import ProfileIcon, {
+  ProfileIconProps,
+} from '@/components/atoms/ProfileIcon/ProfileIcon';
+import ProfileLabel, {
+  ProfileLabelProps,
+} from '@/components/atoms/ProfileLabel/ProfileLabel';
+import SideBox, { SideBoxProps } from '@/components/molecules/SideBox/SideBox';
 import ActionBox from '@/components/molecules/ActionBox/ActionBox';
-import { SideBarProps } from '@/types/organisms';
 import * as S from './SideBar.style';
+
+export interface SideBarProps {
+  nickname: ProfileLabelProps['nickname'];
+  postsCount: SideBoxProps['postsCount'];
+  bookmarkedPostsCount: SideBoxProps['bookmarkedPostsCount'];
+  profileImageUrl?: ProfileIconProps['imgUrl'];
+}
 
 const SideBar = ({
   nickname,

@@ -1,7 +1,22 @@
 import React from 'react';
-import MyContentBox from '@/components/molecules/MyContentBox/MyContentBox';
-import { MyContentListProps, MyContentItem } from '@/types/organisms';
+import MyContentBox, {
+  MyContentBoxProps,
+} from '@/components/molecules/MyContentBox/MyContentBox';
 import * as S from './MyContentList.style';
+
+export interface MyContentItem {
+  id: number;
+  editedAt: string;
+  title: MyContentBoxProps['title'];
+  commentCount: MyContentBoxProps['commentCount'];
+  bookmarks: MyContentBoxProps['bookmarks'];
+  showBookmark?: MyContentBoxProps['showBookmark'];
+  bookmarked?: MyContentBoxProps['bookmarked'];
+}
+
+export interface MyContentListProps {
+  items: MyContentItem[];
+}
 
 const MyContentList = ({ items = [] }: MyContentListProps) => {
   const groupedItems = items.reduce(

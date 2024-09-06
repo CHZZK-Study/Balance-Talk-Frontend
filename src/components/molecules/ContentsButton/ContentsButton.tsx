@@ -1,9 +1,18 @@
-import React from 'react';
-import type { ContentsButtonProps } from '@/types/molecules';
+import React, { ComponentPropsWithRef } from 'react';
 import Chips from '@/components/atoms/Chips/Chips';
-import Bookmark from '@/components/atoms/Bookmark/Bookmark';
+import Bookmark, { BookmarkProps } from '@/components/atoms/Bookmark/Bookmark';
 import * as S from './ContentsButton.style';
 
+export interface ContentsButtonProps extends ComponentPropsWithRef<'div'> {
+  optionAImg: string;
+  optionBImg: string;
+  title: string;
+  mainTag: string;
+  subTag: string;
+  bookmarked?: BookmarkProps['bookmarked'];
+  showBookmark?: boolean;
+  size?: 'large' | 'small';
+}
 const ContentsButton = ({
   optionAImg,
   optionBImg,

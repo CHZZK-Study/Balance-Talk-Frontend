@@ -1,7 +1,10 @@
-import React from 'react';
-import type { InfoLabelProps } from '@/types/atoms';
+import React, { ComponentPropsWithRef } from 'react';
 import * as S from './InfoLabel.style';
 
+export interface InfoLabelProps extends ComponentPropsWithRef<'div'> {
+  label: string;
+  count: number;
+}
 const InfoLabel = ({ label, count, ...attributes }: InfoLabelProps) => {
   return (
     <div css={S.container} {...attributes}>

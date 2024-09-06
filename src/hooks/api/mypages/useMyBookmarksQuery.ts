@@ -1,6 +1,6 @@
 import { getMyBookmark } from '@/api/mypages';
 import { MyBookmark } from '@/types/mypages';
-import { MyContentItem } from '@/types/organisms';
+import { MyContentItem } from '@/components/organisms/MyContentList/MyContentList';
 import { useInfiniteScroll } from '@/hooks/api/mypages/useInfiniteScroll';
 
 export const useMyBookmarksQuery = () => {

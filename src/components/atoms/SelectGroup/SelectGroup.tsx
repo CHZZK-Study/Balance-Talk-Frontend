@@ -1,7 +1,16 @@
 import React from 'react';
-import { SelectGroupProps } from '@/types/atoms';
 import * as S from './SelectGroup.style';
 
+export type SelectGroupItem = {
+  label: string;
+  value: string;
+};
+
+export interface SelectGroupProps {
+  items: SelectGroupItem[];
+  selectedValue?: string;
+  onSelect?: (value: string) => void;
+}
 const SelectGroup = ({ items, selectedValue, onSelect }: SelectGroupProps) => (
   <div css={S.selectGroupStyling}>
     {Array.isArray(items) &&

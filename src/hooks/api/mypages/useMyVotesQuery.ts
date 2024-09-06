@@ -1,6 +1,6 @@
 import { getMyVote } from '@/api/mypages';
 import { MyVote } from '@/types/mypages';
-import { InfoItem } from '@/types/organisms';
+import { InfoItem } from '@/components/organisms/InfoList/InfoList';
 import { useInfiniteScroll } from '@/hooks/api/mypages/useInfiniteScroll';
 
 export const useMyVotesQuery = () => {

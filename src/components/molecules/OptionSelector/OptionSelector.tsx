@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import Button from '@/components/atoms/Button/Button';
-import { OptionSelectorProps } from '@/types/molecules';
 import * as S from './OptionSelector.style';
 
+interface OptionSelectorProps {
+  options: string[];
+  selectedOption?: string;
+  onSelect: (option: string) => void;
+}
 const OptionSelector = ({
   options,
   selectedOption,

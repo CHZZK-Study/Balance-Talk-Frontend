@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { BookmarkProps } from '@/types/atoms';
+import React, { useState, useEffect, ComponentPropsWithRef } from 'react';
 import { BookmarkDF, BookmarkPR } from '@/assets';
 import * as S from './Bookmark.style';
+
+export interface BookmarkProps extends ComponentPropsWithRef<'button'> {
+  bookmarked?: boolean;
+}
 
 const Bookmark = ({ bookmarked = false, ...attributes }: BookmarkProps) => {
   const [isPressed, setIsPressed] = useState(bookmarked);

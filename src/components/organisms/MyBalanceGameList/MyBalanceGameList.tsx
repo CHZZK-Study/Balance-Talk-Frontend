@@ -1,7 +1,25 @@
 import React from 'react';
-import ContentsButton from '@/components/molecules/ContentsButton/ContentsButton';
-import { MyBalanceGameListProps, MyBalanceGameItem } from '@/types/organisms';
+import ContentsButton, {
+  ContentsButtonProps,
+} from '@/components/molecules/ContentsButton/ContentsButton';
 import * as S from './MyBalanceGameList.style';
+
+export interface MyBalanceGameItem {
+  id: number;
+  editedAt: string;
+  optionAImg: ContentsButtonProps['optionAImg'];
+  optionBImg: ContentsButtonProps['optionBImg'];
+  title: ContentsButtonProps['title'];
+  mainTag: ContentsButtonProps['mainTag'];
+  subTag: ContentsButtonProps['subTag'];
+  bookmarked?: ContentsButtonProps['bookmarked'];
+  showBookmark?: ContentsButtonProps['showBookmark'];
+  size?: ContentsButtonProps['size'];
+}
+
+export interface MyBalanceGameListProps {
+  items: MyBalanceGameItem[];
+}
 
 const MyBalanceGameList = ({ items = [] }: MyBalanceGameListProps) => {
   const groupedItems = items.reduce(

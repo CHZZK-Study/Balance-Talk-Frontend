@@ -1,6 +1,10 @@
 import React from 'react';
-import { ProfileInfoProps } from '@/types/atoms';
 import * as S from './ProfileInfo.style';
+
+interface ProfileInfoProps extends React.ComponentPropsWithoutRef<'div'> {
+  count: number;
+  label: string;
+}
 
 const ProfileInfo = ({ count, label, ...attributes }: ProfileInfoProps) => (
   <div css={S.profileInfoContainer} {...attributes}>

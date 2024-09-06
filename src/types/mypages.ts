@@ -1,9 +1,7 @@
-import {
-  InfoItem,
-  MyBalanceGameItem,
-  MyContentItem,
-  SideBarProps,
-} from '@/types/organisms';
+import { SideBarProps } from '@/components/organisms/SideBar/SideBar';
+import { InfoItem } from '@/components/organisms/InfoList/InfoList';
+import { MyContentItem } from '@/components/organisms/MyContentList/MyContentList';
+import { MyBalanceGameItem } from '@/components/organisms/MyBalanceGameList/MyBalanceGameList';
 import { PaginationType } from '@/types/pagination';
 
 export interface MyWritten extends PaginationType {

@@ -1,9 +1,13 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import SideBar from '@/components/organisms/SideBar/SideBar';
 import OptionBar from '@/components/organisms/OptionBar/OptionBar';
-import MyContentList from '@/components/organisms/MyContentList/MyContentList';
-import InfoList from '@/components/organisms/InfoList/InfoList';
-import MyBalanceGameList from '@/components/organisms/MyBalanceGameList/MyBalanceGameList';
+import MyContentList, {
+  MyContentItem,
+} from '@/components/organisms/MyContentList/MyContentList';
+import InfoList, { InfoItem } from '@/components/organisms/InfoList/InfoList';
+import MyBalanceGameList, {
+  MyBalanceGameItem,
+} from '@/components/organisms/MyBalanceGameList/MyBalanceGameList';
 import { OptionKeys, optionSets } from '@/constants/optionSets';
 import {
   useMyVotesQuery,
@@ -15,8 +19,6 @@ import {
   useGameWrittensQuery,
   useMyInfoQuery,
 } from '@/hooks/api/mypages';
-import { InfoItem, MyBalanceGameItem, MyContentItem } from '@/types/organisms';
-import { useInView } from 'react-intersection-observer';
 import { useObserver } from '@/hooks/api/mypages/useObserver';
 import * as S from './MyPage.style';
 

@@ -1,9 +1,15 @@
 import React from 'react';
 import InfoLabel from '@/components/atoms/InfoLabel/InfoLabel';
-import Bookmark from '@/components/atoms/Bookmark/Bookmark';
-import { MyContentBoxProps } from '@/types/molecules';
+import Bookmark, { BookmarkProps } from '@/components/atoms/Bookmark/Bookmark';
 import * as S from './MyContentBox.style';
 
+export interface MyContentBoxProps {
+  title: string;
+  commentCount: number;
+  bookmarks: number;
+  showBookmark?: boolean;
+  bookmarked?: BookmarkProps['bookmarked'];
+}
 const MyContentBox = ({
   title,
   commentCount,

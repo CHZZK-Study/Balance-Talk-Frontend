@@ -1,6 +1,6 @@
 import { getGameBookmark } from '@/api/mypages';
 import { GameBookmark } from '@/types/mypages';
-import { MyBalanceGameItem } from '@/types/organisms';
+import { MyBalanceGameItem } from '@/components/organisms/MyBalanceGameList/MyBalanceGameList';
 import { useInfiniteScroll } from '@/hooks/api/mypages/useInfiniteScroll';
 
 export const useGameBookmarksQuery = () => {
