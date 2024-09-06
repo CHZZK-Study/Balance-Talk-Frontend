@@ -4,11 +4,11 @@ import { SideBar } from '@/types/mypages';
 import { Id } from '@/types/api';
 
 export const useMyInfoQuery = (memberId: Id) => {
-  const { data: memberInfo, isLoading } = useQuery<SideBar>({
+  const { data: memberInfo } = useQuery<SideBar>({
     queryKey: ['memberInfo', memberId],
     queryFn: () => getMyInfo(memberId),
     enabled: !!memberId,
   });
 
-  return { memberInfo, isLoading };
+  return { memberInfo };
 };

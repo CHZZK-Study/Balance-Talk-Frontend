@@ -31,7 +31,7 @@ const MyPage = () => {
   const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
   const memberId: number = member!.id;
 
-  const { memberInfo, isLoading } = useMyInfoQuery(memberId);
+  const { memberInfo } = useMyInfoQuery(memberId);
   const myBookmarksQuery = useMyBookmarksQuery();
   const myVotesQuery = useMyVotesQuery();
   const myCommentsQuery = useMyCommentsQuery();
