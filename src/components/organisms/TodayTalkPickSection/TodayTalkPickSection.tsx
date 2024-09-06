@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   AngleSmallUp,
   AngleSmallDown,
@@ -12,10 +12,12 @@ import Button from '@/components/atoms/Button/Button';
 import SummaryBox from '@/components/molecules/SummaryBox/SummaryBox';
 import VotePrototype from '@/components/molecules/VotePrototype/VotePrototype';
 import MenuTap, { MenuItem } from '@/components/atoms/MenuTap/MenuTap';
+import { useCreateTalkPickBookmarkMutation } from '@/hooks/api/bookmark/useCreateTalkPickBookmarkMutation';
+import { useDeleteTalkPickBookmarkMutation } from '@/hooks/api/bookmark/useDeleteTalkPickBookmarkMutation';
 import * as S from './TodayTalkPickSection.style';
 
 export interface TodayTalkPickProps {
-  todayTalkPick: TalkPickDetail;
+  todayTalkPick?: TalkPickDetail;
   talkPickMenu: MenuItem[];
 }
 
@@ -25,23 +27,26 @@ const TodayTalkPickSection = ({
 }: TodayTalkPickProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const [bookmark, setBookmark] = useState<number>(todayTalkPick.bookmarks);
-  const [myBookmark, setMyBookmark] = useState<boolean>(
-    todayTalkPick.myBookmark,
+  const { mutate: createBookmark } = useCreateTalkPickBookmarkMutation(
+    todayTalkPick?.id ?? 0,
   );
 
-  useEffect(() => {
-    setBookmark(todayTalkPick.bookmarks);
-    setMyBookmark(todayTalkPick.myBookmark);
-  }, [todayTalkPick.bookmarks, todayTalkPick.myBookmark]);
+  const { mutate: deleteBookmark } = useDeleteTalkPickBookmarkMutation(
+    todayTalkPick?.id ?? 0,
+  );
+
+  const handleBookmarkClick = () => {
+    if (!todayTalkPick) return;
+
+    if (todayTalkPick.myBookmark) {
+      deleteBookmark();
+    } else {
+      createBookmark();
+    }
+  };
 
   const handleContentToggle = () => {
     setIsExpanded((prev) => !prev);
-  };
-
-  const handleBookmarkClick = () => {
-    setBookmark((prev) => (myBookmark ? prev - 1 : prev + 1));
-    setMyBookmark(!myBookmark);
   };
 
   return (
@@ -50,31 +55,31 @@ const TodayTalkPickSection = ({
       <div css={S.talkPickWrapper}>
         <div css={S.talkPickTopStyling}>
           <div css={S.talkPickDetailWrapper}>
-            <div css={S.talkPickTitle}>{todayTalkPick.title}</div>
+            <div css={S.talkPickTitle}>{todayTalkPick?.title}</div>
             <MenuTap menuData={talkPickMenu} />
           </div>
           <div css={S.talkPickDetailWrapper}>
             <div>
-              <span css={S.talkPickDetail}>{todayTalkPick.writer}</span>
+              <span css={S.talkPickDetail}>{todayTalkPick?.writer}</span>
               <span css={S.talkPickDate}>
-                {formatDate(todayTalkPick.lastModifiedAt)}
+                {formatDate(todayTalkPick?.createdAt ?? '')}
               </span>
-              {todayTalkPick.isUpdated && (
+              {todayTalkPick?.isUpdated && (
                 <span css={S.talkPickDetail}>(수정됨)</span>
               )}
             </div>
             <div css={S.talkPickDetail}>
               조회
               <span css={S.talkPickView}>
-                {formatNumber(todayTalkPick.views)}
+                {formatNumber(todayTalkPick?.views ?? 0)}
               </span>
             </div>
           </div>
         </div>
         <div css={S.talkPickContentWrapper}>
-          <SummaryBox summary={todayTalkPick.summary} />
+          <SummaryBox summary={todayTalkPick?.summary} />
           {isExpanded && (
-            <div css={S.talkPickContent}>{todayTalkPick.content}</div>
+            <div css={S.talkPickContent}>{todayTalkPick?.content}</div>
           )}
           <Button
             variant="outlineShadow"
@@ -88,11 +93,12 @@ const TodayTalkPickSection = ({
         </div>
         <div css={S.voteBarWrapper}>
           <VotePrototype
-            leftButtonText={todayTalkPick.optionA}
-            rightButtonText={todayTalkPick.optionB}
-            leftVotes={todayTalkPick.votesCountOfOptionA}
-            rightVotes={todayTalkPick.votesCountOfOptionB}
-            selectedVote={todayTalkPick.votedOption}
+            talkPickId={todayTalkPick?.id ?? 3}
+            leftButtonText={todayTalkPick?.optionA ?? ''}
+            rightButtonText={todayTalkPick?.optionB ?? ''}
+            leftVotes={todayTalkPick?.votesCountOfOptionA ?? 0}
+            rightVotes={todayTalkPick?.votesCountOfOptionB ?? 0}
+            selectedVote={todayTalkPick?.votedOption ?? null}
           />
         </div>
       </div>
@@ -100,10 +106,10 @@ const TodayTalkPickSection = ({
         <Button
           variant="outlineShadow"
           size="medium"
-          iconLeft={myBookmark ? <BookmarkSR /> : <BookmarkRR />}
+          iconLeft={todayTalkPick?.myBookmark ? <BookmarkSR /> : <BookmarkRR />}
           onClick={handleBookmarkClick}
         >
-          {bookmark}
+          {todayTalkPick?.bookmarks}
         </Button>
         <Button
           variant="outlineShadow"

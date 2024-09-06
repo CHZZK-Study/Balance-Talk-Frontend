@@ -1,70 +1,44 @@
-import { css, keyframes } from '@emotion/react';
+import { css } from '@emotion/react';
+import typo from '@/styles/typo';
+import color from '@/styles/color';
 
-export const headingWrapper = css({
-  position: 'relative',
-  marginBottom: '20px',
-  left: '20vw',
-});
-
-export const inputTitleWrapper = css({
+export const pageStyle = css({
+  width: '1176px',
+  height: '1217px',
+  margin: '64px 372px 78px 372px',
   display: 'flex',
-  justifyContent: 'center',
-  marginBottom: '20px',
   flexDirection: 'column',
-  alignItems: 'center',
-});
-
-export const etcButtonContainer = css({
-  display: 'flex',
   justifyContent: 'center',
-  marginBottom: '20px',
+  alignContent: 'center',
 });
 
-export const etcButtonWrapper = css({
+export const bestTalkPickStyling = css({
   display: 'flex',
-  justifyContent: 'space-between',
-  width: '60%',
+  flexDirection: 'column',
+  marginBottom: '56px',
+  position: 'relative',
 });
 
-export const tagContainer = css({
+export const bestTalkPickTextWrapper = css({
   display: 'flex',
-  justifyContent: 'center',
+  flexDirection: 'column',
+  marginBottom: '35px',
 });
 
-export const tagWrapper = css({
+export const bestTalkPickSubTitle = css(typo.SubTitle, {
   display: 'flex',
-  justifyContent: 'flex-start',
-  width: '60%',
+  fontWeight: 'bold',
+  color: color.BK,
+  marginBottom: '21px',
 });
 
-export const createFormContainer = css({
+export const bestTalkPickTitle = css(typo.Title, {
   display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+  color: color.BK,
 });
 
-export const versusText = css({
-  fontSize: '50px',
+export const toastModalStyling = css({
   position: 'absolute',
-  zIndex: 1,
-  WebkitTextStroke: '1px white',
-  textShadow: '0px 4px 4px gray',
-});
-
-export const shakeAnimation = keyframes({
-  '0%': {
-    transform: 'translateX(0)',
-  },
-  '25%': {
-    transform: 'translateX(-4px)',
-  },
-  '50%': {
-    transform: 'translateX(4px)',
-  },
-  '75%': {
-    transform: 'translateX(-4px)',
-  },
-  '100%': {
-    transform: 'translateX(0px)',
-  },
+  left: '520px',
+  bottom: '100px',
 });

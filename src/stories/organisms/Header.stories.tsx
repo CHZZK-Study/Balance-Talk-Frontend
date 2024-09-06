@@ -1,4 +1,8 @@
 import React from 'react';
+import store from '@/store';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import ReactQueryProvider from '@/providers/ReactQueryProvider';
 import type { Meta, StoryObj } from '@storybook/react';
 import Header from '@/components/organisms/Header/Header';
 
@@ -9,6 +13,17 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {},
   args: {},
+  decorators: [
+    (Story) => (
+      <Provider store={store}>
+        <ReactQueryProvider>
+          <Router>
+            <Story />
+          </Router>
+        </ReactQueryProvider>
+      </Provider>
+    ),
+  ],
 } satisfies Meta<typeof Header>;
 
 export default meta;

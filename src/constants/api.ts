@@ -56,12 +56,16 @@ export const END_POINT = {
     `/my/games/bookmarks?page=${page}&size=${size}`,
 
   // file API
-  FILE_UPLOAD: '/files/image/upload',
+  FILE_UPLOAD: '/images',
+  FILE_DELETE: (storedName: string) => `/images/${storedName}`,
 
   // talk pick API
   TALKPICK: (talkPickId: Id) => `/talks/${talkPickId}`,
   CREATE_TALKPICK: '/talks',
+  TALKPICK_LIST: '/talks',
   TODAY_TALKPICK: '/talks/today',
+  TEMP_TALKPICK: '/talks/temp',
+  BEST_TALKPICK: '/talks/best',
 
   // vote API
   VOTE_TALK: (talkPickId: Id) => `/votes/talks/${talkPickId}`,

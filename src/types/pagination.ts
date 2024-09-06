@@ -1,7 +1,7 @@
 export type Pageable = {
   page: number;
   size?: number;
-  sort?: string[];
+  sort?: string;
 };
 
 export interface PaginationType {
