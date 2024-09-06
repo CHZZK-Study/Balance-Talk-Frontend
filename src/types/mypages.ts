@@ -4,116 +4,33 @@ import {
   MyContentItem,
   SideBarProps,
 } from '@/types/organisms';
+import { PaginationType } from '@/types/pagination';
 
-interface Sort {
-  empty: boolean;
-  sorted: boolean;
-  unsorted: boolean;
-}
-
-interface Pageable {
-  pageNumber: number;
-  pageSize: number;
-  sort: Sort;
-  offset: number;
-  paged: boolean;
-  unpaged: boolean;
-}
-export interface MyWritten {
+export interface MyWritten extends PaginationType {
   content: MyContentItem[];
-  pageable: Pageable;
-  totalPages: number;
-  totalElements: number;
-  last: boolean;
-  size: number;
-  number: number;
-  sort: Sort;
-  numberOfElements: number;
-  first: boolean;
-  empty: boolean;
 }
 
-export interface MyVote {
+export interface MyVote extends PaginationType {
   content: InfoItem[];
-  pageable: Pageable;
-  totalPages: number;
-  totalElements: number;
-  last: boolean;
-  size: number;
-  number: number;
-  sort: Sort;
-  numberOfElements: number;
-  first: boolean;
-  empty: boolean;
 }
 
-export interface MyComment {
+export interface MyComment extends PaginationType {
   content: InfoItem[];
-  pageable: Pageable;
-  totalPages: number;
-  totalElements: number;
-  last: boolean;
-  size: number;
-  number: number;
-  sort: Sort;
-  numberOfElements: number;
-  first: boolean;
-  empty: boolean;
 }
 
-export interface MyBookmark {
+export interface MyBookmark extends PaginationType {
   content: MyContentItem[];
-  pageable: Pageable;
-  totalPages: number;
-  totalElements: number;
-  last: boolean;
-  size: number;
-  number: number;
-  sort: Sort;
-  numberOfElements: number;
-  first: boolean;
-  empty: boolean;
 }
-export interface GameWritten {
+export interface GameWritten extends PaginationType {
   content: MyBalanceGameItem[];
-  pageable: Pageable;
-  totalPages: number;
-  totalElements: number;
-  last: boolean;
-  size: number;
-  number: number;
-  sort: Sort;
-  numberOfElements: number;
-  first: boolean;
-  empty: boolean;
 }
 
-export interface GameVote {
+export interface GameVote extends PaginationType {
   content: MyBalanceGameItem[];
-  pageable: Pageable;
-  totalPages: number;
-  totalElements: number;
-  last: boolean;
-  size: number;
-  number: number;
-  sort: Sort;
-  numberOfElements: number;
-  first: boolean;
-  empty: boolean;
 }
 
-export interface GameBookmark {
+export interface GameBookmark extends PaginationType {
   content: MyBalanceGameItem[];
-  pageable: Pageable;
-  totalPages: number;
-  totalElements: number;
-  last: boolean;
-  size: number;
-  number: number;
-  sort: Sort;
-  numberOfElements: number;
-  first: boolean;
-  empty: boolean;
 }
 
 export interface SideBar extends SideBarProps {}
