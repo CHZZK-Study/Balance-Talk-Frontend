@@ -6,7 +6,7 @@ export const cardWrapper = (size: 'large' | 'small') => css`
   width: ${size === 'large' ? '563px' : '432px'};
   height: ${size === 'large' ? '357px' : '354px'};
   border-radius: 20px;
-  border: 1px solid #dedede;
+  border: 1px solid ${color.GY[2]};
   background-color: ${color.WT};
   cursor: pointer;
   position: relative;
@@ -19,11 +19,14 @@ export const cardWrapper = (size: 'large' | 'small') => css`
   &:active {
     background-color: ${color.WT};
     box-shadow: 0 5px 15px 0 rgba(119, 130, 255, 0.7);
-    transform: scale(0.98);
+    & > div > div > img {
+      transform: scale(0.98);
+    }
   }
 
   &:hover {
-    & > div > img {
+    border: 1px solid ${color.MAIN};
+    & > div > div > img {
       transform: scale(1.05);
     }
   }
