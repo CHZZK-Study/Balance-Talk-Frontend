@@ -46,7 +46,7 @@ const MyPage = () => {
   const { ref, isFetchingAnyNextPage } = useObserver(queries);
 
   const [selectedGroup, setSelectedGroup] = useState<OptionKeys>(
-    OptionKeys.TOPIC,
+    OptionKeys.TALK_PICK,
   );
   const [selectedOption, setSelectedOption] = useState<string>(
     optionSets[selectedGroup][0],
@@ -57,7 +57,7 @@ const MyPage = () => {
   }, [selectedGroup]);
 
   const queryResult = useMemo(() => {
-    if (selectedGroup === OptionKeys.TOPIC) {
+    if (selectedGroup === OptionKeys.TALK_PICK) {
       switch (selectedOption) {
         case '내가 저장한':
           return queries.myBookmarks.myBookmarks;
@@ -98,7 +98,7 @@ const MyPage = () => {
       return <div>표시할 페이지가 없습니다</div>;
     }
 
-    if (selectedGroup === OptionKeys.TOPIC) {
+    if (selectedGroup === OptionKeys.TALK_PICK) {
       if (
         selectedOption === '내가 저장한' ||
         selectedOption === '내가 작성한'
@@ -134,7 +134,7 @@ const MyPage = () => {
       <div css={S.contentWrapper}>
         <OptionBar
           selectGroupItems={[
-            { label: '톡픽', value: OptionKeys.TOPIC },
+            { label: '톡픽', value: OptionKeys.TALK_PICK },
             { label: '밸런스 게임', value: OptionKeys.BALANCE_GAME },
           ]}
           initialSelectedGroupValue={selectedGroup}

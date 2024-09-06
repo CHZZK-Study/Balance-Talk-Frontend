@@ -1,10 +1,10 @@
 export enum OptionKeys {
-  TOPIC = 'topic',
+  TALK_PICK = 'talkPick',
   BALANCE_GAME = 'balanceGame',
 }
 
 export const optionSets: Record<OptionKeys, string[]> = {
-  [OptionKeys.TOPIC]: [
+  [OptionKeys.TALK_PICK]: [
     '내가 저장한',
     '내가 투표한',
     '내가 댓글단',

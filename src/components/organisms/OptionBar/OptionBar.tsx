@@ -15,7 +15,7 @@ export interface OptionBarProps {
 }
 const OptionBar = ({
   selectGroupItems,
-  initialSelectedGroupValue = OptionKeys.TOPIC,
+  initialSelectedGroupValue = OptionKeys.TALK_PICK,
   selectedOption,
   onGroupSelect,
   onOptionSelect,
