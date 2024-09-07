@@ -9,14 +9,12 @@ export const profileInfoContainer = css({
   justifyContent: 'center',
 });
 
-export const profileNumberStyling = css({
-  ...typo.Number.SemiBold,
+export const profileNumberStyling = css(typo.Number.SemiBold, {
   color: color.MAIN,
   textAlign: 'center',
 });
 
-export const profileLabelStyling = css({
-  ...typo.Comment.Regular,
+export const profileLabelStyling = css(typo.Comment.Regular, {
   color: color.GY[1],
   textAlign: 'center',
 });

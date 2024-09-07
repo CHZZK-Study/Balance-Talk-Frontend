@@ -44,6 +44,13 @@ const typo = {
       lineHeight: '1.4',
       letterSpacing: `${18 * -0.05}px`,
     },
+    Medium_16: {
+      fontFamily: 'Pretendard',
+      fontSize: '18px',
+      fontWeight: 500,
+      lineHeight: '1.6',
+      letterSpacing: `${18 * -0.05}px`,
+    },
   },
   Comment: {
     SemiBold: {
@@ -53,11 +60,25 @@ const typo = {
       lineHeight: '1.4',
       letterSpacing: `${16 * -0.05}px`,
     },
+    SemiBold_16: {
+      fontFamily: 'Pretendard',
+      fontSize: '16px',
+      fontWeight: 600,
+      lineHeight: '1.6',
+      letterSpacing: `-0.8px`,
+    },
     Regular: {
       fontFamily: 'Pretendard',
       fontSize: '16px',
       fontWeight: 400,
       lineHeight: '1.4',
+      letterSpacing: `${16 * -0.05}px`,
+    },
+    Regular_16: {
+      fontFamily: 'Pretendard',
+      fontSize: '16px',
+      fontWeight: 400,
+      lineHeight: '1.6',
       letterSpacing: `${16 * -0.05}px`,
     },
   },
@@ -80,6 +101,13 @@ const typo = {
       fontSize: '16px',
       lineHeight: '1.4',
       letterSpacing: `${16 * -0.05}px`,
+    },
+    Medium_16: {
+      fontFamily: 'Poppins-Medium',
+      fontSize: '16px',
+      fontWeight: 500,
+      lineHeight: '1.6',
+      letterSpacing: `0px`,
     },
     Regular: {
       fontFamily: 'Poppins-Regular',

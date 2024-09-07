@@ -4,7 +4,8 @@ import Pagination from '@/components/atoms/Pagination/Pagination';
 import TextArea from '@/components/molecules/TextArea/TextArea';
 import Toggle from '@/components/atoms/Toggle/Toggle';
 import ToastModal from '@/components/atoms/ToastModal/ToastModal';
-import { calculateTotalPages, generatePageNumbers } from '@/utils/pagination';
+import { createRangeArray } from '@/utils/array';
+import { calculateTotalPages } from '@/utils/pagination';
 import * as S from './CommentsSection.style';
 
 interface CommentData {
@@ -52,7 +53,8 @@ const CommentsSection = ({ commentsData, voted }: CommentsSectionProps) => {
   };
 
   const totalPages = calculateTotalPages(commentsData.length, commentsPerPage);
-  const pages = generatePageNumbers(totalPages);
+
+  const pages = createRangeArray(selectedPage, totalPages);
 
   return (
     <div css={S.commentsSectionContainer}>

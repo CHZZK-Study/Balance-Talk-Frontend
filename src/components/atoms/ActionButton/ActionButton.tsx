@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import type { ComponentPropsWithoutRef } from 'react';
 import { ActivityInfo, EditProfile, Withdraw } from '@/assets';
 import {
@@ -10,19 +10,15 @@ import {
 export interface ActionButtonProps extends ComponentPropsWithoutRef<'button'> {
   label: string;
   iconType?: 'activity' | 'edit' | 'withdraw';
+  isActive?: boolean;
 }
 
 const ActionButton = ({
   label,
   iconType = 'activity',
+  isActive = false,
   ...attributes
 }: ActionButtonProps) => {
-  const [isActive, setIsActive] = useState(false);
-
-  const handleClick = () => {
-    setIsActive(!isActive);
-  };
-
   const renderIcon = () => {
     switch (iconType) {
       case 'activity':
@@ -37,11 +33,7 @@ const ActionButton = ({
   };
 
   return (
-    <button
-      css={actionButtonContainer(isActive)}
-      onClick={handleClick}
-      {...attributes}
-    >
+    <button css={actionButtonContainer(isActive)} {...attributes}>
       <div css={actionButtonImage}>{renderIcon()}</div>
       <span css={actionButtonLabel(isActive)}>{label}</span>
     </button>

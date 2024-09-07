@@ -1,16 +1,21 @@
 import { css } from '@emotion/react';
 import color from '@/styles/color';
+import typo from '@/styles/typo';
 
 export const profileLabelContainer = css({
   display: 'flex',
   alignItems: 'center',
 });
 
-export const profileBadgeStyling = (badgeUrl?: string) => css`
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  margin-right: 8px;
-  background-color: ${badgeUrl ? color.WT : color.MAIN};
-  ${badgeUrl ? 'object-fit: cover; overflow: hidden;' : ''}
-`;
+export const profileBadgeStyling = css({
+  width: '20px',
+  height: '20px',
+  borderRadius: '50%',
+  marginRight: '8px',
+  backgroundColor: color.MAIN,
+});
+
+export const labelStyling = css(typo.Main.SemiBold, {
+  color: color.BK,
+  whiteSpace: 'nowrap',
+});

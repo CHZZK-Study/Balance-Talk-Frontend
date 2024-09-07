@@ -104,6 +104,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  args: {
+    voted: true,
+  },
   render: (args) => (
     <div css={storyContainer}>
       <div css={storyInnerContainer}>
@@ -114,6 +117,9 @@ export const Default: Story = {
 };
 
 export const All: Story = {
+  args: {
+    voted: false,
+  },
   render: (args) => (
     <div css={storyContainer}>
       <div css={storyInnerContainer}>
@@ -121,7 +127,4 @@ export const All: Story = {
       </div>
     </div>
   ),
-  args: {
-    voted: false,
-  },
 };

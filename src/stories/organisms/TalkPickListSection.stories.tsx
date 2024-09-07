@@ -3,44 +3,45 @@ import type { Meta, StoryObj } from '@storybook/react';
 import TalkPickListSection from '@/components/organisms/TalkPickListSection/TalkPickListSection';
 
 const exampleTalkPickList: TalkPickListItem[] = Array.from(
-  { length: 30 },
-  () => ({
-    id: 5712,
-    title: '효과적인 의사소통을 위한 비언어적 신호',
-    writer: '닉네임593',
+  { length: 100 },
+  (_, index) => ({
+    id: 5712 + index,
+    title: `샘플 제목 ${index + 1}`,
+    writer: `작성자 ${index + 1}`,
     createdAt: '2024-07-10',
-    views: 2000,
-    bookmarks: 3000,
+    views: 2000 + index * 10,
+    bookmarks: 3000 + index * 5,
   }),
 );
 
 const exampleTalkPickPagination: TalkPickListPagination = {
-  totalPages: 0,
-  totalElements: 0,
-  size: 0,
+  totalPages: Math.ceil(exampleTalkPickList.length / 20),
+  totalElements: exampleTalkPickList.length,
+  size: 20,
   content: exampleTalkPickList,
   number: 0,
   sort: {
-    empty: true,
+    empty: false,
     sorted: true,
-    unsorted: true,
+    unsorted: false,
   },
-  numberOfElements: 0,
+  numberOfElements:
+    exampleTalkPickList.length > 20 ? 20 : exampleTalkPickList.length,
   pageable: {
     offset: 0,
     sort: {
-      empty: true,
+      empty: false,
       sorted: true,
-      unsorted: true,
+      unsorted: false,
     },
     pageNumber: 0,
-    pageSize: 0,
+    pageSize: 20,
     paged: true,
-    unpaged: true,
+    unpaged: false,
   },
   first: true,
-  last: true,
-  empty: true,
+  last: false,
+  empty: exampleTalkPickList.length === 0,
 };
 
 const meta = {

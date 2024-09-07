@@ -3,6 +3,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import 'dayjs/locale/ko';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import MyPage from '@/pages/MyPage/MyPage';
 import NotAuthRoutes from './components/Routes/NotAuthRoutes';
 import ProtectedRoutes from './components/Routes/ProtectedRoutes';
 import { PATH } from './constants/path';
@@ -53,7 +54,9 @@ const App: React.FC = () => {
             <Route path="post/create" element={<CreatePostPage />} />
           </Route> */}
         </Route>
-
+        <Route path="/mypage" element={<LayoutMypage />}>
+          <Route index element={<MyPage />} />
+        </Route>
         {/* <Route element={<NotAuthRoutes member={member} />}>
           <Route element={<LayoutNoSearch />}>
             <Route path={PATH.LOGIN} element={<LoginPage />} />
