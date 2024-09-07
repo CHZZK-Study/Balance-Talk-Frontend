@@ -9,16 +9,14 @@ import MyBalanceGameList, {
   MyBalanceGameItem,
 } from '@/components/organisms/MyBalanceGameList/MyBalanceGameList';
 import { OptionKeys, optionSets } from '@/constants/optionSets';
-import {
-  useMyVotesQuery,
-  useMyCommentsQuery,
-  useMyWrittensQuery,
-  useMyBookmarksQuery,
-  useGameBookmarksQuery,
-  useGameVotesQuery,
-  useGameWrittensQuery,
-  useMyInfoQuery,
-} from '@/hooks/api/mypages';
+import { useMyVotesQuery } from '@/hooks/api/mypages/useMyVotesQuery';
+import { useMyCommentsQuery } from '@/hooks/api/mypages/useMyCommentsQuery';
+import { useMyWrittensQuery } from '@/hooks/api/mypages/useMyWrittensQuery';
+import { useMyBookmarksQuery } from '@/hooks/api/mypages/useMyBookmarksQuery';
+import { useGameBookmarksQuery } from '@/hooks/api/mypages/useGameBookmarksQuery';
+import { useGameWrittensQuery } from '@/hooks/api/mypages/useGameWrittensQuery';
+import { useGameVotesQuery } from '@/hooks/api/mypages/useGameVotesQuery';
+import { useMyInfoQuery } from '@/hooks/api/mypages/useMyInfoQuery';
 import { useObserver } from '@/hooks/api/mypages/useObserver';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
