@@ -85,10 +85,9 @@ const CommentItem = ({ comment }: CommentItemProps) => {
       css={[
         S.MainContainer,
         showReply ? S.expandedContainer : S.compactContainer,
-        isMyComment && S.myCommentColor,
       ]}
     >
-      <div css={S.commentContainer}>
+      <div css={[S.commentContainer, isMyComment && S.myCommentColor]}>
         <CommentProfile option={comment?.option} imgUrl={comment?.imgUrl} />
         <div css={S.commentWrapper}>
           <div css={S.commentBox}>
