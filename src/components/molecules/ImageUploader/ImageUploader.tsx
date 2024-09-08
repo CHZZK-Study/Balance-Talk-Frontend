@@ -27,9 +27,7 @@ const ImageUploader = ({
   const deleteFileMutation = useDeleteFileMutation();
 
   const imageList: string[] = [
-    // 기존에 있던 이미지
     ...imgUrls,
-    // 추가한 이미지
     ...imageFiles.map((file) => URL.createObjectURL(file)),
   ];
 
@@ -37,10 +35,8 @@ const ImageUploader = ({
     const isObjectUrl: boolean = imageList[index].startsWith('blob:');
 
     if (isObjectUrl) {
-      // 추가한 blob 이미지 처리
       setImageFiles((prev) => prev.filter((_, i) => i !== index));
     } else {
-      // 기존에 있던 이미지 처리
       const storedName = storedNames[index];
 
       deleteFileMutation.mutate(storedName, {
