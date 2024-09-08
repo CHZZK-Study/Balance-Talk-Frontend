@@ -55,7 +55,7 @@ const TodayTalkPickPage = () => {
           commentList={comments}
           selectedPage={selectedPage}
           handlePageChange={setSelectedPage}
-          voted
+          voted={talkPick?.votedOption !== null}
         />
       </div>
     </div>
