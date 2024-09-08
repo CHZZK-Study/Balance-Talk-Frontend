@@ -4,6 +4,7 @@ import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
+import { formatDateFromISO } from '@/utils/formatData';
 import LikeButton from '@/components/atoms/LikeButton/LikeButton';
 import TextArea from '@/components/molecules/TextArea/TextArea';
 import CommentProfile from '@/components/atoms/CommentProfile/CommentProfile';
@@ -62,7 +63,9 @@ const CommentItem = ({ comment }: CommentItemProps) => {
         <div css={S.commentWrapper}>
           <div css={S.commentBox}>
             <span css={S.nickname}>{comment?.nickname}</span>
-            <span css={S.createdTime}>{comment?.createdAt}</span>
+            <span css={S.createdTime}>
+              {formatDateFromISO(comment?.createdAt ?? '')}
+            </span>
           </div>
           <p css={S.commentText}>{comment?.content}</p>
         </div>
