@@ -27,7 +27,7 @@ const TalkPickListSection = ({
   selectedPage,
   handlePageChange,
 }: TalkPickListProps) => {
-  const pages = createRangeArray(talkPickList?.totalPages || 0);
+  const pages = createRangeArray(selectedPage, talkPickList?.totalPages || 0);
 
   return (
     <div css={S.talkPickListContainer}>

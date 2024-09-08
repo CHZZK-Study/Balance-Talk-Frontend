@@ -29,7 +29,7 @@ const TalkPickPlacePage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [selectedPage]);
+  }, [selectedPage, selectedValue]);
 
   useEffect(() => {
     setSelectedPage(1);
