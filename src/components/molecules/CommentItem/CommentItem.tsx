@@ -5,6 +5,7 @@ import { selectAccessToken } from '@/store/auth';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import { formatDateFromISO } from '@/utils/formatData';
+import { useDeleteCommentMutation } from '@/hooks/api/comment/useDeleteCommentMutation';
 import LikeButton from '@/components/atoms/LikeButton/LikeButton';
 import TextArea from '@/components/molecules/TextArea/TextArea';
 import CommentProfile from '@/components/atoms/CommentProfile/CommentProfile';
@@ -18,6 +19,7 @@ export interface CommentItemProps {
 const CommentItem = ({ comment }: CommentItemProps) => {
   const accessToken = useNewSelector(selectAccessToken);
   const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
+  const isMyComment: boolean = comment?.nickname === member?.nickname;
 
   const likeButtonRef = useRef<HTMLButtonElement>(null);
   const [showReply, setShowReply] = useState(false);
@@ -35,7 +37,12 @@ const CommentItem = ({ comment }: CommentItemProps) => {
     console.log('작성한 답글:', replyText);
   };
 
-  const menuData: MenuItem[] = [
+  const { mutate: deleteComment } = useDeleteCommentMutation(
+    comment.talkPickId,
+    'comments',
+  );
+
+  const myComment: MenuItem[] = [
     {
       label: '수정',
       onClick: () => {
@@ -45,17 +52,19 @@ const CommentItem = ({ comment }: CommentItemProps) => {
     {
       label: '삭제',
       onClick: () => {
-        console.log('삭제 클릭됨!!');
+        deleteComment(comment.id);
       },
     },
   ];
+
+  const otherComment: MenuItem[] = [{ label: '신고' }];
 
   return (
     <div
       css={[
         S.MainContainer,
         showReply ? S.expandedContainer : S.compactContainer,
-        comment?.nickname === member?.nickname && S.myCommentColor,
+        isMyComment && S.myCommentColor,
       ]}
     >
       <div css={S.commentContainer}>
@@ -78,7 +87,7 @@ const CommentItem = ({ comment }: CommentItemProps) => {
             >
               답글
             </button>
-            <MenuTap menuData={menuData} />
+            <MenuTap menuData={isMyComment ? myComment : otherComment} />
           </div>
           <LikeButton
             ref={likeButtonRef}
