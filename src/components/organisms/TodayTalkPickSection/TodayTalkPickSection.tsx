@@ -18,6 +18,7 @@ import VotePrototype from '@/components/molecules/VotePrototype/VotePrototype';
 import MenuTap, { MenuItem } from '@/components/atoms/MenuTap/MenuTap';
 import TextModal from '@/components/molecules/TextModal/TextModal';
 import ShareModal from '@/components/molecules/ShareModal/ShareModal';
+import ReportModal from '@/components/molecules/ReportModal/ReportModal';
 import { useCreateTalkPickBookmarkMutation } from '@/hooks/api/bookmark/useCreateTalkPickBookmarkMutation';
 import { useDeleteTalkPickBookmarkMutation } from '@/hooks/api/bookmark/useDeleteTalkPickBookmarkMutation';
 import { useDeleteTalkPickMutation } from '@/hooks/api/talk-pick/useDeleteTalkPickMutation';
@@ -39,6 +40,9 @@ const TodayTalkPickSection = ({
   const [linkCopied, setLinkCopied] = useState<boolean>(false);
 
   const [shareModalOpen, setShareModalOpen] = useState<boolean>(false);
+  const [reportModalOpen, setReportModalOpen] = useState<boolean>(false);
+  const [reportTextModalOpen, setReportTextModalOpen] =
+    useState<boolean>(false);
   const [deleteTextModalOpen, setDeleteTextModalOpen] =
     useState<boolean>(false);
 
@@ -84,7 +88,9 @@ const TodayTalkPickSection = ({
     },
     { label: '삭제', onClick: () => setDeleteTextModalOpen(true) },
   ];
-  const otherTalkPickItem: MenuItem[] = [{ label: '신고' }];
+  const otherTalkPickItem: MenuItem[] = [
+    { label: '신고', onClick: () => setReportTextModalOpen(true) },
+  ];
 
   const { mutate: deleteTalkPick } = useDeleteTalkPickMutation(
     todayTalkPick?.id ?? 0,
@@ -124,6 +130,20 @@ const TodayTalkPickSection = ({
           isOpen={deleteTextModalOpen}
           onConfirm={() => deleteTalkPick()}
           onClose={() => setDeleteTextModalOpen(false)}
+        />
+        <TextModal
+          text="해당 게시글을 신고하시겠습니까?"
+          isOpen={reportTextModalOpen}
+          onConfirm={() => {
+            setReportTextModalOpen(false);
+            setReportModalOpen(true);
+          }}
+          onClose={() => setReportTextModalOpen(false)}
+        />
+        <ReportModal
+          isOpen={reportModalOpen}
+          onConfirm={() => {}}
+          onClose={() => setReportModalOpen(false)}
         />
       </div>
       <div css={S.talkPickTitle}>오늘의 톡픽</div>
