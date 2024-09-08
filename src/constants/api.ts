@@ -63,6 +63,7 @@ export const END_POINT = {
   TALKPICK: (talkPickId: Id) => `/talks/${talkPickId}`,
   CREATE_TALKPICK: '/talks',
   TALKPICK_LIST: '/talks',
+  TALKPICK_SUMMARY: (talkPickId: Id) => `/talks/${talkPickId}/summary`,
   TODAY_TALKPICK: '/talks/today',
   TEMP_TALKPICK: '/talks/temp',
   BEST_TALKPICK: '/talks/best',
