@@ -80,8 +80,10 @@ export const END_POINT = {
     `talks/${talkPickId}/comments/${commentId}`,
   DELETE_COMMENT: (talkPickId: Id, commentId: Id) =>
     `talks/${talkPickId}/comments/${commentId}`,
-  LIKE_COMMENT: (commentId: Id) => `talks/${commentId}/likes`,
-  DELETE_LIKE_COMMENT: (commentId: Id) => `talks/${commentId}/likes`,
+  LIKE_COMMENT: (talkPickId: Id, commentId: Id) =>
+    `/likes/talks/${talkPickId}/comments/${commentId}`,
+  DELETE_LIKE_COMMENT: (talkPickId: Id, commentId: Id) =>
+    `/likes/talks/${talkPickId}/comments/${commentId}`,
   CREATE_REPLY: (commentId: Id) => `talks/comments/${commentId}/replies`,
 
   // bookmark API

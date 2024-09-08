@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Comment } from '@/types/comment';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
@@ -6,6 +6,8 @@ import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import { formatDateFromISO } from '@/utils/formatData';
 import { useDeleteCommentMutation } from '@/hooks/api/comment/useDeleteCommentMutation';
+import { useCreateLikeCommentMutation } from '@/hooks/api/like/useCreateLikeCommentMutation';
+import { useDeleteLikeCommentMutation } from '@/hooks/api/like/useDeleteLikeCommentMutation';
 import LikeButton from '@/components/atoms/LikeButton/LikeButton';
 import TextArea from '@/components/molecules/TextArea/TextArea';
 import CommentProfile from '@/components/atoms/CommentProfile/CommentProfile';
@@ -21,7 +23,6 @@ const CommentItem = ({ comment }: CommentItemProps) => {
   const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
   const isMyComment: boolean = comment?.nickname === member?.nickname;
 
-  const likeButtonRef = useRef<HTMLButtonElement>(null);
   const [showReply, setShowReply] = useState(false);
   const [replyText, setReplyText] = useState('');
 
@@ -59,6 +60,26 @@ const CommentItem = ({ comment }: CommentItemProps) => {
 
   const otherComment: MenuItem[] = [{ label: '신고' }];
 
+  const { mutate: createLikeComment } = useCreateLikeCommentMutation(
+    comment.talkPickId,
+    comment.id,
+    'comments',
+  );
+
+  const { mutate: deleteLikeComment } = useDeleteLikeCommentMutation(
+    comment.talkPickId,
+    comment.id,
+    'comments',
+  );
+
+  const handleLikeCommentButton = () => {
+    if (comment.myLike) {
+      deleteLikeComment();
+    } else {
+      createLikeComment();
+    }
+  };
+
   return (
     <div
       css={[
@@ -90,9 +111,9 @@ const CommentItem = ({ comment }: CommentItemProps) => {
             <MenuTap menuData={isMyComment ? myComment : otherComment} />
           </div>
           <LikeButton
-            ref={likeButtonRef}
             likeCount={comment?.likesCount}
             likeState={comment?.myLike}
+            onClick={handleLikeCommentButton}
           />
         </div>
       </div>

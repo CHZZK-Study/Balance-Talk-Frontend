@@ -17,7 +17,7 @@ const TodayTalkPickBanner = ({ talkPick }: TodayTalkPickBannerProps) => {
   const navigate = useNavigate();
 
   const onClickBanner = () => {
-    navigate('/todaytalkpick', { state: { talkPickId: 75 } });
+    navigate('/todaytalkpick', { state: { talkPickId: talkPick?.id } });
   };
 
   return (
