@@ -64,6 +64,8 @@ export { default as EelProfile } from './images/eel-profile.png';
 export { default as TurtleProfile } from './images/turtle-profile.png';
 export { default as OctopusProfile } from './images/octopus-profile.png';
 export { default as JellyfishProfile } from './images/jellyfish-profile.png';
+export { default as ChoicePlus } from './svg/choice-plus.svg';
+export { default as ChoiceMinus } from './svg/choice-minus.svg';
 
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';
