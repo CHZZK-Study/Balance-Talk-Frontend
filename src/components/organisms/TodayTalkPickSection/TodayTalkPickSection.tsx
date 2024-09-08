@@ -15,8 +15,10 @@ import Button from '@/components/atoms/Button/Button';
 import SummaryBox from '@/components/molecules/SummaryBox/SummaryBox';
 import VotePrototype from '@/components/molecules/VotePrototype/VotePrototype';
 import MenuTap, { MenuItem } from '@/components/atoms/MenuTap/MenuTap';
+import TextModal from '@/components/molecules/TextModal/TextModal';
 import { useCreateTalkPickBookmarkMutation } from '@/hooks/api/bookmark/useCreateTalkPickBookmarkMutation';
 import { useDeleteTalkPickBookmarkMutation } from '@/hooks/api/bookmark/useDeleteTalkPickBookmarkMutation';
+import { useDeleteTalkPickMutation } from '@/hooks/api/talk-pick/useDeleteTalkPickMutation';
 import * as S from './TodayTalkPickSection.style';
 
 export interface TodayTalkPickProps {
@@ -30,6 +32,9 @@ const TodayTalkPickSection = ({
 }: TodayTalkPickProps) => {
   const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
+
+  const [deleteTextModalOpen, setDeleteTextModalOpen] =
+    useState<boolean>(false);
 
   const { mutate: createBookmark } = useCreateTalkPickBookmarkMutation(
     todayTalkPick?.id ?? 0,
@@ -60,12 +65,24 @@ const TodayTalkPickSection = ({
         navigate('/post/create', { state: { todayTalkPick } });
       },
     },
-    { label: '삭제' },
+    { label: '삭제', onClick: () => setDeleteTextModalOpen(true) },
   ];
   const otherTalkPickItem: MenuItem[] = [{ label: '신고' }];
 
+  const { mutate: deleteTalkPick } = useDeleteTalkPickMutation(
+    todayTalkPick?.id ?? 0,
+  );
+
   return (
     <div css={S.todayTalkPickStyling}>
+      <div css={S.centerStyling}>
+        <TextModal
+          text="해당 게시글을 삭제하시겠습니까?"
+          isOpen={deleteTextModalOpen}
+          onConfirm={() => deleteTalkPick()}
+          onClose={() => setDeleteTextModalOpen(false)}
+        />
+      </div>
       <div css={S.talkPickTitle}>오늘의 톡픽</div>
       <div css={S.talkPickWrapper}>
         <div css={S.talkPickTopStyling}>
