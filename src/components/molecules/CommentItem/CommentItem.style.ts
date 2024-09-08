@@ -9,6 +9,10 @@ export const MainContainer = css`
   min-width: 1175px;
 `;
 
+export const myCommentColor = css`
+  background-color: ${color.WT_VIOLET};
+`;
+
 export const compactContainer = css`
   ${MainContainer};
   height: 131px;

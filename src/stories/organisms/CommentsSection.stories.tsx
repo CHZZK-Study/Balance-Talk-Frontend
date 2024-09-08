@@ -1,82 +1,61 @@
 import React from 'react';
+import { ProfileSample } from '@/assets';
 import type { Meta, StoryObj } from '@storybook/react';
+import store from '@/store';
+import { Provider } from 'react-redux';
+import ReactQueryProvider from '@/providers/ReactQueryProvider';
+import { Comment, CommentsPagination } from '@/types/comment';
 import CommentsSection from '@/components/organisms/CommentsSection/CommentsSection';
 import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
 
-const commentsData = [
-  {
-    id: '1',
-    imgUrl: 'url1',
-    nickname: '닉네임1',
-    createdTime: '24.07.04 14:56',
-    comment: '댓글 내용1',
-    likeCount: 35,
-    stance: 'pros' as 'pros' | 'cons',
+const exampleCommentList: Comment[] = Array.from({ length: 7 }, (_, index) => ({
+  id: index,
+  talkPickId: 1,
+  talkPickTitle: '톡픽 제목',
+  nickname: '닉네임 4',
+  content: '피곤하게 산다... 그깟 새우 까주는게 뭐 대수라고!',
+  option: 'A',
+  likesCount: 35,
+  myLike: false,
+  parentId: 4,
+  replyCount: 0,
+  reportedCount: 0,
+  createdAt: '24.07.04 14:56',
+  lastModifiedAt: '24.07.04 14:56',
+  blind: false,
+  best: false,
+  imgUrl: ProfileSample,
+}));
+
+const exampleCommentPagination: CommentsPagination = {
+  totalPages: Math.ceil(exampleCommentList.length / 20),
+  totalElements: exampleCommentList.length,
+  size: 7,
+  content: exampleCommentList,
+  number: 0,
+  sort: {
+    empty: false,
+    sorted: true,
+    unsorted: false,
   },
-  {
-    id: '2',
-    imgUrl: 'url2',
-    nickname: '닉네임2',
-    createdTime: '24.07.04 14:57',
-    comment: '댓글 내용2',
-    likeCount: 10,
-    stance: 'cons' as 'pros' | 'cons',
+  numberOfElements:
+    exampleCommentList.length > 7 ? 7 : exampleCommentList.length,
+  pageable: {
+    offset: 0,
+    sort: {
+      empty: false,
+      sorted: true,
+      unsorted: false,
+    },
+    pageNumber: 0,
+    pageSize: 20,
+    paged: true,
+    unpaged: false,
   },
-  {
-    id: '3',
-    imgUrl: 'url3',
-    nickname: '닉네임3',
-    createdTime: '24.07.04 14:58',
-    comment: '댓글 내용3',
-    likeCount: 22,
-    stance: 'pros' as 'pros' | 'cons',
-  },
-  {
-    id: '4',
-    imgUrl: 'url4',
-    nickname: '닉네임4',
-    createdTime: '24.07.04 14:59',
-    comment: '댓글 내용4',
-    likeCount: 50,
-    stance: 'cons' as 'pros' | 'cons',
-  },
-  {
-    id: '5',
-    imgUrl: 'url5',
-    nickname: '닉네임5',
-    createdTime: '24.07.04 15:00',
-    comment: '댓글 내용5',
-    likeCount: 5,
-    stance: 'pros' as 'pros' | 'cons',
-  },
-  {
-    id: '6',
-    imgUrl: 'url6',
-    nickname: '닉네임6',
-    createdTime: '24.07.04 15:01',
-    comment: '댓글 내용6',
-    likeCount: 15,
-    stance: 'cons' as 'pros' | 'cons',
-  },
-  {
-    id: '7',
-    imgUrl: 'url7',
-    nickname: '닉네임7',
-    createdTime: '24.07.04 15:02',
-    comment: '댓글 내용7',
-    likeCount: 30,
-    stance: 'pros' as 'pros' | 'cons',
-  },
-  {
-    id: '8',
-    imgUrl: 'url8',
-    nickname: '닉네임8',
-    createdTime: '24.07.04 15:03',
-    comment: '댓글 내용8',
-    likeCount: 25,
-    stance: 'cons' as 'pros' | 'cons',
-  },
-];
+  first: true,
+  last: false,
+  empty: exampleCommentList.length === 0,
+};
 
 const meta: Meta<typeof CommentsSection> = {
   title: 'organisms/CommentsSection',
@@ -86,7 +65,7 @@ const meta: Meta<typeof CommentsSection> = {
   },
   tags: ['autodocs'],
   args: {
-    commentsData,
+    commentList: exampleCommentPagination,
     voted: true,
   },
   argTypes: {
@@ -98,6 +77,15 @@ const meta: Meta<typeof CommentsSection> = {
       defaultValue: true,
     },
   },
+  decorators: [
+    (Story) => (
+      <Provider store={store}>
+        <ReactQueryProvider>
+          <Story />
+        </ReactQueryProvider>
+      </Provider>
+    ),
+  ],
 };
 
 export default meta;

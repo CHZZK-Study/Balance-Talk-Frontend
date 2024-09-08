@@ -1,34 +1,23 @@
 import React, { useRef, useState } from 'react';
 import { Comment } from '@/types/comment';
+import { useNewSelector } from '@/store';
+import { selectAccessToken } from '@/store/auth';
+import { useParseJwt } from '@/hooks/common/useParseJwt';
+import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import LikeButton from '@/components/atoms/LikeButton/LikeButton';
 import TextArea from '@/components/molecules/TextArea/TextArea';
 import CommentProfile from '@/components/atoms/CommentProfile/CommentProfile';
 import MenuTap, { MenuItem } from '@/components/atoms/MenuTap/MenuTap';
 import * as S from './CommentItem.style';
 
-// export interface Comment {
-//   id: number;
-//   talkPickId: number;
-//   talkPickTitle: string;
-//   nickname: string;
-//   content: string;
-//   option: string;
-//   likesCount: number;
-//   myLike: boolean;
-//   parentId: number;
-//   replyCount: number;
-//   reportedCount: number;
-//   createdAt: string;
-//   lastModifiedAt: string;
-//   blind: boolean;
-//   best: boolean;
-// }
-
 export interface CommentItemProps {
   comment: Comment;
 }
 
 const CommentItem = ({ comment }: CommentItemProps) => {
+  const accessToken = useNewSelector(selectAccessToken);
+  const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
+
   const likeButtonRef = useRef<HTMLButtonElement>(null);
   const [showReply, setShowReply] = useState(false);
   const [replyText, setReplyText] = useState('');
@@ -65,6 +54,7 @@ const CommentItem = ({ comment }: CommentItemProps) => {
       css={[
         S.MainContainer,
         showReply ? S.expandedContainer : S.compactContainer,
+        comment?.nickname === member?.nickname && S.myCommentColor,
       ]}
     >
       <div css={S.commentContainer}>
@@ -96,7 +86,7 @@ const CommentItem = ({ comment }: CommentItemProps) => {
       </div>
       {showReply && (
         <div css={S.replyForm}>
-          <span css={S.nicknameInput}>사용자 닉네임</span>
+          <span css={S.nicknameInput}>{member?.nickname}</span>
           <TextArea
             size="medium"
             value={replyText}

@@ -1,4 +1,9 @@
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import store from '@/store';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import ReactQueryProvider from '@/providers/ReactQueryProvider';
 import { Comment } from '@/types/comment';
 import CommentItem from '@/components/molecules/CommentItem/CommentItem';
 import { ProfileSample } from '@/assets';
@@ -35,6 +40,17 @@ const meta: Meta<typeof CommentItem> = {
   args: {
     comment: exampleComment,
   },
+  decorators: [
+    (Story) => (
+      <Provider store={store}>
+        <ReactQueryProvider>
+          <Router>
+            <Story />
+          </Router>
+        </ReactQueryProvider>
+      </Provider>
+    ),
+  ],
 };
 
 export default meta;
