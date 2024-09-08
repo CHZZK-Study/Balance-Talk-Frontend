@@ -37,6 +37,13 @@ const typo = {
       lineHeight: '1.4',
       letterSpacing: `${18 * -0.05}px`,
     },
+    SemiBold_16: {
+      fontFamily: 'Pretendard',
+      fontSize: '18px',
+      fontWeight: 600,
+      lineHeight: '1.6',
+      letterSpacing: `${18 * -0.05}px`,
+    },
     Medium: {
       fontFamily: 'Pretendard',
       fontSize: '18px',
