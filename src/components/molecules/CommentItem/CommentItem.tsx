@@ -8,10 +8,14 @@ import { formatDateFromISO } from '@/utils/formatData';
 import { useDeleteCommentMutation } from '@/hooks/api/comment/useDeleteCommentMutation';
 import { useCreateLikeCommentMutation } from '@/hooks/api/like/useCreateLikeCommentMutation';
 import { useDeleteLikeCommentMutation } from '@/hooks/api/like/useDeleteLikeCommentMutation';
+import { useReportCommentMutation } from '@/hooks/api/report/useReportCommentMutation';
+import MenuTap, { MenuItem } from '@/components/atoms/MenuTap/MenuTap';
+import ToastModal from '@/components/atoms/ToastModal/ToastModal';
 import LikeButton from '@/components/atoms/LikeButton/LikeButton';
 import TextArea from '@/components/molecules/TextArea/TextArea';
 import CommentProfile from '@/components/atoms/CommentProfile/CommentProfile';
-import MenuTap, { MenuItem } from '@/components/atoms/MenuTap/MenuTap';
+import TextModal from '../TextModal/TextModal';
+import ReportModal from '../ReportModal/ReportModal';
 import * as S from './CommentItem.style';
 
 export interface CommentItemProps {
@@ -22,6 +26,10 @@ const CommentItem = ({ comment }: CommentItemProps) => {
   const accessToken = useNewSelector(selectAccessToken);
   const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
   const isMyComment: boolean = comment?.nickname === member?.nickname;
+
+  const [reportModalOpen, setReportModalOpen] = useState<boolean>(false);
+  const [reportTextModalOpen, setReportTextModalOpen] =
+    useState<boolean>(false);
 
   const [showReply, setShowReply] = useState(false);
   const [replyText, setReplyText] = useState('');
@@ -43,6 +51,12 @@ const CommentItem = ({ comment }: CommentItemProps) => {
     'comments',
   );
 
+  const {
+    mutate: reportComment,
+    reportCommentSuccess,
+    setReportCommentSuccess,
+  } = useReportCommentMutation(comment.talkPickId, comment.id);
+
   const myComment: MenuItem[] = [
     {
       label: '수정',
@@ -58,7 +72,14 @@ const CommentItem = ({ comment }: CommentItemProps) => {
     },
   ];
 
-  const otherComment: MenuItem[] = [{ label: '신고' }];
+  const otherComment: MenuItem[] = [
+    {
+      label: '신고',
+      onClick: () => {
+        setReportTextModalOpen(true);
+      },
+    },
+  ];
 
   const { mutate: createLikeComment } = useCreateLikeCommentMutation(
     comment.talkPickId,
@@ -80,6 +101,20 @@ const CommentItem = ({ comment }: CommentItemProps) => {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleReportCommentButton = (reason: string) => {
+    reportComment(reason);
+    setReportModalOpen(false);
+    scrollToTop();
+
+    setTimeout(() => {
+      setReportCommentSuccess(false);
+    }, 2000);
+  };
+
   return (
     <div
       css={[
@@ -87,6 +122,27 @@ const CommentItem = ({ comment }: CommentItemProps) => {
         showReply ? S.expandedContainer : S.compactContainer,
       ]}
     >
+      {reportCommentSuccess && (
+        <div css={S.toastModalStyling}>
+          <ToastModal>신고가 완료되었습니다.</ToastModal>
+        </div>
+      )}
+      <div css={S.centerStyling}>
+        <TextModal
+          text="해당 댓글을 신고하시겠습니까?"
+          isOpen={reportTextModalOpen}
+          onConfirm={() => {
+            setReportTextModalOpen(false);
+            setReportModalOpen(true);
+          }}
+          onClose={() => setReportTextModalOpen(false)}
+        />
+        <ReportModal
+          isOpen={reportModalOpen}
+          onConfirm={(reason) => handleReportCommentButton(reason)}
+          onClose={() => setReportModalOpen(false)}
+        />
+      </div>
       <div css={[S.commentContainer, isMyComment && S.myCommentColor]}>
         <CommentProfile option={comment?.option} imgUrl={comment?.imgUrl} />
         <div css={S.commentWrapper}>

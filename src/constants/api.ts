@@ -97,6 +97,10 @@ export const END_POINT = {
   GAME: (gameId: Id) => `/games/${gameId}`,
   EDIT_GAME: (gameId: Id) => `/games/${gameId}`,
   DELETE_GAME: (gameId: Id) => `/games/${gameId}`,
+
+  // report API
+  REPORT_COMMENT: (talkPickId: Id, commentId: Id) =>
+    `/reports/talks/${talkPickId}/comments/${commentId}`,
 };
 
 export const AXIOS = {
