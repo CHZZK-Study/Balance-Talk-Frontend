@@ -13,9 +13,11 @@ import { TalkPickDetail } from '@/types/talk-pick';
 import { formatDate, formatNumber } from '@/utils/formatData';
 import Button from '@/components/atoms/Button/Button';
 import SummaryBox from '@/components/molecules/SummaryBox/SummaryBox';
+import ToastModal from '@/components/atoms/ToastModal/ToastModal';
 import VotePrototype from '@/components/molecules/VotePrototype/VotePrototype';
 import MenuTap, { MenuItem } from '@/components/atoms/MenuTap/MenuTap';
 import TextModal from '@/components/molecules/TextModal/TextModal';
+import ShareModal from '@/components/molecules/ShareModal/ShareModal';
 import { useCreateTalkPickBookmarkMutation } from '@/hooks/api/bookmark/useCreateTalkPickBookmarkMutation';
 import { useDeleteTalkPickBookmarkMutation } from '@/hooks/api/bookmark/useDeleteTalkPickBookmarkMutation';
 import { useDeleteTalkPickMutation } from '@/hooks/api/talk-pick/useDeleteTalkPickMutation';
@@ -30,11 +32,26 @@ const TodayTalkPickSection = ({
   todayTalkPick,
   myTalkPick,
 }: TodayTalkPickProps) => {
+  const currentURL: string = window.location.href;
   const navigate = useNavigate();
-  const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+  const [linkCopied, setLinkCopied] = useState<boolean>(false);
+
+  const [shareModalOpen, setShareModalOpen] = useState<boolean>(false);
   const [deleteTextModalOpen, setDeleteTextModalOpen] =
     useState<boolean>(false);
+
+  const copyTalkPickLink = (link: string) => {
+    navigator.clipboard
+      .writeText(link)
+      .then(() => {
+        console.log('톡픽 링크 복사 완료!');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const { mutate: createBookmark } = useCreateTalkPickBookmarkMutation(
     todayTalkPick?.id ?? 0,
@@ -73,9 +90,35 @@ const TodayTalkPickSection = ({
     todayTalkPick?.id ?? 0,
   );
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleCopyButton = (link: string) => {
+    copyTalkPickLink(link);
+    setShareModalOpen(false);
+    setLinkCopied(true);
+    scrollToTop();
+
+    setTimeout(() => {
+      setLinkCopied(false);
+    }, 2000);
+  };
+
   return (
     <div css={S.todayTalkPickStyling}>
+      {linkCopied && (
+        <div css={S.toastModalStyling}>
+          <ToastModal>복사 완료!</ToastModal>
+        </div>
+      )}
       <div css={S.centerStyling}>
+        <ShareModal
+          link={currentURL}
+          isOpen={shareModalOpen}
+          onConfirm={() => handleCopyButton(currentURL)}
+          onClose={() => setShareModalOpen(false)}
+        />
         <TextModal
           text="해당 게시글을 삭제하시겠습니까?"
           isOpen={deleteTextModalOpen}
@@ -159,6 +202,7 @@ const TodayTalkPickSection = ({
           size="medium"
           iconLeft={<Share />}
           css={S.shareBtnStyling}
+          onClick={() => setShareModalOpen(true)}
         >
           공유하기
         </Button>
