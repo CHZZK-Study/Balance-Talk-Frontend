@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
+/* eslint-disable no-console */
 import React, { useState } from 'react';
 import {
   AngleSmallUp,
@@ -6,6 +8,7 @@ import {
   BookmarkSR,
   Share,
 } from '@/assets';
+import { useNavigate } from 'react-router-dom';
 import { TalkPickDetail } from '@/types/talk-pick';
 import { formatDate, formatNumber } from '@/utils/formatData';
 import Button from '@/components/atoms/Button/Button';
@@ -18,14 +21,15 @@ import * as S from './TodayTalkPickSection.style';
 
 export interface TodayTalkPickProps {
   todayTalkPick?: TalkPickDetail;
-  talkPickMenu: MenuItem[];
+  myTalkPick: boolean;
 }
 
 const TodayTalkPickSection = ({
   todayTalkPick,
-  talkPickMenu,
+  myTalkPick,
 }: TodayTalkPickProps) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const navigate = useNavigate();
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   const { mutate: createBookmark } = useCreateTalkPickBookmarkMutation(
     todayTalkPick?.id ?? 0,
@@ -49,6 +53,17 @@ const TodayTalkPickSection = ({
     setIsExpanded((prev) => !prev);
   };
 
+  const myTalkPickItem: MenuItem[] = [
+    {
+      label: '수정',
+      onClick: () => {
+        navigate('/post/create', { state: { todayTalkPick } });
+      },
+    },
+    { label: '삭제' },
+  ];
+  const otherTalkPickItem: MenuItem[] = [{ label: '신고' }];
+
   return (
     <div css={S.todayTalkPickStyling}>
       <div css={S.talkPickTitle}>오늘의 톡픽</div>
@@ -56,7 +71,9 @@ const TodayTalkPickSection = ({
         <div css={S.talkPickTopStyling}>
           <div css={S.talkPickDetailWrapper}>
             <div css={S.talkPickTitle}>{todayTalkPick?.title}</div>
-            <MenuTap menuData={talkPickMenu} />
+            <MenuTap
+              menuData={myTalkPick ? myTalkPickItem : otherTalkPickItem}
+            />
           </div>
           <div css={S.talkPickDetailWrapper}>
             <div>
@@ -79,7 +96,16 @@ const TodayTalkPickSection = ({
         <div css={S.talkPickContentWrapper}>
           <SummaryBox summary={todayTalkPick?.summary} />
           {isExpanded && (
-            <div css={S.talkPickContent}>{todayTalkPick?.content}</div>
+            <div css={S.talkPickContent}>
+              <p>{todayTalkPick?.content}</p>
+              {todayTalkPick?.imgUrls.length !== 0 && (
+                <div css={S.talkPickImageWrapper}>
+                  {todayTalkPick?.imgUrls.map((url, idx) => (
+                    <img src={url} alt={`image ${idx + 1}`} />
+                  ))}
+                </div>
+              )}
+            </div>
           )}
           <Button
             variant="outlineShadow"

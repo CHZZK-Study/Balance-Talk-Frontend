@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNewSelector } from '@/store';
+import { selectAccessToken } from '@/store/auth';
 import { useLocation } from 'react-router-dom';
-import { MenuItem } from '@/components/atoms/MenuTap/MenuTap';
+import { useParseJwt } from '@/hooks/common/useParseJwt';
+import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import TodayTalkPickSection from '@/components/organisms/TodayTalkPickSection/TodayTalkPickSection';
 import CommentsSection from '@/components/organisms/CommentsSection/CommentsSection';
 import { useTalkPickDetailQuery } from '@/hooks/api/talk-pick/useTalkPickDetailQuery';
@@ -86,16 +89,21 @@ const commentsData = [
 ];
 
 const TodayTalkPickPage = () => {
+  const accessToken = useNewSelector(selectAccessToken);
+  const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
+
   const location = useLocation();
   const state = location.state as State;
   const talkPickId = state?.talkPickId;
-  const { talkPick } = useTalkPickDetailQuery(talkPickId);
 
-  const menuItem: MenuItem[] = [{ label: '신고' }];
+  const { talkPick } = useTalkPickDetailQuery(talkPickId);
 
   return (
     <div css={S.contentWrapStyle}>
-      <TodayTalkPickSection todayTalkPick={talkPick} talkPickMenu={menuItem} />
+      <TodayTalkPickSection
+        todayTalkPick={talkPick}
+        myTalkPick={member?.nickname === talkPick?.writer}
+      />
       <div css={S.commentsWrapStyle}>
         <CommentsSection commentsData={commentsData} voted />
       </div>
