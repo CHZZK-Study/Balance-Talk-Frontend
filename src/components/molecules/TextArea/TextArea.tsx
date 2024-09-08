@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from '@/components/atoms/Button/Button';
 import * as S from './TextArea.style';
-import { replyTextArea, textAreaContainer } from './TextArea.style';
 
 export interface TextAreaProps {
   size: 'large' | 'medium';

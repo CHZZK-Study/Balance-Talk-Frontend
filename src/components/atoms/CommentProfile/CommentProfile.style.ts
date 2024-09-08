@@ -1,13 +1,13 @@
 import { css } from '@emotion/react';
 import color from '@/styles/color';
 
-export const containerStyle = (stance: 'pros' | 'cons') => css`
+export const containerStyle = (stance: 'A' | 'B') => css`
   display: inline-flex;
   padding: 5px;
   align-items: center;
   gap: 10px;
   border-radius: 50px 50px 0 50px;
-  background: ${stance === 'pros' ? color.RED : color.BLUE};
+  background: ${stance === 'A' ? color.RED : color.BLUE};
 `;
 
 export const profileWrapper = css({
