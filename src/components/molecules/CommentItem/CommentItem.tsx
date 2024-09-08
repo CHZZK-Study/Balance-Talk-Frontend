@@ -30,6 +30,8 @@ const CommentItem = ({ comment }: CommentItemProps) => {
   const [reportModalOpen, setReportModalOpen] = useState<boolean>(false);
   const [reportTextModalOpen, setReportTextModalOpen] =
     useState<boolean>(false);
+  const [deleteTextModalOpen, setDeleteTextModalOpen] =
+    useState<boolean>(false);
 
   const [showReply, setShowReply] = useState(false);
   const [replyText, setReplyText] = useState('');
@@ -57,6 +59,11 @@ const CommentItem = ({ comment }: CommentItemProps) => {
     setReportCommentSuccess,
   } = useReportCommentMutation(comment.talkPickId, comment.id);
 
+  const handleDeleteCommentButton = () => {
+    setDeleteTextModalOpen(false);
+    deleteComment(comment.id);
+  };
+
   const myComment: MenuItem[] = [
     {
       label: '수정',
@@ -67,7 +74,7 @@ const CommentItem = ({ comment }: CommentItemProps) => {
     {
       label: '삭제',
       onClick: () => {
-        deleteComment(comment.id);
+        setDeleteTextModalOpen(true);
       },
     },
   ];
@@ -128,6 +135,14 @@ const CommentItem = ({ comment }: CommentItemProps) => {
         </div>
       )}
       <div css={S.centerStyling}>
+        <TextModal
+          text="작성한 댓글을 삭제하시겠습니까?"
+          isOpen={deleteTextModalOpen}
+          onConfirm={() => {
+            handleDeleteCommentButton();
+          }}
+          onClose={() => setReportTextModalOpen(false)}
+        />
         <TextModal
           text="해당 댓글을 신고하시겠습니까?"
           isOpen={reportTextModalOpen}
