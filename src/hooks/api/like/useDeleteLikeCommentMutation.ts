@@ -42,7 +42,7 @@ export const useDeleteLikeCommentMutation = (
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: ['talks', talkPickId, commentId, commentsCategory],
+        queryKey: ['talks', talkPickId, commentsCategory],
       });
     },
   });
