@@ -37,7 +37,7 @@ const TodayTalkPickPage = () => {
     talkPickId,
     {
       page: selectedPage - 1,
-      size: 2,
+      size: 7,
     },
     'comments',
   );
@@ -50,6 +50,8 @@ const TodayTalkPickPage = () => {
       />
       <div css={S.commentsWrapStyle}>
         <CommentsSection
+          talkPickId={talkPickId}
+          myOption={talkPick?.votedOption ?? null}
           commentList={comments}
           selectedPage={selectedPage}
           handlePageChange={setSelectedPage}

@@ -6,9 +6,12 @@ import Toggle from '@/components/atoms/Toggle/Toggle';
 import ToastModal from '@/components/atoms/ToastModal/ToastModal';
 import { createRangeArray } from '@/utils/array';
 import CommentItem from '@/components/molecules/CommentItem/CommentItem';
+import { useCreateCommentMutation } from '@/hooks/api/comment/useCreateCommentMutation';
 import * as S from './CommentsSection.style';
 
 export interface CommentsSectionProps {
+  talkPickId: number;
+  myOption: 'A' | 'B' | null;
   commentList?: CommentsPagination;
   selectedPage: number;
   handlePageChange: React.Dispatch<React.SetStateAction<number>>;
@@ -16,23 +19,31 @@ export interface CommentsSectionProps {
 }
 
 const CommentsSection = ({
+  talkPickId,
+  myOption,
   commentList,
   selectedPage,
   handlePageChange,
   voted,
 }: CommentsSectionProps) => {
-  const [replyText, setReplyText] = useState('');
-
-  const handleReplyChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setReplyText(e.target.value);
-  };
-
-  const handleReplySubmit = () => {
-    console.log('작성한 댓글:', replyText);
-    setReplyText('');
-  };
-
   const pages = createRangeArray(selectedPage, commentList?.totalPages || 0);
+  const [commentValue, setCommentValue] = useState<string>('');
+
+  const { mutate: createComment } = useCreateCommentMutation(
+    talkPickId,
+    'comments',
+  );
+
+  const handleCommentButton = () => {
+    if (!myOption) return;
+
+    createComment({
+      content: commentValue,
+      option: myOption,
+      parentId: talkPickId,
+    });
+    setCommentValue('');
+  };
 
   return (
     <div css={S.commentsSectionContainer}>
@@ -49,10 +60,12 @@ const CommentsSection = ({
         )}
         <TextArea
           size="large"
-          value={replyText}
-          onChange={handleReplyChange}
-          onSubmit={handleReplySubmit}
-          placeholder="댓글을 입력하세요"
+          value={commentValue}
+          onSubmit={handleCommentButton}
+          placeholder="댓글을 입력하세요."
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+            setCommentValue(e.target.value)
+          }
           label="등록"
         />
         <div css={S.commentsWrapper}>

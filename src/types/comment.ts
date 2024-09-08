@@ -37,7 +37,9 @@ export interface CommentsPagination extends PaginationType {
   content: Comment[];
 }
 
-export type CreateCommentProps = Pick<Comment, 'content' | 'option'>;
+export type CreateCommentProps = Pick<Comment, 'content' | 'option'> & {
+  parentId: number;
+};
 
 export type EditCommentProps = Pick<Comment, 'content'>;
 
