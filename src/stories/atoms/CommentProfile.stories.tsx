@@ -14,14 +14,14 @@ const meta: Meta<CommentProfileProps> = {
   },
   tags: ['autodocs'],
   argTypes: {
-    stance: {
-      options: ['pros', 'cons'],
+    option: {
+      options: ['A', 'B'],
       control: { type: 'radio' },
     },
     imgUrl: { control: 'text' },
   },
   args: {
-    stance: 'pros',
+    option: 'A',
     imgUrl: ProfileSample,
   },
 };
@@ -31,7 +31,7 @@ type Story = StoryObj<CommentProfileProps>;
 
 export const Default: Story = {
   args: {
-    stance: 'pros',
+    option: 'A',
     imgUrl: ProfileSample,
   },
 };
@@ -41,11 +41,11 @@ export const All: Story = {
     <ul css={storyContainer}>
       <li css={storyInnerContainer}>
         <h3>찬성</h3>
-        <CommentProfile {...args} stance="pros" />
+        <CommentProfile {...args} option="A" />
       </li>
       <li css={storyInnerContainer}>
         <h3>반대</h3>
-        <CommentProfile {...args} stance="cons" />
+        <CommentProfile {...args} option="B" />
       </li>
     </ul>
   ),
