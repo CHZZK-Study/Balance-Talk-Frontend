@@ -1,36 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Camera } from '@/assets';
+import { FileUploadType } from '@/types/file';
+import { useFileUploadMutation } from '@/hooks/api/file/useFileUploadMutation';
 import * as S from './ImageBoxButton.style';
 
 const ImageBoxButton = () => {
-  const [image, setImage] = useState<string | null>(null);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const { mutate } = useFileUploadMutation();
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(reader.result as string);
-      };
-      reader.readAsDataURL(file);
+      const formData = new FormData();
+      formData.append('file', file);
+
+      mutate(
+        { formData, params: { type: 'GAME' } as FileUploadType },
+        {
+          onSuccess: (response) => {
+            if (response.imgUrls && response.imgUrls.length > 0) {
+              setImageUrl(response.imgUrls[0]);
+            }
+          },
+          onError: (error) => {
+            console.error('이미지 업로드 중 오류 발생:', error);
+          },
+        },
+      );
     }
   };
 
   return (
     <div css={S.imageContainer}>
-      {image ? (
-        <img src={image} alt="Uploaded" css={S.uploadedImage} />
+      {imageUrl ? (
+        <img src={imageUrl} alt="Uploaded" css={S.uploadedImage} />
       ) : (
-        <div css={S.defaultImageBox}>
+        <label css={S.defaultImageBox} htmlFor="file-upload">
           <Camera css={S.iconStyle} />
-        </div>
+          {}
+          <input
+            id="file-upload"
+            type="file"
+            accept="image/*"
+            ref={inputRef}
+            onChange={handleImageUpload}
+            css={S.fileInput}
+          />
+        </label>
       )}
-      <input
-        type="file"
-        accept="image/*"
-        onChange={handleImageUpload}
-        css={S.fileInput}
-      />
     </div>
   );
 };
