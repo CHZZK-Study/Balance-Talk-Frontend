@@ -7,6 +7,9 @@ export type TalkPickDetail = {
   summary: TalkPickSummary;
   optionA: string;
   optionB: string;
+  sourceUrl: string;
+  imgUrls: string[];
+  imgStoredNames: string[];
   votesCountOfOptionA: number;
   votesCountOfOptionB: number;
   views: number;

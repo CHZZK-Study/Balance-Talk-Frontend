@@ -1,9 +1,11 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteTalkPick } from '@/api/talk-pick';
 import { Id } from '@/types/api';
+import { useNavigate } from 'react-router-dom';
 
 export const useDeleteTalkPickMutation = (talkPickId: Id) => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   return useMutation({
     mutationFn: () => deleteTalkPick(talkPickId),
@@ -11,6 +13,8 @@ export const useDeleteTalkPickMutation = (talkPickId: Id) => {
       await queryClient.invalidateQueries({
         queryKey: ['talkPick', talkPickId],
       });
+
+      navigate('/talkpickplace');
     },
   });
 };

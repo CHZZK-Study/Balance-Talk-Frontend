@@ -5,7 +5,7 @@ export const uploaderContainerStyle = css({
   flexDirection: 'column',
   alignItems: 'center',
   width: '1069px',
-  height: '102px',
+  height: '110px',
   position: 'relative',
   overflow: 'visible',
 });

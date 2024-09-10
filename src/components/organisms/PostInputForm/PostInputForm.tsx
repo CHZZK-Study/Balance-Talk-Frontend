@@ -8,27 +8,34 @@ import DraftPostButton from '@/components/atoms/DraftPostButton/DraftPostButton'
 import Button from '@/components/atoms/Button/Button';
 import { useFileUploadMutation } from '@/hooks/api/file/useFileUploadMutation';
 import { useTempTalkPickQuery } from '@/hooks/api/talk-pick/useTempTalkPickQuery';
-import { NewTalkPick } from '@/types/talk-pick';
+import { NewTalkPick, TalkPickDetail } from '@/types/talk-pick';
 import * as S from './PostInputForm.style';
 
 interface PostInputFormProps {
   onSubmit: (data: NewTalkPick) => void;
+  onEditSubmit: (data: NewTalkPick) => void;
   onSave: (data: NewTalkPick) => void;
+  existingTalkPick?: TalkPickDetail;
 }
 
 const PostInputForm = (
-  { onSubmit, onSave }: PostInputFormProps,
+  { onSubmit, onEditSubmit, onSave, existingTalkPick }: PostInputFormProps,
   ref: ForwardedRef<HTMLTextAreaElement>,
 ) => {
-  const [title, setTitle] = useState('');
-  const [optionA, setOptionA] = useState('');
-  const [optionB, setOptionB] = useState('');
-  const [content, setContent] = useState('');
-  const [sourceUrl, setSourceUrl] = useState('');
+  const [title, setTitle] = useState(existingTalkPick?.title || '');
+  const [optionA, setOptionA] = useState(existingTalkPick?.optionA || '');
+  const [optionB, setOptionB] = useState(existingTalkPick?.optionB || '');
+  const [content, setContent] = useState(existingTalkPick?.content || '');
+  const [sourceUrl, setSourceUrl] = useState(existingTalkPick?.sourceUrl || '');
+  const [imgUrls, setImgUrls] = useState<string[]>(
+    existingTalkPick?.imgUrls || [],
+  );
+  const [storedNames, setStoredNames] = useState<string[]>(
+    existingTalkPick?.imgStoredNames || [],
+  );
+
   const [imageFiles, setImageFiles] = useState<File[]>([]);
-  const [imgUrls, setImgUrls] = useState<string[]>([]);
-  const [storedNames, setStoredNames] = useState<string[]>([]);
-  const [isTempLoaded, setIsTempLoaded] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [buttonType, setButtonType] = useState<
     'TALK_PICK' | 'TEMP_TALK_PICK' | null
   >(null);
@@ -40,7 +47,7 @@ const PostInputForm = (
   };
 
   useEffect(() => {
-    if (storedNames.length > 0) {
+    if (isSubmitting) {
       const postData = {
         title,
         optionA,
@@ -55,12 +62,18 @@ const PostInputForm = (
         onSave(postData);
       } else if (buttonType === 'TALK_PICK') {
         scrollToTop();
-        onSubmit(postData);
+        if (existingTalkPick) {
+          onEditSubmit(postData);
+        } else {
+          onSubmit(postData);
+        }
       }
 
       setButtonType(null);
+      setIsSubmitting(false);
     }
   }, [
+    isSubmitting,
     storedNames,
     title,
     optionA,
@@ -69,22 +82,30 @@ const PostInputForm = (
     sourceUrl,
     buttonType,
     onSubmit,
+    onEditSubmit,
     onSave,
+    existingTalkPick,
   ]);
 
   const handleFormSubmit = (type: 'TALK_PICK' | 'TEMP_TALK_PICK') => {
     setButtonType(type);
-    const imageFormData = new FormData();
-    imageFiles.forEach((file) => imageFormData.append('file', file));
 
-    uploadFiles(
-      { formData: imageFormData, params: { type } },
-      {
-        onSuccess: (response) => {
-          setStoredNames(response.storedNames);
+    if (imageFiles.length > 0) {
+      const imageFormData = new FormData();
+      imageFiles.forEach((file) => imageFormData.append('file', file));
+
+      uploadFiles(
+        { formData: imageFormData, params: { type } },
+        {
+          onSuccess: (response) => {
+            setStoredNames(response.storedNames);
+            setIsSubmitting(true);
+          },
         },
-      },
-    );
+      );
+    } else {
+      setIsSubmitting(true);
+    }
   };
 
   const { data: tempTalkPick, isSuccess } = useTempTalkPickQuery();
@@ -98,7 +119,6 @@ const PostInputForm = (
       setSourceUrl(tempTalkPick.sourceUrl as string);
       setImgUrls(tempTalkPick.imgUrls);
       setStoredNames(tempTalkPick.storedNames);
-      setIsTempLoaded(true);
     }
   };
 
@@ -146,13 +166,12 @@ const PostInputForm = (
           setImageFiles={setImageFiles}
           imgUrls={imgUrls}
           setImgUrls={setImgUrls}
-          setStoredNames={setStoredNames}
-          isTempLoaded={isTempLoaded}
+          storedNames={storedNames}
         />
       </div>
 
       <div css={S.otherStyle}>
-        <CitationBox setSourceUrl={setSourceUrl} />
+        <CitationBox value={sourceUrl} setSourceUrl={setSourceUrl} />
         <DraftPostButton onClick={handleLoadDraft} />
       </div>
 
