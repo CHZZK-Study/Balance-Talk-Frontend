@@ -11,13 +11,13 @@ import { useSaveTempTalkPickMutation } from '@/hooks/api/talk-pick/useSaveTempTa
 import * as S from './CreatePostPage.style';
 
 interface State {
-  todayTalkPick: TalkPickDetail;
+  talkPick: TalkPickDetail;
 }
 
 const CreatePostPage = () => {
   const location = useLocation();
   const state = location.state as State;
-  const talkPickData = state?.todayTalkPick;
+  const talkPickData = state?.talkPick;
 
   const [showSaveSuccessToast, setShowSaveSuccessToast] = useState(false);
   const { mutate: createTalkPick, createSuccess } = useCreateTalkPickMutation();

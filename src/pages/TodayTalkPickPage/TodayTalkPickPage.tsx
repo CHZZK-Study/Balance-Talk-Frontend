@@ -45,7 +45,7 @@ const TodayTalkPickPage = () => {
   return (
     <div css={S.contentWrapStyle}>
       <TodayTalkPickSection
-        todayTalkPick={talkPick}
+        talkPick={talkPick}
         myTalkPick={member?.nickname === talkPick?.writer}
       />
       <div css={S.commentsWrapStyle}>
