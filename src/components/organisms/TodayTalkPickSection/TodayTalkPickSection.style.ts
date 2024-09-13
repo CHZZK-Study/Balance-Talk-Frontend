@@ -9,6 +9,14 @@ export const todayTalkPickStyling = css({
   gap: '25px',
 });
 
+export const toastModalStyling = css({
+  position: 'fixed',
+  top: '110px',
+  left: '50%',
+  transform: 'translate(-50%)',
+  zIndex: '1000',
+});
+
 export const talkPickWrapper = css({
   display: 'flex',
   flexDirection: 'column',
@@ -74,6 +82,20 @@ export const talkPickContent = css(typo.Main.Medium, {
   color: color.BK,
 });
 
+export const talkPickImageWrapper = css({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  paddingTop: '20px',
+  gap: '15px',
+
+  '& > img': {
+    maxWidth: '100%',
+    width: 'auto',
+    height: 'auto',
+  },
+});
+
 export const voteBarWrapper = css({
   display: 'flex',
   justifyContent: 'center',
@@ -92,3 +114,11 @@ export const contentBtnStyling = css({
 });
 
 export const shareBtnStyling = css(typo.Main.SemiBold);
+
+export const centerStyling = css({
+  position: 'fixed',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  zIndex: '1000',
+});

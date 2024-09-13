@@ -2,43 +2,34 @@
 import React from 'react';
 import { Copy, KakaoLogin } from '@/assets';
 import Modal from '@/components/atoms/Modal/Modal';
-import {
-  btnTextStyling,
-  btnWrapperStyling,
-  copyBoxStyling,
-  linkBoxStyling,
-  linkTextStyling,
-  linkWrapperStyling,
-  loginButtonStyling,
-  shareModalStyling,
-  shareTextStyling,
-} from './ShareModal.style';
+import * as S from './ShareModal.style';
 
 export interface ShareModalProps {
   link: string;
   isOpen?: boolean;
+  onConfirm?: () => void;
   onClose?: () => void;
 }
 
-const ShareModal = ({ link, isOpen, onClose }: ShareModalProps) => {
+const ShareModal = ({ link, isOpen, onConfirm, onClose }: ShareModalProps) => {
   return (
     <Modal action="share" isOpen={isOpen} onClose={onClose}>
-      <div css={shareModalStyling}>
-        <div css={shareTextStyling}>공유하기</div>
-        <div css={linkWrapperStyling}>
-          <div css={linkBoxStyling}>
-            <div css={linkTextStyling}>{link}</div>
+      <div css={S.shareModalStyling}>
+        <div css={S.shareTextStyling}>공유하기</div>
+        <div css={S.linkWrapperStyling}>
+          <div css={S.linkBoxStyling}>
+            <div css={S.linkTextStyling}>{link}</div>
           </div>
-          <button type="button" css={copyBoxStyling}>
+          <button type="button" css={S.copyBoxStyling} onClick={onConfirm}>
             <Copy />
             복사
           </button>
         </div>
-        <div css={btnWrapperStyling}>
-          <button type="button" css={loginButtonStyling}>
+        <div css={S.btnWrapperStyling}>
+          <button type="button" css={S.loginButtonStyling}>
             <KakaoLogin />
           </button>
-          <div css={btnTextStyling}>
+          <div css={S.btnTextStyling}>
             카카오톡으로
             <br />
             공유하기

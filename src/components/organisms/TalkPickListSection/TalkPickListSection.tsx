@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useNewSelector } from '@/store';
+import { selectAccessToken } from '@/store/auth';
 import { TalkPickBubble } from '@/assets';
 import { createRangeArray } from '@/utils/array';
-import { calculateTotalPages } from '@/utils/pagination';
-import { TalkPickListItem, TalkPickListPagination } from '@/types/talk-pick';
+import { TalkPickListPagination } from '@/types/talk-pick';
 import ToggleGroup, {
   ToggleGroupItem,
-  ToggleGroupProps,
 } from '@/components/atoms/ToggleGroup/ToggleGroup';
 import Button from '@/components/atoms/Button/Button';
 import Pagination from '@/components/atoms/Pagination/Pagination';
@@ -13,45 +14,33 @@ import TalkPickList from '@/components/molecules/TalkPickList/TalkPickList';
 import * as S from './TalkPickListSection.style';
 
 export interface TalkPickListProps {
-  talkPickList: TalkPickListPagination;
+  talkPickList?: TalkPickListPagination;
+  toggleItem: ToggleGroupItem[];
+  selectedValue: string;
+  setToggleValue: React.Dispatch<React.SetStateAction<string>>;
+  selectedPage: number;
+  handlePageChange: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const TalkPickListSection = ({ talkPickList }: TalkPickListProps) => {
-  const [selectedValue, setSelectedValue] =
-    useState<ToggleGroupProps['selectedValue']>('trend');
-  const toggleItem: ToggleGroupItem[] = [
-    {
-      label: '최신순',
-      value: 'recent',
-    },
-    {
-      label: '인기순',
-      value: 'trend',
-    },
-  ];
+const TalkPickListSection = ({
+  talkPickList,
+  toggleItem,
+  selectedValue,
+  setToggleValue,
+  selectedPage,
+  handlePageChange,
+}: TalkPickListProps) => {
+  const accessToken = useNewSelector(selectAccessToken);
 
-  const [selectedPage, setSelectedPage] = useState<number>(1);
-  const [displayedTalkPick, setDisplayedTalkPick] = useState<
-    TalkPickListItem[]
-  >([]);
-  const talkPickListSize: number = 20;
+  const navigate = useNavigate();
+  const pages = createRangeArray(selectedPage, talkPickList?.totalPages || 0);
 
-  useEffect(() => {
-    const startList = (selectedPage - 1) * talkPickListSize;
-    const nextDisplayedList = talkPickList.content.slice(
-      startList,
-      startList + talkPickListSize,
-    );
-    setDisplayedTalkPick(nextDisplayedList);
-  }, [selectedPage, talkPickList.content]);
-
-  const totalPages = calculateTotalPages(
-    talkPickList.content.length,
-    talkPickListSize,
-  );
-  const pages = createRangeArray(totalPages || 0);
-  const handleChangeNavigate = (page: number) => {
-    setSelectedPage(page);
+  const handleCreatePostButton = () => {
+    if (accessToken) {
+      navigate('/post/create');
+    } else {
+      navigate('/login');
+    }
   };
 
   return (
@@ -60,23 +49,28 @@ const TalkPickListSection = ({ talkPickList }: TalkPickListProps) => {
         <ToggleGroup
           items={toggleItem}
           selectedValue={selectedValue}
-          onClick={setSelectedValue}
+          onClick={setToggleValue}
         />
         <div css={S.talkPickWriteBtnWrapper}>
           <TalkPickBubble />
-          <Button variant="primary" size="large" css={S.talkPickWriteBtn}>
+          <Button
+            variant="primary"
+            size="large"
+            css={S.talkPickWriteBtn}
+            onClick={handleCreatePostButton}
+          >
             작성하기
           </Button>
         </div>
       </div>
       <div css={S.talkPickListWrapper}>
-        <TalkPickList talkPickList={displayedTalkPick} />
+        <TalkPickList talkPickList={talkPickList?.content} />
       </div>
       <Pagination
         pages={pages}
         selected={selectedPage}
-        maxPage={totalPages}
-        onChangeNavigate={handleChangeNavigate}
+        maxPage={talkPickList?.totalPages ?? 0}
+        onChangeNavigate={handlePageChange}
       />
     </div>
   );

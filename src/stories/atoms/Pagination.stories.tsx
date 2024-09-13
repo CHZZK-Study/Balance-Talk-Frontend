@@ -3,7 +3,7 @@ import { createRangeArray } from '@/utils/array';
 import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 
-const meta = {
+const meta: Meta<typeof Pagination> = {
   title: 'atoms/Pagination',
   component: Pagination,
   parameters: {
@@ -11,9 +11,6 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    pages: {
-      control: { type: 'object' },
-    },
     selected: {
       control: { type: 'number' },
     },
@@ -23,30 +20,37 @@ const meta = {
     onChangeNavigate: { action: 'changed' },
   },
   args: {
-    pages: createRangeArray(10 || 0),
     selected: 1,
-    maxPage: 10,
+    maxPage: 22,
     onChangeNavigate: () => {},
   },
-} satisfies Meta<typeof Pagination>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  args: {
+    selected: 1,
+    maxPage: 22,
+    onChangeNavigate: () => {},
+  },
   render: (args) => {
     const [selectedPage, setSelectedPage] = useState(args.selected);
     const totalPages = args.maxPage;
-    const pages = createRangeArray(totalPages || 0);
+
     const handleChangeNavigate = (page: number) => {
       setSelectedPage(page);
+      args.onChangeNavigate(page);
     };
+
+    const pages = createRangeArray(selectedPage, totalPages);
 
     return (
       <Pagination
         pages={pages}
         selected={selectedPage}
-        maxPage={pages.length}
+        maxPage={totalPages}
         onChangeNavigate={handleChangeNavigate}
       />
     );

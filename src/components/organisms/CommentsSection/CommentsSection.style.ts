@@ -4,7 +4,7 @@ import color from '@/styles/color';
 export const commentsSectionContainer = css`
   display: flex;
   flex-direction: column;
-  min-height: 1554px;
+  padding-bottom: 100px;
   margin: 0 auto;
   background-color: ${color.WT};
   overflow-y: auto;
@@ -36,13 +36,11 @@ export const loggedOutBackground = css`
 `;
 
 export const commentsWrapper = css`
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   padding: 0;
   margin: 0;
-  min-height: 917px;
   height: auto;
 `;
 

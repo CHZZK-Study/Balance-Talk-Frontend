@@ -39,13 +39,34 @@ export const END_POINT = {
   MYPAGE_VOTEDPOSTS: '/myPage/history/votedPosts',
   MYPAGE_BOOKMARKS: '/myPage/history/bookmarks',
 
+  // mypages API
+  MYPAGES_TALKS_WRITTEN: (page: number, size: number) =>
+    `/my/talks/written?page=${page}&size=${size}`,
+  MYPAGES_TALKS_VOTES: (page: number, size: number) =>
+    `/my/talks/votes?page=${page}&size=${size}`,
+  MYPAGES_TALKS_COMMENTS: (page: number, size: number) =>
+    `/my/talks/comments?page=${page}&size=${size}`,
+  MYPAGES_TALKS_BOOKMARKS: (page: number, size: number) =>
+    `/my/talks/bookmarks?page=${page}&size=${size}`,
+  MYPAGES_GAMES_WRITTEN: (page: number, size: number) =>
+    `/my/games/written?page=${page}&size=${size}`,
+  MYPAGES_GAMES_VOTES: (page: number, size: number) =>
+    `/my/games/votes?page=${page}&size=${size}`,
+  MYPAGES_GAMES_BOOKMARKS: (page: number, size: number) =>
+    `/my/games/bookmarks?page=${page}&size=${size}`,
+
   // file API
-  FILE_UPLOAD: '/files/image/upload',
+  FILE_UPLOAD: '/images',
+  FILE_DELETE: (storedName: string) => `/images/${storedName}`,
 
   // talk pick API
   TALKPICK: (talkPickId: Id) => `/talks/${talkPickId}`,
   CREATE_TALKPICK: '/talks',
+  TALKPICK_LIST: '/talks',
+  TALKPICK_SUMMARY: (talkPickId: Id) => `/talks/${talkPickId}/summary`,
   TODAY_TALKPICK: '/talks/today',
+  TEMP_TALKPICK: '/talks/temp',
+  BEST_TALKPICK: '/talks/best',
 
   // vote API
   VOTE_TALK: (talkPickId: Id) => `/votes/talks/${talkPickId}`,
@@ -59,8 +80,10 @@ export const END_POINT = {
     `talks/${talkPickId}/comments/${commentId}`,
   DELETE_COMMENT: (talkPickId: Id, commentId: Id) =>
     `talks/${talkPickId}/comments/${commentId}`,
-  LIKE_COMMENT: (commentId: Id) => `talks/${commentId}/likes`,
-  DELETE_LIKE_COMMENT: (commentId: Id) => `talks/${commentId}/likes`,
+  LIKE_COMMENT: (talkPickId: Id, commentId: Id) =>
+    `/likes/talks/${talkPickId}/comments/${commentId}`,
+  DELETE_LIKE_COMMENT: (talkPickId: Id, commentId: Id) =>
+    `/likes/talks/${talkPickId}/comments/${commentId}`,
   CREATE_REPLY: (commentId: Id) => `talks/comments/${commentId}/replies`,
 
   // bookmark API
@@ -74,6 +97,10 @@ export const END_POINT = {
   GAME: (gameId: Id) => `/games/${gameId}`,
   EDIT_GAME: (gameId: Id) => `/games/${gameId}`,
   DELETE_GAME: (gameId: Id) => `/games/${gameId}`,
+
+  // report API
+  REPORT_COMMENT: (talkPickId: Id, commentId: Id) =>
+    `/reports/talks/${talkPickId}/comments/${commentId}`,
 };
 
 export const AXIOS = {

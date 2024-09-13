@@ -2,7 +2,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
 import ContentsButton from '@/components/molecules/ContentsButton/ContentsButton';
-import { SampleWhole } from '@/assets';
+import { SampleFirst, SampleSecond } from '@/assets';
 
 const meta: Meta<typeof ContentsButton> = {
   title: 'molecules/ContentsButton',
@@ -12,16 +12,24 @@ const meta: Meta<typeof ContentsButton> = {
   },
   tags: ['autodocs'],
   argTypes: {
-    imgUrl: { control: 'text' },
-    label: { control: 'text' },
-    tagLabels: { control: { type: 'object' } },
-    bookmarkState: { control: 'boolean' },
+    optionAImg: { control: { type: 'text' } },
+    optionBImg: { control: { type: 'text' } },
+    title: { control: 'text' },
+    mainTag: { control: 'text' },
+    subTag: { control: 'text' },
+    bookmarked: { control: 'boolean' },
+    showBookmark: { control: 'boolean' },
+    size: { control: { type: 'radio' }, options: ['large', 'small'] },
   },
   args: {
-    imgUrl: SampleWhole,
-    label: '유진 VS 민지 사복 고르기',
-    tagLabels: ['얼마나 맞나 보자', '#취향'],
-    bookmarkState: false,
+    optionAImg: SampleFirst,
+    optionBImg: SampleSecond,
+    title: '유진 VS 민지 사복 고르기',
+    mainTag: '취향',
+    subTag: '얼마나 맞나 보자',
+    bookmarked: false,
+    showBookmark: true,
+    size: 'large',
   },
 };
 
@@ -47,10 +55,14 @@ const headerStyle = css`
 
 export const Default: Story = {
   args: {
-    imgUrl: SampleWhole,
-    label: '유진 VS 민지 사복 고르기',
-    tagLabels: ['얼마나 맞나 보자', '#취향'],
-    bookmarkState: false,
+    optionAImg: SampleFirst,
+    optionBImg: SampleSecond,
+    title: '유진 VS 민지 사복 고르기',
+    mainTag: '취향',
+    subTag: '얼마나 맞나 보자',
+    bookmarked: false,
+    showBookmark: true,
+    size: 'large',
   },
 };
 
@@ -58,12 +70,38 @@ export const All: Story = {
   render: (args) => (
     <div css={containerStyle}>
       <div css={itemStyle}>
-        <h3 css={headerStyle}>기본</h3>
-        <ContentsButton {...args} bookmarkState={false} />
+        <h3 css={headerStyle}>기본 (Large)</h3>
+        <ContentsButton
+          {...args}
+          size="large"
+          bookmarked={false}
+          showBookmark
+        />
       </div>
       <div css={itemStyle}>
-        <h3 css={headerStyle}>북마크 pressed</h3>
-        <ContentsButton {...args} bookmarkState />
+        <h3 css={headerStyle}>북마크 pressed (Large)</h3>
+        <ContentsButton {...args} size="large" bookmarked showBookmark />
+      </div>
+      <div css={itemStyle}>
+        <h3 css={headerStyle}>북마크 없음 (Large)</h3>
+        <ContentsButton {...args} size="large" showBookmark={false} />
+      </div>
+      <div css={itemStyle}>
+        <h3 css={headerStyle}>기본 (Small)</h3>
+        <ContentsButton
+          {...args}
+          size="small"
+          bookmarked={false}
+          showBookmark
+        />
+      </div>
+      <div css={itemStyle}>
+        <h3 css={headerStyle}>북마크 pressed (Small)</h3>
+        <ContentsButton {...args} size="small" bookmarked showBookmark />
+      </div>
+      <div css={itemStyle}>
+        <h3 css={headerStyle}>북마크 없음 (Small)</h3>
+        <ContentsButton {...args} size="small" showBookmark={false} />
       </div>
     </div>
   ),

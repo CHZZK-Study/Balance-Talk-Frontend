@@ -41,7 +41,7 @@ export const LayoutMypage = () => {
     <>
       <Header />
       <div css={css({ display: 'flex', height: '100%' })}>
-        <Sidebar />
+        {/* <Sidebar /> */}
         <main
           css={css({
             display: 'flex',

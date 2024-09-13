@@ -23,10 +23,12 @@ const meta = {
     variant: {
       options: [
         'primary',
+        'primarySquare',
         'roundPrimary',
         'roundPrimary2',
         'outlinePrimary',
         'outlineSecondary',
+        'outlinePrimarySquare',
         'outlineShadow',
         'outlineHighlightR',
         'outlineHighlightB',

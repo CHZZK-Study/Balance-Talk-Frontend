@@ -1,6 +1,7 @@
 import React from 'react';
-import { Check } from '@/assets';
+import { useNavigate } from 'react-router-dom';
 import { TodayTalkPick } from '@/types/talk-pick';
+import { Check } from '@/assets';
 import {
   bannerBtnStyling,
   bannerChipStyling,
@@ -8,23 +9,35 @@ import {
   talkPickTextStyling,
 } from './TodayTalkPickBanner.style';
 
-const TodayTalkPickBanner = ({
-  id,
-  title,
-  optionA,
-  optionB,
-}: TodayTalkPick) => (
-  <div key={id} css={talkPickStyling}>
-    <div css={bannerChipStyling}>
-      <Check />
-      오늘의 톡 픽
-    </div>
-    <div css={talkPickTextStyling}>
-      {title} <br />
-      {optionA} VS {optionB}
-    </div>
-    <div css={bannerBtnStyling}>투표결과 보러 가기</div>
-  </div>
-);
+interface TodayTalkPickBannerProps {
+  talkPick?: TodayTalkPick;
+}
+
+const TodayTalkPickBanner = ({ talkPick }: TodayTalkPickBannerProps) => {
+  const navigate = useNavigate();
+
+  const onClickBanner = () => {
+    navigate('/todaytalkpick', { state: { talkPickId: talkPick?.id } });
+  };
+
+  return (
+    <button
+      type="button"
+      key={talkPick?.id}
+      css={talkPickStyling}
+      onClick={onClickBanner}
+    >
+      <div css={bannerChipStyling}>
+        <Check />
+        오늘의 톡 픽
+      </div>
+      <div css={talkPickTextStyling}>
+        {talkPick?.title} <br />
+        {talkPick?.optionA} VS {talkPick?.optionB}
+      </div>
+      <div css={bannerBtnStyling}>투표결과 보러 가기</div>
+    </button>
+  );
+};
 
 export default TodayTalkPickBanner;

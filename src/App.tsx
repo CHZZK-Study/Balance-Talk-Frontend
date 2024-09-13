@@ -3,6 +3,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import 'dayjs/locale/ko';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import MyPage from '@/pages/MyPage/MyPage';
 import NotAuthRoutes from './components/Routes/NotAuthRoutes';
 import ProtectedRoutes from './components/Routes/ProtectedRoutes';
 import { PATH } from './constants/path';
@@ -10,7 +11,7 @@ import { useMemberQuery } from './hooks/api/member/useMemberQuery';
 import { useParseJwt } from './hooks/common/useParseJwt';
 import { useTokenRefresh } from './hooks/common/useTokenRefresh';
 import { Layout, LayoutMypage, LayoutNoSearch } from './layout/layout';
-// import CreatePostPage from './pages/CreatePostPage/CreatePostPage';
+import CreatePostPage from './pages/CreatePostPage/CreatePostPage';
 // import FindPasswordPage from './pages/FindPasswordPage/FindPasswordPage';
 import LandingPage from './pages/LandingPage/LandingPage';
 import LoginPage from './pages/LoginPage/LoginPage';
@@ -45,6 +46,7 @@ const App: React.FC = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/todaytalkpick" element={<TodayTalkPickPage />} />
           <Route path="/talkpickplace" element={<TalkPickPlacePage />} />
+          <Route path="/post/create" element={<CreatePostPage />} />
           {/* <Route path="posts" element={<PostList />} />
           <Route path="posts/:id" element={<PostPage />} />
           <Route path="searchResult" element={<SearchResultPage />} />
@@ -52,7 +54,9 @@ const App: React.FC = () => {
             <Route path="post/create" element={<CreatePostPage />} />
           </Route> */}
         </Route>
-
+        <Route path="/mypage" element={<LayoutMypage />}>
+          <Route index element={<MyPage />} />
+        </Route>
         {/* <Route element={<NotAuthRoutes member={member} />}>
           <Route element={<LayoutNoSearch />}>
             <Route path={PATH.LOGIN} element={<LoginPage />} />

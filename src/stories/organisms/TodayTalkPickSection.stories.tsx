@@ -1,5 +1,9 @@
+import React from 'react';
 import { TalkPickDetail } from '@/types/talk-pick';
-import { MenuItem } from '@/components/atoms/MenuTap/MenuTap';
+import store from '@/store';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import ReactQueryProvider from '@/providers/ReactQueryProvider';
 import type { Meta, StoryObj } from '@storybook/react';
 import TodayTalkPickSection from '@/components/organisms/TodayTalkPickSection/TodayTalkPickSection';
 
@@ -15,6 +19,9 @@ const defaultTodayTalkPick: TalkPickDetail = {
   },
   optionA: '상관없다다다다다다다',
   optionB: '상관 있다',
+  sourceUrl: '출처',
+  imgUrls: [],
+  imgStoredNames: [],
   votesCountOfOptionA: 1963,
   votesCountOfOptionB: 2635,
   views: 35254,
@@ -22,11 +29,9 @@ const defaultTodayTalkPick: TalkPickDetail = {
   myBookmark: false,
   votedOption: 'A',
   writer: '닉네임593',
-  lastModifiedAt: '2024-08-04',
+  createdAt: '2024-08-04',
   isUpdated: false,
 };
-
-const menuItem: MenuItem[] = [{ label: '신고' }];
 
 const meta = {
   title: 'organisms/TodayTalkPickSection',
@@ -37,8 +42,19 @@ const meta = {
   tags: ['autodocs'],
   args: {
     todayTalkPick: defaultTodayTalkPick,
-    talkPickMenu: menuItem,
+    myTalkPick: false,
   },
+  decorators: [
+    (Story) => (
+      <Provider store={store}>
+        <ReactQueryProvider>
+          <Router>
+            <Story />
+          </Router>
+        </ReactQueryProvider>
+      </Provider>
+    ),
+  ],
 } satisfies Meta<typeof TodayTalkPickSection>;
 
 export default meta;
