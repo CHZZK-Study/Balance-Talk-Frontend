@@ -56,7 +56,6 @@ export const useSignupForm = () => {
         },
       });
     } else {
-      // console.log(form);
       focus(e);
     }
   };
