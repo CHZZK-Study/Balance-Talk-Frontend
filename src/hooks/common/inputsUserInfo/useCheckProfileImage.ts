@@ -27,7 +27,6 @@ export const useCheckProfileImage = ({
         setIsError(false);
         const frm = new FormData();
         frm.append('file', acceptedFiles[0], acceptedFiles[0].name);
-        // fileUpload.mutate(frm);
         fileUpload(
           { formData: frm, params: { type: 'MEMBER' } },
           {
