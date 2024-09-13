@@ -1,6 +1,6 @@
+import { ERROR } from '@/constants/message';
+import { isEmptyString } from '@/utils/validator';
 import { useRef, useState } from 'react';
-import { isEmptyString } from '../../../utils/validator';
-import { ERROR } from '../../../constants/message';
 
 interface CheckPwChkProps {
   value: string;

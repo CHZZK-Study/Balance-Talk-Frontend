@@ -1,10 +1,10 @@
 import { AxiosErrorResponse } from '@/api/interceptor';
 import { getNicknameVerify } from '@/api/member';
 import { HTTP_STATUS_CODE } from '@/constants/api';
+import { ERROR, SUCCESS } from '@/constants/message';
+import { isEmptyString } from '@/utils/validator';
 import { useMutation } from '@tanstack/react-query';
 import { useRef, useState } from 'react';
-import { ERROR, SUCCESS } from '../../../constants/message';
-import { isEmptyString } from '../../../utils/validator';
 
 export const useCheckNickname = (value: string) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
