@@ -1,12 +1,12 @@
 import { getFindPw, postEmailRequest } from '@/api/email';
 import { AxiosErrorResponse } from '@/api/interceptor';
 import { HTTP_STATUS_CODE } from '@/constants/api';
+import { ERROR, SUCCESS } from '@/constants/message';
 import { PATH } from '@/constants/path';
+import { isEmptyString } from '@/utils/validator';
 import { useMutation } from '@tanstack/react-query';
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ERROR, SUCCESS } from '../../../constants/message';
-import { isEmptyString } from '../../../utils/validator';
 
 export const useCheckEmail = (type: string, value: string) => {
   const inputRef = useRef<HTMLInputElement | null>(null);

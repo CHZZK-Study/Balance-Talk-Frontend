@@ -1,20 +1,7 @@
 import { END_POINT } from '@/constants/api';
+import { ServerResponse } from '@/types/api';
 import { Member, MemberForm } from '@/types/member';
 import { axiosInstance } from './interceptor';
-
-const URL = process.env.API_URL;
-
-export const fetchMembers = async (): Promise<Member[]> => {
-  const response = await fetch(`${URL}/members`);
-  const result = (await response.json()) as Member[];
-  return result;
-};
-
-export const fetchMember = async (memberId: number): Promise<Member> => {
-  const response = await fetch(`${URL}/members/${memberId}`);
-  const result = (await response.json()) as Member;
-  return result;
-};
 
 export const getMember = async (memberId: number) => {
   const { data } = await axiosInstance.get<Member>(
@@ -31,9 +18,9 @@ export const getMemberProfile = async (memberId: number) => {
 };
 
 export const postMember = async (
-  form: Pick<MemberForm, 'nickname' | 'email' | 'password'>,
+  form: Pick<MemberForm, 'nickname' | 'email' | 'password' | 'role'>,
 ) => {
-  const { data } = await axiosInstance.post<string>(
+  const { data } = await axiosInstance.post<ServerResponse>(
     `${END_POINT.SIGN_UP}`,
     form,
   );
@@ -47,7 +34,7 @@ export const deleteMember = async (
     data: form,
   };
 
-  const { data } = await axiosInstance.delete<string>(
+  const { data } = await axiosInstance.delete<ServerResponse>(
     `${END_POINT.ALL_MEMBERS}`,
     params,
   );
@@ -55,7 +42,7 @@ export const deleteMember = async (
 };
 
 export const putMemberImage = async (profilePhoto: string) => {
-  const { data } = await axiosInstance.put<string>(
+  const { data } = await axiosInstance.put<ServerResponse>(
     `${END_POINT.MEMBER_IMAGE}`,
     profilePhoto,
     {
@@ -68,7 +55,7 @@ export const putMemberImage = async (profilePhoto: string) => {
 };
 
 export const putMemberNickname = async (nickname: string) => {
-  const { data } = await axiosInstance.put<string>(
+  const { data } = await axiosInstance.put<ServerResponse>(
     `${END_POINT.MEMBER_NICKNAME}`,
     nickname,
     {
@@ -81,7 +68,7 @@ export const putMemberNickname = async (nickname: string) => {
 };
 
 export const putMemberPw = async (pw: string) => {
-  const { data } = await axiosInstance.put<string>(
+  const { data } = await axiosInstance.put<ServerResponse>(
     `${END_POINT.MEMBER_PASSWORD}`,
     pw,
     {
@@ -96,22 +83,29 @@ export const putMemberPw = async (pw: string) => {
 export const postLogin = async (
   form: Pick<MemberForm, 'email' | 'password'>,
 ) => {
-  const { data } = await axiosInstance.post<string>(`${END_POINT.LOGIN}`, form);
+  const { data } = await axiosInstance.post<ServerResponse>(
+    `${END_POINT.LOGIN}`,
+    form,
+  );
   return data;
 };
 
 export const postLogout = async () => {
-  const { data } = await axiosInstance.post<string>(`${END_POINT.LOGOUT}`);
+  const { data } = await axiosInstance.post<ServerResponse>(
+    `${END_POINT.LOGOUT}`,
+  );
   return data;
 };
 
 export const getRefreshToken = async () => {
-  const { data } = await axiosInstance.get<string>(`${END_POINT.REFRESH}`);
+  const { data } = await axiosInstance.get<ServerResponse>(
+    `${END_POINT.REFRESH}`,
+  );
   return data;
 };
 
 export const getNicknameVerify = async (nickname: string) => {
-  const { data } = await axiosInstance.get<string>(
+  const { data } = await axiosInstance.get<ServerResponse>(
     `${END_POINT.NICKNAME_VERIFY}`,
     {
       params: {
