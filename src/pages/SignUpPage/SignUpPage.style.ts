@@ -7,11 +7,9 @@ export const signupContainer = css({
   flexDirection: 'column',
   alignItems: 'center',
   width: '100%',
-  height: '100%',
-  padding: '30px 0px',
+  padding: '50px 0px',
   gap: '30px',
   background: color.GY[3],
-  overflow: 'auto',
 });
 
 export const signUpHeadingStyling = css(typo.Component.Bold, {
@@ -37,4 +35,10 @@ export const btnContainer = css({
 export const btnSignup = css({
   width: '100%',
   borderRadius: '50px',
+});
+
+export const signupToastModalStyling = css({
+  zIndex: 1,
+  position: 'fixed',
+  top: '130px',
 });
