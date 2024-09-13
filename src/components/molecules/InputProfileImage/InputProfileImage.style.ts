@@ -33,3 +33,11 @@ export const profileImageText = (isError: boolean) =>
   css(typo.Comment.Regular, {
     color: isError ? color.RED : color.GY[1],
   });
+
+export const defaultProfileModalcenterStyling = css({
+  position: 'fixed',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  zIndex: '1000',
+});

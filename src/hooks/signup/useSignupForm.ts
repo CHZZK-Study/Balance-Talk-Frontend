@@ -13,7 +13,8 @@ const initialState: MemberForm = {
   nickname: '',
   password: '',
   passwordCheck: '',
-  profilePhoto: '',
+  profileImgUrl: '',
+  role: 'USER',
 };
 
 const successState: MemberSuccesForm = {
