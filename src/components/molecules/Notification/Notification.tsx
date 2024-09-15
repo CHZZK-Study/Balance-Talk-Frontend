@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import React, { useState } from 'react';
 import NotificationItem, {
   NotificationItemProps,
@@ -16,11 +19,13 @@ import {
 export interface NotificationListProps {
   isNew?: boolean;
   notifications: NotificationItemProps[];
+  onClickNotification: (notificationId: number) => void;
 }
 
 const Notification = ({
   isNew = false,
   notifications,
+  onClickNotification, // 클릭 핸들러 전달
 }: NotificationListProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -44,7 +49,13 @@ const Notification = ({
             <div css={titleStyle}>알림</div>
             <div css={notificationContentStyle}>
               {notifications.map((notification) => (
-                <div css={notificationItemStyle}>
+                <button
+                  type="button"
+                  aria-label="알림 아이템"
+                  css={notificationItemStyle}
+                  key={notification.id}
+                  onClick={() => onClickNotification(notification.id as number)}
+                >
                   <NotificationItem
                     category={notification.category}
                     date={notification.date}
@@ -52,7 +63,7 @@ const Notification = ({
                     content={notification.content}
                     isNew={notification.isNew}
                   />
-                </div>
+                </button>
               ))}
             </div>
           </div>

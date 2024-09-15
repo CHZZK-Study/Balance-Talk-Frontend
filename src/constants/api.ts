@@ -71,6 +71,10 @@ export const END_POINT = {
   BOOKMARK_TALKPICK: (talkPickId: Id) => `/bookmarks/talks/${talkPickId}`,
   BOOKMARK_GAME: (gameId: Id) => `/bookmarks/games/${gameId}`,
 
+  // notification API
+  NOTIFICATION: () => `/notification`,
+  READ_NOTIFICATION: (id: Id) => `/notification/${id}/read`,
+
   // game API
   CREATE_GAME: '/games',
   NEW_GAME: '/games/new',
