@@ -3,20 +3,19 @@ import typo from '@/styles/typo';
 import color from '@/styles/color';
 
 export const pageStyle = css({
-  width: '1176px',
   height: '1217px',
-  margin: '64px 372px 78px 372px',
+  marginTop: '64px',
+  marginBottom: '78px',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  alignContent: 'center',
+  alignItems: 'center',
 });
 
 export const bestTalkPickStyling = css({
   display: 'flex',
   flexDirection: 'column',
   marginBottom: '56px',
-  position: 'relative',
 });
 
 export const bestTalkPickTextWrapper = css({
@@ -29,7 +28,6 @@ export const bestTalkPickSubTitle = css(typo.SubTitle, {
   display: 'flex',
   fontWeight: 'bold',
   color: color.BK,
-  marginBottom: '21px',
 });
 
 export const bestTalkPickTitle = css(typo.Title, {
@@ -38,7 +36,9 @@ export const bestTalkPickTitle = css(typo.Title, {
 });
 
 export const toastModalStyling = css({
-  position: 'absolute',
-  left: '520px',
-  bottom: '100px',
+  position: 'fixed',
+  top: '110px',
+  left: '50%',
+  transform: 'translate(-50%)',
+  zIndex: '1000',
 });

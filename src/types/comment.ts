@@ -4,14 +4,19 @@ export interface Comment {
   id: number;
   talkPickId: number;
   talkPickTitle: string;
-  ninckname: string;
+  nickname: string;
   content: string;
-  option: string;
+  option: 'A' | 'B';
   likesCount: number;
   myLike: boolean;
+  parentId: number;
   replyCount: number;
+  reportedCount: number;
   createdAt: string;
   lastModifiedAt: string;
+  blind: boolean;
+  best: boolean;
+  imgUrl: string;
 }
 
 export interface Reply {
@@ -32,7 +37,9 @@ export interface CommentsPagination extends PaginationType {
   content: Comment[];
 }
 
-export type CreateCommentProps = Pick<Comment, 'content' | 'option'>;
+export type CreateCommentProps = Pick<Comment, 'content' | 'option'> & {
+  parentId: number;
+};
 
 export type EditCommentProps = Pick<Comment, 'content'>;
 

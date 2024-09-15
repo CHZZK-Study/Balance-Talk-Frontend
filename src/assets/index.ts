@@ -52,6 +52,8 @@ export { default as ActivityInfo } from './svg/activity-info.svg';
 export { default as EditProfile } from './svg/edit-profile.svg';
 export { default as Withdraw } from './svg/withdraw.svg';
 export { default as ProfileInfoSample } from './images/profileInfo-sample.png';
+export { default as SampleFirst } from './images/sample-first.png';
+export { default as SampleSecond } from './images/sample-second.png';
 export { default as Spinner } from './svg/spinner.svg';
 export { default as RecentLogin } from './svg/recent-login.svg';
 export { default as DefaultProfile } from './images/default-profile.png';
@@ -62,6 +64,10 @@ export { default as EelProfile } from './images/eel-profile.png';
 export { default as TurtleProfile } from './images/turtle-profile.png';
 export { default as OctopusProfile } from './images/octopus-profile.png';
 export { default as JellyfishProfile } from './images/jellyfish-profile.png';
+export { default as ChoicePlus } from './svg/choice-plus.svg';
+export { default as ChoiceMinus } from './svg/choice-minus.svg';
+export { default as RecommendFirst } from './images/recommend-first.png';
+export { default as RecommendSecond } from './images/recommend-second.png';
 
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';

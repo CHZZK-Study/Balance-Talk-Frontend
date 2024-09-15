@@ -2,7 +2,6 @@ import { END_POINT } from '@/constants/api';
 import { Id } from '@/types/api';
 import {
   TalkPickDetail,
-  TalkPick,
   NewTalkPick,
   TempTalkPick,
   TalkPickListItem,
@@ -19,7 +18,10 @@ export const getTalkPickDetail = async (talkPickId: Id) => {
   return data;
 };
 
-export const putTalkPick = async (talkPickId: Id, talkPickData: TalkPick) => {
+export const putTalkPick = async (
+  talkPickId: Id,
+  talkPickData: NewTalkPick,
+) => {
   const response = await axiosInstance.put(
     END_POINT.TALKPICK(talkPickId),
     talkPickData,
@@ -77,4 +79,11 @@ export const getTalkPickList = async (pageable: Pageable) => {
     },
   );
   return data;
+};
+
+export const postTalkPickSummary = async (talkPickId: Id) => {
+  const response = await axiosInstance.post(
+    END_POINT.TALKPICK_SUMMARY(talkPickId),
+  );
+  return response;
 };

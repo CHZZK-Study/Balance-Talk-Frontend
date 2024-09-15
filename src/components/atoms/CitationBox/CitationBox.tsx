@@ -1,13 +1,13 @@
 import React, { forwardRef } from 'react';
-import type { ForwardedRef } from 'react';
+import type { ComponentPropsWithRef, ForwardedRef } from 'react';
 import * as S from './CitationBox.style';
 
-interface CitationBoxProps {
+interface CitationBoxProps extends ComponentPropsWithRef<'input'> {
   setSourceUrl: (url: string) => void;
 }
 
 const CitationBox = (
-  { setSourceUrl }: CitationBoxProps,
+  { setSourceUrl, ...props }: CitationBoxProps,
   ref: ForwardedRef<HTMLInputElement>,
 ) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,6 +22,7 @@ const CitationBox = (
         type="text"
         ref={ref}
         onChange={handleInputChange}
+        {...props}
       />
     </div>
   );

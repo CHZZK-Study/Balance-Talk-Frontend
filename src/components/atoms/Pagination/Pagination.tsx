@@ -19,6 +19,7 @@ const Pagination = ({
   maxPage,
   onChangeNavigate,
 }: PaginationProps) => {
+  if (maxPage <= 1) return null;
   const nextId = selected === maxPage ? selected : selected + 1;
   const prevId = selected === 1 ? selected : selected - 1;
 
@@ -30,6 +31,7 @@ const Pagination = ({
         onClick={() => {
           onChangeNavigate(prevId);
         }}
+        disabled={selected === 1}
       >
         {}
         <KeyboardArrowLeft />
@@ -54,6 +56,7 @@ const Pagination = ({
         onClick={() => {
           onChangeNavigate(nextId);
         }}
+        disabled={selected === maxPage}
       >
         {}
         <KeyboardArrowRight />

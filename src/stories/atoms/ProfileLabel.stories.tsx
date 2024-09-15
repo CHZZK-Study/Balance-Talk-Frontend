@@ -11,8 +11,7 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    badgeUrl: { control: { type: 'text' } },
-    children: { control: { type: 'text' }, defaultValue: 'Aycho' },
+    nickname: { control: { type: 'text' }, defaultValue: 'Aycho' },
   },
 } satisfies Meta<typeof ProfileLabel>;
 
@@ -21,24 +20,23 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    badgeUrl: '',
-    children: 'Aycho',
+    nickname: 'Aycho',
   },
 };
+
 export const All: Story = {
+  args: {
+    nickname: 'Aycho',
+  },
   render: (args) => (
     <ul css={storyContainer}>
       <li css={storyInnerContainer}>
-        <h3>기본 + label 부재시</h3>
+        <h3>기본 닉네임</h3>
         <ProfileLabel {...args} />
       </li>
       <li css={storyInnerContainer}>
-        <h3>뱃지 사진이 없을 때</h3>
-        <ProfileLabel badgeUrl="">Aycho</ProfileLabel>
-      </li>
-      <li css={storyInnerContainer}>
-        <h3>뱃지 이미지 있을 때(imgUrl은 임시)</h3>
-        <ProfileLabel badgeUrl="https://anything.png">Aycho</ProfileLabel>
+        <h3>다른 닉네임</h3>
+        <ProfileLabel nickname="김안녕" />
       </li>
     </ul>
   ),
