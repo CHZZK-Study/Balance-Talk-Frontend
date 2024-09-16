@@ -1,13 +1,7 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import store from '@/store';
+import React, { useState, ChangeEvent } from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 import ImageBoxButton from '@/components/atoms/ImageBoxButton/ImageBoxButton';
 import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
-import type { Meta, StoryObj } from '@storybook/react';
-
-const queryClient = new QueryClient();
 
 const meta = {
   title: 'atoms/ImageBoxButton',
@@ -16,18 +10,10 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-
-  decorators: [
-    (Story) => (
-      <Provider store={store}>
-        <QueryClientProvider client={queryClient}>
-          <Router>
-            <Story />
-          </Router>
-        </QueryClientProvider>
-      </Provider>
-    ),
-  ],
+  argTypes: {
+    imageFile: { control: { type: 'file' }, defaultValue: null },
+    onChange: { action: 'file selected' },
+  },
 } satisfies Meta<typeof ImageBoxButton>;
 
 export default meta;
@@ -35,20 +21,38 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (args) => <ImageBoxButton {...args} />,
+  args: {
+    imageFile: null,
+    onChange: () => {},
+  },
 };
 
-export const WithUploadedImage: Story = {
-  render: (args) => (
-    <ul css={storyContainer}>
-      <li css={storyInnerContainer}>
-        <h3>Default 상태 (이미지 없음)</h3>
-        <ImageBoxButton {...args} />
-      </li>
-      <li css={storyInnerContainer}>
-        <h3>이미지 업로드 후 상태</h3>
-        <ImageBoxButton {...args} />
-      </li>
-    </ul>
-  ),
+export const All: Story = {
+  render: () => {
+    const [imageFile, setImageFile] = useState<File | null>(null);
+
+    const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
+      const file = event.target.files?.[0];
+      if (file) {
+        setImageFile(file);
+      }
+    };
+
+    return (
+      <ul css={storyContainer}>
+        <li css={storyInnerContainer}>
+          <h3>기본 상태</h3>
+          <ImageBoxButton imageFile={null} onChange={handleImageUpload} />
+        </li>
+        <li css={storyInnerContainer}>
+          <h3>업로드된 이미지</h3>
+          <ImageBoxButton imageFile={imageFile} onChange={handleImageUpload} />
+        </li>
+      </ul>
+    );
+  },
+  args: {
+    imageFile: null,
+    onChange: () => {},
+  },
 };
