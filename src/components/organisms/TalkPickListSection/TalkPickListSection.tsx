@@ -1,4 +1,7 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useNewSelector } from '@/store';
+import { selectAccessToken } from '@/store/auth';
 import { TalkPickBubble } from '@/assets';
 import { createRangeArray } from '@/utils/array';
 import { TalkPickListPagination } from '@/types/talk-pick';
@@ -27,7 +30,18 @@ const TalkPickListSection = ({
   selectedPage,
   handlePageChange,
 }: TalkPickListProps) => {
-  const pages = createRangeArray(talkPickList?.totalPages || 0);
+  const accessToken = useNewSelector(selectAccessToken);
+
+  const navigate = useNavigate();
+  const pages = createRangeArray(selectedPage, talkPickList?.totalPages || 0);
+
+  const handleCreatePostButton = () => {
+    if (accessToken) {
+      navigate('/post/create');
+    } else {
+      navigate('/login');
+    }
+  };
 
   return (
     <div css={S.talkPickListContainer}>
@@ -39,7 +53,12 @@ const TalkPickListSection = ({
         />
         <div css={S.talkPickWriteBtnWrapper}>
           <TalkPickBubble />
-          <Button variant="primary" size="large" css={S.talkPickWriteBtn}>
+          <Button
+            variant="primary"
+            size="large"
+            css={S.talkPickWriteBtn}
+            onClick={handleCreatePostButton}
+          >
             작성하기
           </Button>
         </div>

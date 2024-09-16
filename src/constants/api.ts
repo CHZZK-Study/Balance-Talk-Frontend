@@ -63,6 +63,7 @@ export const END_POINT = {
   TALKPICK: (talkPickId: Id) => `/talks/${talkPickId}`,
   CREATE_TALKPICK: '/talks',
   TALKPICK_LIST: '/talks',
+  TALKPICK_SUMMARY: (talkPickId: Id) => `/talks/${talkPickId}/summary`,
   TODAY_TALKPICK: '/talks/today',
   TEMP_TALKPICK: '/talks/temp',
   BEST_TALKPICK: '/talks/best',
@@ -79,8 +80,10 @@ export const END_POINT = {
     `talks/${talkPickId}/comments/${commentId}`,
   DELETE_COMMENT: (talkPickId: Id, commentId: Id) =>
     `talks/${talkPickId}/comments/${commentId}`,
-  LIKE_COMMENT: (commentId: Id) => `talks/${commentId}/likes`,
-  DELETE_LIKE_COMMENT: (commentId: Id) => `talks/${commentId}/likes`,
+  LIKE_COMMENT: (talkPickId: Id, commentId: Id) =>
+    `/likes/talks/${talkPickId}/comments/${commentId}`,
+  DELETE_LIKE_COMMENT: (talkPickId: Id, commentId: Id) =>
+    `/likes/talks/${talkPickId}/comments/${commentId}`,
   CREATE_REPLY: (commentId: Id) => `talks/comments/${commentId}/replies`,
 
   // bookmark API
@@ -94,6 +97,10 @@ export const END_POINT = {
   GAME: (gameId: Id) => `/games/${gameId}`,
   EDIT_GAME: (gameId: Id) => `/games/${gameId}`,
   DELETE_GAME: (gameId: Id) => `/games/${gameId}`,
+
+  // report API
+  REPORT_COMMENT: (talkPickId: Id, commentId: Id) =>
+    `/reports/talks/${talkPickId}/comments/${commentId}`,
 };
 
 export const AXIOS = {

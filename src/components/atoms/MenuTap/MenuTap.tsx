@@ -41,7 +41,12 @@ const MenuTap = ({ menuData }: MenuTapProps) => {
       {view && (
         <div css={menuStlying}>
           {menuData.map((item) => (
-            <button type="button" css={menuItemStyling} onClick={item?.onClick}>
+            <button
+              type="button"
+              key={item.label}
+              css={menuItemStyling}
+              onClick={item?.onClick}
+            >
               {item.label}
             </button>
           ))}

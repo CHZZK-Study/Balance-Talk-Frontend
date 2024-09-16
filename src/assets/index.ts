@@ -65,6 +65,10 @@ export { default as TurtleProfile } from './images/turtle-profile.png';
 export { default as OctopusProfile } from './images/octopus-profile.png';
 export { default as JellyfishProfile } from './images/jellyfish-profile.png';
 export { default as TestImage } from './images/test-image.png';
+export { default as ChoicePlus } from './svg/choice-plus.svg';
+export { default as ChoiceMinus } from './svg/choice-minus.svg';
+export { default as RecommendFirst } from './images/recommend-first.png';
+export { default as RecommendSecond } from './images/recommend-second.png';
 
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';

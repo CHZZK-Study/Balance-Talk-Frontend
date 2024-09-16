@@ -9,6 +9,10 @@ export const MainContainer = css`
   min-width: 1175px;
 `;
 
+export const myCommentColor = css`
+  background-color: ${color.WT_VIOLET};
+`;
+
 export const compactContainer = css`
   ${MainContainer};
   height: 131px;
@@ -112,3 +116,19 @@ export const nicknameInput = css`
   margin-bottom: 12px;
   ${typo.Comment.SemiBold}
 `;
+
+export const toastModalStyling = css({
+  position: 'fixed',
+  top: '110px',
+  left: '50%',
+  transform: 'translate(-50%)',
+  zIndex: '1000',
+});
+
+export const centerStyling = css({
+  position: 'fixed',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  zIndex: '1000',
+});

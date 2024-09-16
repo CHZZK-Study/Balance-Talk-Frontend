@@ -1,28 +1,23 @@
-import { postLikeComment } from '@/api/like';
 import { Id } from '@/types/api';
+import { postLikeComment } from '@/api/like';
 import { Comment, CommentsCategory, CommentsPagination } from '@/types/comment';
-import { Pageable } from '@/types/pagination';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-export const useLikeCommentMutation = (
+export const useCreateLikeCommentMutation = (
   talkPickId: Id,
   commentId: Id,
-  selectedPageNumber: Pick<Pageable, 'page'>,
   commentsCategory: CommentsCategory,
 ) => {
   const queryClient = useQueryClient();
   const likeCommentMutation = useMutation({
-    mutationFn: () => postLikeComment(commentId),
+    mutationFn: () => postLikeComment(talkPickId, commentId),
     onMutate: () => {
       const prevComments: CommentsPagination | undefined =
-        queryClient.getQueryData([
-          'talks',
-          talkPickId,
-          commentsCategory,
-          selectedPageNumber,
-        ]);
+        queryClient.getQueryData(['talks', talkPickId, commentsCategory]);
 
-      const newComments = prevComments?.content.map((comment: Comment) => {
+      if (!prevComments) return { prevComments };
+
+      const newComments = prevComments.content.map((comment: Comment) => {
         return comment.id === commentId
           ? {
               ...comment,
@@ -32,25 +27,22 @@ export const useLikeCommentMutation = (
           : comment;
       });
 
-      queryClient.setQueryData(
-        ['talks', talkPickId, commentsCategory, selectedPageNumber],
-        {
-          ...prevComments,
-          content: newComments,
-        },
-      );
+      queryClient.setQueryData(['talks', talkPickId, commentsCategory], {
+        ...prevComments,
+        content: newComments,
+      });
 
       return { prevComments };
     },
     onError: (error, id, context) => {
       queryClient.setQueryData(
-        ['talks', talkPickId, commentsCategory, selectedPageNumber],
+        ['talks', talkPickId, commentsCategory],
         context?.prevComments,
       );
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: ['talks', talkPickId, commentsCategory, selectedPageNumber],
+        queryKey: ['talks', talkPickId, commentsCategory],
       });
     },
   });
