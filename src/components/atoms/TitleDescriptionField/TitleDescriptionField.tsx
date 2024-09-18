@@ -1,5 +1,4 @@
-import React, { forwardRef } from 'react';
-import type { ForwardedRef } from 'react';
+import React, { ForwardedRef, forwardRef, useRef } from 'react';
 import Divider from '@/components/atoms/Divider/Divider';
 import * as S from './TitleDescriptionField.style';
 
@@ -19,6 +18,8 @@ const TitleDescriptionField = (
   }: TitleDescriptionFieldProps,
   ref: ForwardedRef<HTMLInputElement>,
 ) => {
+  const descriptionRef = useRef<HTMLInputElement>(null);
+
   return (
     <div css={S.fieldWrapStyle}>
       <div css={S.titleWrapStyle}>
@@ -45,6 +46,7 @@ const TitleDescriptionField = (
           value={description}
           onChange={onDescriptionChange}
           css={S.textStyle}
+          ref={descriptionRef}
         />
       </div>
     </div>

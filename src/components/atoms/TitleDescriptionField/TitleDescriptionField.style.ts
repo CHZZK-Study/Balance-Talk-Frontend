@@ -39,11 +39,10 @@ export const descriptionWrapStyle = css({
   alignItems: 'center',
 });
 
-export const textStyle = css({
+export const textStyle = css(typo.SubTitle, {
   color: color.BK,
   '::placeholder': {
     color: color.GY[1],
   },
-  height: '17px',
   minWidth: '627px',
 });
