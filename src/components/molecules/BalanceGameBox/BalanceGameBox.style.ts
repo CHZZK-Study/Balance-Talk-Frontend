@@ -7,12 +7,13 @@ export const containerStyle = css({
   flexDirection: 'row',
   alignItems: 'center',
   position: 'relative',
+  width: '100%',
 });
 
 export const letterStyle = css(typo.Title, {
   color: color.GY[1],
   position: 'absolute',
   top: '80%',
-  left: '59.5%',
+  left: '59.7%',
   transform: 'translate(-50%, -50%)',
 });
