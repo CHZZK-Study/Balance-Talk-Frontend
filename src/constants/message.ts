@@ -93,3 +93,14 @@ export const RIGHT_CONTAINER_LINKS = [
   '주제별 밸런스게임',
   '개인정보처리방침',
 ];
+
+export const NO_RESULT_MESSAGE = {
+  TITLE_PREFIX: {
+    DEFAULT: '',
+    BALANCE_GAME: '밸런스게임 게시물에는',
+    TALK_PICK: '톡픽 게시물에는',
+  },
+  TITLE_SUFFIX: '에 대한 검색 결과가 없습니다.',
+  BODY1: '단어의 철자가 정확한지 확인해 보세요.',
+  BODY2: '검색 옵션을 변경해 다시 검색해 보세요.',
+};

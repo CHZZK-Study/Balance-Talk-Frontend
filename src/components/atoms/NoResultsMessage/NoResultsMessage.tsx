@@ -1,23 +1,35 @@
 import React from 'react';
+import { NO_RESULT_MESSAGE } from '@/constants/message';
 import * as S from './NoResultsMessage.style';
 
 interface NoResultsMessageProps {
+  searchChoice?: 'default' | 'balanceGame' | 'talkPick';
   keyword: string;
 }
 
-export const NoResultsMessage = ({ keyword }: NoResultsMessageProps) => {
+export const NoResultsMessage = ({
+  searchChoice = 'default',
+  keyword,
+}: NoResultsMessageProps) => {
+  const titlePrefix = {
+    default: NO_RESULT_MESSAGE.TITLE_PREFIX.DEFAULT,
+    balanceGame: NO_RESULT_MESSAGE.TITLE_PREFIX.BALANCE_GAME,
+    talkPick: NO_RESULT_MESSAGE.TITLE_PREFIX.TALK_PICK,
+  };
+
   return (
     <div css={S.messageContainerStyle}>
       <div>
         <span css={S.topMessageStyle}>
-          <span css={S.keywordStyle}>&lsquo;{keyword}&lsquo;</span>에 대한
-          검색결과가 없습니다.
+          {titlePrefix[searchChoice]}
+          <span css={S.keywordStyle}>&lsquo;{keyword}&lsquo;</span>
+          {NO_RESULT_MESSAGE.TITLE_SUFFIX}
         </span>
       </div>
       <div css={S.detailMessageStyle}>
         <ul css={S.ulStyle}>
-          <li>단어의 철자가 정확한지 확인해 보세요.</li>
-          <li>검색 옵션을 변경해 다시 검색해 보세요.</li>
+          <li>{NO_RESULT_MESSAGE.BODY1}</li>
+          <li>{NO_RESULT_MESSAGE.BODY2}</li>
         </ul>
       </div>
     </div>
