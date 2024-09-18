@@ -51,33 +51,26 @@ export const useCheckProfileImage = ({
     maxSize: 3145728, // 3MB
   });
 
-  const handleDefaultImage = (src: string) => {
-    let profileImgUrl = '';
-    switch (src) {
-      case DEFAULT_PROFILE_URL.OCTOPUS.CLIENT:
-        profileImgUrl = DEFAULT_PROFILE_URL.OCTOPUS.SERVER;
-        break;
-      case DEFAULT_PROFILE_URL.JELLYFISH.CLIENT:
-        profileImgUrl = DEFAULT_PROFILE_URL.JELLYFISH.SERVER;
-        break;
-      case DEFAULT_PROFILE_URL.RAY.CLIENT:
-        profileImgUrl = DEFAULT_PROFILE_URL.RAY.SERVER;
-        break;
-      case DEFAULT_PROFILE_URL.EEL.CLIENT:
-        profileImgUrl = DEFAULT_PROFILE_URL.EEL.SERVER;
-        break;
-      case DEFAULT_PROFILE_URL.TURTLE.CLIENT:
-        profileImgUrl = DEFAULT_PROFILE_URL.TURTLE.SERVER;
-        break;
-      case DEFAULT_PROFILE_URL.RABBIT.CLIENT:
-        profileImgUrl = DEFAULT_PROFILE_URL.RABBIT.SERVER;
-        break;
-      default:
-        break;
-    }
-    setImageSrc(src);
-    setProfilePhoto('profileImgUrl', profileImgUrl);
-  };
+  const handleDefaultImage = useCallback(
+    (src: string) => {
+      const defaultProfileUrlMapping: { [key: string]: string } = {
+        [DEFAULT_PROFILE_URL.OCTOPUS.CLIENT]:
+          DEFAULT_PROFILE_URL.OCTOPUS.SERVER,
+        [DEFAULT_PROFILE_URL.JELLYFISH.CLIENT]:
+          DEFAULT_PROFILE_URL.JELLYFISH.SERVER,
+        [DEFAULT_PROFILE_URL.RAY.CLIENT]: DEFAULT_PROFILE_URL.RAY.SERVER,
+        [DEFAULT_PROFILE_URL.EEL.CLIENT]: DEFAULT_PROFILE_URL.EEL.SERVER,
+        [DEFAULT_PROFILE_URL.TURTLE.CLIENT]: DEFAULT_PROFILE_URL.TURTLE.SERVER,
+        [DEFAULT_PROFILE_URL.RABBIT.CLIENT]: DEFAULT_PROFILE_URL.RABBIT.SERVER,
+      };
+
+      const profileImgUrl = defaultProfileUrlMapping[src] || '';
+
+      setImageSrc(src);
+      setProfilePhoto('profileImgUrl', profileImgUrl);
+    },
+    [setImageSrc, setProfilePhoto],
+  );
 
   return { imageSrc, isError, getRootProps, handleDefaultImage };
 };
