@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useRef, useEffect, ReactNode } from 'react';
-import { getModalSize, modalStyling } from './Modal.style';
+import { ModalClose } from '@/assets';
+import { getModalSize, modalCloseStyling, modalStyling } from './Modal.style';
 
 export interface ModalProps {
   action?: 'default' | 'share' | 'report' | 'profile';
@@ -31,6 +32,7 @@ const Modal = ({
     <div>
       {isOpen && (
         <div ref={modalRef} css={[modalStyling, getModalSize(action)]}>
+          <ModalClose css={modalCloseStyling} onClick={onClose} />
           {children}
         </div>
       )}
