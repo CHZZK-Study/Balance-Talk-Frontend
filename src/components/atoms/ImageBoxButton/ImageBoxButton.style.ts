@@ -5,14 +5,15 @@ export const imageContainer = css`
   display: flex;
   width: 577px;
   height: 359px;
-  padding: 129px 238px;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   border-radius: 20px;
   border: 1px solid ${color.GY[2]};
   background-color: ${color.WT};
   box-shadow: 1px 2px 15px 0 rgba(0, 0, 0, 0.05);
   cursor: pointer;
+  overflow: hidden;
 `;
 
 export const defaultImageBox = css`
