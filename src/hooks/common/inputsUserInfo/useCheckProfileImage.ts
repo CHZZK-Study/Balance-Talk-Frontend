@@ -1,6 +1,5 @@
-import { postFile } from '@/api/file';
-import { UploadedImage } from '@/types/file';
-import { useMutation } from '@tanstack/react-query';
+import { DEFAULT_PROFILE_URL } from '@/constants/image';
+import { useFileUploadMutation } from '@/hooks/api/file/useFileUploadMutation';
 import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
@@ -15,13 +14,8 @@ export const useCheckProfileImage = ({
 }: InputProfileImageProps) => {
   const [imageSrc, setImageSrc] = useState<string>(imgSrc || '');
   const [isError, setIsError] = useState<boolean>(false);
+  const { mutate: fileUpload } = useFileUploadMutation();
 
-  const fileUpload = useMutation({
-    mutationFn: postFile,
-    onSuccess: (res: UploadedImage) => {
-      setProfilePhoto('profilePhoto', res.storedName);
-    },
-  });
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       if (acceptedFiles.length) {
@@ -33,10 +27,17 @@ export const useCheckProfileImage = ({
         setIsError(false);
         const frm = new FormData();
         frm.append('file', acceptedFiles[0], acceptedFiles[0].name);
-        fileUpload.mutate(frm);
+        fileUpload(
+          { formData: frm, params: { type: 'MEMBER' } },
+          {
+            onSuccess: (res) => {
+              setProfilePhoto('profileImgUrl', res.imgUrls[0]);
+            },
+          },
+        );
       } else {
         setIsError(true);
-        setProfilePhoto('profilePhoto', '');
+        setProfilePhoto('profileImgUrl', '');
       }
     },
     [fileUpload, setProfilePhoto],
@@ -50,9 +51,26 @@ export const useCheckProfileImage = ({
     maxSize: 3145728, // 3MB
   });
 
-  const handleDefaultImage = () => {
-    setImageSrc('');
-  };
+  const handleDefaultImage = useCallback(
+    (src: string) => {
+      const defaultProfileUrlMapping: { [key: string]: string } = {
+        [DEFAULT_PROFILE_URL.OCTOPUS.CLIENT]:
+          DEFAULT_PROFILE_URL.OCTOPUS.SERVER,
+        [DEFAULT_PROFILE_URL.JELLYFISH.CLIENT]:
+          DEFAULT_PROFILE_URL.JELLYFISH.SERVER,
+        [DEFAULT_PROFILE_URL.RAY.CLIENT]: DEFAULT_PROFILE_URL.RAY.SERVER,
+        [DEFAULT_PROFILE_URL.EEL.CLIENT]: DEFAULT_PROFILE_URL.EEL.SERVER,
+        [DEFAULT_PROFILE_URL.TURTLE.CLIENT]: DEFAULT_PROFILE_URL.TURTLE.SERVER,
+        [DEFAULT_PROFILE_URL.RABBIT.CLIENT]: DEFAULT_PROFILE_URL.RABBIT.SERVER,
+      };
+
+      const profileImgUrl = defaultProfileUrlMapping[src] || '';
+
+      setImageSrc(src);
+      setProfilePhoto('profileImgUrl', profileImgUrl);
+    },
+    [setImageSrc, setProfilePhoto],
+  );
 
   return { imageSrc, isError, getRootProps, handleDefaultImage };
 };

@@ -1,7 +1,7 @@
 import { INPUT_LIMIT } from '@/constants/input';
+import { ERROR } from '@/constants/message';
+import { isEmptyString } from '@/utils/validator';
 import { useRef, useState } from 'react';
-import { ERROR } from '../../../constants/message';
-import { isEmptyString } from '../../../utils/validator';
 
 export const useCheckPassword = (value: string) => {
   const inputRef = useRef<HTMLInputElement | null>(null);

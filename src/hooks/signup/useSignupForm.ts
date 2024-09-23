@@ -1,6 +1,7 @@
+import { PATH } from '@/constants/path';
 import { MemberForm, MemberSuccesForm } from '@/types/member';
 import { isAllTrue } from '@/utils/validator';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSignUpMutation } from '../api/member/useSignUpMutation';
 import { useActiveSubmit } from '../common/useActiveSubmit';
@@ -13,7 +14,8 @@ const initialState: MemberForm = {
   nickname: '',
   password: '',
   passwordCheck: '',
-  profilePhoto: '',
+  profileImgUrl: '',
+  role: 'USER',
 };
 
 const successState: MemberSuccesForm = {
@@ -25,6 +27,7 @@ const successState: MemberSuccesForm = {
 };
 
 export const useSignupForm = () => {
+  const [signupSuccess, setSignupSuccess] = useState<boolean>(false);
   const { form, onChange, setEach } = useInputs<MemberForm>(initialState);
   const { successForm, onSuccessChange } =
     useActiveSubmit<MemberSuccesForm>(successState);
@@ -36,7 +39,7 @@ export const useSignupForm = () => {
     return newForm;
   };
 
-  const signup = useSignUpMutation();
+  const { mutate: signup } = useSignUpMutation();
 
   const navigate = useNavigate();
 
@@ -44,9 +47,15 @@ export const useSignupForm = () => {
     e.preventDefault();
     if (isAllTrue(successForm)) {
       const newForm = createNewForm(form);
-      signup.mutate(newForm);
+      signup(newForm, {
+        onSuccess: () => {
+          setSignupSuccess(true);
+          setTimeout(() => {
+            navigate(`/${PATH.LOGIN}`);
+          }, 2000);
+        },
+      });
     } else {
-      console.log(form);
       focus(e);
     }
   };
@@ -56,6 +65,7 @@ export const useSignupForm = () => {
   };
 
   return {
+    signupSuccess,
     form,
     onChange,
     setEach,
