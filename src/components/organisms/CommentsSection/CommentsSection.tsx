@@ -1,64 +1,53 @@
-import React, { useState, useEffect } from 'react';
-import Comment from '@/components/molecules/Comment/Comment';
+import React, { useState } from 'react';
+import { CommentsPagination } from '@/types/comment';
 import Pagination from '@/components/atoms/Pagination/Pagination';
 import TextArea from '@/components/molecules/TextArea/TextArea';
 import Toggle from '@/components/atoms/Toggle/Toggle';
 import ToastModal from '@/components/atoms/ToastModal/ToastModal';
 import { createRangeArray } from '@/utils/array';
-import { calculateTotalPages } from '@/utils/pagination';
+import CommentItem from '@/components/molecules/CommentItem/CommentItem';
+import { useCreateCommentMutation } from '@/hooks/api/comment/useCreateCommentMutation';
 import * as S from './CommentsSection.style';
 
-interface CommentData {
-  id: string;
-  imgUrl: string;
-  nickname: string;
-  createdTime: string;
-  comment: string;
-  likeCount: number;
-  stance: 'pros' | 'cons';
-}
-
-interface CommentsSectionProps {
-  commentsData: CommentData[];
+export interface CommentsSectionProps {
+  talkPickId: number;
+  myOption: 'A' | 'B' | null;
+  commentList?: CommentsPagination;
+  selectedPage: number;
+  handlePageChange: React.Dispatch<React.SetStateAction<number>>;
   voted: boolean;
 }
 
-const CommentsSection = ({ commentsData, voted }: CommentsSectionProps) => {
-  const [selectedPage, setSelectedPage] = useState(1);
-  const [displayedComments, setDisplayedComments] = useState<CommentData[]>([]);
-  const [replyText, setReplyText] = useState('');
+const CommentsSection = ({
+  talkPickId,
+  myOption,
+  commentList,
+  selectedPage,
+  handlePageChange,
+  voted,
+}: CommentsSectionProps) => {
+  const pages = createRangeArray(selectedPage, commentList?.totalPages || 0);
+  const [commentValue, setCommentValue] = useState<string>('');
 
-  const commentsPerPage = 7;
+  const { mutate: createComment } = useCreateCommentMutation(
+    talkPickId,
+    'comments',
+  );
 
-  useEffect(() => {
-    const startIndex = (selectedPage - 1) * commentsPerPage;
-    const newDisplayedComments = commentsData.slice(
-      startIndex,
-      startIndex + commentsPerPage,
-    );
-    setDisplayedComments(newDisplayedComments);
-  }, [selectedPage, commentsData]);
+  const handleCommentButton = () => {
+    if (!myOption) return;
 
-  const handlePageChange = (page: number) => {
-    setSelectedPage(page);
+    createComment({
+      content: commentValue,
+      option: myOption,
+      parentId: talkPickId,
+    });
+    setCommentValue('');
   };
-
-  const handleReplyChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setReplyText(e.target.value);
-  };
-
-  const handleReplySubmit = () => {
-    console.log('작성한 댓글:', replyText);
-    setReplyText('');
-  };
-
-  const totalPages = calculateTotalPages(commentsData.length, commentsPerPage);
-
-  const pages = createRangeArray(selectedPage, totalPages);
 
   return (
     <div css={S.commentsSectionContainer}>
-      <Toggle count={127} label="톡댓톡" />
+      <Toggle count={commentList?.totalElements ?? 0} label="톡댓톡" />
       <div css={S.loggedInBackground}>
         {!voted && (
           <div css={S.loggedOutBackground}>
@@ -71,15 +60,17 @@ const CommentsSection = ({ commentsData, voted }: CommentsSectionProps) => {
         )}
         <TextArea
           size="large"
-          value={replyText}
-          onChange={handleReplyChange}
-          onSubmit={handleReplySubmit}
-          placeholder="댓글을 입력하세요"
+          value={commentValue}
+          onSubmit={handleCommentButton}
+          placeholder="댓글을 입력하세요."
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+            setCommentValue(e.target.value)
+          }
           label="등록"
         />
         <div css={S.commentsWrapper}>
-          {displayedComments.map((commentData) => (
-            <Comment key={commentData.id} {...commentData} />
+          {commentList?.content.map((commentData) => (
+            <CommentItem comment={commentData} />
           ))}
         </div>
       </div>
@@ -87,7 +78,7 @@ const CommentsSection = ({ commentsData, voted }: CommentsSectionProps) => {
         <Pagination
           pages={pages}
           selected={selectedPage}
-          maxPage={totalPages}
+          maxPage={commentList?.totalPages ?? 0}
           onChangeNavigate={handlePageChange}
         />
       </div>

@@ -16,7 +16,7 @@ export const putComment = async (
 ) => {
   const { data } = await axiosInstance.put<ServerResponse>(
     END_POINT.EDIT_COMMENT(talkPickId, commentId),
-    { ...comment },
+    { content: comment },
   );
   return data;
 };

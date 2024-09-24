@@ -6,12 +6,12 @@ import {
 } from './CommentProfile.style';
 
 export interface CommentProfileProps {
-  stance: 'pros' | 'cons';
+  option: 'A' | 'B';
   imgUrl?: string;
 }
 
-const CommentProfile = ({ stance, imgUrl }: CommentProfileProps) => (
-  <div css={[containerStyle(stance)]}>
+const CommentProfile = ({ option, imgUrl }: CommentProfileProps) => (
+  <div css={[containerStyle(option)]}>
     <div css={profileWrapper}>
       <img css={profileImage} src={imgUrl} alt="profile" />
     </div>

@@ -1,8 +1,8 @@
-/* eslint-disable react/no-array-index-key */
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import ImageUploadButton from '@/components/atoms/ImageUploadButton/ImageUploadButton';
 import ImagePreview from '@/components/atoms/ImagePreview/ImagePreview';
 import { RightArrowButton, LeftArrowButton } from '@/assets';
+import { useDeleteFileMutation } from '@/hooks/api/file/useDeleteFileMutation';
 import * as S from './ImageUploader.style';
 
 interface ImageUploaderProps {
@@ -10,8 +10,7 @@ interface ImageUploaderProps {
   setImageFiles: React.Dispatch<React.SetStateAction<File[]>>;
   imgUrls: string[];
   setImgUrls: React.Dispatch<React.SetStateAction<string[]>>;
-  setStoredNames: React.Dispatch<React.SetStateAction<string[]>>;
-  isTempLoaded: boolean;
+  storedNames: string[];
 }
 
 const ImageUploader = ({
@@ -19,19 +18,32 @@ const ImageUploader = ({
   setImageFiles,
   imgUrls,
   setImgUrls,
-  setStoredNames,
-  isTempLoaded,
+  storedNames,
 }: ImageUploaderProps) => {
   const imageContainerRef = useRef<HTMLDivElement | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
 
+  const deleteFileMutation = useDeleteFileMutation();
+
+  const imageList: string[] = [
+    ...imgUrls,
+    ...imageFiles.map((file) => URL.createObjectURL(file)),
+  ];
+
   const handleDelete = (index: number) => {
-    if (isTempLoaded) {
-      setImgUrls((prevUrls) => prevUrls.filter((_, i) => i !== index));
-      setStoredNames((prevNames) => prevNames.filter((_, i) => i !== index));
+    const isObjectUrl: boolean = imageList[index].startsWith('blob:');
+
+    if (isObjectUrl) {
+      setImageFiles((prev) => prev.filter((_, i) => i !== index));
     } else {
-      setImageFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+      const storedName = storedNames[index];
+
+      deleteFileMutation.mutate(storedName, {
+        onSuccess: () => {
+          setImgUrls((prev) => prev.filter((_, i) => i !== index));
+        },
+      });
     }
   };
 
@@ -78,25 +90,17 @@ const ImageUploader = ({
     <div css={S.uploaderContainerStyle}>
       <div css={S.imageContainerStyle} ref={imageContainerRef}>
         <ImageUploadButton
-          imageFiles={imageFiles}
+          imageCount={imageList.length}
           setImageFiles={setImageFiles}
         />
 
-        {isTempLoaded
-          ? imgUrls.map((url, index) => (
-              <ImagePreview
-                key={index}
-                imgUrl={url}
-                onDelete={() => handleDelete(index)}
-              />
-            ))
-          : imageFiles.map((imageFile, index) => (
-              <ImagePreview
-                key={index}
-                imgUrl={URL.createObjectURL(imageFile)}
-                onDelete={() => handleDelete(index)}
-              />
-            ))}
+        {imageList.map((url, index) => (
+          <ImagePreview
+            key={url}
+            imgUrl={url}
+            onDelete={() => handleDelete(index)}
+          />
+        ))}
       </div>
 
       {canScrollLeft && (
