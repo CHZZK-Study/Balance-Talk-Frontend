@@ -16,11 +16,13 @@ const meta = {
       control: { type: 'radio' },
     },
     isOpen: { control: { type: 'boolean' } },
+    hasCloseButton: { control: { type: 'boolean' } },
     children: { control: { type: 'text' } },
   },
   args: {
     isOpen: true,
     children: 'Modal',
+    hasCloseButton: true,
   },
 } satisfies Meta<typeof Modal>;
 
@@ -31,6 +33,7 @@ export const Default: Story = {
   args: {
     isOpen: true,
     action: 'default',
+    hasCloseButton: true,
   },
 };
 
@@ -43,7 +46,7 @@ export const All: Story = {
       <ul css={storyContainer}>
         <li css={storyInnerContainer}>
           <h3>Close Modal</h3>
-          <Modal isOpen={modalOpen} onClose={handleCloseModal}>
+          <Modal isOpen={modalOpen} onClose={handleCloseModal} hasCloseButton>
             Close Modal
           </Modal>
         </li>

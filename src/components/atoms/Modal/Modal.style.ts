@@ -39,3 +39,10 @@ export const getModalSize = (action: Required<ModalProps>['action']) => {
 
   return style[action as keyof typeof style];
 };
+
+export const modalCloseStyling = css({
+  position: 'absolute',
+  top: '34px',
+  right: '30px',
+  cursor: 'pointer',
+});
