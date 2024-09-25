@@ -18,7 +18,12 @@ const TextModal = ({
   onConfirm,
   onClose,
 }: TextModalProps) => (
-  <Modal action="default" isOpen={isOpen} onClose={onClose}>
+  <Modal
+    action="default"
+    isOpen={isOpen}
+    onClose={onClose}
+    hasCloseButton={false}
+  >
     <div css={S.textModalStyling}>
       <div css={S.modalTextWrapper}>
         <div css={S.modalTextStyling}>{text}</div>

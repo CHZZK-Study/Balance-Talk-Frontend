@@ -34,7 +34,12 @@ const ReportModal = ({ isOpen, onConfirm, onClose }: ReportModalProps) => {
   };
 
   return (
-    <Modal action="report" isOpen={isOpen} onClose={onClose}>
+    <Modal
+      action="report"
+      isOpen={isOpen}
+      onClose={onClose}
+      hasCloseButton={false}
+    >
       <div css={S.reportModalStyling}>
         <div css={S.reportTextStyling}>[신고사유 선택]</div>
         <div css={S.checkBoxWrapperStyling}>
