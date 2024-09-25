@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 import React from 'react';
 import { NewDot } from '@/assets';
 import {
@@ -11,6 +12,7 @@ import {
 } from './NotificationItem.style';
 
 export interface NotificationItemProps {
+  id?: number;
   category: string;
   date: string;
   title: string;
