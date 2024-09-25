@@ -7,6 +7,7 @@ export interface ModalProps {
   action?: 'default' | 'share' | 'report' | 'profile';
   isOpen?: boolean;
   onClose?: () => void;
+  withCloseButton?: boolean;
   children?: ReactNode;
 }
 
@@ -14,6 +15,7 @@ const Modal = ({
   isOpen,
   onClose,
   action = 'default',
+  withCloseButton = true,
   children,
 }: ModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
@@ -32,7 +34,9 @@ const Modal = ({
     <div>
       {isOpen && (
         <div ref={modalRef} css={[modalStyling, getModalSize(action)]}>
-          <ModalClose css={modalCloseStyling} onClick={onClose} />
+          {withCloseButton && (
+            <ModalClose css={modalCloseStyling} onClick={onClose} />
+          )}
           {children}
         </div>
       )}
