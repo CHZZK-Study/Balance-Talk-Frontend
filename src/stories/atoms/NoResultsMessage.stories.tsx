@@ -8,9 +8,14 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {
     keyword: { control: { type: 'text' } },
+    searchChoice: {
+      options: ['default', 'balanceGame', 'talkPick'],
+      control: { type: 'radio' },
+    },
   },
   args: {
     keyword: '신라면',
+    searchChoice: 'default',
   },
 } satisfies Meta<typeof NoResultsMessage>;
 
