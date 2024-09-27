@@ -12,6 +12,7 @@ import { useCreateLikeCommentMutation } from '@/hooks/api/like/useCreateLikeComm
 import { useDeleteLikeCommentMutation } from '@/hooks/api/like/useDeleteLikeCommentMutation';
 import { useReportCommentMutation } from '@/hooks/api/report/useReportCommentMutation';
 import MenuTap, { MenuItem } from '@/components/atoms/MenuTap/MenuTap';
+import CategoryBarChip from '@/components/atoms/CategoryBarChip/CategoryBarChip';
 import ToastModal from '@/components/atoms/ToastModal/ToastModal';
 import LikeButton from '@/components/atoms/LikeButton/LikeButton';
 import TextArea from '@/components/molecules/TextArea/TextArea';
@@ -197,7 +198,10 @@ const CommentItem = ({ comment }: CommentItemProps) => {
         </div>
         <div css={S.commentInfoWrapper}>
           <div css={S.commentTopWrapper}>
-            <div>
+            <div css={S.writerInfoWrapper}>
+              {isMyComment && (
+                <CategoryBarChip size="small">작성자</CategoryBarChip>
+              )}
               <span css={S.nickname}>{comment?.nickname}</span>
               <span css={S.createdTime}>
                 {formatDateFromISO(comment?.createdAt ?? '')}
@@ -213,7 +217,7 @@ const CommentItem = ({ comment }: CommentItemProps) => {
               size="medium"
               value={editCommentText}
               label="댓글 수정"
-              isEdited={comment.content === editCommentText}
+              isEdited={comment.content !== editCommentText}
               onChange={handleEditCommentChange}
               onSubmit={handleEditCommentSubmit}
             />

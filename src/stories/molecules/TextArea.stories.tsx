@@ -46,21 +46,22 @@ export const All: Story = {
     return (
       <div css={storyContainer}>
         <div css={storyInnerContainer}>
-          <h3>Large</h3>
+          <h3>Size</h3>
           <TextArea
             {...args}
             size="large"
             value={largeText}
+            placeholder="Large"
             onChange={(e) => setLargeText(e.target.value)}
             onSubmit={() => alert('버튼 클릭됨!')}
           />
         </div>
         <div css={storyInnerContainer}>
-          <h3>Medium</h3>
           <TextArea
             {...args}
             size="medium"
             value={mediumText}
+            placeholder="Medium"
             onChange={(e) => setMediumText(e.target.value)}
             onSubmit={() => alert('버튼 클릭됨!')}
           />

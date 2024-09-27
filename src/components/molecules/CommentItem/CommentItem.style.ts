@@ -37,21 +37,25 @@ export const commentTopWrapper = css`
   justify-content: space-between;
 `;
 
+export const writerInfoWrapper = css`
+  display: flex;
+  gap: 10px;
+`;
+
 export const nickname = css`
   ${typo.Comment.SemiBold}
   color: ${color.BK};
 `;
 
 export const createdTime = css`
-  ${typo.Comment.Regular}
+  ${typo.Comment.SemiBold}
   color: #67727E;
-  margin-left: 30px;
+  margin-left: 10px;
 `;
 
 export const editedText = css`
   ${typo.Comment.Regular}
   color: ${color.MAIN};
-  margin-left: 10px;
 `;
 
 export const commentTextWrapper = css`
