@@ -4,6 +4,9 @@ import Pagination from '@/components/atoms/Pagination/Pagination';
 import TextArea from '@/components/molecules/TextArea/TextArea';
 import Toggle from '@/components/atoms/Toggle/Toggle';
 import ToastModal from '@/components/atoms/ToastModal/ToastModal';
+import ToggleGroup, {
+  ToggleGroupItem,
+} from '@/components/atoms/ToggleGroup/ToggleGroup';
 import { createRangeArray } from '@/utils/array';
 import CommentItem from '@/components/molecules/CommentItem/CommentItem';
 import { useCreateCommentMutation } from '@/hooks/api/comment/useCreateCommentMutation';
@@ -13,6 +16,9 @@ export interface CommentsSectionProps {
   talkPickId: number;
   myOption: 'A' | 'B' | null;
   commentList?: CommentsPagination;
+  toggleItem: ToggleGroupItem[];
+  selectedValue: string;
+  setToggleValue: React.Dispatch<React.SetStateAction<string>>;
   selectedPage: number;
   handlePageChange: React.Dispatch<React.SetStateAction<number>>;
   voted: boolean;
@@ -22,6 +28,9 @@ const CommentsSection = ({
   talkPickId,
   myOption,
   commentList,
+  toggleItem,
+  selectedValue,
+  setToggleValue,
   selectedPage,
   handlePageChange,
   voted,
@@ -43,11 +52,20 @@ const CommentsSection = ({
       parentId: talkPickId,
     });
     setCommentValue('');
+
+    if (selectedValue === 'trend') setToggleValue('recent');
   };
 
   return (
     <div css={S.commentsSectionContainer}>
-      <Toggle count={commentList?.totalElements ?? 0} label="톡댓톡" />
+      <div css={S.commentTopWrapper}>
+        <Toggle count={commentList?.totalElements ?? 0} label="톡댓톡" />
+        <ToggleGroup
+          items={toggleItem}
+          selectedValue={selectedValue}
+          onClick={setToggleValue}
+        />
+      </div>
       <div css={S.loggedInBackground}>
         {!voted && (
           <div css={S.loggedOutBackground}>

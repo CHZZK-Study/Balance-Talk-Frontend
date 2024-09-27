@@ -5,6 +5,8 @@ import { useLocation } from 'react-router-dom';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import { useCommentsQuery } from '@/hooks/api/comment/useCommentsQuery';
+import { useBestCommentsQuery } from '@/hooks/api/comment/useBestCommentsQuery';
+import { ToggleGroupItem } from '@/components/atoms/ToggleGroup/ToggleGroup';
 import TodayTalkPickSection from '@/components/organisms/TodayTalkPickSection/TodayTalkPickSection';
 import CommentsSection from '@/components/organisms/CommentsSection/CommentsSection';
 import { useTalkPickSummaryMutation } from '@/hooks/api/talk-pick/useTalkPickSummaryMutation';
@@ -17,6 +19,7 @@ interface State {
 
 const TodayTalkPickPage = () => {
   const [selectedPage, setSelectedPage] = useState<number>(1);
+  const [selectedValue, setSelectedValue] = useState<string>('trend');
 
   const accessToken = useNewSelector(selectAccessToken);
   const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
@@ -33,6 +36,17 @@ const TodayTalkPickPage = () => {
 
   const { talkPick } = useTalkPickDetailQuery(talkPickId);
 
+  const toggleItem: ToggleGroupItem[] = [
+    {
+      label: '인기순',
+      value: 'trend',
+    },
+    {
+      label: '최신순',
+      value: 'recent',
+    },
+  ];
+
   const { comments } = useCommentsQuery(
     talkPickId,
     {
@@ -40,6 +54,15 @@ const TodayTalkPickPage = () => {
       size: 7,
     },
     'comments',
+  );
+
+  const { bestComments } = useBestCommentsQuery(
+    talkPickId,
+    {
+      page: selectedPage - 1,
+      size: 7,
+    },
+    'bestComments',
   );
 
   return (
@@ -52,7 +75,10 @@ const TodayTalkPickPage = () => {
         <CommentsSection
           talkPickId={talkPickId}
           myOption={talkPick?.votedOption ?? null}
-          commentList={comments}
+          commentList={selectedValue === 'trend' ? bestComments : comments}
+          toggleItem={toggleItem}
+          selectedValue={selectedValue}
+          setToggleValue={setSelectedValue}
           selectedPage={selectedPage}
           handlePageChange={setSelectedPage}
           voted={talkPick?.votedOption !== null}

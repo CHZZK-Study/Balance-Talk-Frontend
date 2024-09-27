@@ -20,20 +20,6 @@ export interface Comment {
   best: boolean;
 }
 
-export interface Reply {
-  id: number;
-  talkPickId: number;
-  ninckname: string;
-  content: string;
-  option: string;
-  likesCount: number;
-  myLike: boolean;
-  createdAt: string;
-  lastModifiedAt: string;
-  parentCommentId: number;
-  isBest: boolean;
-}
-
 export interface CommentsPagination extends PaginationType {
   content: Comment[];
 }
