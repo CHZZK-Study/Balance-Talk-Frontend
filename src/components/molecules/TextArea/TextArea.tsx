@@ -11,7 +11,7 @@ export interface TextAreaProps extends ComponentPropsWithRef<'textarea'> {
 }
 
 const TextArea = (
-  { size, value, label, onSubmit, isEdited = false, ...props }: TextAreaProps,
+  { size, value, label, onSubmit, isEdited = true, ...props }: TextAreaProps,
   ref: ForwardedRef<HTMLTextAreaElement>,
 ) => (
   <div css={[S.textAreaContainer, S.getContainerSizeStyling(size)]}>

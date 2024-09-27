@@ -67,7 +67,7 @@ export const replyCount = css`
 `;
 
 export const getButtonStyle = (isEdited: boolean) => {
-  if (!isEdited) {
+  if (isEdited) {
     return css({});
   }
 

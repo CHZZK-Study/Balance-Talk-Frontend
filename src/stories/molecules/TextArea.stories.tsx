@@ -65,6 +65,17 @@ export const All: Story = {
             onSubmit={() => alert('버튼 클릭됨!')}
           />
         </div>
+        <div css={storyInnerContainer}>
+          <h3>댓글 수정 - 수정된 내용 없음</h3>
+          <TextArea
+            size="medium"
+            value="수정된 내용 없음"
+            label="댓글 수정"
+            onChange={() => {}}
+            onSubmit={() => alert('버튼 클릭됨!')}
+            isEdited={false}
+          />
+        </div>
       </div>
     );
   },
