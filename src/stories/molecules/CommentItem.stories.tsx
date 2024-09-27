@@ -13,6 +13,7 @@ const exampleComment: Comment = {
   talkPickId: 1,
   talkPickTitle: '톡픽 제목',
   nickname: '닉네임 4',
+  profileImage: ProfileSample,
   content: '피곤하게 산다... 그깟 새우 까주는게 뭐 대수라고!',
   option: 'A',
   likesCount: 35,
@@ -22,9 +23,9 @@ const exampleComment: Comment = {
   reportedCount: 0,
   createdAt: '2024-09-08T12:23:04.105815',
   lastModifiedAt: '2024-09-08T12:23:04.105815',
+  edited: false,
   blind: false,
   best: false,
-  imgUrl: ProfileSample,
 };
 
 const meta: Meta<typeof CommentItem> = {

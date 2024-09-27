@@ -190,7 +190,10 @@ const CommentItem = ({ comment }: CommentItemProps) => {
         css={[S.commentContainer, isMyComment && S.myCommentColor]}
       >
         <div css={S.profileWrapper}>
-          <CommentProfile option={comment?.option} imgUrl={comment?.imgUrl} />
+          <CommentProfile
+            option={comment?.option}
+            imgUrl={comment?.profileImage}
+          />
         </div>
         <div css={S.commentInfoWrapper}>
           <div css={S.commentTopWrapper}>
@@ -199,6 +202,7 @@ const CommentItem = ({ comment }: CommentItemProps) => {
               <span css={S.createdTime}>
                 {formatDateFromISO(comment?.createdAt ?? '')}
               </span>
+              {comment.edited && <span css={S.editedText}>수정됨</span>}
             </div>
             {!editCommentClicked && (
               <MenuTap menuData={isMyComment ? myComment : otherComment} />

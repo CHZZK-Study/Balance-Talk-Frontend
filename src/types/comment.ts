@@ -5,18 +5,19 @@ export interface Comment {
   talkPickId: number;
   talkPickTitle: string;
   nickname: string;
+  profileImage: string;
   content: string;
-  option: 'A' | 'B';
+  option: 'A' | 'B' | null;
   likesCount: number;
   myLike: boolean;
-  parentId: number;
+  parentId: number | null;
   replyCount: number;
   reportedCount: number;
   createdAt: string;
   lastModifiedAt: string;
+  edited: boolean;
   blind: boolean;
   best: boolean;
-  imgUrl: string;
 }
 
 export interface Reply {

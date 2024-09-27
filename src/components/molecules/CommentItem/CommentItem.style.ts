@@ -48,6 +48,12 @@ export const createdTime = css`
   margin-left: 30px;
 `;
 
+export const editedText = css`
+  ${typo.Comment.Regular}
+  color: ${color.MAIN};
+  margin-left: 10px;
+`;
+
 export const commentTextWrapper = css`
   display: flex;
   width: 100%;
