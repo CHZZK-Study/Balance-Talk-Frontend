@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+/* eslint-disable no-console */
+import React, { useEffect, useRef, useState } from 'react';
 import { Comment } from '@/types/comment';
+import { AngleReplyDown, AngleReplyUp } from '@/assets';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
@@ -26,12 +28,42 @@ const CommentItem = ({ comment }: CommentItemProps) => {
   const accessToken = useNewSelector(selectAccessToken);
   const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
   const isMyComment: boolean = comment?.nickname === member?.nickname;
+  const commentRef = useRef<HTMLDivElement>(null);
 
   const [reportModalOpen, setReportModalOpen] = useState<boolean>(false);
   const [reportTextModalOpen, setReportTextModalOpen] =
     useState<boolean>(false);
   const [deleteTextModalOpen, setDeleteTextModalOpen] =
     useState<boolean>(false);
+
+  const [editCommentClicked, setEditCommentClicked] = useState<boolean>(false);
+  const [editCommentText, setEditCommentText] = useState<string>(
+    comment.content,
+  );
+
+  const handleEditCommentChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>,
+  ) => {
+    setEditCommentText(e.target.value);
+  };
+
+  const handleEditCommentSubmit = () => {
+    if (comment.content === editCommentText) return;
+    console.log('수정된 댓글: ', editCommentText);
+  };
+
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (
+        commentRef.current &&
+        !commentRef.current.contains(e.target as Node)
+      ) {
+        setEditCommentClicked(false);
+      }
+    };
+    window.addEventListener('mousedown', handleClick);
+    return () => window.removeEventListener('mousedown', handleClick);
+  }, [commentRef]);
 
   const [showReply, setShowReply] = useState(false);
   const [replyText, setReplyText] = useState('');
@@ -68,7 +100,7 @@ const CommentItem = ({ comment }: CommentItemProps) => {
     {
       label: '수정',
       onClick: () => {
-        console.log('수정 클릭됨!!');
+        setEditCommentClicked(true);
       },
     },
     {
@@ -123,12 +155,7 @@ const CommentItem = ({ comment }: CommentItemProps) => {
   };
 
   return (
-    <div
-      css={[
-        S.MainContainer,
-        showReply ? S.expandedContainer : S.compactContainer,
-      ]}
-    >
+    <div css={S.MainContainer}>
       {reportCommentSuccess && (
         <div css={S.toastModalStyling}>
           <ToastModal>신고가 완료되었습니다.</ToastModal>
@@ -141,7 +168,7 @@ const CommentItem = ({ comment }: CommentItemProps) => {
           onConfirm={() => {
             handleDeleteCommentButton();
           }}
-          onClose={() => setReportTextModalOpen(false)}
+          onClose={() => setDeleteTextModalOpen(false)}
         />
         <TextModal
           text="해당 댓글을 신고하시겠습니까?"
@@ -158,38 +185,59 @@ const CommentItem = ({ comment }: CommentItemProps) => {
           onClose={() => setReportModalOpen(false)}
         />
       </div>
-      <div css={[S.commentContainer, isMyComment && S.myCommentColor]}>
-        <CommentProfile option={comment?.option} imgUrl={comment?.imgUrl} />
-        <div css={S.commentWrapper}>
-          <div css={S.commentBox}>
-            <span css={S.nickname}>{comment?.nickname}</span>
-            <span css={S.createdTime}>
-              {formatDateFromISO(comment?.createdAt ?? '')}
-            </span>
-          </div>
-          <p css={S.commentText}>{comment?.content}</p>
+      <div
+        ref={commentRef}
+        css={[S.commentContainer, isMyComment && S.myCommentColor]}
+      >
+        <div css={S.profileWrapper}>
+          <CommentProfile option={comment?.option} imgUrl={comment?.imgUrl} />
         </div>
-        <div css={S.sideWrapper}>
-          <div css={S.sideBox}>
-            <button
-              type="button"
-              css={S.replyButton}
-              onClick={handleReplyToggle}
-            >
-              답글
-            </button>
-            <MenuTap menuData={isMyComment ? myComment : otherComment} />
+        <div css={S.commentInfoWrapper}>
+          <div css={S.commentTopWrapper}>
+            <div>
+              <span css={S.nickname}>{comment?.nickname}</span>
+              <span css={S.createdTime}>
+                {formatDateFromISO(comment?.createdAt ?? '')}
+              </span>
+            </div>
+            {!editCommentClicked && (
+              <MenuTap menuData={isMyComment ? myComment : otherComment} />
+            )}
           </div>
-          <LikeButton
-            likeCount={comment?.likesCount}
-            likeState={comment?.myLike}
-            onClick={handleLikeCommentButton}
-          />
+          {editCommentClicked ? (
+            <TextArea
+              size="medium"
+              value={editCommentText}
+              label="댓글 수정"
+              isEdited={comment.content === editCommentText}
+              onChange={handleEditCommentChange}
+              onSubmit={handleEditCommentSubmit}
+            />
+          ) : (
+            <>
+              <div css={S.commentTextWrapper}>{comment?.content}</div>
+              <div css={S.commentBottomWrapper}>
+                <button
+                  type="button"
+                  css={S.replyButton}
+                  onClick={handleReplyToggle}
+                >
+                  {showReply ? <AngleReplyUp /> : <AngleReplyDown />}
+                  답글 <span>{comment.replyCount}</span>개
+                </button>
+                <LikeButton
+                  likeCount={comment?.likesCount}
+                  likeState={comment?.myLike}
+                  onClick={handleLikeCommentButton}
+                />
+              </div>
+            </>
+          )}
         </div>
       </div>
       {showReply && (
-        <div css={S.replyForm}>
-          <span css={S.nicknameInput}>{member?.nickname}</span>
+        <div css={S.replyContainer}>
+          <span css={S.nicknameInput}>{member?.nickname}닉네임</span>
           <TextArea
             size="medium"
             value={replyText}
