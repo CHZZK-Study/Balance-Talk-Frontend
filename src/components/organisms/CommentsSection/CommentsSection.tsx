@@ -88,7 +88,7 @@ const CommentsSection = ({
         />
         <div css={S.commentsWrapper}>
           {commentList?.content.map((commentData) => (
-            <CommentItem comment={commentData} />
+            <CommentItem comment={commentData} myOption={myOption} />
           ))}
         </div>
       </div>

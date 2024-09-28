@@ -24,12 +24,13 @@ export interface CommentsPagination extends PaginationType {
   content: Comment[];
 }
 
-export type CreateCommentProps = Pick<Comment, 'content' | 'option'> & {
-  parentId: number;
-};
+export type CreateCommentProps = Pick<
+  Comment,
+  'content' | 'option' | 'parentId'
+>;
+
+export type CreateReplyProps = CreateCommentProps;
 
 export type EditCommentProps = Pick<Comment, 'content'>;
-
-export type CreateReplyProps = Pick<Comment, 'content' | 'option'>;
 
 export type CommentsCategory = 'comments' | 'bestComments';

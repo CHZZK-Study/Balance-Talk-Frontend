@@ -51,11 +51,29 @@ export const postComment = async (
   return data;
 };
 
-export const postReply = async (commentId: Id, reply: CreateReplyProps) => {
+export const postReply = async (
+  talkPickId: Id,
+  commentId: Id,
+  reply: CreateReplyProps,
+) => {
   const { data } = await axiosInstance.post<ServerResponse>(
-    END_POINT.CREATE_REPLY(commentId),
+    END_POINT.CREATE_REPLY(talkPickId, commentId),
     {
       ...reply,
+    },
+  );
+  return data;
+};
+
+export const getReplies = async (
+  talkPickId: Id,
+  commentId: Id,
+  pageable: Pageable,
+) => {
+  const { data } = await axiosInstance.get<CommentsPagination>(
+    END_POINT.REPLIES(talkPickId, commentId),
+    {
+      params: { ...pageable, sort: 'createdAt,desc' },
     },
   );
   return data;

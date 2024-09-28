@@ -7,6 +7,7 @@ import { selectAccessToken } from '@/store/auth';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import { formatDateFromISO } from '@/utils/formatData';
+import { useCreateReplyMutation } from '@/hooks/api/comment/useCreateReplyMutation';
 import { useDeleteCommentMutation } from '@/hooks/api/comment/useDeleteCommentMutation';
 import { useCreateLikeCommentMutation } from '@/hooks/api/like/useCreateLikeCommentMutation';
 import { useDeleteLikeCommentMutation } from '@/hooks/api/like/useDeleteLikeCommentMutation';
@@ -23,9 +24,10 @@ import * as S from './CommentItem.style';
 
 export interface CommentItemProps {
   comment: Comment;
+  myOption: 'A' | 'B' | null;
 }
 
-const CommentItem = ({ comment }: CommentItemProps) => {
+const CommentItem = ({ comment, myOption }: CommentItemProps) => {
   const accessToken = useNewSelector(selectAccessToken);
   const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
   const isMyComment: boolean = comment?.nickname === member?.nickname;
@@ -67,18 +69,26 @@ const CommentItem = ({ comment }: CommentItemProps) => {
   }, [commentRef]);
 
   const [showReply, setShowReply] = useState(false);
-  const [replyText, setReplyText] = useState('');
+  const [replyValue, setReplyValue] = useState('');
 
   const handleReplyToggle = () => {
     setShowReply(!showReply);
   };
 
-  const handleReplyChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setReplyText(e.target.value);
-  };
+  const { mutate: createReply } = useCreateReplyMutation(
+    comment.talkPickId,
+    comment.id,
+    'comments',
+  );
 
-  const handleReplySubmit = () => {
-    console.log('작성한 답글:', replyText);
+  const handleReplyButton = () => {
+    if (!myOption) return;
+
+    createReply({
+      content: replyValue,
+      option: myOption,
+      parentId: comment.talkPickId,
+    });
   };
 
   const { mutate: deleteComment } = useDeleteCommentMutation(
@@ -248,9 +258,11 @@ const CommentItem = ({ comment }: CommentItemProps) => {
           <span css={S.nicknameInput}>{member?.nickname}닉네임</span>
           <TextArea
             size="medium"
-            value={replyText}
-            onChange={handleReplyChange}
-            onSubmit={handleReplySubmit}
+            value={replyValue}
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+              setReplyValue(e.target.value)
+            }
+            onSubmit={handleReplyButton}
             placeholder="댓글을 입력하세요"
             label="답글달기"
           />
