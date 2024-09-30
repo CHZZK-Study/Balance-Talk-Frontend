@@ -38,10 +38,7 @@ const CommentsSection = ({
   const pages = createRangeArray(selectedPage, commentList?.totalPages || 0);
   const [commentValue, setCommentValue] = useState<string>('');
 
-  const { mutate: createComment } = useCreateCommentMutation(
-    talkPickId,
-    'comments',
-  );
+  const { mutate: createComment } = useCreateCommentMutation(talkPickId);
 
   const handleCommentButton = () => {
     if (!myOption) return;
@@ -88,7 +85,11 @@ const CommentsSection = ({
         />
         <div css={S.commentsWrapper}>
           {commentList?.content.map((commentData) => (
-            <CommentItem comment={commentData} myOption={myOption} />
+            <CommentItem
+              comment={commentData}
+              myOption={myOption}
+              selectedValue={selectedValue}
+            />
           ))}
         </div>
       </div>

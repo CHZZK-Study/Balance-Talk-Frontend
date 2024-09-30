@@ -18,7 +18,7 @@ export const commentContainer = css`
   width: 100%;
   padding: 30px 10px 30px 27px;
   gap: 20px;
-  border-top: 1px solid ${color.GY[2]};
+  border-top: 1px solid #f4f4f4;
 `;
 
 export const profileWrapper = css`
@@ -82,6 +82,11 @@ export const replyButton = css`
   cursor: pointer;
 `;
 
+export const repliesWrapper = css`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const replyContainer = css`
   display: flex;
   width: 100%;
@@ -89,8 +94,8 @@ export const replyContainer = css`
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  border-top: 1px solid ${color.GY[2]};
-  padding-left: 85px;
+  border-top: 1px solid #f4f4f4;
+  padding-left: 105px;
 `;
 
 export const nicknameInput = css`

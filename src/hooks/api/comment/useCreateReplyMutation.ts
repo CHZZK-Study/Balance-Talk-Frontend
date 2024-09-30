@@ -14,6 +14,10 @@ export const useCreateReplyMutation = (
       postReply(talkPickId, commentId, { ...reply }),
     onSuccess: async () => {
       await queryClient.invalidateQueries({
+        queryKey: ['talks', talkPickId, commentId, 'replies'],
+      });
+
+      await queryClient.invalidateQueries({
         queryKey: ['talks', talkPickId, commentsCategory],
       });
     },

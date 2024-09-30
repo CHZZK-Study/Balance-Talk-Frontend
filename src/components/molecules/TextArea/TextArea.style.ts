@@ -68,11 +68,14 @@ export const replyCount = css`
 
 export const getButtonStyle = (isEdited: boolean) => {
   if (isEdited) {
-    return css({});
+    return css({
+      minWidth: '80px',
+    });
   }
 
   return css({
     backgroundColor: color.GY[2],
+    minWidth: '80px',
     cursor: 'not-allowed',
   });
 };

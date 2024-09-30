@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { useEffect, useRef, useState } from 'react';
-import { Comment } from '@/types/comment';
+import { Comment, CommentsCategory } from '@/types/comment';
 import { AngleReplyDown, AngleReplyUp } from '@/assets';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
@@ -8,6 +8,7 @@ import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import { formatDateFromISO } from '@/utils/formatData';
 import { useCreateReplyMutation } from '@/hooks/api/comment/useCreateReplyMutation';
+import { useRepliesQuery } from '@/hooks/api/comment/useRepliesQuery';
 import { useDeleteCommentMutation } from '@/hooks/api/comment/useDeleteCommentMutation';
 import { useCreateLikeCommentMutation } from '@/hooks/api/like/useCreateLikeCommentMutation';
 import { useDeleteLikeCommentMutation } from '@/hooks/api/like/useDeleteLikeCommentMutation';
@@ -21,17 +22,26 @@ import CommentProfile from '@/components/atoms/CommentProfile/CommentProfile';
 import TextModal from '../TextModal/TextModal';
 import ReportModal from '../ReportModal/ReportModal';
 import * as S from './CommentItem.style';
+import ReplyItem from '../ReplyItem/ReplyItem';
 
 export interface CommentItemProps {
   comment: Comment;
   myOption: 'A' | 'B' | null;
+  selectedValue: string;
 }
 
-const CommentItem = ({ comment, myOption }: CommentItemProps) => {
+const CommentItem = ({
+  comment,
+  myOption,
+  selectedValue,
+}: CommentItemProps) => {
   const accessToken = useNewSelector(selectAccessToken);
   const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
   const isMyComment: boolean = comment?.nickname === member?.nickname;
+
   const commentRef = useRef<HTMLDivElement>(null);
+  const commentCategory: CommentsCategory =
+    selectedValue === 'trend' ? 'bestComments' : 'comments';
 
   const [reportModalOpen, setReportModalOpen] = useState<boolean>(false);
   const [reportTextModalOpen, setReportTextModalOpen] =
@@ -78,7 +88,7 @@ const CommentItem = ({ comment, myOption }: CommentItemProps) => {
   const { mutate: createReply } = useCreateReplyMutation(
     comment.talkPickId,
     comment.id,
-    'comments',
+    commentCategory,
   );
 
   const handleReplyButton = () => {
@@ -87,13 +97,19 @@ const CommentItem = ({ comment, myOption }: CommentItemProps) => {
     createReply({
       content: replyValue,
       option: myOption,
-      parentId: comment.talkPickId,
+      parentId: comment.id,
     });
+    setReplyValue('');
   };
+
+  const { replies } = useRepliesQuery(comment.talkPickId, comment.id, {
+    page: 0,
+  });
+  console.log(replies);
 
   const { mutate: deleteComment } = useDeleteCommentMutation(
     comment.talkPickId,
-    'comments',
+    comment.id,
   );
 
   const {
@@ -104,7 +120,7 @@ const CommentItem = ({ comment, myOption }: CommentItemProps) => {
 
   const handleDeleteCommentButton = () => {
     setDeleteTextModalOpen(false);
-    deleteComment(comment.id);
+    deleteComment();
   };
 
   const myComment: MenuItem[] = [
@@ -134,13 +150,13 @@ const CommentItem = ({ comment, myOption }: CommentItemProps) => {
   const { mutate: createLikeComment } = useCreateLikeCommentMutation(
     comment.talkPickId,
     comment.id,
-    'comments',
+    commentCategory,
   );
 
   const { mutate: deleteLikeComment } = useDeleteLikeCommentMutation(
     comment.talkPickId,
     comment.id,
-    'comments',
+    commentCategory,
   );
 
   const handleLikeCommentButton = () => {
@@ -254,18 +270,21 @@ const CommentItem = ({ comment, myOption }: CommentItemProps) => {
         </div>
       </div>
       {showReply && (
-        <div css={S.replyContainer}>
-          <span css={S.nicknameInput}>{member?.nickname}닉네임</span>
-          <TextArea
-            size="medium"
-            value={replyValue}
-            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-              setReplyValue(e.target.value)
-            }
-            onSubmit={handleReplyButton}
-            placeholder="댓글을 입력하세요"
-            label="답글달기"
-          />
+        <div css={S.repliesWrapper}>
+          <div css={S.replyContainer}>
+            <span css={S.nicknameInput}>{member?.nickname}</span>
+            <TextArea
+              size="medium"
+              value={replyValue}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                setReplyValue(e.target.value)
+              }
+              onSubmit={handleReplyButton}
+              placeholder="댓글을 입력하세요"
+              label="답글달기"
+            />
+          </div>
+          {replies?.content.map((replyData) => <ReplyItem reply={replyData} />)}
         </div>
       )}
     </div>

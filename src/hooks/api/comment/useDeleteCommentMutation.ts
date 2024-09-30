@@ -1,19 +1,24 @@
 import { deleteComment } from '@/api/comments';
 import { Id } from '@/types/api';
-import { CommentsCategory } from '@/types/comment';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-export const useDeleteCommentMutation = (
-  talkPickId: Id,
-  commentsCategory: CommentsCategory,
-) => {
+export const useDeleteCommentMutation = (talkPickId: Id, commentId: Id) => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (commentId: Id) => deleteComment(talkPickId, commentId),
+    mutationFn: () => deleteComment(talkPickId, commentId),
     onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: ['talks', talkPickId, commentsCategory],
-      });
+      // 댓글 목록 무효화
+      await Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: ['talks', talkPickId, commentId],
+        }),
+        queryClient.invalidateQueries({
+          queryKey: ['talks', talkPickId, commentId, 'replies'],
+        }),
+        queryClient.invalidateQueries({
+          queryKey: ['talks', talkPickId],
+        }),
+      ]);
     },
   });
 };
