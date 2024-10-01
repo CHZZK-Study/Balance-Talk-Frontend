@@ -1,19 +1,15 @@
 import { deleteLikeComment } from '@/api/like';
 import { Id } from '@/types/api';
-import { Comment, CommentsCategory, CommentsPagination } from '@/types/comment';
+import { Comment, CommentsPagination } from '@/types/comment';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-export const useDeleteLikeCommentMutation = (
-  talkPickId: Id,
-  commentId: Id,
-  commentsCategory: CommentsCategory,
-) => {
+export const useDeleteLikeCommentMutation = (talkPickId: Id, commentId: Id) => {
   const queryClient = useQueryClient();
   const deleteLikeCommentMutation = useMutation({
     mutationFn: () => deleteLikeComment(talkPickId, commentId),
     onMutate: () => {
       const prevComments: CommentsPagination | undefined =
-        queryClient.getQueryData(['talks', talkPickId, commentsCategory]);
+        queryClient.getQueryData(['talks', talkPickId]);
 
       if (!prevComments) return { prevComments };
 
@@ -27,7 +23,7 @@ export const useDeleteLikeCommentMutation = (
           : comment;
       });
 
-      queryClient.setQueryData(['talks', talkPickId, commentsCategory], {
+      queryClient.setQueryData(['talks', talkPickId], {
         ...prevComments,
         content: newComments,
       });
@@ -35,10 +31,7 @@ export const useDeleteLikeCommentMutation = (
       return { prevComments };
     },
     onError: (error, id, context) => {
-      queryClient.setQueryData(
-        ['talks', talkPickId, commentsCategory],
-        context?.prevComments,
-      );
+      queryClient.setQueryData(['talks', talkPickId], context?.prevComments);
     },
     onSuccess: async () => {
       await Promise.all([

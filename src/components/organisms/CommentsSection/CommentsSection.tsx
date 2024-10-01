@@ -89,7 +89,6 @@ const CommentsSection = ({
               comment={commentData}
               isMyTalkPick={isMyTalkPick}
               myOption={myOption}
-              selectedValue={selectedValue}
             />
           ))}
         </div>

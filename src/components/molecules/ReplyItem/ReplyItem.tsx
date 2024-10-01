@@ -5,11 +5,7 @@ import { selectAccessToken } from '@/store/auth';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import { formatDateFromISO } from '@/utils/formatData';
-import { useEditCommentMutation } from '@/hooks/api/comment/useEditCommentMutation';
-import { useDeleteCommentMutation } from '@/hooks/api/comment/useDeleteCommentMutation';
-import { useCreateLikeCommentMutation } from '@/hooks/api/like/useCreateLikeCommentMutation';
-import { useDeleteLikeCommentMutation } from '@/hooks/api/like/useDeleteLikeCommentMutation';
-import { useReportCommentMutation } from '@/hooks/api/report/useReportCommentMutation';
+import { useCommentActions } from '@/hooks/comment/useCommentActions';
 import MenuTap, { MenuItem } from '@/components/atoms/MenuTap/MenuTap';
 import ToastModal from '@/components/atoms/ToastModal/ToastModal';
 import LikeButton from '@/components/atoms/LikeButton/LikeButton';
@@ -37,16 +33,18 @@ const ReplyItem = ({ reply }: ReplyItemProps) => {
   const [editReplyClicked, setEditReplyClicked] = useState<boolean>(false);
   const [editReplyText, setEditReplyText] = useState<string>(reply.content);
 
-  const { mutate: editReply } = useEditCommentMutation(
-    reply.talkPickId,
-    reply.id,
-    setEditReplyClicked,
-  );
+  const {
+    handleEditSubmit,
+    handleDelete,
+    handleLikeToggle,
+    reportSuccess,
+    setReportSuccess,
+    handleReport,
+  } = useCommentActions(reply, editReplyText, setEditReplyClicked);
 
-  const handleEditReplySubmit = () => {
-    if (reply.content === editReplyText) return;
-    editReply({ content: editReplyText });
-  };
+  useEffect(() => {
+    setEditReplyText(reply.content);
+  }, [reply.content]);
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -58,20 +56,9 @@ const ReplyItem = ({ reply }: ReplyItemProps) => {
     return () => window.removeEventListener('mousedown', handleClick);
   }, [replyRef]);
 
-  const { mutate: deleteComment } = useDeleteCommentMutation(
-    reply.talkPickId,
-    reply.id,
-  );
-
-  const {
-    mutate: reportComment,
-    reportCommentSuccess,
-    setReportCommentSuccess,
-  } = useReportCommentMutation(reply.talkPickId, reply.id);
-
   const handleDeleteCommentButton = () => {
     setDeleteTextModalOpen(false);
-    deleteComment();
+    handleDelete();
   };
 
   const myReply: MenuItem[] = [
@@ -98,43 +85,18 @@ const ReplyItem = ({ reply }: ReplyItemProps) => {
     },
   ];
 
-  const { mutate: createLikeComment } = useCreateLikeCommentMutation(
-    reply.talkPickId,
-    reply.id,
-    'comments',
-  );
-
-  const { mutate: deleteLikeComment } = useDeleteLikeCommentMutation(
-    reply.talkPickId,
-    reply.id,
-    'comments',
-  );
-
-  const handleLikeCommentButton = () => {
-    if (reply.myLike) {
-      deleteLikeComment();
-    } else {
-      createLikeComment();
-    }
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleReportCommentButton = (reason: string) => {
-    reportComment(reason);
+  const handleReportReplyButton = (reason: string) => {
+    handleReport(reason);
     setReportModalOpen(false);
-    scrollToTop();
 
     setTimeout(() => {
-      setReportCommentSuccess(false);
+      setReportSuccess(false);
     }, 2000);
   };
 
   return (
     <div css={S.MainContainer}>
-      {reportCommentSuccess && (
+      {reportSuccess && (
         <div css={S.toastModalStyling}>
           <ToastModal>신고가 완료되었습니다.</ToastModal>
         </div>
@@ -159,7 +121,7 @@ const ReplyItem = ({ reply }: ReplyItemProps) => {
         />
         <ReportModal
           isOpen={reportModalOpen}
-          onConfirm={(reason) => handleReportCommentButton(reason)}
+          onConfirm={(reason) => handleReportReplyButton(reason)}
           onClose={() => setReportModalOpen(false)}
         />
       </div>
@@ -186,7 +148,7 @@ const ReplyItem = ({ reply }: ReplyItemProps) => {
               onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                 setEditReplyText(e.target.value);
               }}
-              onSubmit={handleEditReplySubmit}
+              onSubmit={handleEditSubmit}
             />
           ) : (
             <>
@@ -195,7 +157,9 @@ const ReplyItem = ({ reply }: ReplyItemProps) => {
                 <LikeButton
                   likeCount={reply?.likesCount}
                   likeState={reply?.myLike}
-                  onClick={handleLikeCommentButton}
+                  onClick={() => {
+                    handleLikeToggle(reply.myLike);
+                  }}
                 />
               </div>
             </>

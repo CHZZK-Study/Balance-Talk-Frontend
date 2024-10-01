@@ -1,18 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Comment, CommentsCategory } from '@/types/comment';
+import { Comment } from '@/types/comment';
 import { AngleReplyDown, AngleReplyUp } from '@/assets';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import { formatDateFromISO } from '@/utils/formatData';
-import { useEditCommentMutation } from '@/hooks/api/comment/useEditCommentMutation';
 import { useCreateReplyMutation } from '@/hooks/api/comment/useCreateReplyMutation';
 import { useRepliesQuery } from '@/hooks/api/comment/useRepliesQuery';
-import { useDeleteCommentMutation } from '@/hooks/api/comment/useDeleteCommentMutation';
-import { useCreateLikeCommentMutation } from '@/hooks/api/like/useCreateLikeCommentMutation';
-import { useDeleteLikeCommentMutation } from '@/hooks/api/like/useDeleteLikeCommentMutation';
-import { useReportCommentMutation } from '@/hooks/api/report/useReportCommentMutation';
+import { useCommentActions } from '@/hooks/comment/useCommentActions';
 import MenuTap, { MenuItem } from '@/components/atoms/MenuTap/MenuTap';
 import CategoryBarChip from '@/components/atoms/CategoryBarChip/CategoryBarChip';
 import ToastModal from '@/components/atoms/ToastModal/ToastModal';
@@ -28,22 +24,13 @@ export interface CommentItemProps {
   comment: Comment;
   isMyTalkPick: boolean;
   myOption: 'A' | 'B' | null;
-  selectedValue: string;
 }
 
-const CommentItem = ({
-  comment,
-  isMyTalkPick,
-  myOption,
-  selectedValue,
-}: CommentItemProps) => {
+const CommentItem = ({ comment, isMyTalkPick, myOption }: CommentItemProps) => {
   const accessToken = useNewSelector(selectAccessToken);
   const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
   const isMyComment: boolean = comment?.nickname === member?.nickname;
-
   const commentRef = useRef<HTMLDivElement>(null);
-  const commentCategory: CommentsCategory =
-    selectedValue === 'trend' ? 'bestComments' : 'comments';
 
   const [reportModalOpen, setReportModalOpen] = useState<boolean>(false);
   const [reportTextModalOpen, setReportTextModalOpen] =
@@ -56,16 +43,14 @@ const CommentItem = ({
     comment.content,
   );
 
-  const { mutate: editComment } = useEditCommentMutation(
-    comment.talkPickId,
-    comment.id,
-    setEditCommentClicked,
-  );
-
-  const handleEditCommentSubmit = () => {
-    if (comment.content === editCommentText) return;
-    editComment({ content: editCommentText });
-  };
+  const {
+    handleEditSubmit,
+    handleDelete,
+    handleLikeToggle,
+    reportSuccess,
+    setReportSuccess,
+    handleReport,
+  } = useCommentActions(comment, editCommentText, setEditCommentClicked);
 
   useEffect(() => {
     setEditCommentText(comment.content);
@@ -109,20 +94,9 @@ const CommentItem = ({
     page: 0,
   });
 
-  const { mutate: deleteComment } = useDeleteCommentMutation(
-    comment.talkPickId,
-    comment.id,
-  );
-
-  const {
-    mutate: reportComment,
-    reportCommentSuccess,
-    setReportCommentSuccess,
-  } = useReportCommentMutation(comment.talkPickId, comment.id);
-
   const handleDeleteCommentButton = () => {
     setDeleteTextModalOpen(false);
-    deleteComment();
+    handleDelete();
   };
 
   const myComment: MenuItem[] = [
@@ -149,43 +123,18 @@ const CommentItem = ({
     },
   ];
 
-  const { mutate: createLikeComment } = useCreateLikeCommentMutation(
-    comment.talkPickId,
-    comment.id,
-    commentCategory,
-  );
-
-  const { mutate: deleteLikeComment } = useDeleteLikeCommentMutation(
-    comment.talkPickId,
-    comment.id,
-    commentCategory,
-  );
-
-  const handleLikeCommentButton = () => {
-    if (comment.myLike) {
-      deleteLikeComment();
-    } else {
-      createLikeComment();
-    }
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   const handleReportCommentButton = (reason: string) => {
-    reportComment(reason);
+    handleReport(reason);
     setReportModalOpen(false);
-    scrollToTop();
 
     setTimeout(() => {
-      setReportCommentSuccess(false);
+      setReportSuccess(false);
     }, 2000);
   };
 
   return (
     <div css={S.MainContainer}>
-      {reportCommentSuccess && (
+      {reportSuccess && (
         <div css={S.toastModalStyling}>
           <ToastModal>신고가 완료되었습니다.</ToastModal>
         </div>
@@ -249,7 +198,7 @@ const CommentItem = ({
               onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
                 setEditCommentText(e.target.value)
               }
-              onSubmit={handleEditCommentSubmit}
+              onSubmit={handleEditSubmit}
             />
           ) : (
             <>
@@ -266,7 +215,9 @@ const CommentItem = ({
                 <LikeButton
                   likeCount={comment?.likesCount}
                   likeState={comment?.myLike}
-                  onClick={handleLikeCommentButton}
+                  onClick={() => {
+                    handleLikeToggle(comment.myLike);
+                  }}
                 />
               </div>
             </>

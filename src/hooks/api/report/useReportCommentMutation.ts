@@ -5,8 +5,7 @@ import { Id } from '@/types/api';
 
 export const useReportCommentMutation = (talkPickId: Id, commentId: Id) => {
   const queryClient = useQueryClient();
-  const [reportCommentSuccess, setReportCommentSuccess] =
-    useState<boolean>(false);
+  const [reportSuccess, setReportSuccess] = useState<boolean>(false);
 
   const mutation = useMutation({
     mutationFn: (data: string) =>
@@ -15,13 +14,13 @@ export const useReportCommentMutation = (talkPickId: Id, commentId: Id) => {
       await queryClient.invalidateQueries({
         queryKey: ['talks', talkPickId, 'comments'],
       });
-      setReportCommentSuccess(true);
+      setReportSuccess(true);
     },
   });
 
   return {
     ...mutation,
-    reportCommentSuccess,
-    setReportCommentSuccess,
+    reportSuccess,
+    setReportSuccess,
   };
 };
