@@ -90,7 +90,6 @@ const CommentItem = ({
   const { mutate: createReply } = useCreateReplyMutation(
     comment.talkPickId,
     comment.id,
-    commentCategory,
   );
 
   const handleReplyButton = () => {
