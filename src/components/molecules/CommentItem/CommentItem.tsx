@@ -26,12 +26,14 @@ import ReplyItem from '../ReplyItem/ReplyItem';
 
 export interface CommentItemProps {
   comment: Comment;
+  isMyTalkPick: boolean;
   myOption: 'A' | 'B' | null;
   selectedValue: string;
 }
 
 const CommentItem = ({
   comment,
+  isMyTalkPick,
   myOption,
   selectedValue,
 }: CommentItemProps) => {
@@ -92,8 +94,6 @@ const CommentItem = ({
   );
 
   const handleReplyButton = () => {
-    if (!myOption) return;
-
     createReply({
       content: replyValue,
       option: myOption,
@@ -225,7 +225,7 @@ const CommentItem = ({
         <div css={S.commentInfoWrapper}>
           <div css={S.commentTopWrapper}>
             <div css={S.writerInfoWrapper}>
-              {isMyComment && (
+              {isMyTalkPick && (
                 <CategoryBarChip size="small">작성자</CategoryBarChip>
               )}
               <span css={S.nickname}>{comment?.nickname}</span>

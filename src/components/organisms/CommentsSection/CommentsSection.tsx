@@ -14,6 +14,7 @@ import * as S from './CommentsSection.style';
 
 export interface CommentsSectionProps {
   talkPickId: number;
+  isMyTalkPick: boolean;
   myOption: 'A' | 'B' | null;
   commentList?: CommentsPagination;
   toggleItem: ToggleGroupItem[];
@@ -26,6 +27,7 @@ export interface CommentsSectionProps {
 
 const CommentsSection = ({
   talkPickId,
+  isMyTalkPick,
   myOption,
   commentList,
   toggleItem,
@@ -41,8 +43,6 @@ const CommentsSection = ({
   const { mutate: createComment } = useCreateCommentMutation(talkPickId);
 
   const handleCommentButton = () => {
-    if (!myOption) return;
-
     createComment({
       content: commentValue,
       option: myOption,
@@ -64,7 +64,7 @@ const CommentsSection = ({
         />
       </div>
       <div css={S.loggedInBackground}>
-        {!voted && (
+        {!isMyTalkPick && !voted && (
           <div css={S.loggedOutBackground}>
             <div css={S.toastModalWrapper}>
               <ToastModal bgColor="black">
@@ -87,6 +87,7 @@ const CommentsSection = ({
           {commentList?.content.map((commentData) => (
             <CommentItem
               comment={commentData}
+              isMyTalkPick={isMyTalkPick}
               myOption={myOption}
               selectedValue={selectedValue}
             />
