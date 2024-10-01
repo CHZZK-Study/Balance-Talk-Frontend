@@ -69,17 +69,7 @@ const CommentItem = ({
       return;
     }
     console.log(editCommentText);
-    editComment(
-      { content: editCommentText },
-      {
-        onSuccess: () => {
-          console.log('Edit successful'); // 성공 시 확인
-        },
-        onError: (error) => {
-          console.log('Edit failed:', error); // 에러 발생 시 확인
-        },
-      },
-    );
+    editComment({ content: editCommentText });
   };
 
   useEffect(() => {

@@ -7,7 +7,6 @@ export const useDeleteCommentMutation = (talkPickId: Id, commentId: Id) => {
   return useMutation({
     mutationFn: () => deleteComment(talkPickId, commentId),
     onSuccess: async () => {
-      // 댓글 목록 무효화
       await Promise.all([
         queryClient.invalidateQueries({
           queryKey: ['talks', talkPickId, commentId],
