@@ -7,6 +7,7 @@ import { selectAccessToken } from '@/store/auth';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import { formatDateFromISO } from '@/utils/formatData';
+import { useEditCommentMutation } from '@/hooks/api/comment/useEditCommentMutation';
 import { useCreateReplyMutation } from '@/hooks/api/comment/useCreateReplyMutation';
 import { useRepliesQuery } from '@/hooks/api/comment/useRepliesQuery';
 import { useDeleteCommentMutation } from '@/hooks/api/comment/useDeleteCommentMutation';
@@ -56,16 +57,34 @@ const CommentItem = ({
     comment.content,
   );
 
-  const handleEditCommentChange = (
-    e: React.ChangeEvent<HTMLTextAreaElement>,
-  ) => {
-    setEditCommentText(e.target.value);
-  };
+  const { mutate: editComment } = useEditCommentMutation(
+    comment.talkPickId,
+    comment.id,
+    setEditCommentClicked,
+  );
 
   const handleEditCommentSubmit = () => {
-    if (comment.content === editCommentText) return;
-    console.log('수정된 댓글: ', editCommentText);
+    if (comment.content === editCommentText) {
+      console.log('error');
+      return;
+    }
+    console.log(editCommentText);
+    editComment(
+      { content: editCommentText },
+      {
+        onSuccess: () => {
+          console.log('Edit successful'); // 성공 시 확인
+        },
+        onError: (error) => {
+          console.log('Edit failed:', error); // 에러 발생 시 확인
+        },
+      },
+    );
   };
+
+  useEffect(() => {
+    setEditCommentText(comment.content);
+  }, [comment.content]);
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -104,7 +123,6 @@ const CommentItem = ({
   const { replies } = useRepliesQuery(comment.talkPickId, comment.id, {
     page: 0,
   });
-  console.log(replies);
 
   const { mutate: deleteComment } = useDeleteCommentMutation(
     comment.talkPickId,
@@ -243,7 +261,9 @@ const CommentItem = ({
               value={editCommentText}
               label="댓글 수정"
               isEdited={comment.content !== editCommentText}
-              onChange={handleEditCommentChange}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                setEditCommentText(e.target.value)
+              }
               onSubmit={handleEditCommentSubmit}
             />
           ) : (

@@ -41,9 +41,17 @@ export const useCreateLikeCommentMutation = (
       );
     },
     onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: ['talks', talkPickId, commentsCategory],
-      });
+      await Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: ['talks', talkPickId, commentId],
+        }),
+        queryClient.invalidateQueries({
+          queryKey: ['talks', talkPickId, commentId, 'replies'],
+        }),
+        queryClient.invalidateQueries({
+          queryKey: ['talks', talkPickId],
+        }),
+      ]);
     },
   });
   return likeCommentMutation;
