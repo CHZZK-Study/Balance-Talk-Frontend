@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useEffect, useRef, useState } from 'react';
 import { Comment, CommentsCategory } from '@/types/comment';
 import { AngleReplyDown, AngleReplyUp } from '@/assets';
@@ -64,11 +63,7 @@ const CommentItem = ({
   );
 
   const handleEditCommentSubmit = () => {
-    if (comment.content === editCommentText) {
-      console.log('error');
-      return;
-    }
-    console.log(editCommentText);
+    if (comment.content === editCommentText) return;
     editComment({ content: editCommentText });
   };
 
@@ -293,7 +288,9 @@ const CommentItem = ({
               label="답글달기"
             />
           </div>
-          {replies?.content.map((replyData) => <ReplyItem reply={replyData} />)}
+          {replies?.content.map((replyData) => (
+            <ReplyItem key={replyData.id} reply={replyData} />
+          ))}
         </div>
       )}
     </div>

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useEffect, useRef, useState } from 'react';
 import { Comment } from '@/types/comment';
 import { useNewSelector } from '@/store';
@@ -6,6 +5,7 @@ import { selectAccessToken } from '@/store/auth';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import { formatDateFromISO } from '@/utils/formatData';
+import { useEditCommentMutation } from '@/hooks/api/comment/useEditCommentMutation';
 import { useDeleteCommentMutation } from '@/hooks/api/comment/useDeleteCommentMutation';
 import { useCreateLikeCommentMutation } from '@/hooks/api/like/useCreateLikeCommentMutation';
 import { useDeleteLikeCommentMutation } from '@/hooks/api/like/useDeleteLikeCommentMutation';
@@ -37,13 +37,15 @@ const ReplyItem = ({ reply }: ReplyItemProps) => {
   const [editReplyClicked, setEditReplyClicked] = useState<boolean>(false);
   const [editReplyText, setEditReplyText] = useState<string>(reply.content);
 
-  const handleEditReplyChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setEditReplyText(e.target.value);
-  };
+  const { mutate: editReply } = useEditCommentMutation(
+    reply.talkPickId,
+    reply.id,
+    setEditReplyClicked,
+  );
 
   const handleEditReplySubmit = () => {
     if (reply.content === editReplyText) return;
-    console.log('수정된 답글: ', editReplyText);
+    editReply({ content: editReplyText });
   };
 
   useEffect(() => {
@@ -181,7 +183,9 @@ const ReplyItem = ({ reply }: ReplyItemProps) => {
               value={editReplyText}
               label="답글 수정"
               isEdited={reply.content !== editReplyText}
-              onChange={handleEditReplyChange}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                setEditReplyText(e.target.value);
+              }}
               onSubmit={handleEditReplySubmit}
             />
           ) : (

@@ -6,7 +6,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 export const useEditCommentMutation = (
   talkPickId: Id,
   commentId: Id,
-  setEditCommentClicked: (value: boolean) => void,
+  setEditButtonClicked: (value: boolean) => void,
 ) => {
   const queryClient = useQueryClient();
   const editCommentMutation = useMutation({
@@ -16,7 +16,7 @@ export const useEditCommentMutation = (
       await queryClient.invalidateQueries({
         queryKey: ['talks', talkPickId],
       });
-      setEditCommentClicked(false);
+      setEditButtonClicked(false);
     },
   });
   return editCommentMutation;
