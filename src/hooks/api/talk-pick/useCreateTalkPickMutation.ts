@@ -25,16 +25,17 @@ export const useCreateTalkPickMutation = () => {
 
   const mutation = useMutation({
     mutationFn: (data: NewTalkPick) => postTalkPick(data),
-    onSuccess: async (id: Id) => {
+    onSuccess: async (talkPickId: Id) => {
       await queryClient.invalidateQueries({
         queryKey: ['talkPick'],
       });
-      await postTalkPickSummary(id);
       setCreateSuccess(true);
 
       setTimeout(() => {
         navigate('/talkpickplace');
       }, 2000);
+
+      await postTalkPickSummary(talkPickId);
     },
     onError: (err: AxiosErrorResponse) => {
       if (err.status === HTTP_STATUS_CODE.UNAUTHORIZED) {
