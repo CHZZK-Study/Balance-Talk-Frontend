@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { HTTP_STATUS_CODE } from '@/constants/api';
-import { postTalkPick } from '@/api/talk-pick';
+import { postTalkPick, postTalkPickSummary } from '@/api/talk-pick';
+import { Id } from '@/types/api';
 import { NewTalkPick } from '@/types/talk-pick';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -24,10 +25,11 @@ export const useCreateTalkPickMutation = () => {
 
   const mutation = useMutation({
     mutationFn: (data: NewTalkPick) => postTalkPick(data),
-    onSuccess: async () => {
+    onSuccess: async (id: Id) => {
       await queryClient.invalidateQueries({
         queryKey: ['talkPick'],
       });
+      await postTalkPickSummary(id);
       setCreateSuccess(true);
 
       setTimeout(() => {

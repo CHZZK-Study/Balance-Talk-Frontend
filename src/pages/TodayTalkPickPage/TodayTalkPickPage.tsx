@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
 import { useLocation } from 'react-router-dom';
@@ -9,7 +9,6 @@ import { useBestCommentsQuery } from '@/hooks/api/comment/useBestCommentsQuery';
 import { ToggleGroupItem } from '@/components/atoms/ToggleGroup/ToggleGroup';
 import TodayTalkPickSection from '@/components/organisms/TodayTalkPickSection/TodayTalkPickSection';
 import CommentsSection from '@/components/organisms/CommentsSection/CommentsSection';
-import { useTalkPickSummaryMutation } from '@/hooks/api/talk-pick/useTalkPickSummaryMutation';
 import { useTalkPickDetailQuery } from '@/hooks/api/talk-pick/useTalkPickDetailQuery';
 import * as S from './TodayTalkPickPage.style';
 
@@ -27,12 +26,6 @@ const TodayTalkPickPage = () => {
   const location = useLocation();
   const state = location.state as State;
   const talkPickId = state?.talkPickId;
-
-  const { mutate: getTalkPickSummary } = useTalkPickSummaryMutation(talkPickId);
-
-  useEffect(() => {
-    getTalkPickSummary();
-  }, [getTalkPickSummary]);
 
   const { talkPick } = useTalkPickDetailQuery(talkPickId);
 
