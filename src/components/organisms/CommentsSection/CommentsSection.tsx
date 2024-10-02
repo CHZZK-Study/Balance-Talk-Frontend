@@ -86,6 +86,7 @@ const CommentsSection = ({
         <div css={S.commentsWrapper}>
           {commentList?.content.map((commentData) => (
             <CommentItem
+              key={commentData.id}
               comment={commentData}
               isMyTalkPick={isMyTalkPick}
               myOption={myOption}

@@ -5,20 +5,19 @@ import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
-import { formatDateFromISO } from '@/utils/formatData';
+import { useCommentActions } from '@/hooks/comment/useCommentActions';
 import { useCreateReplyMutation } from '@/hooks/api/comment/useCreateReplyMutation';
 import { useRepliesQuery } from '@/hooks/api/comment/useRepliesQuery';
-import { useCommentActions } from '@/hooks/comment/useCommentActions';
 import MenuTap, { MenuItem } from '@/components/atoms/MenuTap/MenuTap';
 import CategoryBarChip from '@/components/atoms/CategoryBarChip/CategoryBarChip';
 import ToastModal from '@/components/atoms/ToastModal/ToastModal';
 import LikeButton from '@/components/atoms/LikeButton/LikeButton';
 import TextArea from '@/components/molecules/TextArea/TextArea';
 import CommentProfile from '@/components/atoms/CommentProfile/CommentProfile';
-import TextModal from '../TextModal/TextModal';
-import ReportModal from '../ReportModal/ReportModal';
+import TextModal from '@/components/molecules/TextModal/TextModal';
+import ReportModal from '@/components/molecules/ReportModal/ReportModal';
+import ReplyItem from '@/components/molecules/ReplyItem/ReplyItem';
 import * as S from './CommentItem.style';
-import ReplyItem from '../ReplyItem/ReplyItem';
 
 export interface CommentItemProps {
   comment: Comment;
@@ -180,9 +179,7 @@ const CommentItem = ({ comment, isMyTalkPick, myOption }: CommentItemProps) => {
                 <CategoryBarChip size="small">작성자</CategoryBarChip>
               )}
               <span css={S.nickname}>{comment?.nickname}</span>
-              <span css={S.createdTime}>
-                {formatDateFromISO(comment?.createdAt ?? '')}
-              </span>
+              <span css={S.createdTime}>{comment?.createdAt}</span>
               {comment.edited && <span css={S.editedText}>수정됨</span>}
             </div>
             {!editCommentClicked && (
