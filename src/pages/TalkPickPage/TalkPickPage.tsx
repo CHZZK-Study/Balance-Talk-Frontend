@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import { useCommentsQuery } from '@/hooks/api/comment/useCommentsQuery';
@@ -9,13 +9,15 @@ import TodayTalkPickSection from '@/components/organisms/TodayTalkPickSection/To
 import CommentsSection from '@/components/organisms/CommentsSection/CommentsSection';
 import { useTalkPickSummaryMutation } from '@/hooks/api/talk-pick/useTalkPickSummaryMutation';
 import { useTalkPickDetailQuery } from '@/hooks/api/talk-pick/useTalkPickDetailQuery';
-import * as S from './TodayTalkPickPage.style';
+import * as S from './TalkPickPage.style';
 
 interface State {
   talkPickId: number;
+  isTodayTalkPick: boolean;
 }
 
-const TodayTalkPickPage = () => {
+const TalkPickPage = () => {
+  const navigate = useNavigate();
   const [selectedPage, setSelectedPage] = useState<number>(1);
 
   const accessToken = useNewSelector(selectAccessToken);
@@ -24,8 +26,15 @@ const TodayTalkPickPage = () => {
   const location = useLocation();
   const state = location.state as State;
   const talkPickId = state?.talkPickId;
+  const isTodayTalkPick = state?.isTodayTalkPick;
 
   const { mutate: getTalkPickSummary } = useTalkPickSummaryMutation(talkPickId);
+
+  useEffect(() => {
+    if (!isTodayTalkPick && talkPickId) {
+      navigate(`/talkpick/${talkPickId}`);
+    }
+  }, [isTodayTalkPick, talkPickId, navigate]);
 
   useEffect(() => {
     getTalkPickSummary();
@@ -45,6 +54,7 @@ const TodayTalkPickPage = () => {
   return (
     <div css={S.contentWrapStyle}>
       <TodayTalkPickSection
+        isTodayTalkPick={isTodayTalkPick}
         talkPick={talkPick}
         myTalkPick={member?.nickname === talkPick?.writer}
       />
@@ -62,4 +72,4 @@ const TodayTalkPickPage = () => {
   );
 };
 
-export default TodayTalkPickPage;
+export default TalkPickPage;

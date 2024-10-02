@@ -27,9 +27,14 @@ import * as S from './TodayTalkPickSection.style';
 export interface TodayTalkPickProps {
   talkPick?: TalkPickDetail;
   myTalkPick: boolean;
+  isTodayTalkPick: boolean;
 }
 
-const TodayTalkPickSection = ({ talkPick, myTalkPick }: TodayTalkPickProps) => {
+const TodayTalkPickSection = ({
+  talkPick,
+  myTalkPick,
+  isTodayTalkPick,
+}: TodayTalkPickProps) => {
   const currentURL: string = window.location.href;
   const navigate = useNavigate();
 
@@ -143,7 +148,7 @@ const TodayTalkPickSection = ({ talkPick, myTalkPick }: TodayTalkPickProps) => {
           onClose={() => setReportModalOpen(false)}
         />
       </div>
-      <div css={S.talkPickTitle}>오늘의 톡픽</div>
+      <div css={S.talkPickTitle}> {isTodayTalkPick && '오늘의 톡픽'}</div>
       <div css={S.talkPickWrapper}>
         <div css={S.talkPickTopStyling}>
           <div css={S.talkPickDetailWrapper}>

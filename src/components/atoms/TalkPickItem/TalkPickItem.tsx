@@ -1,6 +1,7 @@
 import React from 'react';
 import { TalkPickListItem } from '@/types/talk-pick';
 import { formatDate, formatNumber } from '@/utils/formatData';
+import { useNavigate } from 'react-router-dom';
 import * as S from './TalkPickItem.style';
 
 export interface TalkPickListItemProps {
@@ -23,6 +24,7 @@ const TalkPickItem = ({
   rank,
   talkPickItem = headerTalkPick,
 }: TalkPickListItemProps) => {
+  const navigate = useNavigate();
   const getTalkPickId = (): number | undefined => {
     switch (type) {
       case 'default':
@@ -39,12 +41,26 @@ const TalkPickItem = ({
     return typeof item === 'number' ? formatNumber(item) : item;
   };
 
+  const handleClick = () => {
+    if (type !== 'header') {
+      navigate('/todaytalkpick', {
+        state: { talkPickId: talkPickItem?.id, isTodayTalkPick: false },
+      });
+    }
+  };
+
   return (
     <div
+      role="button"
       css={[
         S.talkPickListItemStyling,
         type !== 'header' && S.borderBottomStyling,
       ]}
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') handleClick();
+      }}
+      onClick={handleClick}
     >
       <div css={[S.talkPickListId, S.getTalkPickListIdStyling(type)]}>
         {getTalkPickId()}
