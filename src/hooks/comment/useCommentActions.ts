@@ -21,10 +21,11 @@ export const useCommentActions = (
     commentData.id,
   );
 
-  const { mutate: createLikeComment } = useCreateLikeCommentMutation(
-    commentData.talkPickId,
-    commentData.id,
-  );
+  const {
+    mutate: createLikeComment,
+    likeModalText,
+    likeModal,
+  } = useCreateLikeCommentMutation(commentData.talkPickId, commentData.id);
 
   const { mutate: deleteLikeComment } = useDeleteLikeCommentMutation(
     commentData.talkPickId,
@@ -58,6 +59,8 @@ export const useCommentActions = (
   return {
     handleEditSubmit,
     handleDelete,
+    likeModalText,
+    likeModal,
     handleLikeToggle,
     reportModalText,
     reportModal,

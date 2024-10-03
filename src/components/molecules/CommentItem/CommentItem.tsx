@@ -45,6 +45,8 @@ const CommentItem = ({ comment, isMyTalkPick, myOption }: CommentItemProps) => {
   const {
     handleEditSubmit,
     handleDelete,
+    likeModalText,
+    likeModal,
     handleLikeToggle,
     reportModalText,
     reportModal,
@@ -134,9 +136,11 @@ const CommentItem = ({ comment, isMyTalkPick, myOption }: CommentItemProps) => {
 
   return (
     <div css={S.MainContainer}>
-      {reportModal && (
+      {(reportModal || likeModal) && (
         <div css={S.toastModalStyling}>
-          <ToastModal>{reportModalText}</ToastModal>
+          <ToastModal>
+            {reportModal ? reportModalText : likeModalText}
+          </ToastModal>
         </div>
       )}
       <div css={S.centerStyling}>

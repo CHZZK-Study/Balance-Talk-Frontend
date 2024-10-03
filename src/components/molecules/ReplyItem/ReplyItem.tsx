@@ -35,6 +35,8 @@ const ReplyItem = ({ reply }: ReplyItemProps) => {
   const {
     handleEditSubmit,
     handleDelete,
+    likeModalText,
+    likeModal,
     handleLikeToggle,
     reportModalText,
     reportModal,
@@ -96,9 +98,11 @@ const ReplyItem = ({ reply }: ReplyItemProps) => {
 
   return (
     <div css={S.MainContainer}>
-      {reportModal && (
+      {(reportModal || likeModal) && (
         <div css={S.toastModalStyling}>
-          <ToastModal>{reportModalText}</ToastModal>
+          <ToastModal>
+            {reportModal ? reportModalText : likeModalText}
+          </ToastModal>
         </div>
       )}
       <div css={S.centerStyling}>

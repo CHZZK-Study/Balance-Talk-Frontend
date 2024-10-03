@@ -30,7 +30,7 @@ export const ERROR = {
     FAIL: '게시글 임시 저장에 실패했습니다. 다시 시도해주세요.',
   },
   COMMENT: {
-    MY_COMMENT: `본인의 댓글에는 '좋아요' 할 수 없습니다.`,
+    MY_COMMENT_LIKE: `본인의 댓글에는 '좋아요' 할 수 없습니다.`,
     REPORT_AGAIN: '이미 신고한 댓글입니다.',
   },
 } as const;
