@@ -51,21 +51,23 @@ const TalkPickItem = ({
 
   return (
     <div
-      role="button"
       css={[
         S.talkPickListItemStyling,
         type !== 'header' && S.borderBottomStyling,
       ]}
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter') handleClick();
-      }}
-      onClick={handleClick}
     >
       <div css={[S.talkPickListId, S.getTalkPickListIdStyling(type)]}>
         {getTalkPickId()}
       </div>
-      <div css={[S.talkPickListTitle, S.getTalkPickListTitleStyling(type)]}>
+      <div
+        css={[S.talkPickListTitle, S.getTalkPickListTitleStyling(type)]}
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') handleClick();
+        }}
+        role="button"
+        onClick={handleClick}
+      >
         <span css={type !== 'header' && S.talkPickTitleText}>
           {talkPickItem.title}
         </span>
