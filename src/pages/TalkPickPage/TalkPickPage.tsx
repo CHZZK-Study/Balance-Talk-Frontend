@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNewSelector } from '@/store';
 import { selectAccessToken } from '@/store/auth';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import { useCommentsQuery } from '@/hooks/api/comment/useCommentsQuery';
@@ -17,7 +17,6 @@ interface State {
 }
 
 const TalkPickPage = () => {
-  const navigate = useNavigate();
   const [selectedPage, setSelectedPage] = useState<number>(1);
 
   const accessToken = useNewSelector(selectAccessToken);
@@ -29,12 +28,6 @@ const TalkPickPage = () => {
   const isTodayTalkPick = state?.isTodayTalkPick;
 
   const { mutate: getTalkPickSummary } = useTalkPickSummaryMutation(talkPickId);
-
-  useEffect(() => {
-    if (!isTodayTalkPick && talkPickId) {
-      navigate(`/talkpick/${talkPickId}`);
-    }
-  }, [isTodayTalkPick, talkPickId, navigate]);
 
   useEffect(() => {
     getTalkPickSummary();

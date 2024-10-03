@@ -43,7 +43,7 @@ const TalkPickItem = ({
 
   const handleClick = () => {
     if (type !== 'header') {
-      navigate('/todaytalkpick', {
+      navigate(`/talkpick/${talkPickItem?.id}`, {
         state: { talkPickId: talkPickItem?.id, isTodayTalkPick: false },
       });
     }
