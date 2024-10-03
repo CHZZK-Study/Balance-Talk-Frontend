@@ -34,7 +34,6 @@ export const talkPickListItemStyling = css({
   alignItems: 'center',
   width: '1174px',
   height: '60px',
-  cursor: 'pointer',
 });
 
 export const talkPickListId = css([
