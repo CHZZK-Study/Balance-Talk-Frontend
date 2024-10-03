@@ -29,6 +29,10 @@ export const ERROR = {
   SAVE: {
     FAIL: '게시글 임시 저장에 실패했습니다. 다시 시도해주세요.',
   },
+  COMMENT: {
+    MY_COMMENT: `본인의 댓글에는 '좋아요' 할 수 없습니다.`,
+    REPORT_AGAIN: '이미 신고한 댓글입니다.',
+  },
 } as const;
 
 export const SUCCESS = {
@@ -40,6 +44,9 @@ export const SUCCESS = {
   },
   NICKNAME: {
     AVAILABLE: '사용 가능한 닉네임입니다.',
+  },
+  COMMENT: {
+    REPORT: '신고 완료되었습니다.',
   },
 } as const;
 

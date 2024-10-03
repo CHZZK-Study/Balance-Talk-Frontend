@@ -36,8 +36,9 @@ const ReplyItem = ({ reply }: ReplyItemProps) => {
     handleEditSubmit,
     handleDelete,
     handleLikeToggle,
-    reportSuccess,
-    setReportSuccess,
+    reportModalText,
+    reportModal,
+    setReportModal,
     handleReport,
   } = useCommentActions(reply, editReplyText, setEditReplyClicked);
 
@@ -89,15 +90,15 @@ const ReplyItem = ({ reply }: ReplyItemProps) => {
     setReportModalOpen(false);
 
     setTimeout(() => {
-      setReportSuccess(false);
+      setReportModal(false);
     }, 2000);
   };
 
   return (
     <div css={S.MainContainer}>
-      {reportSuccess && (
+      {reportModal && (
         <div css={S.toastModalStyling}>
-          <ToastModal>신고가 완료되었습니다.</ToastModal>
+          <ToastModal>{reportModalText}</ToastModal>
         </div>
       )}
       <div css={S.centerStyling}>

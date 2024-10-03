@@ -2,10 +2,14 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { postCommentReport } from '@/api/report';
 import { useState } from 'react';
 import { Id } from '@/types/api';
+import { AxiosErrorResponse } from '@/api/interceptor';
+import { HTTP_STATUS_CODE } from '@/constants/api';
+import { SUCCESS, ERROR } from '@/constants/message';
 
 export const useReportCommentMutation = (talkPickId: Id, commentId: Id) => {
   const queryClient = useQueryClient();
-  const [reportSuccess, setReportSuccess] = useState<boolean>(false);
+  const [reportModal, setReportModal] = useState<boolean>(false);
+  const [reportModalText, setReportModalText] = useState<string>('');
 
   const mutation = useMutation({
     mutationFn: (data: string) =>
@@ -14,13 +18,21 @@ export const useReportCommentMutation = (talkPickId: Id, commentId: Id) => {
       await queryClient.invalidateQueries({
         queryKey: ['talks', talkPickId, 'comments'],
       });
-      setReportSuccess(true);
+      setReportModal(true);
+      setReportModalText(SUCCESS.COMMENT.REPORT);
+    },
+    onError: (err: AxiosErrorResponse) => {
+      if (err.status === HTTP_STATUS_CODE.CONFLICT) {
+        setReportModal(true);
+        setReportModalText(ERROR.COMMENT.REPORT_AGAIN);
+      }
     },
   });
 
   return {
     ...mutation,
-    reportSuccess,
-    setReportSuccess,
+    reportModalText,
+    reportModal,
+    setReportModal,
   };
 };

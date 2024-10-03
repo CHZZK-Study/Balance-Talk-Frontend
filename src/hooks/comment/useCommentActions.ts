@@ -33,8 +33,9 @@ export const useCommentActions = (
 
   const {
     mutate: handleReport,
-    reportSuccess,
-    setReportSuccess,
+    reportModalText,
+    reportModal,
+    setReportModal,
   } = useReportCommentMutation(commentData.talkPickId, commentData.id);
 
   const handleEditSubmit = () => {
@@ -58,8 +59,9 @@ export const useCommentActions = (
     handleEditSubmit,
     handleDelete,
     handleLikeToggle,
-    reportSuccess,
-    setReportSuccess,
+    reportModalText,
+    reportModal,
+    setReportModal,
     handleReport,
   };
 };
