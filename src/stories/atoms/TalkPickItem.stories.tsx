@@ -3,7 +3,7 @@ import { TalkPickListItem } from '@/types/talk-pick';
 import TalkPickItem from '@/components/atoms/TalkPickItem/TalkPickItem';
 import type { Meta, StoryObj } from '@storybook/react';
 import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 
 const defaultTalkPick: TalkPickListItem = {
   id: 5197,
@@ -28,9 +28,9 @@ const meta = {
   component: TalkPickItem,
   decorators: [
     (Story) => (
-      <BrowserRouter>
+      <MemoryRouter>
         <Story />
-      </BrowserRouter>
+      </MemoryRouter>
     ),
   ],
   parameters: {
