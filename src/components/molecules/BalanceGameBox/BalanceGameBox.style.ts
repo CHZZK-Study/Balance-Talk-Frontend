@@ -7,8 +7,27 @@ export const containerStyle = css({
   flexDirection: 'row',
   alignItems: 'center',
   position: 'relative',
-  width: '1122px',
+  borderRadius: '20px',
+  outline: `1px solid ${color.GY[2]}`,
+
+  '&:hover': {
+    outline: 'none',
+  },
+
+  '&:hover > div': {
+    visibility: 'hidden',
+  },
 });
+
+export const getOutlineStyle = (selectedButton: 'A' | 'B' | null) => {
+  if (selectedButton === null) {
+    return css({});
+  }
+
+  return css({
+    outline: 'none',
+  });
+};
 
 export const letterStyle = css(typo.Title, {
   color: color.GY[1],

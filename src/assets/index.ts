@@ -69,6 +69,8 @@ export { default as ChoicePlus } from './svg/choice-plus.svg';
 export { default as ChoiceMinus } from './svg/choice-minus.svg';
 export { default as RecommendFirst } from './images/recommend-first.png';
 export { default as RecommendSecond } from './images/recommend-second.png';
+export { default as PrevArrow } from './svg/prev-arrow.svg';
+export { default as NextArrow } from './svg/next-arrow.svg';
 
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';

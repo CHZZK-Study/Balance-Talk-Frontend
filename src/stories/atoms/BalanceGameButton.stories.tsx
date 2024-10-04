@@ -1,12 +1,14 @@
 /* eslint-disable no-alert */
 import type { Meta, StoryObj } from '@storybook/react';
-import { BalanceGameButton } from '@/components/atoms/BalanceGameButton/BalanceGameButton';
+import BalanceGameButton from '@/components/atoms/BalanceGameButton/BalanceGameButton';
 import { SampleWhole } from '@/assets';
 
 const meta = {
   title: 'atoms/BalanceGameButton',
   component: BalanceGameButton,
-  parameters: {},
+  parameters: {
+    layout: 'centered',
+  },
   tags: ['autodocs'],
   argTypes: {
     imgUrl: { control: 'text' },

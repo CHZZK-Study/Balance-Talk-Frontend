@@ -13,29 +13,23 @@ export const buttonWrapStyle = (option: 'A' | 'B') =>
     width: '561px',
     backgroundColor: 'transparent',
     borderRadius: option === 'A' ? '20px 0 0 20px' : '0 20px 20px 0',
+    overflow: 'hidden',
     '&:hover': {
+      zIndex: option === 'A' ? 100 : 'auto',
       boxShadow:
         option === 'A'
           ? `-5px 0px 5px rgba(255, 175, 191, 0.2)`
           : `5px 0px 5px rgba(157, 183, 255, 0.3)`,
-      border: 'none',
-      borderTop:
+      outline:
         option === 'A'
           ? `2px solid ${color.PINK}`
           : `2px solid  ${color.SKYBLUE}`,
-      borderRight: option === 'A' ? 'none' : `2px solid  ${color.SKYBLUE}`,
-      borderBottom:
-        option === 'A'
-          ? `2px solid ${color.PINK}`
-          : `2px solid  ${color.SKYBLUE}`,
-      borderLeft: option === 'A' ? `2px solid ${color.PINK}` : 'none',
     },
     '&:active': {
       backgroundColor:
         option === 'A'
           ? `-5px 0px 15px ${color.RED}`
           : `5px 0px 15px ${color.BLUE}`,
-      color: color.WT,
     },
   });
 
@@ -52,13 +46,11 @@ export const getButtonStyle = (
     }),
   });
 
-export const imageStyle = (option: 'A' | 'B') =>
-  css({
-    width: '561px',
-    height: '320px',
-    objectFit: 'cover',
-    borderRadius: option === 'A' ? '20px 0 0 0' : '0 20px 0 0',
-  });
+export const imageStyle = css({
+  width: '561px',
+  height: '320px',
+  objectFit: 'cover',
+});
 
 export const contentBoxStyle = css({
   padding: '27px 0 37px 0',

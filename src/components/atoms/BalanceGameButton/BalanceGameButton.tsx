@@ -5,14 +5,14 @@ import * as S from './BalanceGameButton.style';
 export interface BalanceGameButtonProps {
   id?: number;
   name: string;
-  imgUrl: string;
+  imgUrl: string | null;
   description: string;
   optionType: 'A' | 'B';
   selectedButton: 'A' | 'B' | null;
   onClick: (optionType: 'A' | 'B') => void;
 }
 
-export const BalanceGameButton = ({
+const BalanceGameButton = ({
   name,
   imgUrl,
   description,
@@ -32,7 +32,7 @@ export const BalanceGameButton = ({
       css={S.buttonWrapStyle(optionType)}
       onClick={handleClick}
     >
-      <img src={imgUrl} alt={name} css={S.imageStyle(optionType)} />
+      <img src={imgUrl ?? ''} alt={name} css={S.imageStyle} />
       <div
         css={[
           S.contentBoxStyle,
@@ -45,3 +45,5 @@ export const BalanceGameButton = ({
     </button>
   );
 };
+
+export default BalanceGameButton;
