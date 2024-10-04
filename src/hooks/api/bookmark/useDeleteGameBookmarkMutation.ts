@@ -3,24 +3,24 @@ import { Id } from '@/types/api';
 import { deleteGameBookmark } from '@/api/bookmarks';
 import { GameItem } from '@/types/game';
 
-export const useDeleteGameBookmarkMutation = (gameId: Id) => {
+export const useDeleteGameBookmarkMutation = (gameSetId: Id) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: () => deleteGameBookmark(gameId),
+    mutationFn: () => deleteGameBookmark(gameSetId),
     onMutate: () => {
       const prevPost: GameItem | undefined = queryClient.getQueryData([
-        'newGames',
-        gameId,
+        'games',
+        gameSetId,
       ]);
-      queryClient.setQueryData(['newGames', gameId], {
+      queryClient.setQueryData(['games', gameSetId], {
         ...prevPost,
         myBookmark: false,
       });
       return { prevPost };
     },
     onError: (error, id, context) => {
-      queryClient.setQueryData(['newGames', gameId], context?.prevPost);
+      queryClient.setQueryData(['games', gameSetId], context?.prevPost);
     },
   });
 };
