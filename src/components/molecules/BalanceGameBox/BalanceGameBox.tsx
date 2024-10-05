@@ -34,7 +34,8 @@ const BalanceGameBox = ({ options, selectedOption }: BalanceGameBoxProps) => {
     return [randomImageA, randomImageB];
   };
 
-  const [backgroundImageA, backgroundImageB] = getRandomImages();
+  const [backgroundImages] = useState<string[]>(getRandomImages);
+  const [backgroundImageA, backgroundImageB] = backgroundImages;
 
   const [selectedButton, setSelectedButton] = useState<'A' | 'B' | null>(null);
 
