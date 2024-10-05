@@ -9,13 +9,14 @@ import TodayTalkPickSection from '@/components/organisms/TodayTalkPickSection/To
 import CommentsSection from '@/components/organisms/CommentsSection/CommentsSection';
 import { useTalkPickSummaryMutation } from '@/hooks/api/talk-pick/useTalkPickSummaryMutation';
 import { useTalkPickDetailQuery } from '@/hooks/api/talk-pick/useTalkPickDetailQuery';
-import * as S from './TodayTalkPickPage.style';
+import * as S from './TalkPickPage.style';
 
 interface State {
   talkPickId: number;
+  isTodayTalkPick: boolean;
 }
 
-const TodayTalkPickPage = () => {
+const TalkPickPage = () => {
   const [selectedPage, setSelectedPage] = useState<number>(1);
 
   const accessToken = useNewSelector(selectAccessToken);
@@ -24,6 +25,7 @@ const TodayTalkPickPage = () => {
   const location = useLocation();
   const state = location.state as State;
   const talkPickId = state?.talkPickId;
+  const isTodayTalkPick = state?.isTodayTalkPick;
 
   const { mutate: getTalkPickSummary } = useTalkPickSummaryMutation(talkPickId);
 
@@ -45,6 +47,7 @@ const TodayTalkPickPage = () => {
   return (
     <div css={S.contentWrapStyle}>
       <TodayTalkPickSection
+        isTodayTalkPick={isTodayTalkPick}
         talkPick={talkPick}
         myTalkPick={member?.nickname === talkPick?.writer}
       />
@@ -62,4 +65,4 @@ const TodayTalkPickPage = () => {
   );
 };
 
-export default TodayTalkPickPage;
+export default TalkPickPage;
