@@ -22,7 +22,7 @@ import ReportModal from '@/components/molecules/ReportModal/ReportModal';
 import { useCreateTalkPickBookmarkMutation } from '@/hooks/api/bookmark/useCreateTalkPickBookmarkMutation';
 import { useDeleteTalkPickBookmarkMutation } from '@/hooks/api/bookmark/useDeleteTalkPickBookmarkMutation';
 import { useDeleteTalkPickMutation } from '@/hooks/api/talk-pick/useDeleteTalkPickMutation';
-import * as S from './TodayTalkPickSection.style';
+import * as S from './TalkPickSection.style';
 
 export interface TodayTalkPickProps {
   talkPick?: TalkPickDetail;
@@ -30,7 +30,7 @@ export interface TodayTalkPickProps {
   isTodayTalkPick: boolean;
 }
 
-const TodayTalkPickSection = ({
+const TalkPickSection = ({
   talkPick,
   myTalkPick,
   isTodayTalkPick,
@@ -233,4 +233,4 @@ const TodayTalkPickSection = ({
   );
 };
 
-export default TodayTalkPickSection;
+export default TalkPickSection;
