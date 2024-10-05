@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import React, { useState } from 'react';
 import { BookmarkDF, BookmarkPR, NextArrow, PrevArrow, Share } from '@/assets';
 import { GameDetail } from '@/types/game';
 import Chips from '@/components/atoms/Chips/Chips';
@@ -11,11 +12,24 @@ import BalanceGameBox from '@/components/molecules/BalanceGameBox/BalanceGameBox
 import * as S from './BalanceGameSection.style';
 
 export interface BalanceGameSectionProps {
-  game?: GameDetail;
-  gameStage?: number;
+  game?: GameDetail[];
 }
 
-const BalanceGameSection = ({ game, gameStage }: BalanceGameSectionProps) => {
+const defaultGameDetail: GameDetail = {
+  id: 0,
+  title: '',
+  description: '',
+  gameOptions: [],
+  votesCountOfOptionA: 0,
+  votesCountOfOptionB: 0,
+  myBookmark: false,
+  votedOption: null,
+};
+
+const BalanceGameSection = ({ game }: BalanceGameSectionProps) => {
+  const [currentStage, setCurrentStage] = useState<number>(0);
+  const currentGame: GameDetail = game?.[currentStage] ?? defaultGameDetail;
+
   const otherGameItem: MenuItem[] = [{ label: '신고' }];
 
   return (
@@ -26,7 +40,7 @@ const BalanceGameSection = ({ game, gameStage }: BalanceGameSectionProps) => {
             <div css={S.balanceGameInfoWrapper}>
               <div css={S.titleWrapper}>
                 <Chips variant="roundOutline">커플</Chips>
-                <div css={S.balanceGameTitle}>{game?.title}</div>
+                <div css={S.balanceGameTitle}>{currentGame.title}</div>
               </div>
               <SubTag tag="연예인" />
             </div>
@@ -38,12 +52,12 @@ const BalanceGameSection = ({ game, gameStage }: BalanceGameSectionProps) => {
               <MenuTap menuData={otherGameItem} />
             </div>
           </div>
-          <div css={S.balanceGameSubTitle}>{game?.description}</div>
+          <div css={S.balanceGameSubTitle}>{currentGame.description}</div>
         </div>
         <Divider orientation="width" length={1095} />
         <BalanceGameBox
-          options={game?.gameOptions}
-          selectedOption={game?.votedOption}
+          options={currentGame.gameOptions}
+          selectedOption={currentGame.votedOption}
         />
         <div css={S.stageBarWrapper}>
           <button
@@ -51,16 +65,22 @@ const BalanceGameSection = ({ game, gameStage }: BalanceGameSectionProps) => {
             css={[
               S.buttonStyling,
               S.getButtonStyling(false),
-              S.getButtonVisibility(gameStage ?? 0),
+              S.getButtonVisibility(currentStage),
             ]}
+            onClick={() => {
+              setCurrentStage((stage) => (stage > 0 ? stage - 1 : stage));
+            }}
           >
             <PrevArrow css={S.getIconStyling(false)} />
             이전 질문
           </button>
-          <GameStageBar stage={gameStage ?? 0} />
+          <GameStageBar stage={currentStage} />
           <button
             type="button"
             css={[S.buttonStyling, S.getButtonStyling(true)]}
+            onClick={() => {
+              setCurrentStage((stage) => (stage < 9 ? stage + 1 : stage));
+            }}
           >
             다음 질문
             <NextArrow css={S.getIconStyling(true)} />
@@ -76,7 +96,7 @@ const BalanceGameSection = ({ game, gameStage }: BalanceGameSectionProps) => {
         />
         <InteractionButton
           buttonLabel="이 게임 제법 폼이 좋아?"
-          icon={game?.myBookmark ? <BookmarkPR /> : <BookmarkDF />}
+          icon={currentGame.myBookmark ? <BookmarkPR /> : <BookmarkDF />}
           iconLabel="저장하기"
           onClick={() => {}}
         />

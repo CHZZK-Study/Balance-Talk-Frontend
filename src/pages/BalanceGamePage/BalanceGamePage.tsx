@@ -1,9 +1,16 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
+import { useGameBySetId } from '@/hooks/api/game/useGameBySetIdQuery';
 import Divider from '@/components/atoms/Divider/Divider';
 import BalanceGameSection from '@/components/organisms/BalanceGameSection/BalanceGameSection';
 import * as S from './BalanceGamePage.style';
 
 const BalanceGamePage = () => {
+  const { setId } = useParams<{ setId: string }>();
+  const gameSetId = Number(setId);
+
+  const { gameSet } = useGameBySetId(gameSetId);
+
   return (
     <div css={S.pageStyle}>
       <div css={S.textContainer}>
@@ -15,7 +22,7 @@ const BalanceGamePage = () => {
         </div>
         <Divider length={1175} orientation="width" />
       </div>
-      <BalanceGameSection />
+      <BalanceGameSection game={gameSet?.gameDetailResponses} />
     </div>
   );
 };
