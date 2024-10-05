@@ -30,6 +30,14 @@ const BalanceGameSection = ({ game }: BalanceGameSectionProps) => {
   const [currentStage, setCurrentStage] = useState<number>(0);
   const currentGame: GameDetail = game?.[currentStage] ?? defaultGameDetail;
 
+  const handleNextButton = () => {
+    if (currentGame.votedOption === null) {
+      console.log('선택지를 선택해주세요!');
+      return;
+    }
+    setCurrentStage((stage) => (stage < 9 ? stage + 1 : stage));
+  };
+
   const otherGameItem: MenuItem[] = [{ label: '신고' }];
 
   return (
@@ -64,26 +72,27 @@ const BalanceGameSection = ({ game }: BalanceGameSectionProps) => {
             type="button"
             css={[
               S.buttonStyling,
-              S.getButtonStyling(false),
+              S.activeButtonStyling(true),
               S.getButtonVisibility(currentStage),
             ]}
             onClick={() => {
               setCurrentStage((stage) => (stage > 0 ? stage - 1 : stage));
             }}
           >
-            <PrevArrow css={S.getIconStyling(false)} />
+            <PrevArrow />
             이전 질문
           </button>
           <GameStageBar stage={currentStage} />
           <button
             type="button"
-            css={[S.buttonStyling, S.getButtonStyling(true)]}
-            onClick={() => {
-              setCurrentStage((stage) => (stage < 9 ? stage + 1 : stage));
-            }}
+            css={[
+              S.buttonStyling,
+              S.activeButtonStyling(currentGame.votedOption !== null),
+            ]}
+            onClick={handleNextButton}
           >
             다음 질문
-            <NextArrow css={S.getIconStyling(true)} />
+            <NextArrow />
           </button>
         </div>
       </div>

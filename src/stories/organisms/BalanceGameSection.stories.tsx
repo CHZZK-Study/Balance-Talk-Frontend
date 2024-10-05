@@ -22,17 +22,52 @@ const exampleOptions: GameOption[] = [
   },
 ];
 
-const exampleGame: GameDetail = {
-  id: 0,
-  title: '결정사 상대방 고르기',
-  description:
-    '500만원주고 가입한 결정사. 이제 마지막 남은 주선 기회는 1번. 당신은 누굴 택할것인가',
-  gameOptions: exampleOptions,
-  votesCountOfOptionA: 0,
-  votesCountOfOptionB: 0,
-  myBookmark: true,
-  votedOption: 'A',
-};
+const exampleGames: GameDetail[] = [
+  {
+    id: 0,
+    title: '결정사 상대방 고르기',
+    description:
+      '500만원주고 가입한 결정사. 이제 마지막 남은 주선 기회는 1번. 당신은 누굴 택할것인가',
+    gameOptions: exampleOptions,
+    votesCountOfOptionA: 0,
+    votesCountOfOptionB: 0,
+    myBookmark: true,
+    votedOption: 'A',
+  },
+  {
+    id: 0,
+    title: '결정사 상대방 고르기',
+    description:
+      '500만원주고 가입한 결정사. 이제 마지막 남은 주선 기회는 1번. 당신은 누굴 택할것인가',
+    gameOptions: exampleOptions,
+    votesCountOfOptionA: 0,
+    votesCountOfOptionB: 0,
+    myBookmark: true,
+    votedOption: 'A',
+  },
+  {
+    id: 0,
+    title: '결정사 상대방 고르기',
+    description:
+      '500만원주고 가입한 결정사. 이제 마지막 남은 주선 기회는 1번. 당신은 누굴 택할것인가',
+    gameOptions: exampleOptions,
+    votesCountOfOptionA: 0,
+    votesCountOfOptionB: 0,
+    myBookmark: true,
+    votedOption: 'B',
+  },
+  {
+    id: 0,
+    title: '결정사 상대방 고르기',
+    description:
+      '500만원주고 가입한 결정사. 이제 마지막 남은 주선 기회는 1번. 당신은 누굴 택할것인가',
+    gameOptions: exampleOptions,
+    votesCountOfOptionA: 0,
+    votesCountOfOptionB: 0,
+    myBookmark: true,
+    votedOption: null,
+  },
+];
 
 const meta: Meta<typeof BalanceGameSection> = {
   title: 'organisms/BalanceGameSection',
@@ -42,8 +77,7 @@ const meta: Meta<typeof BalanceGameSection> = {
   },
   tags: ['autodocs'],
   args: {
-    game: exampleGame,
-    gameStage: 3,
+    game: exampleGames,
   },
 };
 

@@ -95,8 +95,27 @@ export const buttonStyling = css(typo.Comment.SemiBold, {
   gap: '8px',
   border: `1px solid ${color.MAIN}`,
   borderRadius: '5px',
+  color: color.MAIN,
   cursor: 'pointer',
+  svg: {
+    fill: color.MAIN,
+  },
 });
+
+export const activeButtonStyling = (isAble: boolean) => {
+  if (isAble) {
+    return css({
+      ':hover': {
+        backgroundColor: color.MAIN,
+        color: color.WT,
+        svg: {
+          fill: color.WT,
+        },
+      },
+    });
+  }
+  return css({});
+};
 
 export const getButtonStyling = (isAble: boolean) => {
   if (isAble) {
@@ -114,18 +133,6 @@ export const getButtonStyling = (isAble: boolean) => {
 export const getButtonVisibility = (gameStage: number) => {
   return css({
     visibility: gameStage === 0 ? 'hidden' : 'visible',
-  });
-};
-
-export const getIconStyling = (isAble: boolean) => {
-  if (isAble) {
-    return css({
-      fill: color.WT,
-    });
-  }
-
-  return css({
-    fill: color.MAIN,
   });
 };
 
