@@ -1,7 +1,9 @@
 /* eslint-disable no-alert */
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import BalanceGameButton from '@/components/atoms/BalanceGameButton/BalanceGameButton';
-import { SampleWhole } from '@/assets';
+import { SampleWhole, PinkGameBg } from '@/assets';
+import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
 
 const meta = {
   title: 'atoms/BalanceGameButton',
@@ -29,6 +31,7 @@ const meta = {
     optionType: 'A',
     description: '어쩌고 저쩌고 저쩌고 어쩌고저쩌고 더미글',
     selectedButton: null,
+    randomImage: PinkGameBg,
     onClick: (optionType: 'A' | 'B') => alert(`Clicked ${optionType}`),
   },
 } satisfies Meta<typeof BalanceGameButton>;
@@ -37,3 +40,18 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
+
+export const All: Story = {
+  render: (args) => (
+    <ul css={storyContainer}>
+      <li css={storyInnerContainer}>
+        <h3>Image</h3>
+        <BalanceGameButton {...args} />
+      </li>
+      <li css={storyInnerContainer}>
+        <h3>No Image</h3>
+        <BalanceGameButton {...args} imgUrl={null} />
+      </li>
+    </ul>
+  ),
+};

@@ -46,8 +46,20 @@ export const getButtonStyle = (
     }),
   });
 
+export const textImageStyle = (randomImage: string) =>
+  css(typo.Title, {
+    display: 'flex',
+    width: '100%',
+    height: '320px',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundImage: `url(${randomImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  });
+
 export const imageStyle = css({
-  width: '561px',
+  width: '100%',
   height: '320px',
   objectFit: 'cover',
 });

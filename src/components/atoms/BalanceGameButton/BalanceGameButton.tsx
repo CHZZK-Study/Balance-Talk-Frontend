@@ -9,6 +9,7 @@ export interface BalanceGameButtonProps {
   description: string;
   optionType: 'A' | 'B';
   selectedButton: 'A' | 'B' | null;
+  randomImage: string;
   onClick: (optionType: 'A' | 'B') => void;
 }
 
@@ -18,6 +19,7 @@ const BalanceGameButton = ({
   description,
   optionType,
   selectedButton,
+  randomImage,
   onClick,
 }: BalanceGameButtonProps) => {
   const isSelected = selectedButton === optionType;
@@ -32,7 +34,11 @@ const BalanceGameButton = ({
       css={S.buttonWrapStyle(optionType)}
       onClick={handleClick}
     >
-      <img src={imgUrl ?? ''} alt={name} css={S.imageStyle} />
+      {imgUrl ? (
+        <img src={imgUrl} alt={name} css={S.imageStyle} />
+      ) : (
+        <div css={S.textImageStyle(randomImage)}>{name}</div>
+      )}
       <div
         css={[
           S.contentBoxStyle,

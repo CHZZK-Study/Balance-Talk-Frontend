@@ -22,6 +22,23 @@ const exampleOptions: GameOption[] = [
   },
 ];
 
+const exampleTextImageOptions: GameOption[] = [
+  {
+    id: 0,
+    name: '1000억 부자 유병재',
+    imgUrl: null,
+    description: '어쩌고 저쩌고 저쩌고 어쩌고저쩌고 더미글',
+    optionType: 'A',
+  },
+  {
+    id: 0,
+    name: '1000억 빚 거지 차은우',
+    imgUrl: null,
+    description: '어쩌고 저쩌고 저쩌고 어쩌고저쩌고 더미글',
+    optionType: 'B',
+  },
+];
+
 const meta = {
   title: 'molecules/BalanceGameBox',
   component: BalanceGameBox,
@@ -60,6 +77,13 @@ export const All: Story = {
       <li css={storyInnerContainer}>
         <h3>B selected</h3>
         <BalanceGameBox {...args} selectedOption="B" />
+      </li>
+      <li css={storyInnerContainer}>
+        <h3>No Image</h3>
+        <BalanceGameBox
+          options={exampleTextImageOptions}
+          selectedOption={null}
+        />
       </li>
     </ul>
   ),
