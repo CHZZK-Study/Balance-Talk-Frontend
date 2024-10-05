@@ -31,7 +31,7 @@ const BalanceGameSection = ({ game }: BalanceGameSectionProps) => {
   const currentGame: GameDetail = game?.[currentStage] ?? defaultGameDetail;
 
   const handleNextButton = () => {
-    if (currentGame.votedOption === null) {
+    if (!currentGame.votedOption) {
       console.log('선택지를 선택해주세요!');
       return;
     }
