@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { useParseJwt } from '@/hooks/common/useParseJwt';
 import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import { useCommentsQuery } from '@/hooks/api/comment/useCommentsQuery';
-import TodayTalkPickSection from '@/components/organisms/TodayTalkPickSection/TodayTalkPickSection';
+import TalkPickSection from '@/components/organisms/TalkPickSection/TalkPickSection';
 import CommentsSection from '@/components/organisms/CommentsSection/CommentsSection';
 import { useTalkPickSummaryMutation } from '@/hooks/api/talk-pick/useTalkPickSummaryMutation';
 import { useTalkPickDetailQuery } from '@/hooks/api/talk-pick/useTalkPickDetailQuery';
@@ -46,7 +46,7 @@ const TalkPickPage = () => {
 
   return (
     <div css={S.contentWrapStyle}>
-      <TodayTalkPickSection
+      <TalkPickSection
         isTodayTalkPick={isTodayTalkPick}
         talkPick={talkPick}
         myTalkPick={member?.nickname === talkPick?.writer}
