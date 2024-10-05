@@ -117,19 +117,6 @@ export const activeButtonStyling = (isAble: boolean) => {
   return css({});
 };
 
-export const getButtonStyling = (isAble: boolean) => {
-  if (isAble) {
-    return css({
-      backgroundColor: color.MAIN,
-      color: color.WT,
-    });
-  }
-
-  return css({
-    color: color.MAIN,
-  });
-};
-
 export const getButtonVisibility = (gameStage: number) => {
   return css({
     visibility: gameStage === 0 ? 'hidden' : 'visible',
