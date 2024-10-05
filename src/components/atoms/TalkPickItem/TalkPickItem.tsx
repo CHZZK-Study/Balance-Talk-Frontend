@@ -59,19 +59,13 @@ const TalkPickItem = ({
       <div css={[S.talkPickListId, S.getTalkPickListIdStyling(type)]}>
         {getTalkPickId()}
       </div>
-      <div
+      <button
         css={[S.talkPickListTitle, S.getTalkPickListTitleStyling(type)]}
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') handleClick();
-        }}
-        role="button"
         onClick={handleClick}
+        type="button"
       >
-        <span css={type !== 'header' && S.talkPickTitleText}>
-          {talkPickItem.title}
-        </span>
-      </div>
+        {talkPickItem.title}
+      </button>
       <div
         css={[S.talkPickListWideDetail, S.getTalkPickListWriterStyling(type)]}
       >
