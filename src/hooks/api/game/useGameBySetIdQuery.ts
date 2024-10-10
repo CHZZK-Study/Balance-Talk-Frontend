@@ -5,7 +5,7 @@ import { getGameBySetId } from '@/api/game';
 
 export const useGameBySetId = (gameSetId: Id) => {
   const { data: gameSet } = useQuery<GameSet>({
-    queryKey: ['games', gameSetId],
+    queryKey: ['gameSet', gameSetId],
     queryFn: () => getGameBySetId(gameSetId),
   });
   return { gameSet };

@@ -1,5 +1,8 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import store from '@/store';
+import { Provider } from 'react-redux';
+import ReactQueryProvider from '@/providers/ReactQueryProvider';
 import { GameOption, GameDetail } from '@/types/game';
 import { SampleWhole } from '@/assets';
 import BalanceGameSection from '@/components/organisms/BalanceGameSection/BalanceGameSection';
@@ -31,7 +34,7 @@ const exampleGames: GameDetail[] = [
     gameOptions: exampleOptions,
     votesCountOfOptionA: 0,
     votesCountOfOptionB: 0,
-    myBookmark: true,
+    myBookmark: false,
     votedOption: 'A',
   },
   {
@@ -79,6 +82,15 @@ const meta: Meta<typeof BalanceGameSection> = {
   args: {
     game: exampleGames,
   },
+  decorators: [
+    (Story) => (
+      <Provider store={store}>
+        <ReactQueryProvider>
+          <Story />
+        </ReactQueryProvider>
+      </Provider>
+    ),
+  ],
 };
 
 export default meta;

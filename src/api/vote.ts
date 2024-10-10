@@ -22,21 +22,21 @@ export const deleteTalkPickVote = async (talkPickId: Id) => {
   return response;
 };
 
-export const postGameVoteResult = async (gameId: Id, option: VoteOption) => {
+export const postGameVote = async (gameId: Id, option: VoteOption) => {
   const response = await axiosInstance.post(END_POINT.VOTE_GAME(gameId), {
     voteOption: option,
   });
   return response;
 };
 
-export const putGameVoteResult = async (gameId: Id, option: VoteOption) => {
+export const putGameVote = async (gameId: Id, option: VoteOption) => {
   const response = await axiosInstance.put(END_POINT.VOTE_GAME(gameId), {
     voteOption: option,
   });
   return response;
 };
 
-export const deleteGameVoteResult = async (gameId: Id) => {
+export const deleteGameVote = async (gameId: Id) => {
   const response = await axiosInstance.delete(END_POINT.VOTE_GAME(gameId));
   return response;
 };

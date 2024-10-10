@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useState } from 'react';
 import { BookmarkDF, BookmarkPR, NextArrow, PrevArrow, Share } from '@/assets';
 import { GameDetail } from '@/types/game';
@@ -64,8 +63,9 @@ const BalanceGameSection = ({ game }: BalanceGameSectionProps) => {
         </div>
         <Divider orientation="width" length={1095} />
         <BalanceGameBox
+          gameId={currentGame.id}
           options={currentGame.gameOptions}
-          selectedOption={currentGame.votedOption}
+          selectedVote={currentGame.votedOption}
         />
         <div css={S.stageBarWrapper}>
           <button

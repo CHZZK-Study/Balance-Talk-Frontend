@@ -1,6 +1,23 @@
 import { css } from '@emotion/react';
 import color from '@/styles/color';
 import typo from '@/styles/typo';
+import {
+  BlueGameBg,
+  ForestGameBg,
+  GrayGameBg,
+  GreenGameBg,
+  PinkGameBg,
+  PurpleGameBg,
+} from '@/assets';
+
+export const gameBgArray: string[] = [
+  PurpleGameBg,
+  BlueGameBg,
+  GrayGameBg,
+  ForestGameBg,
+  GreenGameBg,
+  PinkGameBg,
+];
 
 export const containerStyle = css({
   display: 'flex',

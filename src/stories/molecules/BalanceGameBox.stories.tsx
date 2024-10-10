@@ -1,5 +1,8 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import store from '@/store';
+import { Provider } from 'react-redux';
+import ReactQueryProvider from '@/providers/ReactQueryProvider';
 import { GameOption } from '@/types/game';
 import BalanceGameBox from '@/components/molecules/BalanceGameBox/BalanceGameBox';
 import { SampleWhole } from '@/assets';
@@ -47,15 +50,25 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    selectedOption: {
+    selectedVote: {
       options: ['A', 'B', null],
       control: { type: 'radio' },
     },
   },
   args: {
+    gameId: 0,
     options: exampleOptions,
-    selectedOption: null,
+    selectedVote: null,
   },
+  decorators: [
+    (Story) => (
+      <Provider store={store}>
+        <ReactQueryProvider>
+          <Story />
+        </ReactQueryProvider>
+      </Provider>
+    ),
+  ],
 } satisfies Meta<typeof BalanceGameBox>;
 
 export default meta;
@@ -72,17 +85,18 @@ export const All: Story = {
       </li>
       <li css={storyInnerContainer}>
         <h3>A selected</h3>
-        <BalanceGameBox {...args} selectedOption="A" />
+        <BalanceGameBox {...args} selectedVote="A" />
       </li>
       <li css={storyInnerContainer}>
         <h3>B selected</h3>
-        <BalanceGameBox {...args} selectedOption="B" />
+        <BalanceGameBox {...args} selectedVote="B" />
       </li>
       <li css={storyInnerContainer}>
         <h3>No Image</h3>
         <BalanceGameBox
+          gameId={0}
           options={exampleTextImageOptions}
-          selectedOption={null}
+          selectedVote={null}
         />
       </li>
     </ul>
