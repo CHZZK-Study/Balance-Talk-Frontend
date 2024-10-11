@@ -17,6 +17,8 @@ import ProfileIcon from '@/components/atoms/ProfileIcon/ProfileIcon';
 // import { useFetchSSE } from '@/api/notifications';
 import { EventSourcePolyfill, NativeEventSource } from 'event-source-polyfill';
 import { END_POINT } from '@/constants/api';
+import { MenuItem } from '@/components/atoms/MenuTap/MenuTap';
+import CreateDropdown from '@/components/atoms/CreateDropdown/CreateDropdown';
 import * as S from './Header.style';
 
 const Header = () => {
@@ -100,6 +102,19 @@ const Header = () => {
     }
   };
 
+  const optionData: MenuItem[] = [
+    {
+      label: '톡픽 만들기',
+      onClick: handleCreatePostButton,
+    },
+    {
+      label: '밸런스게임 만들기',
+      onClick: () => {
+        console.log('클릭됨!!');
+      },
+    },
+  ];
+
   // const handleNotificationClick = async (notificationId: number) => {
   //   try {
   //     await handleMarkAsRead(notificationId);
@@ -120,15 +135,7 @@ const Header = () => {
         </Link>
       </div>
       <div css={S.rightContainerStyle}>
-        <Button
-          variant="roundPrimary"
-          size="medium"
-          css={S.WriteButtonStyle}
-          onClick={handleCreatePostButton}
-        >
-          <WriteIcon css={S.IconStyle} />
-          톡픽쓰기
-        </Button>
+        <CreateDropdown optionData={optionData} />
         <div css={S.rightContainerStyle}>
           <button
             type="button"
