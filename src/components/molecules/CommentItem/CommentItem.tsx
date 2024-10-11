@@ -22,10 +22,9 @@ import * as S from './CommentItem.style';
 export interface CommentItemProps {
   comment: Comment;
   isMyTalkPick: boolean;
-  myOption: 'A' | 'B' | null;
 }
 
-const CommentItem = ({ comment, isMyTalkPick, myOption }: CommentItemProps) => {
+const CommentItem = ({ comment, isMyTalkPick }: CommentItemProps) => {
   const accessToken = useNewSelector(selectAccessToken);
   const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
   const isMyComment: boolean = comment?.nickname === member?.nickname;
@@ -84,11 +83,7 @@ const CommentItem = ({ comment, isMyTalkPick, myOption }: CommentItemProps) => {
   );
 
   const handleReplyButton = () => {
-    createReply({
-      content: replyValue,
-      option: myOption,
-      parentId: comment.id,
-    });
+    createReply({ content: replyValue });
     setReplyValue('');
   };
 

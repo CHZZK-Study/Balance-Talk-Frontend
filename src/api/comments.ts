@@ -1,18 +1,13 @@
 import { END_POINT } from '@/constants/api';
 import { Id, ServerResponse } from '@/types/api';
-import {
-  CommentsPagination,
-  CreateCommentProps,
-  CreateReplyProps,
-  EditCommentProps,
-} from '@/types/comment';
+import { CommentsPagination, CommentProps } from '@/types/comment';
 import { Pageable } from '@/types/pagination';
 import { axiosInstance } from './interceptor';
 
 export const putComment = async (
   talkPickId: Id,
   commentId: Id,
-  comment: EditCommentProps,
+  comment: CommentProps,
 ) => {
   const { data } = await axiosInstance.put<ServerResponse>(
     END_POINT.EDIT_COMMENT(talkPickId, commentId),
@@ -40,10 +35,7 @@ export const getComments = async (talkPickId: Id, pageable: Pageable) => {
   return data;
 };
 
-export const postComment = async (
-  talkPickId: Id,
-  comment: CreateCommentProps,
-) => {
+export const postComment = async (talkPickId: Id, comment: CommentProps) => {
   const { data } = await axiosInstance.post<ServerResponse>(
     END_POINT.CREATE_COMMENT(talkPickId),
     {
@@ -56,7 +48,7 @@ export const postComment = async (
 export const postReply = async (
   talkPickId: Id,
   commentId: Id,
-  reply: CreateReplyProps,
+  reply: CommentProps,
 ) => {
   const { data } = await axiosInstance.post<ServerResponse>(
     END_POINT.CREATE_REPLY(talkPickId, commentId),

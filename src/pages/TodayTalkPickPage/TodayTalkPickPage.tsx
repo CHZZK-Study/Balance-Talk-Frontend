@@ -68,7 +68,6 @@ const TodayTalkPickPage = () => {
         <CommentsSection
           talkPickId={talkPickId}
           isMyTalkPick={talkPick?.writer === member?.nickname}
-          myOption={talkPick?.votedOption ?? null}
           commentList={selectedValue === 'trend' ? bestComments : comments}
           toggleItem={toggleItem}
           selectedValue={selectedValue}

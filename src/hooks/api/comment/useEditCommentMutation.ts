@@ -1,6 +1,6 @@
 import { putComment } from '@/api/comments';
 import { Id } from '@/types/api';
-import { EditCommentProps } from '@/types/comment';
+import { CommentProps } from '@/types/comment';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const useEditCommentMutation = (
@@ -10,7 +10,7 @@ export const useEditCommentMutation = (
 ) => {
   const queryClient = useQueryClient();
   const editCommentMutation = useMutation({
-    mutationFn: (comment: EditCommentProps) =>
+    mutationFn: (comment: CommentProps) =>
       putComment(talkPickId, commentId, { ...comment }),
     onSuccess: async () => {
       await queryClient.invalidateQueries({

@@ -15,7 +15,6 @@ import * as S from './CommentsSection.style';
 export interface CommentsSectionProps {
   talkPickId: number;
   isMyTalkPick: boolean;
-  myOption: 'A' | 'B' | null;
   commentList?: CommentsPagination;
   toggleItem: ToggleGroupItem[];
   selectedValue: string;
@@ -28,7 +27,6 @@ export interface CommentsSectionProps {
 const CommentsSection = ({
   talkPickId,
   isMyTalkPick,
-  myOption,
   commentList,
   toggleItem,
   selectedValue,
@@ -43,11 +41,7 @@ const CommentsSection = ({
   const { mutate: createComment } = useCreateCommentMutation(talkPickId);
 
   const handleCommentButton = () => {
-    createComment({
-      content: commentValue,
-      option: myOption,
-      parentId: talkPickId,
-    });
+    createComment({ content: commentValue });
     setCommentValue('');
 
     if (selectedValue === 'trend') setToggleValue('recent');
@@ -89,7 +83,6 @@ const CommentsSection = ({
               key={commentData.id}
               comment={commentData}
               isMyTalkPick={isMyTalkPick}
-              myOption={myOption}
             />
           ))}
         </div>
