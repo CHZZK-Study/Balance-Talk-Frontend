@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable consistent-return */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
@@ -11,7 +14,9 @@ import { Logo, WriteIcon, DefaultProfile } from '@/assets';
 import Button from '@/components/atoms/Button/Button';
 import Notification from '@/components/molecules/Notification/Notification';
 import ProfileIcon from '@/components/atoms/ProfileIcon/ProfileIcon';
-import { useFetchSSE } from '@/api/notifications';
+// import { useFetchSSE } from '@/api/notifications';
+import { EventSourcePolyfill, NativeEventSource } from 'event-source-polyfill';
+import { END_POINT } from '@/constants/api';
 import * as S from './Header.style';
 
 const Header = () => {
@@ -20,31 +25,56 @@ const Header = () => {
   const logout = useLogoutMutation();
   const { member } = useMemberQuery(useParseJwt(accessToken)?.memberId);
   const [isNew, setIsNew] = useState(false);
+  // const [messages, setMessages] = useState([]);
 
-  const { messages, handleMarkAsRead } = useFetchSSE({
-    accessToken: accessToken || '',
-    onLogout: () => {
-      logout.mutate();
-      navigate('/login');
-    },
-  });
+  // const { messages, handleMarkAsRead } = useFetchSSE({
+  //   accessToken: accessToken || '',
+  //   onLogout: () => {
+  //     logout.mutate();
+  //     navigate('/login');
+  //   },
+  // });
 
   useEffect(() => {
-    if (messages.some((message) => message.isNew)) {
-      setIsNew(true);
-    } else {
-      setIsNew(false);
-    }
-  }, [messages]);
+    if (localStorage.getItem('accessToken')) {
+      const EventSource = EventSourcePolyfill || NativeEventSource;
+      const eventSource = new EventSource(
+        `${process.env.API_URL}${END_POINT.NOTIFICATON}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          },
+          // withCredentials: true,
+          // heartbeatTimeout: 86400000,
+        },
+      );
 
-  const notifications = messages.map((message) => ({
-    category: message.category,
-    date: message.createdAt,
-    title: message.postTitle,
-    content: message.message,
-    isNew: message.isNew,
-    id: message.id,
-  }));
+      eventSource.onmessage = (e) => {
+        console.log(e.data);
+      };
+
+      eventSource.onerror = (e) => {
+        console.log(e);
+        console.error('Error target: ', e.target);
+        eventSource.close();
+      };
+
+      return () => {
+        eventSource.close();
+      };
+    }
+  }, []);
+
+  const notifications = [
+    {
+      id: 1,
+      category: 'MY 톡픽',
+      createdAt: '2024.09.04',
+      postTitle: '바보인 마리아 눈물은 바보다',
+      message: 'MY 댓글에 답글이 달렸어요!',
+      isNew: false,
+    },
+  ];
 
   const handleLoginButton = () => {
     if (accessToken) {
@@ -70,12 +100,16 @@ const Header = () => {
     }
   };
 
-  const handleNotificationClick = async (notificationId: number) => {
-    try {
-      await handleMarkAsRead(notificationId);
-    } catch (error) {
-      console.error('알림 클릭 에러:', error);
-    }
+  // const handleNotificationClick = async (notificationId: number) => {
+  //   try {
+  //     await handleMarkAsRead(notificationId);
+  //   } catch (error) {
+  //     console.error('알림 클릭 에러:', error);
+  //   }
+  // };
+
+  const handleNotificationClick = (id: number) => {
+    console.log('clicked');
   };
 
   return (
@@ -103,11 +137,7 @@ const Header = () => {
           >
             {accessToken ? '로그아웃' : '로그인'}
           </button>
-          <Notification
-            isNew={isNew}
-            notifications={notifications}
-            onClickNotification={handleNotificationClick}
-          />
+          <Notification isNew={isNew} notifications={notifications} />
           <div css={S.notificationStyle}>
             {accessToken ? (
               <ProfileIcon

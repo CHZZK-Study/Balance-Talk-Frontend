@@ -101,6 +101,10 @@ export const END_POINT = {
   // report API
   REPORT_COMMENT: (talkPickId: Id, commentId: Id) =>
     `/reports/talks/${talkPickId}/comments/${commentId}`,
+
+  // notification API
+  NOTIFICATON: 'notifications',
+  READ_NOTIFICATION: (msgId: Id) => `/notifications/${msgId}/read`,
 };
 
 export const AXIOS = {
