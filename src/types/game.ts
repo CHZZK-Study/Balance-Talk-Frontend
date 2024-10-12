@@ -23,6 +23,10 @@ export interface GameDetail {
 
 // 게임 세트
 export interface GameSet {
+  member: string;
+  createdAt: string;
+  mainTag: string;
+  subTag: string;
   gameDetailResponses: GameDetail[];
   isEndGameSet: boolean;
 }

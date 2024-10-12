@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BookmarkDF, BookmarkPR, NextArrow, PrevArrow, Share } from '@/assets';
-import { GameDetail } from '@/types/game';
+import { GameDetail, GameSet } from '@/types/game';
+import { formatDateFromISO } from '@/utils/formatData';
 import Chips from '@/components/atoms/Chips/Chips';
 import Divider from '@/components/atoms/Divider/Divider';
 import { SubTag } from '@/components/atoms/SubTag/SubTag';
@@ -11,10 +12,10 @@ import BalanceGameBox from '@/components/molecules/BalanceGameBox/BalanceGameBox
 import * as S from './BalanceGameSection.style';
 
 export interface BalanceGameSectionProps {
-  game?: GameDetail[];
+  game?: GameSet;
 }
 
-const defaultGameDetail: GameDetail = {
+const gameDetails: GameDetail[] = Array.from({ length: 10 }, () => ({
   id: 0,
   title: '',
   description: '',
@@ -23,11 +24,12 @@ const defaultGameDetail: GameDetail = {
   votesCountOfOptionB: 0,
   myBookmark: false,
   votedOption: null,
-};
+}));
 
 const BalanceGameSection = ({ game }: BalanceGameSectionProps) => {
   const [currentStage, setCurrentStage] = useState<number>(0);
-  const currentGame: GameDetail = game?.[currentStage] ?? defaultGameDetail;
+  const gameStage: GameDetail[] = game?.gameDetailResponses ?? gameDetails;
+  const currentGame: GameDetail = gameStage[currentStage];
 
   const handleNextButton = () => {
     if (!currentGame.votedOption) {
@@ -46,15 +48,17 @@ const BalanceGameSection = ({ game }: BalanceGameSectionProps) => {
           <div css={S.balanceGameTitleWrapper}>
             <div css={S.balanceGameInfoWrapper}>
               <div css={S.titleWrapper}>
-                <Chips variant="roundOutline">커플</Chips>
+                <Chips variant="roundOutline">{game?.mainTag}</Chips>
                 <div css={S.balanceGameTitle}>{currentGame.title}</div>
               </div>
-              <SubTag tag="연예인" />
+              <SubTag tag={game?.subTag} />
             </div>
             <div css={S.balanceGameMenuWrapper}>
               <div css={S.textWrapper}>
-                <span css={S.nicknameStyling}>닉네임593</span>
-                <span css={S.dateStyling}>2024.07.10</span>
+                <span css={S.nicknameStyling}>{game?.member}</span>
+                <span css={S.dateStyling}>
+                  {formatDateFromISO(game?.createdAt ?? '')}
+                </span>
               </div>
               <MenuTap menuData={otherGameItem} />
             </div>

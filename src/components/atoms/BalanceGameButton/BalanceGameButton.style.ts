@@ -11,6 +11,7 @@ export const buttonWrapStyle = (option: 'A' | 'B') =>
     flexDirection: 'column',
     alignItems: 'center',
     width: '561px',
+    minHeight: '488px',
     backgroundColor: 'transparent',
     borderRadius: option === 'A' ? '20px 0 0 20px' : '0 20px 20px 0',
     overflow: 'hidden',
