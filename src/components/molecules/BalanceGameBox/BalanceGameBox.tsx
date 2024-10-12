@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { GameOption } from '@/types/game';
-import { getRandomNumber } from '@/utils/calculator';
+import { getRandomNumbers } from '@/utils/calculator';
 import BalanceGameButton from '@/components/atoms/BalanceGameButton/BalanceGameButton';
 import { useCreateGameVoteMutation } from '@/hooks/api/vote/useCreateGameVoteMutation';
 import { useEditGameVoteMutation } from '@/hooks/api/vote/useEditGameVoteMutation';
@@ -22,10 +22,10 @@ const BalanceGameBox = ({
   const optionB = options?.[1];
 
   const getRandomImages = () => {
-    const randomImageA = S.gameBgArray[getRandomNumber(S.gameBgArray.length)];
-    const randomImageB = S.gameBgArray[getRandomNumber(S.gameBgArray.length)];
-
-    return [randomImageA, randomImageB];
+    const [randomNumberA, randomNumberB] = getRandomNumbers(
+      S.gameBgArray.length,
+    );
+    return [S.gameBgArray[randomNumberA], S.gameBgArray[randomNumberB]];
   };
 
   const [backgroundImages] = useState<string[]>(getRandomImages);
