@@ -24,7 +24,7 @@ export const arrowStlying = css({
 export const optionStlying = css({
   position: 'absolute',
   marginTop: '68px',
-  right: '10px',
+  right: '420px',
   width: '173px',
   backgroundColor: color.WT,
   border: `1px solid ${color.GY[2]}`,
