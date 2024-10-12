@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TopBanner from '@/components/molecules/TopBanner/TopBanner';
 import SearchTagBar from '@/components/molecules/SearchTagBar/SearchTagBar';
 import CategoryBox from '@/components/molecules/CategoryBox/CategoryBox';
 import BalanceGameList from '@/components/organisms/BalanceGameList/BalanceGameList';
 import { SampleFirst, SampleSecond } from '@/assets';
 import { useTodayTalkPickQuery } from '@/hooks/api/talk-pick/useTodayTalkPickQuery';
+import ToastModal from '@/components/atoms/ToastModal/ToastModal';
 import * as S from './LandingPage.style';
 
 const LandingPage = () => {
@@ -171,14 +172,33 @@ const LandingPage = () => {
     },
   ];
   const { todayTalkPick } = useTodayTalkPickQuery();
+  const [isServicePreparing, setIsServicePreparing] = useState<boolean>(false);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleService = () => {
+    setIsServicePreparing(true);
+    scrollToTop();
+
+    setTimeout(() => {
+      setIsServicePreparing(false);
+    }, 2000);
+  };
 
   return (
     <div>
+      {isServicePreparing && (
+        <div css={S.toastModalStyling}>
+          <ToastModal bgColor="white">아직 준비 중인 서비스입니다!</ToastModal>
+        </div>
+      )}
       <TopBanner todayTalkPick={todayTalkPick} />
       <div css={S.contentWrapStyle}>
         <SearchTagBar />
         <div css={S.categoryBoxStyle}>
-          <CategoryBox />
+          <CategoryBox handleService={handleService} />
         </div>
         <BalanceGameList contents={contents} />
       </div>
