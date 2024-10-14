@@ -8,15 +8,19 @@ import { useDeleteGameVoteMutation } from '@/hooks/api/vote/useDeleteGameVoteMut
 import * as S from './BalanceGameBox.style';
 
 export interface BalanceGameBoxProps {
+  gameSetId: number;
   gameId: number;
   options?: GameOption[];
   selectedVote: 'A' | 'B' | null;
+  handleNextStage: () => void;
 }
 
 const BalanceGameBox = ({
+  gameSetId,
   gameId,
   options,
   selectedVote,
+  handleNextStage,
 }: BalanceGameBoxProps) => {
   const optionA = options?.[0];
   const optionB = options?.[1];
@@ -31,16 +35,26 @@ const BalanceGameBox = ({
   const [backgroundImages] = useState<string[]>(getRandomImages);
   const [backgroundImageA, backgroundImageB] = backgroundImages;
 
-  const { mutate: createGameVote } = useCreateGameVoteMutation(gameId);
-  const { mutate: editGameVote } = useEditGameVoteMutation(gameId);
-  const { mutate: deleteGameVote } = useDeleteGameVoteMutation(gameId);
+  const { mutate: createGameVote } = useCreateGameVoteMutation(
+    gameSetId,
+    gameId,
+  );
+  const { mutate: editGameVote } = useEditGameVoteMutation(gameSetId, gameId);
+  const { mutate: deleteGameVote } = useDeleteGameVoteMutation(
+    gameSetId,
+    gameId,
+  );
 
   const handleGameVote = (
     selectedOption: 'A' | 'B' | null,
     voteOption: 'A' | 'B',
   ) => {
     if (!selectedOption) {
-      createGameVote(voteOption);
+      createGameVote(voteOption, {
+        onSuccess: () => {
+          handleNextStage();
+        },
+      });
     } else if (selectedOption === voteOption) {
       deleteGameVote();
     } else {

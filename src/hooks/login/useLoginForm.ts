@@ -48,7 +48,7 @@ export const useLoginForm = () => {
 
       // TODO: 백엔드에서 리프레쉬 토큰 쿠키에 저장시키면, 해당 코드 제거
       localStorage.setItem('accessToken', res);
-      // localStorage.setItem('rtk', 'rtk');
+      localStorage.setItem('rtk', 'rtk');
 
       setTimeout(() => {
         navigate('/');

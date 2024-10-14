@@ -12,6 +12,7 @@ import BalanceGameBox from '@/components/molecules/BalanceGameBox/BalanceGameBox
 import * as S from './BalanceGameSection.style';
 
 export interface BalanceGameSectionProps {
+  gameSetId: number;
   game?: GameSet;
 }
 
@@ -26,7 +27,7 @@ const gameDetails: GameDetail[] = Array.from({ length: 10 }, () => ({
   votedOption: null,
 }));
 
-const BalanceGameSection = ({ game }: BalanceGameSectionProps) => {
+const BalanceGameSection = ({ gameSetId, game }: BalanceGameSectionProps) => {
   const [currentStage, setCurrentStage] = useState<number>(0);
   const gameStage: GameDetail[] = game?.gameDetailResponses ?? gameDetails;
   const currentGame: GameDetail = gameStage[currentStage];
@@ -37,6 +38,10 @@ const BalanceGameSection = ({ game }: BalanceGameSectionProps) => {
       return;
     }
     setCurrentStage((stage) => (stage < 9 ? stage + 1 : stage));
+  };
+
+  const handleNextStage = () => {
+    setCurrentStage((stage) => stage + 1);
   };
 
   const otherGameItem: MenuItem[] = [{ label: '신고' }];
@@ -67,9 +72,11 @@ const BalanceGameSection = ({ game }: BalanceGameSectionProps) => {
         </div>
         <Divider orientation="width" length={1095} />
         <BalanceGameBox
+          gameSetId={gameSetId}
           gameId={currentGame.id}
           options={currentGame.gameOptions}
           selectedVote={currentGame.votedOption}
+          handleNextStage={handleNextStage}
         />
         <div css={S.stageBarWrapper}>
           <button

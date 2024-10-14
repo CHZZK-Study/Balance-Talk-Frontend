@@ -45,8 +45,10 @@ const BalanceGameButton = ({
           S.getButtonStyle(optionType, isSelected ? optionType : null),
         ]}
       >
-        <div css={S.descriptionStyle}>{description}</div>
-        <div css={S.nameStyle}>{name}</div>
+        <div css={S.contentWrapper}>
+          <div css={S.descriptionStyle}>{description}</div>
+          <div css={S.nameStyle}>{name}</div>
+        </div>
       </div>
     </button>
   );

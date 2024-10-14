@@ -22,7 +22,7 @@ const BalanceGamePage = () => {
         </div>
         <Divider length={1175} orientation="width" />
       </div>
-      <BalanceGameSection game={gameSet} />
+      <BalanceGameSection gameSetId={gameSetId} game={gameSet} />
     </div>
   );
 };

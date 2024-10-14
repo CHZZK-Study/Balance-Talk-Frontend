@@ -12,6 +12,7 @@ export const buttonWrapStyle = (option: 'A' | 'B') =>
     alignItems: 'center',
     width: '561px',
     minHeight: '488px',
+    flexGrow: 1,
     backgroundColor: 'transparent',
     borderRadius: option === 'A' ? '20px 0 0 20px' : '0 20px 20px 0',
     overflow: 'hidden',
@@ -43,7 +44,6 @@ export const getButtonStyle = (
       backgroundColor: side === 'A' ? color.RED : color.BLUE,
       color: color.WT,
       outline: 'none',
-      borderRadius: side === 'A' ? '0 0 0 20px' : '0 0 20px 0',
     }),
   });
 
@@ -66,11 +66,18 @@ export const imageStyle = css({
 });
 
 export const contentBoxStyle = css({
-  padding: '27px 0 37px 0',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '561px',
+  flexGrow: 1,
+});
+
+export const contentWrapper = css({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  width: '561px',
 });
 
 export const descriptionStyle = css(typo.Main.Medium, {
