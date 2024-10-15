@@ -1,17 +1,12 @@
 import { getReplies } from '@/api/comments';
 import { Id } from '@/types/api';
-import { CommentsPagination } from '@/types/comment';
-import { Pageable } from '@/types/pagination';
+import { Comment } from '@/types/comment';
 import { useQuery } from '@tanstack/react-query';
 
-export const useRepliesQuery = (
-  talkPickId: Id,
-  commentId: Id,
-  pageable: Pageable,
-) => {
-  const { data: replies } = useQuery<CommentsPagination>({
+export const useRepliesQuery = (talkPickId: Id, commentId: Id) => {
+  const { data: replies } = useQuery<Comment[]>({
     queryKey: ['talks', talkPickId, commentId, 'replies'],
-    queryFn: () => getReplies(talkPickId, commentId, pageable),
+    queryFn: () => getReplies(talkPickId, commentId),
   });
   return { replies };
 };

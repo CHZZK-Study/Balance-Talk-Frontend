@@ -16,7 +16,7 @@ const exampleCommentList: Comment[] = Array.from({ length: 7 }, (_, index) => ({
   nickname: '닉네임 4',
   profileImage: ProfileSample,
   content: '피곤하게 산다... 그깟 새우 까주는게 뭐 대수라고!',
-  option: 'A',
+  voteOption: 'A',
   likesCount: 35,
   myLike: false,
   parentId: 4,
@@ -25,7 +25,6 @@ const exampleCommentList: Comment[] = Array.from({ length: 7 }, (_, index) => ({
   createdAt: '2024-09-08T12:23:04.105815',
   lastModifiedAt: '2024-09-08T12:23:04.105815',
   edited: false,
-  blind: false,
   best: false,
 }));
 

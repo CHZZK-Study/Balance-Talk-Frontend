@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useEffect, useRef, useState } from 'react';
 import { Comment } from '@/types/comment';
 import { AngleReplyDown, AngleReplyUp } from '@/assets';
@@ -10,6 +11,7 @@ import { useCreateReplyMutation } from '@/hooks/api/comment/useCreateReplyMutati
 import { useRepliesQuery } from '@/hooks/api/comment/useRepliesQuery';
 import MenuTap, { MenuItem } from '@/components/atoms/MenuTap/MenuTap';
 import CategoryBarChip from '@/components/atoms/CategoryBarChip/CategoryBarChip';
+import MoreButton from '@/components/atoms/MoreButton/MoreButton';
 import ToastModal from '@/components/atoms/ToastModal/ToastModal';
 import LikeButton from '@/components/atoms/LikeButton/LikeButton';
 import TextArea from '@/components/molecules/TextArea/TextArea';
@@ -40,6 +42,8 @@ const CommentItem = ({ comment, isMyTalkPick }: CommentItemProps) => {
   const [editCommentText, setEditCommentText] = useState<string>(
     comment.content,
   );
+
+  const [visibleReply, setVisibleReply] = useState<number>(10);
 
   const {
     handleEditSubmit,
@@ -75,6 +79,7 @@ const CommentItem = ({ comment, isMyTalkPick }: CommentItemProps) => {
 
   const handleReplyToggle = () => {
     setShowReply(!showReply);
+    setVisibleReply(10);
   };
 
   const { mutate: createReply } = useCreateReplyMutation(
@@ -87,9 +92,7 @@ const CommentItem = ({ comment, isMyTalkPick }: CommentItemProps) => {
     setReplyValue('');
   };
 
-  const { replies } = useRepliesQuery(comment.talkPickId, comment.id, {
-    page: 0,
-  });
+  const { replies } = useRepliesQuery(comment.talkPickId, comment.id);
 
   const handleDeleteCommentButton = () => {
     setDeleteTextModalOpen(false);
@@ -127,6 +130,10 @@ const CommentItem = ({ comment, isMyTalkPick }: CommentItemProps) => {
     setTimeout(() => {
       setReportModal(false);
     }, 2000);
+  };
+
+  const handleMoreButton = () => {
+    setVisibleReply((reply) => reply + 10);
   };
 
   return (
@@ -168,7 +175,7 @@ const CommentItem = ({ comment, isMyTalkPick }: CommentItemProps) => {
       >
         <div css={S.profileWrapper}>
           <CommentProfile
-            option={comment?.option}
+            option={comment?.voteOption}
             imgUrl={comment?.profileImage}
           />
         </div>
@@ -236,9 +243,20 @@ const CommentItem = ({ comment, isMyTalkPick }: CommentItemProps) => {
               label="답글달기"
             />
           </div>
-          {replies?.content.map((replyData) => (
-            <ReplyItem key={replyData.id} reply={replyData} />
-          ))}
+          {replies
+            ?.slice(0, visibleReply)
+            .map((replyData) => (
+              <ReplyItem key={replyData.id} reply={replyData} />
+            ))}
+          {(replies || []).length > visibleReply && (
+            <button
+              type="button"
+              css={S.moreButtonStyling}
+              onClick={handleMoreButton}
+            >
+              <MoreButton icon="arrow" />
+            </button>
+          )}
         </div>
       )}
     </div>

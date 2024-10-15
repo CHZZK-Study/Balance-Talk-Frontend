@@ -7,17 +7,15 @@ export interface Comment {
   nickname: string;
   profileImage: string;
   content: string;
-  option: 'A' | 'B' | null;
+  voteOption: 'A' | 'B' | null;
   likesCount: number;
   myLike: boolean;
-  parentId: number | null;
   replyCount: number;
   reportedCount: number;
   createdAt: string;
   lastModifiedAt: string;
-  edited: boolean;
-  blind: boolean;
   best: boolean;
+  edited: boolean;
 }
 
 export interface CommentsPagination extends PaginationType {

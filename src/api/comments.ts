@@ -1,6 +1,6 @@
 import { END_POINT } from '@/constants/api';
 import { Id, ServerResponse } from '@/types/api';
-import { CommentsPagination, CommentProps } from '@/types/comment';
+import { Comment, CommentsPagination, CommentProps } from '@/types/comment';
 import { Pageable } from '@/types/pagination';
 import { axiosInstance } from './interceptor';
 
@@ -59,16 +59,9 @@ export const postReply = async (
   return data;
 };
 
-export const getReplies = async (
-  talkPickId: Id,
-  commentId: Id,
-  pageable: Pageable,
-) => {
-  const { data } = await axiosInstance.get<CommentsPagination>(
+export const getReplies = async (talkPickId: Id, commentId: Id) => {
+  const { data } = await axiosInstance.get<Comment[]>(
     END_POINT.REPLIES(talkPickId, commentId),
-    {
-      params: { ...pageable, sort: 'createdAt,desc' },
-    },
   );
   return data;
 };

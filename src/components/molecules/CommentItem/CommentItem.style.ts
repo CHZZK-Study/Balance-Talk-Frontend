@@ -103,6 +103,16 @@ export const nicknameInput = css`
   ${typo.Comment.SemiBold}
 `;
 
+export const moreButtonStyling = css({
+  display: 'flex',
+  width: '100%',
+  height: '80px',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderTop: '1px solid #f4f4f4',
+  cursor: 'pointer',
+});
+
 export const toastModalStyling = css({
   position: 'fixed',
   top: '110px',
