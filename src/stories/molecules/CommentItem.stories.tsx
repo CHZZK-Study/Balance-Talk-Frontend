@@ -7,6 +7,7 @@ import ReactQueryProvider from '@/providers/ReactQueryProvider';
 import { Comment } from '@/types/comment';
 import CommentItem from '@/components/molecules/CommentItem/CommentItem';
 import { ProfileSample } from '@/assets';
+import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
 
 const exampleComment: Comment = {
   id: 1,
@@ -56,3 +57,16 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
+
+export const All: Story = {
+  render: (args) => (
+    <div css={storyContainer}>
+      <div css={storyInnerContainer}>
+        <h3>타인 댓글</h3>
+        <CommentItem {...args} />
+        <h3>작성자 댓글</h3>
+        <CommentItem {...args} isMyTalkPick />
+      </div>
+    </div>
+  ),
+};
