@@ -7,7 +7,7 @@ export const useCreateGameBookmarkMutation = (gameSetId: Id, gameId: Id) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: () => deleteGameBookmark(gameId),
+    mutationFn: () => deleteGameBookmark(gameSetId),
     onMutate: () => {
       const prevGame: GameSet | undefined = queryClient.getQueryData([
         'gameSet',
