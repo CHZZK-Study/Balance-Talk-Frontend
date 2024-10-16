@@ -33,10 +33,7 @@ const BalanceGameSection = ({ gameSetId, game }: BalanceGameSectionProps) => {
   const currentGame: GameDetail = gameStage[currentStage];
 
   const handleNextButton = () => {
-    if (!currentGame.votedOption) {
-      console.log('선택지를 선택해주세요!');
-      return;
-    }
+    if (!currentGame.votedOption) return;
     setCurrentStage((stage) => (stage < 9 ? stage + 1 : stage));
   };
 
@@ -54,7 +51,7 @@ const BalanceGameSection = ({ gameSetId, game }: BalanceGameSectionProps) => {
             <div css={S.balanceGameInfoWrapper}>
               <div css={S.titleWrapper}>
                 <Chips variant="roundOutline">{game?.mainTag}</Chips>
-                <div css={S.balanceGameTitle}>{currentGame.title}</div>
+                <div css={S.balanceGameTitle}>{game?.title}</div>
               </div>
               <SubTag tag={game?.subTag} />
             </div>

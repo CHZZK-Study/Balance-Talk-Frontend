@@ -24,6 +24,7 @@ export interface GameDetail {
 // 게임 세트
 export interface GameSet {
   member: string;
+  title: string;
   createdAt: string;
   mainTag: string;
   subTag: string;
