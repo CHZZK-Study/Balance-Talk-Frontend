@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Id } from '@/types/api';
+import { GameSet } from '@/types/game';
 import { postGameBookmark } from '@/api/bookmarks';
-import { GameItem } from '@/types/game';
 
 export const useCreateGameBookmarkMutation = (gameSetId: Id, gameId: Id) => {
   const queryClient = useQueryClient();
@@ -9,20 +9,34 @@ export const useCreateGameBookmarkMutation = (gameSetId: Id, gameId: Id) => {
   return useMutation({
     mutationFn: () => postGameBookmark(gameSetId, gameId),
     onMutate: () => {
-      const prevPost: GameItem | undefined = queryClient.getQueryData([
-        'games',
-        gameId,
+      const prevGame: GameSet | undefined = queryClient.getQueryData([
+        'gameSet',
+        gameSetId,
       ]);
 
+      if (prevGame) {
+        queryClient.setQueryData(['gameSet', gameSetId], {
+          ...prevGame,
+          gameDetailResponses: prevGame.gameDetailResponses.map((gameDetail) =>
+            gameDetail.id === gameId
+              ? {
+                  ...gameDetail,
+                  myBookmark: true,
+                }
+              : gameDetail,
+          ),
+        });
+      }
+
       queryClient.setQueryData(['games', gameSetId], {
-        ...prevPost,
+        ...prevGame,
         myBookmark: true,
       });
 
-      return { prevPost };
+      return { prevGame };
     },
     onError: (err, id, context) => {
-      queryClient.setQueryData(['games', gameSetId], context?.prevPost);
+      queryClient.setQueryData(['games', gameSetId], context?.prevGame);
     },
   });
 };
