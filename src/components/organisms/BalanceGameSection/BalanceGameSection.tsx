@@ -9,6 +9,8 @@ import MenuTap, { MenuItem } from '@/components/atoms/MenuTap/MenuTap';
 import GameStageBar from '@/components/atoms/GameStageBar/GameStageBar';
 import InteractionButton from '@/components/atoms/InteractionButton/InteractionButton';
 import BalanceGameBox from '@/components/molecules/BalanceGameBox/BalanceGameBox';
+import { useCreateGameBookmarkMutation } from '@/hooks/api/bookmark/useCreateGameBookmarkMutation';
+import { useDeleteGameBookmarkMutation } from '@/hooks/api/bookmark/useDeleteGameBookmarkMutation';
 import * as S from './BalanceGameSection.style';
 
 export interface BalanceGameSectionProps {
@@ -39,6 +41,26 @@ const BalanceGameSection = ({ gameSetId, game }: BalanceGameSectionProps) => {
 
   const handleNextStage = () => {
     setCurrentStage((stage) => stage + 1);
+  };
+
+  const { mutate: createBookmark } = useCreateGameBookmarkMutation(
+    gameSetId,
+    currentGame.id,
+  );
+
+  const { mutate: deleteBookmark } = useDeleteGameBookmarkMutation(
+    gameSetId,
+    currentGame.id,
+  );
+
+  const handleBookmarkClick = () => {
+    if (!game) return;
+
+    if (currentGame.myBookmark) {
+      deleteBookmark();
+    } else {
+      createBookmark();
+    }
   };
 
   const otherGameItem: MenuItem[] = [{ label: '신고' }];
@@ -115,7 +137,7 @@ const BalanceGameSection = ({ gameSetId, game }: BalanceGameSectionProps) => {
           buttonLabel="이 게임 제법 폼이 좋아?"
           icon={currentGame.myBookmark ? <BookmarkPR /> : <BookmarkDF />}
           iconLabel="저장하기"
-          onClick={() => {}}
+          onClick={handleBookmarkClick}
         />
       </div>
     </div>
