@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Id } from '@/types/api';
 import { postDoneGameBookmark } from '@/api/bookmarks';
 
-export const useCreateGameBookmarkMutation = (gameSetId: Id) => {
+export const useCreateDoneGameBookmarkMutation = (gameSetId: Id) => {
   const queryClient = useQueryClient();
 
   return useMutation({

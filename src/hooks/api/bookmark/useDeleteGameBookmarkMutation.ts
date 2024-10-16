@@ -3,7 +3,7 @@ import { Id } from '@/types/api';
 import { GameSet } from '@/types/game';
 import { deleteGameBookmark } from '@/api/bookmarks';
 
-export const useCreateGameBookmarkMutation = (gameSetId: Id, gameId: Id) => {
+export const useDeleteGameBookmarkMutation = (gameSetId: Id, gameId: Id) => {
   const queryClient = useQueryClient();
 
   return useMutation({
