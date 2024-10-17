@@ -33,6 +33,9 @@ export const ERROR = {
     MY_COMMENT_LIKE: `본인의 댓글에는 '좋아요' 할 수 없습니다.`,
     REPORT_AGAIN: '이미 신고한 댓글입니다.',
   },
+  BOOKMARK: {
+    MY_TALKPICK: '본인이 작성한 톡픽은 저장할 수 없습니다.',
+  },
 } as const;
 
 export const SUCCESS = {

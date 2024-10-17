@@ -10,6 +10,7 @@ import {
 } from '@/assets';
 import { useNavigate } from 'react-router-dom';
 import { TalkPickDetail } from '@/types/talk-pick';
+import { ERROR } from '@/constants/message';
 import { formatDate, formatNumber } from '@/utils/formatData';
 import Button from '@/components/atoms/Button/Button';
 import SummaryBox from '@/components/molecules/SummaryBox/SummaryBox';
@@ -35,6 +36,7 @@ const TodayTalkPickSection = ({ talkPick, myTalkPick }: TodayTalkPickProps) => {
 
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [linkCopied, setLinkCopied] = useState<boolean>(false);
+  const [bookmarkError, setBookmarkError] = useState<boolean>(false);
 
   const [shareModalOpen, setShareModalOpen] = useState<boolean>(false);
   const [reportModalOpen, setReportModalOpen] = useState<boolean>(false);
@@ -65,6 +67,15 @@ const TodayTalkPickSection = ({ talkPick, myTalkPick }: TodayTalkPickProps) => {
   const handleBookmarkClick = () => {
     if (!talkPick) return;
 
+    if (myTalkPick) {
+      setBookmarkError(true);
+      setTimeout(() => {
+        setBookmarkError(false);
+      }, 2000);
+
+      return;
+    }
+
     if (talkPick.myBookmark) {
       deleteBookmark();
     } else {
@@ -93,15 +104,10 @@ const TodayTalkPickSection = ({ talkPick, myTalkPick }: TodayTalkPickProps) => {
     talkPick?.id ?? 0,
   );
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   const handleCopyButton = (link: string) => {
     copyTalkPickLink(link);
     setShareModalOpen(false);
     setLinkCopied(true);
-    scrollToTop();
 
     setTimeout(() => {
       setLinkCopied(false);
@@ -113,6 +119,11 @@ const TodayTalkPickSection = ({ talkPick, myTalkPick }: TodayTalkPickProps) => {
       {linkCopied && (
         <div css={S.toastModalStyling}>
           <ToastModal>복사 완료!</ToastModal>
+        </div>
+      )}
+      {bookmarkError && (
+        <div css={S.toastModalStyling}>
+          <ToastModal>{ERROR.BOOKMARK.MY_TALKPICK}</ToastModal>
         </div>
       )}
       <div css={S.centerStyling}>
