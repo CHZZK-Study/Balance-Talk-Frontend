@@ -28,15 +28,10 @@ export const useCreateGameBookmarkMutation = (gameSetId: Id, gameId: Id) => {
         });
       }
 
-      queryClient.setQueryData(['games', gameSetId], {
-        ...prevGame,
-        myBookmark: true,
-      });
-
       return { prevGame };
     },
     onError: (err, id, context) => {
-      queryClient.setQueryData(['games', gameSetId], context?.prevGame);
+      queryClient.setQueryData(['gameSet', gameSetId], context?.prevGame);
     },
   });
 };

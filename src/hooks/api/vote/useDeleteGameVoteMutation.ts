@@ -58,7 +58,7 @@ export const useDeleteGameVoteMutation = (gameSetId: Id, gameId: Id) => {
         }),
       ]),
     onError: (err, id, context) => {
-      queryClient.setQueryData(['games', gameSetId], context?.prevGame);
+      queryClient.setQueryData(['gameSet', gameSetId], context?.prevGame);
     },
   });
 };
