@@ -94,6 +94,7 @@ export const END_POINT = {
   CREATE_GAME: '/games',
   NEW_GAME: '/games/new',
   BEST_GAME: '/games/best',
+  LATEST_GAME: '/games/latest',
   GAME: (gameId: Id) => `/games/${gameId}`,
   EDIT_GAME: (gameId: Id) => `/games/${gameId}`,
   DELETE_GAME: (gameId: Id) => `/games/${gameId}`,
