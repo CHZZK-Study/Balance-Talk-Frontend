@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { BookmarkDF, BookmarkPR, NextArrow, PrevArrow, Share } from '@/assets';
 import { GameDetail, GameSet } from '@/types/game';
 import { formatDateFromISO } from '@/utils/formatData';
@@ -30,9 +30,24 @@ const gameDetails: GameDetail[] = Array.from({ length: 10 }, () => ({
 }));
 
 const BalanceGameSection = ({ gameSetId, game }: BalanceGameSectionProps) => {
+  const initialRender = useRef(true);
+
   const [currentStage, setCurrentStage] = useState<number>(0);
-  const gameStage: GameDetail[] = game?.gameDetailResponses ?? gameDetails;
-  const currentGame: GameDetail = gameStage[currentStage];
+  const gameStages: GameDetail[] = game?.gameDetailResponses ?? gameDetails;
+  const currentGame: GameDetail = gameStages[currentStage];
+
+  useEffect(() => {
+    if (game && initialRender.current) {
+      const bookmarkedIndex = gameStages.findIndex(
+        (gameDetail) => gameDetail.myBookmark,
+      );
+
+      if (bookmarkedIndex !== -1) {
+        setCurrentStage(bookmarkedIndex);
+      }
+      initialRender.current = false;
+    }
+  }, [game, gameStages]);
 
   const handleNextButton = () => {
     if (!currentGame.votedOption) return;

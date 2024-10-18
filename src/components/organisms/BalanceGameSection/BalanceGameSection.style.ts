@@ -14,6 +14,7 @@ export const balanceGameContainer = css({
   flexDirection: 'column',
   alignItems: 'center',
   width: '1175px',
+  minHeight: '874x',
   padding: '40px',
   gap: '30px',
   borderRadius: '20px',
