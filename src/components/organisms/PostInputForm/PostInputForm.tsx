@@ -25,25 +25,25 @@ const PostInputForm = (
   { onSubmit, onEditSubmit, onSave, existingTalkPick }: PostInputFormProps,
   ref: ForwardedRef<HTMLTextAreaElement>,
 ) => {
-  const [title, setTitle] = useState<string>(existingTalkPick?.title || '');
+  const [title, setTitle] = useState<string>(existingTalkPick?.title ?? '');
   const [optionA, setOptionA] = useState<string>(
-    existingTalkPick?.optionA || '',
+    existingTalkPick?.optionA ?? '',
   );
   const [optionB, setOptionB] = useState<string>(
-    existingTalkPick?.optionB || '',
+    existingTalkPick?.optionB ?? '',
   );
   const [content, setContent] = useState<string>(
-    existingTalkPick?.content || '',
+    existingTalkPick?.content ?? '',
   );
 
   const [sourceUrl, setSourceUrl] = useState<string>(
-    existingTalkPick?.sourceUrl || '',
+    existingTalkPick?.sourceUrl ?? '',
   );
   const [imgUrls, setImgUrls] = useState<string[]>(
-    existingTalkPick?.imgUrls || [],
+    existingTalkPick?.imgUrls ?? [],
   );
   const [storedNames, setStoredNames] = useState<string[]>(
-    existingTalkPick?.imgStoredNames || [],
+    existingTalkPick?.imgStoredNames ?? [],
   );
   const [imageFiles, setImageFiles] = useState<File[]>([]);
 
