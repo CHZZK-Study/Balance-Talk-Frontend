@@ -9,7 +9,7 @@ export const useCreateDoneGameBookmarkMutation = (gameSetId: Id) => {
     mutationFn: () => postDoneGameBookmark(gameSetId),
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: ['games', gameSetId],
+        queryKey: ['gameSet', gameSetId],
       });
     },
   });
