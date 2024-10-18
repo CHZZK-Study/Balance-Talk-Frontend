@@ -56,9 +56,11 @@ const meta = {
     },
   },
   args: {
+    gameSetId: 0,
     gameId: 0,
     options: exampleOptions,
     selectedVote: null,
+    handleNextStage: () => {},
   },
   decorators: [
     (Story) => (
@@ -94,7 +96,7 @@ export const All: Story = {
       <li css={storyInnerContainer}>
         <h3>No Image</h3>
         <BalanceGameBox
-          gameId={0}
+          {...args}
           options={exampleTextImageOptions}
           selectedVote={null}
         />
