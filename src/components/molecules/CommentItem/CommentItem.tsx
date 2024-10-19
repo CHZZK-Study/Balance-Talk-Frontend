@@ -24,13 +24,16 @@ import * as S from './CommentItem.style';
 
 export interface CommentItemProps {
   comment: Comment;
-  isMyTalkPick: boolean;
+  talkPickWriter: string;
 }
 
-const CommentItem = ({ comment, isMyTalkPick }: CommentItemProps) => {
+const CommentItem = ({ comment, talkPickWriter }: CommentItemProps) => {
   const accessToken = useNewSelector(selectAccessToken);
   const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
+
   const isMyComment: boolean = comment?.nickname === member?.nickname;
+  const isTalkPickWriter: boolean = comment?.nickname === talkPickWriter;
+
   const commentRef = useRef<HTMLDivElement>(null);
 
   const [reportModalOpen, setReportModalOpen] = useState<boolean>(false);
@@ -183,7 +186,7 @@ const CommentItem = ({ comment, isMyTalkPick }: CommentItemProps) => {
         <div css={S.commentInfoWrapper}>
           <div css={S.commentTopWrapper}>
             <div css={S.writerInfoWrapper}>
-              {isMyTalkPick && (
+              {isTalkPickWriter && (
                 <CategoryBarChip size="small">작성자</CategoryBarChip>
               )}
               <span css={S.nickname}>{comment?.nickname}</span>
@@ -249,7 +252,11 @@ const CommentItem = ({ comment, isMyTalkPick }: CommentItemProps) => {
           {replies
             ?.slice(0, visibleReply)
             .map((replyData) => (
-              <ReplyItem key={replyData.id} reply={replyData} />
+              <ReplyItem
+                key={replyData.id}
+                reply={replyData}
+                talkPickWriter={talkPickWriter}
+              />
             ))}
           {(replies || []).length > visibleReply && (
             <button

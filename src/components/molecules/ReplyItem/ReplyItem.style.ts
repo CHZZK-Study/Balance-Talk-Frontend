@@ -34,6 +34,11 @@ export const ReplyTopWrapper = css`
   justify-content: space-between;
 `;
 
+export const nicknameWrapper = css`
+  display: flex;
+  gap: 10px;
+`;
+
 export const nickname = css`
   ${typo.Comment.SemiBold}
   color: ${color.BK};
@@ -42,13 +47,12 @@ export const nickname = css`
 export const createdTime = css`
   ${typo.Comment.SemiBold}
   color: #67727E;
-  margin-left: 23px;
+  margin-left: 10px;
 `;
 
 export const editedText = css`
   ${typo.Comment.Regular}
   color: ${color.GY[1]};
-  margin-left: 19px;
 `;
 
 export const ReplyTextWrapper = css`

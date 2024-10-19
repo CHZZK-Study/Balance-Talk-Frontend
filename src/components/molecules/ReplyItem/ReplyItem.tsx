@@ -9,6 +9,7 @@ import { useCommentActions } from '@/hooks/comment/useCommentActions';
 import MenuTap, { MenuItem } from '@/components/atoms/MenuTap/MenuTap';
 import ToastModal from '@/components/atoms/ToastModal/ToastModal';
 import LikeButton from '@/components/atoms/LikeButton/LikeButton';
+import CategoryBarChip from '@/components/atoms/CategoryBarChip/CategoryBarChip';
 import TextArea from '@/components/molecules/TextArea/TextArea';
 import TextModal from '@/components/molecules/TextModal/TextModal';
 import ReportModal from '@/components/molecules/ReportModal/ReportModal';
@@ -16,12 +17,16 @@ import * as S from './ReplyItem.style';
 
 export interface ReplyItemProps {
   reply: Comment;
+  talkPickWriter: string;
 }
 
-const ReplyItem = ({ reply }: ReplyItemProps) => {
+const ReplyItem = ({ reply, talkPickWriter }: ReplyItemProps) => {
   const accessToken = useNewSelector(selectAccessToken);
   const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
+
   const isMyReply: boolean = reply?.nickname === member?.nickname;
+  const isTalkPickWriter: boolean = reply?.nickname === talkPickWriter;
+
   const replyRef = useRef<HTMLDivElement>(null);
 
   const [reportModalOpen, setReportModalOpen] = useState<boolean>(false);
@@ -133,7 +138,10 @@ const ReplyItem = ({ reply }: ReplyItemProps) => {
       <div ref={replyRef} css={[S.ReplyContainer, isMyReply && S.myReplyColor]}>
         <div css={S.ReplyWrapper}>
           <div css={S.ReplyTopWrapper}>
-            <div>
+            <div css={S.nicknameWrapper}>
+              {isTalkPickWriter && (
+                <CategoryBarChip size="small">작성자</CategoryBarChip>
+              )}
               <span css={S.nickname}>{reply?.nickname}</span>
               <span css={S.createdTime}>
                 {formatDateFromISO(reply?.createdAt ?? '')}

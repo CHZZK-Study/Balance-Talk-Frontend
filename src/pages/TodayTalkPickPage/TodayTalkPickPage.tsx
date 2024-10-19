@@ -67,7 +67,7 @@ const TodayTalkPickPage = () => {
       <div css={S.commentsWrapStyle}>
         <CommentsSection
           talkPickId={talkPickId}
-          isMyTalkPick={talkPick?.writer === member?.nickname}
+          talkPickWriter={talkPick?.writer ?? ''}
           commentList={selectedValue === 'trend' ? bestComments : comments}
           toggleItem={toggleItem}
           selectedValue={selectedValue}

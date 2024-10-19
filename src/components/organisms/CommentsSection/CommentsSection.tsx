@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { useNewSelector } from '@/store';
+import { selectAccessToken } from '@/store/auth';
+import { useParseJwt } from '@/hooks/common/useParseJwt';
+import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import { CommentsPagination } from '@/types/comment';
 import Pagination from '@/components/atoms/Pagination/Pagination';
 import TextArea from '@/components/molecules/TextArea/TextArea';
@@ -14,7 +18,7 @@ import * as S from './CommentsSection.style';
 
 export interface CommentsSectionProps {
   talkPickId: number;
-  isMyTalkPick: boolean;
+  talkPickWriter: string;
   commentList?: CommentsPagination;
   toggleItem: ToggleGroupItem[];
   selectedValue: string;
@@ -26,7 +30,7 @@ export interface CommentsSectionProps {
 
 const CommentsSection = ({
   talkPickId,
-  isMyTalkPick,
+  talkPickWriter,
   commentList,
   toggleItem,
   selectedValue,
@@ -35,6 +39,10 @@ const CommentsSection = ({
   handlePageChange,
   voted,
 }: CommentsSectionProps) => {
+  const accessToken = useNewSelector(selectAccessToken);
+  const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
+  const isMyTalkPick: boolean = talkPickWriter === member?.nickname;
+
   const pages = createRangeArray(selectedPage, commentList?.totalPages || 0);
   const [commentValue, setCommentValue] = useState<string>('');
 
@@ -82,7 +90,7 @@ const CommentsSection = ({
             <CommentItem
               key={commentData.id}
               comment={commentData}
-              isMyTalkPick={isMyTalkPick}
+              talkPickWriter={talkPickWriter}
             />
           ))}
         </div>
