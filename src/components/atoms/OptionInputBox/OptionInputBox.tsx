@@ -2,6 +2,7 @@ import React, { forwardRef, useState } from 'react';
 import type { ForwardedRef } from 'react';
 import { OptionError } from '@/assets';
 import { ERROR } from '@/constants/message';
+import { isEmptyString, isLongerThan } from '@/utils/validator';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import * as S from './OptionInputBox.style';
 
@@ -22,8 +23,8 @@ const OptionInputBox = (
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputText = e.target.value;
 
-    setHasText(inputText.trim() !== '');
-    setHasError(inputText.length > 10);
+    setHasText(!isEmptyString(inputText));
+    setHasError(isLongerThan(inputText, 10));
     onChange(e);
   };
 
