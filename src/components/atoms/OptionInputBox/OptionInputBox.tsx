@@ -1,6 +1,7 @@
 import React, { forwardRef, useState } from 'react';
 import type { ForwardedRef } from 'react';
 import { OptionError } from '@/assets';
+import { ERROR } from '@/constants/message';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import * as S from './OptionInputBox.style';
 
@@ -30,8 +31,8 @@ const OptionInputBox = (
     <div css={S.optionInputStyling}>
       <div
         css={[
-          S.contentWrapStyle(hasText, option),
-          isFocused && !hasText && S.getFocusStyling,
+          S.contentWrapStyling,
+          S.getOutlineStyling(isFocused, hasText, option),
           hasError && S.getErrorStyling,
         ]}
       >
@@ -50,7 +51,7 @@ const OptionInputBox = (
       </div>
       {hasError && (
         <ErrorMessage isError={hasError}>
-          글자 수는 최대 10자까지 입력해주세요.
+          {ERROR.CREATE.OPTION_FORM}
         </ErrorMessage>
       )}
     </div>

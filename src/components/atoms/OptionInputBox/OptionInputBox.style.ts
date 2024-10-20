@@ -8,37 +8,38 @@ export const optionInputStyling = css({
   alignItems: 'flex-end',
 });
 
-export const contentWrapStyle = (hasText: boolean, option: 'A' | 'B') => {
-  let outline = `1px solid ${color.GY[2]}`;
-  let boxShadowColor = 'rgba(0, 0, 0, 0.05)';
+export const contentWrapStyling = css(typo.SubTitle, {
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  width: '517px',
+  height: '80px',
+  padding: '30.5px 22px 32.5px 63px',
+  backgroundColor: color.WT,
+  outline: `1px solid ${color.GY[2]}`,
+  boxShadow: `1px 2px 15px rgba(0, 0, 0, 0.05)`,
+  borderRadius: '20px',
+});
 
+export const getOutlineStyling = (
+  isFocused: boolean,
+  hasText: boolean,
+  option: 'A' | 'B',
+) => {
   if (hasText) {
-    if (option === 'A') {
-      outline = `1px solid ${color.RED}`;
-      boxShadowColor = 'rgba(0, 0, 0, 0.05)';
-    } else if (option === 'B') {
-      outline = `1px solid ${color.BLUE}`;
-      boxShadowColor = 'rgba(0, 0, 0, 0.05)';
-    }
+    return css({
+      outline: `1px solid ${option === 'A' ? color.RED : color.BLUE}`,
+    });
   }
 
-  return css(typo.SubTitle, {
-    padding: '30.5px 22px 32.5px 63px',
-    backgroundColor: color.WT,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    outline: `${outline}`,
-    boxShadow: `1px 2px 15px ${boxShadowColor}`,
-    borderRadius: '20px',
-    width: '517px',
-    height: '80px',
-  });
-};
+  if (isFocused) {
+    return css({
+      outline: `1px solid ${color.MAIN}`,
+    });
+  }
 
-export const getFocusStyling = css({
-  outline: `1px solid ${color.MAIN}`,
-});
+  return css({});
+};
 
 export const getErrorStyling = css({
   outline: `3px solid ${color.RED}`,
