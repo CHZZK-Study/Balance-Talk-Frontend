@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
 import React, { useState, useEffect, ForwardedRef, forwardRef } from 'react';
-import { ERROR } from '@/constants/message';
+import { isEmptyString } from '@/utils/validator';
+import { validatePostForm } from '@/utils/validatePostForm';
 import PostTitleBox from '@/components/atoms/PostTitleBox/PostTitleBox';
 import OptionInputBox from '@/components/atoms/OptionInputBox/OptionInputBox';
 import Divider from '@/components/atoms/Divider/Divider';
@@ -55,28 +56,6 @@ const PostInputForm = (
   >(null);
 
   const { mutate: uploadFiles } = useFileUploadMutation();
-
-  const validateForm = () => {
-    if (!title.trim()) {
-      setHasPostError(true);
-      setToastMessage(ERROR.CREATE.EMPTY_TITLE);
-      return false;
-    }
-    if (!optionA.trim() || !optionB.trim()) {
-      setHasPostError(true);
-      setToastMessage(ERROR.CREATE.EMPTY_OPTION);
-      return false;
-    }
-    if (!content.trim()) {
-      setHasPostError(true);
-      setToastMessage(ERROR.CREATE.EMPTY_CONTENT);
-      return false;
-    }
-    if (optionA.length > 10 || optionB.length > 10) {
-      return false;
-    }
-    return true;
-  };
 
   useEffect(() => {
     if (hasPostError) {
@@ -151,6 +130,22 @@ const PostInputForm = (
     }
   };
 
+  const setPostFormError = (message: string) => {
+    setHasPostError(true);
+    setToastMessage(message);
+  };
+
+  const handlePostButton = () => {
+    const postValidation = validatePostForm(title, optionA, optionB, content);
+
+    if (!postValidation.isValid) {
+      setPostFormError(postValidation.message);
+      return;
+    }
+
+    if (!hasPostError) handleFormSubmit('TALK_PICK');
+  };
+
   const { data: tempTalkPick, isSuccess } = useTempTalkPickQuery();
 
   const handleLoadDraft = () => {
@@ -167,7 +162,7 @@ const PostInputForm = (
 
   return (
     <div css={S.formStyle}>
-      {hasPostError && (
+      {hasPostError && !isEmptyString(toastMessage) && (
         <div css={S.toastModalStyling}>
           <ToastModal bgColor="black">{toastMessage}</ToastModal>
         </div>
@@ -226,15 +221,7 @@ const PostInputForm = (
         >
           임시저장하기
         </Button>
-        <Button
-          size="large"
-          variant="primarySquare"
-          onClick={() => {
-            if (!hasPostError && validateForm()) {
-              handleFormSubmit('TALK_PICK');
-            }
-          }}
-        >
+        <Button size="large" variant="primarySquare" onClick={handlePostButton}>
           등록하기
         </Button>
       </div>
