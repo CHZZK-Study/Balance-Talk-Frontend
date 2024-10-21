@@ -39,7 +39,7 @@ const OptionInputBox = (
       >
         <div css={S.optionStyling(option)}>{option === 'A' ? 'A' : 'B'}</div>
         <input
-          css={S.textStyle}
+          css={S.textStyling}
           type="text"
           placeholder="항목을 입력하세요."
           ref={ref}

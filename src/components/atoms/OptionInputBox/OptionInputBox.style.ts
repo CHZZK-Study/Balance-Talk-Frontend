@@ -51,7 +51,7 @@ export const optionStyling = (option: 'A' | 'B') =>
     marginRight: '34px',
   });
 
-export const textStyle = css({
+export const textStyling = css({
   width: '340px',
   marginRight: '20px',
   color: color.BK,
