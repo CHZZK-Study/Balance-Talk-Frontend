@@ -45,7 +45,7 @@ export const getErrorStyling = css({
   outline: `3px solid ${color.RED}`,
 });
 
-export const optionStyle = (option: 'A' | 'B') =>
+export const optionStyling = (option: 'A' | 'B') =>
   css({
     color: option === 'A' ? color.RED : color.BLUE,
     marginRight: '34px',

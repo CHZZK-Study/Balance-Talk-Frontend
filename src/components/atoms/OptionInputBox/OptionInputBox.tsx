@@ -37,7 +37,7 @@ const OptionInputBox = (
           hasError && S.getErrorStyling,
         ]}
       >
-        <div css={S.optionStyle(option)}>{option === 'A' ? 'A' : 'B'}</div>
+        <div css={S.optionStyling(option)}>{option === 'A' ? 'A' : 'B'}</div>
         <input
           css={S.textStyle}
           type="text"
