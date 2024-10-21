@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import color from '@/styles/color';
 import typo from '@/styles/typo';
 
-export const formStyle = css({
+export const formStyling = css({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',

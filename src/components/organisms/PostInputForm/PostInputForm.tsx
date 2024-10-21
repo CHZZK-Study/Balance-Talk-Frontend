@@ -161,7 +161,7 @@ const PostInputForm = (
   };
 
   return (
-    <div css={S.formStyle}>
+    <div css={S.formStyling}>
       {hasPostError && !isEmptyString(toastMessage) && (
         <div css={S.toastModalStyling}>
           <ToastModal bgColor="black">{toastMessage}</ToastModal>
