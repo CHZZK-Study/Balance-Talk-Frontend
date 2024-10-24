@@ -78,6 +78,7 @@ export { default as ForestGameBg } from './images/forest-game-bg.png';
 export { default as GreenGameBg } from './images/green-game-bg.png';
 export { default as PinkGameBg } from './images/pink-game-bg.png';
 export { default as GameEnding } from './gif/game-ending.gif';
+export { default as OptionError } from './svg/option-error.svg';
 
 // TODO: 이전 SVG
 export { default as Email } from './svg/email.svg';
