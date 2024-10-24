@@ -1,13 +1,14 @@
 import React from 'react';
-import BalanceGameEndingBox from '@/components/molecules/BalanceGameEndingBox/BalanceGameEndingBox';
 import type { Meta, StoryObj } from '@storybook/react';
 import store from '@/store';
 import { Provider } from 'react-redux';
 import ReactQueryProvider from '@/providers/ReactQueryProvider';
+import BalanceGameEndingSection from '@/components/organisms/BalanceGameEndingSection/BalanceGameEndingSection';
+import { storyContainer, storyInnerContainer } from '@/stories/story.styles';
 
-const meta = {
-  title: 'molecules/BalanceGameEndingBox',
-  component: BalanceGameEndingBox,
+const meta: Meta<typeof BalanceGameEndingSection> = {
+  title: 'organisms/BalanceGameEndingSection',
+  component: BalanceGameEndingSection,
   parameters: {
     layout: 'centered',
   },
@@ -26,9 +27,17 @@ const meta = {
       </Provider>
     ),
   ],
-} satisfies Meta<typeof BalanceGameEndingBox>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args) => (
+    <div css={storyContainer}>
+      <div css={storyInnerContainer}>
+        <BalanceGameEndingSection {...args} />
+      </div>
+    </div>
+  ),
+};

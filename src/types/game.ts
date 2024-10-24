@@ -12,7 +12,6 @@ export interface GameOption {
 // 게임 하나
 export interface GameDetail {
   id: number;
-  title: string;
   description?: string;
   gameOptions: GameOption[];
   votesCountOfOptionA: number;
