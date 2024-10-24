@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import React, { useEffect, useRef, useState } from 'react';
 import { BookmarkDF, BookmarkPR, NextArrow, PrevArrow, Share } from '@/assets';
+import { ERROR } from '@/constants/message';
 import { GameDetail, GameSet } from '@/types/game';
 import { formatDateFromISO } from '@/utils/formatData';
 import Chips from '@/components/atoms/Chips/Chips';
@@ -19,7 +20,7 @@ import * as S from './BalanceGameSection.style';
 export interface BalanceGameSectionProps {
   gameSetId: number;
   game?: GameSet;
-  myGame?: boolean;
+  isMyGame?: boolean;
   currentStage: number;
   setCurrentStage: React.Dispatch<React.SetStateAction<number>>;
   handleNextGame: () => void;
@@ -40,7 +41,7 @@ const gameDetails: GameDetail[] = Array.from({ length: 10 }, () => ({
 const BalanceGameSection = ({
   gameSetId,
   game,
-  myGame,
+  isMyGame,
   currentStage,
   setCurrentStage,
   handleNextGame,
@@ -54,6 +55,7 @@ const BalanceGameSection = ({
 
   const [linkCopied, setLinkCopied] = useState<boolean>(false);
   const [shareModalOpen, setShareModalOpen] = useState<boolean>(false);
+  const [bookmarkError, setBookmarkError] = useState<boolean>(false);
 
   const copyGameLink = (link: string) => {
     navigator.clipboard
@@ -111,6 +113,14 @@ const BalanceGameSection = ({
   const handleBookmarkClick = () => {
     if (!game) return;
 
+    if (isMyGame) {
+      setBookmarkError(true);
+      setTimeout(() => {
+        setBookmarkError(false);
+      }, 2000);
+      return;
+    }
+
     if (currentGame.myBookmark) {
       deleteBookmark();
     } else {
@@ -126,6 +136,11 @@ const BalanceGameSection = ({
       {linkCopied && (
         <div css={S.toastModalStyling}>
           <ToastModal>복사 완료!</ToastModal>
+        </div>
+      )}
+      {bookmarkError && (
+        <div css={S.toastModalStyling}>
+          <ToastModal>{ERROR.BOOKMARK.MY_GAME}</ToastModal>
         </div>
       )}
       <div css={S.centerStyling}>
@@ -155,7 +170,7 @@ const BalanceGameSection = ({
                       {formatDateFromISO(game.createdAt)}
                     </span>
                   </div>
-                  <MenuTap menuData={myGame ? myGameItem : otherGameItem} />
+                  <MenuTap menuData={isMyGame ? myGameItem : otherGameItem} />
                 </div>
               </div>
               <div css={S.balanceGameSubTitle}>{currentGame.description}</div>

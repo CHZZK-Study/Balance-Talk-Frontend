@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import { BookmarkDF, BookmarkPR, GameEnding, Share } from '@/assets';
+import { ERROR } from '@/constants/message';
 import Divider from '@/components/atoms/Divider/Divider';
 import InteractionButton from '@/components/atoms/InteractionButton/InteractionButton';
 import ToastModal from '@/components/atoms/ToastModal/ToastModal';
@@ -12,18 +13,21 @@ import * as S from './BalanceGameEndingBox.style';
 export interface BalanceGameEndingBoxProps {
   title: string;
   gameSetId: number;
+  isMyGame: boolean;
   myEndBookmark: boolean;
 }
 
 const BalanceGameEndingBox = ({
   title,
   gameSetId,
+  isMyGame,
   myEndBookmark,
 }: BalanceGameEndingBoxProps) => {
   const currentURL: string = window.location.href;
 
   const [linkCopied, setLinkCopied] = useState<boolean>(false);
   const [shareModalOpen, setShareModalOpen] = useState<boolean>(false);
+  const [bookmarkError, setBookmarkError] = useState<boolean>(false);
 
   const copyGameLink = (link: string) => {
     navigator.clipboard
@@ -53,6 +57,14 @@ const BalanceGameEndingBox = ({
     useDeleteDoneGameBookmarkMutation(gameSetId);
 
   const handleEndBookmarkClick = () => {
+    if (isMyGame) {
+      setBookmarkError(true);
+      setTimeout(() => {
+        setBookmarkError(false);
+      }, 2000);
+      return;
+    }
+
     if (myEndBookmark) {
       deleteEndBookmark();
     } else {
@@ -65,6 +77,11 @@ const BalanceGameEndingBox = ({
       {linkCopied && (
         <div css={S.toastModalStyling}>
           <ToastModal>복사 완료!</ToastModal>
+        </div>
+      )}
+      {bookmarkError && (
+        <div css={S.toastModalStyling}>
+          <ToastModal>{ERROR.BOOKMARK.MY_GAME}</ToastModal>
         </div>
       )}
       <div css={S.centerStyling}>

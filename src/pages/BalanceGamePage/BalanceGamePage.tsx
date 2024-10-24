@@ -11,14 +11,16 @@ import BalanceGameEndingSection from '@/components/organisms/BalanceGameEndingSe
 import * as S from './BalanceGamePage.style';
 
 const BalanceGamePage = () => {
-  const accessToken = useNewSelector(selectAccessToken);
-  const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
-
   const { setId } = useParams<{ setId: string }>();
   const gameSetId = Number(setId);
 
   const { gameSet } = useGameBySetId(gameSetId);
   const [currentStage, setCurrentStage] = useState<number>(0);
+
+  const accessToken = useNewSelector(selectAccessToken);
+  const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
+
+  const isMyGame: boolean = member?.nickname === gameSet?.member;
 
   const handleNextGame = () => {
     setCurrentStage((stage) => (stage < 10 ? stage + 1 : stage));
@@ -43,13 +45,14 @@ const BalanceGamePage = () => {
         <BalanceGameEndingSection
           title={gameSet?.title ?? ''}
           gameSetId={gameSetId}
+          isMyGame={isMyGame}
           myEndBookmark={gameSet?.isEndBookmarked ?? false}
         />
       ) : (
         <BalanceGameSection
           gameSetId={gameSetId}
           game={gameSet}
-          myGame={member?.nickname === gameSet?.member}
+          isMyGame={isMyGame}
           currentStage={currentStage}
           setCurrentStage={setCurrentStage}
           handleNextGame={handleNextGame}
