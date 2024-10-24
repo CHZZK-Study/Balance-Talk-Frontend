@@ -138,25 +138,29 @@ const BalanceGameSection = ({
       </div>
       <div css={S.balanceGameContainer}>
         <div css={S.balanceGameWrapper}>
-          <div css={S.balanceGameTitleWrapper}>
-            <div css={S.balanceGameInfoWrapper}>
-              <div css={S.titleWrapper}>
-                <Chips variant="roundOutline">{game?.mainTag}</Chips>
-                <div css={S.balanceGameTitle}>{game?.title}</div>
+          {game && (
+            <>
+              <div css={S.balanceGameTitleWrapper}>
+                <div css={S.balanceGameInfoWrapper}>
+                  <div css={S.titleWrapper}>
+                    <Chips variant="roundOutline">{game.mainTag}</Chips>
+                    <div css={S.balanceGameTitle}>{game.title}</div>
+                  </div>
+                  <SubTag tag={game.subTag} />
+                </div>
+                <div css={S.balanceGameMenuWrapper}>
+                  <div css={S.textWrapper}>
+                    <span css={S.nicknameStyling}>{game.member}</span>
+                    <span css={S.dateStyling}>
+                      {formatDateFromISO(game.createdAt)}
+                    </span>
+                  </div>
+                  <MenuTap menuData={myGame ? myGameItem : otherGameItem} />
+                </div>
               </div>
-              <SubTag tag={game?.subTag} />
-            </div>
-            <div css={S.balanceGameMenuWrapper}>
-              <div css={S.textWrapper}>
-                <span css={S.nicknameStyling}>{game?.member}</span>
-                <span css={S.dateStyling}>
-                  {game ? formatDateFromISO(game.createdAt) : ''}
-                </span>
-              </div>
-              <MenuTap menuData={myGame ? myGameItem : otherGameItem} />
-            </div>
-          </div>
-          <div css={S.balanceGameSubTitle}>{currentGame.description}</div>
+              <div css={S.balanceGameSubTitle}>{currentGame.description}</div>
+            </>
+          )}
         </div>
         <Divider orientation="width" length={1095} />
         <BalanceGameBox

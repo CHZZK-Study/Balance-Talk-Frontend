@@ -27,6 +27,7 @@ export const balanceGameWrapper = css({
   flexDirection: 'column',
   width: '100%',
   gap: '10px',
+  minHeight: '100px',
 });
 
 export const balanceGameTitleWrapper = css({
