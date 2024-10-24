@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGameBySetId } from '@/hooks/api/game/useGameBySetIdQuery';
 import Divider from '@/components/atoms/Divider/Divider';
 import BalanceGameSection from '@/components/organisms/BalanceGameSection/BalanceGameSection';
+import BalanceGameEndingSection from '@/components/organisms/BalanceGameEndingSection/BalanceGameEndingSection';
 import * as S from './BalanceGamePage.style';
 
 const BalanceGamePage = () => {
@@ -10,6 +11,15 @@ const BalanceGamePage = () => {
   const gameSetId = Number(setId);
 
   const { gameSet } = useGameBySetId(gameSetId);
+  const [currentStage, setCurrentStage] = useState<number>(0);
+
+  const handleNextGame = () => {
+    setCurrentStage((stage) => (stage < 10 ? stage + 1 : stage));
+  };
+
+  const handlePrevGame = () => {
+    setCurrentStage((stage) => (stage > 0 ? stage - 1 : stage));
+  };
 
   return (
     <div css={S.pageStyle}>
@@ -22,7 +32,22 @@ const BalanceGamePage = () => {
         </div>
         <Divider length={1175} orientation="width" />
       </div>
-      <BalanceGameSection gameSetId={gameSetId} game={gameSet} />
+      {currentStage === 10 ? (
+        <BalanceGameEndingSection
+          title={gameSet?.title ?? ''}
+          gameSetId={gameSetId}
+          myEndBookmark={gameSet?.isEndBookmarked ?? false}
+        />
+      ) : (
+        <BalanceGameSection
+          gameSetId={gameSetId}
+          game={gameSet}
+          currentStage={currentStage}
+          setCurrentStage={setCurrentStage}
+          handleNextGame={handleNextGame}
+          handlePrevGame={handlePrevGame}
+        />
+      )}
     </div>
   );
 };

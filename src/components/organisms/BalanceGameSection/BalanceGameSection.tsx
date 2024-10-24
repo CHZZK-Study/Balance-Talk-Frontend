@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { BookmarkDF, BookmarkPR, NextArrow, PrevArrow, Share } from '@/assets';
 import { GameDetail, GameSet } from '@/types/game';
 import { formatDateFromISO } from '@/utils/formatData';
@@ -16,6 +16,10 @@ import * as S from './BalanceGameSection.style';
 export interface BalanceGameSectionProps {
   gameSetId: number;
   game?: GameSet;
+  currentStage: number;
+  setCurrentStage: React.Dispatch<React.SetStateAction<number>>;
+  handleNextGame: () => void;
+  handlePrevGame: () => void;
 }
 
 const gameDetails: GameDetail[] = Array.from({ length: 10 }, () => ({
@@ -29,10 +33,16 @@ const gameDetails: GameDetail[] = Array.from({ length: 10 }, () => ({
   votedOption: null,
 }));
 
-const BalanceGameSection = ({ gameSetId, game }: BalanceGameSectionProps) => {
+const BalanceGameSection = ({
+  gameSetId,
+  game,
+  currentStage,
+  setCurrentStage,
+  handleNextGame,
+  handlePrevGame,
+}: BalanceGameSectionProps) => {
   const initialRender = useRef(true);
 
-  const [currentStage, setCurrentStage] = useState<number>(0);
   const gameStages: GameDetail[] = game?.gameDetailResponses ?? gameDetails;
   const currentGame: GameDetail = gameStages[currentStage];
 
@@ -47,11 +57,11 @@ const BalanceGameSection = ({ gameSetId, game }: BalanceGameSectionProps) => {
       }
       initialRender.current = false;
     }
-  }, [game, gameStages]);
+  }, [game, gameStages, setCurrentStage]);
 
   const handleNextButton = () => {
     if (!currentGame.votedOption) return;
-    setCurrentStage((stage) => (stage < 9 ? stage + 1 : stage));
+    handleNextGame();
   };
 
   const handleNextStage = () => {
@@ -120,9 +130,7 @@ const BalanceGameSection = ({ gameSetId, game }: BalanceGameSectionProps) => {
               S.activeButtonStyling(true),
               S.getButtonVisibility(currentStage),
             ]}
-            onClick={() => {
-              setCurrentStage((stage) => (stage > 0 ? stage - 1 : stage));
-            }}
+            onClick={handlePrevGame}
           >
             <PrevArrow />
             이전 질문

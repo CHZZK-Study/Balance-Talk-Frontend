@@ -5,23 +5,22 @@ import * as S from './BalanceGameEndingSection.style';
 export interface BalanceGameEndingSectionProps {
   title: string;
   gameSetId: number;
-  myBookmark: boolean;
+  myEndBookmark: boolean;
 }
 
 const BalanceGameEndingSection = ({
   title,
   gameSetId,
-  myBookmark,
+  myEndBookmark,
 }: BalanceGameEndingSectionProps) => {
   return (
     <div css={S.balanceGameEndingStyling}>
       <BalanceGameEndingBox
         title={title}
         gameSetId={gameSetId}
-        myBookmark={myBookmark}
+        myEndBookmark={myEndBookmark}
       />
-
-      {/* TODO: 더 많은 밸런스게임 보러가기 */}
+      {/* TODO: 더 많은 밸런스게임 보러 가기 */}
     </div>
   );
 };

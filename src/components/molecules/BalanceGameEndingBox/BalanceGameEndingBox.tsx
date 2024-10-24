@@ -10,13 +10,13 @@ import * as S from './BalanceGameEndingBox.style';
 export interface BalanceGameEndingBoxProps {
   title: string;
   gameSetId: number;
-  myBookmark: boolean;
+  myEndBookmark: boolean;
 }
 
 const BalanceGameEndingBox = ({
   title,
   gameSetId,
-  myBookmark,
+  myEndBookmark,
 }: BalanceGameEndingBoxProps) => {
   const { mutate: createEndBookmark } =
     useCreateDoneGameBookmarkMutation(gameSetId);
@@ -25,7 +25,7 @@ const BalanceGameEndingBox = ({
     useDeleteDoneGameBookmarkMutation(gameSetId);
 
   const handleEndBookmarkClick = () => {
-    if (myBookmark) {
+    if (myEndBookmark) {
       deleteEndBookmark();
     } else {
       createEndBookmark();
@@ -48,7 +48,7 @@ const BalanceGameEndingBox = ({
         />
         <InteractionButton
           buttonLabel="이 게임 제법 폼이 좋아?"
-          icon={myBookmark ? <BookmarkPR /> : <BookmarkDF />}
+          icon={myEndBookmark ? <BookmarkPR /> : <BookmarkDF />}
           iconLabel="저장하기"
           onClick={handleEndBookmarkClick}
         />

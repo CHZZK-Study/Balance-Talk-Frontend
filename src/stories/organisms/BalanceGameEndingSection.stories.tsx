@@ -16,7 +16,7 @@ const meta: Meta<typeof BalanceGameEndingSection> = {
   args: {
     title: '결정사 상대방 고르기',
     gameSetId: 0,
-    myBookmark: false,
+    myEndBookmark: false,
   },
   decorators: [
     (Story) => (
