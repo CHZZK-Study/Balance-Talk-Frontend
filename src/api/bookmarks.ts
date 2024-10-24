@@ -23,6 +23,13 @@ export const postDoneGameBookmark = async (gameSetId: Id) => {
   return response;
 };
 
+export const deleteDoneGameBookmark = async (gameSetId: Id) => {
+  const response = await axiosInstance.delete(
+    END_POINT.BOOKMARK_GAME_DONE(gameSetId),
+  );
+  return response;
+};
+
 export const postGameBookmark = async (gameSetId: Id, gameId: Id) => {
   const response = await axiosInstance.post(
     END_POINT.BOOKMARK_GAME(gameSetId, gameId),

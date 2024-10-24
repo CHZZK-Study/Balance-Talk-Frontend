@@ -30,6 +30,7 @@ export interface GameSet {
   subTag: string;
   gameDetailResponses: GameDetail[];
   isEndGameSet: boolean;
+  isEndBookmarked: boolean;
 }
 
 export interface Game {

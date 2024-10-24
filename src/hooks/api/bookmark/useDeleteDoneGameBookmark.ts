@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Id } from '@/types/api';
-import { postDoneGameBookmark } from '@/api/bookmarks';
+import { deleteDoneGameBookmark } from '@/api/bookmarks';
 import { GameSet } from '@/types/game';
 
-export const useCreateDoneGameBookmarkMutation = (gameSetId: Id) => {
+export const useDeleteDoneGameBookmarkMutation = (gameSetId: Id) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: () => postDoneGameBookmark(gameSetId),
+    mutationFn: () => deleteDoneGameBookmark(gameSetId),
     onMutate: () => {
       const prevGame: GameSet | undefined = queryClient.getQueryData([
         'gameSet',
@@ -17,7 +17,7 @@ export const useCreateDoneGameBookmarkMutation = (gameSetId: Id) => {
       if (prevGame) {
         queryClient.setQueryData(['gameSet', gameSetId], {
           ...prevGame,
-          isEndBookmarked: true,
+          isEndBookmarked: false,
         });
       }
 
