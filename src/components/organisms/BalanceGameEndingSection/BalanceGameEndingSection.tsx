@@ -23,7 +23,7 @@ const BalanceGameEndingSection = ({
         isMyGame={isMyGame}
         myEndBookmark={myEndBookmark}
       />
-      {/* TODO: 더 많은 밸런스게임 보러 가기 */}
+      {/* 더 많은 밸런스게임 보러 가기 */}
     </div>
   );
 };
