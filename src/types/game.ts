@@ -1,6 +1,5 @@
 import { PaginationType } from './pagination';
 
-// 게임 선택지 하나
 export interface GameOption {
   id: number;
   name: string;
@@ -9,7 +8,6 @@ export interface GameOption {
   optionType: 'A' | 'B';
 }
 
-// 게임 하나
 export interface GameDetail {
   id: number;
   description?: string;
@@ -20,7 +18,6 @@ export interface GameDetail {
   votedOption: 'A' | 'B' | null;
 }
 
-// 게임 세트
 export interface GameSet {
   member: string;
   title: string;
