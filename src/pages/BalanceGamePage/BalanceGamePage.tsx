@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useNewSelector } from '@/store';
+import { selectAccessToken } from '@/store/auth';
+import { useParseJwt } from '@/hooks/common/useParseJwt';
+import { useMemberQuery } from '@/hooks/api/member/useMemberQuery';
 import { useGameBySetId } from '@/hooks/api/game/useGameBySetIdQuery';
 import Divider from '@/components/atoms/Divider/Divider';
 import BalanceGameSection from '@/components/organisms/BalanceGameSection/BalanceGameSection';
@@ -7,6 +11,9 @@ import BalanceGameEndingSection from '@/components/organisms/BalanceGameEndingSe
 import * as S from './BalanceGamePage.style';
 
 const BalanceGamePage = () => {
+  const accessToken = useNewSelector(selectAccessToken);
+  const { member } = useMemberQuery(useParseJwt(accessToken).memberId);
+
   const { setId } = useParams<{ setId: string }>();
   const gameSetId = Number(setId);
 
@@ -42,6 +49,7 @@ const BalanceGamePage = () => {
         <BalanceGameSection
           gameSetId={gameSetId}
           game={gameSet}
+          myGame={member?.nickname === gameSet?.member}
           currentStage={currentStage}
           setCurrentStage={setCurrentStage}
           handleNextGame={handleNextGame}

@@ -1,8 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
+/* eslint-disable no-console */
+import React, { useState } from 'react';
 import { BookmarkDF, BookmarkPR, GameEnding, Share } from '@/assets';
 import Divider from '@/components/atoms/Divider/Divider';
 import InteractionButton from '@/components/atoms/InteractionButton/InteractionButton';
+import ToastModal from '@/components/atoms/ToastModal/ToastModal';
+import ShareModal from '@/components/molecules/ShareModal/ShareModal';
 import { useCreateDoneGameBookmarkMutation } from '@/hooks/api/bookmark/useCreateDoneGameBookmark';
 import { useDeleteDoneGameBookmarkMutation } from '@/hooks/api/bookmark/useDeleteDoneGameBookmark';
 import * as S from './BalanceGameEndingBox.style';
@@ -18,6 +20,32 @@ const BalanceGameEndingBox = ({
   gameSetId,
   myEndBookmark,
 }: BalanceGameEndingBoxProps) => {
+  const currentURL: string = window.location.href;
+
+  const [linkCopied, setLinkCopied] = useState<boolean>(false);
+  const [shareModalOpen, setShareModalOpen] = useState<boolean>(false);
+
+  const copyGameLink = (link: string) => {
+    navigator.clipboard
+      .writeText(link)
+      .then(() => {
+        console.log('게임 링크 복사 완료!');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleCopyButton = (link: string) => {
+    copyGameLink(link);
+    setShareModalOpen(false);
+    setLinkCopied(true);
+
+    setTimeout(() => {
+      setLinkCopied(false);
+    }, 2000);
+  };
+
   const { mutate: createEndBookmark } =
     useCreateDoneGameBookmarkMutation(gameSetId);
 
@@ -34,6 +62,19 @@ const BalanceGameEndingBox = ({
 
   return (
     <div css={S.balanceGameContainer}>
+      {linkCopied && (
+        <div css={S.toastModalStyling}>
+          <ToastModal>복사 완료!</ToastModal>
+        </div>
+      )}
+      <div css={S.centerStyling}>
+        <ShareModal
+          link={currentURL}
+          isOpen={shareModalOpen}
+          onConfirm={() => handleCopyButton(currentURL)}
+          onClose={() => setShareModalOpen(false)}
+        />
+      </div>
       <div css={S.titleStyling}>{title}</div>
       <div css={S.imgWrapper}>
         <img src={GameEnding} alt="BalanceGame Ending" />
@@ -44,7 +85,7 @@ const BalanceGameEndingBox = ({
           buttonLabel="다른 사람들은 어떤 선택을 할까?"
           icon={<Share />}
           iconLabel="공유하기"
-          onClick={() => {}}
+          onClick={() => setShareModalOpen(true)}
         />
         <InteractionButton
           buttonLabel="이 게임 제법 폼이 좋아?"

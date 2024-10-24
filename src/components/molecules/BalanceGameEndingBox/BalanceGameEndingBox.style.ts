@@ -19,10 +19,26 @@ export const titleStyling = css(typo.Title, {
 });
 
 export const imgWrapper = css({
-  padding: '20px 0px 10px 0px',
+  padding: '25px 0px 15px 0px',
 });
 
 export const buttonWrapper = css({
   display: 'flex',
   gap: '20px',
+});
+
+export const centerStyling = css({
+  position: 'fixed',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  zIndex: '1000',
+});
+
+export const toastModalStyling = css({
+  position: 'fixed',
+  top: '110px',
+  left: '50%',
+  transform: 'translate(-50%)',
+  zIndex: '1000',
 });
