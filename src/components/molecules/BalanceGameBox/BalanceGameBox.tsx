@@ -52,7 +52,9 @@ const BalanceGameBox = ({
     if (!selectedOption) {
       createGameVote(voteOption, {
         onSuccess: () => {
-          handleNextStage();
+          setTimeout(() => {
+            handleNextStage();
+          }, 700);
         },
       });
     } else if (selectedOption === voteOption) {
